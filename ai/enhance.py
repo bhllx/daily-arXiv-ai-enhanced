@@ -142,13 +142,26 @@ def process_single_item(chain, item: Dict, language: str) -> Dict:
 
 def process_all_items(data: List[Dict], model_name: str, language: str, max_workers: int) -> List[Dict]:
     """并行处理所有数据项"""
-    llm = ChatOpenAI(
-        **build_chat_openai_kwargs(
-            model_name=model_name,
-            base_url=os.environ.get("OPENAI_BASE_URL", "https://api.openai.com/v1"),
-            api_key=os.environ.get("OPENAI_API_KEY", ""),
-        )
-    ).with_structured_output(Structure, method="function_calling")
+    # llm = ChatOpenAI(
+    #     **build_chat_openai_kwargs(
+    #         model_name=model_name,
+    #         base_url=os.environ.get("OPENAI_BASE_URL", "https://api.openai.com/v1"),
+    #         api_key=os.environ.get("OPENAI_API_KEY", ""),
+    #     )
+    # ).with_structured_output(Structure, method="function_calling")
+    
+    llm_kwargs = build_chat_openai_kwargs(
+        model_name=model_name,
+        base_url=os.environ.get("OPENAI_BASE_URL", "https://api.openai.com/v1"),
+        api_key=os.environ.get("OPENAI_API_KEY", ""),
+    )
+    extra_body = dict(llm_kwargs.get("extra_body") or {})
+    extra_body["thinking"] = {"type": "disabled"}  # 调用deepseek需要显示关闭thinking模式
+    llm_kwargs["extra_body"] = extra_body
+
+    llm = ChatOpenAI(**llm_kwargs).with_structured_output(
+        Structure, method="function_calling"
+    )
 
     print('Connect to:', model_name, file=sys.stderr)
     
