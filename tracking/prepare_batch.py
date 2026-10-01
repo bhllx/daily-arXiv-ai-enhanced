@@ -1,4 +1,4 @@
-"""Prepare a small live batch without modifying production data or history."""
+"""Prepare a live batch; --max-papers 0 selects all eligible IDs."""
 
 import argparse
 from datetime import datetime, timezone
@@ -87,46 +87,56 @@ def fetch_metadata(selected, output):
     import arxiv
     import requests
 
-    client = arxiv.Client(page_size=1, delay_seconds=5, num_retries=0)
+    # Fetch only selected IDs, in batches; rate limiting applies to HTTP requests.
+    batch_size = 50
+    client = arxiv.Client(page_size=batch_size, delay_seconds=5, num_retries=0)
     records = []
-    for paper_id in selected:
+    for offset in range(0, len(selected), batch_size):
+        batch = selected[offset:offset + batch_size]
         for attempt in range(3):
             try:
-                paper = next(client.results(arxiv.Search(id_list=[paper_id])), None)
-                if paper is None or base_id(paper.get_short_id()) != paper_id:
-                    raise RuntimeError(f"No matching arXiv metadata for {paper_id}")
+                search = arxiv.Search(id_list=batch, max_results=len(batch))
+                papers = list(client.results(search))
+                by_id = {base_id(paper.get_short_id()): paper for paper in papers}
+                if len(papers) != len(batch) or set(by_id) != set(batch):
+                    raise RuntimeError("arXiv metadata response is missing requested IDs or contains unexpected IDs")
                 break
             except (arxiv.HTTPError, requests.RequestException) as error:
                 status = getattr(error, "status", None)
                 if isinstance(error, arxiv.HTTPError) and status not in (429, 500, 502, 503, 504):
                     raise
                 if attempt == 2:
-                    raise RuntimeError(f"arXiv metadata request failed for {paper_id}; no AI calls were made") from error
+                    raise RuntimeError(f"arXiv metadata batch failed at offset {offset}; no AI calls were made") from error
                 delay = (30, 60)[attempt]
-                print(f"arXiv request failed for {paper_id}; retrying in {delay}s", flush=True)
+                print(f"arXiv metadata request failed; retrying in {delay}s", flush=True)
                 time.sleep(delay)
-        item = {
-            "id": paper_id,
-            "title": paper.title,
-            "authors": [author.name for author in paper.authors],
-            "categories": paper.categories,
-            "comment": paper.comment,
-            "summary": paper.summary,
-            "abs": paper.entry_id,
-            "pdf": paper.pdf_url,
-        }
-        if not item["title"].strip() or not item["summary"].strip():
-            raise RuntimeError(f"Empty title or abstract for {paper_id}")
-        records.append(item)
+        for paper_id in batch:
+            paper = by_id[paper_id]
+            item = {
+                "id": paper_id,
+                "title": paper.title,
+                "authors": [author.name for author in paper.authors],
+                "categories": paper.categories,
+                "comment": paper.comment,
+                "summary": paper.summary,
+                "abs": paper.entry_id,
+                "pdf": paper.pdf_url,
+            }
+            if not item["title"].strip() or not item["summary"].strip():
+                raise RuntimeError(f"Empty title or abstract for {paper_id}")
+            records.append(item)
         write_json(output / "metadata-progress.json", {"completed_ids": [row["id"] for row in records]})
+        print(f"Metadata ready: {len(records)}/{len(selected)}", flush=True)
     return records
 
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--max-papers", type=int, choices=(3, 10), default=3)
+    parser.add_argument("--max-papers", type=int, default=3, help="0: all eligible IDs; positive: pre-analysis limit")
     parser.add_argument("--output", type=Path, default=Path("run-output"))
     args = parser.parse_args()
+    if args.max_papers < 0:
+        parser.error("--max-papers must be 0 or a positive integer")
     output = args.output.resolve()
     output.mkdir(parents=True, exist_ok=True)
     categories = [part.strip() for part in os.environ.get("CATEGORIES", "cs.CV").split(",") if part.strip()]
@@ -150,7 +160,7 @@ def main():
     write_json(output / "run-info.json", info)
     try:
         ids, observed_count = crawl_ids(output)
-        selected = ids[:args.max_papers]
+        selected = ids if args.max_papers == 0 else ids[:args.max_papers]
         info.update(list_item_count=observed_count, unique_candidate_count=len(ids), selected_ids=selected)
         write_json(output / "run-info.json", info)
         records = fetch_metadata(selected, output)
