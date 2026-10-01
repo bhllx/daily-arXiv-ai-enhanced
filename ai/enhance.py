@@ -26,6 +26,7 @@ from lvr_support import (
 )
 from content_filter import is_sensitive
 from runtime import build_chat_openai_kwargs, raise_if_processing_failed
+from tracking.batch import finalize_tracking_batch
 
 if os.path.exists('.env'):
     dotenv.load_dotenv()
@@ -288,6 +289,14 @@ def main():
         model_name,
         language,
         args.max_workers
+    )
+
+    processed_data, batch_summary = finalize_tracking_batch(processed_data)
+
+    print(
+        "LVR batch summary:",
+        json.dumps(batch_summary, ensure_ascii=False),
+        file=sys.stderr,
     )
     
     # 保存结果
