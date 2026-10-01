@@ -1,76 +1,3 @@
-# import json
-# import argparse
-# import os
-# from itertools import count
-
-# if __name__ == "__main__":
-#     parser = argparse.ArgumentParser()
-#     parser.add_argument("--data", type=str, help="Path to the jsonline file")
-#     args = parser.parse_args()
-#     data = []
-#     preference = os.environ.get('CATEGORIES', 'cs.CV, cs.CL').split(',')
-#     preference = list(map(lambda x: x.strip(), preference))
-#     def rank(cate):
-#         if cate in preference:
-#             return preference.index(cate)
-#         else:
-#             return len(preference)
-
-#     with open(args.data, "r") as f:
-#         for line in f:
-#             data.append(json.loads(line))
-
-#     categories = set([item["categories"][0] for item in data])
-#     template = open("paper_template.md", "r").read()
-#     categories = sorted(categories, key=rank)
-#     cnt = {cate: 0 for cate in categories}
-#     for item in data:
-#         if item["categories"][0] not in cnt.keys():
-#             continue
-#         cnt[item["categories"][0]] += 1
-
-#     markdown = f"<div id=toc></div>\n\n# Table of Contents\n\n"
-#     for idx, cate in enumerate(categories):
-#         markdown += f"- [{cate}](#{cate}) [Total: {cnt[cate]}]\n"
-
-#     idx = count(1)
-#     for cate in categories:
-#         markdown += f"\n\n<div id='{cate}'></div>\n\n"
-#         markdown += f"# {cate} [[Back]](#toc)\n\n"
-#         papers = []
-#         for item in data:
-#             if item["categories"][0] == cate:
-#                 # Safely access AI fields with default values
-#                 ai_data = item.get('AI', {})
-#                 if not ai_data or not isinstance(ai_data, dict):
-#                     print(f"Skipping item '{item.get('title', 'Unknown')}' due to missing or invalid AI data")
-#                     continue
-                
-#                 # Check if all required AI fields are present
-#                 required_fields = ['tldr', 'motivation', 'method', 'result', 'conclusion']
-#                 if not all(field in ai_data for field in required_fields):
-#                     print(f"Skipping item '{item.get('title', 'Unknown')}' due to incomplete AI fields")
-#                     continue
-                
-#                 papers.append(
-#                     template.format(
-#                         title=item["title"],
-#                         authors=",".join(item["authors"]),
-#                         summary=item["summary"],
-#                         url=item['abs'],
-#                         tldr=ai_data.get('tldr', ''),
-#                         motivation=ai_data.get('motivation', ''),
-#                         method=ai_data.get('method', ''),
-#                         result=ai_data.get('result', ''),
-#                         conclusion=ai_data.get('conclusion', ''),
-#                         cate=item['categories'][0],
-#                         idx=next(idx)
-#                     )
-#                 )
-#         markdown += "\n\n".join(papers)
-#     with open(args.data.split('_')[0] + '.md', "w") as f:
-#         f.write(markdown)
-
 import argparse
 import html
 import json
@@ -86,7 +13,11 @@ if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
 from ai.lvr_support import build_tracking_sources, validate_tracking_response
-from tracking.batch import finalize_tracking_batch
+from collections import Counter
+from tracking.batch import CATEGORY_ORDER, PRIORITY_ORDER
+from tracking.brief_schema import BriefAnalysis, SCHEMA_VERSION as BRIEF_VERSION
+
+SUPPORTS_BRIEF_ANALYSIS = True
 
 
 LEGACY_FIELDS = {
@@ -246,14 +177,71 @@ def legacy_sort_key(paper, preference):
     return rank, str(primary), str(paper.get("id", ""))
 
 
-def render_report(data):
+
+def is_brief(paper):
+    return paper.get("analysis_schema_version") == BRIEF_VERSION
+
+
+def render_brief_paper(paper, number):
+    ai = paper["AI"]
+    lines = paper_header(paper, number)
+    field(lines, "研究分类", f"{ai['category']} · {CATEGORY_LABELS[ai['category']]}")
+    field(lines, "优先级", ai["priority"] if ai["priority"] is not None else "待定")
+    lines.append("摘要级简评；深入判断请结合原文人工阅读。\n")
+    field(lines, "内容简述", ai["brief_summary"])
+    label = {"EXCLUDE": "排除原因", "PENDING": "待核查线索"}.get(ai["category"], "相关性简评")
+    field(lines, label, ai["relevance_reason"])
+    lines.extend(source_details(paper))
+    return "\n".join(lines)
+
+
+def render_analysis_paper(paper, number):
+    return render_brief_paper(paper, number) if is_brief(paper) else render_lvr_paper(paper, number)
+
+
+def batch_notice(status):
+    if status is None:
+        return []
+    s = status["summary"]
+    lines = ["## 最近一次简评批次\n"]
+    field(lines, "日期 / 批次", f"{status['run_date_utc']} / {status['run_id']}")
+    lines.append(
+        f"输入 **{s['input_count']}** 篇；分析成功 **{s['success_count']}** 篇，"
+        f"失败 **{s['failed_count']}** 篇，程序过滤 **{s['filtered_count']}** 篇，"
+        f"未处理 **{s['unprocessed_count']}** 篇。\n"
+    )
+    lines.append("此处为该批次处理进度；下方论文统计包含同日保留的历史成功结果。"
+                 "分析成功包含 PENDING 和 EXCLUDE，失败记录不作为这两类计数。\n")
+    if s["failed_count"]:
+        lines.append("本批次存在分析失败，成功结果已保留；失败清单见文末，可随后只补跑失败项。\n")
+    return lines
+
+
+def batch_failures(status):
+    if status is None or not status.get("failures"):
+        return []
+    stages = {"input": "输入处理", "request": "AI 请求", "parse": "输出解析", "validate": "结构校验"}
+    failures = status["failures"]
+    lines = ["## 本次分析失败\n", "<details>",
+             f"<summary>展开查看 {len(failures)} 篇失败记录</summary>\n"]
+    for failure in failures:
+        title = failure.get("title") or failure["id"]
+        lines.append(f"- {link(title, failure.get('abs'))} — {md(failure['id'])}")
+        stage = stages.get(failure.get("stage"), "处理失败")
+        detail = f"{stage} · {failure.get('error_type') or '未提供错误类型'} · 累计尝试 {failure.get('attempt_count', 0)} 次"
+        lines.append(f"  {md(detail)}。" + ("已保留此前成功分析。" if failure.get("has_saved_analysis") else "本次暂无成功分析。"))
+    lines.extend(["", "</details>\n"])
+    return lines
+
+
+def render_report(data, batch_status=None):
     lvr, legacy, missing = [], [], []
     for paper in data:
         if not isinstance(paper, dict):
             raise ValueError("Every record must be a paper object")
         ai = paper.get("AI")
         if isinstance(ai, dict) and "category" in ai:
-            analysis = validate_tracking_response(ai, paper)
+            analysis = BriefAnalysis.model_validate(ai) if is_brief(paper) else validate_tracking_response(ai, paper)
             lvr.append({**paper, "AI": analysis.model_dump(mode="json")})
         elif isinstance(ai, dict) and all(
             isinstance(ai.get(key), str) and ai[key].strip() for key in LEGACY_FIELDS
@@ -262,22 +250,37 @@ def render_report(data):
         else:
             missing.append(paper)
 
-    ordered, summary = finalize_tracking_batch(lvr)
+    seen_ids = set()
+    for paper in lvr:
+        paper_id = paper.get("id")
+        if not isinstance(paper_id, str) or not paper_id.strip() or paper_id in seen_ids:
+            raise ValueError("LVR papers require unique, nonempty ids")
+        seen_ids.add(paper_id)
+    ordered = sorted(lvr, key=lambda p: (
+        PRIORITY_ORDER[p["AI"]["priority"]], CATEGORY_ORDER[p["AI"]["category"]], p["id"],
+    ))
+    category_counts = Counter(p["AI"]["category"] for p in ordered)
+    priority_counts = Counter(p["AI"]["priority"] for p in ordered)
+    summary = {
+        "category_counts": category_counts, "priority_counts": priority_counts,
+        "deep_read_ids": [p["id"] for p in ordered if p["AI"]["category"] in ("MAIN", "METHOD", "EXPLORATORY")][:5],
+    }
     visible = [paper for paper in ordered if paper["AI"]["category"] != "EXCLUDE"]
     excluded = [paper for paper in ordered if paper["AI"]["category"] == "EXCLUDE"]
     lines = ["# LVR 论文日报\n"]
+    lines.extend(batch_notice(batch_status))
     lines.append(
         f"本文件共 **{len(data)}** 篇：LVR 分析 **{len(ordered)}** 篇，"
         f"旧版摘要 **{len(legacy)}** 篇，无完整 AI 分析 **{len(missing)}** 篇。\n"
     )
-    lines.append("LVR 分析依据标题、摘要及可用备注；论文链接不表示已阅读全文。分类把握不等于结果可信度。\n")
+    lines.append("简评依据标题、摘要及可用备注，供人工筛选和阅读；历史长分析继续保留。论文链接不表示已阅读全文。\n")
     lines.extend(["## LVR 分类统计\n", "| 类别 | 数量 |", "| --- | ---: |"])
     for category, label in CATEGORY_LABELS.items():
         lines.append(f"| {category} · {label} | {summary['category_counts'][category]} |")
     counts = summary["priority_counts"]
     lines.append(f"\n入选优先级：P0 **{counts['P0']}** · P1 **{counts['P1']}** · P2 **{counts['P2']}**。\n")
     lines.append("统计仅覆盖本文件中保存的记录，不代表抓取总量或跨日去重数量。\n")
-    lines.append("## 深读入口\n")
+    lines.append("## 优先阅读入口\n")
     lines.append("按优先级、研究类别和论文 ID 排序，最多列出 5 篇；不包含 PENDING 和 EXCLUDE。\n")
     positions = {paper["id"]: (number, paper) for number, paper in enumerate(visible, 1)}
     for paper_id in summary["deep_read_ids"]:
@@ -286,13 +289,13 @@ def render_report(data):
         title = paper.get("title") or paper_id
         lines.append(f"- [{md(title)}](#paper-{number}) — {ai['category']} · {ai['priority']}")
     if not summary["deep_read_ids"]:
-        lines.append("本文件没有符合条件的深读条目。")
+        lines.append("本文件没有符合条件的优先阅读条目。")
 
     number = 0
     if visible:
-        lines.append("\n## LVR 论文分析\n")
+        lines.append("\n## LVR 简评与历史分析\n")
         for number, paper in enumerate(visible, 1):
-            lines.append(render_lvr_paper(paper, number))
+            lines.append(render_analysis_paper(paper, number))
     elif excluded:
         lines.append("\n本批 LVR 分析均为排除项，详见文末折叠区。\n")
 
@@ -324,9 +327,10 @@ def render_report(data):
         ])
         for paper in excluded:
             number += 1
-            lines.append(render_lvr_paper(paper, number))
+            lines.append(render_analysis_paper(paper, number))
         lines.append("</details>\n")
 
+    lines.extend(batch_failures(batch_status))
     return "\n".join(lines).rstrip() + "\n"
 
 
@@ -350,7 +354,7 @@ def load_papers(path):
 
 
 def default_output_path(path):
-    stem = path.stem.split("_AI_enhanced_", 1)[0]
+    stem = re.split(r"_AI_(?:enhanced|brief)_", path.stem, maxsplit=1)[0]
     return path.with_name(stem + ".md")
 
 
@@ -358,11 +362,13 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--data", type=Path, required=True, help="JSONL data or smoke-test JSON")
     parser.add_argument("--output", type=Path, help="Optional Markdown output path")
+    parser.add_argument("--batch-status", type=Path, help="Optional public batch status JSON")
     args = parser.parse_args()
     output = args.output or default_output_path(args.data)
     if output.resolve() == args.data.resolve():
         raise ValueError("Markdown output must not overwrite the input data")
-    markdown = render_report(load_papers(args.data))
+    status = json.loads(args.batch_status.read_text(encoding="utf-8-sig")) if args.batch_status else None
+    markdown = render_report(load_papers(args.data), batch_status=status)
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(markdown, encoding="utf-8")
     print(f"Markdown saved: {output}")
