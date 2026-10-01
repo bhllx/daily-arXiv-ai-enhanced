@@ -263,6 +263,8 @@ def render_report(data):
             missing.append(paper)
 
     ordered, summary = finalize_tracking_batch(lvr)
+    visible = [paper for paper in ordered if paper["AI"]["category"] != "EXCLUDE"]
+    excluded = [paper for paper in ordered if paper["AI"]["category"] == "EXCLUDE"]
     lines = ["# LVR 论文日报\n"]
     lines.append(
         f"本文件共 **{len(data)}** 篇：LVR 分析 **{len(ordered)}** 篇，"
@@ -277,7 +279,7 @@ def render_report(data):
     lines.append("统计仅覆盖本文件中保存的记录，不代表抓取总量或跨日去重数量。\n")
     lines.append("## 深读入口\n")
     lines.append("按优先级、研究类别和论文 ID 排序，最多列出 5 篇；不包含 PENDING 和 EXCLUDE。\n")
-    positions = {paper["id"]: (number, paper) for number, paper in enumerate(ordered, 1)}
+    positions = {paper["id"]: (number, paper) for number, paper in enumerate(visible, 1)}
     for paper_id in summary["deep_read_ids"]:
         number, paper = positions[paper_id]
         ai = paper["AI"]
@@ -287,10 +289,12 @@ def render_report(data):
         lines.append("本文件没有符合条件的深读条目。")
 
     number = 0
-    if ordered:
+    if visible:
         lines.append("\n## LVR 论文分析\n")
-        for number, paper in enumerate(ordered, 1):
+        for number, paper in enumerate(visible, 1):
             lines.append(render_lvr_paper(paper, number))
+    elif excluded:
+        lines.append("\n本批 LVR 分析均为排除项，详见文末折叠区。\n")
 
     if legacy:
         lines.extend(["\n## 旧版 AI 摘要\n", "以下记录保留原有五字段摘要，尚未按 LVR 规则分类。\n"])
@@ -310,6 +314,18 @@ def render_report(data):
             block = paper_header(paper, number)
             block.extend(source_details(paper))
             lines.append("\n".join(block))
+
+    if excluded:
+        lines.extend([
+            "\n## 已排除论文\n",
+            "排除项仍保留在统计和原始记录中，不进入深读推荐。\n",
+            "<details>",
+            f"<summary>展开查看 {len(excluded)} 篇排除项及原因</summary>\n",
+        ])
+        for paper in excluded:
+            number += 1
+            lines.append(render_lvr_paper(paper, number))
+        lines.append("</details>\n")
 
     return "\n".join(lines).rstrip() + "\n"
 
