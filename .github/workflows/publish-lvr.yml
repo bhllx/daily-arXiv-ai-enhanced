@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
     inputs:
       source_run_id:
-        description: "手动补发时填写成功的抓取运行 ID；自动发布无需填写"
+        description: "手动补发/归档时填写抓取运行 ID；复用已有结果，不重新分析"
         required: true
         type: string
 
@@ -24,12 +24,13 @@ jobs:
     if: >-
       github.ref == 'refs/heads/main' &&
       (github.event_name == 'workflow_dispatch' ||
-       (github.event.workflow_run.conclusion == 'success' &&
-        github.event.workflow_run.head_branch == 'main' &&
+       (github.event.workflow_run.head_branch == 'main' &&
         github.event.workflow_run.head_repository.full_name == github.repository &&
-        (github.event.workflow_run.event == 'schedule' || github.event.workflow_run.event == 'workflow_dispatch')))
+        (github.event.workflow_run.event == 'schedule' || github.event.workflow_run.event == 'workflow_dispatch') &&
+        (github.event.workflow_run.conclusion == 'success' || github.event.workflow_run.conclusion == 'failure' ||
+         github.event.workflow_run.conclusion == 'cancelled' || github.event.workflow_run.conclusion == 'timed_out')))
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
     permissions:
       contents: write
       actions: read
@@ -56,32 +57,14 @@ jobs:
       - name: Install project dependencies
         run: uv sync --frozen
 
-      - name: Verify the selected successful run
+      - name: Verify collection provenance and find its saved artifact
+        id: source
         env:
           GH_TOKEN: ${{ github.token }}
-        run: |
-          uv run --frozen python - <<'PY'
-          import json
-          import os
-          from pathlib import Path
-          from urllib.request import Request, urlopen
-          run_id = os.environ["SOURCE_RUN_ID"].strip()
-          if not run_id.isdecimal():
-              raise ValueError("source_run_id must contain digits only")
-          repository = os.environ["GITHUB_REPOSITORY"]
-          url = f"https://api.github.com/repos/{repository}/actions/runs/{run_id}"
-          request = Request(url, headers={"Authorization": "Bearer " + os.environ["GH_TOKEN"], "Accept": "application/vnd.github+json"})
-          with urlopen(request, timeout=30) as response:
-              run = json.load(response)
-          if run.get("status") != "completed" or run.get("conclusion") != "success":
-              raise RuntimeError("Choose a completed, successful batch run")
-          if run.get("path") != ".github/workflows/run.yml" or run.get("head_repository", {}).get("full_name") != repository:
-              raise RuntimeError("Choose this repository's batch workflow")
-          Path("source-run.json").write_text(json.dumps(run), encoding="utf-8")
-          print("Source batch:", run_id, run["head_sha"])
-          PY
+        run: uv run --frozen python tracking/brief_workflow.py source
 
       - name: Download the existing batch result
+        if: steps.source.outputs.has_artifact == 'true'
         uses: actions/download-artifact@v8
         with:
           name: lvr-batch-result
@@ -89,17 +72,42 @@ jobs:
           github-token: ${{ github.token }}
           run-id: ${{ env.SOURCE_RUN_ID }}
 
+      - name: Validate results and choose publication or archival
+        id: plan
+        if: steps.source.outputs.has_artifact == 'true'
+        run: uv run --frozen python tracking/brief_workflow.py publication-plan
+
       - name: Checkout existing data history
+        if: steps.plan.outputs.action == 'publish' || steps.plan.outputs.action == 'archive'
         uses: actions/checkout@v7
         with:
           ref: data
           path: data-store
           persist-credentials: true
 
-      - name: Configure GitHub Pages
-        uses: actions/configure-pages@v5
+      - name: Save brief recovery state before building the website
+        if: steps.plan.outputs.is_brief == 'true'
+        run: |
+          uv run --frozen python tracking/publish_results.py \
+            --artifact batch-result \
+            --data-checkout data-store \
+            --source-run source-run.json \
+            --state-only
 
-      - name: Merge batch data and build the website
+      - name: Commit recovery state to the data branch
+        if: steps.plan.outputs.is_brief == 'true'
+        working-directory: data-store
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- runs
+          if ! git diff --cached --quiet; then
+            git commit -m "data: archive brief batch ${SOURCE_RUN_ID}"
+          fi
+          git push origin HEAD:refs/heads/data
+
+      - name: Merge successful results and build the website
+        if: steps.plan.outputs.action == 'publish'
         env:
           ACCESS_PASSWORD: ${{ secrets.ACCESS_PASSWORD }}
         run: |
@@ -112,44 +120,38 @@ jobs:
           node --check _site/js/data-config.js
           node --check _site/js/auth-config.js
 
-      - name: Upload website artifact
-        uses: actions/upload-pages-artifact@v4
-        with:
-          path: _site
-
-      - name: Commit and push data only
+      - name: Commit merged results to the data branch
+        if: steps.plan.outputs.action == 'publish'
         working-directory: data-store
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -- data assets/file-list.txt runs
           if ! git diff --cached --quiet; then
-            git commit -m "data: publish LVR batch ${SOURCE_RUN_ID}"
+            git commit -m "data: publish brief batch ${SOURCE_RUN_ID}"
           fi
           git push origin HEAD:refs/heads/data
 
+      - name: Configure GitHub Pages
+        if: steps.plan.outputs.action == 'publish'
+        uses: actions/configure-pages@v5
+
+      - name: Upload website artifact
+        if: steps.plan.outputs.action == 'publish'
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+
       - name: Deploy website to GitHub Pages
         id: deployment
+        if: steps.plan.outputs.action == 'publish'
         uses: actions/deploy-pages@v4
 
-      - name: Record successful publication
+      - name: Record publication or archival
+        if: steps.plan.outputs.action == 'publish' || steps.plan.outputs.action == 'archive'
         env:
           PAGE_URL: ${{ steps.deployment.outputs.page_url }}
-        run: |
-          uv run --frozen python - <<'PY'
-          import json
-          import os
-          from pathlib import Path
-          result = json.loads(Path("publication.json").read_text(encoding="utf-8"))
-          with open(os.environ["GITHUB_STEP_SUMMARY"], "a", encoding="utf-8") as handle:
-              handle.write("## LVR 数据和网页发布成功\n\n")
-              handle.write(f"- 日期：{result['date']}\n")
-              handle.write(f"- 本批分析：{result['incoming_analyses']} 篇\n")
-              handle.write(f"- 该日期现有记录：{result['total_saved_for_date']} 篇\n")
-              handle.write(f"- 网页：{os.environ['PAGE_URL']}\n\n")
-              handle.write("发布环节复用该批分析结果，没有再次调用 DeepSeek。\n")
-          print("LVR_DATA_AND_PAGES_PUBLISHED")
-          PY
+        run: uv run --frozen python tracking/brief_workflow.py publication-summary
 
       - name: Upload publication details
         if: always()
@@ -158,4 +160,4 @@ jobs:
           name: lvr-publication-details
           path: publication.json
           if-no-files-found: ignore
-          retention-days: 7
+          retention-days: 30
