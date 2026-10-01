@@ -5,6 +5,8 @@ const LVR_CATEGORY_LABELS = {
 const LVR_CATEGORY_ORDER = {MAIN: 0, METHOD: 1, EXPLORATORY: 2, PENDING: 3, EXCLUDE: 4};
 let lvrCategoryFilter = 'non_excluded';
 let lvrPriorityFilter = 'all';
+let batchStatuses = [];
+let paperLoadGeneration = 0;
 
 function escapeHtml(value) {
   return String(value ?? '').replace(/[&<>"']/g, character => ({
@@ -34,10 +36,115 @@ function arxivVariant(url, kind) {
   }
 }
 
+function isBriefAnalysis(paper) {
+  return paper.analysisSchemaVersion === 'lvr-brief-v1';
+}
+
 function lvrSummary(ai, originalSummary) {
+  if (Object.hasOwn(ai, 'brief_summary')) return ai.brief_summary || ai.relevance_reason || originalSummary;
   if (ai.category === 'EXCLUDE') return ai.exclusion_reason || originalSummary;
   if (ai.category === 'PENDING') return ai.reason_to_track || originalSummary;
   return ai.core_mechanism || ai.reason_to_track || originalSummary;
+}
+
+// Batch progress is separate from the papers saved for a date (which may include older successes).
+function validBriefStatus(value, date) {
+  if (!value || value.schema_version !== 'lvr-brief-day-status-v1' || value.run_date_utc !== date) return false;
+  const s = value.summary;
+  const fields = ['input_count', 'success_count', 'failed_count', 'filtered_count', 'unprocessed_count'];
+  if (!s || !fields.every(key => Number.isSafeInteger(s[key]) && s[key] >= 0)) return false;
+  if (s.input_count !== s.success_count + s.failed_count + s.filtered_count + s.unprocessed_count) return false;
+  if (!Array.isArray(value.failures) || value.failures.length !== s.failed_count) return false;
+  return value.failures.every(f => f && typeof f === 'object' && typeof f.id === 'string'
+    && Number.isSafeInteger(f.attempt_count) && f.attempt_count >= 0);
+}
+
+async function fetchBriefStatus(date) {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), 10000);
+  try {
+    const response = await fetch(DATA_CONFIG.getDataUrl(`data/${date}_brief_status.json`), {signal: controller.signal});
+    if (response.status === 404) return {date, state: 'absent'};
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    const status = await response.json();
+    if (!validBriefStatus(status, date)) throw new Error('Invalid batch status');
+    return {date, state: 'available', status};
+  } catch (error) {
+    console.warn(`简评批次状态暂不可用：${date}`, error);
+    return {date, state: 'unavailable'};
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
+function resetBatchDisplay() {
+  batchStatuses = [];
+  paperData = {};
+  currentFilteredPapers = [];
+  for (const id of ['lvrBatchStatus', 'lvrBottomSections']) document.getElementById(id)?.remove();
+  renderLvrControls([], 0);
+}
+
+function renderBatchNotices() {
+  document.getElementById('lvrBatchStatus')?.remove();
+  const messages = batchStatuses.map(entry => {
+    if (entry.state === 'unavailable') return `<p>${escapeHtml(entry.date)}：批次状态暂时无法读取，失败数量未知；论文仍可阅读。</p>`;
+    if (entry.state === 'absent') {
+      const hasBriefs = Object.values(paperData).flat().some(p => p.date === entry.date && isBriefAnalysis(p));
+      return hasBriefs ? `<p>${escapeHtml(entry.date)}：暂无批次状态记录，失败数量未知。</p>` : '';
+    }
+    const s = entry.status.summary;
+    return `<p><strong>${escapeHtml(entry.date)} · 最近一次简评批次</strong></p>
+      <p>输入 ${s.input_count} 篇 · 分析成功 ${s.success_count} · 失败 ${s.failed_count} · 程序过滤 ${s.filtered_count} · 未处理 ${s.unprocessed_count}</p>`;
+  }).filter(Boolean);
+  if (!messages.length) return;
+  const notice = document.createElement('section');
+  notice.id = 'lvrBatchStatus';
+  notice.className = 'lvr-batch-status' + (batchStatuses.some(e => e.status?.summary.failed_count > 0) ? ' has-failures' : '');
+  notice.setAttribute('aria-label', '简评批次处理情况');
+  notice.innerHTML = messages.join('') + '<p class="lvr-note">批次进度覆盖该批次全部输入，不随阅读筛选变化。下方列表包含同日保留的历史成功结果；成功数包含 PENDING 和 EXCLUDE。'
+    + (batchStatuses.some(e => e.status?.summary.failed_count > 0) ? '失败清单见页面末尾。' : '') + '</p>';
+  const controls = document.getElementById('lvrControls');
+  controls.parentNode.insertBefore(notice, controls);
+}
+
+function paperTitleLink(title, url) {
+  const safe = safePaperUrl(url);
+  return safe ? `<a href="${escapeHtml(safe)}" target="_blank" rel="noopener noreferrer">${escapeHtml(title)}</a>` : escapeHtml(title);
+}
+
+function renderBottomSections(papers) {
+  document.getElementById('lvrBottomSections')?.remove();
+  const sections = [];
+  // Exclusion has no P0/P1/P2 priority. Hide this fold when a specific priority is selected.
+  const excluded = lvrCategoryFilter === 'non_excluded' && lvrPriorityFilter === 'all'
+    ? papers.filter(p => p.analysis?.category === 'EXCLUDE').sort(compareLvrPapers) : [];
+  if (excluded.length) {
+    const terms = [...activeKeywords, ...(textSearchQuery.trim() ? [textSearchQuery.trim()] : [])];
+    sections.push(`<details class="lvr-fold"><summary>已排除论文（${excluded.length} 篇）</summary>
+      <p class="lvr-note">保留排除原因和论文链接；不进入默认阅读列表。</p>
+      ${excluded.map(p => `<article><h4>${paperTitleLink(p.title, p.url)}</h4>
+        <p class="lvr-note">${escapeHtml(p.date)} · ${escapeHtml(p.id)} · EXCLUDE</p>
+        <p>${highlightMatches(p.analysis.relevance_reason || p.analysis.exclusion_reason || '未提供排除原因', terms, 'keyword-highlight')}</p></article>`).join('')}
+      </details>`);
+  }
+  const failures = batchStatuses.flatMap(entry => entry.state === 'available'
+    ? entry.status.failures.map(f => ({...f, date: entry.date})) : []);
+  if (failures.length) {
+    const stages = {input: '输入处理', request: 'AI 请求', parse: '输出解析', validate: '结构校验'};
+    sections.push(`<details class="lvr-fold"><summary>本次分析失败（${failures.length} 篇）</summary>
+      <p class="lvr-note">以下为所选日期的批次失败记录，不属于 PENDING 或 EXCLUDE；后续可只补跑失败项。</p>
+      ${failures.map(f => `<article><h4>${paperTitleLink(f.title || f.id, f.abs)}</h4>
+        <p class="lvr-note">${escapeHtml(f.date)} · ${escapeHtml(f.id)} · ${escapeHtml(stages[f.stage] || '处理失败')} · ${escapeHtml(f.error_type || '未提供错误类型')} · 累计尝试 ${f.attempt_count} 次</p>
+        <p>${f.has_saved_analysis ? '本次分析失败，已保留此前成功分析。' : '本次暂无成功分析。'}</p></article>`).join('')}
+      </details>`);
+  }
+  if (!sections.length) return;
+  const bottom = document.createElement('section');
+  bottom.id = 'lvrBottomSections';
+  bottom.className = 'lvr-bottom';
+  bottom.innerHTML = sections.join('');
+  document.getElementById('paperContainer').insertAdjacentElement('afterend', bottom);
 }
 
 function analysisText(value) {
@@ -54,7 +161,7 @@ function paperSearchText(paper) {
 }
 
 function paperKeywordText(paper) {
-  return `${paper.title} ${paper.summary} ${paper.details || ''}`.toLowerCase();
+  return `${paper.title} ${paper.summary} ${paper.details || ''} ${paper.analysis?.relevance_reason || ''}`.toLowerCase();
 }
 
 function compareLvrPapers(a, b) {
@@ -118,7 +225,19 @@ function ensureLvrStyles() {
     .lvr-fold summary {cursor: pointer; font-weight: 600; padding: 4px 0;}
     .lvr-evidence {margin: 14px 0;}
     .lvr-evidence-label {font-size: 13px; color: #666;}
+
+    .lvr-batch-status {margin: 0 0 18px; padding: 14px 16px; border: 1px solid #dce5ed; border-radius: 10px; background: #f6f9fc; color: #294157; overflow-wrap: anywhere;}
+    .lvr-batch-status p {margin: 6px 0; line-height: 1.7;}
+    .lvr-batch-status.has-failures {border-color: #e4ce9b; background: #fffaf0; color: #63480c;}
+    .lvr-card-reason {font-size: 13px; line-height: 1.7; color: #4d5863; overflow-wrap: anywhere; margin: 10px 0;}
+    .lvr-bottom {margin: 24px 0; color: #333;}
+    .lvr-bottom article {padding: 14px 0; border-bottom: 1px solid #e4e7eb; overflow-wrap: anywhere;}
+    .lvr-bottom h4 {margin: 0 0 6px; font-size: 15px; line-height: 1.6;}
+    .lvr-bottom p {margin: 7px 0; line-height: 1.7;}
+    .lvr-bottom a {color: #315b88;}
     @media (max-width: 600px) {
+      .header-content {flex-wrap: wrap; gap: 8px;}
+      .header-center {max-width: 100%; margin-bottom: 0;}
       .lvr-controls {padding: 12px;}
       .lvr-control-row label {width: 100%; justify-content: space-between;}
       .lvr-control-row select {width: 65%;}
@@ -175,7 +294,7 @@ function renderLvrControls(papers, visibleCount) {
     `当前日期与学科范围共 ${papers.length} 条，显示 ${visibleCount} 条。` +
     Object.keys(LVR_CATEGORY_LABELS).map(key => `${key} ${counts[key]}`).join(' · ') +
     ` · 旧版 ${counts.LEGACY} · 无完整分析 ${counts.UNANALYZED}` +
-    (lvrCategoryFilter === 'non_excluded' ? '。排除项已隐藏，可通过研究分类查看。' : '');
+    (lvrCategoryFilter === 'non_excluded' ? (lvrPriorityFilter === 'all' ? '。排除项收在页面末尾折叠区；也可通过研究分类查看。' : '。当前优先级筛选不显示排除项。') : '');
 }
 
 function lvrSection(label, value, terms = []) {
@@ -187,6 +306,12 @@ function renderLvrAnalysis(paper, terms = []) {
   const ai = paper.analysis;
   if (!ai) return '';
   let content = lvrBadges(paper);
+  if (isBriefAnalysis(paper)) {
+    const label = ai.category === 'EXCLUDE' ? '排除原因' : ai.category === 'PENDING' ? '待核查线索' : '相关性简评';
+    content += '<p class="lvr-note">摘要级简评；深入判断请结合原文人工阅读。</p>';
+    content += lvrSection('内容简述', ai.brief_summary, terms) + lvrSection(label, ai.relevance_reason, terms);
+    return `<div class="lvr-analysis">${content}</div>`;
+  }
   const confidence = {high: '高', medium: '中', low: '低'}[ai.classification_confidence] || '未提供';
   content += `<p class="lvr-note">分类把握：${confidence}。分析依据标题、摘要和可用备注；全文未读。分类把握不代表结果已核验。</p>`;
   if (Array.isArray(ai.topic_tags) && ai.topic_tags.length) content += lvrSection('主题标签', ai.topic_tags.join(' · '), terms);
@@ -1060,6 +1185,8 @@ function toggleRangeMode() {
 }
 
 async function loadPapersByDate(date) {
+  const generation = ++paperLoadGeneration;
+  resetBatchDisplay();
   currentDate = date;
   document.getElementById('currentDate').textContent = formatDate(date);
   
@@ -1084,6 +1211,7 @@ async function loadPapersByDate(date) {
     // 从 data 分支获取数据文件
     const dataUrl = DATA_CONFIG.getDataUrl(`data/${date}_AI_enhanced_${selectedLanguage}.jsonl`);
     const response = await fetch(dataUrl);
+    if (generation !== paperLoadGeneration) return;
     // 如果文件不存在（例如返回 404），在论文展示区域提示没有论文
     if (!response.ok) {
       if (response.status === 404) {
@@ -1101,6 +1229,7 @@ async function loadPapersByDate(date) {
       throw new Error(`HTTP ${response.status}`);
     }
     const text = await response.text();
+    if (generation !== paperLoadGeneration) return;
     // 空文件也提示没有论文
     if (!text || text.trim() === '') {
       container.innerHTML = `
@@ -1115,6 +1244,9 @@ async function loadPapersByDate(date) {
       return;
     }
     
+    const status = await fetchBriefStatus(date);
+    if (generation !== paperLoadGeneration) return;
+    batchStatuses = [status];
     paperData = parseJsonlData(text, date);
 
     const categories = getAllCategories(paperData);
@@ -1143,6 +1275,8 @@ async function loadPapersByDate(date) {
 
     renderPapers();
   } catch (error) {
+    if (generation !== paperLoadGeneration) return;
+    resetBatchDisplay();
     console.error('加载论文数据失败:', error);
     paperData = {};
     currentFilteredPapers = [];
@@ -1185,6 +1319,7 @@ function parseJsonlData(jsonlText, date) {
         details: originalSummary, comment: typeof paper.comment === 'string' ? paper.comment : '',
         date, id: paper.id,
         analysis: isLvr ? ai : null,
+        analysisSchemaVersion: paper.analysis_schema_version || null,
         analysisStatus: isLvr ? 'lvr' : (isLegacy ? 'legacy' : 'unavailable'),
         motivation: isLegacy ? ai.motivation : '', method: isLegacy ? ai.method : '',
         result: isLegacy ? ai.result : '', conclusion: isLegacy ? ai.conclusion : '',
@@ -1366,6 +1501,8 @@ function renderPapers() {
   filteredPapers.sort((a, b) => Number(b.isMatched) - Number(a.isMatched) || compareLvrPapers(a, b));
   currentFilteredPapers = filteredPapers;
   renderLvrControls(papers, filteredPapers.length);
+  renderBatchNotices();
+  renderBottomSections(papers);
   if (!filteredPapers.length) {
     container.innerHTML = '<div class="loading-container"><p>当前筛选条件下没有论文。</p></div>';
     return;
@@ -1381,9 +1518,9 @@ function renderPapers() {
     card.setAttribute('aria-label', `查看论文：${paper.title}`);
     if (paper.isMatched) card.title = `匹配: ${paper.matchReason.join(' | ')}`;
     const categoryTags = paper.category.map(category => `<span class="category-tag">${escapeHtml(category)}</span>`).join('');
-    const label = paper.analysis?.category === 'EXCLUDE' ? '排除原因'
+    const label = isBriefAnalysis(paper) && paper.analysis?.brief_summary ? '内容简述' : paper.analysis?.category === 'EXCLUDE' ? '排除原因'
       : paper.analysis?.category === 'PENDING' ? '待核验线索'
-      : paper.analysis ? '核心机制' : paper.analysisStatus === 'legacy' ? '旧版摘要' : '原始摘要';
+      : isBriefAnalysis(paper) ? '内容简述' : paper.analysis ? '核心机制' : paper.analysisStatus === 'legacy' ? '旧版摘要' : '原始摘要';
     card.innerHTML = `<div class="paper-card-index">${index + 1}</div>
       ${paper.isMatched ? '<div class="match-badge" title="匹配您的搜索条件"></div>' : ''}
       <div class="paper-card-header"><h3 class="paper-card-title">${highlightMatches(paper.title, titleTerms, 'keyword-highlight')}</h3>
@@ -1391,6 +1528,7 @@ function renderPapers() {
         <div class="paper-card-categories">${categoryTags}</div><div class="lvr-badges">${lvrBadges(paper)}</div></div>
       <div class="paper-card-body"><p class="lvr-summary-label">${label}</p>
         <p class="paper-card-summary">${highlightMatches(paper.summary, titleTerms, 'keyword-highlight')}</p>
+        ${isBriefAnalysis(paper) && paper.analysis.brief_summary ? `<p class="lvr-card-reason"><strong>${paper.analysis.category === 'EXCLUDE' ? '排除原因' : paper.analysis.category === 'PENDING' ? '待核查线索' : '相关性简评'}：</strong>${highlightMatches(paper.analysis.relevance_reason, titleTerms, 'keyword-highlight')}</p>` : ''}
         <div class="paper-card-footer"><div class="footer-left"><span class="paper-card-date">${escapeHtml(formatDate(paper.date))}</span></div>
         <span class="paper-card-link">Details</span></div></div>`;
     const open = () => {
@@ -1571,6 +1709,8 @@ async function loadPapersByDateRange(startDate, endDate) {
     return;
   }
   
+  const generation = ++paperLoadGeneration;
+  resetBatchDisplay();
   currentDate = `${normalizedStartDate} to ${normalizedEndDate}`;
   document.getElementById('currentDate').textContent = `${formatDate(normalizedStartDate)} - ${formatDate(normalizedEndDate)}`;
   
@@ -1587,14 +1727,19 @@ async function loadPapersByDateRange(startDate, endDate) {
   
   try {
     // 加载所有日期的论文数据
-    const allPaperData = {};
+    const allPaperData = Object.create(null);
+    const statuses = [];
     
     for (const date of validDatesInRange) {
       const selectedLanguage = selectLanguageForDate(date);
       // 从 data 分支获取数据文件
       const dataUrl = DATA_CONFIG.getDataUrl(`data/${date}_AI_enhanced_${selectedLanguage}.jsonl`);
       const response = await fetch(dataUrl);
+      if (generation !== paperLoadGeneration) return;
+      if (!response.ok) throw new Error(`${date}: HTTP ${response.status}`);
       const text = await response.text();
+      statuses.push(await fetchBriefStatus(date));
+      if (generation !== paperLoadGeneration) return;
       const dataPapers = parseJsonlData(text, date);
       
       // 合并数据
@@ -1606,6 +1751,7 @@ async function loadPapersByDateRange(startDate, endDate) {
       });
     }
     
+    batchStatuses = statuses;
     paperData = allPaperData;
 
     const categories = getAllCategories(paperData);
@@ -1634,6 +1780,8 @@ async function loadPapersByDateRange(startDate, endDate) {
 
     renderPapers();
   } catch (error) {
+    if (generation !== paperLoadGeneration) return;
+    resetBatchDisplay();
     console.error('加载论文数据失败:', error);
     paperData = {};
     currentFilteredPapers = [];
