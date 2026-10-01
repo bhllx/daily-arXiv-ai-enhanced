@@ -1,0 +1,151 @@
+name: Publish LVR Results and Website
+
+on:
+  workflow_dispatch:
+    inputs:
+      source_run_id:
+        description: "成功的小批量运行 ID（本次填 36814526578）"
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: lvr-data-and-pages-publish
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: write
+      actions: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    env:
+      PYTHONUTF8: "1"
+      SOURCE_RUN_ID: ${{ inputs.source_run_id }}
+
+    steps:
+      - name: Checkout website and publishing code
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Set up uv and Python
+        uses: astral-sh/setup-uv@bec219d24cd3e171d82865faccec33120bb574f4 # v10.1.0
+        with:
+          python-version: "3.12"
+
+      - name: Install project dependencies
+        run: uv sync --frozen
+
+      - name: Verify the selected successful run
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          uv run --frozen python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+          from urllib.request import Request, urlopen
+          run_id = os.environ["SOURCE_RUN_ID"].strip()
+          if not run_id.isdecimal():
+              raise ValueError("source_run_id must contain digits only")
+          repository = os.environ["GITHUB_REPOSITORY"]
+          url = f"https://api.github.com/repos/{repository}/actions/runs/{run_id}"
+          request = Request(url, headers={"Authorization": "Bearer " + os.environ["GH_TOKEN"], "Accept": "application/vnd.github+json"})
+          with urlopen(request, timeout=30) as response:
+              run = json.load(response)
+          if run.get("status") != "completed" or run.get("conclusion") != "success":
+              raise RuntimeError("Choose a completed, successful batch run")
+          if run.get("path") != ".github/workflows/run.yml" or run.get("head_repository", {}).get("full_name") != repository:
+              raise RuntimeError("Choose this repository's batch workflow")
+          Path("source-run.json").write_text(json.dumps(run), encoding="utf-8")
+          print("Source batch:", run_id, run["head_sha"])
+          PY
+
+      - name: Download the existing batch result
+        uses: actions/download-artifact@v8
+        with:
+          name: lvr-batch-result
+          path: batch-result
+          github-token: ${{ github.token }}
+          run-id: ${{ inputs.source_run_id }}
+
+      - name: Checkout existing data history
+        uses: actions/checkout@v7
+        with:
+          ref: data
+          path: data-store
+          persist-credentials: true
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Merge batch data and build the website
+        env:
+          ACCESS_PASSWORD: ${{ secrets.ACCESS_PASSWORD }}
+        run: |
+          uv run --frozen python tracking/publish_results.py \
+            --artifact batch-result \
+            --data-checkout data-store \
+            --source-run source-run.json \
+            --site _site
+          node --check _site/js/app.js
+          node --check _site/js/data-config.js
+          node --check _site/js/auth-config.js
+
+      - name: Upload website artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+
+      - name: Commit and push data only
+        working-directory: data-store
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- data assets/file-list.txt runs
+          if ! git diff --cached --quiet; then
+            git commit -m "data: publish LVR batch ${SOURCE_RUN_ID}"
+          fi
+          git push origin HEAD:refs/heads/data
+
+      - name: Deploy website to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+      - name: Record successful publication
+        env:
+          PAGE_URL: ${{ steps.deployment.outputs.page_url }}
+        run: |
+          uv run --frozen python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+          result = json.loads(Path("publication.json").read_text(encoding="utf-8"))
+          with open(os.environ["GITHUB_STEP_SUMMARY"], "a", encoding="utf-8") as handle:
+              handle.write("## LVR 数据和网页发布成功\n\n")
+              handle.write(f"- 日期：{result['date']}\n")
+              handle.write(f"- 本批分析：{result['incoming_analyses']} 篇\n")
+              handle.write(f"- 该日期现有记录：{result['total_saved_for_date']} 篇\n")
+              handle.write(f"- 网页：{os.environ['PAGE_URL']}\n\n")
+              handle.write("本次复用已有结果，没有调用 DeepSeek，也没有启动定时抓取。\n")
+          print("LVR_DATA_AND_PAGES_PUBLISHED")
+          PY
+
+      - name: Upload publication details
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: lvr-publication-details
+          path: publication.json
+          if-no-files-found: ignore
+          retention-days: 7
