@@ -15,6 +15,10 @@ jobs:
     if: github.ref == 'refs/heads/lvr-tracking'
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    env:
+      LANGUAGE: Chinese
+      PAPER_ID: "2412.06769v1"
+      PYTHONUTF8: "1"
 
     steps:
       - name: Checkout development branch
@@ -30,14 +34,11 @@ jobs:
       - name: Install project dependencies
         run: uv sync --frozen
 
-      - name: Analyze one paper
+      - name: Check website script syntax
+        run: node --check js/app.js
+
+      - name: Prepare one paper
         working-directory: ai
-        env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          OPENAI_BASE_URL: ${{ secrets.OPENAI_BASE_URL }}
-          MODEL_NAME: ${{ vars.MODEL_NAME }}
-          LANGUAGE: Chinese
-          PAPER_ID: "2412.06769v1"
         run: |
           uv run --frozen python - <<'PY'
           import json
@@ -46,24 +47,15 @@ jobs:
           from pathlib import Path
 
           import arxiv
-          from enhance import process_all_items
-          from lvr_support import build_tracking_input, validate_tracking_response
-
-          required = ("OPENAI_API_KEY", "OPENAI_BASE_URL", "MODEL_NAME")
-          missing = [name for name in required if not os.environ.get(name, "").strip()]
-          if missing:
-              raise RuntimeError("Missing configuration: " + ", ".join(missing))
+          from lvr_support import build_tracking_input
 
           output_dir = Path("../test-output/lvr-smoke")
           output_dir.mkdir(parents=True, exist_ok=True)
-
           paper_id = os.environ["PAPER_ID"]
           client = arxiv.Client(page_size=1, delay_seconds=3, num_retries=2)
           paper = next(client.results(arxiv.Search(id_list=[paper_id])), None)
-          if paper is None:
-              raise RuntimeError(f"arXiv returned no paper for {paper_id}")
-          if paper.get_short_id() != paper_id:
-              raise RuntimeError("arXiv returned a different paper or version")
+          if paper is None or paper.get_short_id() != paper_id:
+              raise RuntimeError("arXiv did not return the requested paper and version")
 
           item = {
               "id": re.sub(r"v\d+$", "", paper.get_short_id()),
@@ -75,25 +67,129 @@ jobs:
               "abs": paper.entry_id,
               "pdf": paper.pdf_url,
           }
+          (output_dir / "paper.jsonl").write_text(
+              json.dumps(item, ensure_ascii=False) + "\n", encoding="utf-8"
+          )
           (output_dir / "input.json").write_text(
               build_tracking_input(item), encoding="utf-8"
           )
-          print("Testing:", paper.get_short_id(), paper.title)
-
-          results = process_all_items(
-              [item], os.environ["MODEL_NAME"], os.environ["LANGUAGE"], 1
+          (output_dir / "run-info.json").write_text(
+              json.dumps({
+                  "commit": os.environ["GITHUB_SHA"],
+                  "branch": os.environ["GITHUB_REF_NAME"],
+                  "run_id": os.environ["GITHUB_RUN_ID"],
+                  "paper_id": paper_id,
+                  "language": os.environ["LANGUAGE"],
+              }, ensure_ascii=False, indent=2), encoding="utf-8"
           )
-          if len(results) != 1 or results[0] is None:
-              raise RuntimeError("The paper was filtered out; the analysis test did not pass")
+          print("Prepared:", paper.get_short_id(), paper.title)
+          PY
 
-          result = results[0]
+      - name: Analyze, sort and save through enhance.py
+        working-directory: ai
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_BASE_URL: ${{ secrets.OPENAI_BASE_URL }}
+          MODEL_NAME: ${{ vars.MODEL_NAME }}
+        run: |
+          uv run --frozen python - <<'PY'
+          import os
+          required = ("OPENAI_API_KEY", "OPENAI_BASE_URL", "MODEL_NAME")
+          missing = [name for name in required if not os.environ.get(name, "").strip()]
+          if missing:
+              raise RuntimeError("Missing configuration: " + ", ".join(missing))
+          PY
+          uv run --frozen python enhance.py \
+            --data ../test-output/lvr-smoke/paper.jsonl \
+            --max_workers 1
+
+      - name: Validate saved analysis and batch summary
+        working-directory: ai
+        run: |
+          uv run --frozen python - <<'PY'
+          import json
+          from pathlib import Path
+
+          from lvr_support import validate_tracking_response
+          from tracking.batch import finalize_tracking_batch
+
+          output_dir = Path("../test-output/lvr-smoke")
+          raw = json.loads((output_dir / "paper.jsonl").read_text(encoding="utf-8"))
+          saved_path = output_dir / "paper_AI_enhanced_Chinese.jsonl"
+          records = [json.loads(line) for line in saved_path.read_text(encoding="utf-8").splitlines() if line.strip()]
+          if len(records) != 1:
+              raise RuntimeError("Expected one saved paper; it may have been filtered out")
+          result = records[0]
+          for field, value in raw.items():
+              if result.get(field) != value:
+                  raise RuntimeError(f"Original metadata changed: {field}")
           analysis = validate_tracking_response(result.get("AI"), result)
+          ordered, summary = finalize_tracking_batch(records)
+          if ordered != records or summary["analyzed_count"] != 1:
+              raise RuntimeError("Saved records and batch summary are inconsistent")
+          if sum(summary["category_counts"].values()) != 1:
+              raise RuntimeError("Category counts are inconsistent")
+          expected_deep_read = [] if analysis.category in ("PENDING", "EXCLUDE") else [result["id"]]
+          if summary["deep_read_ids"] != expected_deep_read:
+              raise RuntimeError("Deep-read selection is inconsistent")
+
           (output_dir / "result.json").write_text(
               json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8"
           )
+          (output_dir / "summary.json").write_text(
+              json.dumps(summary, ensure_ascii=False, indent=2), encoding="utf-8"
+          )
           print("Category:", analysis.category)
           print("Priority:", analysis.priority)
-          print("LVR_SMOKE_TEST_PASSED")
+          print("LVR_SAVED_ANALYSIS_PASSED")
+          PY
+
+      - name: Convert saved JSONL to Markdown
+        working-directory: to_md
+        run: |
+          uv run --frozen python convert.py \
+            --data ../test-output/lvr-smoke/paper_AI_enhanced_Chinese.jsonl \
+            --output ../test-output/lvr-smoke/report.md
+
+      - name: Verify report and complete the test
+        run: |
+          uv run --frozen python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+
+          output_dir = Path("test-output/lvr-smoke")
+          result = json.loads((output_dir / "result.json").read_text(encoding="utf-8"))
+          summary = json.loads((output_dir / "summary.json").read_text(encoding="utf-8"))
+          report = (output_dir / "report.md").read_text(encoding="utf-8")
+          if not report.strip():
+              raise RuntimeError("Markdown report is empty")
+          if result["id"] not in report or result["title"] not in report:
+              raise RuntimeError("Markdown report is missing the tested paper")
+          if result["AI"]["category"] not in report or "LVR 分类统计" not in report:
+              raise RuntimeError("Markdown report is missing LVR analysis or statistics")
+
+          status = {
+              "status": "passed",
+              "commit": os.environ["GITHUB_SHA"],
+              "paper_id": result["id"],
+              "analyzed_count": summary["analyzed_count"],
+              "category": result["AI"]["category"],
+              "priority": result["AI"]["priority"],
+              "report": "report.md",
+          }
+          (output_dir / "validation.json").write_text(
+              json.dumps(status, ensure_ascii=False, indent=2), encoding="utf-8"
+          )
+          with open(os.environ["GITHUB_STEP_SUMMARY"], "a", encoding="utf-8") as handle:
+              handle.write("## LVR 单篇完整流程测试通过\n\n")
+              handle.write(f"- 论文：{result['id']}\n")
+              handle.write(f"- 分类：{result['AI']['category']}\n")
+              handle.write(f"- 优先级：{result['AI']['priority']}\n")
+              handle.write("- 已验证分析结果保存、分类统计和 Markdown 转换。\n")
+              handle.write("- 结果见 lvr-smoke-result 附件。\n\n")
+              handle.write("本次仅测试一篇论文；不包含定时爬虫、数据分支提交和网页发布。\n")
+          print("LVR_PIPELINE_TEST_PASSED")
           PY
 
       - name: Upload test results
