@@ -1,10 +1,14 @@
 name: Publish LVR Results and Website
 
 on:
+  workflow_run:
+    workflows: [arXiv-daily-ai-enhanced]
+    types: [completed]
+    branches: [main]
   workflow_dispatch:
     inputs:
       source_run_id:
-        description: "成功的小批量运行 ID（本次填 36814526578）"
+        description: "手动补发时填写成功的抓取运行 ID；自动发布无需填写"
         required: true
         type: string
 
@@ -17,7 +21,13 @@ concurrency:
 
 jobs:
   publish:
-    if: github.ref == 'refs/heads/main'
+    if: >-
+      github.ref == 'refs/heads/main' &&
+      (github.event_name == 'workflow_dispatch' ||
+       (github.event.workflow_run.conclusion == 'success' &&
+        github.event.workflow_run.head_branch == 'main' &&
+        github.event.workflow_run.head_repository.full_name == github.repository &&
+        (github.event.workflow_run.event == 'schedule' || github.event.workflow_run.event == 'workflow_dispatch')))
     runs-on: ubuntu-latest
     timeout-minutes: 20
     permissions:
@@ -30,7 +40,7 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     env:
       PYTHONUTF8: "1"
-      SOURCE_RUN_ID: ${{ inputs.source_run_id }}
+      SOURCE_RUN_ID: ${{ github.event_name == 'workflow_run' && github.event.workflow_run.id || inputs.source_run_id }}
 
     steps:
       - name: Checkout website and publishing code
@@ -77,7 +87,7 @@ jobs:
           name: lvr-batch-result
           path: batch-result
           github-token: ${{ github.token }}
-          run-id: ${{ inputs.source_run_id }}
+          run-id: ${{ env.SOURCE_RUN_ID }}
 
       - name: Checkout existing data history
         uses: actions/checkout@v7
@@ -137,7 +147,7 @@ jobs:
               handle.write(f"- 本批分析：{result['incoming_analyses']} 篇\n")
               handle.write(f"- 该日期现有记录：{result['total_saved_for_date']} 篇\n")
               handle.write(f"- 网页：{os.environ['PAGE_URL']}\n\n")
-              handle.write("本次复用已有结果，没有调用 DeepSeek，也没有启动定时抓取。\n")
+              handle.write("发布环节复用该批分析结果，没有再次调用 DeepSeek。\n")
           print("LVR_DATA_AND_PAGES_PUBLISHED")
           PY
 
