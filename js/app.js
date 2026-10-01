@@ -3,7 +3,7 @@ const LVR_CATEGORY_LABELS = {
   PENDING: '待补材料', EXCLUDE: '排除'
 };
 const LVR_CATEGORY_ORDER = {MAIN: 0, METHOD: 1, EXPLORATORY: 2, PENDING: 3, EXCLUDE: 4};
-let lvrCategoryFilter = 'all';
+let lvrCategoryFilter = 'non_excluded';
 let lvrPriorityFilter = 'all';
 
 function escapeHtml(value) {
@@ -75,7 +75,9 @@ function compareLvrPapers(a, b) {
 
 function matchesLvrFilters(paper) {
   const category = paper.analysis?.category || (paper.analysisStatus === 'legacy' ? 'LEGACY' : 'UNANALYZED');
-  return (lvrCategoryFilter === 'all' || lvrCategoryFilter === category)
+  return (lvrCategoryFilter === 'all'
+    || (lvrCategoryFilter === 'non_excluded' && category !== 'EXCLUDE')
+    || lvrCategoryFilter === category)
     && (lvrPriorityFilter === 'all' || paper.analysis?.priority === lvrPriorityFilter);
 }
 
@@ -140,7 +142,8 @@ function renderLvrControls(papers, visibleCount) {
     controls.setAttribute('aria-label', 'LVR 研究筛选');
     controls.innerHTML = `<div class="lvr-control-row">
       <label for="lvrCategorySelect">研究分类 <select id="lvrCategorySelect">
-        <option value="all">全部研究分类</option>
+        <option value="non_excluded">默认（隐藏排除项）</option>
+        <option value="all">全部（含排除项）</option>
         ${Object.entries(LVR_CATEGORY_LABELS).map(([key, label]) => `<option value="${key}">${key} · ${label}</option>`).join('')}
         <option value="LEGACY">旧版摘要</option><option value="UNANALYZED">无完整 AI 分析</option>
       </select></label>
@@ -152,6 +155,7 @@ function renderLvrControls(papers, visibleCount) {
     container.parentNode.insertBefore(controls, container);
     document.getElementById('lvrCategorySelect').addEventListener('change', event => {
       lvrCategoryFilter = event.target.value;
+      if (['EXCLUDE', 'PENDING'].includes(lvrCategoryFilter)) lvrPriorityFilter = 'all';
       renderPapers();
     });
     document.getElementById('lvrPrioritySelect').addEventListener('change', event => {
@@ -161,6 +165,7 @@ function renderLvrControls(papers, visibleCount) {
   }
   document.getElementById('lvrCategorySelect').value = lvrCategoryFilter;
   document.getElementById('lvrPrioritySelect').value = lvrPriorityFilter;
+  document.getElementById('lvrPrioritySelect').disabled = ['EXCLUDE', 'PENDING'].includes(lvrCategoryFilter);
   const counts = {MAIN: 0, METHOD: 0, EXPLORATORY: 0, PENDING: 0, EXCLUDE: 0, LEGACY: 0, UNANALYZED: 0};
   for (const paper of papers) {
     const key = paper.analysis?.category || (paper.analysisStatus === 'legacy' ? 'LEGACY' : 'UNANALYZED');
@@ -169,7 +174,8 @@ function renderLvrControls(papers, visibleCount) {
   document.getElementById('lvrCounts').textContent =
     `当前日期与学科范围共 ${papers.length} 条，显示 ${visibleCount} 条。` +
     Object.keys(LVR_CATEGORY_LABELS).map(key => `${key} ${counts[key]}`).join(' · ') +
-    ` · 旧版 ${counts.LEGACY} · 无完整分析 ${counts.UNANALYZED}`;
+    ` · 旧版 ${counts.LEGACY} · 无完整分析 ${counts.UNANALYZED}` +
+    (lvrCategoryFilter === 'non_excluded' ? '。排除项已隐藏，可通过研究分类查看。' : '');
 }
 
 function lvrSection(label, value, terms = []) {
