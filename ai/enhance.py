@@ -10,21 +10,28 @@ import dotenv
 import argparse
 from tqdm import tqdm
 
-import langchain_core.exceptions
+# import langchain_core.exceptions
 from langchain_openai import ChatOpenAI
-from langchain.prompts import (
-    ChatPromptTemplate,
-    SystemMessagePromptTemplate,
-    HumanMessagePromptTemplate,
+# from langchain.prompts import (
+#     ChatPromptTemplate,
+#     SystemMessagePromptTemplate,
+#     HumanMessagePromptTemplate,
+# )
+# from structure import Structure
+from lvr_support import (
+    TrackingAnalysis,
+    build_tracking_prompt,
+    build_tracking_input,
+    validate_tracking_response,
 )
-from structure import Structure
 from content_filter import is_sensitive
 from runtime import build_chat_openai_kwargs, raise_if_processing_failed
+from tracking.batch import finalize_tracking_batch
 
 if os.path.exists('.env'):
     dotenv.load_dotenv()
-template = open("template.txt", "r").read()
-system = open("system.txt", "r").read()
+# template = open("template.txt", "r").read()
+# system = open("system.txt", "r").read()
 
 def parse_args():
     """解析命令行参数"""
@@ -92,86 +99,134 @@ def process_single_item(chain, item: Dict, language: str) -> Dict:
 
     """处理单个数据项"""
     # Default structure with meaningful fallback values
-    default_ai_fields = {
-        "tldr": "Summary generation failed",
-        "motivation": "Motivation analysis unavailable",
-        "method": "Method extraction failed",
-        "result": "Result analysis unavailable",
-        "conclusion": "Conclusion extraction failed"
-    }
+    # default_ai_fields = {
+    #     "tldr": "Summary generation failed",
+    #     "motivation": "Motivation analysis unavailable",
+    #     "method": "Method extraction failed",
+    #     "result": "Result analysis unavailable",
+    #     "conclusion": "Conclusion extraction failed"
+    # }
     
-    try:
-        response: Structure = chain.invoke({
-            "language": language,
-            "content": item['summary']
-        })
-        item['AI'] = response.model_dump()
-    except langchain_core.exceptions.OutputParserException as e:
-        # 尝试从错误信息中提取 JSON 字符串并修复
-        error_msg = str(e)
-        partial_data = {}
+    # try:
+    #     response: Structure = chain.invoke({
+    #         "language": language,
+    #         "content": item['summary']
+    #     })
+    #     item['AI'] = response.model_dump()
+    # except langchain_core.exceptions.OutputParserException as e:
+    #     # 尝试从错误信息中提取 JSON 字符串并修复
+    #     error_msg = str(e)
+    #     partial_data = {}
         
-        if "Function Structure arguments:" in error_msg:
-            try:
-                # 提取 JSON 字符串
-                json_str = error_msg.split("Function Structure arguments:", 1)[1].strip().split('are not valid JSON')[0].strip()
-                # 预处理 LaTeX 数学符号 - 使用四个反斜杠来确保正确转义
-                json_str = json_str.replace('\\', '\\\\')
-                # 尝试解析修复后的 JSON
-                partial_data = json.loads(json_str)
-            except Exception as json_e:
-                print(f"Failed to parse JSON for {item.get('id', 'unknown')}: {json_e}", file=sys.stderr)
+    #     if "Function Structure arguments:" in error_msg:
+    #         try:
+    #             # 提取 JSON 字符串
+    #             json_str = error_msg.split("Function Structure arguments:", 1)[1].strip().split('are not valid JSON')[0].strip()
+    #             # 预处理 LaTeX 数学符号 - 使用四个反斜杠来确保正确转义
+    #             json_str = json_str.replace('\\', '\\\\')
+    #             # 尝试解析修复后的 JSON
+    #             partial_data = json.loads(json_str)
+    #         except Exception as json_e:
+    #             print(f"Failed to parse JSON for {item.get('id', 'unknown')}: {json_e}", file=sys.stderr)
         
-        # Merge partial data with defaults to ensure all fields exist
-        item['AI'] = {**default_ai_fields, **partial_data}
-        print(f"Using partial AI data for {item.get('id', 'unknown')}: {list(partial_data.keys())}", file=sys.stderr)
-    except Exception as e:
-        print(f"Unexpected error for {item.get('id', 'unknown')}: {e}", file=sys.stderr)
-        raise RuntimeError(f"AI request failed for {item.get('id', 'unknown')}") from e
+    #     # Merge partial data with defaults to ensure all fields exist
+    #     item['AI'] = {**default_ai_fields, **partial_data}
+    #     print(f"Using partial AI data for {item.get('id', 'unknown')}: {list(partial_data.keys())}", file=sys.stderr)
+    # except Exception as e:
+    #     print(f"Unexpected error for {item.get('id', 'unknown')}: {e}", file=sys.stderr)
+    #     raise RuntimeError(f"AI request failed for {item.get('id', 'unknown')}") from e
     
-    # Final validation to ensure all required fields exist
-    for field in default_ai_fields.keys():
-        if field not in item['AI']:
-            item['AI'][field] = default_ai_fields[field]
+    # # Final validation to ensure all required fields exist
+    # for field in default_ai_fields.keys():
+    #     if field not in item['AI']:
+    #         item['AI'][field] = default_ai_fields[field]
 
-    # 检查 AI 生成的所有字段
-    for v in item.get("AI", {}).values():
-        if is_sensitive(str(v)):
+    # # 检查 AI 生成的所有字段
+    # for v in item.get("AI", {}).values():
+    #     if is_sensitive(str(v)):
+    #         return None
+    # return item
+    try:
+        response = chain.invoke({
+            "language": language,
+            "content": build_tracking_input(item),
+        })
+
+        analysis = validate_tracking_response(response, item)
+        item["AI"] = analysis.model_dump(mode="json")
+
+    except Exception as e:
+        paper_id = item.get("id", "unknown")
+        print(
+            f"AI enhancement failed for {paper_id}: {e}",
+            file=sys.stderr,
+        )
+        raise RuntimeError(
+            f"AI enhancement failed for {paper_id}"
+        ) from e
+
+    # 新分析包含对象、列表和 null，转换为字符串后进行原有检查。
+    for value in item["AI"].values():
+        if is_sensitive(str(value)):
             return None
+
     return item
 
+# def process_all_items(data: List[Dict], model_name: str, language: str, max_workers: int) -> List[Dict]:
+#     """并行处理所有数据项"""
+#     # llm = ChatOpenAI(
+#     #     **build_chat_openai_kwargs(
+#     #         model_name=model_name,
+#     #         base_url=os.environ.get("OPENAI_BASE_URL", "https://api.openai.com/v1"),
+#     #         api_key=os.environ.get("OPENAI_API_KEY", ""),
+#     #     )
+#     # ).with_structured_output(Structure, method="function_calling")
+    
+#     llm_kwargs = build_chat_openai_kwargs(
+#         model_name=model_name,
+#         base_url=os.environ.get("OPENAI_BASE_URL", "https://api.openai.com/v1"),
+#         api_key=os.environ.get("OPENAI_API_KEY", ""),
+#     )
+#     extra_body = dict(llm_kwargs.get("extra_body") or {})
+#     extra_body["thinking"] = {"type": "disabled"}  # 调用deepseek需要显示关闭thinking模式
+#     llm_kwargs["extra_body"] = extra_body
+
+#     llm = ChatOpenAI(**llm_kwargs).with_structured_output(
+#         Structure, method="function_calling"
+#     )
+
+#     print('Connect to:', model_name, file=sys.stderr)
+    
+#     prompt_template = ChatPromptTemplate.from_messages([
+#         SystemMessagePromptTemplate.from_template(system),
+#         HumanMessagePromptTemplate.from_template(template=template)
+#     ])
+
+#     chain = prompt_template | llm
 def process_all_items(data: List[Dict], model_name: str, language: str, max_workers: int) -> List[Dict]:
     """并行处理所有数据项"""
-    # llm = ChatOpenAI(
-    #     **build_chat_openai_kwargs(
-    #         model_name=model_name,
-    #         base_url=os.environ.get("OPENAI_BASE_URL", "https://api.openai.com/v1"),
-    #         api_key=os.environ.get("OPENAI_API_KEY", ""),
-    #     )
-    # ).with_structured_output(Structure, method="function_calling")
-    
     llm_kwargs = build_chat_openai_kwargs(
         model_name=model_name,
-        base_url=os.environ.get("OPENAI_BASE_URL", "https://api.openai.com/v1"),
+        base_url=os.environ.get(
+            "OPENAI_BASE_URL",
+            "https://api.openai.com/v1",
+        ),
         api_key=os.environ.get("OPENAI_API_KEY", ""),
     )
+
     extra_body = dict(llm_kwargs.get("extra_body") or {})
-    extra_body["thinking"] = {"type": "disabled"}  # 调用deepseek需要显示关闭thinking模式
+    extra_body["thinking"] = {"type": "disabled"}
     llm_kwargs["extra_body"] = extra_body
 
     llm = ChatOpenAI(**llm_kwargs).with_structured_output(
-        Structure, method="function_calling"
+        TrackingAnalysis,
+        method="function_calling",
     )
 
-    print('Connect to:', model_name, file=sys.stderr)
-    
-    prompt_template = ChatPromptTemplate.from_messages([
-        SystemMessagePromptTemplate.from_template(system),
-        HumanMessagePromptTemplate.from_template(template=template)
-    ])
+    print("Connect to:", model_name, file=sys.stderr)
 
+    prompt_template = build_tracking_prompt()
     chain = prompt_template | llm
-    
     # 使用线程池并行处理
     processed_data = [None] * len(data)  # 预分配结果列表
     processing_errors = []
@@ -234,6 +289,14 @@ def main():
         model_name,
         language,
         args.max_workers
+    )
+
+    processed_data, batch_summary = finalize_tracking_batch(processed_data)
+
+    print(
+        "LVR batch summary:",
+        json.dumps(batch_summary, ensure_ascii=False),
+        file=sys.stderr,
     )
     
     # 保存结果

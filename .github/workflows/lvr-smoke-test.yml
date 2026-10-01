@@ -15,6 +15,10 @@ jobs:
     if: github.ref == 'refs/heads/lvr-tracking'
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    env:
+      LANGUAGE: Chinese
+      PAPER_ID: "2412.06769v1"
+      PYTHONUTF8: "1"
 
     steps:
       - name: Checkout development branch
@@ -30,14 +34,11 @@ jobs:
       - name: Install project dependencies
         run: uv sync --frozen
 
-      - name: Analyze one paper
+      - name: Check website script syntax
+        run: node --check js/app.js
+
+      - name: Prepare one paper from saved metadata
         working-directory: ai
-        env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          OPENAI_BASE_URL: ${{ secrets.OPENAI_BASE_URL }}
-          MODEL_NAME: ${{ vars.MODEL_NAME }}
-          LANGUAGE: Chinese
-          PAPER_ID: "2412.06769v1"
         run: |
           uv run --frozen python - <<'PY'
           import json
@@ -45,55 +46,174 @@ jobs:
           import re
           from pathlib import Path
 
-          import arxiv
-          from enhance import process_all_items
-          from lvr_support import build_tracking_input, validate_tracking_response
+          from lvr_support import build_tracking_input
 
+          output_dir = Path("../test-output/lvr-smoke")
+          output_dir.mkdir(parents=True, exist_ok=True)
+          paper_id = os.environ["PAPER_ID"]
+          # Fixed metadata from the previously successful test (result.json).
+          # Contains no AI analysis. enhance.py will perform fresh inference.
+          # This smoke test intentionally does not test live arXiv retrieval.
+          item = {'id': '2412.06769',
+           'title': 'Training Large Language Models to Reason in a Continuous Latent Space',
+           'authors': ['Shibo Hao',
+                       'Sainbayar Sukhbaatar',
+                       'DiJia Su',
+                       'Xian Li',
+                       'Zhiting Hu',
+                       'Jason Weston',
+                       'Yuandong Tian'],
+           'categories': ['cs.CL'],
+           'comment': None,
+           'summary': 'Large language models (LLMs) are restricted to reason in the "language space", where '
+                      'they typically express the reasoning process with a chain-of-thought (CoT) to solve a '
+                      'complex reasoning problem. However, we argue that language space may not always be '
+                      'optimal for reasoning. For example, most word tokens are primarily for textual '
+                      'coherence and not essential for reasoning, while some critical tokens require complex '
+                      'planning and pose huge challenges to LLMs. To explore the potential of LLM reasoning '
+                      'in an unrestricted latent space instead of using natural language, we introduce a new '
+                      'paradigm Coconut (Chain of Continuous Thought). We utilize the last hidden state of '
+                      'the LLM as a representation of the reasoning state (termed "continuous thought"). '
+                      'Rather than decoding this into a word token, we feed it back to the LLM as the '
+                      'subsequent input embedding directly in the continuous space. Experiments show that '
+                      'Coconut can effectively augment the LLM on several reasoning tasks. This novel latent '
+                      'reasoning paradigm leads to emergent advanced reasoning patterns: the continuous '
+                      'thought can encode multiple alternative next reasoning steps, allowing the model to '
+                      'perform a breadth-first search (BFS) to solve the problem, rather than prematurely '
+                      'committing to a single deterministic path like CoT. Coconut outperforms CoT in '
+                      'certain logical reasoning tasks that require substantial backtracking during '
+                      'planning, with fewer thinking tokens during inference. These findings demonstrate the '
+                      'promise of latent reasoning and offer valuable insights for future research.',
+           'abs': 'http://arxiv.org/abs/2412.06769v1',
+           'pdf': 'https://arxiv.org/pdf/2412.06769v1'}
+          if item["id"] != re.sub(r"v\d+$", "", paper_id) or not item["abs"].endswith("/" + paper_id):
+              raise RuntimeError("Saved metadata does not match PAPER_ID")
+
+          (output_dir / "paper.jsonl").write_text(
+              json.dumps(item, ensure_ascii=False) + "\n", encoding="utf-8"
+          )
+          (output_dir / "input.json").write_text(
+              build_tracking_input(item), encoding="utf-8"
+          )
+          (output_dir / "run-info.json").write_text(
+              json.dumps({
+                  "commit": os.environ["GITHUB_SHA"],
+                  "branch": os.environ["GITHUB_REF_NAME"],
+                  "run_id": os.environ["GITHUB_RUN_ID"],
+                  "paper_id": paper_id,
+                  "language": os.environ["LANGUAGE"],
+                  "input_source": "fixed_metadata_from_previous_successful_test",
+                  "live_arxiv_fetch": False,
+              }, ensure_ascii=False, indent=2), encoding="utf-8"
+          )
+          print("Prepared saved metadata:", paper_id, item["title"])
+          PY
+
+      - name: Analyze, sort and save through enhance.py
+        working-directory: ai
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_BASE_URL: ${{ secrets.OPENAI_BASE_URL }}
+          MODEL_NAME: ${{ vars.MODEL_NAME }}
+        run: |
+          uv run --frozen python - <<'PY'
+          import os
           required = ("OPENAI_API_KEY", "OPENAI_BASE_URL", "MODEL_NAME")
           missing = [name for name in required if not os.environ.get(name, "").strip()]
           if missing:
               raise RuntimeError("Missing configuration: " + ", ".join(missing))
+          PY
+          uv run --frozen python enhance.py \
+            --data ../test-output/lvr-smoke/paper.jsonl \
+            --max_workers 1
+
+      - name: Validate saved analysis and batch summary
+        working-directory: ai
+        run: |
+          uv run --frozen python - <<'PY'
+          import json
+          from pathlib import Path
+
+          from lvr_support import validate_tracking_response
+          from tracking.batch import finalize_tracking_batch
 
           output_dir = Path("../test-output/lvr-smoke")
-          output_dir.mkdir(parents=True, exist_ok=True)
-
-          paper_id = os.environ["PAPER_ID"]
-          client = arxiv.Client(page_size=1, delay_seconds=3, num_retries=2)
-          paper = next(client.results(arxiv.Search(id_list=[paper_id])), None)
-          if paper is None:
-              raise RuntimeError(f"arXiv returned no paper for {paper_id}")
-          if paper.get_short_id() != paper_id:
-              raise RuntimeError("arXiv returned a different paper or version")
-
-          item = {
-              "id": re.sub(r"v\d+$", "", paper.get_short_id()),
-              "title": paper.title,
-              "authors": [author.name for author in paper.authors],
-              "categories": paper.categories,
-              "comment": paper.comment,
-              "summary": paper.summary,
-              "abs": paper.entry_id,
-              "pdf": paper.pdf_url,
-          }
-          (output_dir / "input.json").write_text(
-              build_tracking_input(item), encoding="utf-8"
-          )
-          print("Testing:", paper.get_short_id(), paper.title)
-
-          results = process_all_items(
-              [item], os.environ["MODEL_NAME"], os.environ["LANGUAGE"], 1
-          )
-          if len(results) != 1 or results[0] is None:
-              raise RuntimeError("The paper was filtered out; the analysis test did not pass")
-
-          result = results[0]
+          raw = json.loads((output_dir / "paper.jsonl").read_text(encoding="utf-8"))
+          saved_path = output_dir / "paper_AI_enhanced_Chinese.jsonl"
+          records = [json.loads(line) for line in saved_path.read_text(encoding="utf-8").splitlines() if line.strip()]
+          if len(records) != 1:
+              raise RuntimeError("Expected one saved paper; it may have been filtered out")
+          result = records[0]
+          for field, value in raw.items():
+              if result.get(field) != value:
+                  raise RuntimeError(f"Original metadata changed: {field}")
           analysis = validate_tracking_response(result.get("AI"), result)
+          ordered, summary = finalize_tracking_batch(records)
+          if ordered != records or summary["analyzed_count"] != 1:
+              raise RuntimeError("Saved records and batch summary are inconsistent")
+          if sum(summary["category_counts"].values()) != 1:
+              raise RuntimeError("Category counts are inconsistent")
+          expected_deep_read = [] if analysis.category in ("PENDING", "EXCLUDE") else [result["id"]]
+          if summary["deep_read_ids"] != expected_deep_read:
+              raise RuntimeError("Deep-read selection is inconsistent")
+
           (output_dir / "result.json").write_text(
               json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8"
           )
+          (output_dir / "summary.json").write_text(
+              json.dumps(summary, ensure_ascii=False, indent=2), encoding="utf-8"
+          )
           print("Category:", analysis.category)
           print("Priority:", analysis.priority)
-          print("LVR_SMOKE_TEST_PASSED")
+          print("LVR_SAVED_ANALYSIS_PASSED")
+          PY
+
+      - name: Convert saved JSONL to Markdown
+        working-directory: to_md
+        run: |
+          uv run --frozen python convert.py \
+            --data ../test-output/lvr-smoke/paper_AI_enhanced_Chinese.jsonl \
+            --output ../test-output/lvr-smoke/report.md
+
+      - name: Verify report and complete the test
+        run: |
+          uv run --frozen python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+
+          output_dir = Path("test-output/lvr-smoke")
+          result = json.loads((output_dir / "result.json").read_text(encoding="utf-8"))
+          summary = json.loads((output_dir / "summary.json").read_text(encoding="utf-8"))
+          report = (output_dir / "report.md").read_text(encoding="utf-8")
+          if not report.strip():
+              raise RuntimeError("Markdown report is empty")
+          if result["id"] not in report or result["title"] not in report:
+              raise RuntimeError("Markdown report is missing the tested paper")
+          if result["AI"]["category"] not in report or "LVR 分类统计" not in report:
+              raise RuntimeError("Markdown report is missing LVR analysis or statistics")
+
+          status = {
+              "status": "passed",
+              "commit": os.environ["GITHUB_SHA"],
+              "paper_id": result["id"],
+              "analyzed_count": summary["analyzed_count"],
+              "category": result["AI"]["category"],
+              "priority": result["AI"]["priority"],
+              "report": "report.md",
+          }
+          (output_dir / "validation.json").write_text(
+              json.dumps(status, ensure_ascii=False, indent=2), encoding="utf-8"
+          )
+          with open(os.environ["GITHUB_STEP_SUMMARY"], "a", encoding="utf-8") as handle:
+              handle.write("## LVR 单篇完整流程测试通过\n\n")
+              handle.write(f"- 论文：{result['id']}\n")
+              handle.write(f"- 分类：{result['AI']['category']}\n")
+              handle.write(f"- 优先级：{result['AI']['priority']}\n")
+              handle.write("- 已验证分析结果保存、分类统计和 Markdown 转换。\n")
+              handle.write("- 结果见 lvr-smoke-result 附件。\n\n")
+              handle.write("本次使用已保存的单篇论文元数据并重新调用 AI；不包含实时 arXiv 抓取、定时爬虫、数据分支提交和网页发布。\n")
+          print("LVR_PIPELINE_TEST_PASSED")
           PY
 
       - name: Upload test results
