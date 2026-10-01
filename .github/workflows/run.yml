@@ -1,13 +1,25 @@
 name: arXiv-daily-ai-enhanced
 
-# Scheduled production collection, with manual small-batch runs still available.
 on:
   schedule:
     - cron: "30 2 * * 1-5" # Monday-Friday 10:30 Asia/Shanghai
   workflow_dispatch:
     inputs:
+      mode:
+        description: "new=新抓取；retry_failed=只补失败；resume_pending=只继续未处理"
+        required: true
+        default: new
+        type: choice
+        options:
+          - new
+          - retry_failed
+          - resume_pending
+      source_run_id:
+        description: "恢复模式填写已归档的抓取运行 ID；new 留空"
+        required: false
+        type: string
       max_papers:
-        description: "分析上限：0=全部；首次验证保留3"
+        description: "仅 new 生效：0=全部；首次验收保留3"
         required: true
         default: "3"
         type: string
@@ -21,12 +33,16 @@ concurrency:
 
 jobs:
   build:
-    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/lvr-tracking'
+    if: >-
+      (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/lvr-tracking') &&
+      (github.event_name != 'schedule' || vars.BRIEF_AUTO_ENABLED == 'true')
     runs-on: ubuntu-latest
     timeout-minutes: 360
     env:
       LANGUAGE: Chinese
       CATEGORIES: ${{ vars.CATEGORIES || 'cs.CV' }}
+      RUN_MODE: ${{ github.event_name == 'schedule' && 'new' || inputs.mode || 'new' }}
+      SOURCE_RUN_ID: ${{ inputs.source_run_id || '' }}
       MAX_PAPERS: ${{ github.event_name == 'schedule' && (vars.DAILY_MAX_PAPERS || '0') || inputs.max_papers || '3' }}
       AI_WORKERS: ${{ vars.AI_MAX_WORKERS || '2' }}
       PYTHONUTF8: "1"
@@ -45,121 +61,74 @@ jobs:
       - name: Install project dependencies
         run: uv sync --frozen
 
-      - name: Check configuration and script syntax
+      - name: Check configuration before any paid requests
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           OPENAI_BASE_URL: ${{ secrets.OPENAI_BASE_URL }}
           MODEL_NAME: ${{ vars.MODEL_NAME }}
         run: |
           node --check js/app.js
-          uv run --frozen python - <<'PY'
-          import ast
-          import os
-          from pathlib import Path
-          limit = int(os.environ["MAX_PAPERS"])
-          workers = int(os.environ["AI_WORKERS"])
-          if limit < 0 or not 1 <= workers <= 8:
-              raise ValueError("MAX_PAPERS must be >= 0; AI_WORKERS must be between 1 and 8")
-          print("Analysis limit:", "all eligible papers" if limit == 0 else limit)
-          print("AI workers:", workers)
-          required = ("OPENAI_API_KEY", "OPENAI_BASE_URL", "MODEL_NAME")
-          missing = [key for key in required if not os.environ.get(key, "").strip()]
-          if missing:
-              raise RuntimeError("Missing configuration: " + ", ".join(missing))
-          for name in ("tracking/prepare_batch.py", "ai/enhance.py", "to_md/convert.py"):
-              ast.parse(Path(name).read_text(encoding="utf-8"))
-          PY
+          uv run --frozen python tracking/brief_workflow.py check
 
-      - name: Crawl lists, deduplicate IDs and fetch selected metadata
-        run: uv run --frozen python tracking/prepare_batch.py --max-papers "$MAX_PAPERS" --output run-output
+      - name: Read archived checkpoints for recovery
+        if: env.RUN_MODE != 'new'
+        uses: actions/checkout@v7
+        with:
+          ref: data
+          path: data-store
+          persist-credentials: false
 
-      - name: Analyze, sort and save through enhance.py
-        working-directory: ai
+      - name: Prepare new inputs or restore the original batch
+        id: prepare
+        run: uv run --frozen python tracking/brief_workflow.py prepare
+
+      - name: Analyze selected papers once and save each result
+        id: analyze
+        if: steps.prepare.outputs.selected_count != '0'
+        continue-on-error: true
+        timeout-minutes: 300
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           OPENAI_BASE_URL: ${{ secrets.OPENAI_BASE_URL }}
           MODEL_NAME: ${{ vars.MODEL_NAME }}
+          BATCH_DATE: ${{ steps.prepare.outputs.run_date }}
+          ANALYSIS_MODE: ${{ steps.prepare.outputs.analysis_mode }}
         run: |
-          uv run --frozen python enhance.py \
-            --data "../run-output/data/${RUN_DATE}.jsonl" \
+          uv run --frozen python ai/enhance_brief.py \
+            --data "run-output/data/${BATCH_DATE}.jsonl" \
+            --output "run-output/data/${BATCH_DATE}_AI_brief_Chinese.jsonl" \
+            --checkpoint-dir run-output/brief-progress \
+            --mode "$ANALYSIS_MODE" \
             --max_workers "$AI_WORKERS"
 
-      - name: Validate saved records and summarize the batch
-        run: |
-          uv run --frozen python - <<'PY'
-          import json
-          import os
-          from pathlib import Path
-          from ai.lvr_support import validate_tracking_response
-          from tracking.batch import finalize_tracking_batch
+      - name: Rebuild exports, validate checkpoints and write the report
+        id: finish
+        if: ${{ always() && steps.prepare.outcome == 'success' }}
+        env:
+          ANALYSIS_OUTCOME: ${{ steps.analyze.outcome }}
+        run: uv run --frozen python tracking/brief_workflow.py finish
 
-          output = Path("run-output")
-          date = os.environ["RUN_DATE"]
-          def read_rows(path):
-              return [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines() if line.strip()]
-          raw = read_rows(output / "data" / f"{date}.jsonl")
-          saved = read_rows(output / "data" / f"{date}_AI_enhanced_Chinese.jsonl")
-          limit = int(os.environ["MAX_PAPERS"])
-          if not raw or (limit > 0 and len(raw) > limit):
-              raise RuntimeError("Raw input count is outside the requested limit")
-          originals = {row["id"]: row for row in raw}
-          if len(originals) != len(raw):
-              raise RuntimeError("Input contains duplicate IDs")
-          if not saved:
-              raise RuntimeError("No saved analysis; all papers may have been filtered out")
-          for row in saved:
-              if row["id"] not in originals:
-                  raise RuntimeError("Saved paper is not present in the input")
-              if any(row.get(key) != value for key, value in originals[row["id"]].items()):
-                  raise RuntimeError(f"Original metadata changed: {row['id']}")
-              validate_tracking_response(row.get("AI"), row)
-          ordered, summary = finalize_tracking_batch(saved + [None] * (len(raw) - len(saved)))
-          if ordered != saved:
-              raise RuntimeError("Saved records are not in the expected priority order")
-          if summary["input_count"] != len(raw) or sum(summary["category_counts"].values()) != len(saved):
-              raise RuntimeError("Batch counts are inconsistent")
-          (output / "summary.json").write_text(json.dumps(summary, ensure_ascii=False, indent=2), encoding="utf-8")
-          print(json.dumps(summary, ensure_ascii=False, indent=2))
-          PY
-
-      - name: Generate dated Markdown
-        working-directory: to_md
-        run: |
-          uv run --frozen python convert.py \
-            --data "../run-output/data/${RUN_DATE}_AI_enhanced_Chinese.jsonl" \
-            --output "../run-output/data/${RUN_DATE}.md"
-
-      - name: Verify report and complete collection
-        run: |
-          uv run --frozen python - <<'PY'
-          import json
-          import os
-          from pathlib import Path
-          output = Path("run-output")
-          date = os.environ["RUN_DATE"]
-          summary = json.loads((output / "summary.json").read_text(encoding="utf-8"))
-          rows = [json.loads(line) for line in (output / "data" / f"{date}_AI_enhanced_Chinese.jsonl").read_text(encoding="utf-8").splitlines() if line.strip()]
-          report = (output / "data" / f"{date}.md").read_text(encoding="utf-8")
-          if "LVR 分类统计" not in report or any(row["id"] not in report for row in rows):
-              raise RuntimeError("Markdown is missing statistics or saved papers")
-          count_text = f"LVR 分析 **{len(rows)}** 篇"
-          if count_text not in report:
-              raise RuntimeError("Markdown count does not match saved records")
-          validation = {"status": "passed", "commit": os.environ["GITHUB_SHA"], "analyzed_count": len(rows), "live_arxiv_fetch": True, "published": False}
-          (output / "validation.json").write_text(json.dumps(validation, ensure_ascii=False, indent=2), encoding="utf-8")
-          with open(os.environ["GITHUB_STEP_SUMMARY"], "a", encoding="utf-8") as handle:
-              handle.write("## LVR 抓取分析完成\n\n")
-              handle.write(f"输入 {summary['input_count']} 篇，保存分析 {summary['analyzed_count']} 篇，过滤 {summary['filtered_count']} 篇。\n\n")
-              handle.write("已验证实时抓取、元数据补充、同批去重、AI 分析、排序、保存和 Markdown。\n\n")
-              handle.write("结果见 lvr-batch-result；main 分支成功运行后将自动触发发布工作流。开发分支运行只生成附件。\n")
-          print("LVR_COLLECTION_PASSED")
-          PY
-
-      - name: Upload batch results and diagnostics
+      - name: Upload saved outcomes and diagnostics even after failures
         if: always()
         uses: actions/upload-artifact@v7
         with:
           name: lvr-batch-result
           path: run-output/
           if-no-files-found: warn
-          retention-days: 7
+          retention-days: 30
+
+      - name: Mark collection outcome
+        if: ${{ always() && steps.prepare.outcome == 'success' }}
+        env:
+          VALIDATION_OUTCOME: ${{ steps.finish.outcome }}
+          READY_FOR_PUBLICATION: ${{ steps.finish.outputs.ready_for_publication }}
+        run: |
+          if [ "$VALIDATION_OUTCOME" != "success" ]; then
+            echo "Checkpoint validation failed; inspect the saved diagnostics."
+            exit 1
+          fi
+          if [ "$READY_FOR_PUBLICATION" != "true" ]; then
+            echo "No publishable batch yet. Main-branch saved outcomes will be archived; the existing website stays unchanged."
+            exit 1
+          fi
+          echo "LVR_BRIEF_COLLECTION_PASSED"
