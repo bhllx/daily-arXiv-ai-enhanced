@@ -1,0 +1,106 @@
+name: LVR Single Paper Test
+
+on:
+  push:
+    branches: [lvr-tracking]
+    paths:
+      - .github/workflows/lvr-smoke-test.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  smoke-test:
+    if: github.ref == 'refs/heads/lvr-tracking'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout development branch
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Set up uv and Python
+        uses: astral-sh/setup-uv@bec219d24cd3e171d82865faccec33120bb574f4 # v10.1.0
+        with:
+          python-version: "3.12"
+
+      - name: Install project dependencies
+        run: uv sync --frozen
+
+      - name: Analyze one paper
+        working-directory: ai
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_BASE_URL: ${{ secrets.OPENAI_BASE_URL }}
+          MODEL_NAME: ${{ vars.MODEL_NAME }}
+          LANGUAGE: Chinese
+          PAPER_ID: "2412.06769v1"
+        run: |
+          uv run --frozen python - <<'PY'
+          import json
+          import os
+          import re
+          from pathlib import Path
+
+          import arxiv
+          from enhance import process_all_items
+          from lvr_support import build_tracking_input, validate_tracking_response
+
+          required = ("OPENAI_API_KEY", "OPENAI_BASE_URL", "MODEL_NAME")
+          missing = [name for name in required if not os.environ.get(name, "").strip()]
+          if missing:
+              raise RuntimeError("Missing configuration: " + ", ".join(missing))
+
+          output_dir = Path("../test-output/lvr-smoke")
+          output_dir.mkdir(parents=True, exist_ok=True)
+
+          paper_id = os.environ["PAPER_ID"]
+          client = arxiv.Client(page_size=1, delay_seconds=3, num_retries=2)
+          paper = next(client.results(arxiv.Search(id_list=[paper_id])), None)
+          if paper is None:
+              raise RuntimeError(f"arXiv returned no paper for {paper_id}")
+          if paper.get_short_id() != paper_id:
+              raise RuntimeError("arXiv returned a different paper or version")
+
+          item = {
+              "id": re.sub(r"v\d+$", "", paper.get_short_id()),
+              "title": paper.title,
+              "authors": [author.name for author in paper.authors],
+              "categories": paper.categories,
+              "comment": paper.comment,
+              "summary": paper.summary,
+              "abs": paper.entry_id,
+              "pdf": paper.pdf_url,
+          }
+          (output_dir / "input.json").write_text(
+              build_tracking_input(item), encoding="utf-8"
+          )
+          print("Testing:", paper.get_short_id(), paper.title)
+
+          results = process_all_items(
+              [item], os.environ["MODEL_NAME"], os.environ["LANGUAGE"], 1
+          )
+          if len(results) != 1 or results[0] is None:
+              raise RuntimeError("The paper was filtered out; the analysis test did not pass")
+
+          result = results[0]
+          analysis = validate_tracking_response(result.get("AI"), result)
+          (output_dir / "result.json").write_text(
+              json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8"
+          )
+          print("Category:", analysis.category)
+          print("Priority:", analysis.priority)
+          print("LVR_SMOKE_TEST_PASSED")
+          PY
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: lvr-smoke-result
+          path: test-output/lvr-smoke/
+          if-no-files-found: warn
+          retention-days: 7
