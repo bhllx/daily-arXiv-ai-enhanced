@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2609.38485",
+  "input_sha256": "0f1256b155a310333cf15c040e49959398e77dc41cc1dc2b5ca060796c2c26c7",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-01T19:13:20.210476+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1958,
+        "output_tokens": 228,
+        "total_tokens": 2186,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2609.38485",
+    "title": "Beyond Layers: Position-Resolved Gradient Conflict and Position-Aware Modulation for Unified Multimodal Models",
+    "authors": [
+      "Shuyang Jiang",
+      "Fucheng Deng",
+      "Yuchuan Luo",
+      "Zhenyu Wu"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.LG"
+    ],
+    "comment": "20 pages, 10 figures, 6 tables. Code will be made publicly available upon acceptance",
+    "summary": "Unified multimodal models (UMMs) train image understanding and autoregressive image generation on shared parameters, and the two objectives are known to interfere. Existing diagnoses and remedies operate at the resolution of layers or experts, measuring conflict per layer and resolving it by separating parameters. We argue that this resolution hides an orthogonal axis. Generation in a UMM is next-token prediction over a raster sequence of visual tokens whose roles vary systematically with position, so how strongly a generation gradient interferes with understanding should depend on where in the sequence it originates. We introduce a position-resolved interference map that attributes understanding-generation gradient conflict to visual-token positions within every layer, computed from a single backward pass at $1.2\\times$ the cost of a standard backward pass. On Show-o and Janus-Pro, position explains a large share of conflict variance after controlling for depth (partial $η^2=0.31$ vs. $0.35$ for layer on Show-o; $0.15$ vs. $0.30$ on Janus-Pro): the first quarter of the sequence has a mean gradient cosine of $-0.18$ against understanding, the last quarter $-0.02$. The dependence survives per-position gradient-norm normalization, retaining $80%$ of its effect size, and conflict strength tracks semantic content (Spearman $ρ=0.64$). Building on the map, we propose position-aware modulation (PAM), which removes the anti-aligned component of generation gradients only at high-conflict positions without changing the architecture. Under a matched trainable-parameter budget, PAM improves over layer-wise separation by $+21$ MME and $+2.4$ GenEval points on Show-o while matching it on POPE and overall FID; a random-position control recovers about $31%$ of the gain. Position-based and layer-based separation are complementary degrees of freedom and can be combined.",
+    "abs": "http://arxiv.org/abs/2609.38485v1",
+    "pdf": "https://arxiv.org/pdf/2609.38485v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "该论文研究统一多模态模型中理解与自回归生成目标在共享参数上的梯度冲突，提出按视觉 token 序列位置解析冲突的「位置分辨干扰图」，并据此设计仅在冲突强位置去除生成梯度反对齐分量的位置感知调制（PAM），在 Show-o 与 Janus-Pro 上进行诊断与验证。",
+      "relevance_reason": "其核心线索是「冲突强度随序列位置与语义内容系统性变化」，可能与 LVR 中 latent 状态的位置/深度结构、视觉证据在不同位置的贡献分配及梯度监督冲突相关，可供核查是否能迁移为位置感知的 latent 训练或状态更新信号；但论文本身面向统一模型的训练期干扰，未涉及推理期 latent 生成。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-01T19:13:20.210476+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

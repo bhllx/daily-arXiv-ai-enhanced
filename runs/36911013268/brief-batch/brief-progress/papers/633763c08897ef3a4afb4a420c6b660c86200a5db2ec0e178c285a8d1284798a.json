@@ -1,0 +1,71 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2609.38866",
+  "input_sha256": "b7484197cfbf04774a12a8972e7893ae1c3185e804404535ca0006cdd0125676",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-01T19:11:25.326072+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1802,
+        "output_tokens": 213,
+        "total_tokens": 2015,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2609.38866",
+    "title": "When Context Changes: Understanding Update Failures in LLMs",
+    "authors": [
+      "Junyu Guo",
+      "Yuchen Fang",
+      "Shangding Gu",
+      "Costas Spanos",
+      "James Demmel",
+      "Javad Lavaei"
+    ],
+    "categories": [
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "As preferences, goals, and facts change, LLM agents must use the current state while earlier versions remain in context. Yet they can answer with an old value of the same variable, a failure that we call stale binding. To study when models use outdated information and why, we introduce Controlled In-Context Memory (CICM), a benchmark for tracking and using updated information in conversations and agent logs. We observe that even frontier reasoning models can fail to recover the current state. We find that in open-source models probes can still recover the updated value when the model answers with an old one, pointing to a failure to select information that remains available. Component tests in Qwen and Pythia identify a mechanism for this selection failure: attention drift, where attention favors old values over the current one when producing an answer. We study a one-layer transformer to mathematically understand how this phenomenon happens: when attention scores are similar, several old values can together receive more attention than the current value. Guided by this explanation, we redirect attention toward the current value without further training. When the current value is requested directly, adjusting this intervention for each input corrects most old-value errors across various model families while preserving nearly all initially correct answers. Reliable context management therefore requires more than remembering updated information: models must use it to guide their answers.",
+    "abs": "http://arxiv.org/abs/2609.38866v1",
+    "pdf": "https://arxiv.org/pdf/2609.38866v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P1",
+      "brief_summary": "论文提出 Controlled In-Context Memory 基准，考察对话与 agent 日志中变量更新后模型仍回答旧值的「stale binding」失败，并用探针、组件测试和一层 transformer 分析指出注意力漂移导致旧值注意力总和超过当前值，进而提出免训练地把注意力重定向到当前值的干预。",
+      "relevance_reason": "虽非多模态，但其「信息仍在内部状态却未被选用」的探查范式、注意力漂移机制与免训练注意力重定向干预，可能为 LVR 中 latent 内容是否被真正使用、信息坍缩与证据筛选提供可核查的类比线索。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-01T19:11:25.326072+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

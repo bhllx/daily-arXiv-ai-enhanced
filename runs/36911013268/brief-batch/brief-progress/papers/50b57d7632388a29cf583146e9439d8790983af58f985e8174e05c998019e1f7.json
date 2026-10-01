@@ -1,0 +1,76 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2609.39275",
+  "input_sha256": "a5e9fb979b90e3120f85e52f7af4738fd86ec2ef0642e5bb26c678053c5eaefe",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-01T19:06:22.447535+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1906,
+        "output_tokens": 236,
+        "total_tokens": 2142,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2609.39275",
+    "title": "ReTaCo: Residual-Target Control for On-Policy Distillation",
+    "authors": [
+      "Zixiang Ni",
+      "Zhuo Hu",
+      "Renjie Cao",
+      "Weijie Ren",
+      "Binqin Shi",
+      "Weijia Zhang",
+      "Shuheng Cao",
+      "Zhicheng Shi",
+      "Zhenhao Zhang",
+      "Haomin Wen",
+      "Zhiyuan Hu"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "On-policy distillation (OPD) trains a student on its own generated prefixes with token-level teacher feedback, but transmitting or storing the teacher's full-vocabulary distribution at every token is costly. Entropy-aware OPD (EOPD) adds forward supervision to reverse KL to help the student recover plausible tokens it underestimates, using only the teacher's top-$k$ probabilities to limit cost. Because EOPD renormalizes these probabilities, its target assigns no mass to the omitted vocabulary. We prove that the resulting loss keeps pushing the student's top-$k$ mass toward one even after the student matches the teacher's relative probabilities within the top-$k$ set, so the teacher itself is not a stationary point whenever the omitted tokens have positive teacher probability. We propose ReTaCo (Residual-Target Control), which keeps the top-$k$ tokens individually and groups the remaining tokens into one residual symbol, and pairs this forward target with a single-sample estimator whose expectation equals the full-vocabulary reverse KL. With teacher top-$k$ mass $m$, the residual target is $(1-β)(1-m)$ for $β\\in[0,1]$: $β=0$ preserves the teacher's mass, and larger $β$ moves more mass onto the top-$k$ tokens without changing their relative probabilities. At a fixed prefix, we prove that the population objective has a unique optimum whose top-$k$ mass lies between $m$ and $m+β(1-m)$ and increases monotonically with $β$; at $β=0$, underestimated top-$k$ tokens still receive non-vanishing recovery gradients. Numerical optimization confirms these predictions, and across three teacher-student pairs, ReTaCo outperforms EOPD on most mathematics and code benchmarks.",
+    "abs": "http://arxiv.org/abs/2609.39275v1",
+    "pdf": "https://arxiv.org/pdf/2609.39275v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "该论文针对 on-policy distillation 中只传 teacher top-k 概率的目标分布缺陷展开分析：证明 EOPD 的重归一化目标会使 teacher 本身不是驻点，并提出 ReTaCo，保留 top-k 词并引入一个残差符号来承载被略去词的概率质量，配合单样本估计器匹配全词表 reverse KL，在数学与代码基准上比较三种 teacher-student 组合。",
+      "relevance_reason": "与 LVR 主线的直接视觉推理关系较弱，但其对「截断概率目标造成质量缺失与持续错误梯度」的分析、残差质量参数化与无偏单样本估计，可能为 latent 推理中的轨迹监督、贡献分配和信息坍缩问题提供可核查的训练目标设计线索。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-01T19:06:22.447535+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2609.39329",
+  "input_sha256": "727f8743cbeb53e1232e709b19ffcc012f4bdc22a2a3747d9ec6fb450ac19044",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-01T19:06:12.831142+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1795,
+        "output_tokens": 232,
+        "total_tokens": 2027,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2609.39329",
+    "title": "PatchKV: Weight-Space Compensation of KV Cache",
+    "authors": [
+      "Chanryeol Lee",
+      "Chanhyuk Lee",
+      "Yeonwoo Choi",
+      "Donggyun Kim",
+      "Seunghoon Hong"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": "NeurIPS 2026. Code available at: https://github.com/cusasak/PatchKV",
+    "summary": "Long-context inference with Large Language Models (LLMs) is bottlenecked by the linearly growing memory of the key-value (KV) cache. Existing compression methods reduce the cache through token eviction or approximation, but degrade sharply at aggressive compression budgets. We propose PatchKV, a training-free framework that compensates KV cache compression methods by carrying part of the context in the model's weights. PatchKV pairs an off-the-shelf compressed KV cache with a context-specific weight patch, which is computed once at context-loading time and served for downstream queries for the context. The weight patch is derived in closed form via ridge regression, by aligning the block-wise activations of context-derived reference query tokens under the full cache and the compressed cache. Once merged into the model, the patch leaves the forward graph and per-query inference cost unchanged in the single-context, multi-query setting. Across long-context QA (SCBench with up to 170K tokens, SQuAD, NIAH) and math (GSM8K) benchmarks on three model architectures, PatchKV consistently improves cache compression methods, suggesting an alternative direction to compensate them at aggressive budgets.",
+    "abs": "http://arxiv.org/abs/2609.39329v1",
+    "pdf": "https://arxiv.org/pdf/2609.39329v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "PatchKV 是一种免训练框架，把上下文的部分信息存入模型权重：在加载上下文时用岭回归闭式解出针对该上下文的权重补丁，与已有压缩 KV cache 配合，从而在激进压缩率下弥补被丢弃的 KV 信息，且不增加每查询推理成本。",
+      "relevance_reason": "论文本身针对纯文本长上下文 KV 压缩，但「把被缓存压缩丢掉的信息补偿到权重而非保留在 latent 状态中」这一思路，可能与 LVR 中视觉信息在 latent 状态中的保留与坍缩、KV/缓存结构对 latent 相似度的影响等问题形成对照或借鉴线索，值得核查其压缩-补偿机制能否说明多模态场景下视觉细节丢失的来源。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-01T19:06:12.831142+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

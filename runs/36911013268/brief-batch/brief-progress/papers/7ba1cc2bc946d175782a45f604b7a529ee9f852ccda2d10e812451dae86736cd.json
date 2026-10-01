@@ -1,0 +1,76 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2609.39026",
+  "input_sha256": "d8afaed23e966a1bd25821f72a5186be406fea51ae017e4a26d0f5d8841801de",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-01T19:10:16.841787+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1871,
+        "output_tokens": 205,
+        "total_tokens": 2076,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2609.39026",
+    "title": "Search Shapes Conclusions: Auditing Evidence Selection Bias in Deep Research Agents",
+    "authors": [
+      "Shuyao Xiao",
+      "Shengling Wang",
+      "Xuan Chen",
+      "Ke Chao",
+      "Ming Cui",
+      "Feifei Qian",
+      "Chaoyang Mei",
+      "Fanlin Meng",
+      "Lulu Wang",
+      "Ziming Yu",
+      "Junxi Yin"
+    ],
+    "categories": [
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "Deep Research agents synthesize evidence into cited reports, yet a well-cited report can still reach a misleading conclusion. Citation correctness checks whether cited sources support individual claims. It does not show whether adaptive search exposed a representative view of all documents made available for evaluation, which we call the candidate pool. Early findings redirect later queries, document choices, and stopping, so the documents an agent reads form a selective sample. Existing evaluations rarely account for this selection. We formulate the problem as adaptive evidence sampling and introduce Causal Evidence Selection Correction (CESS). CESS predicts each candidate document's evidence direction and corrects the candidate-pool average using the logged probabilities of selecting each document and reaching each search round. Shrinkage stabilizes short searches, while intervals replace point estimates when some documents cannot be sampled. We also prove that estimating the average evidence direction of a common pool differs from measuring how a change in search policy alters the evidence read. The latter requires intervention. On questions from the MS2 systematic-review benchmark, CESS reduces mean absolute error against the candidate-pool average by $9.2\\%$ and reduces the estimate's change under opposing document rankings by $39.4\\%$ relative to averaging the evidence scores of documents read. Across trajectories from a public Open Deep Research agent, the corresponding reductions reach $60.1\\%$ and $87.2\\%$. A further 4,800 trajectories under paired interventions confirm that correcting a pool estimate and measuring a policy effect are different tasks. CESS therefore audits whether the evidence direction underlying a report reflects the documents available for evaluation, while a separate intervention analysis measures the effect of search decisions.",
+    "abs": "http://arxiv.org/abs/2609.39026v1",
+    "pdf": "https://arxiv.org/pdf/2609.39026v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P1",
+      "brief_summary": "该文把 Deep Research agent 的检索过程建模为自适应证据采样，提出 CESS 方法：利用每篇候选文档被选中及检索轮次到达的日志概率，校正候选池平均证据方向，并用收缩与区间估计处理短检索和不可采样文档。",
+      "relevance_reason": "其核心问题是「所读证据是否为候选池的代表性样本」，与 LVR 中视觉证据筛选、停止决策与估计偏差密切相关；其区分池估计与策略干预效应、用选择概率做校正的思路，可能可供核查 latent 证据使用与贡献分配中的选择偏差问题。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-01T19:10:16.841787+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

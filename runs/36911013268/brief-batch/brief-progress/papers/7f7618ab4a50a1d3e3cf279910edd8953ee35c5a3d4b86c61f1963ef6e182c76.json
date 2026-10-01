@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2609.38978",
+  "input_sha256": "dc9048cf9189d6aac4620960d30079b4b8bcad7d16c92f68f9632deb50349c87",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-01T19:10:40.132478+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1823,
+        "output_tokens": 209,
+        "total_tokens": 2032,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2609.38978",
+    "title": "PARK: Accurate Block Retrieval for Sparse Attention in Video Diffusion Transformers",
+    "authors": [
+      "Yun Dai",
+      "Jiarui Wen",
+      "Huiping Zhuang",
+      "Cen Chen",
+      "Ziqian Zeng"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": null,
+    "summary": "Diffusion Transformers (DiTs) have become a dominant architecture for video generation, but their efficiency is limited by the quadratic complexity of full attention. Sparse attention reduces this cost by retrieving important blocks and computing attention only within them, but inaccurate retrieval can either degrade generation quality or yield unnecessary computation. We identify two retrieval mismatches in methods that retrieve blocks using the averaged representations of query and key blocks: (i) query-side aggregation mismatch, where averaging queries before Softmax fails to preserve their individual attention preferences, and (ii) key-side clustering metric mismatch, where standard Euclidean clustering in the original key space can group keys with dissimilar QK scores under the current query, so their average representation may not accurately represent how the current query scores individual keys. These mismatches can lead to inaccurate block retrieval. To address these mismatches, we propose PARK, a training-free sparse attention method for accurate block retrieval. PARK retains every original query, independently normalizes its attention over key blocks, and then averages these distributions within each query block. It also uses information from the current queries to transform keys before clustering, so that keys receiving similar QK scores are grouped together. A fused GPU kernel further reduces the overhead of block retrieval. Experiments on HunyuanVideo and Wan demonstrate that PARK improves block retrieval accuracy and preserves generation quality while accelerating inference, achieving the best quality-efficiency trade-off among the compared sparse attention methods.",
+    "abs": "http://arxiv.org/abs/2609.38978v1",
+    "pdf": "https://arxiv.org/pdf/2609.38978v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "该论文针对视频扩散 Transformer 的稀疏注意力，指出用查询块和键块的平均表示检索重要块存在两类不匹配——查询侧平均破坏个体注意力偏好、键侧欧氏聚类可能把 QK 分数不同的键归为一组，并提出免训练的 PARK 方法予以修正，同时用融合 GPU 核降低检索开销。",
+      "relevance_reason": "虽属视频生成效率方向，但其核心线索与 LVR 直接相关：视觉证据筛选中的块检索偏差、查询聚合与键聚类度量如何影响「看哪里」的决策，可供核查 latent 证据选择与缓存结构的设计。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-01T19:10:40.132478+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

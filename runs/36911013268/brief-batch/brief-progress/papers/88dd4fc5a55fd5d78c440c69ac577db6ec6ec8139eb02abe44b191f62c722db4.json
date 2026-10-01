@@ -1,0 +1,72 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2609.38823",
+  "input_sha256": "8fc3b056df9c652bbcd70a6dae382bd4cda2cd6b5f5c0bf8621679c9b1cef4fc",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-01T19:11:42.482322+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1872,
+        "output_tokens": 227,
+        "total_tokens": 2099,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2609.38823",
+    "title": "DecoMoE: Decoupling Visual Propagation and Expert Computation for Efficient Multimodal MoE Inference",
+    "authors": [
+      "Xudong Tan",
+      "Peng Ye",
+      "Ming Xie",
+      "Chenyu Huang",
+      "Yaoxin Yang",
+      "Jiayuan Fan",
+      "Tao Chen"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": "21 pages, 11 figures, 6 tables",
+    "summary": "Multimodal mixture-of-experts (MoE) models combine sparse expert activation with visual-language capabilities, yet their inference remains costly because long visual-token sequences repeatedly incur attention, routing, dispatch, and expert-MLP computation. Existing methods typically compress either the token or expert dimension, leaving redundancy along the other. Our analysis reveals two complementary regularities: the depth required for visual propagation varies across inputs, while text-token routing exhibits concentrated and recurrent expert-importance patterns. Based on these observations, we propose DecoMoE, a two-dimensional structured compression framework that decouples visual propagation from expert computation. The Sample-Adaptive Visual Boundary (SAVB) predicts an input-dependent visual-exit layer at which the visual-token block is removed. The Routing-Calibrated Expert Prefix (RCEP) reorders experts offline using text-token routed mass and, from this predicted exit layer onward, retains at each MoE layer the shortest contiguous prefix covering a target routed-mass fraction. We evaluate DecoMoE on Qwen3-VL-MoE and InternVL3.5-30B-A3B across six benchmarks. On Qwen3-VL-MoE, DecoMoE retains 97.91% of dense-baseline performance while reducing computation from 27.06 to 16.73 TFLOPs and latency from 0.44 to 0.26 seconds, yielding a 1.69x speedup. Code will be available at https://github.com/ShawnTan86/DecoMoE.",
+    "abs": "http://arxiv.org/abs/2609.38823v1",
+    "pdf": "https://arxiv.org/pdf/2609.38823v1",
+    "AI": {
+      "category": "PENDING",
+      "priority": null,
+      "brief_summary": "DecoMoE 针对多模态 MoE 推理提出二维压缩框架：用样本自适应的视觉退出层预测提前移除视觉 token 块，并用基于文本路由质量排序的专家前缀裁剪后续专家计算，在六个基准上以约 1.69 倍加速保留近 98% 密集基线性能。",
+      "relevance_reason": "其「按输入预测视觉退出层」与动态计算、停止决策（STOP）直接相关，但摘要未说明该退出是否依据 latent 状态内容或证据充分性，也未报告剪枝后是否损害实体与几何细节，需阅读原文核查；此外 MoE 专家维度与 latent 分析维度关系不明，故暂列待查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-01T19:11:42.482322+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

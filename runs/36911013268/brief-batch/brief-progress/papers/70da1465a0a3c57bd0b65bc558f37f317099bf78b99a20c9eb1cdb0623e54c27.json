@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2609.39929",
+  "input_sha256": "9a097f8f7654418024d45b36d7deaa998e193c6c56387eb2724760e75b4e5882",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-01T19:03:30.564022+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1861,
+        "output_tokens": 239,
+        "total_tokens": 2100,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2609.39929",
+    "title": "RoPE at the End of Its Rope? Theory, Diagnosis, and Mitigation of Long-Context Failures",
+    "authors": [
+      "Yuyang Wu",
+      "Yufeng Du",
+      "Hao Peng"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.CL"
+    ],
+    "comment": null,
+    "summary": "Long-context failures of RoPE-based language models can arise from RoPE's intrinsic tradeoff between maintaining stable token preferences and distinguishing nearby positions. Determining which weakness to address, and how, requires a more precise characterization of RoPE's behavior in trained models across context lengths. We address a key limitation of prior theory by allowing unequal query-key scales across RoPE frequencies, which aligns well with practical empirical observations. Our theory makes both vulnerabilities measurable for individual heads and inputs, and quantifies how high-frequency components support positional sensitivity while potentially disrupting semantic stability. We also derive a theoretical context-length bound beyond which, under specified conditions, a fixed attention-score comparison cannot jointly avoid semantic reversal and positional insensitivity. Guided by our fresh theoretical insights, we introduce RoPE Profiler, a lightweight, plug-and-play diagnostic toolkit that augments existing evaluations with zero additional forward passes by reusing cached query and key activations. Reusing activations collected during evaluation, the toolkit incurs little overhead. It supplements standard benchmark scores with two diagnostic scores that reveal semantic and positional weaknesses and help users prioritize which aspect to address. Crucially, our evaluations across 49 long-context task settings reveal a distinct pattern where reasoning tasks predominantly suffer from semantic reversal, whereas retrieval tasks are primarily vulnerable to positional insensitivity. Guided by our theory and diagnostic profiles, targeted high-frequency rescaling achieves immediate gains without additional training, improving task accuracy by up to 20 percentage points on Qwen3-8B and 25 percentage points on Llama-3.1-8B-Instruct.",
+    "abs": "http://arxiv.org/abs/2609.39929v1",
+    "pdf": "https://arxiv.org/pdf/2609.39929v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "该论文重新刻画 RoPE 在训练后模型中的行为：允许不同频率上 query-key 尺度不等，据此推导出语义稳定性与位置敏感性的权衡及上下文长度上界，并提出复用缓存激活、无需额外前向的「RoPE Profiler」诊断工具，在 49 组长上下文任务中发现推理任务主要受语义反转影响、检索任务主要受位置不敏感影响，并通过高频重缩放获得免训练提升。",
+      "relevance_reason": "虽非多模态工作，但其对位置编码中语义稳定性与位置分辨力的可量化诊断、以及对缓存激活的零成本复用，可能为 LVR 中 latent 相似度受深度、位置与缓存影响的问题、以及长上下文下推理状态是否保持语义一致提供可核查的分析工具。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-01T19:03:30.564022+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

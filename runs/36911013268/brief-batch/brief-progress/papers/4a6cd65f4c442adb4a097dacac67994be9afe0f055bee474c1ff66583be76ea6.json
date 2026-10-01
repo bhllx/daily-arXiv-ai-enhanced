@@ -1,0 +1,71 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2609.38672",
+  "input_sha256": "569d55d22eae56cccb17e4134370850a1c594df364d0518ec2874a5ab0b382f0",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-01T19:12:29.197998+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1885,
+        "output_tokens": 189,
+        "total_tokens": 2074,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2609.38672",
+    "title": "Provable Test-Time Scaling for Beam Search in LLM Reasoning",
+    "authors": [
+      "Qijia He",
+      "Yu Huang",
+      "Yuan Cheng",
+      "Yuxin Chen",
+      "Yingbin Liang"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.AI"
+    ],
+    "comment": "Accepted to NeurIPS 2026",
+    "summary": "Beam-search-based test-time methods provide an effective way to improve large language model (LLM) performance on long-horizon generation by pruning invalid reasoning paths early, leading to significantly improved reasoning efficiency and more favorable test-time cost scaling. Despite strong empirical success, the theoretical understanding of beam search remains limited. In this paper, we study the test-time compute guarantee of the commonly used beam search framework that uses the model's internal log-likelihood for intermediate scoring, while relying on an external reward model only after a complete response is generated. We first establish a lower bound for vanilla beam search, showing that at least $Ω(C^\\star(x)^2)$ samples are required for the optimal response to survive, where $C^\\star(x)$ is the token-level coverage coefficient for prompt $x$. This motivates our modified confidence-filtered beam search (CF-Beam), which reduces the sufficient coverage dependence from quadratic to nearly linear under prefix competitiveness, for fixed horizon, gap, and target accuracy. We then show that the regret of CF-Beam is upper-bounded by the probability of rare failure events and the reward estimation error scaled by a path-level coverage coefficient, where the rare-failure term vanishes as per-step sampling increases. Our results highlight a fundamental advantage of beam search over sequence-level inference methods such as Best-of-N and Best-of-Majority. While the guarantees of these approaches typically involve coverage coefficients that grow exponentially with the horizon $L$, CF-Beam controls the dominant search-induced term through a token-level coverage coefficient that scales polynomially with $L$. Our numerical experiments further confirm that beam search is more robust on hard instances and under increasing reasoning horizons.",
+    "abs": "http://arxiv.org/abs/2609.38672v1",
+    "pdf": "https://arxiv.org/pdf/2609.38672v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P1",
+      "brief_summary": "该论文从理论上分析 beam search 的测试时计算保证，给出 vanilla beam search 需要 Ω(C*(x)^2) 样本的下界，并提出置信过滤的 CF-Beam，将覆盖依赖从二次降到近线性，且随推理长度 L 呈多项式而非指数增长。",
+      "relevance_reason": "虽为纯文本推理，其「搜索路径剪枝、计算量随 horizon 的缩放、覆盖系数」分析可能可供核查 LVR 中动态计算分配、候选状态筛选与长度泛化的成本刻画。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-01T19:12:29.197998+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

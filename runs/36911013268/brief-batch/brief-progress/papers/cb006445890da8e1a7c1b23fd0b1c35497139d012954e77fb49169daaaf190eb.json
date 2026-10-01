@@ -1,0 +1,67 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2609.39560",
+  "input_sha256": "bb9d4f1f9328b62ccd2e3dd959c1e09fcb35d3cc7d0c6e16ab50137f84e952f2",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-01T19:05:12.774119+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1830,
+        "output_tokens": 226,
+        "total_tokens": 2056,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2609.39560",
+    "title": "Self-Repulsive Sampling for Diffusion Language Models",
+    "authors": [
+      "Michael Helcig",
+      "Martin Jaggi"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Sampling several responses and voting over their answers can improve a language model's accuracy, but repeated answers limit the benefit of additional samples. Raising temperature increases diversity at a potential cost to per-sample accuracy. We introduce Self-Repulsion (SR), a sampler for masked diffusion language models that uses peer commitments to diversify the pool. At each penalized denoising step, each path lowers a token's logit according to how many peers have committed that token at the same position. Paths share a batched forward pass and then commit in sequence, so later paths observe choices made earlier in the same step. This coupling requires no training or additional forward or backward pass and can produce distinct paths even at temperature zero. When all paths commit a position together from identical logits, the update exactly maximizes total logit minus a convex duplication cost. On LLaDA-8B-Instruct with ten paths and 128 denoising steps, deterministic SR reaches 80.38% plurality accuracy on GSM8K, compared with 70.17% for the unpenalized greedy decoder. At temperature 0.6 and matched model-evaluation budgets, the count penalty improves over self-consistency by 2.06 percentage points in blocks of 32 and 14.50 under pure diffusion. Experiments on GSM8K, MATH and TruthfulQA show that voting gains arise mainly from higher coverage of correct answers, with gains that vary by benchmark and decoding regime.",
+    "abs": "http://arxiv.org/abs/2609.39560v1",
+    "pdf": "https://arxiv.org/pdf/2609.39560v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "该论文提出 Self-Repulsion（SR）采样器，用于 masked diffusion 语言模型：在带惩罚的去噪步骤中，根据同一位置已被其他路径选定的 token 数量下调该 token 的 logit，路径共享批前向并按序提交，从而在无需训练或额外前反向的情况下扩大候选答案多样性。",
+      "relevance_reason": "其核心是路径间信息耦合与去噪状态更新，可能为 LVR 中多 latent 假设的多样性与去冗余（如 latent 相似度导致的坍塌）提供采样层面的借鉴线索，但对象为纯文本扩散模型、缺乏视觉证据筛选环节，需核查其与多模态推理状态的实际可迁移性。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-01T19:05:12.774119+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

@@ -1,0 +1,67 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2609.39604",
+  "input_sha256": "16be4adce7c32badea0d0804b5fa2c277d0b8def263d90377bb125e1780f5894",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-01T19:04:56.615121+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1840,
+        "output_tokens": 225,
+        "total_tokens": 2065,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2609.39604",
+    "title": "Why Do Conventional World Models Fail to Learn Cellular Automata?",
+    "authors": [
+      "Shaoyang Guo",
+      "Ziming Liu"
+    ],
+    "categories": [
+      "cs.AI"
+    ],
+    "comment": "35 pages, 18 figures. Code and reproduction materials: https://github.com/guoshaoyang-pku/momentum-induction",
+    "summary": "Although conventional world models - auto-regressive or diffusion models based on transformers or convolutional networks - may learn surface statistics of world dynamics, can they learn the exact world dynamics from its observed history? Leveraging cellular automata as a simple testbed, we find the answer to be no in many cases. Conventional architectures predict most pixels correctly yet rarely complete a rollout: a CNN predicts 96.3% of cells but completes 18.9% of rollouts; a joint diffusion model completes none. We trace the gap to three failure modes of these world models - namely, they fail to exactly capture spatial locality, temporal locality or temporal stability. Simple changes repair each: (1) for spatial locality, two-dimensional rotary positions lift a transformer from 39.1% to 100% on the Game of Life; (2) for temporal locality, handing each token its cell's previous-frame neighbourhood lifts the same transformer from 25.8% to 99.9% on unseen rules; (3) for temporal stability, causal freezing lifts the same diffusion weights from 42.2% to 99.9%. None of the three changes touches the architectural backbone; each only modifies the information flow within it. We also compare joint and ordered sampling on billiards and, in an exploratory study, on a simulated Burgers equation.",
+    "abs": "http://arxiv.org/abs/2609.39604v1",
+    "pdf": "https://arxiv.org/pdf/2609.39604v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "该文以元胞自动机为测试床，考察自回归与扩散类世界模型能否从观测历史中学到精确动力学，发现它们虽能预测多数像素却极少能完成完整 rollout，并归因于空间局部性、时间局部性和时间稳定性三类失败模式，通过仅修改模型内部信息流（如二维旋转位置编码、传入上一帧邻域、因果冻结）逐一修补。",
+      "relevance_reason": "其「局部信息流与状态稳定性」诊断可能为 LVR 的 latent 状态是否保留几何/邻域结构、以及 rollout 式推理轨迹的坍缩与误差累积提供可核查线索，但对象是像素级世界模型而非 VLM 推理状态。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-01T19:04:56.615121+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

@@ -1,0 +1,71 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2609.39096",
+  "input_sha256": "f499f7d0f29ff3344b45d79c18d16c260ab965fc95b115cc605d046298313d4b",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-01T19:09:52.948520+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1903,
+        "output_tokens": 204,
+        "total_tokens": 2107,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2609.39096",
+    "title": "DeCoPrune: Efficient KV-Cache Pruning for Autoregressive Video Diffusion via Denoising Consistency",
+    "authors": [
+      "Zeqi Xiao",
+      "Qingle Liu",
+      "Kaiwen Zhang",
+      "Yifan Zhou",
+      "Zihan Ding",
+      "Xingang Pan"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": null,
+    "summary": "Autoregressive video diffusion supports streaming generation and interactive control, but its KV cache grows with the generated history. Existing compression strategies discard history using fixed windows or select tokens through local attention and similarity signals, without directly measuring whether a chunk contributes information beyond the retained context. We introduce DeCoPrune, a training-free method that treats cache compression as a denoising-consistency problem. We find that tokens with larger discrepancies between intermediate clean predictions and final denoised values tend to carry visual evidence less predictable from the retained context. DeCoPrune uses this model-intrinsic signal to retain high-discrepancy tokens in the long-term cache while pruning low-discrepancy tokens. To evaluate information retention, we introduce CMBench, comprising 58 approximately one-minute generated or real-world context episodes and 116 Reappear or Revisit continuation tasks requiring recall of earlier events or objects. Experiments with LingBot World v2 show that DeCoPrune achieves a DINO score of 0.6701 on a 0-1 scale, with an 85.43% reduction in cumulative historical KV token counts and a 4.14-fold continuation-generation speedup over FullKV. Its head-specialized variant reaches 0.6783 at an 86.19% pruning ratio, approaching FullKV's 0.6803 score and exceeding the evaluated compression baselines at similar budgets. These results indicate that denoising consistency can support long-range information retention while reducing autoregressive inference cost. Our project homepage is https://decoprune.github.io. The code is available at https://github.com/DeCoPrune/CMBench, and the benchmark at https://huggingface.co/datasets/Aoraku/CMBench.",
+    "abs": "http://arxiv.org/abs/2609.39096v1",
+    "pdf": "https://arxiv.org/pdf/2609.39096v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "提出免训练的 DeCoPrune，把自回归视频扩散的 KV 缓存压缩视为去噪一致性判定：中间干净预测与最终去噪值差异大的 token 更携带难以从保留上下文预测的视觉证据，因而保留、反之剪除；并构建 CMBench 评测长程信息召回。",
+      "relevance_reason": "主线是 VLM 推理，本文属视频扩散生成，但其「用模型内在预测差异度量信息量、筛选该保留哪些视觉证据」的准则，可能可供核查 LVR 中的视觉旁路、证据筛选与缓存对 latent 相似度的影响。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-01T19:09:52.948520+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

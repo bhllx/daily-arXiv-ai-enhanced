@@ -1,0 +1,73 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2609.39563",
+  "input_sha256": "f540b6369b5409f430c98ca97e8c1b2dc97967d6083bc38f0c7349b5043e818c",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-01T19:05:10.557374+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1935,
+        "output_tokens": 215,
+        "total_tokens": 2150,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2609.39563",
+    "title": "RESUME: Recurrent State Updates from Motion and Residual Signals for Efficient Video Language Modeling",
+    "authors": [
+      "Can Zhang",
+      "Xiaotian Han",
+      "Junyuan Shang",
+      "Yuchen Ding",
+      "Zhenyu Zhang",
+      "Shuohuan Wang",
+      "Dianhai Yu",
+      "Ruirui Li"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": null,
+    "summary": "Existing video language models encode sampled RGB frames independently, so a long video must either exhaust the token budget or drop the changes between sampled frames. Codec-aware front-ends read the motion vectors and residuals that encoding produced, but in their deployed form each predictive frame is still tokenized on its own: the tokens are a function of the current primitives, not of a carried reference. We argue that a more natural function is of both---the current primitives and a carried reference. A clip and its time reversal share the same frames and differ only in the order of changes---an axis that symmetric pooling discards by construction, and that is non-empty in the frozen vision features VideoLMs use---and the codec recurrence already composes those changes in order against a reference state. We introduce RESUME, a stateful codec representation: an anchor I-frame initializes a compact latent state, each subsequent predictive frame is consumed as an update to that state, and a shared readout exposes VideoLM-compatible tokens from the accumulated state. Codec prediction is thereby kept at the representation level and handed to the language model as a trajectory, not as a set of independent token groups. At the same per-predictive-frame token budget as prior codec-aware methods, a predictive frame enters the language model as a readout of what the front-end already knows, not as an encoding of the current primitives alone. Across ten benchmarks, the gains concentrate on temporal reasoning: on all three temporal benchmarks RESUME improves over both the RGB-frame baseline LLaVA-Video-7B (by 2.8, 5.1, and 3.9 points on TempCompass, TOMATO, and MVBench) and the codec-based baseline CoPE-7B, while staying competitive on general and long-form QA. Frozen-transition tests further show anchor dependence, order sensitivity, and useful rollout behavior beyond the training horizon.",
+    "abs": "http://arxiv.org/abs/2609.39563v1",
+    "pdf": "https://arxiv.org/pdf/2609.39563v1",
+    "AI": {
+      "category": "MAIN",
+      "priority": "P2",
+      "brief_summary": "RESUME 用有状态的 codec 表示替代逐帧独立编码：I 帧初始化紧凑 latent 状态，后续预测帧作为对该状态的更新，再由共享读出器生成 VideoLM 可用的 token，并在十个基准上验证其效果。论文特别报告了时序推理任务的提升以及锚点依赖、顺序敏感性和超出训练时长的 rollout 表现。",
+      "relevance_reason": "与 LVR 主线直接相关：视频推理中视觉细节与「参考状态」的保留方式、状态更新与读出如何影响时序判断，以及顺序敏感性、锚点依赖和长程 rollout 是否真正被语言模型使用，是可核查的关键线索。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-01T19:05:10.557374+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

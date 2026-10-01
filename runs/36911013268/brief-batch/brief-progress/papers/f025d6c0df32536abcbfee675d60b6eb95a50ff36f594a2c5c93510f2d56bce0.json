@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2609.38758",
+  "input_sha256": "1ae42eb52666be8e4fd40f47cd4f816db67ca5810af9a7d333a4d02520dc9200",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-01T19:12:08.183719+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1853,
+        "output_tokens": 221,
+        "total_tokens": 2074,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2609.38758",
+    "title": "Event-Driven Refresh and Recurrence Memory to Reduce Stale Grounding in Referring Video Object Segmentation",
+    "authors": [
+      "Abu Hanif Muhammad Syarubany",
+      "Jaehyun Jang",
+      "Siwoo Lim",
+      "Seungyeon Ryu",
+      "Chang D. Yoo"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": "submitted to IEEE Access",
+    "summary": "Referring Video Object Segmentation (RVOS) aims to produce a pixel-accurate mask sequence for an object specified by natural language. Sa2VA combines a multimodal large language model with SAM2 for grounded segmentation; however, its inference typically grounds the query from a small fixed set of initial keyframes and then relies on propagation. In long or dynamic videos, this can cause stale grounding and persistent false positives when the object composition changes (e.g., distractors enter or the target disappears/re-appears). We propose Event-Driven Refresh + Recurrence Memory (EDRRM), an enhancement that selectively re-invokes Sa2VA only at stable change points. EDRRM triggers refresh boundaries using an EMA-smoothed event score computed from tracking-derived cues (births/deaths and coarse composition/layout changes) with temporal constraints. A recurrence memory further retrieves anchor frames via CLIP similarity to re-condition the model on re-appearance events. Experiments on Ref-DAVIS17, MeViS, and ReVOS show that EDRRM achieves a competitive accuracy-efficiency trade-off relative to fixed-window and FrameDiff-SSIM baselines, maintaining comparable or superior J&F scores at substantially lower average refresh-call budgets and reducing false-positive failures. End-to-end runtime analysis further confirms that the overhead introduced by tracking, CLIP-based recurrence matching, and the identifiability gate remains modest relative to the dominant Sa2VA inference cost, thereby validating the efficiency of the proposed pipeline.",
+    "abs": "http://arxiv.org/abs/2609.38758v1",
+    "pdf": "https://arxiv.org/pdf/2609.38758v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文针对 RVOS 中的「grounding 陈旧」问题，提出事件驱动的刷新机制 EDRRM：用 EMA 平滑的跟踪事件分数（目标出现/消失、布局变化）决定何时重新调用 Sa2VA，并用 CLIP 相似度检索锚帧的 recurrence memory 应对外观重现。",
+      "relevance_reason": "其「何时重新调用模型」的触发式决策与 CLIP 锚帧检索，可能为 LVR 的 LOOK/STOP 调度与视觉证据筛选提供线索；但研究场景是分割掩码刷新，latent 推理状态本身并未涉及，需核查其事件信号能否迁移为 latent 刷新或停止判据。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-01T19:12:08.183719+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

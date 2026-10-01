@@ -1,0 +1,68 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2609.38850",
+  "input_sha256": "9de276f16996d47fc3f0f955348311872a66a5044d95ec4c63befc2a9952ce84",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-01T19:11:34.484890+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1837,
+        "output_tokens": 232,
+        "total_tokens": 2069,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2609.38850",
+    "title": "OpenJev-RLCD: A Working RLCD Implementation",
+    "authors": [
+      "Zhimin Gao",
+      "Pichao Wang"
+    ],
+    "categories": [
+      "cs.AI",
+      "cs.CL"
+    ],
+    "comment": null,
+    "summary": "Decision models such as Jev answer questions with probabilities, which are only useful if they are calibrated. Open-source reproductions rely on supervised fine-tuning plus temperature scaling, while reinforcement learning from verifiable rewards (RLVR) makes reasoning models overconfident. We present a working implementation of reinforcement learning for calibrated decisions (RLCD) for reasoning models: the model samples a rationale, and we score the answer distribution it commits to afterwards with a strictly proper scoring rule. A variance identity shows that scoring the mixture of several samples rewards disagreeing rationales, and that RLVR is exactly this mixture objective without its diversity term. Optimized naively, the per-rationale objective either switches reasoning off or is drowned out by policy-gradient noise, which leads to a two-stage recipe: calibrate, then reinforce. With Qwen3-1.7B on two reasoning tasks (3 seeds, paired tests), RLCD matches or beats SFT, RFT/STaR and GRPO (each temperature-scaled) in accuracy and beats all of them in selective prediction; on GSM8K answer verification a single query decides \\gvTwoCovFive\\% of the items at $\\le$5\\% error, versus \\gvGrpoCovFive\\% for GRPO. When uncertainty comes from annotator disagreement, RLCD provably cannot beat cross-entropy. Code and results: https://github.com/ZimmyGao/openjev-rlcd.",
+    "abs": "http://arxiv.org/abs/2609.38850v1",
+    "pdf": "https://arxiv.org/pdf/2609.38850v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "提出 RLCD 的可复现实现：模型先采样 rationale，再对其最终答案分布用严格恰当评分规则打分，并证明该目标等价于含多样性项的样本混合目标，RLVR 则缺失该多样性项；据此给出「先校准、再强化」两阶段方案，在 Qwen3-1.7B 的推理任务上评测准确率与选择性预测。",
+      "relevance_reason": "把多个 rationale 的答案分布视为混合信念并显式奖励分歧，可能为 LVR 的 latent 状态多样性、轨迹贡献分配与 STOP／弃答决策提供概念线索；但其为纯文本设定、面向概率校准而非视觉状态，需核查混合评分能否迁移到视觉证据筛选。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-01T19:11:34.484890+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

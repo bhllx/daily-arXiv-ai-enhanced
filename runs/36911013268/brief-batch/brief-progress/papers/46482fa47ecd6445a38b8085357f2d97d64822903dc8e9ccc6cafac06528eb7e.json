@@ -1,0 +1,72 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2609.38853",
+  "input_sha256": "30825e672bd1e3c6679796fbe51c4ca19574ccc5cecbcc805eaa4d693421cf6e",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-01T19:11:32.204016+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1876,
+        "output_tokens": 217,
+        "total_tokens": 2093,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2609.38853",
+    "title": "Visualizing Distribution Coverage in Generative Diffusion Models",
+    "authors": [
+      "Yifei Wang",
+      "Xiaoyu Wu",
+      "Tsu-Jui Fu",
+      "Chen Chen",
+      "Liang-Chieh Chen",
+      "Zhe Gan",
+      "Chen Wei"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": "under review",
+    "summary": "Diffusion distillation is widely adopted to accelerate sampling, and the resulting few-step models are broadly believed to match or even surpass their multi-step teachers in generation. However, standard evaluations such as GenEval2 typically draw only one sample per prompt, so improved scores may fail to reveal losses in distribution coverage. We therefore revisit whether distilled models truly match their teachers beyond single-draw performance using \\textbf{pass@$\\mathbf{k}$}, which measures the probability that at least one of $k$ independent samples satisfies a quality criterion. At $k{=}1$, pass@$k$ reduces to standard single-draw evaluation. As $k$ grows, the curve reveals whether additional draws find genuinely different successes or merely revisit the same modes, directly exposing how broadly a model covers the space of valid outputs. We first show that classifier-free guidance (CFG), whose quality--coverage tradeoff is well established, is the clearest case: higher guidance improves pass@$1$, but its advantage shrinks and reverses at larger $k$. Applying pass@$k$ to few-step distilled models, we find the same tradeoff splits along training objectives: distribution-matching objectives concentrate the student's output distribution, boosting early-hit rates while eroding large-budget coverage, whereas consistency and trajectory-based objectives better preserve the teacher's coverage even at large $k$. We further show that this tradeoff extends to few-step causal video generation. Our findings reveal a previously overlooked cost of diffusion distillation: across both image and video generation, the choice of training objective fundamentally determines whether a few-step model inherits its teacher's distribution coverage or trades it away for single-draw quality.",
+    "abs": "http://arxiv.org/abs/2609.38853v1",
+    "pdf": "https://arxiv.org/pdf/2609.38853v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "论文提出用 pass@k 曲线评估生成模型的质量—覆盖度权衡，发现 CFG 提高 pass@1 但大 k 时优势反转，扩散蒸馏中分布匹配目标会压缩学生分布覆盖，而一致性/轨迹类目标更能保留教师的覆盖度，并将该现象扩展到少步因果视频生成。",
+      "relevance_reason": "与 LVR 的「latent 状态是否保留必要信息」「动态计算预算下收益与成本」问题可能同构：pass@k 揭示的多次采样是否只是重复同一模态，可供核查是否可迁移为检验 latent 推理轨迹的模式坍缩与覆盖度损失的分析工具。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-01T19:11:32.204016+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

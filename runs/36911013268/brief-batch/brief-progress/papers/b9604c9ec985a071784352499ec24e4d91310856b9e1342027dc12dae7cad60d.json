@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2609.38811",
+  "input_sha256": "a98514159a3d56c7dcdb4c649851a5d37eac0b0d075e91d1da58461b8da7f6a5",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-01T19:11:46.496146+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1893,
+        "output_tokens": 193,
+        "total_tokens": 2086,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2609.38811",
+    "title": "DCM-SAM: Defect-Conditioned Mixture of LoRA Experts for NPU-Deployed AM Defect Segmentation",
+    "authors": [
+      "Md Mushfiqur Rahaman",
+      "Md Mahedi Hasan",
+      "Imtiaz Ahmed",
+      "Srinjoy Das"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.LG"
+    ],
+    "comment": "12 pages, 1 figure, 8 tables. Accepted at the NeurIPS 2026 Workshop on On-Device Intelligence: Foundation Models under Real-World Constraints (ODI)",
+    "summary": "Metal additive manufacturing parts are inspected by X-ray computed tomography, where labelled data is scarce, the pores and inclusions that matter span a few pixels, and inspection must happen at the machine. We present DCM-SAM, a defect-conditioned adaptive mixture of LoRA experts: one frozen Segment Anything backbone carries a separate Conv-LoRA expert bank and mask decoder per defect class, each trained in its own pass, without prompts, on synthetic slices alone, updating only 4.4% of the parameters. On benchmarks that XCT-SAM reports, DCM-SAM improves on every baseline for both classes from a ViT-B backbone against their ViT-H, and reaches 64.2% pore IoU on real NIST scans having seen no real images during training. Deployment then exposes what adaptation work rarely measures: on a Qualcomm Hexagon NPU, ViT-H and ViT-L compile yet cannot allocate at 1024x1024 image resolution, since activations rather than weights exceed the device ceiling, and quantizing weights does not help. ViT-B alone runs, but the adapted encoder then fails to allocate where the stock one succeeds, until a numerically identical rewrite of the attention lets the complete DCM-SAM run in FP16 at 1024x1024, with no operator falling back to the CPU, masks within 0.01% of pixels of the FP32 reference. Code: https://github.com/MushfiqShovon/DCM-SAM.",
+    "abs": "http://arxiv.org/abs/2609.38811v1",
+    "pdf": "https://arxiv.org/pdf/2609.38811v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "提出 DCM-SAM，用冻结 SAM 骨干加按缺陷类别划分的 Conv-LoRA 专家库与掩码解码器，在无提示、仅合成切片训练下做增材制造缺陷分割，并考察 NPU 部署可行性。",
+      "relevance_reason": "与 LVR 主线关联较弱；可留意的是其按类别条件路由的专家库与「适配后反而无法分配显存、激活而非权重是瓶颈」的部署诊断，可能为 latent 状态容量与推理成本核算提供参考线索。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-01T19:11:46.496146+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

@@ -1,0 +1,75 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2609.38776",
+  "input_sha256": "3c9729f784f4ef549c765a257c89009fee8c2e2b6e4be6008fb9f7de9750b12b",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-01T19:12:01.877711+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1782,
+        "output_tokens": 207,
+        "total_tokens": 1989,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2609.38776",
+    "title": "Distilling Diffusion Score Discrepancy for Efficient Training Data Attribution",
+    "authors": [
+      "Shixuan Liu",
+      "Joan Serrà",
+      "Kin Wai Cheuk",
+      "Jinju Kim",
+      "Woosung Choi",
+      "Yukara Ikemiya",
+      "Wei-Hsiang Liao",
+      "Jiaqi W. Ma",
+      "Yuki Mitsufuji"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "Training data attribution for diffusion models aims to identify the training samples that influence a generated instance, but existing methods either require costly per-sample gradient computation or query-specific model optimization. Moreover, most methods attribute changes in a proxy loss rather than changes in the actual model's generative behavior. We address these limitations by formulating attribution directly with a local score discrepancy measure, which applies to any diffusion variant (including DDPM, EDM, and flow matching), and by showing that such measure can be estimated without retraining, as a preconditioned gradient similarity. We instantiate this estimator as Training-data Influence via score Discrepancy (TID), which uses Kronecker-factored curvature to avoid random projections and per-sample gradient storage. We then distill TID into TIDE, a forward-only student trained online to reproduce the teacher's rankings from the diffusion model's internal activations. Under counterfactual evaluation on CIFAR-10, ArtBench-10, and MS-COCO, TID matches or outperforms state-of-the-art approaches, while TIDE retains most of TID's accuracy at four to five orders of magnitude lower per-query cost, attributing generated samples in milliseconds and faster than the generation itself.",
+    "abs": "http://arxiv.org/abs/2609.38776v1",
+    "pdf": "https://arxiv.org/pdf/2609.38776v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P1",
+      "brief_summary": "该文为扩散模型提出基于局部 score discrepancy 的训练数据归因指标 TID，并用前置条件化梯度相似度免重训估计，再蒸馏为仅前向的学生模型 TIDE，在 CIFAR-10、ArtBench-10、MS-COCO 上以极低查询成本逼近教师排序。",
+      "relevance_reason": "其从模型内部激活在线蒸馏出「哪些视觉证据影响输出」的前向归因器，可能为 LVR 中视觉证据筛选与 latents 贡献分配提供可核查的监督或评价线索，但对象是扩散生成而非 VLM 推理状态。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-01T19:12:01.877711+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

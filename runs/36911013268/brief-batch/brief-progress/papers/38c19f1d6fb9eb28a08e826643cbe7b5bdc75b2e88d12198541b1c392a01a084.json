@@ -1,0 +1,67 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2609.39243",
+  "input_sha256": "dfba89d1077c178470abbe33ce91f08a4cf5e0439beafc0814ab7093c04654da",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-01T19:06:32.318170+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1935,
+        "output_tokens": 215,
+        "total_tokens": 2150,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2609.39243",
+    "title": "Right Answer, Wrong Mechanism: Detecting Pernicious Divergence in Causal Interventions",
+    "authors": [
+      "Beiming Liu",
+      "Minjie Chen"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": "13 pages, 1 figure, 6 tables. Beiming Liu and Minjie Chen contributed equally",
+    "summary": "Causal interventions such as activation patching and distributed alignment search (DAS) are the main tool for making mechanistic claims about neural networks. Recent work showed that these interventions routinely push representations off the model's natural distribution, and that such divergence is sometimes harmless and sometimes pernicious: it can recruit pathways the model never uses on natural inputs, so that an intervention produces the expected answer through the wrong mechanism. No method currently tells the two cases apart. We make this question testable by planting hidden pathways inside pretrained language models; the pathways are silent on every benchmark prompt by construction, so which interventions depend on them is known exactly. Across 72 configurations and 100,800 interventions on GPT-2 small, we find three things. (i) Nearest-neighbour and local-PCA distances at the intervention site, as used in prior work, score below chance (AUROC 0.35-0.47) at picking out interventions that give the right answer through a planted pathway. (ii) Hidden-Pathway Contribution (HPC), a label-free test that clamps downstream units to the regime of natural runs with the same output and measures how much of the decision disappears, flags pathway-dominated interventions with AUROC >= 0.99 when the pathway shows up as unit-level out-of-regime activity, but fails when every unit stays within its natural range, which we identify as the open problem. (iii) Optimised interventions actively seek hidden pathways: on a gender task, DAS routes 90-95% of its successes through planted pathways for three of four families, and a downstream on-manifold penalty cuts this share to under 5% at a cost of 6-11 points of success rate. In unmodified GPT-2, successful interventions show almost no unit-level out-of-regime reliance.",
+    "abs": "http://arxiv.org/abs/2609.39243v1",
+    "pdf": "https://arxiv.org/pdf/2609.39243v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P1",
+      "brief_summary": "论文在预训练语言模型中植入自然输入下完全沉默的隐藏通路，用 72 组配置、约十万次干预检验因果干预（激活修补、DAS）是否以「正确答案、错误机制」的方式依赖这些通路，并提出无标签的 Hidden-Pathway Contribution 检测指标。",
+      "relevance_reason": "虽非多模态，但其「答案正确但机制错」的诊断逻辑与 latent 状态是否真正被用于答案、干预是否把状态推离自然分布直接对应 LVR 的视觉旁路与信息坍缩核查，HPC 式的自然运行区间对齐可提供评估 latent 内容因果作用的线索。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-01T19:06:32.318170+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

@@ -1,0 +1,75 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2609.40360",
+  "input_sha256": "80bb012b1f184c81bb90b591e84cc9df1013db40844e05a9b6190e1ff2d6fc22",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-01T19:01:39.421643+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1857,
+        "output_tokens": 240,
+        "total_tokens": 2097,
+        "input_token_details": {
+          "cache_read": 1664
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2609.40360",
+    "title": "Semifactual Credit-Augmented Policy Optimization",
+    "authors": [
+      "Junshu Pan",
+      "Zhizhang Fu",
+      "Shulin Huang",
+      "Yiran Ding",
+      "Zifan Cheng",
+      "Wenqi Shao",
+      "Qiaosheng Zhang",
+      "Yue Zhang"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.AI",
+      "cs.CL"
+    ],
+    "comment": null,
+    "summary": "Reinforcement learning with verifiable rewards (RLVR) has improved the reasoning capabilities of large language models (LLMs), yet their predictions remain sensitive to task-irrelevant prompt features. We investigate this sensitivity through semifactual prompt interventions that preserve the underlying problem and its answer. Our analysis reveals substantial variation in token-level sensitivity and shows that suppressing high-drift token candidates during decoding improves reasoning accuracy without updating model weights. These findings highlight a limitation of Group Relative Policy Optimization (GRPO), which assigns the same outcome-derived advantage to every response token and may reinforce potential spurious dependence alongside useful reasoning. Motivated by this observation, we introduce Semifactual Credit-Augmented Policy Optimization (SCAPO), a causally inspired variant of GRPO that incorporates semifactual stability into token-level credit assignment. SCAPO measures token probability drift for fixed responses under semifactual interventions and uses normalized stability scores to reduce advantages for relatively unstable tokens during early training, while granting no additional credit for stability alone. On Qwen3-4B-Base and Qwen3-1.7B-Base, SCAPO improves AIME 2024-2026 accuracy over GRPO by 5.63 and 4.17 percentage points, respectively. At both model scales, SCAPO achieves the best results on most evaluated mathematics benchmarks and all evaluated out-of-distribution benchmarks among the compared methods. These results suggest that semifactual stability provides an effective training signal for improving reasoning and generalization through finer-grained credit assignment in RLVR. The code is available at https://github.com/DtYXs/SCAPO.",
+    "abs": "http://arxiv.org/abs/2609.40360v1",
+    "pdf": "https://arxiv.org/pdf/2609.40360v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "该论文研究 RLVR 中模型对任务无关提示特征的敏感性问题，通过保持答案不变的反事实（semifactual）提示干预测量 token 级概率漂移，并提出 SCAPO：在 GRPO 的 token 级优势分配中按稳定性归一化分数降低不稳定 token 的优势，在多个数学基准与分布外任务上超越 GRPO。",
+      "relevance_reason": "其「token 级稳定性/漂移打分与贡献分配」线索可供核查 LVR 中 latent 推理状态的使用程度与轨迹训练监督：高漂移 token 是否对应虚假依赖而非有效推理，可能为 latent 内容的贡献分配与停止决策提供诊断思路，但该工作仍是纯文本 RLVR，需核查其信号能否迁移到多模态 latent 状态。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-01T19:01:39.421643+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

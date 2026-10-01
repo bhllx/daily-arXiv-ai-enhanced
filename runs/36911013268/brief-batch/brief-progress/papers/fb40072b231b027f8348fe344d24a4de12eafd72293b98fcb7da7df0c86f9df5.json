@@ -1,0 +1,83 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2609.38987",
+  "input_sha256": "e17c3c2241d72d8e71652b8bfa6c263e434bf79e39b911be8c4ebb2a44aeecd1",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-01T19:10:32.598810+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1795,
+        "output_tokens": 238,
+        "total_tokens": 2033,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2609.38987",
+    "title": "Smaller Models, Better Rejects: Preference Distillation Scaling",
+    "authors": [
+      "Rui Cai",
+      "Wenhui Zhu",
+      "Xiwen Chen",
+      "Jincheng Cao",
+      "Han Yu",
+      "Shayan Mohajer Hamidi",
+      "Zelin He",
+      "Qiyao Ma",
+      "Daiwei Chen",
+      "Xuanzhao Dong",
+      "Yuanda Xu",
+      "Jelena Markovic-Voronov",
+      "Kayhan Behdin",
+      "Zhengze Zhou",
+      "Ran He",
+      "Alborz Geramifard",
+      "Rohit Jain",
+      "Zhe Zhao"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Preference distillation typically treats a teacher response as preferred and the student's own response as rejected. This assumes that self-generated failures are the most informative negatives and that rejects must come from a model at least as large as the student, making generation costly at scale. We find neither assumption holds: across students from 7B to 72B, smaller frozen models generate rejects with less inference compute yet train stronger students than self-generated rejects, before and after sequence-level knowledge distillation, on code generation and mathematical reasoning. To explain this result, we derive a finite-horizon utility bound for Direct Preference Optimization in a linearized feature model. The bound characterizes favorable reject distributions and motivates three interventions. First, mixing rejects from smaller and student-scale models improves performance as the smaller model's share increases. Second, reassigning rejects to other prompts and shuffling their code tokens still outperform length-matched gibberish, showing that task structure contributes to reject utility. Third, selecting candidates with lower likelihood under the reference policy improves net transfer when higher-likelihood candidates provide less useful contrast. Lower-likelihood selections outperform higher-likelihood ones for every source. These results suggest that effective rejects preserve task structure while limiting coupling to the reference policy, and that smaller frozen models can provide them at low cost.",
+    "abs": "http://arxiv.org/abs/2609.38987v1",
+    "pdf": "https://arxiv.org/pdf/2609.38987v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "论文研究偏好蒸馏中「拒绝样本」的来源：发现 7B–72B 学生用小规模冻结模型生成的负例，比自生成负例更省算力且训练效果更好，并用线性化特征模型下的有限时域 DPO 效用界解释这一现象，提出混合负例来源、跨 prompt 重分配与打乱 token、按参考策略似然筛选候选三种干预。",
+      "relevance_reason": "纯文本偏好蒸馏工作，但其「负例效用取决于与参考策略的耦合程度、且需保留任务结构」的结论，可能为 LVR 中轨迹训练与贡献分配提供线索：何种 latent 或被拒绝的推理轨迹更具对比信息、以及筛选证据时的似然判据，可供核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-01T19:10:32.598810+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

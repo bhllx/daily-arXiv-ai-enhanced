@@ -1,0 +1,67 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2609.39559",
+  "input_sha256": "4c21142b4055b7077924dc44c75b3ef1bf3ee683b65af1a8f5a196538e4bd131",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-01T19:05:13.175989+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1895,
+        "output_tokens": 224,
+        "total_tokens": 2119,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2609.39559",
+    "title": "Divide and Collapse: MAPF-Collapse via Exact Decomposition into Independent Sub-Instances",
+    "authors": [
+      "Oren Salzman"
+    ],
+    "categories": [
+      "cs.AI",
+      "cs.RO"
+    ],
+    "comment": null,
+    "summary": "In this work we study the problem of MAPFC, a post-optimization step for Multi-Agent Path Finding (MAPF) plans where we are given a feasible plan produced by a modern MAPF solver and are tasked with removing avoidable moves while preserving feasibility. This NP-hard problem naturally arises when using learning-based state-of-the-art (SOTA) solvers which construct plans that contain redundant moves that can be removed. Recently, Tang et al. presented Judgelight, which uses Integer Linear Programming (ILP) to solve MAPFC. Importantly, the ILP is constructed over all agents jointly, so its cost is governed by the full instance rather than by the small coupled residue that actually requires joint reasoning. Our key insight, motivating this work, is that MAPFC instances naturally decompose into independent sub-problems, most of which involve a single agent and can be solved without any inter-agent reasoning. To this end, we first identify which agents need to coordinate their motion and partition the instance into sub-problems accordingly. For the cases where no coordination is required, we introduce an extremely lightweight solver that is $\\approx\\!1{,}900\\times$ faster than Judgelight. For cases where coordination is required, Judgelight can be used but we introduce an alternative CBS-like solver which is more efficient on easier problems. The resulting framework is exact, uses no commercial ILP solver, and matches Judgelight's quality while running substantially faster on the coordination-light majority of instances; on the coordination-heavy instances we propose a regime-aware hybrid planner that falls back to Judgelight. Over all benchmarks tested, this planner achieves a median $10.5\\times$ per-instance speedup over Judgelight.",
+    "abs": "http://arxiv.org/abs/2609.39559v1",
+    "pdf": "https://arxiv.org/pdf/2609.39559v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "该论文研究 MAPF 规划的后优化问题 MAPFC：在保持可行性的前提下删除多智能体路径计划中的冗余移动，通过识别需要协调的智能体将实例分解为独立子问题，并对无需协调的部分使用轻量精确求解器，配合 CBS 类求解器与混合策略获得大幅加速。",
+      "relevance_reason": "其「先判定哪些智能体真正耦合、再把残余耦合与可独立求解部分分离」的思路，可能启发 LVR 中判断哪些 latent 状态需要联合推理、哪些可局部解码，从而影响动态计算与停止决策；但属跨领域概念迁移，需核查其分解准则能否对应视觉推理中的状态依赖结构。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-01T19:05:13.175989+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

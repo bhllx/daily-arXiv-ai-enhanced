@@ -1,0 +1,71 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2609.39869",
+  "input_sha256": "13adcda262843f4bd9dce0151118ced276630be779f1ae248f4cc1a40e567aef",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-01T19:03:45.528257+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1867,
+        "output_tokens": 216,
+        "total_tokens": 2083,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2609.39869",
+    "title": "GrammarRL: Effective Grammar-Constrained Decoding via Reinforcement Learning",
+    "authors": [
+      "Gabriele Tuccio",
+      "Antonino Furnari",
+      "Aldo Gangemi",
+      "Misael Mongiovì"
+    ],
+    "categories": [
+      "cs.AI",
+      "cs.CL",
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Grammar-constrained generation guarantees syntactic validity, but can substantially degrade semantic quality when the model's preferred outputs are poorly aligned with the imposed grammar. This trade-off is particularly severe when the prompt is underspecified or the model has limited instruction-following ability. Beam search can partially mitigate these failures by exploring multiple valid sequences, but its computational cost grows with beam width, while sequence-level probability is only an imperfect proxy for semantic quality.\n  We introduce GrammarRL, a label-free reinforcement learning method that adapts language models to grammar constraints without requiring annotated data. GrammarRL optimizes the model using two complementary self-supervised rewards derived from its own likelihoods: a direct reward, measuring how likely the constrained output is given the input, and a reverse reward, measuring how well the input can be reconstructed from the generated output. We optimize these rewards with a Reinforce Leave-One-Out (RLOO) objective over groups of grammar-constrained rollouts, augmented with the top-1 beam-search hypothesis and regularized towards a frozen base model.\n  We evaluate GrammarRL on sign language gloss translation, hierarchical text classification, and named entity recognition using Llama models ranging from 1B to 8B parameters. GrammarRL consistently outperforms constrained greedy decoding, with an average improvement of 9.8 points and gains of up to 22.8 BLEU. It matches or outperforms beam search on two of the three tasks while preserving greedy-decoding inference cost. Ablations further show that the two rewards are complementary: either reward alone can underperform the untrained baseline, whereas their combination consistently improves upon it.",
+    "abs": "http://arxiv.org/abs/2609.39869v1",
+    "pdf": "https://arxiv.org/pdf/2609.39869v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "该论文提出 GrammarRL，一种无需标注的强化学习方法，用「约束输出在给定输入下的似然」与「由生成输出重建输入」两种自监督奖励，配合 RLOO 优化，使语言模型在语法约束解码下兼顾句法有效性与语义质量。",
+      "relevance_reason": "属纯文本解码约束与 RL 训练，与多模态推理无直接联系；但其「约束解码损害语义」的权衡、双向重构奖励与候选假设筛选（含 beam 假设）可能为 LVR 中 latent 状态是否被答案真正使用、以及训练监督与验证信号的取舍提供概念借鉴，需核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-01T19:03:45.528257+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

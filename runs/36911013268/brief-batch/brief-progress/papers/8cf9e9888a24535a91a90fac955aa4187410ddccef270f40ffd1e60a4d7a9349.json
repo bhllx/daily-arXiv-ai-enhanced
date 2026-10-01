@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2609.38895",
+  "input_sha256": "ed379e48259b725a891044b8b31cb56895a0b261fcd70db115ed30a55c466696",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-01T19:11:15.822243+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1918,
+        "output_tokens": 204,
+        "total_tokens": 2122,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2609.38895",
+    "title": "Unmerge: Efficient Machine Unlearning via Task Arithmetic",
+    "authors": [
+      "Haoran Tang",
+      "Andrew Tan",
+      "Rajiv Khanna"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "Approximate machine unlearning seeks to remove the influence of a forget set from a trained model without full retraining. Existing gradient-based methods require data-dependent hyperparameter search, struggle when forget and retain knowledge are entangled, and offer little insight into where unlearning actually happens inside the network. We recast unlearning through the lens of task arithmetic: if finetuning produces a merged task vector $τ_m$ that combines learning on forget and retain sets, unlearning is the inverse operation that subtracts a learned forget component $τ_F$ to recover the retain task vector $τ_R$. The forget signal is concentrated: at every layer, forget activations lie in a subspace spanned by a handful of dominant directions, so we factorize $τ_F$ in a low-rank forget basis, which is faithful up to a small tail-eigenvalue residual and limits how far the correction can perturb retain. We then optimize three intuitive goals (match the merged vector inside the forget span, suppress leakage into the retain span, and bound the correction size) that provably bound forget leakage and retain damage in activation space. The resulting algorithm, Unmerge, is fast and powerful: on class-level unlearning with ResNet-50 on CIFAR-100 and Tiny ImageNet, it improves Tug-of-War by up to ~24% over a baseline of comparable runtime and by up to ~18% over stronger baselines that run ~5x slower, keeps membership-inference exposure at the level of retraining, and shrinks the feature-distribution gap to the retrained model, where relabeling methods leave forget features cleanly separable. Further studies show that Unmerge also applies to ViT-S/16 and scales to Llama-3.2-3B. The per-layer basis geometry that drives the algorithm also serves as a layerwise diagnostic for when and where unlearning becomes structurally hard.",
+    "abs": "http://arxiv.org/abs/2609.38895v1",
+    "pdf": "https://arxiv.org/pdf/2609.38895v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "该论文把机器遗忘重构为任务算术中的逆运算：用低秩遗忘基分解遗忘向量，并通过三个目标约束遗忘泄漏与保留损伤，提出 Unmerge 算法，在类级遗忘与 ViT、Llama 上验证效率，并把逐层基几何作为遗忘难度的诊断。",
+      "relevance_reason": "其「遗忘信号在每层集中在少量主导方向」的低秩基几何，可能为 LVR 中 latent 状态里视觉证据与任务必要信息的子空间结构、以及对 latent 相似度中内容与深度位置影响的核查提供表示几何视角。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-01T19:11:15.822243+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}
