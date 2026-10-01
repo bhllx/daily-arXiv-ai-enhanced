@@ -2,6 +2,7 @@ import os
 import json
 import sys
 import re
+import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from typing import List, Dict
 from queue import Queue
@@ -12,6 +13,8 @@ from tqdm import tqdm
 
 # import langchain_core.exceptions
 from langchain_openai import ChatOpenAI
+from langchain_core.exceptions import OutputParserException
+from pydantic import ValidationError
 # from langchain.prompts import (
 #     ChatPromptTemplate,
 #     SystemMessagePromptTemplate,
@@ -39,6 +42,52 @@ def parse_args():
     parser.add_argument("--data", type=str, required=True, help="jsonline data file")
     parser.add_argument("--max_workers", type=int, default=1, help="Maximum number of parallel workers")
     return parser.parse_args()
+
+FORMAT_INSTRUCTION = (
+    "调用方的输出格式要求：只通过指定的结构化工具返回完整分析，工具参数必须是合法 JSON。"
+    "解释文字内部引用词语时优先使用中文引号「」，避免未转义的英文双引号。"
+    "JSON 的键名和字符串边界仍须使用标准英文双引号；不要添加 Markdown 代码围栏。"
+)
+
+
+def analyze_with_format_retries(chain, item, language, max_attempts=3):
+    """Regenerate only this paper on parsing/schema errors; preserve API error behavior."""
+    if max_attempts < 1:
+        raise ValueError("max_attempts must be at least 1")
+    paper_id = item.get("id", "unknown")
+    original_input = build_tracking_input(item)
+    last_error = None
+    for attempt in range(1, max_attempts + 1):
+        content = original_input + "\n\n" + FORMAT_INSTRUCTION
+        if attempt > 1:
+            content += (
+                "\n上一次输出未通过 JSON 解析或结构校验。请依据同一份材料重新返回完整结果，"
+                "检查引号、逗号、括号、必填字段和类别约束，来源编号只能使用 sources 中已有的编号。"
+            )
+        try:
+            response = chain.invoke({"language": language, "content": content})
+        except (OutputParserException, json.JSONDecodeError, ValidationError) as error:
+            last_error = error
+        else:
+            try:
+                return validate_tracking_response(response, item)
+            except ValueError as error:
+                last_error = error
+
+        print(
+            f"Structured output invalid for {paper_id}: "
+            f"{type(last_error).__name__} (attempt {attempt}/{max_attempts})",
+            file=sys.stderr,
+        )
+        if attempt < max_attempts:
+            delay = 2 * attempt
+            print(f"Retrying analysis for {paper_id} in {delay}s", file=sys.stderr)
+            time.sleep(delay)
+
+    raise RuntimeError(
+        f"Invalid structured analysis for {paper_id} after {max_attempts} attempts"
+    ) from last_error
+
 
 def process_single_item(chain, item: Dict, language: str) -> Dict:
     def check_github_code(content: str) -> Dict:
@@ -147,12 +196,7 @@ def process_single_item(chain, item: Dict, language: str) -> Dict:
     #         return None
     # return item
     try:
-        response = chain.invoke({
-            "language": language,
-            "content": build_tracking_input(item),
-        })
-
-        analysis = validate_tracking_response(response, item)
+        analysis = analyze_with_format_retries(chain, item, language)
         item["AI"] = analysis.model_dump(mode="json")
 
     except Exception as e:
