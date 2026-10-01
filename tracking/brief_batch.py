@@ -11,7 +11,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from tracking.brief_checkpoint import (
-    BriefCheckpoint, CATEGORIES, PRIORITIES, atomic_text, write_json,
+    BriefCheckpoint, CATEGORIES, PRIORITIES, atomic_text, digest, write_json,
 )
 
 VALIDATION_FORMAT = "lvr-brief-validation-v1"
@@ -37,7 +37,7 @@ def inspect_brief_batch(artifact):
     day = info.get("run_date_utc")
     if not isinstance(day, str) or not re.fullmatch(r"\d{4}-\d{2}-\d{2}", day) or date.fromisoformat(day).isoformat() != day:
         raise ValueError("Invalid batch date")
-    if (info.get("status") != "prepared" or info.get("live_arxiv_fetch") is not True
+    if (info.get("status") != "prepared"
             or not re.fullmatch(r"[0-9]+", str(info.get("run_id", "")))
             or info.get("branch") not in ("main", "lvr-tracking")
             or not isinstance(info.get("commit"), str) or not info["commit"]):
@@ -50,6 +50,21 @@ def inspect_brief_batch(artifact):
     for name in ("manifest.json", "input.jsonl", "summary.json", "failures.json", "unprocessed-ids.json"):
         if not (checkpoint_dir / name).is_file():
             raise ValueError(f"Missing brief checkpoint file: {name}")
+    mode = info.get("run_mode", "new")
+    if mode == "new":
+        if info.get("live_arxiv_fetch") is not True:
+            raise ValueError("New batches must originate from a live arXiv fetch")
+    elif mode in ("retry_failed", "resume_pending"):
+        if (info.get("live_arxiv_fetch") is not False
+                or info.get("origin_live_arxiv_fetch") is not True
+                or any(not re.fullmatch(r"[0-9]+", str(info.get(key, "")))
+                       for key in ("origin_run_id", "resume_from_run_id"))
+                or int(info["resume_from_run_id"]) >= int(info["run_id"])
+                or int(info["origin_run_id"]) > int(info["resume_from_run_id"])
+                or info.get("resume_input_sha256") != digest(raw)):
+            raise ValueError("Restored batch has invalid input lineage")
+    else:
+        raise ValueError("Unknown run_mode")
     checkpoint = BriefCheckpoint(checkpoint_dir, raw)
     if (type(info.get("metadata_count")) is not int or info["metadata_count"] != len(raw)
             or info.get("selected_ids") != [row["id"] for row in raw]):
@@ -127,7 +142,7 @@ def inspect_brief_batch(artifact):
     validation = {
         "format": VALIDATION_FORMAT, "status": "passed", "commit": info["commit"],
         "run_id": str(info["run_id"]), "run_date_utc": day,
-        "live_arxiv_fetch": True, "batch_status": summary["status"],
+        "live_arxiv_fetch": info["live_arxiv_fetch"], "batch_status": summary["status"],
         "ready_for_publication": summary["ready_for_publication"],
         **{name: summary[name] for name in ("input_count", "success_count", "failed_count", "filtered_count", "unprocessed_count")},
     }
