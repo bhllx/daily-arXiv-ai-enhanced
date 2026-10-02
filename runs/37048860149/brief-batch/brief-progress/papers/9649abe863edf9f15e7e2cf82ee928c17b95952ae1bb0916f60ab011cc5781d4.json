@@ -1,0 +1,74 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.00389",
+  "input_sha256": "7c394dcb63cfab44ecc4470635a310bc37fca1be437cec1ae0bf66ee97ccadb1",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-02T18:47:08.568373+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1779,
+        "output_tokens": 221,
+        "total_tokens": 2000,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.00389",
+    "title": "MatrixReward: Reward from Rubric Matrix for Open-Ended Generation",
+    "authors": [
+      "Zihan Shen",
+      "Qi Liu",
+      "Zixuan Yang",
+      "Yiqun Chen",
+      "Chenglong Zhao",
+      "Xiaozhao Wang",
+      "Lei He"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.AI",
+      "stat.ML"
+    ],
+    "comment": null,
+    "summary": "Open-ended query generation lacks standard answers, thus necessitating an effective reward mechanism. Pointwise scoring rubrics provide limited information about the relative quality of sample answers under the same prompt; merging multiple rubric judgments into a single score may also mask the differences between these answers. We propose MatrixReward, which constructs rewards from a rollout-by-rubric win-rate matrix obtained by comparing every pair of sampled responses under each rubric. The spread of each matrix column captures how strongly that rubric distinguishes the current rollouts, while correlations between columns reveal rubric repetition; together, these statistics yield data-dependent rubric weights. We combine these weights with the prior weights of rubrics. After column normalization and weighting, the observed per-rubric maxima and minima define positive and negative ideal profiles. Each rollout's distances to these two ideals determine its relative-closeness quality reward. Evaluated using Qwen3-8B on four open-ended query-answering benchmarks, MatrixReward achieves an average score of 63.02, outperforming the strongest baseline by approximately 2.0%. These results support the idea that matrices derived from relative comparisons can be used to construct rewards more reasonably for open-ended generative reinforcement learning.",
+    "abs": "http://arxiv.org/abs/2610.00389v1",
+    "pdf": "https://arxiv.org/pdf/2610.00389v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "该论文提出 MatrixReward：通过在同一条提示下做 rollout 两两比较，构建「rollout×评分维度」的胜率矩阵，用列离散度与列间相关性得到数据相关的评分维度权重，再以各维度的观测极值定义正负理想剖面，用相对贴近度计算开放生成任务的强化学习奖励。",
+      "relevance_reason": "与 LVR 主线无直接视觉/多模态联系，但其「以矩阵列离散度衡量维度区分度、用维度间相关性去除冗余」的思路，可能可供核查多维度推理过程监督中的贡献分配与证据筛选加权问题；属纯文本奖励建模，需较多迁移验证。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-02T18:47:08.568373+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

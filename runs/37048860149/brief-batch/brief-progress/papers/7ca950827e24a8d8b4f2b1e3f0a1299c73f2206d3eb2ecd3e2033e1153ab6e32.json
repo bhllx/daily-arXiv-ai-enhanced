@@ -1,0 +1,72 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.01153",
+  "input_sha256": "96e9ca4591a4b0352e442a8bb998bb643cda09bee5c42f9c93598a9ac5f1a8ee",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-02T18:44:26.698628+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1944,
+        "output_tokens": 242,
+        "total_tokens": 2186,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.01153",
+    "title": "Looping Beyond Twice: A Scalable Recipe for Looped Mixture-of-Experts",
+    "authors": [
+      "Di He",
+      "Pengxiang Li",
+      "Da Chang",
+      "Qingyan Meng",
+      "Lu Yin",
+      "Shiwei Liu"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "Looped Transformers introduce recurrent depth as a new scaling axis for LLMs: by repeatedly applying shared Transformer blocks, they increase effective depth without increasing parameter count. However, the benefits of looping remain unclear for large MoE LLMs under FLOPs-matched comparisons. The main reason is that the gains from additional iterations diminish quickly and can even turn into degradation, so the extra FLOPs spent on looping yield little substantial improvement. Consequently, prior work typically settles on two loops. We identify two main obstacles to scaling looped MoE. First, looping inherits and amplifies the curse of depth: hidden-state variance grows with each iteration as residual updates accumulate, which destabilizes deep recurrence and causes representations to drift. Second, looped MoE suffers from expert selection collapse: routers repeatedly select the same experts across loops, so extra iterations add computation without adding computational diversity. Guided by this diagnosis, we propose LOOM, built on a single principle: each loop should contribute new computation while keeping the recurrent state stable. LOOM stabilizes recurrence by scaling residual updates to bound variance growth and re-injecting the input embedding at every loop, and diversifies it through per-loop routers that engage different experts and a Looping Residual that carries earlier outputs forward. Experiments across 100M-1.7B models show stable scaling to 9-12 loops. Under near-iso-FLOP, the 700M model performs best at 5 loops, reducing perplexity from 18.36 to 16.54 and improving average zero-shot accuracy from 38.84% to 39.53% over the non-looped baseline. Without FLOP matching, the 1.7B model trained on 60B tokens peaks at 9 loops, reducing perplexity from 9.62 to 7.77 and improving average zero-shot accuracy from 42.4% to 47.7%. Code is available https://github.com/hed-ucas/LOOM.",
+    "abs": "http://arxiv.org/abs/2610.01153v1",
+    "pdf": "https://arxiv.org/pdf/2610.01153v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P1",
+      "brief_summary": "该工作诊断了循环（looped）MoE 大模型难以扩展迭代次数的两个原因：残差累积导致的隐状态方差增长与表示漂移，以及跨循环的专家选择坍缩；据此提出 LOOM，通过缩放残差、每轮重注入输入嵌入、逐循环路由器和循环残差，使 100M–1.7B 模型稳定循环到 9–12 次并改善困惑度与零样本准确率。",
+      "relevance_reason": "虽为纯文本循环 MoE，但其「方差有界 + 每轮引入新计算」的稳定循环机制、逐循环路由去坍缩与循环残差，可能为 LVR 中 latent 状态的循环生成与更新、深度/迭代泛化提供可核查线索。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-02T18:44:26.698628+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

@@ -1,0 +1,77 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.00888",
+  "input_sha256": "323d6a0fe280a9d4f2c6959a0d4bed6e760bdaae39286bc456e61c0296bb5592",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-02T18:45:27.448527+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1910,
+        "output_tokens": 193,
+        "total_tokens": 2103,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.00888",
+    "title": "Match the Distribution, Not the Compute: Post-Training Multi-Token Prediction Heads",
+    "authors": [
+      "Prachi Badarayani",
+      "Aidan Jay",
+      "Chenghui Zhou",
+      "Dayquan Julienne",
+      "Yuan Gao",
+      "Tianwei Chen",
+      "George Zerveas",
+      "Ishmam Zabir",
+      "Xiren Zhou",
+      "Chris Quirk",
+      "Xia Song"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "Multi-token prediction (MTP) improves the throughput of autoregressive generation by enabling the language model to draft multiple next tokens per forward pass, while a verification step over draft tokens ensures that token distribution of the backbone is preserved. Every open MTP-family release (MiMo-7B, DeepSeek-V3, Qwen3) trains its heads jointly with the backbone over the full pretraining run of tens of trillions of tokens, thus setting the drafter quality at pretraining time. We ask whether a lightweight post-training pass on target-generated chain-of-thought is enough to reach the same expected throughput speedup on a frozen reasoning model, and study how a serving-time system built on such a checkpoint can be optimized. We present three findings. 1) On a frozen Qwen3-8B with $K{=}3$ chained MTP heads, we show that a post-training recipe with plain cross-entropy on $\\approx\\!2.5$B tokens reaches or exceeds the expected speedup of jointly trained MiMo-7B on math, coding and knowledge benchmarks. Our post-training recipe utilizes $10^3$-$10^4\\times$ less MTP-training tokens as compared with joint pre-training of MiMO-7B MTP baseline. 2) We propose a chain-aware relaxation of draft token verification rule that allows a bounded drift from backbone language model token distribution. We show that this relaxation lifts expected speedups by $+12$ to $+16\\%$ per benchmark while preserving task accuracy. 3) We propose an adaptive controller that dynamically chooses the number of MTP heads to be engaged at inference time and demonstrate recovery of upto $11$--$14\\%$ loss in speedup using fixed maximum MTP draft length.",
+    "abs": "http://arxiv.org/abs/2610.00888v1",
+    "pdf": "https://arxiv.org/pdf/2610.00888v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "该论文研究在冻结的推理模型上用少量 CoT 数据后训练多 token 预测（MTP）头，并放宽草稿验证的分布约束、在推理时自适应选择启用头数，以在保持精度下提升生成吞吐。",
+      "relevance_reason": "其「验证容忍有界分布漂移」与「按需动态分配计算」的思路，可供核查 LVR 中 latent 草稿/推理状态的使用与停止决策、动态计算成本权衡；但纯文本 MTP 与视觉状态生成的联系需进一步确认。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-02T18:45:27.448527+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

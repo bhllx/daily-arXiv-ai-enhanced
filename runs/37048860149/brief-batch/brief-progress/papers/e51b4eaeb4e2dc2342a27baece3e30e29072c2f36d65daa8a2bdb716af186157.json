@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.00600",
+  "input_sha256": "526f80ece2481d5da518cf9242ecfcf015c094224b3e669857d5bf9c013c7604",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-02T18:46:26.526990+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1871,
+        "output_tokens": 205,
+        "total_tokens": 2076,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.00600",
+    "title": "Just Align $\\bm{x}$: Aligning Predictions, Not Representations",
+    "authors": [
+      "Yuyao Zhang",
+      "Yuwei Hu",
+      "Ziyang Mai",
+      "Yu-Wing Tai"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": null,
+    "summary": "Representation alignment has become an effective way to accelerate diffusion training, but its benefits do not transfer reliably to pixel-space clean-image prediction. In JiT, we find that auxiliary feature alignment can improve access to semantic features while reducing access to image variation needed for clean-image prediction, creating a mismatch between the auxiliary objective and the denoising task. This suggests a different principle: auxiliary supervision should improve the prediction target itself rather than impose a separate representation target. We introduce JAx (Just Align x), a prediction-supervision method that aligns clean-image predictions across noise levels. JAx couples a noisier student observation with a cleaner observation through a Markov degradation that preserves the original JiT input distribution. Under this coupling, the oracle prediction from the cleaner state has the same conditional mean as the optimal JiT target, while its conditional target covariance is no greater. Thus, oracle prediction alignment preserves the population JiT objective up to a constant while providing a lower-variance training target. To make this construction practical with an imperfect EMA teacher, JAx combines ground-truth supervision with a reliability-gated coupling band that selects nearby teacher states based on prediction risk. On ImageNet 256x256, JAx consistently improves FID and accelerates convergence across JiT-B/16, L/16, and H/16, without an external encoder or changes to the architecture or sampling procedure. Gradient diagnostics further show reduced minibatch gradient variance, while ablations demonstrate that the gains cannot be explained by time reweighting alone. These results show that prediction-space supervision provides a simple and principled alternative to representation alignment for pixel-space generative models.",
+    "abs": "http://arxiv.org/abs/2610.00600v1",
+    "pdf": "https://arxiv.org/pdf/2610.00600v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "论文提出 JAx，一种面向像素空间扩散训练的监督方法：不再对齐辅助表征，而是在不同噪声水平之间对齐干净图像预测，用保分布的马尔可夫退化耦合更干净状态，得到条件均值相同但方差更低的训练目标，并在 ImageNet 256 上改善 FID 与收敛。",
+      "relevance_reason": "其“对齐预测目标而非表征、以低方差耦合状态改善监督”的思路，可能启发 LVR 中轨迹级监督目标与训练信号贡献分配的设计，可供核查其可靠性门控与方差诊断是否可迁移到 latent 推理状态。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-02T18:46:26.526990+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

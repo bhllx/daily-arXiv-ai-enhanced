@@ -1,0 +1,68 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.01889",
+  "input_sha256": "3ef5e664d0b9f6353b202c7424faf3594ad3af15fed8b6b4ea330c70125b713a",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-02T18:41:47.499648+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1996,
+        "output_tokens": 192,
+        "total_tokens": 2188,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.01889",
+    "title": "Stochastic Rounding in Low-Precision Transformer Inference: A Variable-Precision Emulation Study of a Small GPT-2",
+    "authors": [
+      "Yohan Chatelain",
+      "Pablo de Oliveira Castro"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.CL"
+    ],
+    "comment": "35 pages, 10 figures, 4 tables. Code and evaluation pipeline available at https://github.com/big-data-lab-team/fuzzy-llm and archived on Zenodo at https://doi.org/10.5281/zenodo.23066028",
+    "summary": "Should low-precision transformer inference use stochastic rounding (SR) or round-to-nearest (RN)? The answer depends on where in the network you look. We isolate this effect by holding the numerical format fixed and varying only the rounding rule at individual operation sites. To enable experiments at freely chosen precisions, we extend the PRISM vectorized rounding library to arbitrary virtual precision via a variable-precision stochastic rounding (VPSR) algorithm, proving that the rounding decision is evaluated exactly in hardware floating point.\n  We develop two analyses providing complementary insight into this site-level trade-off. First, a probabilistic forward-error bound for linear projections shows that SR's error envelope grows as $O(\\sqrt{n} u)$ in reduction length $n$, versus $O(n u)$ for RN, a gap that widens rapidly at low precision and is most pronounced in the long multilayer perceptron (MLP) down-projection. Second, a second-order decomposition of expected cross-entropy loss change at the output softmax into signed drift, drift curvature, and a Fisher-weighted variance penalty reveals why the two sites behave oppositely: MLP noise is predominantly a uniform logit shift to which softmax is invariant, so SR's variance is largely discounted; head noise is non-uniform across the vocabulary and is not.\n  On DistilGPT-2 at $t=6$ significand bits, observations match theory: SR in the MLP raises perplexity to 1.15x the full-precision reference, versus 2.21x for RN. At the language-model head, the ordering reverses because SR introduces non-uniform variance, whereas deterministic RN carries none. In a mixed-precision configuration (MLP output at $t=6$), assigning SR to the MLP and RN to the head brings perplexity within 1.10x of the full-precision reference, a 28% reduction over matched-bit RN.",
+    "abs": "http://arxiv.org/abs/2610.01889v1",
+    "pdf": "https://arxiv.org/pdf/2610.01889v1",
+    "AI": {
+      "category": "EXCLUDE",
+      "priority": "NONE",
+      "brief_summary": "该论文研究低精度 Transformer 推理中随机舍入与就近舍入的取舍，扩展 PRISM 库实现可变精度随机舍入，并通过概率误差界与交叉熵二阶分解解释不同操作位置的相反效应，在 DistilGPT-2 上验证。",
+      "relevance_reason": "关注点为数值格式与舍入规则的误差传播，未涉及视觉/多模态推理的 latent 状态、证据筛选或 THINK/LOOK/STOP 决策，缺少可迁移到 LVR 的具体状态或决策线索，故排除。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-02T18:41:47.499648+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

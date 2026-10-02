@@ -1,0 +1,68 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.00025",
+  "input_sha256": "d86d0f078ab8ce468eb5b4d5720efc14009fb8b201d4d0d7fd3033eddb8a11db",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-02T18:48:13.163490+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 2013,
+        "output_tokens": 286,
+        "total_tokens": 2299,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.00025",
+    "title": "Measuring the Microtask Eligibility Gap: When Is an Off-the-Shelf SLM Enough for an Agent Harness?",
+    "authors": [
+      "Jundong Hu",
+      "Shekar Ramachandran"
+    ],
+    "categories": [
+      "cs.AI",
+      "cs.LG"
+    ],
+    "comment": "Preprint. under review at a NeurIPS 2026 workshop. 15 pages, 8 figures, 14 tables",
+    "summary": "Agent harnesses increasingly want to run small language models (SLMs) on the microtasks around a frontier large language model (LLM) planner: auto-approving shell commands, writing memory, selecting tools, ranking past turns. We ask whether off-the-shelf SLMs meet practitioner-defined thresholds and, when they fail, why, and whether quantization changes the answer. We build a benchmark of 4 such microtasks with fixed prompts and automatic metrics, each with a pre-specified threshold $τ$ anchored to a cheap non-LLM baseline and a CI-aware eligibility rule (a configuration passes only if its confidence bound clears $τ$). Sweeping Qwen3 0.6/1.7/4/8B at their best (FP16, greedy, one frozen prompt, no tuning), we find an eligibility gap: 0 of 16 (4 tasks $\\times$ 4 models) configurations pass (verified by checking the raw outputs and parser behavior). A logprob decision-threshold diagnostic (T1/T3/T4; T2 via a context-length/cascade probe) separates the failures into capability deficits and failures that can be addressed by changing the decoding threshold (4 regimes). Quantization to 4-bit (RTN/GPTQ/AWQ) does damage that depends on model size and moves no configuration into eligibility (certified on the reconstructable hard-label tasks T1/T3, diagnostic/windowed robustness on T2/T4), so the gap tracks model size more than precision; it replicates on Llama-3.x (12/12 ineligible) and is robust to the anchor choice (a $τ$-sweep) and to prompt wording (0/112 eligible across the original plus 3 neutral paraphrases per cell). The practical implication: place SLMs behind a baseline that meets the CI-backed threshold, and use the SLM only where the baseline fails to meet the threshold; e.g. a 4B re-ranker over a BM25 shortlist beats BM25 ($+0.047$ [0.020, 0.073], without itself certifying eligibility).",
+    "abs": "http://arxiv.org/abs/2610.00025v1",
+    "pdf": "https://arxiv.org/pdf/2610.00025v1",
+    "AI": {
+      "category": "PENDING",
+      "priority": null,
+      "brief_summary": "该论文构建了 4 个 agent 周边微任务（如命令自动批准、记忆写入、工具选择、历史轮次排序）的基准，为每个任务预设阈值与 CI 合格规则，系统扫描 Qwen3 0.6–8B 在 FP16 与 4-bit 量化下的表现，并用 logprob 决策阈值诊断区分能力缺口与解码阈值可修复的失败。",
+      "relevance_reason": "论文不涉及视觉或多模态 latent 推理，但「阈值合格性判定 + 能力缺口 vs 解码阈值可修复」的诊断框架，以及 4-bit 量化对决策阈值的影响，可能为 LVR 中 THINK/LOOK/STOP 的获取收益与成本、停止决策阈值标定提供可核查的评价与诊断线索；其中「小模型做工具选择/历史排序」也可能与视觉证据筛选的辅助模块有关，但联系较间接，材料未给出多模态或状态推理细节，故仅列为待核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-02T18:48:13.163490+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

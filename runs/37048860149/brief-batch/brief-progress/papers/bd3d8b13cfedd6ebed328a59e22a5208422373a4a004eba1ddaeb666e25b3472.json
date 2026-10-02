@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.00573",
+  "input_sha256": "cac9894d73b7f88c2856ad43e27ea341914223148a9b8f2d6c1478c42bf8d0d1",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-02T18:46:32.859360+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1843,
+        "output_tokens": 200,
+        "total_tokens": 2043,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.00573",
+    "title": "FORTE: Adaptive Scoring and Exact Keyframe Selection for Long-Video Question Answering",
+    "authors": [
+      "Haifeng Huang",
+      "Biyin Xu",
+      "Chunsheng Xin",
+      "Yang Li"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": null,
+    "summary": "Query-aware keyframe selection enables multimodal large language models (MLLMs) to process long videos using only a small set of question-relevant frames. Existing score-based methods, however, typically search within a fixed, uniformly sampled candidate pool, preventing evidence outside this pool from ever being selected. Given a limited relevance-scoring budget, the key challenge is to allocate evaluations adaptively to promising frames while continuing to explore underrepresented temporal regions. We introduce FORTE, a training-free framework that addresses this challenge through two stages: adaptive relevance scoring and global keyframe optimization. Starting from sparse, uniformly distributed observations, our efficient Gaussian-process relevance predictor estimates relevance for unscored frames, exploiting temporal locality and the approximately banded kernel structure to reduce the core computation from cubic to linear time in the number of frames for fixed bandwidth. The scoring stage then selects which frames to score next by balancing predicted relevance with temporal coverage, prioritizing promising regions while also exploring less-represented parts of the video. The optimization stage selects the final keyframes by maximizing an objective that jointly captures measured relevance and temporal coverage. We derive an exact algorithm that leverages the logarithmic coverage structure to identify the optimal subset of the scored candidate pool in time linear in the pool size, for a fixed final-frame budget. Experiments on four long-video question-answering benchmarks show that FORTE achieves the highest observed mean accuracy among the compared selectors under every tested scoring budget. Further evaluations demonstrate its consistent effectiveness across different relevance scorers and downstream MLLMs.",
+    "abs": "http://arxiv.org/abs/2610.00573v1",
+    "pdf": "https://arxiv.org/pdf/2610.00573v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P1",
+      "brief_summary": "FORTE 是一个免训练的长视频问答关键帧选择框架：用高斯过程预测未评分帧的相关性，按“预测相关性＋时间覆盖”自适应决定下一步评分的帧，再用精确算法在给定帧预算下选出最优关键帧子集。",
+      "relevance_reason": "其“在有限评分预算下自适应分配评估、兼顾探索未覆盖时段”的机制，可能为 LVR 中 THINK/LOOK/STOP 的获取证据与停止决策提供线索，可供核查其覆盖度目标与高斯过程预测器如何迁移到 latent 视觉证据筛选。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-02T18:46:32.859360+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

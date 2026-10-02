@@ -1,0 +1,67 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.00111",
+  "input_sha256": "b035f3b560ff4fc6bd0b9f4aa98aff1ca4a1ac0b30fe02b5223893d65b13a2e4",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-02T18:47:57.357780+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1908,
+        "output_tokens": 208,
+        "total_tokens": 2116,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.00111",
+    "title": "A Low Grounding Score Is Not an Ungrounded Judge: Identifying the Perceptibility Confound in Multimodal Oversight",
+    "authors": [
+      "Rasul Khanbayov",
+      "Hasan Kurban"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": null,
+    "summary": "Model judges now supervise multimodal systems at scale, filtering training data, selecting outputs, and supplying the reward that shapes multimodal reasoning models. Trusting one means first checking that it uses its evidence, and that check is itself worth scrutinizing, so we ask whether a counterfactual probe of visual grounding measures what it claims to. The probe edits the image so the ground truth flips, holds the reasoning trace fixed, and asks whether the verdict follows. We formalize it as the Verdict Grounding Score and show it cannot be read the way such scores are read. A verdict responds only to an edit that reaches the judge's decision-relevant reading, so the score is capped by how perceptible the edit is, and unless editing makes the attribute easier to read, the error is one-sided: the score can only make a judge look less grounded than it is. The practical failure is therefore a false alarm, an auditor discarding a usable overseer. Under assumptions we state, we show this missing quantity is not merely bounded but identified from three quantities the same audit protocol already collects, which makes the false-alarm rate directly measurable rather than merely a concern. Auditing nine judges, we find the predicted ordering holds strictly across our entire primary pool, and the typical judge there acts on only about half of the edits whose attribute it can otherwise resolve. Applying a conservative rejection threshold certifies several cells as false alarms outright, the clearest being a judge that detects the injected error essentially every time while still scoring as if it had not used the image at all. The rule that follows is that an image-side counterfactual score should never be reported alone: a detection probe on the unedited image upper-bounds it, certifies its false alarms, and costs nothing extra to run.",
+    "abs": "http://arxiv.org/abs/2610.00111v1",
+    "pdf": "https://arxiv.org/pdf/2610.00111v1",
+    "AI": {
+      "category": "MAIN",
+      "priority": "P0",
+      "brief_summary": "论文用反事实图像编辑构造「Verdict Grounding Score」，形式化分析多模态评判模型是否真的使用视觉证据，指出该分数被编辑可感知性所限、误差单向，并给出可从同一审计协议识别的修正量，在九个评判模型上验证假警报现象。",
+      "relevance_reason": "直接关联 LVR 核心的「答案是否使用视觉证据／视觉旁路」与因果作用评估：其可感知性混杂说明低 grounding 分数可能并非未使用图像，提示我们核查 latent 推理中视觉证据利用度量是否也被编辑可感知性等混杂因素单向压低。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-02T18:47:57.357780+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

@@ -1,0 +1,74 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.00499",
+  "input_sha256": "66980f65de388fbcecf989ced6492b160d54656c73bb5f92128bdfa7a6ac1f20",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-02T18:46:45.123752+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1849,
+        "output_tokens": 228,
+        "total_tokens": 2077,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.00499",
+    "title": "Denoising Surface: Modeling and Predicting Inference Cost for Diffusion LLM Serving",
+    "authors": [
+      "Haoyu Zheng",
+      "Fangcheng Fu",
+      "Binhang Yuan",
+      "Yongqiang Zhang",
+      "Liang Deng",
+      "Hao Wang",
+      "Yuanyuan Zhu",
+      "Xiao Yan",
+      "Jiawei Jiang"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "As diffusion large language models (dLLMs) become more capable, they are moving from research settings to real-world \\textit{serving}, where request management (such as scheduling and resource allocation) relies on accurate estimation of per-request inference cost. However, common cost proxies fall short for dLLMs: output length ignores that one forward pass can unmask multiple tokens, and denoising-step count ignores the \\textit{heterogeneous} per-step costs. We observe that the block-autoregressive generation mechanism induces a two-dimensional execution structure over output blocks and within-block denoising steps, whereas these proxies collapse it into a scalar, discarding information essential for characterizing the cost. Motivated by this insight, we propose the Denoising Workload Surface (DWS), which preserves this two-dimensional block-step structure as a probability surface to weight the heterogeneous per-step costs. We then design a coarse-to-fine training scheme that enables a lightweight prompt-only predictor to accurately predict the complex DWS. This predictor runs efficiently even on a single CPU core, avoiding GPU contention with the serving model. Since DWS decouples request-dependent execution behavior from deployment-specific cost factors, the predictor transfers across hardware configurations without retraining. In \\textit{real-world} serving experiments, DWS reduces cost-prediction error by up to $2.50\\times$ over scalar-based predictors, while the DWS-guided shortest-job-first scheduler reduces end-to-end latency by up to $1.92\\times$ for online chatbots.",
+    "abs": "http://arxiv.org/abs/2610.00499v1",
+    "pdf": "https://arxiv.org/pdf/2610.00499v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "该论文为扩散语言模型（dLLM）服务提出「去噪工作负载曲面」（DWS），将块自回归生成中的「输出块×块内去噪步」二维执行结构建模为概率曲面，以预测每个请求的推理成本，并配合轻量 prompt-only 预测器与粗到细训练方案。",
+      "relevance_reason": "其按块与去噪步保留二维执行结构、预测动态计算量并用于停止/调度决策的思路，可能为 LVR 中动态计算分配、THINK/STOP 成本估计与长度泛化预测提供可核查的启发；但对象是扩散 LM 服务成本而非视觉 latent 推理，联系较间接。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-02T18:46:45.123752+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

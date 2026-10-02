@@ -1,0 +1,68 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.00009",
+  "input_sha256": "ac7d0939ef1b32fa474de63db11a509a81172cb224e7d1427770f300737a6550",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-02T18:48:17.862705+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1980,
+        "output_tokens": 212,
+        "total_tokens": 2192,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.00009",
+    "title": "FourierQK: Filter Shape, Admissibility and the Leakage-Coverage Law",
+    "authors": [
+      "Athanasios Zeris"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.CL",
+      "eess.SP"
+    ],
+    "comment": "9 pages, 1 figure, 2 tables",
+    "summary": "Frequency-collapse attention [Zeris, 2026e] achieves large gains over standard dot-product attention by replacing the Q/K dot product with a bandpass-filtered inner product at a learned frequency. A natural follow-up question is: which filter shape works best, and why? We test five hypotheses about filter properties -- DC suppression, Nyquist suppression, bandwidth, centre frequency, and multi-scale coverage -- using a controlled ablation on character-level language modelling (TinyShakespeare, 6-layer GPT). Our main findings are: (1) DC and Nyquist components are actively harmful (val ~= 2.0, equivalent to phase randomisation), confirming that oscillatory bandpass structure is essential, not just any low-dimensional spectral summary; (2) the optimal single-scale bandwidth is sigma ~= 2 bins centred at paragraph scale (~70 tokens), giving a clean gain of Delta = +1.15 nats over BASE-DOT; (3) admissible filters (zero-mean, Mexican Hat DOG m = 2) outperform non-admissible Gaussians at the same scale and provide partial protection against bilateral FFT leakage; (4) bilateral FFT leakage scales monotonically with spectral coverage -- narrowband filters (gap > +4) are clean, wideband filters (gap < +2) are leaky; and (5) causal time-domain Morlet at character scale cannot beat BASE-DOT (K=128 taps covers 50% of T=256 context), motivating word-level experiments in the companion MorletQK paper [Zeris, 2026f]. Together, findings (1)-(5) characterise FourierQK as effective in bidirectional attention settings (encoder-style, e.g. BERT), where full-sequence context is available at both training and inference time; autoregressive generation requires a causal spectral variant such as MorletQK [Zeris, 2026f] (decoder-style, e.g. GPT). Code available at: https://github.com/AthanasiosZeris/energy-gated-attention",
+    "abs": "http://arxiv.org/abs/2610.00009v1",
+    "pdf": "https://arxiv.org/pdf/2610.00009v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "论文在字符级 GPT 上做受控消融，比较五种滤波器性质假设（DC/Nyquist 抑制、带宽、中心频率、多尺度覆盖），发现带通结构关键、最优单尺度带宽约 σ≈2、可容许滤波器（零均值 DOG）优于高斯，并给出 FFT 泄漏随频谱覆盖单调增长的经验规律。",
+      "relevance_reason": "该文不涉及视觉或多模态推理，但其「可容许性」与频谱泄漏-覆盖规律可能为 LVR 中 latent 相似度度量的几何约束、注意力位置/深度结构带来的表示泄漏提供可供核查的分析线索。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-02T18:48:17.862705+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

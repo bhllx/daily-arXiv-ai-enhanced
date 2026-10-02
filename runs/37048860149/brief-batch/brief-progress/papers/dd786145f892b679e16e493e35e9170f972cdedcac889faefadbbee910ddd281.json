@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.01395",
+  "input_sha256": "2b972b24783cea30c537bd035545c90d7befcc19a6f0859362ed9bc3b08585ec",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-02T18:43:28.586632+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1965,
+        "output_tokens": 203,
+        "total_tokens": 2168,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.01395",
+    "title": "AF-Muon: An AdamW-Free Muon Optimizer for Tied-Embedding Models",
+    "authors": [
+      "Arash Lagzian",
+      "Paniz Halvachi",
+      "Junming Zhang",
+      "Zhouhan Lin",
+      "Dianbo Liu"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": "63 pages, 19 figures. An earlier, shorter version of this work was accepted as a poster at the OPT 2026 workshop (Optimization for Machine Learning) at NeurIPS 2026; this is the complete version",
+    "summary": "Muon improves large-scale training by applying a spectral-norm steepest-descent update to matrix parameters, but practical models also contain parameter blocks that do not fit dense-matrix geometry. One important case is the tied vocabulary table, which appears in language models and other token generators and can receive multiple structurally different gradient sources, from sparse input lookups to dense output-classifier updates. In the reference recipe these blocks are handed to an auxiliary AdamW optimizer, which restores second-moment state and updates the aliased table as a generic tensor. We propose AF-Muon, an AdamW-free extension of Muon that keeps the Muon matrix update for hidden weight matrices while using a support-aware finite-cap linear minimization oracle for tied vocabulary tables and an RMS-normalized update for one-dimensional auxiliary parameters. AF-Muon therefore trains every parameter class with a single first-moment buffer and no second-moment state, saving around 20% optimizer-state memory relative to Hybrid Muon in our benchmark. Across nine tied-token settings - decoder-only language models from 124M to 1B parameters, a fully shared T5-style encoder-decoder, and ImageGPT-style image-token, protein, and sparse-MoE variants, spanning text, image, and protein-sequence data - AF-Muon improves mean validation loss and perplexity over both Hybrid Muon and a SCION-style Sign endpoint. Long-horizon runs and hyperparameter sensitivity studies confirm the gain is robust, and identical-momentum diagnostics attribute it to the finite cap, which preserves more within-row magnitude than Sign while bounding the coordinate concentration of row-RMS. These results identify tied vocabulary tables as a distinct optimizer geometry and yield a robust AdamW-free Muon variant across models, modalities, and architectures, with about 1% step-time overhead in matched training.",
+    "abs": "http://arxiv.org/abs/2610.01395v1",
+    "pdf": "https://arxiv.org/pdf/2610.01395v1",
+    "AI": {
+      "category": "EXCLUDE",
+      "priority": "NONE",
+      "brief_summary": "提出 AF-Muon，一种无需 AdamW 的 Muon 优化器扩展：隐藏权重矩阵沿用 Muon 谱范数更新，对绑定词表使用有限帽线性最小化 oracle、对一维辅助参数使用 RMS 归一化更新，从而省去二阶矩状态并降低优化器内存。",
+      "relevance_reason": "通篇是优化器几何与训练效率（内存、验证损失、困惑度），未涉及视觉或多模态推理状态、证据使用、停止决策等主线问题，也未提供可迁移到 LVR 的表示或推理机制线索，故排除。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-02T18:43:28.586632+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

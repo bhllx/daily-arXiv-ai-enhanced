@@ -1,0 +1,74 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.00436",
+  "input_sha256": "91181be44b84205be34bae73d5ca85f4956d99c2ea2632a9be7edc55bbb03cff",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-02T18:46:51.698167+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1927,
+        "output_tokens": 234,
+        "total_tokens": 2161,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.00436",
+    "title": "Every Batch Is Its Own Validation Set: Leave-One-Out Gradient Matching for Online Data Selection in LLM Fine-Tuning",
+    "authors": [
+      "Hongyu Chen",
+      "Xinyi Luo",
+      "Ming Zhao",
+      "Lin Tang",
+      "Zihan Xu",
+      "Jing Li",
+      "Yuxuan Wang",
+      "Haoran Deng",
+      "Wei Zhang"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Online batch selection fine-tunes a language model on the most useful part of each candidate batch. Selectors that match the gradient of the candidate batch are attractive because they need no held-out data, yet they rarely beat training on the whole batch. We show why. In-sample gradient matching uses every example as part of its own target, so its objective credits each example with its own gradient noise. This is the covariance penalty that makes training error optimistic, now sitting on the diagonal of the gradient Gram matrix: it steers selection toward the noisiest examples and makes the full batch the best solution the objective can reach. The fix costs nothing. For each example, the other candidates form an independent sample of the data distribution, so removing the diagonal turns the matching objective into an unbiased estimate of the update's error with respect to the population gradient. The minimizer of this leave-one-out objective weights examples by their gradient signal-to-noise ratio (SNR), and whenever per-example SNR is heterogeneous enough, half of a batch yields a lower-error update than the whole batch; we give the exact condition. We build \\method{} on this principle. It computes the Gram matrix in the metric of the Adam preconditioner during the ordinary backward pass, selects a weighted subset greedily with a $(1-e^{-γ})$ guarantee, and uses no held-out data. Across four fine-tuning tasks and seven backbones from 1.5B to 8B parameters, LOOM improves on full-batch training by 2.3 and 2.4 points on Llama-3.1-8B and Qwen2.5-7B, exceeds every in-sample gradient matcher by 2.4 points and the validation-guided GREATS and OPUS by 1.6--2.0, and selects injected label noise at under a fifth of its base rate.",
+    "abs": "http://arxiv.org/abs/2610.00436v1",
+    "pdf": "https://arxiv.org/pdf/2610.00436v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "该论文分析在线梯度匹配式 batch 选择为何难以胜过全 batch 训练，指出样本内匹配的协方差惩罚使目标偏向噪声样本，并提出留一法（LOO）梯度匹配目标，其最优解按样本梯度信噪比加权；据此构建 LOOM，在 Adam 预条件度量下于反向传播中计算 Gram 矩阵并贪心选取子集，无需留出数据。",
+      "relevance_reason": "纯文本训练期的数据选择，不直接涉及视觉或多模态推理状态；但其按梯度 SNR 加权样本、以 LOO 构造无偏目标、在反向传播中在线估计贡献的做法，可能为 LVR 中 latent 轨迹训练的贡献分配与样本/步骤筛选提供可核查的方法线索。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-02T18:46:51.698167+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

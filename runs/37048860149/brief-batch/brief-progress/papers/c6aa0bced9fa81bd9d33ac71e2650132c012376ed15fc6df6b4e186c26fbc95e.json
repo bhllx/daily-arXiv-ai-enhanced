@@ -1,0 +1,68 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.00412",
+  "input_sha256": "def44f444c9ad8bfa3057e1fe313dfafe0db7900c1e83ca899c396cb7284138b",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-02T18:46:59.114620+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1781,
+        "output_tokens": 189,
+        "total_tokens": 1970,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.00412",
+    "title": "EchoPress: Query-Agnostic KV Cache Pruning via Virtual Context Reconstruction",
+    "authors": [
+      "Jiawei Lin",
+      "Saibo Geng",
+      "Thomas Bourgeat"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "KV cache pruning reduces long-context inference memory usage by evicting less important key-value pairs. KVzip estimates importance through context reconstruction: prompting a model to repeat the context chunk by chunk. This achieves strong compression quality at the cost of additional forward passes. Learned approximations reduce this cost but require model-specific training. We analyze how KVzip identifies important cached information and show how to approximate its reconstruction scores using information already computed during prefill. These findings motivate EchoPress, a training-free method that approximates reconstruction attention using queries and keys from standard prefill. For each request, it reconstructs only the first chunk to calibrate importance scores for the remaining context. Experiments on LongBench and RULER with Qwen3-8B and Llama-3.1-8B-Instruct show that EchoPress matches KVzip in task accuracy across eviction ratios from 50% to 90%, while reducing compression overhead by a factor of 1.7-19.6 and total prefill time by a factor of up to 2.9. Code is available at https://github.com/ljwljwljwljw/kvpress/tree/echo-press.",
+    "abs": "http://arxiv.org/abs/2610.00412v1",
+    "pdf": "https://arxiv.org/pdf/2610.00412v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P1",
+      "brief_summary": "EchoPress 分析 KVzip 如何通过上下文重建确定 KV 缓存重要性，提出用 prefill 阶段已有的 query/key 近似重建注意力分数，只需重建首个 chunk 即可校准其余上下文的重要性，从而在免训练条件下实现高效剪枝。",
+      "relevance_reason": "其「用已有缓存状态近似重要性、仅在开头校准」的思路可能为 LVR 中视觉证据筛选、缓存与位置对 latent 相似度的影响以及获取证据的停止决策提供线索，值得核查近似分数是否保留任务必要的视觉细节。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-02T18:46:59.114620+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

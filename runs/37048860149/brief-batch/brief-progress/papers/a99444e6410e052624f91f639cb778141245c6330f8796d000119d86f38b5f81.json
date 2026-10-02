@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.01973",
+  "input_sha256": "d1ee85c02fb9a510738f660caea444e695d7e78b2369def03f8b63250833ea28",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-02T18:41:28.889580+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1825,
+        "output_tokens": 200,
+        "total_tokens": 2025,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.01973",
+    "title": "Token-Level Video Reinforcement Learning",
+    "authors": [
+      "Yifan Wang",
+      "Gordon Guocheng Qian",
+      "Yanyu Li",
+      "Anil Kag",
+      "Yun Fu"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": null,
+    "summary": "Reinforcement learning (RL) for video generation usually assigns one scalar reward to an entire sampled video. Yet a video is not uniformly flawed: some visual tokens may already satisfy the prompt, whereas others require correction. A scalar reward cannot localize errors, causing optimization to perturb satisfactory tokens while under-targeting the tokens that actually need to change. We introduce Token-Level Video Reinforcement Learning, TVRL, a framework that derives token-level credit from the reward being optimized. Our key insight is that the answer likelihood of a frozen vision-language model provides both signals: its outputs contribute to the video-level reward, while magnitudes of its video-input gradients reveal which generated video tokens most affect that score. We instantiate TVRL in Group Relative Policy Optimization by averaging prompt-derived question rewards into one group-relative advantage and using detached, question-conditioned token-credit maps to reweight dense denoising-transition log-probabilities inside the clipped policy ratio. On VBench-2.0, TVRL achieves an Overall score of 57.69, outperforming the base model by 3.60 points. TVRL also improves matched GRPO baselines across three SDE samplers (SAGE, Flow, and Dance) by 2.68--3.15 points and across four reward models (VideoAlign, VideoScore2, UnifiedReward2, and Qwen3.5-9B) by 1.33--3.15 points.",
+    "abs": "http://arxiv.org/abs/2610.01973v1",
+    "pdf": "https://arxiv.org/pdf/2610.01973v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "提出 TVRL，用冻结 VLM 的答案似然及其对视频输入的梯度导出 token 级信用图，再据此在 GRPO 的裁剪比率内重加权去噪转移对数概率，以缓解视频级标量奖励无法定位错误的问题。",
+      "relevance_reason": "其“由 VLM 梯度反推哪些视觉 token 影响评分”的做法可能为 LVR 中视觉证据筛选、token 级贡献分配与 credit 归因提供可核查线索，但目标是视频生成本身，与多模态推理的 latent 状态使用关系尚需核实。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-02T18:41:28.889580+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

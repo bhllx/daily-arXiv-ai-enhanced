@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.00544",
+  "input_sha256": "eeea6c9abdbb5dae6c23f4c609d87a4c0be7fb78351721ad4a4707ad15df9d2c",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-02T18:46:39.282876+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1855,
+        "output_tokens": 244,
+        "total_tokens": 2099,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.00544",
+    "title": "Memorizon: Training World Models Beyond Their Context Window",
+    "authors": [
+      "Tingting Liao",
+      "Xuezhi Liang",
+      "Hao Li",
+      "Guangyi Liu"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": "Project page: https://tingtingliao.github.io/memorizon",
+    "summary": "Streaming world models should render a place consistently across repeated visits. Directly supervising such revisits requires training samples that capture both visits, often spanning minutes. Yet dense attention over the full span incurs quadratic costs, making long-span supervision expensive. Memorizon breaks this coupling: long spans are needed for supervision, but not for attention, since the two visits can share a forward pass without including every intervening frame. A training sample covers a span of any length but is scored only on its last $k$ chunks. Instead of tokenizing the history before them, each scored chunk retrieves its own top-$K$ latents by camera co-visibility, and the union of these requests forms a shared bank. The bank is bounded by $kK$, so the sequence stays bounded however long the span; at the shortest span the recipe is exactly conventional training. Adding the bank raises the cost of a step once; beyond that, a longer span costs little, and going from 100 to 400 s adds 12% to the step time. Against a sliding-window baseline, retrieval raises revisit consistency on every split, and a span long enough to reach the first visit of each return adds a further 24% to 30%, at some cost in image quality; beyond that span, more length no longer helps. Filling the bank from another episode lowers revisit correlation by 83%, so the model uses what it retrieves. Project page: https://tingtingliao.github.io/memorizon",
+    "abs": "http://arxiv.org/abs/2610.00544v1",
+    "pdf": "https://arxiv.org/pdf/2610.00544v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P1",
+      "brief_summary": "Memorizon 提出用「长跨度监督、短注意力」解耦的方式训练流式世界模型：训练样本覆盖任意长时间跨度，但只在最后 k 个 chunk 上计分，每个计分 chunk 按相机共视检索 top-K latent 组成有界共享 bank，从而让长跨度训练代价近似不变，并证明模型确实使用了检索到的内容（换用其他 episode 填充会大幅降低重访相关性）。",
+      "relevance_reason": "虽属世界模型而非多模态推理，但其按需检索视觉 latent、用有界 bank 控制推理状态规模、并以外部替换实验验证 latent 被实际使用的设计，可为 LVR 的视觉证据筛选、latent 缓存与「答案是否使用 latent 内容」的贡献分配核查提供方法线索。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-02T18:46:39.282876+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

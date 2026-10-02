@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.00663",
+  "input_sha256": "be2102a2705d075f8c6f8497bcbb2cbbca871fdd93ae88f63f1cf9d603496410",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-02T18:46:15.806508+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1862,
+        "output_tokens": 198,
+        "total_tokens": 2060,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.00663",
+    "title": "Backdoor Containment via Expert Quarantine and Shutdown in LLMs",
+    "authors": [
+      "Jianwei Li",
+      "Min-Seon Kim",
+      "Jung-Eun Kim"
+    ],
+    "categories": [
+      "cs.AI",
+      "cs.CR",
+      "cs.LG"
+    ],
+    "comment": "NeurIPS 2026",
+    "summary": "Backdoored large language models (LLMs) can behave normally on benign inputs while producing attacker-specified outputs under hidden triggers. Existing defenses span four stages--prior-training, in-training, post-training, and inference-time--and share one of two underlying strategies: either suppress backdoor learning (by filtering poisoned data or interrupting its acquisition during optimization) or learn, then purify (by repairing model weights or gating inputs after a fully backdoored model has formed). We propose a third strategy, learn, but channel: allow backdoor formation during training but route it into a designated, quarantined component that can be disabled at deployment. To this end, we propose Quarantined Expert Shutdown QES, a computationally efficient containment strategy built in a regularization-steered MoE-like setting. Specifically, given a poisoned dataset, QES augments a Transformer-based language model with routed expert-specific LoRA branches and lightweight routers, and uses auxiliary routing objectives to attract trigger-conditioned behavior into a designated expert while preserving benign capability elsewhere. At deployment, mitigation reduces to a single constant-time operation: zeroing the quarantined expert's routing weight, without trigger screening or further updating model weights. Empirically, our methods reduce the attack success rate ASR from 100% to 0-10% on most settings across two tasks, three attacks, and four model families, while downstream utility is often preserved or only modestly affected. These results establish learn, but channel as a previously unexplored regime for backdoor containment in generative LLMs.",
+    "abs": "http://arxiv.org/abs/2610.00663v1",
+    "pdf": "https://arxiv.org/pdf/2610.00663v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "该论文提出 QES，在类 MoE 结构中为模型附加路由专家 LoRA 分支与轻量路由器，用辅助路由目标把触发器条件下行为吸引到指定专家，部署时仅将该专家的路由权重置零即可阻断后门。",
+      "relevance_reason": "虽属安全防御，但其「把特定条件行为路由到可关闭的隔离计算单元」的机制，可能启发 LVR 中把视觉证据处理与语言先验分离、并在推理时按需停用某条路径的表示与停止决策设计，可供核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-02T18:46:15.806508+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

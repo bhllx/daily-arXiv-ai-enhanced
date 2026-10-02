@@ -1,0 +1,74 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.00831",
+  "input_sha256": "70508716a58b3c72a7be450aa75ff9f4e18f3499940380b68b1c8fb34d5abace",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-02T18:45:39.440787+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1872,
+        "output_tokens": 221,
+        "total_tokens": 2093,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.00831",
+    "title": "AnyJev Technical Report",
+    "authors": [
+      "Jiamu Zhang",
+      "Tianze Yang",
+      "Yucheng Shi",
+      "Evan Chen",
+      "Zixiang Nie",
+      "Kelly Wan",
+      "Liangjie Hong",
+      "Ninghao Liu",
+      "Liang Wu"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": "22 pages, 5 figures. Early report on work in development. Code: https://github.com/nokia-applied-research/AnyJev",
+    "summary": "A typed decision is a choice among a fixed set of options, returned as a probability rather than as text. Systems that need typed decisions today use models trained for that purpose. This report describes AnyJev, which reads a typed decision from one prefill of a pretrained instruction-tuned language model. The readout restricts the next-token distribution at the answer position to the option tokens. It has two defects: the model assigns higher probability to some labels whatever the input, and to some positions in the option list. AnyJev corrects both with no gradient steps and no parameter changes: it divides out a label prior estimated from unlabelled inputs, and it averages log-probabilities over the K cyclic rotations of the option list. On two 20-option tasks the rotations lower the order-flip rate from 0.33 to 0.14 and from 0.33 to 0.18, and raise accuracy on 11 of 11 models on both. Reading every rotation requires K prefills. A stopping rule selected against the full-rotation decision on unlabelled states cuts that. Selecting the threshold on one unlabelled split and bounding its disagreement on a second, it reads 10.6 rotations of 18 at a verified 0.008 bound on two of four cells; selected and bounded on one split, as our serving run did, it reads 7.3 and serves 2.2 times as many decisions per second on vLLM. The code is open source.",
+    "abs": "http://arxiv.org/abs/2610.00831v1",
+    "pdf": "https://arxiv.org/pdf/2610.00831v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "该报告提出 AnyJev，用预训练指令模型的一次 prefill 读取「类型化决策」：把答案位置的下一个 token 分布限制在选项 token 上，并用无标注数据估计的标签先验和选项列表循环旋转平均来消除标签与位置偏置，还给出一种停止规则以减少所需旋转次数（prefill 数）。",
+      "relevance_reason": "与 LVR 无直接关系，但其「循环旋转平均去位置偏置」和「基于无标注状态下不一致度设定停止阈值以削减计算」的做法，可能为 latent 状态中位置/顺序偏置的诊断和 STOP 决策的成本控制提供可核查线索。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-02T18:45:39.440787+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

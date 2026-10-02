@@ -1,0 +1,67 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.00991",
+  "input_sha256": "e48e1a86782ae3a13ef911cb283f4dab46951bb2b7b7b431924a4be1b6023577",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-02T18:45:02.628721+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1970,
+        "output_tokens": 242,
+        "total_tokens": 2212,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.00991",
+    "title": "Adapter Thickets: Splitting an RLVR Budget Beats Concentrating It",
+    "authors": [
+      "Jonathan Williams",
+      "Esin Tureci Karthik R. Narasimhan"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Majority voting over sampled completions is the workhorse of test-time scaling, and reinforcement learning with verifiable rewards (RLVR) is the workhorse for making each completion better. The standard pipeline composes the two: train one policy with RLVR, then sample it many times and vote. We show that this composition is lossy. A vote can only overturn mistakes that its voters do not share, and RLVR sharpens a policy so that its samples increasingly make the same mistakes. With every method drawing exactly $160$ completions per problem, training a single LoRA adapter on the full RLVR budget raises single-sample accuracy on every model we test ($1.5$B-$8$B). Yet on three of four models it leaves the majority vote below that of the untrained base model, by up to $4.8$ points. The damage builds during training: voter errors grow steadily more correlated, and the majority vote accuracy peaks early before falling by up to $7.0$ points. The cause is concentration, not RLVR itself. We split the same data and training budget across $K$ LoRA adapters, each trained on its own random disjoint shard, and call the result an adapter thicket. Thickets out-vote the fully trained adapter in all $16$ (model, $K$) settings, and for $K{\\geq}4$ they stay within $0.8$ points of the base model or above it. A single adapter stopped early, at a thicket member's step count, is a strong control that matches thickets for small $K$. For $K{\\geq}8$, thickets keep more of RLVR's single-sample gain and out-vote this control in six of eight settings. The cost of concentration also grows with the number of votes: from $16$ to $160$ votes, the thicket's lead over the fully trained adapter widens from $1.3$ to $3.3$ points. When the plan is to sample and vote, an RLVR budget is better spent broad than deep.",
+    "abs": "http://arxiv.org/abs/2610.00991v1",
+    "pdf": "https://arxiv.org/pdf/2610.00991v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文研究 RLVR 训练与多数投票式 test-time scaling 组合的损失问题：单适配器全预算训练虽提升单样本准确率，却因样本错误相关性上升而使投票精度早期见顶后下降；作者将同一数据与预算拆分为 K 个 LoRA 适配器（adapter thicket），在 16 个设置中投票表现均优于全量单适配器。",
+      "relevance_reason": "该文属纯文本 RLVR，但「训练使采样错误相关性上升、投票收益被集中化侵蚀」的诊断，可能可供核查 latent 多假设推理中多样性坍缩与 latent 轨迹/多次采样投票的关系；拆分预算维持多样性的思路对 latent 状态多样性与投票式使用有借鉴线索，需人工确认可迁移性。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-02T18:45:02.628721+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

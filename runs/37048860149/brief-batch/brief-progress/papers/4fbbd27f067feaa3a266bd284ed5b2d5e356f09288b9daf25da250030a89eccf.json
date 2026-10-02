@@ -1,0 +1,66 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.00118",
+  "input_sha256": "d8aca4c4bc8f2ffa00e13cf242ed66ccf7123c9c19c441c00a21b87f7a0d4780",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-02T18:47:56.193376+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1943,
+        "output_tokens": 175,
+        "total_tokens": 2118,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.00118",
+    "title": "The Hidden Costs of 99% Accuracy: A Trustworthiness Audit of the Telco Customer Churn Benchmark",
+    "authors": [
+      "Soumyadeep Roy"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Customer churn prediction on the IBM Telco Customer Churn benchmark (n = 7,043) routinely reports test accuracies above 95%, with the most cited published study reporting 99.01%. We audit this benchmark for four trustworthiness failures invisible to the accuracy- and F1-centred reporting that dominates the literature. First, pre-split SMOTE inflates churn-class F1 by 13.1 percentage points across ten classifiers and fifteen seeds (Wilcoxon p < 10^-4 per classifier); the same leaky pipeline ordering paired with class weighting yields no inflation, isolating the effect to SMOTE's geometric construction. We measure the mechanism directly: approximately 36% of synthetic training points are nearest-neighbour interpolations of test-set instances. Second, the TotalCharges field is approximately determined by tenure multiplied by MonthlyCharges (R2 = 0.999); removing it changes accuracy by less than 0.2 percentage points, yet TreeSHAP ranks it ninth in mean absolute attribution - a pattern that materially corrupts SHAP-based interpretation. We propose an R2 > 0.95 pre-modelling diagnostic. Third, in a 15-seed calibration audit, isotonic regression is the strongest default; temperature scaling fails on class-weighted tree ensembles whose predicted-probability distribution is bimodal. Fourth, the cost-optimal decision threshold (under a 50 USD retention offer and 24-month CLV proxy) is approximately 5-10 times lower than the F1-optimal threshold, saving approximately 77,000 USD per 1,000 customers. We replicate F1 and F2 on Iranian Telecom Churn (within domain) and Bank Customer Churn (across domain): F1 generalises; F2 generalises only within telecom. We synthesise these findings into a four-component reporting checklist - pipeline disclosure, redundancy diagnostic, calibration audit, and cost-sensitive thresholds - and release a reproducible implementation.",
+    "abs": "http://arxiv.org/abs/2610.00118v1",
+    "pdf": "https://arxiv.org/pdf/2610.00118v1",
+    "AI": {
+      "category": "EXCLUDE",
+      "priority": "NONE",
+      "brief_summary": "该工作对 IBM Telco 客户流失基准做可信度审计，揭示 SMOTE 预拆分导致的数据泄漏、TotalCharges 冗余、校准方法与代价敏感阈值等问题，并提出报告清单。",
+      "relevance_reason": "主题为表格型客户流失预测的基准审计，不涉及视觉或多模态推理、latent 状态生成与使用、视觉证据筛选或推理决策，也无具体可迁移到 LVR 的状态或证据线索，故排除。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-02T18:47:56.193376+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

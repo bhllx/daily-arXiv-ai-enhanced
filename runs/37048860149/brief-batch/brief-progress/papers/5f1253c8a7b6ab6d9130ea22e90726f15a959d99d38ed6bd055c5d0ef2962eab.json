@@ -1,0 +1,71 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.01495",
+  "input_sha256": "053d8b3ce635365cb6d4d4166a793612dbc154dabd5b6a4e8fdfc221b25b8bef",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-02T18:43:09.943388+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1909,
+        "output_tokens": 226,
+        "total_tokens": 2135,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.01495",
+    "title": "Auditing Routing Entropy as an Uncertainty Signal in Attention-Residual Transformers",
+    "authors": [
+      "Wenhao Liang",
+      "Lin Yue",
+      "Wei Emma Zhang",
+      "Mingyu Guo",
+      "Olaf Maennel",
+      "Weitong Chen"
+    ],
+    "categories": [
+      "cs.AI"
+    ],
+    "comment": "36 pages (9 pages main text)",
+    "summary": "Dynamic architectures leave a per-example routing trace beside each prediction, and diffuse routing is easy to read as a sign that the prediction is unreliable. We audit that reading for routing entropy in Attention-Residual (AR) variants of Swin-Tiny and DeiT-Small, trained from scratch on CIFAR-10/100 with a soft-binned calibration auxiliary loss, asking whether the trace carries information about correctness beyond what the model's own confidence already reveals. Three checks probe this increment: does a routing signal appear at fixed confidence, does it replicate across training seeds, and can a held-out predictor exploit it against output-only and shuffled-trace controls? A sensitivity audit then injects effects of known size and measures the fraction of each that the probes recover. No test in the fixed 30-test binned family survives multiplicity correction, and neither the nominal hit nor a borderline result recurs in its sibling seeds. Across 24 paired runs a scalar routing probe yields no pooled improvement in routing-stratified calibration, and an entropy-profile probe predicts correctness better than the same probe given shuffled profiles yet worse than a confidence-only predictor in both binary log-loss and Brier score: a gain over shuffled traces does not become a gain over the output. Conditioning on the complete logit vector leaves the corresponding comparison unresolved. The audit bounds how far these non-detections can be read: at an injected effect of 0.010 nats the profile probe recovers 24-59% of the oracle gain, and a reference-preserving correction probe recovers 8% and 23% in the two CIFAR-100 settings, below the threshold we fixed for applying it to real labels. The results establish control-dependent gains and incomplete estimator recovery, not the absence of conditional routing information.",
+    "abs": "http://arxiv.org/abs/2610.01495v1",
+    "pdf": "https://arxiv.org/pdf/2610.01495v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "该工作在 Attention-Residual 视觉 Transformer（Swin-Tiny、DeiT-Small）上审计「路由熵可作不确定性信号」这一读法，用固定置信度、跨种子复现、留出预测器及注入效应敏感性分析等检验，发现多数增益经多重校正后不成立、且不及仅用置信度的预测器。",
+      "relevance_reason": "与 LVR 中「停止决策、动态计算的收益与成本、latent/内部状态是否可读出可靠性证据」的问题表述相近：其「控制变量式审计＋注入已知效应量」的评估思路可能可供核查，用于判断 latent 相似度或路由轨迹信号是否只是置信度的影子。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-02T18:43:09.943388+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

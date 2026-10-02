@@ -1,0 +1,73 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.02185",
+  "input_sha256": "963e19ff9b9885b8e69e94862d031d9ff267079125b72d8940eba2bef9b0e208",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-02T18:40:43.670277+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1817,
+        "output_tokens": 202,
+        "total_tokens": 2019,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.02185",
+    "title": "Decoding Looped Transformers Better for (Almost) Free",
+    "authors": [
+      "Weihao Liu",
+      "Huangjie Zheng",
+      "Tianrong Chen",
+      "Rohit Dilip",
+      "Richard He Bai",
+      "Yizhu Jiao",
+      "Yuyang Wang",
+      "Ruixiang Zhang"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": "32 pages, 19 figures",
+    "summary": "Looped Transformers achieve parameter efficiency by repeatedly executing a shared block across recurrent loops. Each loop yields an intermediate representation decodable for the same next token, yet standard decoding discards earlier states. Because earlier loops embody less computation, recurrence inherently supplies aligned weak-and-strong prediction pairs without auxiliary models or external training. We introduce LoopCD, a training-free contrastive decoding framework that guides token selection by contrasting the final prediction with an earlier recurrent pass, operating either in logit space with one extra output pass (LoopCD-Logits) or in hidden-state space with zero output overhead (LoopCD-Hidden). Across four looped Transformer families, LoopCD delivers substantial, consistent gains at full recurrent depth: LoopCD-Logits raises Ouro-2.6B-Thinking's AIME 2024 pass@1 from 61.88% to 73.33%, while LoopCD-Hidden lifts Huginn's HumanEval pass@1 from 22.56% to 31.71%. Crucially, these performance gains enable halving the number of recurrent loops while still matching or exceeding full-depth unguided baselines, reducing forward FLOPs by 22.5% to 48.2%. By transforming intermediate recurrent states into effective guidance signals, LoopCD achieves superior decoding quality while substantially reducing inference compute.",
+    "abs": "http://arxiv.org/abs/2610.02185v1",
+    "pdf": "https://arxiv.org/pdf/2610.02185v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P1",
+      "brief_summary": "LoopCD 是一种免训练的对比解码框架，将循环 Transformer 中较早循环的中间表示视为「弱预测」，与最终循环的强预测对比来引导 token 选择，可在 logit 或隐状态空间实现，从而在减半循环次数下保持甚至提升性能。",
+      "relevance_reason": "虽为纯文本循环 Transformer，但其把中间循环状态转成引导信号的做法，与 LVR 中循环 latent 状态如何更新、何时停止及中间状态是否被实际使用的贡献分配问题高度相关，可供核查多深度状态对比是否能迁移到多模态 latent 推理。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-02T18:40:43.670277+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

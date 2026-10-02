@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.00418",
+  "input_sha256": "27be24aec8faadad2a09180d601b3ea34b1180d0151694bdc549285259fb2a1b",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-02T18:46:56.068426+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1765,
+        "output_tokens": 206,
+        "total_tokens": 1971,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.00418",
+    "title": "CommunityKV: Efficient Long-Context Decoding via Graph Partitioning",
+    "authors": [
+      "Joe McKenna",
+      "Anastasios Alexandridis",
+      "Nathan Susanj",
+      "Jing Liu"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Scaling Transformers to long contexts is constrained by the quadratic cost of self-attention and the linear growth of key-value cache memory transfer. Sparse attention mitigates this by retrieving only relevant tokens, but current approaches either require large-scale training or, within the training-free regime, rely on semantically coarse heuristics or expensive clustering that is difficult to update efficiently during decoding. We introduce CommunityKV, a framework that formulates sparse attention as a community detection problem. CommunityKV constructs a token graph from the $QK^T$ scores already computed during standard prefill, and partitions the graph into communities to enable retrieval of semantically coherent token groups. A local update rule assigns newly generated tokens to communities in constant time, enabling sparse retrieval throughout streaming decoding without global re-partitioning. We evaluate CommunityKV on Qwen3 and Llama-3.1 models across three long-context benchmarks. With one graph per query head, CommunityKV delivers up to $1.25\\times$ the end-to-end generation throughput of dense attention, while query-group graph aggregation yields up to $1.71\\times$ with comparable accuracy.",
+    "abs": "http://arxiv.org/abs/2610.00418v1",
+    "pdf": "https://arxiv.org/pdf/2610.00418v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "CommunityKV 把稀疏注意力重构为社区发现问题：在预填充阶段已有的 QK^T 分数上构建 token 图并划分社区，再用常数时间的局部更新规则把新生成 token 归入社区，从而在长上下文流式解码中免训练地检索语义连贯的 token 组。",
+      "relevance_reason": "与 LVR 主线不直接相关（属训练无关的长上下文解码效率优化），但其按语义相关性组织 token 单元、并支持增量局部更新的做法，可能为 LVR 中视觉证据筛选、KV/状态缓存更新与获取成本权衡提供可核查的方法线索。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-02T18:46:56.068426+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

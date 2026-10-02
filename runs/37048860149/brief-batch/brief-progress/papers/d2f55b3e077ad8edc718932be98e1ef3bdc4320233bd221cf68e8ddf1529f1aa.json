@@ -1,0 +1,73 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.00493",
+  "input_sha256": "41670e0483de737b4e1a105980632780d44d358e995ad206431fbe89ca6c6dd2",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-02T18:46:46.630743+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1940,
+        "output_tokens": 212,
+        "total_tokens": 2152,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.00493",
+    "title": "Score the Update, Not the Token: Descent-Aligned Routing for Combinatorial LoRA Experts",
+    "authors": [
+      "Priya Nair",
+      "Lukas Brenner",
+      "Maya Lindqvist",
+      "Daniel Whitmore",
+      "Wen-Hsuan Liu",
+      "Tom Saliencro",
+      "Amara Okonkwo",
+      "Rohan Desai"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Mixture-of-LoRA-experts methods raise the capacity of low-rank adaptation by routing each token to a few low-rank experts. Nearly all of them tie one input-side factor to one output-side factor per expert, and nearly all of them route by scoring the token: the router picks experts without seeing what any of them would write. We argue that the router should score the update. To first order, adding an expert's update to a layer output lowers the loss by the inner product between that update and the negative loss gradient at the output. This usefulness is quadratic in the token, so a router that is linear in the token sees only the part of it that runs through the token mean, and routers that rank experts by the norm of their own activations never see the output factor. If each expert is split into a reader (down-projection) and a writer (up-projection), the usefulness of every reader--writer pair becomes an inner product in the shared rank-$r$ space, and all $N_AN_B$ pairs can be scored from $N_A+N_B$ vectors. We build VANE on this identity. A low-rank compass predicts the descent direction of each token. VANE scores every pair by the alignment between its update and the compass without forming any update, activates the top-$k$ pairs with additive gates, and gives every pair its exact first-order router gradient. On single-domain commonsense reasoning and a four-domain multi-task mixture with Llama-3.2-3B and Llama-3.1-8B, VANE attains the best average among twelve PEFT and MoE-LoRA baselines, by 0.9--1.1 and 1.3--1.5 points respectively, with less than half the trainable parameters of an 8-expert MoE-LoRA. Its router scores also track the measured usefulness of experts far more closely than token routers do.",
+    "abs": "http://arxiv.org/abs/2610.00493v1",
+    "pdf": "https://arxiv.org/pdf/2610.00493v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文提出 VANE，把 LoRA 专家拆成 reader/writer 两部分，用低秩「指南针」预测梯度下降方向，并按每个专家更新与下降方向的对齐度打分路由，在常识推理与多任务混合上超过若干 PEFT 与 MoE-LoRA 基线。",
+      "relevance_reason": "其「评分更新而非评分 token」的视角可能为 LVR 中 latent 状态/证据筛选的贡献分配与效用打分提供线索：用更新与梯度对齐度衡量某次内状态写入是否值得激活，但纯文本 LoRA-MoE 场景与视觉推理的迁移需核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-02T18:46:46.630743+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

@@ -1,0 +1,71 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.01133",
+  "input_sha256": "663d2d161b09da66a0a31c7684f85abda25d1f38d9bbcf03cfa25b12f53c49d9",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-02T18:44:33.460596+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1870,
+        "output_tokens": 220,
+        "total_tokens": 2090,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.01133",
+    "title": "Does Scaling Reinforcement Learning Really Require More Training?",
+    "authors": [
+      "Bangji Yang",
+      "Jiajun Fan",
+      "Hongba Ma",
+      "Ruihan Guo",
+      "Ge Liu"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "Scaling reasoning typically spends more compute on reinforcement learning (RL) or on inference. We show that a completed RL training history can yield policies stronger than the checkpoints visited by its optimizer. We call this policy-space scaling: expanding the deployable policy set accessible from a fixed RL history, without extending training or increasing per-query inference computation. We instantiate it with SURGE (Scaling Up RL Gradient-free via Eigenspace fusion). SURGE combines two checkpoints from the same RL run: a high-accuracy anchor and a competitive donor that generates shorter responses. It expresses both checkpoints as changes from their shared initialization, then spectrally decomposes the anchor's update to retain its dominant component and incorporate the donor's complementary component. With a fixed target for how much of the anchor update to retain, SURGE determines the block size from the weights without testing candidate policies. We evaluate two 1.5B mathematical-reasoning histories, DeepSeek and Nemotron, and one 7B coding history, OLMo. SURGE improves benchmark-average accuracy over both input checkpoints while using fewer reasoning tokens than the anchor. It reaches 54.17% on DeepSeek AIME24 against a measured native maximum of 50.83%, and 83.7% on OLMo HumanEval+ against 82.8%. These gains exceed the observed training curves. Geometric controls support the importance of RL-update structure beyond weight displacement or token reduction alone. Each constructed model runs as a single policy. Our findings identify stored RL history as a reusable scaling resource: the capability available from a training run need not end at its best checkpoint.",
+    "abs": "http://arxiv.org/abs/2610.01133v1",
+    "pdf": "https://arxiv.org/pdf/2610.01133v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "该工作提出「policy-space scaling」：不再延长 RL 训练或增加推理算力，而是把同一 RL 历史中的两个 checkpoint（高精度 anchor 与响应更短的 donor）表示为相对共享初始化的变化，通过谱分解融合成单一新策略（SURGE），在数学与代码推理基准上超过两个输入 checkpoint 且更省 token。",
+      "relevance_reason": "其「从既有权重更新谱结构中合成新策略」的思路或可供核查：LVR 中 latent 状态的生成/更新、checkpoint 合并与贡献分配是否也能用类似谱分解选取主成分与互补成分，从而在固定算力下扩展可用推理策略集合。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-02T18:44:33.460596+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

@@ -1,0 +1,71 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.01785",
+  "input_sha256": "01779148142383dffa6f987fde65f40bf779aa45e7f1ffbf8855c8d7d1cdcf21",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-02T18:42:08.549973+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1827,
+        "output_tokens": 196,
+        "total_tokens": 2023,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.01785",
+    "title": "VETO: Video Efficient Token Optimization for Vision Language Models",
+    "authors": [
+      "Gueter Josmy Faure",
+      "Hao Ping Wang",
+      "Min-Hung Chen",
+      "Winston H. Hsu"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.AI",
+      "cs.CL"
+    ],
+    "comment": null,
+    "summary": "Processing long videos with Vision-Language Models (VLMs) is bottlenecked by the quadratic cost of visual tokens, making long-form inference prohibitively expensive. While single-axis compression methods mitigate this, they hit a hard efficiency floor because they treat spatial and temporal redundancy independently. We present VETO (Video Efficient Token Optimization for Vision-Language Models), a training-optional plug-in that eliminates this bottleneck through dual-axis compression: (i) an intra-frame compressor that merges semantically similar tokens within each frame via optimal-transport inspired matching, and (ii) an inter-frame compressor that identifies and merges temporally redundant frames. The key design insight is hierarchical ordering: by first compressing spatial dimensions, VETO drastically reduces the cost of subsequent global temporal matching, bypassing the efficiency wall of single-axis approaches, with an advantage that grows with modern fully-fused attention infrastructure. Empirically, VETO achieves up to 45% faster inference (e.g., on LLaVA-OneVision-7B) while preserving or improving accuracy. Under extreme token starvation (10% budget), VETO outperforms VFlowOpt (54.9%), VisionZip (52.6%), and FastV (47.9%) with 55.7% accuracy. We demonstrate universal applicability across LLaVA-OneVision, InternVL-2.5, and LongVA, with zero-shot accuracy preserved or improved in all cases.",
+    "abs": "http://arxiv.org/abs/2610.01785v1",
+    "pdf": "https://arxiv.org/pdf/2610.01785v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "该论文提出 VETO，一个免训练的视频 VLM 视觉 token 压缩插件：帧内用最优传输启发的匹配合并语义相似 token，帧间再合并时间冗余帧，通过先空间后时间的层次化顺序降低长视频推理成本。",
+      "relevance_reason": "核心是视觉 token 预算与冗余合并，并未生成或使用 latent 推理状态；但其「先空间后时间」的层次化压缩可供核查 LVR 中视觉证据筛选与信息坍缩的权衡，以及压缩后内部状态是否仍保留任务必要细节。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-02T18:42:08.549973+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

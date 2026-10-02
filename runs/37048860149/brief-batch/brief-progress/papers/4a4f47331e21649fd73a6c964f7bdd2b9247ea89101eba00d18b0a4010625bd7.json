@@ -1,0 +1,75 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.01434",
+  "input_sha256": "85beff168e6a80b602384288d13e0eeafd9033aa52bdcc8e27ee59de614bc63d",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-02T18:43:21.711933+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1920,
+        "output_tokens": 213,
+        "total_tokens": 2133,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.01434",
+    "title": "MWOP: Modality-aware Width-wise Operation Pruning for Efficient MLLMs",
+    "authors": [
+      "Xudong Wang",
+      "Hao Wu",
+      "Haozhe Hu",
+      "Peiran Yin",
+      "Xinghao Chen",
+      "Yunpu Ma",
+      "Wei Zhang",
+      "Xiaoyu Shen"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.AI",
+      "cs.CL"
+    ],
+    "comment": null,
+    "summary": "Multimodal large language models (MLLMs) incur substantial inference costs when processing long visual-textual sequences. While existing operation compression methods exploit modality-level redundancy, they largely treat computation within attention heads and shared feed-forward network (FFN) channels as unified units, leaving finer-grained redundancy underexplored. We find that redundancy varies both across modality-interaction paths within the same attention head and across visual and textual executions of the same FFN channel. Based on these findings, we propose Modality-aware Width-wise Operation Pruning (MWOP), which independently prunes visual-to-visual (V2V), text-to-visual (T2V), and text-to-text (T2T) attention paths within each layer, and separately selects FFN channels for visual and textual inputs. A first-order Taylor criterion guides the pruning process, with FFN importance re-evaluated after attention pruning and LoRA-based recovery training. To translate the resulting fine-grained sparsity into practical acceleration, we further develop path-sparse Triton attention kernels and compact visual-side FFN execution. MWOP preserves the token sequence while reducing attention and FFN computation, making it complementary to token compression and enabling simultaneous reduction of sequence length and per-token computation. On LLaVA-OneVision-7B, MWOP alone achieves a $1.6\\times$ prefill speedup with 99.7\\% average performance retention across 12 benchmarks. Combined with two representative token compression methods, it further increases their prefill speedups from $2.0\\times$ and $1.9\\times$ to $2.9\\times$ and $2.7\\times$, respectively. Results on Qwen2.5-VL-7B further demonstrate its applicability across architectures. The code is available at https://github.com/EIT-NLP/MWOP.",
+    "abs": "http://arxiv.org/abs/2610.01434v1",
+    "pdf": "https://arxiv.org/pdf/2610.01434v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "该论文针对 MLLM 长视觉-文本序列的推理开销，提出按模态区分细粒度剪枝的 MWOP：分别剪掉 V2V、T2V、T2T 注意力路径，并分别为视觉与文本输入选择 FFN 通道，配合 Taylor 重要性准则与 LoRA 恢复训练及定制 kernel 实现加速。",
+      "relevance_reason": "与 LVR 主线的推理成本与状态利用问题有间接联系：其「不同模态路径/通道冗余不同」的诊断可供核查视觉信息在注意力与 FFN 中被保留或丢弃的程度，但论文目标是效率压缩而非 latent 推理状态生成。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-02T18:43:21.711933+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

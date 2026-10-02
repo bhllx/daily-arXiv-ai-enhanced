@@ -1,0 +1,67 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.00180",
+  "input_sha256": "c25644d492a384807a8fc15407fe4786735adac65901b1ca887f813a3d4ac2f1",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-02T18:47:53.207198+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1960,
+        "output_tokens": 214,
+        "total_tokens": 2174,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.00180",
+    "title": "Four Ways to Grow a Classifier and Why One of Them Cannot Learn",
+    "authors": [
+      "Cagri Temel"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.AI"
+    ],
+    "comment": "10 pages, 4 tables. Code and measurement scripts: https://doi.org/10.5281/zenodo.22718897",
+    "summary": "Constructive classifiers add structure while they train: a level to a tree, a unit to a hidden layer, a split at a leaf. This paper asks what each of four such growth decisions actually buys, measured under one fixed protocol in tree-structured and constructive models, and gives an exact diagnosis and a fix for the one that buys nothing.\n  The diagnosis concerns the most natural way to deepen a soft decision tree: turn every leaf into a gate whose two children inherit the parent's class distribution, so that the function is unchanged. I prove that this leaves the gradient of every new gate identically zero and, with the gate at 1/2, gives the two children identical gradients, so the added level can never learn. Unlike the symmetry that Net2Net breaks with noise or the saddle point that splitting steepest descent escapes with second-order information, first-order information here is not weak but absent. Over three seeds of five-fold cross-validation the construction loses 19.6 accuracy points on Iris, 19.1 on Wine and 55.6 on Digits against the same depth trained from scratch. The fix is a small random perturbation of the children, whose size barely matters. The practical rule is one line in a test: after adding parameters, assert that their gradient is nonzero.\n  The other three decisions each buy one thing. Fitting a new hidden unit to the residual error before installing it buys a smaller network on every dataset, though not a more accurate one, and on Digits it costs accuracy significantly. Splitting the leaf with the largest expected error buys sparsity, reaching 0.885 with 3.7 splits where a complete depth-six tree uses 63, but loses 4.3 points on a harder problem. Requiring statistical significance before a node receives a more expressive split buys nothing: the tree gets larger and less accurate.\n  Every number in the paper is inserted from the measurement script.",
+    "abs": "http://arxiv.org/abs/2610.00180v1",
+    "pdf": "https://arxiv.org/pdf/2610.00180v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文在统一协议下比较四种构造式分类器的“增长”决策（给树加层、加隐藏单元、按期望误差分裂、要求统计显著性），并证明最自然地加深软决策树的做法会使新门控梯度恒为零、无法学习，同时给出随机扰动修复。",
+      "relevance_reason": "与 LVR 无直接视觉联系，但“新增结构后其一阶梯度是否为零/子节点梯度是否相同”的诊断与修复线索，可供核查动态加入计算模块（如 LOOK/STOP 分支、循环深度扩展）时的可训练性与贡献分配问题，可能提示用梯度非零断言做结构增长的健康检查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-02T18:47:53.207198+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

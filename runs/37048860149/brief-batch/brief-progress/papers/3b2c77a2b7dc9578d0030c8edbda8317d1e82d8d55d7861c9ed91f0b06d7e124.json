@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.00615",
+  "input_sha256": "39c5aeafcf6ce36974f72e0e4029eebbfc674e0ae79777b51cb6b57c69a3fedd",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-02T18:46:23.166877+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1864,
+        "output_tokens": 215,
+        "total_tokens": 2079,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.00615",
+    "title": "Learning the identity: a case study of how SGD selects among functional decompositions",
+    "authors": [
+      "Andy Arditi",
+      "Weian Xie",
+      "David Bau",
+      "Liu Ziyin"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "One might think that learning the identity function with a deep linear residual network is trivial - the path along residual connections already implements the identity, and so the network need only drive its weights to zero. However, this zero-weight solution is just one point on an entire manifold of population-loss minimizers, each corresponding to a different decomposition of the identity across the network's layers. Although the population loss does not distinguish among these solutions, stochastic gradient descent (SGD) reproducibly favors particular ones. For instance, under anisotropic label noise, the learned layers exhibit a noise-dependent spectrum; even with weight decay, SGD does not generally recover the zero-weight solution. Changing only the parametrization, while leaving the set of realizable functions unchanged, yields different behavior: factoring each weight matrix as a product of two matrices causes the weights to collapse to zero, even without explicit weight decay.\n  While perhaps mysterious and unintuitive at first, these phenomena can be understood through the lens of entropic loss, which augments the population loss with a term proportional to the expected squared norm of the minibatch gradient (Ziyin et al., 2025). On the identity manifold, the population loss is constant, while the entropic term distinguishes among these decompositions. We characterize its minimizers analytically and use them to derive predictions for the structure of solutions favored by SGD. Networks trained with SGD closely match these predictions.\n  Overall, the identity learning task studied here serves as a clean and simple case study of how the lens of entropic loss can clarify why SGD favors particular decompositions of the same input-output function.",
+    "abs": "http://arxiv.org/abs/2610.00615v1",
+    "pdf": "https://arxiv.org/pdf/2610.00615v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "该论文以深度线性残差网络学习恒等函数为案例，研究总体损失相同的一族解中 SGD 为何偏好特定分解，并用 entropic loss（加入 minibatch 梯度平方范数项）解析刻画其极小点、给出可验证预测。",
+      "relevance_reason": "与 LVR 的表示几何和贡献分配问题有概念联系：内容如何在多层状态中被分解、参数化如何改变状态坍塌，以及 SGD 隐式偏好可能影响 latent 状态的形状与深度分布，可供核查其分析工具是否适用于 VLM 内部状态；但材料未涉及视觉或多模态推理，联系仍属推测。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-02T18:46:23.166877+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

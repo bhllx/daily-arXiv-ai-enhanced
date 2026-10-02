@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.00586",
+  "input_sha256": "a804848f5f49f53bbf0a71ab89b79875d223ec31ae6b56070112c9894a575b8d",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-02T18:46:27.946683+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1986,
+        "output_tokens": 171,
+        "total_tokens": 2157,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.00586",
+    "title": "Right In-Place (RiP) Convolution: A Simple, General, and Near-Optimal Strategy for Memory-Efficient CNN Inference",
+    "authors": [
+      "Opegbemi Matthias Busoye",
+      "Tolulope Matthew Busoye",
+      "Eghonghon-aye Eigbe"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.CV"
+    ],
+    "comment": "Extended version of a paper accepted at the NeurIPS 2026 Workshop on Global South in AI",
+    "summary": "Activation memory, not compute, limits CNN inference on constrained hardware such as microcontrollers. Direct in-place convolution removes the dual-buffer cost, but the memory-optimal formulation of Gural and Murmann assumes valid padding, unit stride, unit dilation, and odd square kernels, and needs a non-sequential traversal costing $2\\times$ inference time in transposes. We identify two regimes in which their published closed form does not hold: (1) an under-allocation of exactly $(k-1)C_{in} \\bmod (C_{out}-C_{in})$ scalars, active on every convolutional layer of their own deployed network and manifesting as a silent corruption of still-live input; (2) an unbounded overestimate, up to $2{,}432\\times$, once the critical leg leaves the output grid. We correct both and generalize to arbitrary stride, dilation, padding, and rectangular kernels. We then propose Right In-Place (RiP) convolution, a bit-identical operation in which every layer reads its input right-aligned in a shared workspace and writes its output left-aligned from index zero. The debt is piecewise affine in the output pixel index, so evaluating its breakpoints in $O(1)$ yields the minimum safe gap without enumerating the output grid, with row-major access preserved. Across $10{,}000$ random layers RiP produced no corruption, and across 84 convolutional layers from 25 architectures it matches the herringbone workspace exactly on 58 and within 5% on 81, using 24.8% less memory than dual buffering on average. Written into TinyEngine's kernels and deployed to a Raspberry Pi Pico 1 and Pico 2, it cuts peak activation memory across eleven MCUNet models by 12.5 to 33.3% at unchanged cycle counts and bit-identical outputs, raising the number of models that fit the Pico 1's 256 KB SRAM from six to nine.",
+    "abs": "http://arxiv.org/abs/2610.00586v1",
+    "pdf": "https://arxiv.org/pdf/2610.00586v1",
+    "AI": {
+      "category": "EXCLUDE",
+      "priority": "NONE",
+      "brief_summary": "该论文研究如何在受限硬件上以原地卷积减少 CNN 推理的激活内存，修正已有内存最优闭式的分配不足与高估问题，提出 Right In-Place 卷积并部署到微控制器上验证。",
+      "relevance_reason": "纯 CNN 推理内存优化，未涉及视觉推理的内部状态表示、latent 生成或证据与停止决策，与 LVR 主线缺少实质联系，也无可迁移的状态或监督线索。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-02T18:46:27.946683+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}
