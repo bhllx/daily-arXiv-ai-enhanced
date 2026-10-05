@@ -1,0 +1,73 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.02383",
+  "input_sha256": "8b75449cf9dbda47c924c2f4cec951f7b55c1d0f39f5e2bfcbb8f802d73461b8",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-05T21:19:01.592843+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1761,
+        "output_tokens": 201,
+        "total_tokens": 1962,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.02383",
+    "title": "The Surprising Effectiveness of Shared Memory in Looped Transformers",
+    "authors": [
+      "Giovanni Monea",
+      "Keshav Ramji",
+      "Yousef El-Kurdi",
+      "Luis A. Lastras",
+      "Yoav Artzi",
+      "Nathan Godey",
+      "Ramón Fernandez Astudillo"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "Looped Transformers apply the same layers several times per token, adding compute to improve quality without more parameters. Each recursion, however, writes its own key-value cache, so memory still grows with compute. Inference-time techniques can shrink this cache at a cost in quality. We pretrain looped language models to share memory: only the first recursion writes a cache, and later recursions read it while keeping a short window of their own. Surprisingly, we find that sharing memory does not cost quality and instead improves it. At 150M-1B parameters, our Looped Prediction Transformer (LPT) and its hybrid variant set a new quality-memory frontier for looped models: with five recursions, the hybrid lowers validation perplexity on FineWeb-Edu by 1.12-1.82 relative to a same-size standard Transformer while using 76-79% less context memory. Through an extensive analysis, we investigate why memory sharing helps. Shared and local memory develop different representations, and later recursions attend mostly to the shared memory, which also acts as a gradient highway to the first recursion.",
+    "abs": "http://arxiv.org/abs/2610.02383v1",
+    "pdf": "https://arxiv.org/pdf/2610.02383v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P1",
+      "brief_summary": "该文预训练循环（looped）语言模型共享记忆：仅首次递归写入 KV 缓存，后续递归读取该共享缓存并保留少量局部窗口，在 150M–1B 规模上明显降低上下文内存同时提升验证困惑度，并分析共享记忆与局部记忆形成的表征差异及梯度通路作用。",
+      "relevance_reason": "纯文本循环模型，但共享/局部 KV 缓存分化与「后续递归主要关注共享记忆」的发现，可为 latent 推理中状态复用、贡献分配及缓存与深度对 latent 相似度的影响提供可核查线索。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-05T21:19:01.592843+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

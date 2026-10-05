@@ -1,0 +1,80 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.03141",
+  "input_sha256": "72c16afc8114271fb16aa531d355d219bf584efaa1c4a6682c78a66843a0cb25",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-05T21:15:48.870703+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1891,
+        "output_tokens": 210,
+        "total_tokens": 2101,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.03141",
+    "title": "Behavior Pack Optimization for Video MLLM Post-Training",
+    "authors": [
+      "Zhaolu Kang",
+      "Shiyu Liu",
+      "Tailong Luo",
+      "Wei Zhang",
+      "Yingjie He",
+      "Lei Wei",
+      "Guansu Wang",
+      "Liang He",
+      "Siheng Wang",
+      "Guangyuan Dong",
+      "Jiaqi Su",
+      "Shuang Chen",
+      "Haoyu Ji",
+      "Qishi Zhan",
+      "Kaiyue Zhou"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": "NeurIPS 2026 poster",
+    "summary": "Video multimodal large language models (MLLMs) keep climbing video question answering benchmarks, yet shuffling the frames, masking the segment that supports the answer, or occluding the target object barely changes their predictions. The accuracy rests on appearance and language priors, not on the temporal evidence the question asks for. We trace this to the unit of post-training: rewards are computed on a single response to the original clip, so the model is never asked to behave consistently across views. We propose Behavior Pack Optimization (BPO), which replaces the single response with a behavior pack of outputs across counterfactual views chosen by question type, scored jointly. The pack reward asks for stability when the intervention is irrelevant, sensitivity when key evidence is removed, and abstention when no evidence remains. To keep this objective stable at small pack sizes, BPO uses an anchor-relative advantage: the response on the original view serves as a per-prompt reference instead of a group mean over mixed views. On TempCompass, MVBench, and NExT-QA, BPO improves the macro accuracy of Qwen2.5-VL-7B-Instruct by 4.7 pp, the temporal-hard subset by 7.8 pp, and abstention F1 by 20.0 pp over a budget-matched vanilla GRPO baseline from the same SFT checkpoint. The gains transfer to Video-MME, LongVideoBench, and to LLaVA-Video-7B; ablations confirm they follow the view sets, not the rollout count. We hope this pack-level perspective offers a useful starting point for the video MLLM and multimodal post-training community as the field moves toward evidence-grounded video reasoning.",
+    "abs": "http://arxiv.org/abs/2610.03141v1",
+    "pdf": "https://arxiv.org/pdf/2610.03141v1",
+    "AI": {
+      "category": "MAIN",
+      "priority": "P1",
+      "brief_summary": "论文诊断视频 MLLM 的准确率主要来自外观与语言先验而非时序证据（打乱帧序、遮挡关键片段几乎不影响预测），并提出 Behavior Pack Optimization：按问题类型构造反事实视角下的输出「行为包」联合打分，配合锚点相对优势，要求无关干预下稳定、证据移除时敏感、无证据时拒答。",
+      "relevance_reason": "直接回应「答案是否真正使用视觉证据」这一核心问题，其干预式诊断与稳定/敏感/弃答的联合监督可供核查如何把证据筛选与停止决策纳入训练目标，但与 latent 状态的生成机制关系较弱。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-05T21:15:48.870703+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

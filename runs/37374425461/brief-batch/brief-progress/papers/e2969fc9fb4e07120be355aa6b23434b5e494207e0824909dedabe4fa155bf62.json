@@ -1,0 +1,78 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.03007",
+  "input_sha256": "e3be15e35e52bb83fa87d9fbe4c9b6892ad3c6af98926361be94f876a0cb8431",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-05T21:16:25.673881+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1790,
+        "output_tokens": 203,
+        "total_tokens": 1993,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.03007",
+    "title": "AvoKV-E: Payload-Aware KV Cache Eviction for Long Reasoning",
+    "authors": [
+      "Han Yu",
+      "Wenhui Zhu",
+      "Xiwen Chen",
+      "Zhipeng Wang",
+      "Hejian Sang",
+      "Han Shi",
+      "Menglin Zhou",
+      "Xuanzhao Dong",
+      "Minzhou Huang",
+      "Rui Cai",
+      "Hao Wang",
+      "Alborz Geramifard"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "Long-output reasoning shifts the KV-cache bottleneck from the fixed prompt to the generated trace. Existing reasoning-cache eviction methods largely treat cached entries as routing objects, estimating whether an old key will still be read, will recur, or can be replaced. This routing-only view overlooks two effects: low-attention entries can carry large value payloads whose removal changes future predictions, and newly generated states can appear stale before later queries have had a chance to read them. We introduce AvoKV-E, a training-free eviction policy that first delays eligibility for recent states and then ranks eligible entries using candidate-normalized read pressure, key redundancy, and value-payload potential. According to empirical evaluation across different models and datasets, AvoKV-E matches or exceeds redundancy-aware, recurrence-based, and thought-adaptive eviction baselines at matched active-KV budgets, with its largest gains in the tightest-cache regime. Component and counterfactual analyses further connect these gains to delayed observation, payload-aware scoring, redundancy, and scale-robust normalization. Together, the results show that long-reasoning KV eviction should preserve not only keys that are likely to be read, but also the value payloads that sustain the reasoning trajectory.",
+    "abs": "http://arxiv.org/abs/2610.03007v1",
+    "pdf": "https://arxiv.org/pdf/2610.03007v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P1",
+      "brief_summary": "该论文提出 AvoKV-E，一种无需训练的 KV 缓存逐出策略：先对刚生成的近期状态延迟其被逐出资格，再用候选归一化的读取压力、键冗余度和 value 载荷潜力对候选条目排序，以在长输出推理中维持固定活跃 KV 预算。",
+      "relevance_reason": "其“读取—载荷”双视角与延迟观察的逐出判据，可能为 LVR 中 latent 状态何时可丢弃、视觉证据保留多少的 STOP/缓存策略提供线索，尤其值得核查低注意力却高载荷的条目是否对应任务必要信息。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-05T21:16:25.673881+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

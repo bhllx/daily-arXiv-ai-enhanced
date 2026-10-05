@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.03626",
+  "input_sha256": "8184587919adf0ce057a924f8d03e7b9e52b5a392af43de1babf84dc5a938973",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-05T21:14:19.804183+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1898,
+        "output_tokens": 244,
+        "total_tokens": 2142,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.03626",
+    "title": "Depth as Time in One-Step Generative Models",
+    "authors": [
+      "Arnold Caleb Asiimwe",
+      "William Yang",
+      "Sanghyuk Chun",
+      "Esin Tureci",
+      "Olga Russakovsky"
+    ],
+    "categories": [
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "The recent wave of one-step generative models, which compress the multi-step trajectory of diffusion via either distillation or learned flow maps, has reached an inflection point where they can generate high-quality images. Here, we ask a natural question that follows from these advances: what happens to the denoising trajectory of multi-step diffusion when generation is compressed into a single forward pass? We offer an empirical observation we call \\textit{depth as time}: the denoising computation that multi-step diffusion performs across sampling steps appears to unfold across the depth of a single forward pass, and can be recovered by decoding intermediate layers with the model's own output head. Most interestingly, we show that this depthwise computation depends on the transport task a flow map is trained to solve. The most surprising case is MeanFlow, where probing shorter transport intervals reveals both denoising and renoising within a single network evaluation. In contrast, generators trained without a time-indexed transport task, such as drifting models, do not exhibit the same depthwise denoising. Consequently, we show that models that exhibit the depthwise denoising phenomenon are more compressible across the layerwise computation: a MeanFlow \\texttt{SiT-L/2} model can be compressed by $16.6\\times$ in parameters into a single time-conditioned block. We offer an explanation for this denoise-then-renoise behavior and show that, when we treat the layerwise computation explicitly as a flow, a single time-conditioned block can be trained to denoise across layers, compressing a MeanFlow \\texttt{SiT-L/2} model by $16.6\\times$ in parameters. Together, these results suggest that the temporal computation of diffusion is not eliminated by one-step generation, but reorganized across network depth.",
+    "abs": "http://arxiv.org/abs/2610.03626v1",
+    "pdf": "https://arxiv.org/pdf/2610.03626v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "该工作研究一步生成模型（如 MeanFlow 等 flow map）中压缩后的扩散去噪轨迹，提出「depth as time」经验观察：多步采样的去噪计算似乎沿单次前向传播的网络深度展开，并可通过模型自带输出头解码中间层恢复；并据此将具备该现象的模型按层压缩为单个时间条件块（参数压缩约 16.6 倍）。",
+      "relevance_reason": "与 LVR 的关联在于「计算沿深度展开、中间层可解码出阶段状态」这一视角，可能为 latent 推理中深度与推理步的对应、中间状态可解释性及循环/并行状态生成提供类比线索，但属于生成建模领域，需核查其结论能否迁移到多模态推理状态。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-05T21:14:19.804183+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

@@ -1,0 +1,67 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.02911",
+  "input_sha256": "d8875823b13fafd6b8428f1c625f85e52774498e36c0d59f15a74eae34735c21",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-05T21:16:46.634366+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1796,
+        "output_tokens": 232,
+        "total_tokens": 2028,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.02911",
+    "title": "Probe the Harness: Setup Checks for Stale-Data RL Comparisons in Language Models",
+    "authors": [
+      "Taiheng Pan"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.CL"
+    ],
+    "comment": "8 pages, 2 figures, 4 tables",
+    "summary": "Methods for training language models on stale samples are judged by comparisons against importance-corrected baselines. We show that details of the experimental harness can reverse the observed ranking of methods, and we introduce PTH (Probe The Harness), a set of checks that makes the harness visible. Our case is a comparison between SAN, a behaviour-free method, and truncated importance sampling (TIS) on verl and in a single-GPU trainer, in which SAN first finished ahead in both stacks. Four details of the harness changed this comparison: the PPO ratio was taken against the learner's own recomputed probabilities, the data seed did not reach the TIS arm, the replay queue reused its first batch for 33 updates, and two loss normalisers differed from their description. In each case the logged quantity looked consistent with a working setup, while the quantity that defines the comparison went unchecked. With the harness checked, TIS matches SAN on verl, and in the trainer TIS learns steadily while SAN keeps a margin. We contribute the signature of each detail and its effect on the comparison, reference results for TIS and uncorrected GRPO under sampler lag, and the PTH checklist.",
+    "abs": "http://arxiv.org/abs/2610.02911v1",
+    "pdf": "https://arxiv.org/pdf/2610.02911v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "该论文考察语言模型基于陈旧样本（stale samples）训练时的方法比较，指出实验框架（harness）的若干细节——如 PPO ratio 的重算基准、数据种子未传入、回放队列复用首批数据、损失归一化与描述不符——足以逆转 SAN 与截断重要性采样（TIS）的优劣排序，并据此提出 PTH 检查清单。",
+      "relevance_reason": "与 LVR 的状态更新、轨迹训练和贡献分配存在间接联系：陈旧数据训练与重要性校正中「被记录的指标看似正常、真正定义比较的量却未被检查」这一陷阱，可能可供核查 latent 轨迹监督、replay 与 off-policy 校正实验的可比性。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-05T21:16:46.634366+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

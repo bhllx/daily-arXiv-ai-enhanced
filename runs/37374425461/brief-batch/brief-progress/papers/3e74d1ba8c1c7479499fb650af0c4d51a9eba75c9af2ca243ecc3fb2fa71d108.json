@@ -1,0 +1,66 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.03135",
+  "input_sha256": "089aa6a331699566dd0af82615e711780a1b704ebf16502caef21fa9efd222af",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-05T21:15:50.474838+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 2018,
+        "output_tokens": 238,
+        "total_tokens": 2256,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.03135",
+    "title": "Page-EntroKV: Hardware-Aligned, Entropy-Weighted KV-Cache Eviction under Grouped-Query Attention",
+    "authors": [
+      "Inbasekaran S"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": "24 pages, 8 figures, 10 tables. Formal framework with pilot-scale empirical validation on Qwen2.5-1.5B-Instruct. Includes step-by-step derivations (Appendix C) and PyTorch reference implementation (Appendix D). Code and data available at: https://github.com/bruce12-glitch/PageEntro-KV",
+    "summary": "Serving long-context autoregressive language models is constrained by the key-value (KV) cache. Most dynamic eviction methods score token importance per query head and choose tokens independently. This fits poorly with grouped-query attention (GQA), where several query heads share one physical KV buffer: divergent per-head selections force the serving engine to retain the union of their choices - inflating the cache by up to the group ratio r - while arithmetic mean pooling dilutes the specialized retrieval heads that carry factual recall. We introduce Page-EntroKV, a formal framework for KV-cache eviction operating at the granularity GQA serving actually allocates. Heads within each physical group are pooled by weights derived from sink-isolated collision (Renyi-2) entropy - one inner product per head, computed once at prefill with no calibration - so sink heads cannot masquerade as retrieval heads. Pooled scores are projected onto PagedAttention page frames, and eviction executes at the hardware tuple (layer, group, page). We formalize the union overhead ratio (UOR) and intra-group disagreement, prove an exact identity linking them for two-head groups alongside two-sided bounds at every group ratio, prove strict budget preservation and a finite-context needle-retention bound that arithmetic mean pooling provably violates, and give exact per-layer page accounting. On a pilot architecture (Qwen2.5-1.5B-Instruct, r=6), head-independent replay over 2,240 group measurements yields union overhead up to 4.75x at a 2% budget, while Page-EntroKV holds UOR exactly 1.000; sink isolation removes a 13x sink masquerade; needle recall is 100% versus 0% for mean pooling at a 20% budget; retained cardinality is exact for every page size; and QA and code tasks remain solvable at 20% retention.",
+    "abs": "http://arxiv.org/abs/2610.03135v1",
+    "pdf": "https://arxiv.org/pdf/2610.03135v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文提出 Page-EntroKV，在 GQA 分组的物理 KV 缓存粒度上做熵加权驱逐：以 sink 隔离的 Renyi-2 熵对组内头加权池化，再投影到 PagedAttention 页帧执行驱逐，并给出并集开销比与预算保持的理论界，在 Qwen2.5-1.5B 上做小规模验证。",
+      "relevance_reason": "该工作本身面向长上下文服务缓存压缩，不直接研究多模态推理；但其「按组池化、抑制 sink 头、保留可召回信息」的打分与淘汰机制，可能为 LVR 中视觉证据筛选与缓存/注意力结构影响提供借鉴线索，可供核查其是否会导致重要细节被裁掉。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-05T21:15:50.474838+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

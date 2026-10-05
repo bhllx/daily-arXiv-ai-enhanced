@@ -1,0 +1,68 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.02586",
+  "input_sha256": "d46e6dd6c6db2c511d116beef21feb5a2b1b3b40676706cf805a1e924bde3590",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-05T21:18:13.780655+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1940,
+        "output_tokens": 258,
+        "total_tokens": 2198,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.02586",
+    "title": "Labels Override Definitions in Jev-Style Typed Decision Models",
+    "authors": [
+      "Seyedarmin Azizi",
+      "Erfan Baghaei Potraghloo",
+      "Massoud Pedram"
+    ],
+    "categories": [
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "A typed decision model answers a fixed question about an input by returning a probability for each of several caller-defined options. Each option carries a short label and a written definition, which is where a developer states the rule the model should apply. Jev introduced this interface for routing, moderation and triage, open implementations followed, and the same operation occurs whenever a language model is used as a classifier by scoring label strings. We study the open implementations, whose weights we can inspect and patch, and ask whether the probability follows the definitions or the labels. A preference for the label we call option-label bias. Across four open-weight typed decision models, three ways of reading an answer from a Qwen2.5 backbone, eleven classification tasks and PolicyBench, a synthetic routing suite we introduce in which the rule appears only in the definitions, the answer is mostly the labels. Deleting every definition leaves accuracy unchanged (laya-td: 0.8559 against 0.8487), although those definitions support 0.7971 on their own, and renaming the options to A and B raises accuracy by +0.1511 [+0.1377, +0.1646]. One system, von, is unaffected, and the two code bases differ in one expression: laya writes each option as \"{label}: {definition}\", while von writes only the definition. Changing that expression in both directions, with no weight changed, makes all three laya checkpoints exactly invariant (+0.0000 [+0.0000, +0.0000]) and creates the effect in von, whose accuracy falls from 0.8511 to 0.2281 when a label contradicts its definition. Earlier work attributed this failure to the constrained decision head these models use in place of a text decoder; our results locate it in the prompt rendering. We give a two-call test that tells a practitioner which case applies to their model, and measure what four mitigations are worth.",
+    "abs": "http://arxiv.org/abs/2610.02586v1",
+    "pdf": "https://arxiv.org/pdf/2610.02586v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文研究「typed decision model」这类按选项标签与定义打分输出概率的分类接口，发现开放权重实现主要依据选项标签而非书面定义，即 option-label bias；删除全部定义后准确率几乎不变，而把选项改名为 A/B 可提升约 0.15。作者进一步把成因定位到 prompt 渲染格式（\"{label}: {definition}\" vs 仅定义），通过改写渲染表达式在不改权重的情况下复现或消除该效应，并给出两次调用的判别测试与若干缓解措施的收益。",
+      "relevance_reason": "虽非多模态 latent reasoning，但其「模型输出究竟依据标签字符串还是定义内容」的诊断，与 LVR 关心的视觉旁路、latent 内容是否真正被用作答案依据、以及输入渲染/提示结构对决策的影响高度同源，可供核查证据筛选与贡献分配实验的设计线索。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-05T21:18:13.780655+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

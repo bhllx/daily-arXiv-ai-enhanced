@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.03445",
+  "input_sha256": "18b064faef8063c72aa15395d6a0ed0ca835363b7cdece0ecba702d4f29b68e0",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-05T21:14:54.927647+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1973,
+        "output_tokens": 255,
+        "total_tokens": 2228,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.03445",
+    "title": "Corrupted but Correct: Why Vision-Language Models Lie to Themselves Internally",
+    "authors": [
+      "Arun Josephraj Arokiaraj",
+      "Zekun Wu",
+      "Adriano Koshiyama"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.AI"
+    ],
+    "comment": "Accepted at the VLM4RWD Workshop (Grounded and Faithful Vision-Language Models for Real-World Deployment), NeurIPS 2026. 8 pages, 2 figures, 3 tables",
+    "summary": "A targeted adversarial perturbation can drive a vision-language model's (VLM's) teacher-forced training loss for a fixed target caption to near zero, yet the same model, allowed to generate freely, produces the original, correct description with no trace of the target. We call this dissociation the train/inference gap, and give it a precise mechanistic account on Qwen2.5-VL-7B-Instruct using a controlled two-stage PGD attack on 200 held-out COCO images. First, we show that image-level pixel statistics, including a correctly re-implemented, texture-based attackability measure from the CNN robustness literature, have essentially no predictive power over which images are corrupted (best predictor r=-0.050, p=0.484; ridge regression R^2=0.069). Second, using the logit lens, we localise the gap to a single autoregressive step: the rank of the target token, conditioned on the correct first token already being generated, is fixed at exactly 3,488 out of 152,064 vocabulary entries for every image and every condition, with zero variance. Third, tracking target-token rank across all 28 LLM decoder layers reveals that the visual encoder corrupts every image's representation by a comparable margin regardless of eventual outcome, but the language model decoder then differentially arbitrates: amplifying the corrupted signal for susceptible images and actively suppressing it, past its clean-image baseline, for resistant ones (p<0.001, rank-biserial r=0.579). A linear probe on the merger hidden state separates these two outcomes with AUC=0.858, though we flag a circularity concern in this estimate. Together these results argue that adversarial robustness in autoregressive VLMs is substantially a property of the language decoder's prior, not the visual encoder, with direct implications for where faithfulness evaluations and defenses for deployed VLM systems should be targeted.",
+    "abs": "http://arxiv.org/abs/2610.03445v1",
+    "pdf": "https://arxiv.org/pdf/2610.03445v1",
+    "AI": {
+      "category": "MAIN",
+      "priority": "P0",
+      "brief_summary": "该论文在 Qwen2.5-VL-7B 上用受控两阶段 PGD 攻击研究「训练损失接近零但自由生成仍输出正确描述」的 train/inference gap，借助 logit lens 将分歧定位到单个自回归步与特定 token 排名，并追踪 28 层解码器的目标 token 排名，发现视觉编码器对各图像扰动程度相当，而语言解码器对「易感/顽固」图像做出放大或抑制的差异化仲裁。",
+      "relevance_reason": "直接关系 LVR 的「答案是否真的使用视觉 latent 内容」与视觉旁路/信息坍缩问题：其逐层排名追踪与 merger 隐状态探针可供核查 LVR 中视觉证据是否被解码器先验覆盖、以及贡献分配应归因于编码器还是解码器。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-05T21:14:54.927647+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

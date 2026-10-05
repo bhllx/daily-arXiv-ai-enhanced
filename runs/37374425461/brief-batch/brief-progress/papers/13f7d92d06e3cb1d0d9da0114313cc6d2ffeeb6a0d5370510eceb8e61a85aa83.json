@@ -1,0 +1,77 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.02800",
+  "input_sha256": "f81447d0c0f9dccb49835a2bfcba6d492898d731cde62ea6fac20a2eb46b2b9c",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-05T21:17:19.478468+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1804,
+        "output_tokens": 213,
+        "total_tokens": 2017,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.02800",
+    "title": "BitNest: Bit-Nested Speculative Decoding for Memory-Efficient LLM Inference Acceleration",
+    "authors": [
+      "Chence Yang",
+      "Ningxi Cheng",
+      "Arash Akbari",
+      "Qitao Tan",
+      "Qingchan Zhu",
+      "Ci Zhang",
+      "Changdi Yang",
+      "Yanzhi Wang",
+      "Wei Niu",
+      "Jinhui Wang",
+      "Jin Lu",
+      "Geng Yuan"
+    ],
+    "categories": [
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "Speculative decoding accelerates autoregressive generation by using a lightweight draft to propose multiple tokens for parallel verification. However, existing methods often require an additional draft model or weight representation, introducing non-negligible memory overhead on resource-constrained devices. Self-speculative approaches reduce this overhead, yet still face trade-offs between draft quality, target quality, and storage efficiency. We propose BitNest, a bit-nested speculative decoding framework that embeds a low-precision draft directly into the higher-precision target representation. Instead of deriving a draft from a predefined target, BitNest first constructs a strong low-precision base and then recovers the higher-precision target through residual refinement, enabling both models to share a single physical weight representation. BitNest further extends this progressive-precision design to the KV cache for long-context inference. Across multiple 7B--8B edge-friendly LLMs and diverse workloads, BitNest achieves an average speculative acceptance rate of 95.2% while closely preserving higher-precision model quality, and delivers 1.48--1.61x end-to-end speedup over FP16 autoregressive decoding. On the LLaMA models supported by all representative self-speculative baselines, BitNest also achieves consistently competitive or higher decoding speedup.",
+    "abs": "http://arxiv.org/abs/2610.02800v1",
+    "pdf": "https://arxiv.org/pdf/2610.02800v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "BitNest 提出一种比特嵌套式推测解码框架：把低精度草稿模型直接嵌入高精度目标权重表示，先构建强低精度基座再用残差精化恢复高精度模型，使草稿与目标共享同一物理权重，并把这种渐进精度设计扩展到长上下文 KV cache，从而在边缘设备上减少显存开销的同时加速生成。",
+      "relevance_reason": "这是纯文本的加速方法，不直接涉及视觉或多模态推理状态；但其「共享权重表示＋渐进精度 KV cache」的思路，可能可供核查 LVR 中草稿—验证组合与缓存压缩时的状态保真和计算成本权衡。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-05T21:17:19.478468+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

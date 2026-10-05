@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.02976",
+  "input_sha256": "608b7bf750532d9389b7c93bb8144902d47aaf2cec8df455d262d874a5748e36",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-05T21:16:32.159649+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1841,
+        "output_tokens": 214,
+        "total_tokens": 2055,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.02976",
+    "title": "Relevant Evidence Decoding for Audio-Visual Hallucination Mitigation",
+    "authors": [
+      "Hyunjae Ra",
+      "Aecheon Jung",
+      "Jungin Park",
+      "Sungeun Hong"
+    ],
+    "categories": [
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "Audio-Visual Large Language Models (AV-LLMs) remain prone to cross-modal hallucinations, where one modality incorrectly affects predictions about another. Although contrastive decoding reduces hallucinations in vision-language models, its direct extension to AV-LLMs overlooks a key challenge: different questions require different perceptual evidence, including audio, video, or their interaction. Notably, we observe that joint audio-visual inference can weaken the prediction even when a model can recover the correct answer from a single informative modality. For example, when asked which instrument is heard, a model may correctly predict violin from the audio alone. Once a video showing a guitar is added, its confidence in violin may drop. In this paper, we introduce Relevant Evidence Decoding (RED), a training-free method that identifies question-relevant evidence and selectively strengthens its contribution. RED uses pointwise mutual information to quantify the predictive support provided by audio and video beyond the question alone. It decomposes their joint contribution into audio, video, and residual interaction components. A question-only inference pass determines the required evidence type, after which the model augments the original audio-visual prediction with the corresponding PMI contribution. Across three audio-visual hallucination benchmarks and three AV-LLMs, RED improves accuracy over standard decoding by up to 7% on CMM, 6.3% on AVHBench, and 3.8% on SVHalluc, with an average relative time to first token of 1.5x standard decoding.",
+    "abs": "http://arxiv.org/abs/2610.02976v1",
+    "pdf": "https://arxiv.org/pdf/2610.02976v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P1",
+      "brief_summary": "该论文提出免训练的解码方法 RED，用点互信息量化音频与视频对预测的增益，并把联合贡献拆成音频、视频与残差交互三部分，再由仅问题推理判断需要哪类证据，从而选择性增强相关模态的贡献以缓解音视频幻觉。",
+      "relevance_reason": "其「先判断需要哪类证据再选择性使用」的机制与 LVR 中 THINK/LOOK/STOP 的证据筛选和视觉旁路问题高度契合，PMI 分解与残差交互项可供核查多模态 latent 贡献分配与信息坍缩，可迁移到 latent 证据使用与停止决策的设计。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-05T21:16:32.159649+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

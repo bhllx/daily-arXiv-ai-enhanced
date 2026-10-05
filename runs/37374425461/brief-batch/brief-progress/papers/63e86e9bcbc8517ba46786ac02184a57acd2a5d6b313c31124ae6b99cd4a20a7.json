@@ -1,0 +1,72 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.02638",
+  "input_sha256": "0d64dd285ece559138c08f4d0f44707c72c9d6564134180806064eba643d31e8",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-05T21:17:58.792524+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1812,
+        "output_tokens": 203,
+        "total_tokens": 2015,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.02638",
+    "title": "Batched Speech Decisions Without Decoding: Single-Token Supervision Lets a Frozen LLM Hear Beyond the Transcript",
+    "authors": [
+      "Jie Jin",
+      "Ziyin Ma",
+      "Min Yin",
+      "Jinyu Chen",
+      "Haigang Song",
+      "Zhikun Pang",
+      "Xiaowen Zhang"
+    ],
+    "categories": [
+      "cs.AI"
+    ],
+    "comment": "5 pages, 2 figures, 3 tables. Submitted to ICASSP 2027. Code and weights: https://github.com/adventists-ai/duplexjev",
+    "summary": "Full-duplex voice agents make many small, closed decisions, which current systems answer by slow autoregressive decoding. We propose DuplexJev, which feeds ASR-encoder hidden states through a small connector into a frozen LLM and reads each question as a single-token distribution over its options. Nothing is decoded, and an 8-GPU node answers 80 decisions about eight utterances in about 0.1 s. With a last-layer connector, spoken QA stays close to reading the transcript (90% vs. 91%). DuplexJev also hears the speaker: gender and emotion accuracy both reach 90% (from 55% and 28%) with a cross-attention connector, whose spoken QA drops by only 1 point (83% to 82%). We train decisions with cross-entropy on the read-out answer token, instead of the usual transcript distillation, whose teacher never hears the voice, and keep distillation for content. Encoders and LLMs are interchangeable; we release weights, training recipe, a batched-inference pipeline for full-duplex serving and a bilingual spoken-QA set.",
+    "abs": "http://arxiv.org/abs/2610.02638v1",
+    "pdf": "https://arxiv.org/pdf/2610.02638v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "该论文提出 DuplexJev，将 ASR 编码器隐状态经小连接器注入冻结 LLM，用单 token 读出分布回答语音问答等封闭决策，避免自回归解码，并用读出答案 token 的交叉熵监督决策、对内容保留蒸馏。",
+      "relevance_reason": "其「单 token 读出隐状态即得决策」与跨注意力连接器保留说话人属性，可能为 LVR 中 latent 内容是否被答案使用、以及视觉细节经旁路注入后如何监督提供可核查线索，但属语音模态，需进一步判断迁移性。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-05T21:17:58.792524+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

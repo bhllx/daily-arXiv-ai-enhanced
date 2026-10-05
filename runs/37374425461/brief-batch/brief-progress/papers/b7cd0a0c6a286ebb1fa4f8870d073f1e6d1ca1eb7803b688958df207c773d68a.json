@@ -1,0 +1,74 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.03123",
+  "input_sha256": "815f142146b440485c417ae85a2a5464d2005a25825822278b411c01a53e843c",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-05T21:15:53.528072+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1877,
+        "output_tokens": 220,
+        "total_tokens": 2097,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.03123",
+    "title": "Foresight: planning future perception in streaming VLMs without retraining",
+    "authors": [
+      "Ashok Prasad Neupane",
+      "Dipan Bartaula",
+      "Ankit Belbase",
+      "Saugat Adhikari",
+      "Samip Ghimire",
+      "Saroj Poudel",
+      "Binod Bhattarai",
+      "Danda Pani Paudel"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "Existing streaming vision-language models (VLMs) continuously perceive and reason over visual streams, but their computational pathways remain fixed throughout inference. Consequently, they cannot adapt computation to evolving scene dynamics, where different future events demand different levels and forms of perception. We show that streaming VLMs inherently possess the ability to anticipate the immediate future, and leverage this capability to dynamically configure future computation in a training-free manner. Realizing such anticipatory computation, however, is very challenging: future anticipation must be sufficiently reliable to guide computation, planning must run concurrently with streaming inference, and online reconfiguration must incur negligible overhead. To address these challenges, we introduce FORESIGHT, a dual-stream architecture comprising two Siamese LLMs with shared weights, input encoders, and KV cache. The first LLM continuously processes incoming tokens, while the second runs ahead of the stream to anticipate future context, plan future computation, and generate task responses without interrupting streaming inference. Each plan decides when to reason next, what to check then, and how densely to sample, keeping transient evidence separate from persistent control. The resulting computation plan is executed online through an efficient reconfiguration protocol with schemaguided decoding and lightweight diff-based updates, enabling dynamic adaptation with low overhead. With a frozen Qwen3-VL-8B backbone, FORESIGHT achieves 23.0 mean joint F1 on OmniPro Online evaluation beating strongest trained baseline by 9.5%, while improving the backbone by 6.7 on StreamingBench and 15.4 on OVO-Bench, with the largest gain of 18.7 when evidence arrives later in the video stream. Our source code will be made publicly available.",
+    "abs": "http://arxiv.org/abs/2610.03123v1",
+    "pdf": "https://arxiv.org/pdf/2610.03123v1",
+    "AI": {
+      "category": "MAIN",
+      "priority": "P0",
+      "brief_summary": "提出 FORESIGHT 双流架构：两个共享权重与 KV cache 的 Siamese LLM，一流持续处理流式 token，另一流超前预测未来上下文并规划「何时再推理、查什么、采样多密」，经 schema 引导解码与轻量 diff 在线重配置，无需重训即可动态调整感知计算。",
+      "relevance_reason": "直接落在动态计算、LOOK/STOP 决策与流式 VLM 推理状态更新主线上：未来预期驱动的计算规划、瞬时证据与持久控制分离、证据晚到时收益更大，均可供核查「前瞻预测能否作为何时推理与获取证据的控制信号」及缓存/超前的贡献。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-05T21:15:53.528072+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

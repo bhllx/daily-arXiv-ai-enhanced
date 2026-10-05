@@ -1,0 +1,84 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.03087",
+  "input_sha256": "23bd268514b68cd61924c62821b75eef0702284f07b0b22fc3c2725f67808cfb",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-05T21:16:02.107633+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1835,
+        "output_tokens": 181,
+        "total_tokens": 2016,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.03087",
+    "title": "Zephon: Elastic Determinism for Online, Stateful Foundation Model Data Loading Pipelines",
+    "authors": [
+      "Maximilian Böther",
+      "Josh Wills",
+      "Ties Robroek",
+      "Sonnet Xu",
+      "Paul Burstein",
+      "Daniel Zayas",
+      "Cody Blakeney",
+      "Siddharth Joshi",
+      "Haoli Yin",
+      "Rishabh Adiga",
+      "Haakon Mongstad",
+      "Luke Merrick",
+      "Pratyush Maini",
+      "Ari Morcos",
+      "Matthew Leavitt",
+      "Ana Klimovic",
+      "Bogdan Gaza"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.AI",
+      "cs.DB"
+    ],
+    "comment": "preprint; currently under revision at VLDB'27",
+    "summary": "Deterministic data loading is important for foundation model development: model researchers need confidence that differences they observe across costly ablations are caused by the parameter they changed rather than non-determinism in the training data sequence. The data loader must provide elastic determinism, i.e., a deterministic sequence of global training data batches despite changes to the GPU topology across runs (e.g., due to GPU scarcity), frequent checkpoint-resume cycles, and different data processing execution backends. Achieving this is difficult because modern foundation model data pipelines tokenize, pack, and mix samples online, introducing stateful n-to-m transformations that break sample indexing. Existing data loaders largely assume indexable 1-to-1 pipelines, and the common workaround of offline materialization is expensive and, for some modalities such as video, infeasible.\n  We present Zephon, a data loader for foundation models that supports online, stateful pipelines while providing elastic determinism and efficient resumption from checkpoints. It partitions the global stream into topology-independent lanes, serializes ordering decisions while parallelizing stateless work on interchangeable backends, and checkpoints only bounded in-flight state so recovery cost does not grow with training progress. We evaluate Zephon on text and vision-language workloads and show that it achieves competitive throughput while providing a combination of guarantees that no existing loader offers for online, stateful pipelines.",
+    "abs": "http://arxiv.org/abs/2610.03087v1",
+    "pdf": "https://arxiv.org/pdf/2610.03087v1",
+    "AI": {
+      "category": "EXCLUDE",
+      "priority": "NONE",
+      "brief_summary": "提出 Zephon，一个面向基础模型训练的数据加载器，通过划分拓扑无关的 lane、串行化顺序决策并仅检查点有界在途状态，实现在线有状态数据管线下的「弹性确定性」与高效断点恢复。",
+      "relevance_reason": "该工作关注训练数据加载的确定性与恢复成本，属数据工程基础设施，未涉及视觉推理状态、证据使用或停止决策等 LVR 问题，且无具体可迁移线索，故排除。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-05T21:16:02.107633+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

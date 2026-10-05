@@ -1,0 +1,72 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.02516",
+  "input_sha256": "3435d621aa068f9e921ca529ec867228aa46d3f59882633c087fdada7b54107e",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-05T21:18:30.334144+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1924,
+        "output_tokens": 174,
+        "total_tokens": 2098,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.02516",
+    "title": "Student-Guided Teacher Distillation for Efficient LLM Task Routing: Positioning Against Jev-Style System-1 Classifiers",
+    "authors": [
+      "Haifeng Wu",
+      "Srinivasan Manoharan",
+      "Jian Wan",
+      "Fangbo Tu",
+      "Junhua Zhao",
+      "Xin Chen"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.AI"
+    ],
+    "comment": "13 pages, 2 figures, 1 table",
+    "summary": "Zero-shot classifiers are useful for routing user requests to specialized LLM tasks, but scoring every request against a large candidate set is expensive: a zero-shot NLI classifier must evaluate one premise-hypothesis pair per label, so cost scales linearly with taxonomy size. We study a student-guided teacher distillation pipeline for a fixed taxonomy of 60 LLM task categories: a compact ModernBERT classifier predicts the full category distribution in one forward pass and retrieves a small top-k candidate set, and a larger DeBERTa-v3 zero-shot NLI classifier reranks only those candidates rather than all 60 labels; the resulting teacher labels iteratively improve the student, which produces sharper candidates for the next round. Unlike generic embedding retrieval or clustering-derived shortlists used in extreme multi-label classification, our candidate generator is trained end-to-end on the target taxonomy and is the same model serving production traffic, distinguishing it from LLM-routing work that routes between candidate models, and from concurrent System-1 encoder-classifier proposals (e.g. TypeSafe AI's Jev and the open-source Laya project) whose training methodology is undocumented or RL-based. Our best student checkpoint reaches 77.5% teacher agreement on a 200-example evaluation set, and preliminary coverage measurements show Coverage@16 of 91-100%, suggesting top-k sets retain most of the teacher's decision-relevant information. We further show truncated top-k teacher scores should not be treated as full 60-class soft targets for KL distillation: zeroing untruncated classes destroys the dark knowledge soft-label distillation depends on, introducing systematic bias rather than a harmless sparse approximation. A complete evaluation, including coverage at multiple k on a held-out set, an embedding-retrieval baseline, and a larger human-reviewed test set, remains in progress.",
+    "abs": "http://arxiv.org/abs/2610.02516v1",
+    "pdf": "https://arxiv.org/pdf/2610.02516v1",
+    "AI": {
+      "category": "EXCLUDE",
+      "priority": "NONE",
+      "brief_summary": "面向 60 类 LLM 任务分类的师生蒸馏级联路由系统：小型编码器一次前向给出全类别分布并召回 top-k，再由大型零样本 NLI 模型仅对候选重排。",
+      "relevance_reason": "属于文本任务路由与蒸馏效率工程，未涉及视觉或多模态推理的 latent 状态、证据使用或停止决策，材料中也没有可供迁移到 LVR 的具体状态/决策线索，故排除。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-05T21:18:30.334144+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

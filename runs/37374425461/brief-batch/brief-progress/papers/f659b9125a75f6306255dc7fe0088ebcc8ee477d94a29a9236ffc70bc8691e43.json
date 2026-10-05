@@ -1,0 +1,73 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.03120",
+  "input_sha256": "41736ba2151f3bb983219d58f7691c2b3a9d968546aa40af74a6fa33f0f287c9",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-05T21:15:54.060147+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1790,
+        "output_tokens": 223,
+        "total_tokens": 2013,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.03120",
+    "title": "In-Distribution Forcing for Long Video Generation at Test Time",
+    "authors": [
+      "Jeongwoo Shin",
+      "Youngyoon Choi",
+      "Sangwoo Jo",
+      "Hyunmog Kim",
+      "Sungjoon Choi",
+      "Joonseok Lee",
+      "Jaewoong Choi",
+      "Jaemoo Choi"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": "Preprint",
+    "summary": "Modern autoregressive (AR) video diffusion models excel at short-horizon video generation, yet generating long videos remains challenging due to drifting, where colors and textures shift, and motion dynamics decay. Existing works primarily rely on KV conditioning, which selects or modifies cached key-value (KV) entries to mitigate drifting. However, we observe that KV conditioning alone is insufficient as it assumes cached KV entries remain in-distribution. This assumption fails beyond the training horizon: nothing constrains the construction of KV entries during rollout, giving rise to the KV-provenance problem where cached entries themselves become out-of-distribution (OOD). To address this, we propose In-Distribution Forcing (ID-Forcing), a test-time framework that aligns both KV caching and KV conditioning with training configurations. Its key mechanism, self-caching, prevents OOD KV entries at their source. Each chunk is cached without attending to prior KV entry, keeping the rolling window exactly in-distribution. Consequently, ID-Forcing seamlessly extends short-horizon models to minute-scale video generation. Extensive evaluations show that our method remains competitive on standard video generation benchmark while substantially outperforming prior work in mitigating drifting, as validated by both our drift metrics and a user study.",
+    "abs": "http://arxiv.org/abs/2610.03120v1",
+    "pdf": "https://arxiv.org/pdf/2610.03120v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "该文研究长视频自回归扩散生成中的漂移问题，指出 KV conditioning 默认缓存 KV 在分布内这一假设在训练视界之外失效，提出测试时框架 ID-Forcing，通过 self-caching 使每段缓存不关注先前 KV，从源头避免 OOD 缓存条目。",
+      "relevance_reason": "KV 来源分布外、缓存窗口构造与条件选择的问题结构与 LVR 中 latent 状态/缓存随 rollout 漂移、latent 相似度受缓存与注意力结构影响等议题可能相通，可供核查其「从源头保持分布内」思路能否迁移到 latent 推理状态的更新与稳定化，但属视频生成远领域。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-05T21:15:54.060147+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

@@ -1,0 +1,72 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.02705",
+  "input_sha256": "496355b127a35b755659fd2a00f15a75e3466eff8322dd5030ee7a0c37bc6cfd",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-05T21:17:41.654184+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1883,
+        "output_tokens": 185,
+        "total_tokens": 2068,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.02705",
+    "title": "MuonIO: Principled Norm-Aware Descent for Embedding Tables and Language Model Heads",
+    "authors": [
+      "Linkai Ma",
+      "Xinyu Luo",
+      "Mengbo Wang",
+      "Ananth Grama",
+      "Petros Drineas",
+      "Brian Bullins"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "The Muon optimizer derives its update rule for hidden linear layers by solving a local linearization of the loss penalized by the spectral norm, motivated by an RMS-stability argument for dense linear layers. Standard Muon implementations, however, exclude the input (embedding table) and output (language model head) layers from this principled treatment, for which they use AdamW instead. We present MuonIO, a single Muon-style update for both of these layers. For the language model head $\\mathbf{L} \\in \\mathbb{R}^{V \\times d}$, we motivate the use of the $2\\to\\infty$ operator norm, due to the Lipschitz continuity of the softmax output geometry, while for the embedding table $\\mathbf{E} \\in \\mathbb{R}^{d \\times V}$, we draw on the $1 \\to 2$ operator norm, based on the one-hot input geometry identified by Bernstein & Newhouse (2025). The identity $\\lVert\\mathbf{L}\\rVert_{2\\to\\infty}=\\lVert\\mathbf{L}^\\top\\rVert_{1\\to2}$ then puts both matrices in the same vocabulary-oriented geometry: MuonIO applies a single normalized-vector rule, which appears as column normalization for $\\mathbf{E}$ and row normalization for $\\mathbf{L}$. Empirical evaluations demonstrate the effectiveness of our approach, with MuonIO reducing I/O optimizer state memory by 50% and I/O update FLOPs by $\\sim$46% compared to Muon for 1B LLaMA pretraining on C4, while also improving validation perplexity.",
+    "abs": "http://arxiv.org/abs/2610.02705v1",
+    "pdf": "https://arxiv.org/pdf/2610.02705v1",
+    "AI": {
+      "category": "EXCLUDE",
+      "priority": "NONE",
+      "brief_summary": "MuonIO 为语言模型的嵌入表与输出头设计统一的范数感知优化更新规则，基于 2→∞ 与 1→2 算子范数做行/列归一化，降低优化器状态内存与更新 FLOPs 并改善预训练困惑度。",
+      "relevance_reason": "属于纯文本预训练的优化器改进，未涉及视觉或多模态推理的内部状态、证据使用、停止决策或 latent 表示问题，也没有可供 LVR 借鉴的状态更新线索，故排除。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-05T21:17:41.654184+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.03491",
+  "input_sha256": "82486b33b220b4814cefd7e811c16ee8a25157cfd03c443a27215b16d533386c",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-05T21:14:45.414616+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1799,
+        "output_tokens": 201,
+        "total_tokens": 2000,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.03491",
+    "title": "Dual-Context Analog Retrieval for Time Series Forecasting",
+    "authors": [
+      "Jung Min Choi",
+      "Ngoc Son Le",
+      "Ibram Abdelmalak",
+      "Vijaya Krishna Yalavarthi",
+      "Lars Schmidt-Thieme"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Most long-term time-series forecasting models map the look-back window directly to the full horizon in a single pass. While efficient, this design does not explicitly identify which historical states are most relevant to different future segments or exploit what followed those states. Analog forecasting addresses this by retrieving past states similar to the present and using their observed continuations, but single nearest matches can be unreliable and overlapping patches may produce redundant candidates. We propose DuoTS, a Dual-Context Time Series forecasting model that uses retrieved evidence without relying on it exclusively. DuoTS first produces a base forecast with a parallel patch encoder and linear prediction head, then progressively refines it one future patch at a time. Each refinement combines two views: a current context that attends to recent tokens and captures the latest dynamics, and a detail context that provides distinct retrieved analogs together with their subsequent trajectories. Patch-wise refinement allows the model to balance these views across the forecast horizon and associate each future segment with evidence appropriate to its temporal distance from the present. Experiments on multiple real-world datasets show that DuoTS achieves state-of-the-art performance, while ablations confirm the contribution of each context. The refinement mechanism is also model-agnostic, requiring only an encoded look-back window and the future-patch position, and can therefore be integrated into existing forecasting models.",
+    "abs": "http://arxiv.org/abs/2610.03491v1",
+    "pdf": "https://arxiv.org/pdf/2610.03491v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "提出 DuoTS 时间序列预测模型：先用 parallel patch encoder 与线性头生成基础预测，再逐个未来 patch 精修，每步融合「当前上下文」与检索到相似历史状态及其后续轨迹的「细节上下文」两种视角，在多个真实数据集上取得领先表现。",
+      "relevance_reason": "与 LVR 非直接相关，但其「检索证据与其后续轨迹作为独立上下文、按预测距离分 patch 融合」的机制，可能为 latent 推理中的证据筛选、支持组合与停止/获取决策提供可核查的类比。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-05T21:14:45.414616+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

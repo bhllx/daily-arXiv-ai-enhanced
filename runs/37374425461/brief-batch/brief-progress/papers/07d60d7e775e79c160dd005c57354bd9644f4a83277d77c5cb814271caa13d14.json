@@ -1,0 +1,71 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.02395",
+  "input_sha256": "b6204c0efb7ce9f6acb9cf973120db21ece2e061b546786431c98f3a5e2edbd3",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-05T21:18:59.419676+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1859,
+        "output_tokens": 212,
+        "total_tokens": 2071,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.02395",
+    "title": "FlashSinkhorn 2: Block-Sparse Entropic Optimal Transport",
+    "authors": [
+      "Felix X. -F. Ye",
+      "Yu Chin Fabian Lim",
+      "Naigang Wang",
+      "Davis Wertheimer"
+    ],
+    "categories": [
+      "cs.AI",
+      "astro-ph.IM",
+      "math.NA"
+    ],
+    "comment": null,
+    "summary": "Streaming GPU solvers for entropic optimal transport (EOT), such as FlashSinkhorn, avoid storing the dense kernel but still evaluate all $n\\times m$ point pairs in every Sinkhorn iteration. We present \\textbf{FlashSinkhorn~2} (FS2), a solver for squared-Euclidean cost on low-dimensional point clouds that solves large discrete EOT problems to a prescribed marginal residual on a single GPU by coupling two stages. A coarse stage solves on cell centroids, lifts the potentials to every point and, when a sampled marginal check rejects the lift, continues on the centroids, replacing most point-level updates. A block-sparse fine stage then removes the centroid error that coarse updates cannot. Its Morton-ordered blocks support screening and fused tensor-core execution, and a threshold set by the block masses bounds each omitted tile's contribution to every row and column. On synthetic benchmarks, FS2 reaches the target residual on all 32 problems and GeomLoss multiscale on 10. On one A100, FS2 solves discrete EOT between two $1.34\\times10^8$-particle measures from a cosmological $N$-body simulation, at an entropic blur equal to the mean interparticle distance, to an all-particle marginal residual below 0.01 in under 2.5 hours. To our knowledge, it is the largest discrete EOT problem solved to this accuracy within hours. For reproducibility, we release an open-source implementation at https://github.com/ot-triton-lab/flash-sinkhorn",
+    "abs": "http://arxiv.org/abs/2610.02395v1",
+    "pdf": "https://arxiv.org/pdf/2610.02395v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "该论文提出 FlashSinkhorn 2，一种在单 GPU 上求解低维点云平方欧氏代价熵正则最优传输的流式求解器：先用粗阶段在网格质心上更新势并做采样边缘检验，再以块稀疏细阶段消除质心误差，从而在小时级求解超大规模离散 EOT。",
+      "relevance_reason": "粗—细两级势更新、按质量阈值筛选块并跳过大部分点对，可能为 LVR 中动态计算分配、视觉证据筛选与停止决策提供借鉴；但其对象是最优传输求解器而非 VLM 推理，联系需核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-05T21:18:59.419676+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

@@ -1,0 +1,67 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.02363",
+  "input_sha256": "59b1192f82fc36269aa1d14139f999ab30b8c0a0f2c7a764b0e573e9122de964",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-05T21:19:08.101441+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1870,
+        "output_tokens": 246,
+        "total_tokens": 2116,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.02363",
+    "title": "ArrivalBench: Agent-Generated Data Pipelines Are Correct Once and Wrong Under Time",
+    "authors": [
+      "Pranay Kothari"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.DB"
+    ],
+    "comment": "Accepted as a poster at the NeurIPS 2026 Workshop \"Who Verifies the Agents?\". 20 pages",
+    "summary": "Benchmarks for agent-generated data work grade a pipeline by running it once against a fixed snapshot. ArrivalBench instead re-executes the pipeline an agent leaves behind under adversarial but replayable delivery schedules (late, duplicated, out-of-order and retried records) and requires its final state to equal a batch recomputation of the complete log. Because the oracle recomputes rather than classifies, a wrong table and a crash are distinct verdicts: a crash is visible to monitoring a team already runs, and a wrong table is not. On 40 tasks we built, our reimplementation of single-execution grading certifies 86-100% of the pipelines eleven models produce; re-executing the same artifacts finds 7.0-79.2% of the certified ones silently wrong. The gap is not produced by the repair loop: within the same model and task, pipelines repaired against the snapshot test fail replay about as often as those that passed it first time. In every model, idempotency hazards fail more often than ordering hazards. Separating a wrong answer from a crash also changes how interventions read: a hazard warning cuts one model's silent failure from 48.2% to 10.5% while raising its crash rate from 9.0% to 37.0%, so all-in failure moves only from 51.0% to 44.0%. All eleven arms were independently re-run, and rates moved by at most 5.9 points.",
+    "abs": "http://arxiv.org/abs/2610.02363v1",
+    "pdf": "https://arxiv.org/pdf/2610.02363v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "ArrivalBench 提出对 agent 生成的数据管道进行可重放的对抗性投递调度（迟到、重复、乱序、重试）再执行，并以批量重算完整日志作为判定标准，从而区分「静默错误表」与「崩溃」两类失败；在 40 个任务与 11 个模型上，单次执行评分认为通过的管道中大量被检出静默错误。",
+      "relevance_reason": "该工作把「一次通过」与「在扰动下仍正确」分离，并提供静默错误与崩溃的区分及重放式判定，可能启发 LVR 中潜在推理状态的稳定性评价、停止/重算决策与验证信号设计，属较远领域的概念借鉴，需核查其调度扰动与判定口径的可迁移性。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-05T21:19:08.101441+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

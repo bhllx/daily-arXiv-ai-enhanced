@@ -1,0 +1,67 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.02981",
+  "input_sha256": "306dd7dd38fa16ffbc2b3a53759d7cb55054ef5fa8dc5690fbc759f330ebd1ec",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-05T21:16:30.511190+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1845,
+        "output_tokens": 188,
+        "total_tokens": 2033,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.02981",
+    "title": "Safeguarding Mutual Correction in Source-Free Domain Adaptation via Cut Statistics",
+    "authors": [
+      "Seongjun Lee",
+      "Changhee Lee"
+    ],
+    "categories": [
+      "cs.AI"
+    ],
+    "comment": "Accepted at NeurIPS 2026",
+    "summary": "Source-Free Domain Adaptation (SFDA) aims to adapt a source-pretrained model to an unlabeled target domain without access to the original source domain. While early single-model approaches rely on self-refinement, they are inherently susceptible to confirmation bias and struggle to correct their own systematic errors. To overcome this limitation, recent methods introduce Vision-Language (ViL) models as external knowledge sources. However, these approaches operate in a largely unidirectional paradigm, using the ViL model primarily to supervise the source-pretrained model. This overlooks a key structural property: the two models exhibit distinct failure modes -- where one produces an incorrect prediction, the other may produce a correct one, creating a natural opportunity for mutual correction within the target domain. Yet, without ground-truth labels, identifying which model is correct on any given sample is non-trivial, and naively exchanging predictions risks propagating errors across models. To address this challenge, we propose SafeCut, a novel approach that leverages the cut statistic as a label-free measure of prediction reliability to gate cross-model supervision. Our approach dynamically controls both the direction and strength of supervision based on relative reliability, selectively amplifying true corrections while suppressing miscorrections on a per-sample basis. We further provide theoretical justification showing that this reliability-gated mechanism guarantees a net-positive correction signal. Extensive experiments across diverse SFDA benchmarks demonstrate that SafeCut achieves state-of-the-art performance, highlighting the effectiveness of safeguarding mutual correction in SFDA via cut statistics.",
+    "abs": "http://arxiv.org/abs/2610.02981v1",
+    "pdf": "https://arxiv.org/pdf/2610.02981v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "该论文研究无源域自适应，提出 SafeCut：用无需标签的 cut statistic 衡量预测可靠性，据此门控 VLM 与源预训练模型之间的双向监督方向与强度，以减少错误传播。",
+      "relevance_reason": "其「无标签可靠性度量决定是否信任某路预测并据此加权监督」的思路，可能与 LVR 中视觉证据筛选、latent 内容可信度评估及贡献分配问题相通，可供核查；但该文面向域自适应而非多模态推理状态生成。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-05T21:16:30.511190+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}
