@@ -1,0 +1,78 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.05161",
+  "input_sha256": "d6fc44f1f2364a2f94adc901fd77385b40ddf577d45be4f3e1bc5637bfaf7e55",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-06T19:10:25.696625+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1861,
+        "output_tokens": 222,
+        "total_tokens": 2083,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.05161",
+    "title": "Beyond Instruction Following: Learning Grounded Skill-Following with Skill Contracts",
+    "authors": [
+      "Jianghan Shen",
+      "Zhenjie Liu",
+      "Yue Li",
+      "Jie Huang",
+      "Siqi Luo",
+      "Yiming Cheng",
+      "Yizhi Yao",
+      "Kaijie Zhang",
+      "Cheng Tang",
+      "Minghui Zhang",
+      "Ming Hu",
+      "Yirong Chen",
+      "Ziyan Huang"
+    ],
+    "categories": [
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "Instruction following typically enforces discrete, response-level requirements, whereas an expert-authored skill prescribes procedural requirements spanning multiple phases and environment interactions. Given such a skill, we train the executor to execute all required phases instead of focusing solely on the final answer. We therefore introduce Grounded Skill-Following, which requires an agent to execute a fixed, expert-authored skill across its required phases by grounding decisions in environment observations. To achieve verifiable procedural execution, we formulate each skill as a skill contract combining visible skill instructions with an explicit contract runtime. The runtime specifies required phases, admissible actions, permitted transitions, and accepted termination. This structure provides a dense, verifiable training signal throughout execution. We leverage this by introducing Verified Progress Credit, which assigns rewards upon the initial completion of contract milestones and aggregates them into the trajectory return to guide policy optimization. During rollout, the contract runtime continuously tracks state transitions to provide Contract-State Feedback, which indicates whether the latest action is accepted and guides the agent toward valid next actions. To measure procedural compliance, we introduce the Protocol Completion Rate (PCR), defined as reaching accepted termination through all required phases, and decouple it from the final Task Outcome. Jointly trained with our framework, Qwen3.5-4B achieves Protocol Completion Rates of 99.27% on Math and 99.96% on Search, while slightly outperforming original baselines in Task Outcome (82.95% and 46.61%, respectively). Controlled studies examine how skill instructions, training signals, and contract-state feedback affect both metrics, while withholding interventions evaluate behavioral dependence on observation content.",
+    "abs": "http://arxiv.org/abs/2610.05161v1",
+    "pdf": "https://arxiv.org/pdf/2610.05161v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "该工作提出 Grounded Skill-Following：把专家技能写成含阶段、允许动作、转移与终止条件的「skill contract」，用合约运行时提供稠密过程奖励（Verified Progress Credit）与状态反馈，训练 agent 按阶段执行而非只求最终答案，并用 Protocol Completion Rate 度量程序合规性。",
+      "relevance_reason": "其「合约状态」与「合约状态反馈」可视为一种显式外部状态与停止/终止判据，可能启发 LVR 中 STOP 决策、阶段化过程监督与「答案是否真正使用内部状态」的对照评价，但论文不涉及多模态或 latent 表示，需人工核查迁移价值。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-06T19:10:25.696625+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

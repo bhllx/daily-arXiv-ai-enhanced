@@ -1,0 +1,82 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.06342",
+  "input_sha256": "4bea643b36b3fafbfdb7b47bd4bd2979539fffb59b4a9e43ef029007b787407b",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-06T19:04:34.073976+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1808,
+        "output_tokens": 191,
+        "total_tokens": 1999,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.06342",
+    "title": "MeSD: Multi-Evidence Self-Distillation for VideoLLM",
+    "authors": [
+      "Weijie Zhu",
+      "Han Fang",
+      "Hanyu Fu",
+      "Yuzhe Zhang",
+      "Xin Wei",
+      "Zhaoyan Pan",
+      "Feiran Liu",
+      "Xunjie Jin",
+      "Hongbo Sun",
+      "Zhiyu Lin",
+      "Tianyi Gao",
+      "Tianyi Ding",
+      "Ye Yuan",
+      "Zhongjiang He",
+      "Hao Sun",
+      "Zhiheng Wu"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "While reinforcement learning with verifiable rewards provides reliable outcome supervision for VideoLLMs, sequence-level rewards offer limited token-level guidance. On-policy self-distillation addresses this limitation by conditioning a self-teacher on privileged information to provide dense token-level supervision. However, aggregating heterogeneous evidence within a single teacher context obscures cross-evidence agreement and conflict. A further challenge lies in determining whether teacher guidance should refine reward-based updates or provide corrective supervision for failed trajectories. To address these issues, we propose MeSD, a multi-evidence self-distillation framework for VideoLLMs. MeSD constructs three evidence-conditioned teachers with shared parameters, using the ground-truth answer as a common semantic context while separately incorporating temporal and spatial evidence. Given the same student-generated prefixes, MeSD evaluates evidence-specific preferences relative to the Answer Teacher and fuses teacher-common preferences with gated teacher-specific residuals. Furthermore, MeSD introduces Verification-Guided Optimization to classify trajectories as Success, Failure, or Indeterminate. For Success and Indeterminate trajectories, MeSD refines token-level advantage magnitudes while preserving reward-derived signs. For verified failure trajectories that contain the required evidence, MeSD applies failure-conditioned distillation, using reverse-KL correction toward the fused distribution. Experiments on multiple video benchmarks demonstrate consistent gains over reinforcement learning and self-distillation baselines.",
+    "abs": "http://arxiv.org/abs/2610.06342v1",
+    "pdf": "https://arxiv.org/pdf/2610.06342v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "MeSD 面向 VideoLLM，用共享参数的多证据教师（共享答案语义上下文，再加时间与空间证据）融合偏好，并按轨迹成功/失败/不确定状态分别调整 token 级优势或施加反向 KL 纠正。",
+      "relevance_reason": "其「多证据教师 + 门控融合 + 轨迹验证分派监督」的线索，可能可供核查 latent 推理中的证据筛选、贡献分配与失败轨迹纠正监督设计，但偏训练期视频任务，与 LVR 的具体关联尚需阅读原文确认。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-06T19:04:34.073976+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.04664",
+  "input_sha256": "0fb7a9ad499f6f47f9493bb8e4b584797b9b8fea359ad01576c2e710e64b2cdb",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-06T19:12:41.526160+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 2028,
+        "output_tokens": 179,
+        "total_tokens": 2207,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.04664",
+    "title": "FLASHSWIN: Unlocking Large Windows and Dense Tokens in Swin Vision Transformers with Memory Efficient Attention",
+    "authors": [
+      "Tushar Kataria",
+      "Gerald Sabin",
+      "Ponnuswamy Sadayappan",
+      "Shireen Y. Elhabian"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": null,
+    "summary": "High-resolution vision backbones have long been forced to trade away local token density to afford larger receptive fields. Hierarchical Swin transformers impose this compromise because standard windowed attention materializes an $M^2\\times M^2$ score matrix per window, incurring $O(M^4)$ memory as windows or token grids grow. Furthermore, Swin adds a learned relative-position bias elementwise to attention scores, requiring full materialization of the score matrix and its gradient. This keeps Swin and SwinV2 trapped in a small-window($M=8,16$), coarse-token regime with patch size $4\\times4$ ($p=4$), limiting performance for fine-grained tasks. We introduce FLASHSWIN, which replaces standard windowed attention with a FlashAttention implementation that computes exact softmax attention without materializing the score matrix, reducing per-window memory from $O(M^4)$ to $O(M^2)$. This enables higher token density and larger receptive fields without inflating memory overhead. Training memory is flat across window sizes: at a $32\\times32$ window, FLASHSWIN-T requires only $12.4$\\,GB, unchanged from $8\\times8$, compared to $70/90$\\,GB for SwinV2/V1-T. However, applying FlashAttention directly to Swin creates a trade-off: bypassing the score matrix precludes Swin's additive relative-position bias, forfeiting spatial information in exchange for memory efficiency. FLASHSWIN restores position information as window-local learnable 2D RoPE, making large windows and dense token grids both affordable and accurate. At matched scale, FLASHSWIN-T outperforms Swin variants. With dense tokens and wide windows ($p=2,M=32$), the same Tiny model reaches $84.1\\%$ ImageNet-1K, $44.1$ COCO box AP, and $47.28$ ADE20K mIoU---gains of $+1.3$, $+5.1$, and $+1.82$ over SwinV2-T at $M=16$, respectively. At fixed $M=32$, halving the patch size yields roughly $3\\times$ larger gains in boundary quality than in mIoU.",
+    "abs": "http://arxiv.org/abs/2610.04664v1",
+    "pdf": "https://arxiv.org/pdf/2610.04664v1",
+    "AI": {
+      "category": "EXCLUDE",
+      "priority": "NONE",
+      "brief_summary": "FLASHSWIN 用 FlashAttention 替换 Swin 的窗口注意力以避免物化注意力分数矩阵，并用窗口内可学习 2D RoPE 补偿相对位置偏置，从而支持大窗口与稠密 token 的高分辨率视觉骨干训练。",
+      "relevance_reason": "该工作是视觉骨干的注意力算子与位置编码效率改进，未涉及多模态 latent 推理状态、证据筛选、停止决策或训练贡献分配，与 LVR 主线缺少具体联系。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-06T19:12:41.526160+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

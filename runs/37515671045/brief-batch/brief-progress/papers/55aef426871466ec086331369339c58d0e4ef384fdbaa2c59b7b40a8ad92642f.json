@@ -1,0 +1,71 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.04867",
+  "input_sha256": "a79dd12fc686c7c2437002dcbe5f9e41b0e1de9fde5a8463679dc0a093ec0003",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-06T19:11:51.451718+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1956,
+        "output_tokens": 233,
+        "total_tokens": 2189,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.04867",
+    "title": "Greedy Local Learning for Language Model Pretraining: Gaps and Objective Design",
+    "authors": [
+      "Jihwan Moon",
+      "Sheir A. Zaheer",
+      "Jinmyoung Lee",
+      "Gunhee Kim",
+      "Chan Y. Park"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.AI"
+    ],
+    "comment": "Accepted at the NeurIPS 2026 Workshop on Collaborative, Open, and Decentralized Training of Foundation Models (CODEC-FM). 13 pages, 3 figures, 8 tables",
+    "summary": "Greedy block-wise local learning splits a network into gradient-isolated blocks trained by local auxiliary losses, deleting the backward pass between blocks: inter-stage communication becomes forward-only and every block can step its optimizer independently, properties directly relevant to decentralized model-parallel training. Local learning is competitive with end-to-end backpropagation on image classification, and on small Transformers it is known to trade a worse best loss for parallel speedup. How this loss gap behaves in autoregressive language model (LM) pretraining at larger scale, and which auxiliary designs reduce it, has not been measured. We present a token-budget-matched empirical study at 125M and 400M parameters with $K \\in \\{1,2,4\\}$ blocks at Chinchilla-optimal budgets, factorizing the auxiliary design into network architecture and training objective. We observe: (i) the gap to end-to-end training more than doubles from $K=2$ to $K=4$, but at $K=4$ shrinks from 125M to 400M; (ii) replacing an MLP auxiliary with a Transformer-based one is a strong network-side intervention, recovering 22-41% of the gap; (iii) a multi-token-prediction (MTP) auxiliary objective helps at the first block boundary, whereas adding it at deeper boundaries hurts, and restricting it to the first block yields the best $K=4$ configuration ($+0.062$ vs. $+0.075$ nats at 400M); and (iv) deployment-style per-block execution reduces activation memory by up to $2.2\\times$. We frame these results as an empirically grounded method direction rather than a finalized method: local objectives should apply future-predictive pressure selectively across boundaries while resisting shortcuts that bypass predictive content.",
+    "abs": "http://arxiv.org/abs/2610.04867v1",
+    "pdf": "https://arxiv.org/pdf/2610.04867v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "该文在 125M 与 400M 自回归语言模型预训练中，用 token 预算对齐的对照实验研究贪心分块局部学习与端到端反向传播的损失差距，并把辅助设计分解为网络结构与训练目标；发现模块数增加会扩大差距，但可用 Transformer 辅助头和仅置于首个边界的多 token 预测目标部分弥补。",
+      "relevance_reason": "与 LVR 主线的连接是间接的：其「辅助目标施加于哪些边界、抑制绕过预测内容的捷径」以及逐块执行降激活内存的分析，可为 latent 推理中状态更新位置、监督贡献分配与计算成本权衡提供方法线索，但需人工核查其与视觉或多模态推理的可迁移性。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-06T19:11:51.451718+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

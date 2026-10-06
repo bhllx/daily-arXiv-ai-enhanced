@@ -1,0 +1,73 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.04375",
+  "input_sha256": "b5e80bb055b2b9df19d74a2488b35718b32b06628a36e09b0cbcbaefc36ea9fa",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-06T19:13:49.036373+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1949,
+        "output_tokens": 194,
+        "total_tokens": 2143,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.04375",
+    "title": "Do Tool Calls Execute as Intended? Measuring and Repairing Intent-Execution Correspondence in LLM Agents",
+    "authors": [
+      "Boyang Yang",
+      "Zhenhao Li",
+      "Ziyao Yang",
+      "Kanghui Jia",
+      "Xin Yin",
+      "Mingmou Liu",
+      "Haoye Tian"
+    ],
+    "categories": [
+      "cs.AI",
+      "cs.SE"
+    ],
+    "comment": null,
+    "summary": "Agents built on large language models (LLMs) build and run software through tool calls. A call reaches its program through several hops, and any hop can change the call without notice. When the changed call fails, the agent retries a correct call, which costs users time and money. Benchmarks and failure analyses do not see the change, because they read the call and its result but not what a hop received. We define intent-execution correspondence (IEC) as the property that the executed action matches the action the emitted call denotes under the tool contract. Our protocol observes what each hop received without executing the call, and names the first hop that changed it by the receiver's own parser. IntAct then delivers the call in a form that this hop cannot alter, or refuses the call. We build IEC-Bench from the changes observed in real-world use, with chains of dependent calls under the execution paths of 4 widely-used harnesses.\n  In 47,828 shell calls within production sessions, Claude Code's Bash tool changes 12.0% of the calls that carry code, escape sequences, or long text. For 80.7% of the calls whose backslashes are changed, the wrong action runs without any reported error. All 10 measured harnesses change a call. Trajectory-based judgment attributes 95.1% of the production failures to the LLM, although the path caused more than half of them. On IEC-Bench, the path raises the token cost per passed task 2.4 times (up to 12.3 times). A hop that changes a call also hides the changes after it, so 55.1% of the failures on one path appear only after its first hop is repaired. IntAct, deployed in a commercial product, recovers 79.2% of the failures with a changed call. Harnesses should therefore be designed and tested hop-by-hop to ensure a correct call executes as intended or is refused.",
+    "abs": "http://arxiv.org/abs/2610.04375v1",
+    "pdf": "https://arxiv.org/pdf/2610.04375v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "论文研究 LLM 智能体工具调用在多层传递中发生的语义改变，提出 intent-execution correspondence 概念、逐跳观测协议与原位修复方法 IntAct，并用生产日志和 IEC-Bench 量化失败率与成本。",
+      "relevance_reason": "虽非视觉推理，但其「执行意图与观测到的状态/动作是否一致」以及轨迹式判断把路径问题误归给模型的分析，可能可供核查 LVR 中 latent 状态是否真正被用于答案、以及失败归因与视觉旁路的问题表述。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-06T19:13:49.036373+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.04864",
+  "input_sha256": "95513be6e4285437f56e38a5cd624bc5290bdbc81d7f08fc41e6bea21ac157f3",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-06T19:11:51.944644+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1872,
+        "output_tokens": 203,
+        "total_tokens": 2075,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.04864",
+    "title": "Enhancing Long-Video VLM Embeddings with Query-Aware Streaming Latent Reasoning",
+    "authors": [
+      "Haozhe Chi",
+      "Song Jin",
+      "Yang Jin",
+      "Yadong Mu"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "Long-video embedding requires capturing sparse query-relevant evidence under a limited visual-token budget. Uniform sampling can miss brief events in videos spanning minutes or hours, whereas encoding more frames in a single context increases memory and computation. We introduce \\textbf{Query-Aware Streaming Latent Reasoning} (QASLR), a post-training framework that accumulates evidence across clips while keeping the embedding size fixed. QASLR selects a bounded set of frames, restores their temporal order, and processes them clip by clip with a vision-language backbone. A compact set of persistent think tokens cross-attends to each clip's features, while an embed token reads out a normalized representation after every update. This design integrates evidence across multiple backbone calls without requiring all selected frames to share a single context. Training combines final contrastive learning, step-wise contrastive supervision, and final-embedding self-distillation. Intermediate supervision trains partial-video readouts for retrieval, while self-distillation regularizes them toward the final representation. Query-aware selection produces query-conditioned representations for candidate-set scoring and reranking, whereas query-independent selection enables reusable corpus indexing. Under the full training recipe, HourVideo retrieval Hit@1 increases from 54.2 to 70.7 and from 57.4 to 72.8 for 2B and 8B Qwen3-VL-Embedding backbones, respectively. Gains extend to the evaluated moment-retrieval and video-QA tasks, and the streaming head transfers to a second Qwen-family embedding backbone. These results support streaming latent aggregation as an effective approach to integrating long-video evidence into fixed-dimensional representations.",
+    "abs": "http://arxiv.org/abs/2610.04864v1",
+    "pdf": "https://arxiv.org/pdf/2610.04864v1",
+    "AI": {
+      "category": "MAIN",
+      "priority": "P1",
+      "brief_summary": "论文提出 QASLR 后训练框架，用一组持久 think token 逐片段交叉注意视频特征，并在每次更新后用 embed token 读出固定维度表示，从而在有限视觉 token 预算下把长视频证据聚合进嵌入，配合终态对比、逐步对比监督和自蒸馏训练。",
+      "relevance_reason": "直接对应 LVR 的表示与状态更新问题：多轮 backbone 调用间的 latent 状态累积、查询相关的证据筛选，以及逐步读出与终态表示的关系，可用于核查视觉证据筛选、latent 内容是否被真正使用及动态计算成本。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-06T19:11:51.944644+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

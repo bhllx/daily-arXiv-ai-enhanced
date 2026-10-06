@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.04670",
+  "input_sha256": "afeea1f87217702294cc62954f1e5eaded38b23996d28a30d2317f266a186ed1",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-06T19:12:40.048229+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1992,
+        "output_tokens": 247,
+        "total_tokens": 2239,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.04670",
+    "title": "A Tropical Geometry View of Forgetting: A Per-Unit Projector for Knowledge-Preserving Fine-Tuning",
+    "authors": [
+      "Yuyang Zhang",
+      "Xiaoyin Chen",
+      "Chunlin Ren",
+      "Qihuang Zhang"
+    ],
+    "categories": [
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "Fine-tuning a language model on new text degrades what it already does. Replay-free projectors such as Adam-NSCL and GPM forbid one shared subspace of a layer's inputs in every row of the update. The tropical geometry of a ReLU layer shows why this is too coarse. In data space, the units' walls are tropical hypersurfaces whose cells are dual to the upper vertices of a zonotope; in weight space, each old token is a hyperplane, and the tokens cut out a polyhedron, the closure of the weights that keep every token on its side. An exact identity joins the two pictures: the squared change of the layer's output under any weight change splits into in-cell, open-to-closed and closed-to-open terms, and the first two live on the tokens each unit fires on. The identity names a gate-aware per-unit projector, and a budget-separation theorem prices exact protection: it costs a unit the rank of its own open tokens, while a shared subspace pays at least the rank of their union in every row. On OPT-1.3b, where 96% of (token, unit) pairs are closed, the projector forgets less than Adam-NSCL at all six matched budgets from 9 to 60 constrained directions per row, the gap widening from $1.1\\times$ to $4.3\\times$; with 1/5.5 of the directions it halves the forgetting of Adam-NSCL at GPM's energy threshold. On OPT-6.7b, it matches Adam-NSCL's forgetting at matched budget while learning more. As the theory predicts, the open/closed partition is the operative variable: open tokens beat random, sign-blind and anti-gate token sets on 18 of 18 seed-pairs. In pruning repair, every derivative-based local model of the output error at the dense weights is blind to pairs that open: the minimisers of the gate-weighted objective can leave the polyhedron, the objective's closed-form solution is 1.94 nats worse than no repair on OPT-1.3b, and a convex one-sided penalty bounds the escape.",
+    "abs": "http://arxiv.org/abs/2610.04670v1",
+    "pdf": "https://arxiv.org/pdf/2610.04670v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "该论文用热带几何刻画 ReLU 层微调中的遗忘：把旧 token 视为权重空间中的半空间，将权重更新分解为单元内、开-闭、闭-开三类项，并据此提出逐单元、门控感知的投影器，在 OPT 模型上验证其比 Adam-NSCL 等共享子空间方法遗忘更少。",
+      "relevance_reason": "其按单元激活/门控状态划分更新子空间、并给出「精确保护代价＝该单元开放 token 的秩」的预算分离结论，可能为 LVR 中 latent 状态随层/单元变化的内容保留、贡献分配与缓存粒度提供概念工具，可作为表示与训练监督设计的远域借鉴，尚需核查是否可迁移到多模态内部推理状态。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-06T19:12:40.048229+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

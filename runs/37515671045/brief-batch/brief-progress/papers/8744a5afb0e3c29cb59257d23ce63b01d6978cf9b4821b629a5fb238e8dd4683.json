@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.06241",
+  "input_sha256": "41be582dd2dee2b6e11d7419002829ca45a1e47ba122337c396e9ee801d420f8",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-06T19:05:12.213034+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1924,
+        "output_tokens": 187,
+        "total_tokens": 2111,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.06241",
+    "title": "Few-Shot Prototype Head Adaptation for On-Device ECG Personalization on PSoC~6",
+    "authors": [
+      "Guilherme Silva",
+      "Pedro Silva",
+      "Gladston Moreira",
+      "Eduardo Luz"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "Wearable and bedside electrocardiogram (ECG) monitors must adapt to patient-specific morphology to maintain arrhythmia detection accuracy across users, yet personalization is typically performed offline and cannot account for individual physiology, electrode placement, or recording drift. On-device adaptation by backpropagation is expensive for microcontroller-class medical devices because it requires an optimizer state, repeated backward passes through convolutional layers, and labeled arrhythmic beats that may not be available at deployment time. This letter proposes prototype-only head adaptation as a compact personalization primitive for TinyML ECG systems. A one-dimensional convolutional neural network (1-D CNN; 1,314 parameters and 72.6k multiply-accumulate operations per beat) is trained offline on the MIT-BIH Arrhythmia Database under an inter-patient protocol, frozen as a feature extractor, and exported to a PSoC 6 microcontroller. Patient-specific adaptation then reduces to computing closed-form class means in a 32-dimensional embedding space, requiring no convolutional backward pass, no iterative optimization, and only one forward pass per support beat. Prototype adaptation improves inter-patient macro-F1 from 0.635/0.639/0.646 to 0.731/0.771/0.797 at 1/5/10-shot, outperforming linear stochastic-gradient-descent (SGD) head fine-tuning at every shot count for the target tiny backbone. On-device replay over 18 one-shot episodes on a PSoC 6 Cortex-M4F matches the host macro-F1 for the prototype head (0.798), with 11.39 ms per beat, 5.2 KB flash, and 22.2 KB SRAM. A restricted variant that updates only the normal-class prototype from passively buffered sinus beats yields a consistent +0.05 macro-F1 gain, reducing the annotation burden during initial",
+    "abs": "http://arxiv.org/abs/2610.06241v1",
+    "pdf": "https://arxiv.org/pdf/2610.06241v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "该论文提出在微型设备上对冻结的 1-D CNN 特征提取器仅做原型（class mean）头部适配，以少量支持样本实现 ECG 个性化，避免卷积反向传播与迭代优化。",
+      "relevance_reason": "与 LVR 主线无直接关系，但其「冻结表示 + 闭式原型读取 + 被动缓冲样本更新」的做法，可能为 LVR 中 latent 状态如何被轻量读取、以及支持样本筛选与标注成本的权衡提供可核查线索。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-06T19:05:12.213034+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

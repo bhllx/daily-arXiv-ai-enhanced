@@ -1,0 +1,79 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.04198",
+  "input_sha256": "b88346ee610cc23ad2221ce50f543e798b873a660dd0c68bbbb0b5b0b68e1aee",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-06T19:14:34.649530+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1809,
+        "output_tokens": 201,
+        "total_tokens": 2010,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.04198",
+    "title": "ALoDLM: Adaptively Looped Diffusion Language Models",
+    "authors": [
+      "Liancheng Fang",
+      "Zhuowei Li",
+      "Youngeun Kim",
+      "Tianchen Zhao",
+      "Rajat Koner",
+      "Jiaye Wu",
+      "Linghan Xu",
+      "Xuanbai Chen",
+      "Xiang Xu",
+      "Zheng Zhang",
+      "Jakub Zablocki",
+      "Nishant Sankaran",
+      "Yifan Xing"
+    ],
+    "categories": [
+      "cs.AI",
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Diffusion language models (DLMs) enable fast generation by predicting multiple tokens in parallel, but their practical adoption remains limited by a persistent quality gap relative to comparably sized autoregressive (AR) models. We attribute this gap to a computation-difficulty mismatch: within a partially observed sequence, some unknown tokens are easy to predict, while others require substantially more computation. Existing DLMs nevertheless apply uniform computational depth to all unknown positions at each denoising step. We introduce ALoDLM, which replaces uniform computation with token-adaptive latent recurrence. At each denoising step, ALoDLM iteratively refines latent representations and allocates computation according to token difficulty. Tokens ready to commit are fed back as discrete context, while unresolved tokens retain and further refine their latent states through additional recurrent passes. To learn token prediction and computation allocation jointly, we formulate token-wise computation schedules as latent variables and derive a conditional negative evidence lower bound (NELBO). We train ALoDLM at 1.7B and 8B parameter scales. Across eleven benchmarks, ALoDLM outperforms all evaluated DLMs and the corresponding AR baselines in average benchmark score at both scales. ALoDLM also retains fast parallel decoding, yielding a strong quality-efficiency trade-off among evaluated autoregressive and diffusion models under optimized inference engines.",
+    "abs": "http://arxiv.org/abs/2610.04198v1",
+    "pdf": "https://arxiv.org/pdf/2610.04198v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P1",
+      "brief_summary": "该论文提出 ALoDLM，用 token 自适应的 latent 循环替代扩散语言模型中均匀的计算深度：易预测 token 提交为离散上下文，难 token 保留并反复精炼隐状态，并把 token 级计算调度作为隐变量、推导条件 NELBO 联合训练。",
+      "relevance_reason": "虽属纯文本扩散语言模型、不涉及视觉，但其「按难度分配计算、未决 token 保留 latent 迭代精炼」的机制可能为 LVR 中的 THINK/STOP 动态计算与 latent 状态更新提供可核查线索。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-06T19:14:34.649530+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

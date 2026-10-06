@@ -1,0 +1,71 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.05845",
+  "input_sha256": "b46833a89d9b80994099468ca6a6ce391af2e61849a94af6e605c9b03200d77c",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-06T19:07:27.840070+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1846,
+        "output_tokens": 200,
+        "total_tokens": 2046,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.05845",
+    "title": "CACFG: Curvature-Aware Classifier-Free Guidance and Optimal Control",
+    "authors": [
+      "Max Collins",
+      "Dasith de Silva Edirimuni",
+      "Jordan Vice",
+      "Tim French",
+      "Ajmal Mian"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "Diffusion models generate samples by learning to reverse a fixed corruption process, and classifier-free guidance (CFG) is the standard mechanism for conditioning this process on a desired class or prompt. CFG can be applied at varying guidance strengths, and while higher strengths improve image quality and conditional alignment, too high a guidance strength can degrade image quality and diversity. Furthermore, CFG violates principled diffusion sampling dynamics, and existing explanations for why it works despite the violation disagree on the underlying theory or do not extend to deterministic samplers used in practice. We address both these issues. We first frame CFG sampling as a continuous-time optimal control problem, treating the sampling trajectory as a sequence of controls chosen to maximise the probability of the desired condition. Solving the resulting Hamilton--Jacobi--Bellman equation shows that CFG is recovered under specific path costs when using an unconstrained control set. We argue this lack of constraint is responsible for CFG's failure at high guidance strengths, since it permits the sampling path to move arbitrarily far from the current image estimate. To fix this, we propose curvature-aware CFG (CACFG), which constrains the control set to a hypersphere informed by the Gaussian regularisation used when training variational autoencoders. We show that the control inputs produced by CFG sampling routinely violate this bound, and that across diffusion models, datasets, and guidance schedules, CACFG achieves superior generative quality at mid-to-high guidance strengths with a less severe quality-diversity tradeoff than regular CFG.",
+    "abs": "http://arxiv.org/abs/2610.05845v1",
+    "pdf": "https://arxiv.org/pdf/2610.05845v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "该论文把 classifier-free guidance（CFG）的采样过程重新表述为连续时间最优控制问题，用 Hamilton–Jacobi–Bellman 方程说明无约束控制集下 CFG 可被恢复，并提出约束控制集于超球面的 curvature-aware CFG，以缓解高引导强度下的质量退化。",
+      "relevance_reason": "虽研究图像扩散引导而非 VLM 推理，但其把生成轨迹视为受控状态演化、并引入约束控制集的建模方式，可能启发 LVR 中 latent 状态更新的路径约束与引导强度调控问题。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-06T19:07:27.840070+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

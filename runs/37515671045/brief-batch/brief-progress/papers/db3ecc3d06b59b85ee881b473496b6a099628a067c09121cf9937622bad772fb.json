@@ -1,0 +1,68 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.06243",
+  "input_sha256": "625cf567b1036954ff9c5e4290f4c7f2e643ce2b8777eb35857e0b09b8572476",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-06T19:05:09.773223+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1726,
+        "output_tokens": 201,
+        "total_tokens": 1927,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.06243",
+    "title": "RoSA: Rotational Sparse Adaptation for Memory-Efficient Fine-Tuning",
+    "authors": [
+      "Muhammad Azeem Lodhi",
+      "Chao Zhou",
+      "Rebekka Burkholz"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": "Accepted at NeurIPS 2026. 16 pages, 5 figures",
+    "summary": "Parameter-efficient fine-tuning (PEFT) reduces the cost of adapting foundation models by focusing training on a small parameter subset. Complementary to this idea, we introduce RoSA (Rotational Sparse Adaptation), which narrows adaptation to a subset of layers at a time. RoSA freezes lower layers close to the input throughout training and rotates a trainable block over later layers, progressively increasing the number of frozen layers close to the input. This design reduces optimizer-state memory, shortens backpropagation, and even forward propagation if activations at the last frozen layer are cached. Because RoSA is orthogonal to the choice of trainable parameterization, it can be combined with PEFT methods or sparse optimizers within each active block. Experiments across multiple LLM architectures and tasks show that RoSA reduces peak memory while maintaining strong fine-tuning performance.",
+    "abs": "http://arxiv.org/abs/2610.06243v1",
+    "pdf": "https://arxiv.org/pdf/2610.06243v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "提出 RoSA，一种按层块轮换的微调策略：冻结靠近输入的底层，只训练随训练进程后移的可训练层块，从而降低优化器状态内存与反向传播开销，可与 PEFT 方法或稀疏优化器叠加。",
+      "relevance_reason": "纯文本 PEFT 工作，不涉及视觉或多模态推理；其「分层块轮换训练 + 冻结层激活缓存」的逐层渐进式适应思路，可能为 VLM 推理中动态启用/冻结计算层、降低 latent 状态更新成本提供方法线索，但需进一步核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-06T19:05:09.773223+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

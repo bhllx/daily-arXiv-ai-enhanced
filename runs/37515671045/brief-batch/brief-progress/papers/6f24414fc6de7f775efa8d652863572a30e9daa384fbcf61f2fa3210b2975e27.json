@@ -1,0 +1,74 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.06105",
+  "input_sha256": "9c1de29fdbf51b046abda0faaadfcfa9069ca3d3ce0f10415158bae2c7e1546f",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-06T19:05:54.717021+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1841,
+        "output_tokens": 191,
+        "total_tokens": 2032,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.06105",
+    "title": "Flash-OPD: Fast On-Policy Distillation",
+    "authors": [
+      "Wei Chen",
+      "Junle Chen",
+      "Yitong Yang",
+      "Zhaoyang Xu",
+      "Jiaxin Lin",
+      "Yuxuan Liang",
+      "Xiaofang Zhou",
+      "Kai Wang",
+      "Rui Chen"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": "21 pages, 9 figures",
+    "summary": "On-policy distillation (OPD) provides dense teacher supervision on student-generated trajectories, but generating and evaluating long rollouts incurs substantial training cost. Existing acceleration methods reduce this cost through open-loop rollout schedules or closed-loop horizon adaptation. However, supervision compatibility can vary substantially across trajectories, making a single rollout horizon difficult to match their heterogeneous reliable lengths: an overly short horizon may truncate useful supervision, while an overly long one wastes computation beyond reliable regions. Our key insight is that the trajectory-specific reliability boundary need not be predicted before generation. By viewing reliability as the first-passage of accumulated low teacher--student compatibility events, the boundary is inherently unknown before sampling, yet whether it has been reached can be determined exactly from the observed prefix. Building on this insight, we propose *Flash-OPD*, which shifts from rollout-horizon control to adaptive trajectory-level boundary verification. *Flash-OPD* interleaves cached generation with teacher verification and independently stops each trajectory according to its observed compatibility events. To reduce verification overhead, the recent event rate is used only to schedule the next verification point, while the actual stopping decision always relies on the exact cumulative count. This separation prevents estimation errors from causing premature termination while enabling efficient verification during generation. Extensive experiments across diverse datasets and teacher--student settings show that *Flash-OPD* achieves $2.2\\times$--$7.5\\times$ speedups over standard OPD while maintaining or improving accuracy.",
+    "abs": "http://arxiv.org/abs/2610.06105v1",
+    "pdf": "https://arxiv.org/pdf/2610.06105v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P1",
+      "brief_summary": "该论文提出 Flash-OPD，用于加速 on-policy distillation：不再预设 rollout 长度，而是把可靠性边界建模为「低师生兼容事件」的首次到达，在生成过程中交错做教师验证，并按每条轨迹观察到的事件数独立停止。",
+      "relevance_reason": "其「先采样再验证是否到达边界、并用事件率调度验证点而用累积计数做停止决定」的机制可能与 LVR 的 STOP 决策与验证成本权衡相关，可供核查是否迁移到 latent 推理步的动态停止与证据判定。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-06T19:05:54.717021+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

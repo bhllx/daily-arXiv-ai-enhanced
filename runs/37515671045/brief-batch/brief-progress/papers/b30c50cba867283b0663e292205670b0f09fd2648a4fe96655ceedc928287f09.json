@@ -1,0 +1,77 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.06617",
+  "input_sha256": "4e8df72966a01da388c3ce8f7477fe1f0a7031a3320b8bc5a56837874cb06f3c",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-06T19:03:18.043809+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1950,
+        "output_tokens": 173,
+        "total_tokens": 2123,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.06617",
+    "title": "RealtimeWAM: One-Step Asynchronous World Action Models",
+    "authors": [
+      "Chengtao Lv",
+      "Jinyang Du",
+      "Shuyi Feng",
+      "Yang Yong",
+      "Shiqiao Gu",
+      "Shunzi Yang",
+      "Ruihao Gong",
+      "Shen Ren",
+      "Tianwei Zhang",
+      "Wenya Wang"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.LG",
+      "cs.RO"
+    ],
+    "comment": "The code and checkpoints are available at $\\href{https://github.com/ModelTC/LightX2V/tree/main/examples/realtimewam}{\\text{this https URL}}$",
+    "summary": "World Action Models (WAMs) incorporate visual representations from video generation backbones to guide action prediction. Recent efficient WAMs adopt Mixture-of-Transformers (MoT) architectures and compute video representations once for reuse by the action expert. However, intra-expert iteration (\\ie, multi-step action denoising) and inter-expert waiting (\\ie, sequential execution of the video and action experts) still limit inference efficiency. To this end, we present RealtimeWAM, an extremely efficient WAM variant with one-step action generation and asynchronous inference, addressing these two bottlenecks. To reduce intra-expert iteration, we propose Teacher-Anchored Consistency Distillation (TACD) to address a local-global error gap: low local consistency error alone does not guarantee accurate final actions. TACD supplements local consistency with explicit supervision from the frozen teacher's multi-step rollout endpoint, enabling accurate one-step action generation. Additionally, we propose Cross-Expert Wavefront Pipelining (CEWP) to eliminate unnecessary expert-level waiting. It overlaps the two experts through block-wise sharing of the video KV cache, synchronizing only immediately before the corresponding action attention consumes it. Extensive experiments across diverse benchmarks (\\eg, LIBERO, LIBERO-Plus and RoboTwin) and model variants (\\eg, Fast-WAM and Faster-WAM) demonstrate the superiority of RealtimeWAM. Notably, RealtimeWAM maintains near-lossless performance (\\ie, $<1\\%$ drop) across these benchmarks while delivering significant end-to-end speedup (\\eg, $\\sim25\\times$ on H100). Our code and checkpoints are available via this \\href{https://github.com/ModelTC/LightX2V/tree/main/examples/realtimewam}{link}.",
+    "abs": "http://arxiv.org/abs/2610.06617v1",
+    "pdf": "https://arxiv.org/pdf/2610.06617v1",
+    "AI": {
+      "category": "EXCLUDE",
+      "priority": "NONE",
+      "brief_summary": "该工作提出 RealtimeWAM，一种高效的世界动作模型变体，通过一致性蒸馏实现一步动作生成并以跨专家流水线消除视频与动作专家的等待，从而加速机器人动作预测。",
+      "relevance_reason": "论文面向机器人操作的视频-动作模型推理加速，虽涉及 KV 缓存共享等推理调度细节，但未研究 VLM 的 latent 推理状态、证据获取或停止决策，与 LVR 主线缺少实质联系。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-06T19:03:18.043809+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.04427",
+  "input_sha256": "0b7d98403e408869f36b5519a0a039ec5008f47113b4b95be10f4a9a238b275f",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-06T19:13:36.762234+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1903,
+        "output_tokens": 214,
+        "total_tokens": 2117,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.04427",
+    "title": "COSMOS: Soft Mechanism Mixtures with Verifiable Routing for Long-Horizon PDE Forecasting",
+    "authors": [
+      "Anupam Rawat",
+      "Manikandan Padmanaban",
+      "Jagabondhu Hazra"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "Neural operators offer an efficient alternative to classical PDE solvers, but most learn a monolithic map per equation family and discretization. Real systems are compositional: transport, diffusion, wave, and reaction processes can act simultaneously. Existing mixture-of-experts operators typically use sparse top-$K$ routing, although concurrent physics is naturally a blend rather than a discrete choice.\n  We propose COSMOS (Cooperative Operator Specialists with Mechanism-level Operator Soft-routing), a soft mechanism-mixture neural operator. Four process-biased specialists remain active at every step and are continuously mixed by a learned gate, with their features fused by a small network. Specialists share a coarse latent grid, while a zero-initialized full-resolution residual restores detail lost through the bottleneck. We also introduce an operator-splitting compositional benchmark with known mixture weights $w^\\star$ per trajectory.\n  Against family-tuned FNO under 20-step rollouts, an initial 3-seed evaluation suggested gains on diffusion--reaction, parity on Navier--Stokes, and weaker shallow-water performance. An 11-seed audit showed that the diffusion--reaction gain was unstable, motivating caution in small-seed rollout comparisons and precluding a reliable accuracy-win claim on these families. Ablations show that uniform routing or removing the specialist mixture substantially degrades stable-regime rollouts. On the labeled benchmark, dense soft routing yields $2.2\\times$ lower error than hard top-1 routing at identical fusion; using generator weights $w^\\star$ at inference further lowers rollout error to $0.034$, diagnosing limitations of the learned gate. However, routing labels do not align with the specialists' intended mechanisms: COSMOS supports compositional accuracy, not mechanism identity.",
+    "abs": "http://arxiv.org/abs/2610.04427v1",
+    "pdf": "https://arxiv.org/pdf/2610.04427v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "COSMOS 提出软机制混合神经算子，让四个过程偏置专家每步持续混合并由学习门控融合，在 PDE 长时程预测上验证；同时给出带已知混合权重的组合基准，并报告了 11 种子审计后扩散-反应增益不稳定、路由标签与专家机制身份不一致等负面诊断。",
+      "relevance_reason": "虽属 PDE 预测而非 VLM，但其「可验证软路由 + 专家身份不对齐 + 小种子比较不可靠」的可供核查线索，可能启发 LVR 中并行/混合假设的连续加权、贡献分配与评价稳健性设计。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-06T19:13:36.762234+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.06147",
+  "input_sha256": "453a4ffc2e3ff20179ecc777ddb317ab69fef62274993e783554bb35e8021939",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-06T19:05:43.574665+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1908,
+        "output_tokens": 248,
+        "total_tokens": 2156,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.06147",
+    "title": "Efficient Test-time Adaptation through Candidate Verification and Divergence Shifts",
+    "authors": [
+      "Seungmin Oh",
+      "Seunghun Kang",
+      "Jongbin Ryu"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.CL"
+    ],
+    "comment": "Accepted for publication in Advances in Neural Information Processing Systems (NeurIPS) 2026",
+    "summary": "Vision-language models (VLMs) achieve strong zero-shot transferability but remain vulnerable to target-domain shifts at inference time. Test-time adaptation (TTA) offers a practical remedy, yet most existing VLM-TTA methods follow a prediction-side adaptation paradigm. They use test samples to adjust logits, prototypes, caches, priors, or feature statistics, often incurring additional computational overhead. In this paper, we take a different perspective and reframe VLM-TTA as candidate verification rather than prediction adjustment. We propose Test-Time Correction (TTC), a hypothesis-based correction framework guided by a simple principle: hypothesize, reconstruct, correct. Given a test feature and its top-k candidate labels, TTC treats each candidate label as a hypothesis, reconstructs the feature within the corresponding latent subspace stored in a memory bank, and measures the resulting divergence shift. This shift quantifies how much the candidate subspace and its relations to other candidates change after the hypothetical insertion of the test feature. A correct candidate hypothesis induces only a small shift, whereas an incorrect one perturbs the subspace more strongly. TTC therefore corrects the prediction by selecting the candidate with the minimum aggregated divergence shift. This training-free candidate-verification mechanism avoids iterative optimization and provides a favorable accuracy-efficiency trade-off. Across five TTA settings and 15 benchmark datasets, including zero-shot classification, domain generalization, few-shot classification, base-to-novel generalization, and cross-dataset evaluation, TTC consistently improves accuracy over state-of-the-art VLM-TTA methods while achieving up to 2x speedup, over 3x lower CPU memory usage, and up to 1.4x lower GPU memory usage than the lowest-memory training-free baseline.",
+    "abs": "http://arxiv.org/abs/2610.06147v1",
+    "pdf": "https://arxiv.org/pdf/2610.06147v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "该论文把 VLM 的测试时自适应重新表述为「候选验证」而非预测端调整，提出免训练的 TTC：将 top-k 候选标签分别当作假设，在记忆库中对应潜在子空间内重构测试特征，并度量假设插入后子空间及其与其他候选关系的「发散偏移」，取偏移最小者作为修正结果。在五类 TTA 设置、15 个基准上报告了精度与效率提升。",
+      "relevance_reason": "其「假设—重构—验证」与度量潜在子空间扰动偏移的思路，可能为 LVR 中候选 latent 假设的比较、视觉证据筛选与停止/验证决策提供线索；但论文关注分类 logits 修正而非生成 latent 推理状态，需核查该偏移度量能否迁移到推理轨迹的贡献分配与状态评估。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-06T19:05:43.574665+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

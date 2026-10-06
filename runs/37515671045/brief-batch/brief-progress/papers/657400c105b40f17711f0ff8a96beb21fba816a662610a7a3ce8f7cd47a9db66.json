@@ -1,0 +1,73 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.04907",
+  "input_sha256": "8d9a2c0d6765d5d2a80d457159cbdb6f92bce08db063008ae995207e4fa0510a",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-06T19:11:41.881933+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1924,
+        "output_tokens": 239,
+        "total_tokens": 2163,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.04907",
+    "title": "Why Subliminal Learning Needs So Much Data: A Noisy Inverse View through Steering Vector Recovery",
+    "authors": [
+      "Luoyu Chen",
+      "Xiaoyu Ding",
+      "Weiqi Wang",
+      "Chenhan Zhang",
+      "Zhiyi Tian",
+      "Jianhuan Huang",
+      "Shui Yu"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "Subliminal learning lets a student inherit a teacher's behavioral trait from semantically unrelated data, yet published demonstrations typically require tens of thousands of carrier examples. We ask where this data requirement comes from. Our testbed is subliminal steering: the teacher trait is a known residual-stream vector $Δ_T$, so transfer can be measured directly as parameter recovery. On identical carrier prefixes, we compare token-level (hard) NLL supervision with full-distribution (soft) KL supervision. At initialization the two objectives give nearly collinear gradients, and both align poorly with $Δ_T$. Under iterative optimization, however, they diverge: soft supervision recovers $Δ_T$ almost exactly from a few hundred carriers, while hard supervision stays well below it even with tens of thousands. We explain this gap by casting steering-vector distillation as a noisy linear inverse problem. Locally, the carrier task maps the trait through its Fisher matrix $F$, so gradients point toward $FΔ_T$ rather than $Δ_T$. Gradient descent then acts as a progressively less-damped inverse of $F$. With soft targets, this inverse restores low-curvature directions. With hard labels, it also amplifies the sampling noise in those same directions. The result is an optimal inversion depth that grows with the number of independent carriers. Experiments on Qwen2.5-7B and Gemma-2-9B confirm four predictions: the Fisher distortion of the initial gradient, recovery ordered from steep to flat directions, an optimal depth that shifts with data scale, and the finding that resampling completions from a fixed prompt pool works as well as adding new prompts. In this setting, large carrier datasets are needed less to reveal the trait than to suppress label noise amplified by Fisher inversion. Code is available at \\url{https://github.com/luoyuchenmlcv/subliminal-data}.",
+    "abs": "http://arxiv.org/abs/2610.04907v1",
+    "pdf": "https://arxiv.org/pdf/2610.04907v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P1",
+      "brief_summary": "论文研究「潜意识学习」为何需要大量载体数据，用已知残差流向量作为教师特质构造「潜意识引导」测试台，将引导向量蒸馏刻画为含噪线性逆问题，比较 token 级 NLL 与全分布 KL 监督下的参数恢复，并在 Qwen2.5-7B、Gemma-2-9B 上验证 Fisher 畸变、恢复次序与最优反演深度等预测。",
+      "relevance_reason": "虽非视觉多模态工作，但其把特质迁移写成经 Fisher 矩阵的含噪反演、并讨论软/硬监督与数据量对低曲率方向恢复的影响，可能为 LVR 中 latent 监督信号设计、信息坍缩与训练数据需求提供可核查的方法线索。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-06T19:11:41.881933+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

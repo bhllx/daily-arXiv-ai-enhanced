@@ -1,0 +1,71 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.04473",
+  "input_sha256": "65d2f921e6c3194284aa35a6a90f779e87fdd0e169d61c8222857a45d31e38cf",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-06T19:13:23.018812+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1864,
+        "output_tokens": 208,
+        "total_tokens": 2072,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.04473",
+    "title": "InferOpt: Constrained Multi-Objective Search for LLM Inference Configurations",
+    "authors": [
+      "Qi Chen",
+      "Yingying Cheng",
+      "Zhaoyi Sun",
+      "Li Zhou",
+      "Fan Zhang",
+      "Jie Sun"
+    ],
+    "categories": [
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "Serving an LLM means setting dozens of inference-time knobs, from per-layer KV retention to per-layer expert counts. Practice sets them with mechanism-specific heuristics that return a single operating point and do not scale to layer-wise search spaces. We recast inference configuration as constrained multi-objective black-box optimization and build InferOpt, a reusable search framework that requires only variable bounds, a deterministic resource cost, and an evaluation hook. InferOpt searches on a frozen sampled proxy set, rejects over-budget candidates before any model call, tightens the budget adaptively, and re-validates Pareto representatives on full-scale dataset. One pipeline covers a 28-dimensional continuous KV space (Qwen2.5-7B) and a 26-dimensional discrete MoE space (DeepSeek-V2-Lite). On KV, post-prefill pruning cuts the 16K cache by 64.4% and TPOT by 22.9--48.5%, and the searched layer-wise budget by InferOpt beats a matched uniform budget by 7.3% and 14.0% of the Full KV reference points. On MoE, a searched top-k schedule by InferOpt removes 43.0% of routed token--expert pairs while staying within 0.59 points of the default, closer than the matched-budget baselines. Against Random Search, NSGA-II, and MOTPE, InferOpt leads on both spaces, taking the best proxy hypervolume and the lowest retention on KV and staying closest to the uncompressed reference at the lowest experts on MoE.",
+    "abs": "http://arxiv.org/abs/2610.04473v1",
+    "pdf": "https://arxiv.org/pdf/2610.04473v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "该论文把 LLM 推理配置（逐层 KV 保留率、逐层专家数等）重新表述为带约束的多目标黑盒优化问题，提出 InferOpt 搜索框架，在采样代理集上搜索、提前拒绝超预算候选并在全量数据上复核 Pareto 代表。",
+      "relevance_reason": "与 LVR 主线的直接联系有限，但其「代理集搜索 + 预算约束 + Pareto 代表复核」的配置搜索框架，可能为推理期动态计算预算分配、逐层视觉状态保留与 LOOK/STOP 决策提供可核查的优化思路。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-06T19:13:23.018812+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

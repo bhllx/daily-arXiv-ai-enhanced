@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.04518",
+  "input_sha256": "4c9d4f27acf1c6a292a2628764ef44e07c47c2a0b589a24ac0b8ff491a7fc700",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-06T19:13:13.389477+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1768,
+        "output_tokens": 211,
+        "total_tokens": 1979,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.04518",
+    "title": "Length Generalization Needs Proper Regularization",
+    "authors": [
+      "Pavlo Vasylenko",
+      "Matthias Lindemann",
+      "André F. T. Martins",
+      "Marcos Treviso"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Length generalization is the ability of sequential models to perform well on context lengths unseen during training. In this work, we show that the challenge of achieving length generalization is related not only to architectural choices such as positional encoding and the attention mechanism but also to the training procedure itself. We study how regularization affects length generalization and find that weight decay can hinder extrapolation. In contrast, dropout improves extrapolation when its placement within the architecture is reconsidered. In that regard, we show that the standard placement of dropout before layer normalization introduces a systematic distributional mismatch, and that applying dropout just before the linear projection resolves this issue. For example, a modified SmolLM3 with sliding window attention, continually pre-trained with dropout, can extrapolate perfectly to 64$\\times$ on Needle-in-a-Haystack and far beyond the pre-training context size on RULER and HELMET. Mamba2 also benefits from dropout, suggesting an architecture-agnostic nature of the problem. We further propose Variance-Preserving Affine Dropout (VPAD), a new dropout strategy that substantially reduces the resulting pre-activation variance mismatch, leading to further extrapolation improvements in transformers.",
+    "abs": "http://arxiv.org/abs/2610.04518v1",
+    "pdf": "https://arxiv.org/pdf/2610.04518v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文研究序列模型的长度泛化，指出除位置编码和注意力结构外，训练过程本身也有影响：权重衰减损害外推，而重新安排 dropout 位置（置于线性投影前）可改善外推，并提出保持方差的 VPAD 策略，在 SmolLM3、RULER、HELMET 及 Mamba2 上验证。",
+      "relevance_reason": "纯文本序列模型工作，但其「dropout 位置导致前激活分布失配」的分析与训练期监督、支持长度泛化的预测工作区可能相关，可供核查 latent 推理状态训练中归一化与正则化放置的线索。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-06T19:13:13.389477+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

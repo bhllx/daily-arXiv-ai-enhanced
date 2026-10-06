@@ -1,0 +1,66 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.04727",
+  "input_sha256": "2281b5914bdbfad83036c4050279b294ff5f9b51be5358b0f22bffdd9d33fff7",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-06T19:12:26.766295+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1893,
+        "output_tokens": 219,
+        "total_tokens": 2112,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.04727",
+    "title": "Investigating Spatiotemporal Redundancy in Video Transformer for Collision Anticipation",
+    "authors": [
+      "Xiaoshan Zhou"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": null,
+    "summary": "In worker-equipment proximity monitoring, video transformers are widely used for collision anticipation and have demonstrated strong performance. However, their accuracy comes with substantial computational demands, creating a tension with the need for low-latency inference on mobile robots and the pursuit of lower-carbon computation in construction. To address this, this study investigates where computation within an established video transformer is redundant and whether that redundancy can be removed without materially degrading predictive performance. Using VideoMAEv2-Base on the Nexar Collision Prediction dataset, we first examine how collision-relevant information evolves across network depth and then investigate two complementary forms of redundancy: structured capacity redundancy in multilayer perceptrons (MLPs) and spatiotemporal redundancy in the token stream. Linear probes show that interpretable motion cues, including flow magnitude, looming, and approach versus retreat, are most accessible at intermediate layers, whereas collision-label discrimination strengthens toward the final layer. Token redundancy is axis-specific: adjacent temporal-token similarity reaches 0.970 in later layers, while spatial similarity falls to 0.297, indicating substantially greater redundancy across time than across space. Exploiting this asymmetry, temporal token merging reduces backbone computation from 356.99 to 178.50 GFLOPs and latency from 12.69 to 7.21 ms per clip, a 1.76x speedup, while mean average precision changes only from 0.7478 to 0.7443. Importance-guided retention of 50% of MLP units preserves an AUC of 0.753, compared with 0.529 under matched random retention, and reveals that pruning alters score calibration before discriminative ranking collapses. These findings establish a new pathway for pursuing faster algorithms through targeted temporal token compression and neuron pruning.",
+    "abs": "http://arxiv.org/abs/2610.04727v1",
+    "pdf": "https://arxiv.org/pdf/2610.04727v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "该研究在 VideoMAEv2 视频 transformer 上分析碰撞预测任务中的时空冗余，发现碰撞相关信息在中间层最易读出、时间维冗余远大于空间维，并据此做时间维 token 合并与 MLP 单元剪枝，在几乎不损失精度下获得约 1.76 倍加速。",
+      "relevance_reason": "其对「逐层信息可读性」与时间维 token 冗余/合并的分析，可能为 LVR 中 latent 状态的内容与深度分布、以及压缩推理计算（LOOK/STOP 成本）的裁剪提供可核查线索；但属视频感知而非多模态 latent 推理，迁移需验证。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-06T19:12:26.766295+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

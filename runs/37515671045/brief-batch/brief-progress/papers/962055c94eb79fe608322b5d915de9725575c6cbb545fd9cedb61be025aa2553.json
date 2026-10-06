@@ -1,0 +1,66 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.03831",
+  "input_sha256": "c19cb64367bc48164a9c999032f5d83074f5423c84e18f4c06d3467ab219c653",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-06T19:15:57.526170+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1932,
+        "output_tokens": 226,
+        "total_tokens": 2158,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.03831",
+    "title": "Where Does Jagged Competence Come From?",
+    "authors": [
+      "Ioannis Tsiokos"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": "30 pages, 10 figures. Code: https://github.com/ioannist/six-birds-ml",
+    "summary": "Capable systems often show jagged competence: low average error alongside failures on particular inputs. We ask where it comes from in a task built from two known layers. A lower layer A computes five per-slot sums from records; an upper layer B uses the slot-1 sum and a mode carried over from earlier boards to predict the next board's category, so B cannot be computed from the current A alone: B is a strict extension of A. We train small recurrent networks on B and measure, against exact ground truth, what they acquire of A. The central finding is that learning B gives the network a jagged version of A, measured through probe readability and supervised outputs. It is readable where B needs it (slot 1, 97-98% by a linear probe) and becomes less readable where B does not (the other slots, 5-10%); category misreads concentrate near the slot-1 cutoffs; and when A is trained explicitly it comes out only approximately right. The networks show jagged competence in B: natural KL below $3\\times10^{-4}$ bits coexists with a maximum law TV of about 0.25 on constructed histories. Matched experiments show that even a good A is not enough: connecting a learned A to B cuts misreads 1.3 to 17-fold, the same exact A gives fewer misreads as one-hot inputs (0-2) than as numerical inputs (10-317), one B update makes an exact A inexact unless the B gradient is blocked, and exact A still leaves some B failures. In this task, uneven acquisition, access and preservation of the lower theory explain part of the jagged competence of a network that learns the theory built on it; some failures remain unexplained. Whether the same holds in larger systems is a test to run.",
+    "abs": "http://arxiv.org/abs/2610.03831v1",
+    "pdf": "https://arxiv.org/pdf/2610.03831v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P1",
+      "brief_summary": "论文用一个两层合成任务（下层 A 计算逐槽和，上层 B 依赖槽1和跨板模式做预测）训练小型循环网络，考察网络对下层理论的习得是否均匀：探针可读性、误读分布与构造历史上的规律性偏差。",
+      "relevance_reason": "其「下层知识只在上层需要处保持可读、不需要处退化」的发现，可能为 LVR 中 latent 状态保留哪些视觉细节、视觉旁路与信息坍缩提供可核查的诊断视角；其「精确的 A 经一次 B 更新即退化，除非阻断 B 梯度」的线索也可能启发 latent 轨迹训练中的贡献分配与监督设计。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-06T19:15:57.526170+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

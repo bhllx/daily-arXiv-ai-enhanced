@@ -1,0 +1,67 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.04104",
+  "input_sha256": "ab4a087d021b93ad0cc7ca36e1ef81491c5c49bd7b286c476e976c40828888dd",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-06T19:14:59.506299+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1956,
+        "output_tokens": 193,
+        "total_tokens": 2149,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.04104",
+    "title": "Where Does the Semantic Gain Come From? A Reproduction and Extension of Semantic Knowledge-driven Contrastive Learning for Long-Tailed Recognition",
+    "authors": [
+      "Sushrut Ghimire"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.LG"
+    ],
+    "comment": "11 pages, 4 figures. Code: https://github.com/sushrutghimire1/Reproduction-and-extension-of-SKCL",
+    "summary": "Semantic Knowledge-driven Contrastive Learning (SKCL) uses a language model to decide which classes are related, and pulls each image towards the prototypes of its semantic neighbours. On CIFAR-100-LT (beta = 100) it reports 54.02% top-1 accuracy, 2.01 points above Balanced Contrastive Learning (BCL), the method it builds on. The code and the class descriptions are not public. I reimplement SKCL, BCL and ConCutMix in one framework, check it against the public baseline code, and run every configuration with three seeds. The two baselines reproduce within 1.5 points, but SKCL built on BCL, as the paper describes it, ends up 0.56 points below BCL. To find out why, I add SKCL to the authors' own ConCutMix code. Trained for the paper's 300 epochs, it reaches 53.69, only 0.33 below the published number. At the same budget, however, the semantic graph adds just 0.23 points over ConCutMix, while training ConCutMix for 100 more epochs adds 1.04. Together with ConCutMix's published lead over BCL (1.15), this explains the claimed gain. A BCL model that never sees the graph already shares 41.2% of the graph's top-2 neighbours with its own most-confused classes (2.0% by chance), which shows why the graph adds so little on these benchmarks. I also test several changes to SKCL. Combining it with the CutMix branch improves it by 1.06 points, and an adaptive version of the graph improves it slightly (+0.34 and +0.28 in two codebases), although these gains are within seed noise.",
+    "abs": "http://arxiv.org/abs/2610.04104v1",
+    "pdf": "https://arxiv.org/pdf/2610.04104v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "该文复现并扩展长尾识别中的语义知识驱动对比学习 SKCL，发现其宣称的增益主要来自基线 ConCutMix 与训练轮数，而非语义图本身，并指出模型自身的混淆类已与语义图邻居高度重合。",
+      "relevance_reason": "这是可直接借鉴的诊断范式：其「语义图带来的增益可被已有表示解释、需与算力预算对照」的核查思路，可能用于检验 LVR 中视觉证据筛选或结构先验是否真正贡献于推理状态，而非被预训练偏见替代。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-06T19:14:59.506299+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

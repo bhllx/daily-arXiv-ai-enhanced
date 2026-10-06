@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.05872",
+  "input_sha256": "073656ed9de1eb9aad335dacc238b4bb8cc52ccf9d8024f9cf3cbbb3b6212763",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-06T19:07:19.719071+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1891,
+        "output_tokens": 220,
+        "total_tokens": 2111,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.05872",
+    "title": "Off-Policy Merging Beats On-Policy Self-Distillation for Continual Learning",
+    "authors": [
+      "Chen Henry Wu",
+      "Thomas Zhang",
+      "Aditi Raghunathan"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.AI",
+      "cs.CL"
+    ],
+    "comment": null,
+    "summary": "A long-standing goal of AI is a model that can continually learn and improve itself. On post-trained models, supervised finetuning (SFT) on new data often causes poor generalization and catastrophic forgetting. As such, the conventional wisdom is that on-policy training is a prerequisite for continual learning. In practice, however, data containing new knowledge or capabilities are often off-policy. While methods such as on-policy self-distillation (OPSD) try to bridge this gap by converting off-policy data into on-policy signal, they have been shown to cause reasoning collapse. In this paper, we show that off-policy merging beats OPSD for continual learning. We first show that SFT learns a useful signal from new data, but naively applying its update interferes with existing capabilities. We reduce this interference with a simple recipe we term grafting, which changes where the update is learned and how it is applied: (1) learning the update on an earlier donor checkpoint, ideally even before the end of pretraining, and applying the weight update to the post-trained model; (2) scaling the weight update, equivalent to a form of model merging; and (3) optionally, masking the most sensitive update directions when the new data distribution is far from the post-trained model. Across continual learning settings including (1) distilling from expert traces, (2) self-improvement with STaR and Pedagogical RL, and (3) injecting knowledge after pretraining cutoff, grafting Pareto-dominates both SFT and OPSD in new-task and old-task performance, while avoiding expensive on-policy sampling. Therefore, our work challenges on-policy training as a necessity for continual learning on RL-trained models.",
+    "abs": "http://arxiv.org/abs/2610.05872v1",
+    "pdf": "https://arxiv.org/pdf/2610.05872v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "该论文研究后训练模型的持续学习，提出「grafting」配方：在更早的 donor checkpoint 上学习权重更新、按比例缩放（等价于模型合并）、必要时屏蔽敏感更新方向，从而在新任务与旧任务上同时优于 SFT 和 on-policy 自蒸馏，并质疑 on-policy 训练的必要性。",
+      "relevance_reason": "与 LVR 主线的联系较为间接：其「权重更新从何处学习、如何施加」的贡献分配与参数干预视角，或可启发 latent 推理中轨迹训练与监督信号的干扰控制、以及推理能力保留问题，但需核查是否涉及视觉或多模态推理。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-06T19:07:19.719071+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

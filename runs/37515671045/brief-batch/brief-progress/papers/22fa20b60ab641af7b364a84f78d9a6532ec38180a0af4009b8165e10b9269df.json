@@ -1,0 +1,68 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.06605",
+  "input_sha256": "9d0c1e179c4a25627f5d323535edc840a3fcfe2b84fcf68c53a2db105b8d179c",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-06T19:03:22.418070+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1793,
+        "output_tokens": 197,
+        "total_tokens": 1990,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.06605",
+    "title": "Separators Make Carry Propagation Learnable:The Geometry of Latent Carry in a Multiplication Transformer",
+    "authors": [
+      "Sama Satariyan",
+      "Raphael Cousin",
+      "G{é}rard Biau"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Transformers asked to multiply multi-digit numbers in a single forward pass often fail, and interpretability studies of pretrained language models find arithmetic solved by input-range heuristics rather than by an explicit carry. We train small Llama-style transformers from scratch on 4x4 multiplication without chain of thought and find that the input format is decisive: inserting a space token between digits raises exact-match accuracy from 1% to 89%. Output positions are learned in carry-chain order, with the middle digits, which have the longest-range dependencies, learned last. Inside the model, the separator token that predicts each digit (its prediction slot) encodes the carry-in as an angle on a ring in the residual stream; examples with more distinct carry values fill more of the ring. Activation patching between examples matched on the column sum shows that this state is causally used before the last layer: patching the prediction slot alone transfers the source carry in up to 84% of cases after block 4 for one middle column of our best model, while for other columns the carry is first assembled at the neighboring answer slot before reaching its own. Remaining errors are almost always off by one, consistent with a small error on the carry or on the circular digit code.",
+    "abs": "http://arxiv.org/abs/2610.06605v1",
+    "pdf": "https://arxiv.org/pdf/2610.06605v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "训练小型 Llama 风格 Transformer 从零学 4x4 乘法（无思维链），发现输入中插入分隔符 token 能使精确匹配率从 1% 升至 89%，并刻画了进位在残差流中按环上角度编码的几何结构。",
+      "relevance_reason": "虽为纯算术任务，但其「潜在进位状态的几何编码 + 激活修补证明因果使用 + 位置相关的状态组装顺序」可能为 LVR 中 latent 状态的内容/位置结构与贡献分配提供可核查的抽象线索。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-06T19:03:22.418070+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

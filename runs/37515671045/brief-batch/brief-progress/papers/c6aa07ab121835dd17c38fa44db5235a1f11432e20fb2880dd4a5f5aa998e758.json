@@ -1,0 +1,67 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.06679",
+  "input_sha256": "cfac2c888e7d22f1d7119c8aa98064c3002ea3f8cba3d8beda72afcfa33b49b5",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-06T19:02:57.945359+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1836,
+        "output_tokens": 206,
+        "total_tokens": 2042,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.06679",
+    "title": "Closing the Context Gap: Activation Alignment for Tabular In-Context Learning",
+    "authors": [
+      "Yoel Zeldes"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.AI"
+    ],
+    "comment": "14 pages, 4 figures, 1 table. Code: https://github.com/yoel-zeldes/tabalign",
+    "summary": "Tabular foundation models perform in-context learning (ICL) by conditioning predictions on labeled training examples provided as context. Unlike traditional models that separate training from inference, these models must process all training examples in every forward pass, making each prediction expensive. Restricting the number of training examples reduces this cost but substantially degrades performance. Instead of discarding context, we propose activation alignment, a method that leverages the full context to teach a model how to behave when seeing only a subset. This is achieved by training a lightweight linear transformation on synthetic unlabeled data to map the intermediate activations of a data-constrained \"student\" (using partial context) toward those of a full-context \"teacher\" (using all data). Training the aligner requires no GPU and converges in seconds to minutes on commodity hardware. We evaluate on 38 classification datasets from the TabArena benchmark using the leading two tabular foundation models, TabPFN-3 and TabFM. Across all context budgets, the aligned student yields broad, statistically significant improvements over the unaligned baseline for both models. In low-data regimes, alignment recovers nearly half of the teacher's predictive advantage. The method provides a practical, low-overhead approach to achieving the inference speed of compact contexts while closing a significant fraction of the performance gap to the full-context teacher.",
+    "abs": "http://arxiv.org/abs/2610.06679v1",
+    "pdf": "https://arxiv.org/pdf/2610.06679v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "该论文面向表格基础模型的 in-context learning，提出 activation alignment：用合成的无标注数据训练轻量线性变换，把使用部分上下文（student）的中间激活对齐到使用全部上下文（teacher）的激活，从而在不增加推理成本的情况下恢复性能。",
+      "relevance_reason": "虽非多模态工作，但其「用 full-context teacher 的中间激活监督 context 受限 student」的思路可供核查：LVR 中视觉证据被截断或缓存受限时，能否用激活对齐补偿信息坍缩，并考察该对齐是否真正影响答案使用而非仅拟合表示。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-06T19:02:57.945359+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.04044",
+  "input_sha256": "24a966c5e3fbd4dd3dba45323331eca8bfc21b549dfcce28a6fcbe0f578812af",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-06T19:15:16.449179+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1896,
+        "output_tokens": 219,
+        "total_tokens": 2115,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.04044",
+    "title": "Dynamic Quadtree Tokenization and Transformer for Adaptive Mesh PDE Forecasting",
+    "authors": [
+      "Yilin Zhuang",
+      "Noah Zambrano",
+      "Karthik Duraisamy"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "The quadratic attention cost of Vision Transformers (ViTs) forces a trade-off between spatial resolution and rollout horizon, particularly for fine-scale PDEs where shocks, reaction fronts, and material interfaces occupy small, evolving regions of the domain. Conventional neural surrogates also lack mechanisms to adapt resolution dynamically. We propose WAMRViT, a ViT that tokenizes inputs as balanced quadtrees using a wavelet-inspired refinement criterion, jointly encodes position and refinement level with 3D rotary positional embeddings, and regrids in cell space during inference for stable long-horizon rollouts. A multi-scale variant retains each leaf at its native source resolution and lets the model learn across resolution levels. Unlike fixed-budget adaptive-tokenization methods, WAMRViT imposes no predetermined token count and supports fully adaptive topology throughout autoregressive rollout. To our knowledge, it is the first machine-learning surrogate to natively tokenize multi-level Adaptive Mesh Refinement (AMR) data. On uniform-grid benchmarks, uniform-patch WAMRViT improves finest-level region-of-interest VRMSE over a finest-patch uniform ViT while using substantially fewer tokens. The multi-scale variant achieves the lowest first-step full-field RMSE and VRMSE on both benchmarks and improves rollout-averaged full-field and refined-region accuracy at long horizons. With parallelized regridding, its end-to-end rollout cost lies between finest-patch and approximately token-matched coarser-patch ViTs. On a complex AMR combustion problem whose finest features cannot be represented natively by the evaluated uniform-grid baselines, WAMRViT operates directly on adaptive cells and substantially reduces finest-level error at matched transformer capacity. Code: https://github.com/tonyzyl/wamrvit",
+    "abs": "http://arxiv.org/abs/2610.04044v1",
+    "pdf": "https://arxiv.org/pdf/2610.04044v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "提出 WAMRViT，用自适应网格细化（AMR）的四叉树对 PDE 场做可变 token 分词，以位置加细化层级的 3D 旋转位置编码和多尺度叶子保留来支持长时程自回归预测。",
+      "relevance_reason": "其「按细化准则动态分配 token、并在推理中重划网格」的思路可能可迁移到 LVR 的视觉细节保留与动态计算分配问题：何时增加/减少表示粒度或可类比 THINK/LOOK 的收益成本权衡，但距离多模态推理主线较远，需人工核查位置编码与自适应拓扑的耦合是否可用于 latent 状态更新。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-06T19:15:16.449179+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

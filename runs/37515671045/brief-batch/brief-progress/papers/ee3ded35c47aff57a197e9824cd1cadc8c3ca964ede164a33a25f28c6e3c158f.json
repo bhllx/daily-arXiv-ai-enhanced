@@ -1,0 +1,73 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.04278",
+  "input_sha256": "9ee41f2b890afa8f0832ff0250160d2e0a9711a6c71d837cd600e39966a549a7",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-06T19:14:17.389219+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1888,
+        "output_tokens": 191,
+        "total_tokens": 2079,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.04278",
+    "title": "Do RUL explanations hold up? Faithfulness and stability of attributions on C-MAPSS",
+    "authors": [
+      "Manh Hien Nguyen",
+      "Ngoc Thanh Nguyen",
+      "Isabella Mendoza Cortes",
+      "Tam Khuat",
+      "Thanh Pham",
+      "Nhat Quang Tran",
+      "Ushik Shrestha Khwakhali",
+      "Loan Do"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": "6 pages, 2 figures, 3 tables",
+    "summary": "Deep remaining-useful-life (RUL) models on NASA C-MAPSS are now routine, and so are heatmaps that colour sensors and timesteps. A heatmap that looks mechanical is not the same as an explanation an engineer can act on. We train three standard architectures - a 1D CNN, an LSTM, and a small Transformer encoder - on the official FD001 and FD003 splits with the piecewise RUL cap of 125 cycles and the official PHM08 asymmetric score. We then attach three attribution maps (Integrated Gradients, occlusion, last-layer attention) and evaluate them with the checks the XAI-for-PdM literature still under-reports: deletion/insertion faithfulness, Spearman stability under sensor-scale noise, agreement across training seeds, and cosine consistency inside RUL bins. Prediction error is a prerequisite, not the claim. The headline is which explanation method moves the RUL output when its top cells are removed, and which map survives a 5% input perturbation. Integrated Gradients and occlusion are similarly faithful on the LSTM; Transformer attention is cheap and temporally smooth but weakly faithful. All three maps are almost unchanged under 5% input noise, yet IG/occlusion agree only moderately across two LSTM seeds - stability to sensor jitter is not the same as stability to retraining. A secondary tabular check on the AI4I 2020 failure dataset shows the same deletion pattern for tree importances. We recommend occlusion or IG for any C-MAPSS-style report that will be read by a maintenance engineer, and we treat raw attention weights as a visualisation only.",
+    "abs": "http://arxiv.org/abs/2610.04278v1",
+    "pdf": "https://arxiv.org/pdf/2610.04278v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "论文在 NASA C-MAPSS 剩余寿命预测任务上训练 CNN、LSTM 与 Transformer，并系统比较 IG、遮挡与末层注意力三类归因图在删除/插入忠实性、噪声稳定性与跨随机种子一致性上的表现。",
+      "relevance_reason": "归因忠实性与稳定性评价可能为 LVR 中的「视觉证据筛选」与 latent 贡献分配提供可迁移的评测思路：如何在删除关键输入单元、施加扰动和更换种子后判断内部状态是否真正被使用，值得核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-06T19:14:17.389219+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

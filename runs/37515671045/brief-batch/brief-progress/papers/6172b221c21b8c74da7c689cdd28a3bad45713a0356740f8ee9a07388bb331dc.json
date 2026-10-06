@@ -1,0 +1,66 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.04928",
+  "input_sha256": "fe4fb966048f55c0743ac69e09fab40719c18dd0673cee6c2b03b3b46aded206",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-06T19:11:33.693120+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1927,
+        "output_tokens": 212,
+        "total_tokens": 2139,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.04928",
+    "title": "Prompt Dominance and Asymmetric Verifier Costs: Empirical Ablations of GRPO at 1B Scale on GSM8K",
+    "authors": [
+      "Yi Hou"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": "12 pages, 8 figures. Code, run records, and figure scripts: https://github.com/Helios-YQH/llm-from-scratch",
+    "summary": "This paper studies GRPO at 1B scale from both directions: what estimator choices do to the learning signal, and what a degraded reward signal does to what is learned. We train OLMo-2-0425-1B on GSM8K with a from-scratch implementation and measure both sides in controlled sweeps, including a verifier-quality experiment that degrades the training reward and the test-time selector identically. Four results stand out. The prompt is the first-order decision: the zero-shot prompt leaves the base model at 0.08% (its outputs are degenerate continuations, not wrong answers), so almost no group carries a gradient, and training succeeds because the 3-shot prompt reaches 18.3%. At this scale the estimator variants sit within seed noise, with Dr. GRPO ahead on both seeds. In the off-policy regime, clipping is the whole story: training on data without a clipped ratio loses 4-6 points relative to the on-policy reference, while GRPO-style clipping and GSPO recover the loss entirely. Finally, the same weak verifier is far cheaper in RL than in test-time selection: a 10%-flip verifier leaves RL's attainable gain intact (91% and 106% retained across two seeds) where selection retains 57%, and a format-only verifier leaves RL with 16-30% of its gain and selection with essentially nothing. Flip noise acts as an affine transform on the expected reward, and the group-normalized advantage with Adam's rescaling removes it exactly; the residual is a second-order variance effect that the matched-step comparison at a 30% flip rate tests.",
+    "abs": "http://arxiv.org/abs/2610.04928v1",
+    "pdf": "https://arxiv.org/pdf/2610.04928v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "在 1B 规模、GSM8K 上用从零实现的 GRPO 做受控消融，比较估计器变体、off-policy 裁剪，以及在训练奖励与测试时选择器同时退化时弱验证器对 RL 与选择的影响。",
+      "relevance_reason": "纯文本 RL 训练研究，与 LVR 的视觉状态无直接联系，但其「验证器成本在 RL 与测试时选择间不对称」及奖励噪声退化为仿射变换的观察，可能为 latent 轨迹训练中的监督质量、贡献分配与验证成本权衡提供问题表述线索，可供核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-06T19:11:33.693120+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

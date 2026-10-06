@@ -1,0 +1,74 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.05854",
+  "input_sha256": "8643d9d3335c7472b1a7f981f3032a06802a1a62751907b1e388030b22472463",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-06T19:07:24.503615+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1930,
+        "output_tokens": 184,
+        "total_tokens": 2114,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.05854",
+    "title": "TurboPairFormer: Fast and Stable Protein Folding Model Training with an Optimized Triangle Attention Kernel",
+    "authors": [
+      "Yide Ran",
+      "Chelsea Lowman",
+      "Jan Domański",
+      "David Hartmann",
+      "Jenke Scheen",
+      "Jennifer Wei",
+      "Chuan Li",
+      "Jianwen Xie",
+      "Zhaozhuo Xu"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": "33 pages, including appendices. Software: https://pypi.org/project/turbopairformer",
+    "summary": "Triangular attention is a core computation in AlphaFold3-style biomolecular models, with cubic cost in token count. Its shared pair bias adds a gradient reduction across attention slices to the usual reductions over queries and keys. The open-source backends we examine handle these reductions through repeated probability recomputation, floating-point atomics, or full score-gradient storage. Separately, computing the softmax backward correction from BF16-rounded forward outputs loses numerical precision. We present TurboPairFormer, a triangular attention implementation for NVIDIA Hopper GPUs that addresses both issues. Our key-tile-parallel backward algorithm recomputes each probability tile once for the query, key, value, and pair-bias gradients, using ordered partial reductions for deterministic accumulation without floating-point atomics or full score-gradient storage. Output-residual compensation retains a BF16 approximation of the output-rounding residual to compute the backward correction more accurately in FP32, without changing the BF16 output. With BF16 inputs at crop sizes 384, 640, and 768 and head dimensions 16 and 32, TurboPairFormer achieves the lowest mean query, key, and pair-bias gradient RMSE against an FP64 reference among the implementations compared in this paper. Residual compensation reduces these RMSE values by 28-47% in controlled ablations. All four gradients are bitwise identical across five repeated calls in all 600 input cases under fixed execution conditions. Integrated into OpenFold3 with our triangle multiplication kernels, TurboPairFormer achieves the lowest GPU computation time per optimizer step among the evaluated backend configurations on 16 H100 GPUs, with speedups of $1.73\\times$ over OpenFold3's Triton backend and $1.13\\times$ over cuEquivariance at crop size 768.",
+    "abs": "http://arxiv.org/abs/2610.05854v1",
+    "pdf": "https://arxiv.org/pdf/2610.05854v1",
+    "AI": {
+      "category": "EXCLUDE",
+      "priority": "NONE",
+      "brief_summary": "该论文提出 TurboPairFormer，一个面向 NVIDIA Hopper GPU 的三角注意力 CUDA 内核实现，通过 key-tile 并行反向算法与输出残差补偿，在蛋白质折叠模型训练中提升梯度精度、确定性与训练速度。",
+      "relevance_reason": "内容属于生物分子模型的底层算子与训练加速，虽涉及注意力反向与数值精度，但未触及视觉/多模态 latent 推理的状态表示、证据使用或停止决策，缺乏可迁移到 LVR 的具体借鉴线索。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-06T19:07:24.503615+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

@@ -1,0 +1,73 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.05745",
+  "input_sha256": "4027913b841fa927ac058fa948b36c9192ee021ba92bede7bed89c0e5fe8b0b7",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-06T19:07:52.198802+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1858,
+        "output_tokens": 205,
+        "total_tokens": 2063,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.05745",
+    "title": "Beyond In-Distribution Preservation: Recovering Generalization in Quantized VLAs via Vulnerability-Oriented Tuning",
+    "authors": [
+      "Shen Ruan",
+      "Wenchang Gao",
+      "Jin Wang",
+      "Siao Liu",
+      "Zhoxizhuoma",
+      "Dongchun Ren",
+      "Xin Zheng"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.RO"
+    ],
+    "comment": null,
+    "summary": "Post-training quantization has been shown to preserve VLA performance under standard evaluation conditions, but whether it preserves the full-precision model's robustness and generalization remains underexplored. In this study, we systematically study the robustness and generalization of post-quantized VLA policies under environmental disturbances. Empirical results show that quantized policies can become fragile to subtle environmental variations despite retaining comparable in-distribution performance. We further observe that action discrepancies are concentrated in a small subset of rollout states, while teacher guidance has opposite effects depending on discrepancy: it improves generalization at high-discrepancy states but can degrade it at low-discrepancy states. These findings reveal that effective post-quantization recovery requires selectively intervening on vulnerable states rather than globally distilling the student. We therefore propose Policy-Induced Vulnerability-Oriented Tuning (PIVOT-Q), a vulnerability-aware On-Policy Distillation (OPD) framework that selectively corrects vulnerable states encountered during quantized-student rollouts using the frozen full-precision policy as a teacher. PIVOT-Q identifies vulnerable states using discounted accumulated discrepancies over a short horizon, applies phase-balanced sparse supervision, and uses a Behavioral Anchor to prevent unnecessary changes. Experiments under seven LIBERO-Plus environmental variations demonstrate consistent recovery across multiple VLA backbones and quantization methods. Notably, PIVOT-Q consistently outperforms full-state distillation across all settings while using only 7.4% of its state-level distillation budget. Our code is available at https://github.com/ruanruan-andy/PIVOT-Q.",
+    "abs": "http://arxiv.org/abs/2610.05745v1",
+    "pdf": "https://arxiv.org/pdf/2610.05745v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文研究后训练量化 VLA 策略在环境扰动下的鲁棒性与泛化退化，发现动作偏差集中在少数 rollout 状态上与教师指导的双向效应，并提出 PIVOT-Q：以折扣累积偏差识别脆弱状态、做稀疏且相位平衡的 on-policy 蒸馏。",
+      "relevance_reason": "其按状态脆弱性筛选监督目标、避免对低偏差状态过度干预的思路，可为 LVR 中「何时用视觉证据/何时接受 latent 更新」的贡献分配与证据筛选提供线索，但对象是机器人动作策略而非多模态推理状态，需核查是否可迁移。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-06T19:07:52.198802+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

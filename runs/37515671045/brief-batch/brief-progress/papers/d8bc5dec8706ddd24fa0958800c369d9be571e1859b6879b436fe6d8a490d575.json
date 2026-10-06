@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.05265",
+  "input_sha256": "cf3e077a5d356260cac25e86e7643b9f4c5a86a62dc9c566bb0a0c53b2c9d441",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-06T19:10:01.965238+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1822,
+        "output_tokens": 190,
+        "total_tokens": 2012,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.05265",
+    "title": "Loopy: Low-Bit Quantization Framework for Looped Language Models",
+    "authors": [
+      "Zeyu LI",
+      "Yipu ZHANG",
+      "Jintao Chen",
+      "Xin LI",
+      "Wei ZHANG"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": "31 pages, 17 figures, 9 tables",
+    "summary": "Looped language models provide a parameter-efficient way to scale iterative test-time computation by repeatedly executing a shared recurrent core. Post-training quantization (PTQ) can reduce the memory footprint and inference cost of looped language models, but errors introduced by a quantized shared core affect subsequent cores. Among PTQ methods, channel scaling and orthogonal rotations preserve the floating-point computation while producing representations with different quantization quality. We find that quantization configuration candidate rankings can change with recurrent depth, motivating configuration selection at the target deployment depth. However, evaluating every candidate over the full calibration set at this depth is costly. We therefore propose Loopy, a PTQ framework that formulates shared-core quantization through a recurrent-depth-aware objective, selecting shared low-bit representations by their final prediction loss at the target deployment depth. Channel scaling and orthogonal rotations parameterize the candidate representations. To approximately solve this selection problem efficiently, Loopy progressively allocates calibration windows to promising candidates while preserving complete target-depth execution, using only forward evaluations. Across eight settings, Loopy achieves the state-of-the-art results among different baselines. On Ouro-1.4B under W4A4, Loopy reduces LAMBADA perplexity by 36.5% relative to SpinQuant. Our code is available at https://github.com/Shameless0817/Loopy-review.git.",
+    "abs": "http://arxiv.org/abs/2610.05265v1",
+    "pdf": "https://arxiv.org/pdf/2610.05265v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "Loopy 针对循环语言模型的训练后量化问题，提出以部署深度下的最终预测损失为目标来挑选共享循环核心的低比特表示，并用逐步分配校准窗口的前向评估近似求解该选择问题，在八组设置上取得最优结果。",
+      "relevance_reason": "纯文本循环结构的低比特量化并非本文主线，但其核心线索——量化质量排序随循环深度变化、需在目标深度上评估——可能可供核查 latent 推理中深度相关状态退化与 latent 相似度是否受精度/结构扰动影响的问题。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-06T19:10:01.965238+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

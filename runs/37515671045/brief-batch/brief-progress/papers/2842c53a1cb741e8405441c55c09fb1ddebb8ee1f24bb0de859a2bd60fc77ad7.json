@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.03894",
+  "input_sha256": "e2a557ac05ac113ca39220c1eca83925030647882809c396c25cc56ba356bf9b",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-06T19:15:49.161560+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1978,
+        "output_tokens": 212,
+        "total_tokens": 2190,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.03894",
+    "title": "Proxy Confidence: Auditing Black-Box LLM Agents with a Surrogate's Log-Probabilities",
+    "authors": [
+      "Yikai Zhao",
+      "Saurabh Pandey",
+      "Pradeep Kumar Misra"
+    ],
+    "categories": [
+      "cs.AI",
+      "cs.CL",
+      "cs.LG"
+    ],
+    "comment": "20 pages, 6 figures, 12 tables",
+    "summary": "A deployed LLM agent emits tool calls, queries, and code that can be silently wrong -- by the time the error surfaces, the action has run. Frontier chat APIs hide the model's token probabilities; the agent's stated confidence barely beats chance on the mistakes that matter; and resampling does not help, since frontier models are highly repetitive, reproducing the same call across samples.\n  We recover the missing signal from a low-cost open-weight surrogate run in parallel. It reads the same context, schema, and proposed action as the agent, then scores the call from its own log-probabilities through a family of complementary readouts: teacher forcing and request-PMI weigh the likelihood of each argument value, a discriminative verdict judges the call as a whole, and tool-choice competition tests the function against its siblings. One principle says which to trust: a generative likelihood localizes wrong argument values, while the verdict catches holistically wrong calls. When the error type is unknown, an ensemble is the low-regret default. The readout is training-free, needs no access to the agent's internals, and costs one prefill pass alongside the tool call.\n  On difficult coding tasks it reaches AUROC 0.825 where the actor's stated confidence is near chance (0.598), and the generative readouts beat it by +0.07 to +0.28 across three further actors. Against self-consistency it gains +0.14 to +0.19 on near-deterministic actors, at 1/K the cost. The signal drives two deployment modes: a real-time gate escalating the least-trustworthy calls for review (+0.05 to +0.30 accepted-action accuracy at 50% coverage), and confidence feedback, returning the tool result with the score so the agent adapts its next step -- lifting task success on live-execution benchmarks (+0.119 and +0.137, p <= 1e-4) and beating a random-value control where step errors are silent (+0.078, p = 0.003).",
+    "abs": "http://arxiv.org/abs/2610.03894v1",
+    "pdf": "https://arxiv.org/pdf/2610.03894v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "该工作用低成本开源代理模型并行读取与黑箱 LLM agent 相同的上下文、schema 和候选动作，通过 teacher forcing、request-PMI、判别式判定、工具选择竞争等 log-probability 读出来审计工具调用的可靠性，并用于实时门控与置信度反馈。",
+      "relevance_reason": "其「用代理模型 log-prob 定位错误参数值、门控不可信动作」可启发 LVR 的 THINK/LOOK/STOP 决策与停止判据，以及 latent 状态可信度的估计；但研究对象是文本工具调用，与视觉推理的联系需核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-06T19:15:49.161560+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

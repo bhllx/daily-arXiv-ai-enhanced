@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.05831",
+  "input_sha256": "2680d6962039d0e778c12d94f0fd27c7d938dea8c3072dbcc77aaacf0ddc3fcf",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-06T19:07:29.648603+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1951,
+        "output_tokens": 203,
+        "total_tokens": 2154,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.05831",
+    "title": "Selecting Long-Horizon Trajectories for Reliable and Efficient Terminal-Agent Training",
+    "authors": [
+      "Cuong Dang",
+      "Hoang Anh Just",
+      "Ruoxi Jia"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.AI",
+      "cs.CL"
+    ],
+    "comment": "Submitted to ICLR 2027",
+    "summary": "Terminal agents are commonly trained by imitating long teacher trajectories, yet how much of each trajectory to supervise remains unexplored. We study the \\emph{supervision horizon}, the number of trajectory tokens retained for training, and show that it is a key design axis for reliability and cost. Reliability improves with longer horizons but saturates: on Terminal-Bench, a 12K-token horizon solves more tasks than 16K ($29\\pm0.7$ vs.\\ $26\\pm0.8$) while requiring 30\\% less training time. The horizon also shapes agent behavior: short horizons cause premature termination, intermediate horizons yield productive error recovery, and long horizons induce over-persistence. We analyze this saturation through a bias--complexity bound, in which longer supervision reduces temporal supervision bias but increases finite-sample estimation error from more heterogeneous late-stage histories. Guided by this analysis, we propose \\emph{selective long-horizon refinement}, which first trains on short prefixes and then refines only on continuations that are most likely under the warm-start model. It consistently outperforms full long-horizon training. At 16K, it raises successful attempts from $110\\pm2.7$ to $126\\pm2.1$ and tasks solved in at least six of eight attempts from $9\\pm0.7$ to $14\\pm0.6$; with half of the long-horizon data, it still reaches $122\\pm2.4$ while cutting training time by 23\\%. The gains transfer across benchmarks, from $64\\pm2.6$ to $73\\pm2.1$ on Terminal-Bench v2.0 and from $137\\pm2.7$ to $155\\pm2.2$ on OpenThoughts-TBLite. For long-horizon supervision, selecting the right trajectories matters more than training on all of them.",
+    "abs": "http://arxiv.org/abs/2610.05831v1",
+    "pdf": "https://arxiv.org/pdf/2610.05831v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文研究终端智能体模仿学习中「监督视界」的长短：保留多少轨迹 token 进行监督会同时影响可靠性与成本，并提出先用短前缀预训练、再只对 warm-start 模型下高概率的后续片段做选择性长程精炼。",
+      "relevance_reason": "监督视界与「何时停止/是否过度持续」的行为分析（过早终止、错误恢复、过度坚持）以及选择性轨迹筛选，可能为 LVR 的 STOP 决策、轨迹监督与贡献分配提供可核查线索，但对象是文本终端智能体而非视觉推理，需确认迁移性。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-06T19:07:29.648603+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

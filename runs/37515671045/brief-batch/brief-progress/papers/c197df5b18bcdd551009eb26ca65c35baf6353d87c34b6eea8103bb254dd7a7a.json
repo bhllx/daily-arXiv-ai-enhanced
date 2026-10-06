@@ -1,0 +1,67 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.04429",
+  "input_sha256": "61cb6918ee412633762b2a403bcb69f09bf6775324f19e6c7bce2c46b7880356",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-06T19:13:36.557971+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1991,
+        "output_tokens": 206,
+        "total_tokens": 2197,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.04429",
+    "title": "Asking Earns Nothing: Scoring the Decision to Act in BFCL Multi-Turn",
+    "authors": [
+      "Yangze Liu",
+      "Zhongyi Han"
+    ],
+    "categories": [
+      "cs.AI"
+    ],
+    "comment": "19 pages, 2 figures. Code and data: https://github.com/YangzeLiu/asking-earns-nothing",
+    "summary": "An agent that lacks the information it needs should ask rather than act, and the task definitions of agent leaderboards say so. BFCL multi-turn builds two of its four categories around a turn on which the model is supposed to ask, and its scorer never looks at that turn: the gold trajectory there is empty, the checker skips it, and the scripted user cannot answer, so asking earns nothing, guessing costs nothing on that turn, and asking twice loses the item. The benchmark also contains the control experiment for that decision. A should-ask item is a base item with one piece of information removed from one turn, so the same request appears twice at the same turn index, once complete and once not: on the first the model should make the call that changes the world, on the second it should ask. We score one decision per pair, whether the model attempted a world-changing call on that turn, read off the stored trajectories with no LLM judge; acting always and asking always both score 50. On the 223 pairs that pose this decision, gpt-5.4 attempts the call on 83.4% of the complete turns and holds back on 78.0% of the incomplete ones, the best decision accuracy of seven models at 80.7%; on the same items the official score ranks it sixth and puts first a model that lands in the middle here. One added line telling gpt-5.4 not to ask pushes it toward acting on both sides of the pair, so its decision accuracy shows no detectable change, while its official score rises by 13.5 to 23.5 points on the two should-ask categories and on the base twins; the opposite line, telling gemma-4-31B-it to ask first, improves its decision by 4.5 points and gains no official score. The score moves with the push toward action, not with the decision. We release the pairs, a turn-level scorer that runs on any BFCL output directory without an API key, and 31 manually verified bad items.",
+    "abs": "http://arxiv.org/abs/2610.04429v1",
+    "pdf": "https://arxiv.org/pdf/2610.04429v1",
+    "AI": {
+      "category": "MAIN",
+      "priority": "P1",
+      "brief_summary": "论文诊断 BFCL 多轮智能体基准在「应当询问」回合上的评分缺陷：该回合不计分，从而奖励盲目行动；作者构造 223 对「完整/缺失信息」配对，逐回合给「是否发起改变世界的调用」打分，并比较七个模型与官方榜单排序。",
+      "relevance_reason": "直接对应 LVR 的 STOP/放弃决策与证据获取问题：它揭示评价标准与「是否/何时行动」决策脱钩，并给出无 LLM judge 的回合级打分方式，可供核查多模态推理中停止与获取证据的收益成本度量。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-06T19:13:36.557971+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

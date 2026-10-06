@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.05458",
+  "input_sha256": "f073b1cf4b568e0027ebf2a4a66068739038800191cfa5404ae9dc61716f3f05",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-06T19:09:10.705680+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1876,
+        "output_tokens": 214,
+        "total_tokens": 2090,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.05458",
+    "title": "Measuring and Reducing Cross-Vendor Mismatch in Language Models",
+    "authors": [
+      "Erland Hilman Fuadi",
+      "Chong Tian",
+      "Xiaosong Ma",
+      "Qirong Ho"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.DC"
+    ],
+    "comment": "23 pages, 9 figures, 15 tables. Code: https://github.com/crova-project/crova",
+    "summary": "Running the same language model on different graphics processing unit (GPU) vendors can produce different logits, even when the model weights and inputs are the same. We analyze cross-vendor mismatch in two dense and two mixture-of-experts (MoE) models with five metric families, namely bitwise equality, logit differences, top-K consistency, token agreement, and task accuracy. We trace one source of the mismatch to accumulation order inside vendors' matrix instructions. Upcasting to FP32 reduces the dense model's logit error by 43% at three times the runtime, yet keeping only the MLPs in BF16 retains 94% of this gain at 1.3 times the runtime, so most of the cost of full upcasting buys little. In the MoE models, FP32 and FP16 both lower the probability error but raise the logit error and change expert selection, and FP16 fails in the dense model. An output-head low-rank adapter (LoRA) does not help either, since the final hidden state does not predict the mismatch. The mismatch also carries into training. With every seed fixed, a student distilled from a teacher running on AMD answers 431 MMLU questions differently from one distilled from the same teacher on NVIDIA. Under FP32 upcasting, bitwise equality barely changes while the output distributions move most of the way to the reference, so judging cross-vendor agreement by a single measure misreads both its cost and its gains. Code is available at https://github.com/crova-project/crova.",
+    "abs": "http://arxiv.org/abs/2610.05458v1",
+    "pdf": "https://arxiv.org/pdf/2610.05458v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "论文系统测量同一语言模型在不同 GPU 厂商上运行时的 logits、top-K、token 一致性与任务准确率差异，将部分来源追溯到矩阵指令的累加顺序，并评估 FP32 上采样、仅 MLP 上采样、LoRA 输出头等削减手段及其对蒸馏训练的影响。",
+      "relevance_reason": "该工作本身不涉及视觉 latent 推理，但其「隐藏状态不足以预测偏差」「单一度量误判增益与代价」「数值噪声经蒸馏传递」的发现，可供核查 LVR 中 latent 状态相似度与缓存、注意力结构测量是否受低层数值差异污染。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-06T19:09:10.705680+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

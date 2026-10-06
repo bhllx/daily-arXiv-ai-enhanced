@@ -1,0 +1,68 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.04226",
+  "input_sha256": "ac59e545c2cd96bb1e12d53af787c56b4e3701e04bbb7771f7c72b6f0ddbf779",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-06T19:14:28.401925+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1840,
+        "output_tokens": 205,
+        "total_tokens": 2045,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.04226",
+    "title": "PaLoRA: Paced Low-Rank Adaptation for Continual Learning",
+    "authors": [
+      "Yuxuan Li",
+      "Fanhu Zeng",
+      "Hao Tang"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": "Accepted at NeurIPS 2026. Code: https://github.com/liyuxuan-github/PaLoRA",
+    "summary": "LoRA-based continual learning methods mitigate catastrophic forgetting through various mechanisms, yet nearly all complement these with small learning rates as a heuristic to restrict gradient scaling magnitude. Such fixed heuristics lack theoretical guidance on how the strength of this restriction should evolve as tasks accumulate. We reveal that even under directional constraints such as nullspace projection, finite-precision updates inevitably leak into the subspace of accumulated prior knowledge along multiple directions. While small learning rates attenuate such leakage, they cannot prevent the accumulated forgetting from intensifying as the effective rank of historical knowledge grows. We show that the optimal magnitude restriction should adaptively increase with this effective rank to balance stability and plasticity, i.e., preservation of previous knowledge and acquisition of new task information. Under an anisotropic leakage model, we derive a pacing law $s^*=\\sqrt{R/c}$ that characterizes the optimal scaling of gradient steps, i.e., the magnitude restriction itself, where $R$ is the effective rank of past updates. Based on this insight, we propose PaLoRA, which compresses historical knowledge via adaptive SVD truncation, projects gradients onto the nullspace of prior tasks, and applies rank-aware adaptive pacing. Experiments demonstrate consistent improvements over prior methods, with particularly strong performance in long-horizon settings, achieving substantial gains of 4% accuracy on challenging 50-task ImageNet-A and ImageNet-R benchmarks.",
+    "abs": "http://arxiv.org/abs/2610.04226v1",
+    "pdf": "https://arxiv.org/pdf/2610.04226v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "该论文研究 LoRA 持续学习中的稳定性—可塑性平衡，推导出随历史知识有效秩增长的自适应梯度步长控制律 s*=√(R/c)，并据此提出结合 SVD 压缩、零空间投影与秩感知 pacing 的 PaLoRA。",
+      "relevance_reason": "与 LVR 的直接联系有限，但「按历史状态有效秩自适应调节更新强度」的思路可能为 latent 推理中随推理深度或轨迹积累而动态控制状态更新幅度、缓解信息坍缩提供可核查的线索；是否涉及多模态推理尚未见材料支持。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-06T19:14:28.401925+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.06260",
+  "input_sha256": "7c31cf7da6a97b9a3d0adeb0c965f0dc55de2643b3ab4bf697cb2dae4a14e6b8",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-06T19:05:00.984167+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1853,
+        "output_tokens": 221,
+        "total_tokens": 2074,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.06260",
+    "title": "CentriQ: Calibration-Free Quantization of Diffusion Transformers via Exact Mean Centering",
+    "authors": [
+      "Nataša Jovanović",
+      "Mathieu Salzmann",
+      "Saqib Javed"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.AI",
+      "cs.RO"
+    ],
+    "comment": "Code and project page will be released soon",
+    "summary": "Diffusion transformers (DiTs) achieve state-of-the-art image generation, but their sampling cost limits deployment. Quantizing both weights and activations to 4 bits reduces this cost, yet existing methods fall short in one of two ways. Calibration-based methods are tied to a specific checkpoint and prompt distribution, whereas data-free Hadamard rotation, effective for LLMs, loses quality on DiTs. We show that this loss has a structural cause. Adaptive layer-norm conditioning adds a per-token mean to the activations, and at the widths of the evaluated DiTs, the Hadamard rotations used by data-free methods cannot spread this mean uniformly across coordinates. A single dominant direction therefore survives the rotation and sets the quantization range. We introduce CentriQ, a calibration-free quantizer that centers each token before rotation and restores the mean exactly through a rank-1 full-precision branch, so that per-token scales follow in closed form without data. Weights are fitted under a robust $\\ell_p$ objective that tracks the dense mode of each group and discounts heavy tails. Across three DiTs, CentriQ matches the quality of calibrated SVDQuant at 4 bits, whereas calibration-free weight quantizers with plain per-token activation quantization collapse or degrade substantially. CentriQ outperforms the strongest calibration-free method reported to date at 2-bit weights. It is also the first calibration-free method to retain usable image quality at 2-bit activations.",
+    "abs": "http://arxiv.org/abs/2610.06260v1",
+    "pdf": "https://arxiv.org/pdf/2610.06260v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "该论文研究扩散 transformer 的无校准 4-bit/2-bit 量化，指出 adaLN 条件在激活中引入的 per-token 均值会使 Hadamard 旋转无法均匀摊开该均值，故提出先对每个 token 去均值、再用 rank-1 全精度分支精确恢复均值的量化方案。",
+      "relevance_reason": "与 LVR 主线的视觉证据筛选、latent 相似度或推理状态无直接关系，但「per-token 均值构成主导方向、旋转无法均匀扩散」这一表示几何观察，可能可供核查视觉 token 内部状态中主导方向、尺度归一化与信息坍缩的关系。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-06T19:05:00.984167+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

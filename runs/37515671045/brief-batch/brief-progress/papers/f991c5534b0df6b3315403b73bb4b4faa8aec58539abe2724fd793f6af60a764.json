@@ -1,0 +1,67 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.04089",
+  "input_sha256": "6e5737952a15a66b6e7656289c7bd9d2227447c6955779e634b8f6d363270de0",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-06T19:15:04.413270+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1888,
+        "output_tokens": 218,
+        "total_tokens": 2106,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.04089",
+    "title": "Pareto-Dominant Clarification: Post-Training Coding LLMs via PPO-Lagrangian Budget Constraints",
+    "authors": [
+      "Abhinav Rajput",
+      "Acey Vogelstein"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": "Accepted to the LMP Workshop at EMNLP 2026. 17 pages, 8 figures, 1 table. Abhinav Rajput and Acey Vogelstein contributed equally. Code: https://github.com/Abhinav0710rajput/coding_llms_cmdp",
+    "summary": "Coding agents operating under ambiguous instructions or user prompts must decide whether to ask clarifying questions or attempt a solution directly. While clarification from the user may improve the correctness of the agent's solution, each back-and-forth interaction incurs user and system costs, forming an explicit accuracy vs. efficiency tradeoff. Existing works study clarification behavior but do not train policies under enforceable clarification budgets; penalty-based approaches typically require separate coefficient tuning swept across all clarification budget levels. We formulate clarification as a Constrained Markov Decision Process (CMDP) and post-train Qwen2.5-Coder-7B-Instruct with PPO-Lagrangian to optimize coding accuracy, subject to an expected question-budget constraint. Evaluated on HumanEvalComm with a GPT-4o-mini oracle simulator, the resulting policies reveal that untuned clarification behavior is Pareto-inefficient: budget-constrained policies can simultaneously achieve higher accuracy and lower clarification rates than the baseline model. Across budget levels, we observe a log-shaped Pareto frontier with diminishing returns to additional clarification. Gains arise not from simply asking more questions overall, but from improved question targeting and better code generation under ambiguity. Without explicit supervision, trained policies learn to allocate clarification budget non-uniformly, asking more frequently on tougher (multi-degradation) tasks. These results suggest that unconstrained interactive LLM systems may systematically use clarification inefficiently.",
+    "abs": "http://arxiv.org/abs/2610.04089v1",
+    "pdf": "https://arxiv.org/pdf/2610.04089v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P1",
+      "brief_summary": "该论文把编码智能体的「提问澄清 vs 直接作答」建模为约束马尔可夫决策过程，用 PPO-Lagrangian 在期望提问预算约束下后训练 Qwen2.5-Coder-7B，并在 HumanEvalComm 上得到 log 形 Pareto 前沿：受预算约束的策略可同时提高准确率并降低提问率。",
+      "relevance_reason": "与 LVR 的 LOOK/STOP 决策高度同构：预算约束下的澄清分配、对难题非均匀提问、以及「收益来自更精准的证据获取而非更多动作」可供核查其是否可迁移为视觉证据筛选与停止准则。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-06T19:15:04.413270+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

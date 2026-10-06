@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.06415",
+  "input_sha256": "aff1807c4fe38acf21ecad12a18639be9e26cafb127cc76ecc6dab0c649b87da",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-06T19:04:10.146312+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1822,
+        "output_tokens": 193,
+        "total_tokens": 2015,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.06415",
+    "title": "Training-Free Transformer Merging via Sequential Local Operator Alignment",
+    "authors": [
+      "Akansh Maurya",
+      "Ya-Wei Eileen Lin",
+      "Stefanie Jegelka",
+      "Sebastian U Stich",
+      "Rotem Mulayoff"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Training-free model merging aims to combine multiple fine-tuned models into a single model without further optimization on labeled data. Yet, in transformers, independently merging individual layers can affect a shared attention computation because the query-key and value-output operators depend on composed matrices, overlooking the functional structure. Moreover, when merging earlier components, downstream components receive different activations than they do in the original model, thus, the merged and original execution paths no longer match. In this paper, we introduce Sequential Local Operator Alignment, a training-free method that merges transformers along the execution path of the partially merged model. Our method uses calibration data to estimate the local behavior of each functional component, aligns operators sequentially under the intermediate activation of the partially merged model, and subsequently factorizes the merged operators back into valid transformer parameters. We empirically show that this sequential step reduces error accumulation across layers. Furthermore, the proposed operator factorization step enables rank expansion, providing a principled mechanism for increasing multi-task capacity. We demonstrate that our approach generalizes across modalities, model scales, and varying numbers of tasks, from CLIP and RoBERTa to billion-parameter LLMs, and further extends naturally to the merging of LoRA-fine-tuned models. The results indicate improvements over strong merging baselines without requiring rank expansion, while optional expansion provides a further accuracy-inference-cost trade-off. Project link: https://akansh12.github.io/SLOA-Merge/",
+    "abs": "http://arxiv.org/abs/2610.06415v1",
+    "pdf": "https://arxiv.org/pdf/2610.06415v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "该论文提出无需训练的 Transformer 合并方法 SLOA，用校准数据估计各功能组件的局部行为，沿部分合并模型的执行路径顺序对齐 query-key、value-output 等算子，再将其分解回 Transformer 参数，并支持秩扩展以提升多任务容量。",
+      "relevance_reason": "其「按执行路径顺序对齐组件、并追踪部分合并模型的中间激活」思路，可能与 LVR 中 latent 状态随深度更新时的贡献分配、缓存一致性和路径错位诊断存在概念联系，可供核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-06T19:04:10.146312+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

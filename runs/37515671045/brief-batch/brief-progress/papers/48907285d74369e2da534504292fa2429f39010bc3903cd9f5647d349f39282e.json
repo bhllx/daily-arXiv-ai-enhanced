@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.05106",
+  "input_sha256": "a49d2a045a24dccff486555ad045fc61ecab9958cfea8d7b0ed659fd4f39c153",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-06T19:10:42.440560+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1781,
+        "output_tokens": 203,
+        "total_tokens": 1984,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.05106",
+    "title": "SharpDraft: Accelerating Long-Context Speculative Decoding with Cardinality-Aware Query Scaling",
+    "authors": [
+      "Jeonghoon Park",
+      "Seongwoon Jo",
+      "Jongwon Lee",
+      "Taesik Gong"
+    ],
+    "categories": [
+      "cs.AI"
+    ],
+    "comment": "19 pages, 7 figures",
+    "summary": "Long-form reasoning makes inference expensive, and speculative decoding mitigates this cost by verifying multiple draft tokens in parallel. Its speedup, however, can fade as context grows and draft acceptance declines. We focus on attention-mass dilution: as softmax normalizes over more visible Keys, the mass concentrated on the highest-scoring Keys can decrease. We introduce SharpDraft, a training-free method that counteracts this effect through cardinality-aware Query scaling, without the computational overhead of online adaptation. Under explicit assumptions, we derive an exact top-$k$ mass correction and deploy a closed-form fixed-slope approximation. Across AIME-26, GPQA-Diamond, and LongGenBench Diary, SharpDraft achieves $2.59$-$3.19\\times$ geometric-mean end-to-end speedups over target-only autoregressive decoding when applied to DFlash, PARD, and EAGLE 3.1. With DFlash, it improves decoding speed and outperforms full-parameter and LoRA-based online adaptation in end-to-end speedup, while matching the unmodified drafter's reported peak allocated GPU memory.",
+    "abs": "http://arxiv.org/abs/2610.05106v1",
+    "pdf": "https://arxiv.org/pdf/2610.05106v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "针对长上下文下 speculative decoding 接受率下降的问题，提出免训练的 SharpDraft：从注意力质量稀释出发，对 Query 做基数感知缩放，并给出 top-k 质量修正的闭式固定斜率近似，在多个推理基准上报告 2.59–3.19 倍端到端加速。",
+      "relevance_reason": "其「随可见 Key 数量增多，注意力质量被稀释」的分析与 LVR 里 latent 状态随长度退化、视觉证据筛选和相似度受注意力结构影响的问题可能相关，可作为表示稀释与长度泛化的方法线索供核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-06T19:10:42.440560+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

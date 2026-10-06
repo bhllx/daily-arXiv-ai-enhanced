@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.04635",
+  "input_sha256": "5ff4939a2b1e07d3c4af6ed9f2d991b607a72cf52bf2595814fcf65edcd71e7c",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-06T19:12:48.267708+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1855,
+        "output_tokens": 207,
+        "total_tokens": 2062,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.04635",
+    "title": "LatentIndex: Cross-Layer Sharing with Layer-Specific Selection for Sparse Attention",
+    "authors": [
+      "Zhaohui Wang",
+      "Zhixin Pan",
+      "Fanxu Meng",
+      "Muhan Zhang"
+    ],
+    "categories": [
+      "cs.AI"
+    ],
+    "comment": "preprint",
+    "summary": "Sparse attention reduces core-attention computation, but its indexers still incur repeated selection work and per-layer key-cache storage. Reusing selected indices across layers reduces this overhead but constrains multiple layers to the same token set. We introduce LatentIndex, which extends the latent-sharing principle of Multi-head Latent Attention across indexer layers. Each layer group constructs a shared latent cache from its first layer's hidden states, while layer-specific scoring enables independent token selection. Absorbing key decoders into queries enables direct scoring of the shared cache without reconstructing historical per-layer keys. We develop training-free calibration and investigate a training-aware instantiation of this principle. To balance quality and computation, a hierarchical selection (HS) variant lets followers independently refine a shared candidate set proposed by the anchor. With four-layer sharing, LatentIndex reduces logical indexer-cache storage by 61.1% on DeepSeek-V3.2. Across DeepSeek-V3.2 and GLM-5, training-free LatentIndex improves head-wise attention-mass recall over IndexCache by up to 3.28 percentage points while maintaining RULER and LongBench performance close to native DSA. HS further achieves 2.30-2.72 times decode indexer speedups over DSA across 8K-128K contexts, retaining most of LatentIndex's recall. LatentIndex offers a new perspective on cross-layer indexing: sharing continuous representations rather than discrete selections enables efficient reuse while preserving layer-specific token selection.",
+    "abs": "http://arxiv.org/abs/2610.04635v1",
+    "pdf": "https://arxiv.org/pdf/2610.04635v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "该论文提出 LatentIndex，把 MLA 的 latent 共享思路扩展到稀疏注意力的 indexer 层：层组从首层隐状态构造共享 latent 缓存，各层用独立打分选择 token，并在共享候选集上做分层细化，从而降低索引缓存与选择开销。",
+      "relevance_reason": "论文面向长上下文 LLM 的稀疏注意力索引，并非视觉多模态推理；但「跨层共享连续表示、层内独立选择、锚点候选集加分层细化」可供核查 LVR 中 latent 复用、候选证据筛选与共享状态是否损害层间差异性的问题。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-06T19:12:48.267708+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

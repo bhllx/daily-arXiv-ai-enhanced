@@ -1,0 +1,74 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.05070",
+  "input_sha256": "56d2118af215155feb15b9354dfb3f9e12939aea218b0210fb3d783e596a251f",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-06T19:10:50.719466+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1796,
+        "output_tokens": 213,
+        "total_tokens": 2009,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.05070",
+    "title": "Outcome-Guided On-Policy Self-Distillation",
+    "authors": [
+      "ZheXu Wang",
+      "Mao-Lin Luo",
+      "Yankun Hong",
+      "Zi-Hao Zhou",
+      "Bo Ye",
+      "Jian Zhao",
+      "Xialiang Tong",
+      "Min-Ling Zhang",
+      "Tong Wei"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "On-policy self-distillation (OPSD) provides denser token-level supervision and better computational efficiency than Reinforcement Learning with Verifiable Rewards (RLVR). However, this denser supervision may introduce substantial noise and training instability. Existing improvements often rely on high-variance per-token statistics and introduce extra hyperparameters and trade-offs. Based on the advantage formulation in RLVR, we analyze the OPSD objective from the same perspective, incorporating outcome correctness signals. We find that vanilla OPSD imposes insufficient penalties and excessive rewards on incorrect trajectories because it applies a fixed divergence objective regardless of outcome correctness. Furthermore, the reliability of teacher supervision is associated with both trajectory outcome and the cumulative average teacher entropy along the rollout. Based on these observations, we propose Outcome-Guided On-Policy Self-Distillation (OG-OPSD), which dynamically adapts both the divergence objective and distillation position according to binary outcome rewards and the cumulative average teacher entropy. Extensive experiments show that OG-OPSD consistently improves the performance of vanilla OPSD and multiple strong baselines in mathematical reasoning, multimodal reasoning, and out-of-distribution tasks across Qwen3 models at 1.7B, 4B, and 8B scales, as well as Qwen3-VL-2B.",
+    "abs": "http://arxiv.org/abs/2610.05070v1",
+    "pdf": "https://arxiv.org/pdf/2610.05070v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P1",
+      "brief_summary": "该论文分析 on-policy self-distillation 在 RLVR 式优势视角下的缺陷：因不区分结果对错而统一施加固定散度目标，导致错误轨迹惩罚不足、奖励过多；据此提出 OG-OPSD，用二元结果奖励与教师累积平均熵动态调整散度目标与蒸馏位置，并在数学推理、多模态推理及 OOD 任务上验证。",
+      "relevance_reason": "虽不直接构造 latent 推理状态，但其按结果正确性与教师熵决定「何时蒸馏、在哪蒸馏」的监督分配视角，可能可供核查 LVR 中的轨迹训练、贡献分配与 STOP/计算预算决策。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-06T19:10:50.719466+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

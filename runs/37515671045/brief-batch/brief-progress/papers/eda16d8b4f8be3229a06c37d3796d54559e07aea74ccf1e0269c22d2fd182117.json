@@ -1,0 +1,74 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.04585",
+  "input_sha256": "3ef5a57dad682906804b5bf28acbb5c276711afac43e8998275314556e76fa6b",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-06T19:12:58.681878+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1967,
+        "output_tokens": 258,
+        "total_tokens": 2225,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.04585",
+    "title": "Frozen in a Frame: The Velocity Blind Spot in JEPA World Models",
+    "authors": [
+      "Tinghe Zhang",
+      "Chunyu Liu",
+      "Yu Leon Liu",
+      "Zerui Zhao",
+      "Jiaheng Chen",
+      "Yucheng Xiao",
+      "Jiaxing Li",
+      "Yunlong Wang",
+      "Alex Lamb"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": "32 pages, 17 figures, 12 tables. Code, model checkpoints, and project page are available via links in the paper",
+    "summary": "Joint-embedding predictive architectures (JEPAs) for world modeling train an encoder so a predictor maps a current embedding and action to the next frame's embedding, always from a single rendered frame. This has a structural blind spot: a renderer without motion blur draws a scene from configuration alone, so a single-frame embedding carries no velocity information, for any encoder, including the official released LeWM weights. We confirm this on official checkpoints across four real benchmarks (PushT, Reacher, Cube, TwoRoom): every linear velocity probe sits at or below chance while position probes reach R^2 about 0.95. We introduce RateIdent, a three-stage diagnostic protocol, and TI-JEPA, a lightweight fix splitting the latent into a pose code and an explicit finite-difference motion code, predicted jointly. Across three physically grounded environments, TI-JEPA gives a significant, seed-robust gain on a stop-at-goal planning task over a matched-memory baseline, e.g. 55% lower final distance on Pendulum (p=3.2x10^-10) and 64% on CartPole (p=5.1x10^-15). We reproduce this at official ViT-Tiny plus AdaLN-transformer scale, then push the same recipe onto real dm_control Reacher photographs trained from scratch, where TI-JEPA's branch separation exceeds the memory-having baseline's by roughly 38x, the paper's largest margin. Against a same-footprint recurrent RSSM-style predictor, TI-JEPA matches or beats its rollout accuracy on two of three environments, stays separately probeable for pose and motion, and wins outright on the most coupled one. A checkable formal argument and six evaluated environments show single-frame targets are the wrong object to predict when velocity matters, and a small, interpretable structural change fixes it with no privileged supervision. Code, checkpoints, and the project page are linked below the title.",
+    "abs": "http://arxiv.org/abs/2610.04585v1",
+    "pdf": "https://arxiv.org/pdf/2610.04585v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P1",
+      "brief_summary": "论文指出 JEPA 世界模型以单帧渲染为预测目标存在结构性盲点：单帧嵌入不含速度信息，线性速度探针在四个真实基准上仅相当于随机水平，而位置探针 R² 约 0.95；作者提出三阶段诊断协议 RateIdent 和把 latent 拆成姿态码与显式有限差分运动码并联合预测的 TI-JEPA，在多个环境的目标点停止规划任务上取得稳定提升。",
+      "relevance_reason": "虽非 VLM 或 LVR 工作，但其「latent 中可探测的内容受目标构造约束」的诊断思路与 latent 表示能否保留任务必要信息、视觉细节是否坍缩的问题直接相关，可供核查：探针式诊断可迁移到 VLM latent 状态，有限差分运动码与姿态码的分离也提示 latent 分区设计。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-06T19:12:58.681878+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

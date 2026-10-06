@@ -1,0 +1,68 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.05125",
+  "input_sha256": "63c9afdb0aa40557ce2472c8acf2c2b7ea7194d1379b8858131a135509897320",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-06T19:10:36.567389+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1761,
+        "output_tokens": 194,
+        "total_tokens": 1955,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.05125",
+    "title": "Bayesian Entropy-based Reordering for Calibrated Diffusion Language Models",
+    "authors": [
+      "Zhejun Jiang",
+      "Mijung Park"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "Masked Diffusion Language Models (MDLMs) generate sequences by iteratively replacing masked tokens with model predictions. At each denoising step, the decoder chooses which positions are sufficiently confident to commit. Existing decoding methods typically rely on softmax confidence, which can be miscalibrated. We introduce BayesER (BAYESian Entropy-based Reordering), a post-hoc Bayesian decoding framework that uses predictive uncertainty to guide token commitment. In BayesER, we construct a lightweight approximate posterior centered at the pretrained checkpoint, similar to Laplace-LoRA but without training LoRA adapters. We average predictions over posterior samples and use predictive entropy to prioritize reliable positions. We examine how posterior predictions affect position ordering and token selection across benchmarks spanning code generation, mathematical reasoning, planning, and molecular generation. We show that BayesER reduces sequence-level calibration error while preserving or improving accuracy relative to common decoding schemes, including confidence-threshold decoding. Additionally, a posterior fitted on one code-generation dataset reduces calibration error on another without refitting, suggesting that Bayesian uncertainty may provide a transferable signal for more reliable MDLM decoding.",
+    "abs": "http://arxiv.org/abs/2610.05125v1",
+    "pdf": "https://arxiv.org/pdf/2610.05125v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "该论文提出 BayesER，用预训练权重附近的轻量近似后验平均预测，并以预测熵引导掩码扩散语言模型的 token 提交位置顺序，从而改善序列级校准误差，在代码、数学推理、规划等任务上保持或提升准确率。",
+      "relevance_reason": "其按不确定度决定哪些位置先提交的机制，可能对应 LVR 中停止/提交决策与证据筛选问题；后验不确定性作为可迁移信号以及跨数据集免微调的观察，可供核查能否用于 latent 推理状态的置信度与校准。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-06T19:10:36.567389+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

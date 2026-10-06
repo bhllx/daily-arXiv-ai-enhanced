@@ -1,0 +1,72 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.04938",
+  "input_sha256": "fa607d38ac6e1ef7476a30c25a9b9f8a4f8519526089ccfef577484f1fd5a806",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-06T19:11:30.885837+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1823,
+        "output_tokens": 203,
+        "total_tokens": 2026,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.04938",
+    "title": "D-DOIT: Training-free Adaptation of Discrete Diffusion via Doob's h-Transform",
+    "authors": [
+      "Jieke Wu",
+      "Qijie Zhu",
+      "Weimin Wu",
+      "Zeqi Ye",
+      "Minshuo Chen",
+      "Han Liu"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "We propose D-DOIT (Discrete Doob-Oriented Inference-time Transformation), a training-free and efficient adaptation method for discrete diffusion models with generic rewards. D-DOIT formulates adaptation as sampling from a reward-tilted target distribution and realizes this transport through Doob's h-transform of the discrete diffusion reverse kernel, using only reward values rather than reward gradients. Unlike continuous diffusion, masked discrete diffusion samples categorical token-reveal transitions rather than continuous state updates. D-DOIT derives the corresponding discrete Doob's h-transform, which guides sampling by reweighting reverse transition probabilities instead of adding a drift correction. To make this transformation practical, D-DOIT avoids expensive future rollouts. At each guided step, D-DOIT samples candidate next states, uses the model prediction head to complete each candidate into a clean sequence, evaluates each completion with the reward oracle, and resamples the next state with probabilities proportional to the rewards. An optional late-stage best-of-K refinement further improves sample quality by branching trajectories only near the end of denoising, avoiding the $K$-fold cost over the full trajectory. Empirically, across regulatory DNA design and protein inverse folding benchmarks, D-DOIT outperforms training-free guidance baselines. It improves enhancer activity and cell-type specificity while preserving sequence naturalness, and achieves the highest success rate in protein inverse folding.",
+    "abs": "http://arxiv.org/abs/2610.04938v1",
+    "pdf": "https://arxiv.org/pdf/2610.04938v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "D-DOIT 提出一种免训练的离散扩散适配方法，以 Doob h-变换重加权反向转移概率，通过采样候选状态、补全序列并用奖励 oracle 评估后再重采样，避免未来 rollout，并在 DNA 与蛋白质逆折叠基准上优于免训练引导基线。",
+      "relevance_reason": "其「采样候选—补全—奖励评估—重采样」的逐步离散状态选择机制，可能为 LVR 中 latent 状态更新、证据筛选与停止/分支决策提供方法线索；但奖励倾斜的目标与多模态推理差异较大，落地路径需核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-06T19:11:30.885837+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

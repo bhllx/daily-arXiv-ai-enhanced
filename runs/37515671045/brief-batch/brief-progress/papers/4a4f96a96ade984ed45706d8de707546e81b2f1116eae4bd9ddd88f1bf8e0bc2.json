@@ -1,0 +1,74 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.06180",
+  "input_sha256": "4903f20ee3ea54c6bfabb3dde06c993675ae3c0f6b3f8a7b199f4d3e56806d71",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-06T19:05:35.013359+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1801,
+        "output_tokens": 236,
+        "total_tokens": 2037,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.06180",
+    "title": "Anlu: Enabling In-Context Time Series Anomaly Detection in Foundation Models via Counterfactual Supervision",
+    "authors": [
+      "Tian Lan",
+      "Yifei Gao",
+      "Yimeng Lu",
+      "Xuming An",
+      "Meng Wang",
+      "Yue Pan",
+      "Wenjun He",
+      "Chen Zhang"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "Whether a time-series pattern is anomalous often depends on the operating regime of the monitored process. A missing event can signal a fault in one regime and be routine in another, and the query alone may not reveal which regime applies. We study in-context learning (ICL) for time series anomaly detection (TSAD) through reference-conditioned detection, where a reference record provides evidence about expected behavior and model parameters remain fixed at inference. Supplying the reference is not enough: when training anomalies are recognizable from the query alone, the detector can fit its targets while ignoring the reference. We therefore introduce counterfactual supervision, which pairs one query with two references that support different normal rules and labels the query under each. At positions where the two labels disagree, no detector that ignores the reference can fit both targets. Anlu learns from this supervision by adding a reference memory and zero-initialized gated adapters to a frozen time-series foundation model (TSFM) pretrained for anomaly detection. On the 350 TSB-AD-U evaluation sequences, Anlu raises the mean VUS-PR of the frozen TSFM from 0.542 to 0.607. Replacing the reference with zeros lowers Anlu's score to 0.499.",
+    "abs": "http://arxiv.org/abs/2610.06180v1",
+    "pdf": "https://arxiv.org/pdf/2610.06180v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P1",
+      "brief_summary": "该论文研究时间序列异常检测中的 in-context learning：通过给冻结的基础模型配备参考记录，并用「反事实监督」让同一查询在两个支持不同正常规则的参考下获得不同标签，从而迫使检测器真正使用参考信息；方法上引入 reference memory 与零初始化门控适配器，在 TSB-AD-U 上提升了 VUS-PR。",
+      "relevance_reason": "核心线索是「防止模型忽略参考、走旁路」的监督设计：反事实配对标签使无参考的解法无法同时拟合，这与 LVR 关注的答案是否真正使用 latent/视觉证据、视觉旁路与信息坍缩高度同构，可供核查其贡献分配与门控适配器如何迁移到多模态推理的证据使用评估。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-06T19:05:35.013359+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

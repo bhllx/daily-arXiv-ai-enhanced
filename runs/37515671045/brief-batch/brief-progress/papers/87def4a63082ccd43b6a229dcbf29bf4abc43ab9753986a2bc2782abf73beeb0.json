@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.04020",
+  "input_sha256": "141a02361f623a66aadcab79d7184fdac66c1e41656e408c48be9550f5764d69",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-06T19:15:22.766829+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1876,
+        "output_tokens": 235,
+        "total_tokens": 2111,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.04020",
+    "title": "ClasSAE: Class-Aligned Sparse Autoencoders via Differentiable Feature-Class Affinity",
+    "authors": [
+      "Jakub Stępień",
+      "Marcin Mazur",
+      "Jacek Tabor",
+      "Przemysław Spurek"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": null,
+    "summary": "Sparse Autoencoders (SAEs) began as an unsupervised tool for decomposing neural representations into sparse, interpretable features, and are increasingly used not only for passive analysis but also for active interventions such as unlearning, bias mitigation, and concept editing. A central challenge for these editing and steering methods is reliably matching features to target concepts; most current approaches address this by computing post-hoc scores over an already-trained, frozen dictionary. We instead introduce ClasSAE, a novel method that both automatically assigns classes to features and guides the encoder toward class-separable representations during training. Specifically, we apply a differentiable top-$k$ operator to a trainable feature--class affinity matrix with per-feature budgets, coupling the features selected for each sample to the classes they are trained to represent. Because gradients flow through the selection of active features rather than only through their magnitudes, the encoder and the affinity matrix co-adapt rather than being fit in separate stages. The result is a dictionary that is both class-separable and class-annotated, with no need for post-hoc probing. We propose three variants for enforcing sparsity within this framework, which achieve comparable overall performance with slightly different trade-offs. Using CLIP ViT-L/14 embeddings on ImageNet, we show that the learned affinity matrix agrees closely with an independently estimated post-hoc feature-class matrix computed on held-out data. The model also supports direct class prediction from the encoder and affinity matrix alone, without a separately fitted classifier, and its more class-aligned encoder yields improved separation in Targeted Probe Perturbation evaluations. https://github.com/St0pien/ClasSAE.",
+    "abs": "http://arxiv.org/abs/2610.04020v1",
+    "pdf": "https://arxiv.org/pdf/2610.04020v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P1",
+      "brief_summary": "ClasSAE 提出在训练中通过对可学习的特征—类别亲和矩阵施加可微 top-k 选择，让 SAE 编码器与亲和矩阵共同适配，从而得到既类别可分又自带类别标注的稀疏字典，并在 CLIP ViT-L/14 的 ImageNet 嵌入上验证其与事后特征—类别矩阵一致、可直接分类。",
+      "relevance_reason": "其可微 top-k 选择与「特征—概念对齐」机制可能为 LVR 中 latent 状态的特征筛选、视觉证据选择及贡献分配提供训练监督线索；但论文面向表征解耦与可解释性，未涉及多模态推理状态生成，需核查其可微稀疏选择能否迁移到推理轨迹的 latent 内容使用。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-06T19:15:22.766829+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

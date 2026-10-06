@@ -1,0 +1,67 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.04313",
+  "input_sha256": "ce459043afe9f27e564107e60dc87e2a28cf58b3b330bd376c4c2cd43cf5ba49",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-06T19:14:06.002594+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1959,
+        "output_tokens": 213,
+        "total_tokens": 2172,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.04313",
+    "title": "MOIRA: Mass-Oriented Indexing with Ragged Attention for Long-Context Decoding",
+    "authors": [
+      "Dich Nhat Minh Nguyen",
+      "Tran Dang Duong Nguyen"
+    ],
+    "categories": [
+      "cs.AI"
+    ],
+    "comment": "19 pages, 7 figures, 7 tables",
+    "summary": "Long-context decoding is limited by memory bandwidth, because every output token reads the KV cache of every layer. Sparse decoding reduces this cost by reading only part of the KV cache. We observe that the number of pages a query needs varies widely across KV heads, layers and steps. Fixed budgets are simple, but they are sized for demanding cases and tuned per workload; adaptive budgets follow this variation more flexibly, but existing designs pay for it with extra selection cost or training. At the kernel level, FlashAttention-3 (FA3) and FlashInfer are designed for rows of similar length: with page lists whose length differs per KV head, they either pad the lists (forfeiting much of the sparse saving), leave thread blocks unbalanced, or rely on a host-side plan that runs outside the CUDA graph. We propose MOIRA, a training-free sparse decode path in vLLM whose budget adapts per KV head and per layer. For every request, layer, KV head and step, a coverage rule keeps the smallest set of pages whose estimated attention mass reaches a fraction $γ$. A new kernel, self-planning attention, lets each thread block derive its own share of the work from the list lengths, so the whole decode step stays inside the CUDA graph. On an H200, at RULER's 128k context, MOIRA with $γ=0.99$ matches dense accuracy while reading about 30% of the pages and reduces the time per output token (TPOT) by 2.2-2.5$\\times$ relative to dense FA3; with $γ=0.98$ it reduces TPOT by 2.7$\\times$ and stays within the noise of dense. Under high serving load it raises throughput by up to 51%. These results suggest that a budget adapted per head and layer, paired with a kernel that keeps such budgets inside the CUDA graph, makes sparse decoding both flexible and fast.",
+    "abs": "http://arxiv.org/abs/2610.04313v1",
+    "pdf": "https://arxiv.org/pdf/2610.04313v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "MOIRA 提出一种免训练的稀疏解码方案：在 vLLM 中按每个 KV head 与每层自适应的「注意力质量覆盖」预算选取最少页面，并设计自规划 attention 内核把不等长页面列表留在 CUDA graph 内执行，从而在长上下文下降低 TPOT 与提升吞吐。",
+      "relevance_reason": "与 LVR 主线无直接关系，但其按 head/层自适应分配 KV 读取量、以注意力质量阈值决定「读多少」的机制，可能为 latent 推理中视觉证据筛选、动态计算预算与 page 级缓存/注意力结构开销提供可供核查的方法线索。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-06T19:14:06.002594+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

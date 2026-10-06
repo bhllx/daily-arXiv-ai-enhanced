@@ -1,0 +1,72 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.06580",
+  "input_sha256": "eb0c9736ff654e6ef91aa916af8e59fc4614e949e73bb6af87ca585c8328bcfc",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-06T19:03:30.704941+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1903,
+        "output_tokens": 219,
+        "total_tokens": 2122,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.06580",
+    "title": "LinearPFN: Amortized Variable Selection for Linear Models with Interactions",
+    "authors": [
+      "Louis Schiekiera",
+      "Max Zimmer",
+      "Christophe Roux",
+      "Manuel Arnold",
+      "Sebastian Pokutta",
+      "Fritz Günther"
+    ],
+    "categories": [
+      "cs.LG",
+      "stat.ML"
+    ],
+    "comment": "26 pages, 7 figures. Code: https://github.com/schiekiera/LinearPFN",
+    "summary": "Spike-and-slab regression is a standard Bayesian formulation of variable selection: it returns a posterior distribution over which candidate effects are active rather than a single selected subset, so that every candidate effect carries an inclusion probability. Its cost grows exponentially with the number of candidate effects, so the posterior can be enumerated exactly only when the number of predictors is small. Beyond that reach, the posterior has to be approximated, typically by Markov chain Monte Carlo over the model space, which requires a fresh run for every dataset and, within a fixed budget of steps, may fail to converge. We present LinearPFN, a prior-data fitted transformer network that amortizes spike-and-slab inference for linear models with main effects and pairwise interactions. The network is pretrained once on synthetic datasets, drawn from an explicitly specified prior, and a single forward pass over a new dataset returns posterior inclusion probabilities, posterior-mean coefficients and posterior predictive distributions with no per-dataset fitting. The prior is conjugate by design, so that the posterior for each fixed set of active effects has a closed form, and wherever the exact posterior is still computable by enumeration we verify the network's outputs against it. On real predictor matrices from published social-science datasets, with outcomes drawn from the prior so that the true active set is known, LinearPFN attains a higher per-dataset selection AUC and a higher F1 under the median probability model rule than five classical baselines. The lead holds when the coefficients, the interactions or the noise depart from the prior. Code: https://github.com/schiekiera/LinearPFN. Trained model: https://huggingface.co/schiekiera/LinearPFN.",
+    "abs": "http://arxiv.org/abs/2610.06580v1",
+    "pdf": "https://arxiv.org/pdf/2610.06580v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "该论文提出 LinearPFN，一个在合成先验数据上预训练的 transformer，对含主效应与两两交互的线性模型用单次前向传播摊销 spike-and-slab 变量选择，直接输出后验包含概率、后验均值系数与后验预测分布，并在可枚举场景与经典基线比较。",
+      "relevance_reason": "与 LVR 主线的联系较间接，但可供核查：其「一次前向替代逐数据集 MCMC」的摊销式先验拟合，可能启发 LVR 中把视觉证据筛选或候选 latent 假设的取舍建模为带包含概率的后验选择，从而减少逐步采样与重复拟合成本。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-06T19:03:30.704941+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

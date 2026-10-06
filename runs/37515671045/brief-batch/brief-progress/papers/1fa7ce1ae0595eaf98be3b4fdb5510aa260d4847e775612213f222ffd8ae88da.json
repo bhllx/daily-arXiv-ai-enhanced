@@ -1,0 +1,68 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.06210",
+  "input_sha256": "4e96435f36eb82235c9998325f40f719bafb9ef4cb5ba53e85cc00809d543dd5",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-06T19:05:23.001350+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1816,
+        "output_tokens": 213,
+        "total_tokens": 2029,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.06210",
+    "title": "MoCAR: Motion-code Coordinate-aware AutoRegression for Continuous Trajectory Forecasting",
+    "authors": [
+      "Yiming Xu",
+      "Hao Cheng",
+      "Monika Sester"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": "Accepted at NeurIPS 2026. Camera-ready version",
+    "summary": "Autoregressive generation is natural for language, where predicted tokens can be directly reused as the next prediction state, but trajectory forecasting lacks such a clean token: motion is continuous, multimodal, and expressed in local coordinate frames that evolve with the predicted trajectory. We present MoCAR (Motion-code Coordinate-aware AutoRegression), a decoder-only framework that casts trajectory forecasting as next-code prediction in a coordinate-aware continuous latent space. MoCAR learns a continuous motion-code space from endpoint-normalized trajectory segments, where each code jointly captures local trajectory geometry and the reference-frame transition induced by that segment. Historical motion codes are used as a teacher-forced prefix, future codes are generated autoregressively under temporal, map, agent, and mode interactions, and predicted codes persist in latent memory while decoded endpoints update the local scene context. This enables rollout without trajectory-space re-tokenization, trajectory queries, goal candidates, or proposal-and-refinement pipelines. On Argoverse (AV) benchmarks, MoCAR achieves top-tier performance with a simple single-stage architecture, transfers strongly from AV2 to AV1 in zero-shot evaluation, and improves on turn-heavy scenarios. Ablations confirm that the learned continuous motion-code space, latent alignment, weak KL regularization, and joint tokenizer-predictor optimization are essential for stable latent autoregression.",
+    "abs": "http://arxiv.org/abs/2610.06210v1",
+    "pdf": "https://arxiv.org/pdf/2610.06210v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "MoCAR 提出仅解码器的轨迹预测框架，把预测转为「下一 motion-code 预测」：从终点归一化的轨迹片段学习连续运动码空间，代码同时编码局部几何与坐标系转移，未来码在时间、地图、智能体与模式交互下自回归生成，并保留在 latent memory 中，解码端点再更新局部场景上下文。",
+      "relevance_reason": "该工作给出连续 latent 状态自回归生成与持久 latent 记忆的具体机制，可供核查 LVR 中 latent 轨迹/状态表示、坐标系随生成漂移、以及无重 token 化的 rollout 训练监督如何影响推理稳定性与泛化。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-06T19:05:23.001350+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

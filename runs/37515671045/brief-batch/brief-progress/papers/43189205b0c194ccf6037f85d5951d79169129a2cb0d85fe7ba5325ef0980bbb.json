@@ -1,0 +1,68 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.05488",
+  "input_sha256": "8a82409621dbe5148c2887cc42b119bde1da9d7eb8dd6bb1b75ebe9322f92d53",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-06T19:09:04.228716+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1791,
+        "output_tokens": 215,
+        "total_tokens": 2006,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.05488",
+    "title": "Underscoring the Problem: Why Softpick Fails at Initialization",
+    "authors": [
+      "Aryan Sood",
+      "Jaikaran Singh",
+      "Ishaan Bansal"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": "23 pages, 4 Figures",
+    "summary": "Softmax attention gives every token a nonzero weight, which in trained models concentrates into attention sinks and massive activations that widen the dynamic range low-precision inference must cover. Softpick removes this constraint by rectifying scores, eliminating sinks and lowering hidden-state kurtosis, but its advantage fades at scale. We reframe this failure as a normalization problem. Softpick's denominator splits into positive- and negative-shifted sums $D^+$ and $D^-$, used identically in the forward and backward pass, preventing their roles from being isolated. We separate them into a family of operators that independently choose each denominator. The failure originates at initialization: every layer contains rows where $D^+$ is exactly zero, while near-dead rows produce gradient norms above $10^{12}$ regardless of the backward denominator. Only Softpick and a stop-gradient variant, which keeps $D^+ + D^-$ forward but backpropagates through $D^+$ alone, train from scratch. At 230M parameters, the stop-gradient operator matches Softpick on quantization, has fewer dead heads, and retrieves passkeys more reliably, trailing only on peak attention-weight kurtosis.",
+    "abs": "http://arxiv.org/abs/2610.05488v1",
+    "pdf": "https://arxiv.org/pdf/2610.05488v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "该文把 Softpick 注意力在大规模下失效重新解释为归一化问题，将正负分母 D⁺/D⁻ 的作用解耦为可独立选择分母的算子族，发现失效源于初始化时存在 D⁺ 恰为零的行与近死行的巨大梯度，并提出仅对 D⁺ 回传的 stop-gradient 变体。",
+      "relevance_reason": "与视觉推理无直接关系，但其对注意力分母、死行与梯度爆炸的初始化诊断，以及「前向与反向使用不同归一化量」的监督/贡献分配视角，可能供核查 LVR 中注意力结构、缓存与训练稳定性问题。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-06T19:09:04.228716+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

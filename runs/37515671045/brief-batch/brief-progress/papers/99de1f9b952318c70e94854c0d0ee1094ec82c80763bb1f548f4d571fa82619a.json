@@ -1,0 +1,71 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.06324",
+  "input_sha256": "b21f274090391b2624d128417fa1ab76e9a658b8fc8b3faf6c8dc4b89cc58a93",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-06T19:04:38.211936+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1823,
+        "output_tokens": 230,
+        "total_tokens": 2053,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.06324",
+    "title": "Readout Blindness: VLM Scores Miss the Spatial Direction Their Frozen Encoders Retain",
+    "authors": [
+      "Guangyuan Li",
+      "Tianming Du",
+      "Yan Jiang",
+      "Bihan Wen",
+      "Jiancheng Yang"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "CLIP-like vision-language models remain a cornerstone of multimodal systems, yet their scores stay near chance on directed spatial relations, such as whether one object is left of another. We call this failure readout blindness and analyze, theoretically and empirically, why deployed scores miss the direction: when scoring rules treat the subject and object symmetrically, direction cancels regardless of encoder training. Guided by this analysis, we introduce Antisymmetric Displacement Readout (ADR), which aligns caption words with image patches in the frozen features and scores each relation by the signed displacement between matched object centroids. Notably, ADR succeeds without additional training or learned parameters, thereby demonstrating that directional information remains in the frozen encoder. However, text and world priors can inflate accuracy, so we further introduce prior deflation, which measures the benefit of the image-text pairing as the grounded gain over a null that pairs each item with an unrelated image. Extensive experiments across encoder families show that ADR substantially improves over deployed scores, which remain near chance on most direction-balanced sets even for fine-tuned encoders. Compared with more complex readouts, ADR outperforms the evaluated MLLM likelihood readouts and is competitive with their chat inference at a small fraction of the computation. These results support our claim that directional information can be recovered from frozen features by an appropriate readout. Our implementation and evaluation kit will be publicly available.",
+    "abs": "http://arxiv.org/abs/2610.06324v1",
+    "pdf": "https://arxiv.org/pdf/2610.06324v1",
+    "AI": {
+      "category": "MAIN",
+      "priority": "P1",
+      "brief_summary": "论文指出「读出盲区」：CLIP 类 VLM 在「左/右」等有向空间关系上得分接近随机，并在理论与实验上说明对称打分规则会抵消方向信息；作者提出无需训练的无参读出方法 ADR，用冻结特征中匹配物体质心的有符号位移来打分，并引入先验消减剔除文本/世界先验带来的虚高。",
+      "relevance_reason": "直接关系「视觉细节与几何信息是否保留在内部状态、答案是否真正使用 latent 内容」：其结论称方向信息仍存于冻结编码器、卡点在读出方式，这可供核查 VLM 内部表示是否保留空间关系、以及评测中先验虚高问题。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-06T19:04:38.211936+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

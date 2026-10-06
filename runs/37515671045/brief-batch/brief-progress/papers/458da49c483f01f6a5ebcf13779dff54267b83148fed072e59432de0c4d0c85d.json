@@ -1,0 +1,78 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.06269",
+  "input_sha256": "48e8641281c6665a4151793fcdd1fb321dd1e1a071286bd8ce7ffaf6a2ed094b",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-06T19:04:57.901970+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1892,
+        "output_tokens": 206,
+        "total_tokens": 2098,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.06269",
+    "title": "Evolving in Thought Space: Training a Small Model at Test Time Unlocks Better Discoveries",
+    "authors": [
+      "Chonghe Jiang",
+      "Ao Qu",
+      "Siyuan Liu",
+      "Ruoyun Ma",
+      "Zijian Zhou",
+      "Dingyi Zhuang",
+      "Bo Liu",
+      "Han Zheng",
+      "Hanfei Yu",
+      "Baichuan Mo",
+      "Jinhua Zhao",
+      "Paul Pu Liang"
+    ],
+    "categories": [
+      "cs.AI",
+      "cs.LG"
+    ],
+    "comment": "35 pages, including references and appendice",
+    "summary": "Open-ended scientific discovery often requires repeatedly proposing and evaluating candidate solutions. LLM-based systems can support this process by generating and refining executable solutions from verifier feedback. Methods such as TTT-Discover use test-time training (TTT) to update the solution-generating LLM from verifier feedback, adapting its generation policy to improve subsequent proposals on the target problem. However, this becomes expensive when reliable execution requires a large model, since training must maintain gradients, optimizer states, and policy statistics while repeatedly generating long, structured outputs. It also complicates credit assignment: outcome-level verifier feedback must jointly evaluate the high-level strategy and its low-level implementation. In this work, we introduce Guidance-TTT, which separates these roles. A compact guidance model is trained at test time to propose high-level strategic changes, while a frozen execution model implements them as complete executable solutions. At each step, the system selects a promising previously discovered solution, proposes a change, executes and verifies it, and updates only the guidance model using an adaptive group-relative RL objective. This concentrates test-time learning on short strategic decisions while retaining the implementation capability of a substantially stronger model without adapting it. Without web access, Guidance-TTT produces strong solutions across four distinct domains: combinatorial optimization (Polyomino Packing), heuristic programming (AHC058), machine learning (Lasso), and GPU kernel optimization (TriMul). Across these tasks, it outperforms the best solutions reported in prior work while remaining competitive with state-of-the-art results on public online leaderboards. Code is available at https://github.com/Human-Agent-Society/reef/tree/guidance-ttt-support.",
+    "abs": "http://arxiv.org/abs/2610.06269v1",
+    "pdf": "https://arxiv.org/pdf/2610.06269v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "该工作提出 Guidance-TTT：测试时只训练一个小型「引导模型」提出高层策略修改，而由冻结的大执行模型将其实现为可执行解，配合自适应组相对 RL 更新引导模型，在四个开放发现任务上取得较好结果。",
+      "relevance_reason": "与 LVR 主线的联系在于把「思考/决策」与「实现执行」解耦，可作为 latent 状态生成与贡献分配的类比线索：策略级隐式决策由小模型承担、执行能力冻结，可能启发推理期状态更新与信用分配的设计，但需核查其是否涉及视觉或多模态推理。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-06T19:04:57.901970+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}
