@@ -1,0 +1,74 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.07782",
+  "input_sha256": "6838766aa6b8c1b74e1dcc69f51a097ab7044d92dff6a5bbc7acf7da3385340a",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-07T19:32:52.989967+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1841,
+        "output_tokens": 258,
+        "total_tokens": 2099,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.07782",
+    "title": "Persistent Memory in Multi-Agent LLM Inference: What It Costs, What It Buys, and When You Can Tell",
+    "authors": [
+      "Hochan Son",
+      "Kyungdoe Han",
+      "Jaehan Koh",
+      "Xiaowu Dai",
+      "Wenlu Xu",
+      "Guang Cheng"
+    ],
+    "categories": [
+      "cs.AI",
+      "cs.CL",
+      "cs.DC",
+      "cs.LG"
+    ],
+    "comment": "13 pages, 1 figure. Accepted as a poster at the Machine Learning for Systems Workshop, NeurIPS 2026",
+    "summary": "Decomposing long-context inference across cooperating agents bounds the active KV cache per call rather than total evidence, which matters when KV-cache memory binds. Many such systems add a persistent tier storing and recalling reasoning traces, usually validated by an ablation reporting an accuracy gain. We measure both on one three-tier agent architecture. Decomposition delivers: peak KV working set of 14.3 MiB per query against 35.5 and 35.3 MiB for single-pass and retrieval-augmented baselines. The persistent tier does not: across eight controlled dataset pairs at n=100 per arm it costs +0.368 MiB [+0.167, +0.590] of peak cache and produces no detectable accuracy change (+0.015, 95% CI [-0.011, +0.046]). We argue the null is structural: single-question benchmarks supply each item with its own evidence and score it independently, and correctness requires resetting stored traces between conditions, so recall has nothing informative to retrieve. Reaching it took four measurement corrections -- three inflating the apparent benefit, the fourth making an effect that size look resolvable -- none visible in the results table. We give the conditions an agent-memory ablation must satisfy and detection procedures that need no knowledge of the specific defect.",
+    "abs": "http://arxiv.org/abs/2610.07782v1",
+    "pdf": "https://arxiv.org/pdf/2610.07782v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P1",
+      "brief_summary": "论文在三层多智能体 LLM 架构上同时测量长上下文分解与持久记忆层的代价和收益：分解显著降低单次调用的峰值 KV 工作集，而持久记忆层虽增加约 0.368 MiB 峰值缓存，却在八个受控数据集对上未带来可检测的准确率变化；作者进一步论证该零效应是结构性的，并给出智能体记忆消融应满足的条件与无需预知具体缺陷的检测流程。",
+      "relevance_reason": "虽非视觉工作，但其「存储并召回推理痕迹的持久记忆层是否有用、需满足什么条件」直接对应 LVR 中答案是否使用 latent 内容、贡献分配与监督信号的问题，其测量修正（三类虚高、一类使效应可分辨）和检测程序可供核查 THINK/LOOK/STOP 等收益主张的实验设计。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-07T19:32:52.989967+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

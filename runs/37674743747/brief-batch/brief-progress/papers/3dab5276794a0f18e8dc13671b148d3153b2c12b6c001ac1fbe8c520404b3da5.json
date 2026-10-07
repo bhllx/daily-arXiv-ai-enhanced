@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.07405",
+  "input_sha256": "66d3f2693a4b19f8c8c58a03c320c95eed18449f462ec8cfa3ec5d4b2d46ee42",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-07T19:34:15.047362+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1961,
+        "output_tokens": 208,
+        "total_tokens": 2169,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.07405",
+    "title": "What pass@k Cannot Measure: Evaluating Diversity and Capability Retention after Post-Training",
+    "authors": [
+      "Subham Rath",
+      "Raj Dandekar",
+      "Rajat Dandekar",
+      "Sreedath Panat"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": "10 pages, 2 figures. Accepted to the NeurIPS 2026 Workshop on Transitioning from Pre-training to Post-training (non-archival)",
+    "summary": "pass@$k$, the fraction of problems a model solves within $k$ sampled attempts, is the field's default protocol for deciding whether reinforcement-learning (RL) post-training on verifiable rewards improved a model. At the population level, pass@$k$ depends only on a problem's probability of a correct sample, with no term for how it is distributed across outputs. We show this gap is not academic. Training Qwen2.5-1.5B-Instruct on grade-school math with Group Relative Policy Optimization (GRPO) and with rejection-sampling fine-tuning (RFT, training on the model's own shortest verifier-passed rollout) moves three complementary diversity measures (token-level entropy, answer-level entropy, unique answers per prompt) in opposite directions, with zero overlap across three seeds per arm. The gap survives restricting to verifier-correct completions only (lexical diversity among correct solutions is 15% lower for GRPO, after controlling for length) and a count-controlled check isolating diversity among incorrect answers alone, ruling out that GRPO's higher accuracy alone explains it. Yet pass@8 and pass@32 show no consistent winner on GSM8K, and a hard MATH-500 subset shows the same pattern: separation only at low $k$. Compared against the starting checkpoint, no trained arm significantly improves hard-problem coverage: RFT is significantly worse, while GRPO is statistically indistinguishable from it - so GRPO's pass@1 edge over RFT reflects a smaller loss relative to Base, not a capability gain, a missing-control issue, not a failure of pass@$k$. On GSM8K, only pass@1, with no role in detecting diversity by construction, separates the arms cleanly, rewarding the arm whose correct solutions are least diverse. We argue this is a concrete instance of a standard evaluation protocol missing a property it is routinely used to certify.",
+    "abs": "http://arxiv.org/abs/2610.07405v1",
+    "pdf": "https://arxiv.org/pdf/2610.07405v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "论文通过 GRPO 与 RFT 两种后训练方案的对照实验，表明 pass@k 只依赖\"存在正确样本的概率\"而忽略正确解在输出间的分布，因而在低 k 时无法区分多样性方向相反的两类模型，也无法证实硬问题覆盖能力提升。",
+      "relevance_reason": "与 LVR 评价环节（动态计算、多样性、停止与采样预算下收益的度量）有概念联系：其\"单一正确性指标漏掉输出分布性质\"的论证，可能启发对 latent 推理状态多样性、pass@k 式评价的核查与重新设计。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-07T19:34:15.047362+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

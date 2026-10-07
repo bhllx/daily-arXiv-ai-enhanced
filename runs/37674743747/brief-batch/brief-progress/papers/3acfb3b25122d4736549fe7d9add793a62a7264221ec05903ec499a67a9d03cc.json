@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.07197",
+  "input_sha256": "5cd89362e9c3ec90040e7b78e8309a937ef27cb96c79db473f8bc924d2757ba4",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-07T19:35:02.333206+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1825,
+        "output_tokens": 211,
+        "total_tokens": 2036,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.07197",
+    "title": "Exact Unlearning via Quantized Sufficient Statistics",
+    "authors": [
+      "Ami Tavory",
+      "Shripad Gade",
+      "Tal Sarig",
+      "Noam Touitou",
+      "Ido Guy"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": "33 pages, 20 figures, 15 tables. Accepted at NeurIPS 2026",
+    "summary": "Exact unlearning requires a deployed predictor to match one rebuilt without the information named by a deletion request. Existing general-purpose exact methods localize retraining through disjoint shards, but every request still invalidates a model, and smaller shards reduce the data available to each constituent predictor. We introduce Quantized Sufficient Statistics (QSS), which separates a small frozen schema from mutable, sum-decomposable content. The schema learns global structure; the content stores local prediction corrections as additive statistics indexed by quantized regions. Deleting content is therefore exact subtraction rather than optimization. We distinguish two guarantees: QSS-L exactly removes a label while retaining the unlabelled input, whereas QSS-E exactly removes both input and label by learning the schema without deletable examples. A deletion takes the arithmetic fast path with probability $1-ρ$ and triggers a full rebuild with probability $ρ$; all reported expected latencies include both events. Across 15 vision, text, and tabular datasets at $ρ=0.5\\%$, QSS-L is within 2 percentage points of SISA on 11 tasks and provides 4--483$\\times$ lower expected deletion latency on the low-class-count tasks where a compact schema is effective. QSS-E quantifies the additional accuracy cost of removing every trace of an input.",
+    "abs": "http://arxiv.org/abs/2610.07197v1",
+    "pdf": "https://arxiv.org/pdf/2610.07197v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "该论文提出 Quantized Sufficient Statistics（QSS），把冻结的全局「schema」与可加性、可减的量化区域内容统计分离，使删除请求只需精确做减法而非重新优化，并区分「仅删标签」与「删输入+标签」两种精确遗忘保证。",
+      "relevance_reason": "与 LVR 主线无直接关联，但其「冻结全局结构 + 可变、按区域索引的可加统计」可启发对 latent 状态中内容与结构解耦、状态更新与贡献回溯的思考，其中量化区域索引可能类似按位置/区域组织的缓存，可供核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-07T19:35:02.333206+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

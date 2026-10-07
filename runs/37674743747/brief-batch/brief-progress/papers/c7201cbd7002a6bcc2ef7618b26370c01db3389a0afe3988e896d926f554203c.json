@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.07497",
+  "input_sha256": "8a8f32009642e67b721a6268226ab516c56c0cb9d1237e8b852d81a69d354af6",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-07T19:33:55.656666+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1938,
+        "output_tokens": 247,
+        "total_tokens": 2185,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.07497",
+    "title": "Does Muon Need Fine-Grained Spectral Shaping?",
+    "authors": [
+      "Meher Chaitanya",
+      "Tianyi Zhou",
+      "Aristides Gionis"
+    ],
+    "categories": [
+      "cs.AI",
+      "cs.LG",
+      "stat.ML"
+    ],
+    "comment": null,
+    "summary": "Muon combines current and past gradients into matrix momentum. For $M=UΣV^\\top$, the idealized polar update $Q=UV^\\top$ gives every singular direction the same weight. We refer to this as the flat profile. Several recent optimizers replace this flat profile with fine-grained spectral maps that give each direction its own gain. We ask how much of this spectral detail a Muon update needs. Our spectral diagnostics show that approximately $94$--$97\\%$ of measured singular modes lie below an estimated noise edge, yet collectively align positively with a reference gradient.\n  We introduce BulkBoost, a two-band spectral reweighting framework with fixed-rank and noise-calibrated variants. The latter uses split-minibatch gradient differences to calibrate a Marchenko--Pastur reference edge for Muon's Nesterov input, separating the bulk below the edge from the spikes above it. Both variants increase the bulk's relative weight through one shared gain while preserving the Frobenius norm of each matrix's unreweighted direction. For a fixed partition, our theory gives the first-order condition under which moving weight toward the bulk lowers the loss. It also quantifies the fraction of the maximal first-order improvement rate, over all per-mode reallocations, that two bands can capture. Across 30 continued-pretraining settings spanning Pythia-14M to 410M and six corpora, two-band reweighting is competitive with the fine-grained power-law profile of Freon and outperforms Spectra. Measured against Muon's flat profile, Freon reduces final loss by $0.022\\%$ of the pre-adaptation loss on average, whereas the two-band variants achieve reductions of $0.073$--$0.147\\%$. These observations suggest that useful departures from the flat profile are surprisingly low-dimensional: a single bulk-to-spike gain captures at least as much benefit as the fine-grained spectral profiles.",
+    "abs": "http://arxiv.org/abs/2610.07497v1",
+    "pdf": "https://arxiv.org/pdf/2610.07497v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "论文研究 Muon 优化器的矩阵动量更新是否真的需要细粒度谱重加权，提出两带（bulk/spike）重加权框架 BulkBoost，用随机矩阵噪声边校准区分谱主体与尖峰，并在多规模继续预训练中显示单个 bulk-to-spike 增益即可媲美或超过细粒度谱方案。",
+      "relevance_reason": "其核心概念——用噪声边划分「有效信号维」与「噪声维」、并给不同方向不同增益——可能与 LVR 中 latent 表示的有效成分筛选、信息坍缩与各向异性/谱结构分析存在概念联系，可供核查该方法是否可迁移为判断内部状态中哪些方向承载任务必要信息；但论文属纯文本优化器研究，与视觉或多模态推理无直接关联。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-07T19:33:55.656666+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

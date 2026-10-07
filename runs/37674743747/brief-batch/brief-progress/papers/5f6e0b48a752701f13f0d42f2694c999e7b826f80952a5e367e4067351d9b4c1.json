@@ -1,0 +1,71 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.07466",
+  "input_sha256": "85a2d0ff65643fd9a83cc4bd38c365799f03560b7876cb194d7cb00870140f4b",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-07T19:34:02.330398+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1874,
+        "output_tokens": 223,
+        "total_tokens": 2097,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.07466",
+    "title": "Efficient Multimodal Inference through Adaptive Acquisition and Sequential Fusion",
+    "authors": [
+      "Payal Mohapatra",
+      "Haodong Yang",
+      "Yueyuan Sui",
+      "Stephen Xia",
+      "Benjamin Lundell",
+      "Qi Zhu"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Multimodal systems often encode every available input, even when a subset suffices for prediction. Adaptive acquisition can reduce this cost by using predictions from incrementally fused evidence to decide which modality to encode next and when to stop. However, sequential fusion makes these predictions order-dependent, so decisions based on them may need to distinguish factorially many histories of the same acquired set. We introduce SemARC, which couples a Sequential Modality Aggregator (SeMA) with an Adaptive Runtime Controller (ARC) and uses acquired evidence to select each modality before its encoder runs. SeMA executes only selected encoder and fusion branches, updates a fixed-size state, and predicts after each acquisition without recomputing earlier branches. We supervise every acquisition prefix under randomized modality subsets and orders to encourage consistent predictions across acquisition orders. ARC combines a set-dependent marginal-utility prior with residual fitted-Q learning to select the next available modality or stop, without inspecting unacquired inputs or retaining acquisition order. Across six multimodal classification datasets and eleven baselines, SemARC achieves 3.2% higher macro-F1 and 61.4% lower total inference GFLOPs on average relative to each dataset's most accurate baseline. End-to-end latency falls by 44.0% across GPU and CPU and by 47.2% on Android INT8 relative to the fastest measured baseline, on average. Under varying runtime modality missingness, SemARC still skips available modalities, matching or exceeding the best baseline macro-F1 in 21 of 24 conditions with 14.8% lower total GFLOPs on average. SemARC thus offers a practical path toward efficient multimodal inference across heterogeneous devices.",
+    "abs": "http://arxiv.org/abs/2610.07466v1",
+    "pdf": "https://arxiv.org/pdf/2610.07466v1",
+    "AI": {
+      "category": "MAIN",
+      "priority": "P1",
+      "brief_summary": "SemARC 将顺序模态融合与运行时控制器结合：用已获取的证据选择下一个待编码模态或提前停止，SeMA 只运行被选分支并维护固定大小状态，控制器以集合相关的边际效用先验加 fitted-Q 学习做决策，在六个多模态分类数据集上降低 GFLOPs 与延迟。",
+      "relevance_reason": "直接触及 LVR 中「何时获取证据/何时停止」与增量状态更新的问题：其按获取顺序监督前缀、对顺序无关性做一致性训练，可供核查动态计算与 STOP 决策的收益成本；但研究域是多模态分类而非视觉推理 latent 状态，答案是否使用内部状态亦需核实。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-07T19:34:02.330398+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

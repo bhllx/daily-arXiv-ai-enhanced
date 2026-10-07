@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.08049",
+  "input_sha256": "fae85488b3ab47db482df53d025ecff95772d5a9dffa64af356675b28e5a920b",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-07T19:31:53.132379+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1904,
+        "output_tokens": 203,
+        "total_tokens": 2107,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.08049",
+    "title": "A Riemannian Geometry for Low-rank Adaptation",
+    "authors": [
+      "Shoichiro Takeda",
+      "Shin'ya Yamaguchi",
+      "Satoshi Suzuki",
+      "Yasunori Akagi"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Low-rank adaptation (LoRA) is widely used as a parameter-efficient fine-tuning technique for pre-trained deep neural networks, which approximates the weight update via full fine-tuning by a low-rank matrix $BA^\\top$. This parameterization leads to the equivalence relation $(B, A) \\sim (BG^{-1}, AG^\\top)$ for any invertible matrix $G$ because $BA^\\top = BG^{-1}(AG^\\top)^\\top$ and thus both pairs yield the same loss value. This relation induces a quotient manifold where matrices $(BG^{-1}, AG^\\top)$ for all $G$ are identified, eliminating redundant directions along which the loss value remains unchanged. To respect the geometry of this manifold, the original search space is endowed with a Riemannian metric that is invariant under the equivalence relation. Such a metric induces preconditioning at each gradient step and ensures that each weight update via LoRA changes the loss value, leading to efficient optimization. In this paper, we propose a new Riemannian metric that is specifically tailored to LoRA to close the gap to full fine-tuning at the weight level. We theoretically show that LoRA with our preconditioning induced by this metric satisfies the following two properties at each iteration: (i) The weight update follows the direction closest to the gradient of full fine-tuning within the subspace of first-order weight changes allowed by the LoRA parameterization. (ii) The updated weight matrix is closer in Frobenius norm to that of full fine-tuning than the updated weight matrices of LoRA with conventional preconditioning and without preconditioning. These theoretical insights suggest that our preconditioning makes LoRA better approximate full fine-tuning, thereby leading to more efficient optimization. Experiments show the effectiveness and efficiency of our preconditioning for LoRA on fine-tuning tasks with language and vision domains.",
+    "abs": "http://arxiv.org/abs/2610.08049v1",
+    "pdf": "https://arxiv.org/pdf/2610.08049v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "论文为 LoRA 提出一种新的黎曼度量，利用 (B,A) 参数化的等价关系构造商流形并导出预条件梯度更新，理论上论证其更新方向最接近全量微调的梯度、且权重更逼近全量微调，并在语言与视觉微调任务上验证。",
+      "relevance_reason": "该工作不涉及 latent visual reasoning 的内部状态或推理过程，但其关于参数化冗余、等价类商结构与度量预条件的思路，可能启发研究者思考 latent 表示中内容/位置/缓存等冗余维度与不变结构的刻画与筛选。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-07T19:31:53.132379+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

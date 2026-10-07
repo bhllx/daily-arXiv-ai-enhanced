@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.07324",
+  "input_sha256": "b62ba1b24f745a22aff553cf6288c5e88d8297ad05af22f9cca5254f39652ded",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-07T19:34:37.149266+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1901,
+        "output_tokens": 218,
+        "total_tokens": 2119,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.07324",
+    "title": "Scale-Invariant Training for Time Series Foundation Models",
+    "authors": [
+      "Ignacy Stepka",
+      "Willa Potosnak",
+      "Kin G. Olivares",
+      "Artur Dubrawski"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "Time series foundation models (TSFMs) are trained on large collections of time series datasets that span various morphologies and domains. This setting exposes models to series whose scales -- typical magnitudes of their values -- can differ substantially. Affine scaling methods such as Reversible Instance Normalization (ReVIN) scale model inputs and reverse the transform before computing the loss. We show that this inversion multiplies each series' gradient by $b^p$ relative to loss on scaled targets, where $b$ is the scaling denominator (e.g., standard deviation) and $p$ is the loss degree. We call this scale-contaminated training (ScaleCon), because the scale of each series consequently becomes an importance weight, causing high-scale series to dominate training. For any scale-equivariant scaler and residual loss that is homogeneous of degree $p$, including MSE, MAE, and Quantile Loss, we prove that computing loss on scaled targets makes every mini-batch gradient and, consequently, the full optimization trajectory invariant to arbitrary independent rescaling of the training series, yielding scale-invariant training (ScaleIn). Notably, existing TSFMs use both objectives, with neither consistent reporting nor a common convention on how to compute training loss. We isolate the convergence disparity induced by ScaleCon and its correction under ScaleIn in controlled studies on synthetic and real data. In pretraining across four TSFM architectures, ScaleIn lowers MASE in all 24 architecture-benchmark comparisons, with average reductions across TSFMs of 18.8% on GIFT-Eval and 21.9% on the M-competitions. The gains extend to supervised neural forecasting, where it lowers MASE in 16 of 20 matched settings. Most existing time series forecasting pipelines can adopt ScaleIn with a one-line code change.",
+    "abs": "http://arxiv.org/abs/2610.07324v1",
+    "pdf": "https://arxiv.org/pdf/2610.07324v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "该论文分析时间序列基础模型中仿射缩放（如 ReVIN）在计算损失前反变换带来的问题：反变换会使梯度按缩放分母的幂次被放大，导致高尺度序列主导训练（ScaleCon），并证明在缩放目标上计算损失可消除该影响，实现尺度不变的训练（ScaleIn），在多种架构与基准上降低 MASE。",
+      "relevance_reason": "与 LVR 主线无直接关系，但其关于缩放/归一化反变换如何扭曲梯度权重、进而影响优化轨迹与状态尺度不变性的分析，可能为 latent 表示与损失计算的尺度敏感性、贡献分配提供可借鉴的形式化视角。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-07T19:34:37.149266+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

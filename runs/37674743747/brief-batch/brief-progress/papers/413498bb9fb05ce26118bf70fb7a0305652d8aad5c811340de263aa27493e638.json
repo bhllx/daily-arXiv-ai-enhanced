@@ -1,0 +1,68 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.07444",
+  "input_sha256": "ef44deb34b984b425d95a28cbdcc646a12e56322d474d0e62e56cd7d921abc4e",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-07T19:34:08.343359+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1982,
+        "output_tokens": 242,
+        "total_tokens": 2224,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.07444",
+    "title": "Decoupling What from Where: How Should a Small GUI Grounding Model Receive the Action Type?",
+    "authors": [
+      "Aadi Chauhan",
+      "Arthur Ilyasov"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.CV"
+    ],
+    "comment": "18 pages, 4 figures, 12 tables. Code and per-example logs are available at https://github.com/aadcha/action-conditioned-gui-agent",
+    "summary": "A GUI agent decides which action to take and where to take it; we ask how a small grounding model should receive the action type. Fine-tuning Qwen2-VL-2B with LoRA on Android in the Wild, we compare a flat baseline with five ways of supplying the type under matched data, compute, and decoding: an auxiliary loss, a hard-routed action word, an additive learned embedding, a prepended learned token, and the type written into the prompt. With five seeds, an episode-clustered bootstrap, and seed-level paired tests, the ranking on a mixed stream is clear: the auxiliary loss, the additive embedding, and the prompt word each gain five to seven hit@0.10 points over the baseline, while hard routing and the prepended token are not distinguishable from it. Much of that gain is protection from a preprocessing choice of ours rather than a spatial prior. Our serializer clamps the off-screen touch point AITW records for type events to the origin; that class degrades the baseline's click grounding, and removing it lifts the baseline by nearly seven points, after which no mechanism's hit rate beats it and the intervals exclude a two-point effect, though the auxiliary loss still shortens the average miss; on a stream of taps and swipes none helps. Whether this generalizes beyond one serialization is open. For deployment, the pipeline's margin over the baseline with predicted rather than gold types is not established (+0.016, 95% interval [-0.017, +0.052]), and a wrong type collapses every model conditioned at inference. The prepended token does not help at the shared learning rate, where its rows barely move from initialization; trained ten times faster it reaches the level of the other three, with a margin three seeds do not establish. We also document a silent failure: injecting conditioning through inputs_embeds makes Qwen2-VL fall back to 1-D positions for image tokens, costing nine points.",
+    "abs": "http://arxiv.org/abs/2610.07444v1",
+    "pdf": "https://arxiv.org/pdf/2610.07444v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文在 AITW 上微调 Qwen2-VL-2B 做 GUI grounding，系统比较五种给动作类型注入条件的方式（辅助损失、硬路由动作词、加性嵌入、前置学习 token、写入 prompt），并用多种子与配对检验给出排序，同时报告了预处理放缩与 inputs_embeds 导致位置编码退化的隐性失败。",
+      "relevance_reason": "虽非 LVR 主线，但「动作/条件类型如何进入多模态内部状态」与 LVR 中条件注入、表示坍缩、旁路控制的问题可能相通；其注入方式对照、错误类型导致全模型崩溃、以及 inputs_embeds 破坏位置编码的失败记录，可供核查 latent 条件接口与视觉 token 位置结构设计时借鉴。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-07T19:34:08.343359+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

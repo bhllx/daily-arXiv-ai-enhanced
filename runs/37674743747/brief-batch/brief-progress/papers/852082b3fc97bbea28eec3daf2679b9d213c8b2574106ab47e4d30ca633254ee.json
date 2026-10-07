@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.07853",
+  "input_sha256": "597caf3d24dce176b691a81b6fb0228b0e2fbbe2828646c55c8f192e6e969037",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-07T19:32:31.334634+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1920,
+        "output_tokens": 199,
+        "total_tokens": 2119,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.07853",
+    "title": "Lost in the bf16 Cast: Exporting Ternary Language Models Can Revert Most Low-Learning-Rate Code Changes",
+    "authors": [
+      "Avichal Sahai",
+      "Nishant Raj",
+      "Animesh Srivastava"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.CL"
+    ],
+    "comment": "14 pages, 4 figures, 17 tables",
+    "summary": "Ternary language models such as BitNet b1.58, Falcon-E and BitCPM are fine-tuned with higher-precision latent weights and deployed as ternary codes produced by an export step that, in the labs' documented pipelines, first casts the latents to bf16. We audit those pipelines across three labs. In released checkpoints, fp32 quantization of the shipped latents disagrees with the deployed codes on 0.83-1.77% of codes in Falcon-E and BitCPM and on 1.530% in BitNet 2B-4T; for Falcon-E and BitCPM most disagreements are products that bf16 rounding lands exactly on the threshold, which ties-to-even maps to zero, and the unmodified onebitllms exporter reproduces all four Falcon-E releases byte for byte. At fine-tuned endpoints, with learning rates selected to match a nominal learning-rate-to-bf16-ULP ratio, the documented export lowers greedy GSM8K strict accuracy from 58.79% to 0.78% for Falcon-E-1B-Base and from 36.13% to 0.39% for BitCPM-CANN-0.5B, and a bf16 save and reload lowers BitNet 2B-4T's strict accuracy by 27.54 points while its last-number accuracy rises. Two compatibility remedies, writing the training quantizer's codes directly or adjusting the bf16 inputs until the unchanged tools emit them, each met a 4-point strict-accuracy non-inferiority criterion against online evaluation in all three models. In two model families, randomized interventions on the initial distance from the threshold support distance-dependent selection of the codes that fine-tuning changes.",
+    "abs": "http://arxiv.org/abs/2610.07853v1",
+    "pdf": "https://arxiv.org/pdf/2610.07853v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "该文审计三家实验室的三值语言模型导出流程，发现把高精度 latent 权重先转成 bf16 再量化为三值码会覆盖大部分微调带来的码变化，导致 GSM8K 严格精度大幅下滑，并给出两种绕开该导出步骤的兼容修复。",
+      "relevance_reason": "虽针对文本三值模型而非多模态，但其「高精度 latent 表示与部署离散编码不一致导致能力丢失」的诊断与修复可供核查 LVR 中 latent 状态导出、量化和监督信号是否真正被下游使用的信息坍缩问题。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-07T19:32:31.334634+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.07077",
+  "input_sha256": "379f01d3314ffff2847d20680ab9338d66021269231ef7217209c3a0c4d3b4fb",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-07T19:35:24.887415+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1831,
+        "output_tokens": 216,
+        "total_tokens": 2047,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.07077",
+    "title": "What Must Replay Preserve? Separating Correctable Bias from Class Correspondence",
+    "authors": [
+      "BoRen Deng",
+      "Xiangyue Ma",
+      "Chenglong Li",
+      "Xiaoting Du"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Class-incremental learning must recognize all classes seen so far without task labels. Logit replay methods such as DER and DER++ mitigate forgetting by matching the model's past predictions on stored examples. Deleting this matching reveals its benefit, but the resulting accuracy cost cannot show whether the stored scores themselves are needed, or whether the cost survives correction of the classifier's bias toward recent classes. We propose a diagnostic framework that treats a cached prediction as temporally heterogeneous supervision: it separates classes known when an example was stored from classes learned afterward, edits each group, and evaluates every model before and after a task-level offset that leaves within-task predictions unchanged. On CIFAR-100 with DER++, suitable fixed constants replace the unrefreshed stored scores of later-learned classes within an equivalence margin of 1 percentage point, and the offset reduces the cost of deleting their matching from 14.9 to 1.8 points. Reassigning the non-gold scores of classes known at storage, which preserves their values and each task's target probability, costs 4.3 points before and 4.0 after the offset, and a parallel cost persists in image distillation. In the tested fixed-head setting, the large cost of deleting later-class matching is thus mostly correctable by this offset, whereas the smaller cost of disrupting class correspondence persists. Code and data are available at anonymous.4open.science/r/replay-preserve-E22B.",
+    "abs": "http://arxiv.org/abs/2610.07077v1",
+    "pdf": "https://arxiv.org/pdf/2610.07077v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "该论文研究类增量学习中的 logit replay（如 DER/DER++），提出诊断框架把缓存预测视为时间异质监督，区分「存储时已知类」与「之后才学到的类」，并借助任务级偏置修正来分别考察删除各类匹配的代价。",
+      "relevance_reason": "其「缓存状态中哪些成分是必要监督、哪些只是可修正偏置」的分离式诊断，可能启发 LVR 中关于轨迹监督、贡献分配与信息坍缩的分析，以及 latent 状态是否真正被答案使用的核查；但对象是分类器 logits 而非视觉推理状态，联系仍需较多核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-07T19:35:24.887415+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}
