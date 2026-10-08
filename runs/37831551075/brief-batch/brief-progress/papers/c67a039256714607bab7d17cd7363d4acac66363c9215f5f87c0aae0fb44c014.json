@@ -1,0 +1,67 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.08808",
+  "input_sha256": "95869c4278c5e88a7578be29cebefaa6f726e50ede3b3373f983990f6a07bc21",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-08T19:32:05.359142+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1830,
+        "output_tokens": 193,
+        "total_tokens": 2023,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.08808",
+    "title": "Accelerating Floating-Point Satisfiability Solving via Gradient Normalization",
+    "authors": [
+      "Yuanzhuo Zhang"
+    ],
+    "categories": [
+      "cs.AI",
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Satisfiability Modulo Theories (SMT) solvers are foundational to software verification, program analysis, and compiler testing, particularly over the theory of Quantifier-Free Floating-Point (QF_FP). While recent optimization-based SMT solvers have successfully applied gradient descent to continuous relaxations of logical formulas, they are fundamentally bottlenecked by gradient domination, a phenomenon where a small subset of difficult clauses hijacks the optimization trajectory, preventing the solver from satisfying the broader formula and trapping it in local minima.\n  To overcome this, we present GradSAT, a novel framework that bridges optimization-based SMT solving with Multi-Task Learning (MTL). GradSAT reformulates the constraint satisfaction process by treating each SMT clause as an independent MTL task. By applying dynamic gradient normalization (GradNorm), GradSAT actively balances the gradient magnitudes across all clauses at runtime, systematically penalizing dominant gradients and accelerating lagging clauses to ensure uniform convergence. GradSAT implements this through a highly optimized, two-stage hybrid pipeline. First, a GPU-accelerated PyTorch backend leveraging symbolic compilation and operator fusion navigates the continuous relaxation to a high-quality basin. Second, the candidate assignment is handed off to a bit-precise local search engine to rapidly resolve the exact, rigorous assignment. By stabilizing the continuous search dynamics, GradSAT mitigates the brittleness of prior gradient-based solvers and provides a robust, highly parallelizable architecture for complex constraint solving.",
+    "abs": "http://arxiv.org/abs/2610.08808v1",
+    "pdf": "https://arxiv.org/pdf/2610.08808v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "该论文提出 GradSAT，将浮点可满足性求解中的约束满足过程重构为多任务学习，用动态梯度归一化（GradNorm）平衡各子句的梯度量级，缓解梯度支配，并以 GPU 连续松弛搜索加位精确局部搜索的两阶段流程求解。",
+      "relevance_reason": "虽属 SMT 求解领域，但其「按子句分配梯度贡献、抑制主导项」的思路可能为 LVR 中多步/多证据贡献分配与训练信号平衡提供借鉴，可供核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-08T19:32:05.359142+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

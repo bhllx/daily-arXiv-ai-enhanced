@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.09759",
+  "input_sha256": "598ecd69386f81e53a92a5fc8e981dcb833ffdf642edd9040a7b76b6ba80607a",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-08T19:27:57.281158+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1794,
+        "output_tokens": 270,
+        "total_tokens": 2064,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.09759",
+    "title": "Unrolled Flow Models for Reasoning",
+    "authors": [
+      "Faissal Izermine",
+      "Hanru Bai",
+      "Oscar Davis",
+      "T. Konstantin Rusch"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.AI"
+    ],
+    "comment": "23 pages, 5 figures, 7 tables",
+    "summary": "Flow matching enables language generation in few steps, but whether additional integration steps improve reasoning remains unclear. We prove that a flow parameterized by a two-layer Transformer can solve graph reachability, with the required number of integration steps increasing with the target's distance from the root. Yet, standard flow language models can fail to benefit from additional steps on reasoning tasks. We attribute this limitation to objectives that supervise each time point independently, without explicitly training successive steps to build on one another. To address this, we instead train through the model's own latent rollout over a randomly sampled subinterval of [0, 1], decoding only at the endpoint. On ProsQA, this raises accuracy to 97% and enables performance to improve with additional integration steps. For the longer rollouts required by reasoning tasks such as Sudoku and Maze, retracting the latent state onto a sphere stabilizes the dynamics and yields substantial gains over baselines with more than three times as many parameters. Sampling multiple rollouts further improves performance when paired with a parameter-free selection score, although reliable selection remains challenging for longer answers. Together, these results establish a theoretical basis for reasoning with flows and show how rollout training, stable latent dynamics, and rollout selection help realize this capacity in practice.",
+    "abs": "http://arxiv.org/abs/2610.09759v1",
+    "pdf": "https://arxiv.org/pdf/2610.09759v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P1",
+      "brief_summary": "该文研究 flow matching 语言模型在推理任务上能否从更多积分步数获益：作者证明两层 Transformer 参数化的 flow 可解图可达性且步数随目标距离增长，并提出在随机子区间上沿模型自身 latent rollout 训练、仅解码终点，以及把 latent 状态投影到球面以稳定长轨迹，在 ProsQA 上达 97% 准确率并随步数提升，Sudoku/Maze 上亦优于更大基线。",
+      "relevance_reason": "虽非视觉多模态，但其「沿自身 latent 轨迹训练而不逐步独立监督」「用球面约束稳定长程 latent 动态」「多次 rollout 配合无参选择分数」三条线索，可能可迁移到 LVR 的 latent 状态更新、动态计算与停止/采样选择问题，值得核查其监督方式与选择失败（长答案选择困难）对 LVR 的启示。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-08T19:27:57.281158+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

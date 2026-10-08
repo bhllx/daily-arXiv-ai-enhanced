@@ -1,0 +1,67 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.09142",
+  "input_sha256": "c5033f50fd06d2ce7d903fb35253badd4dccfdd3293da3f9f88699f9ea59ef8a",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-08T19:30:37.760769+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1916,
+        "output_tokens": 205,
+        "total_tokens": 2121,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.09142",
+    "title": "Finding Blind Spots in AppWorld and WorkArena Task Verifiers",
+    "authors": [
+      "Richard Abrich"
+    ],
+    "categories": [
+      "cs.AI",
+      "cs.SE"
+    ],
+    "comment": "14 pages. Accepted as a poster at the NeurIPS 2026 workshop \"Who Verifies the Agents? Toward Reliable Agent Development\". OpenReview paper and supplement: https://openreview.net/forum?id=uR6EWsGE48",
+    "summary": "Execution-based task verifiers decide whether an agent succeeded. We audit shipped AppWorld and WorkArena verifiers with source-informed mutation tests. The main audit never modifies a shipped checker.\n  In AppWorld, duplicating a non-idempotent write creates an extra record while preserving every checked field value. The verifier accepts all three task variants from two of five eligible generators: 6/15 constructed effects. A cardinality patch applied to checker copies after the census makes all six cells fail while preserving valid controls.\n  In WorkArena, we prospectively rerun 23 extra-field candidates selected for earlier checker-PASS outcomes. Independent Table API readback confirms nondefault persisted values in 21, while all 23 receive PASS. Two requested strings are aliases of stored defaults. The 21 confirmed wrong effects span three form templates. These selected cases confirm wrong effects under the audit's protocol; they do not estimate a population rate.\n  No other construction produces an independently confirmed false accept. Other checker-PASS cases are effect-correct degeneracies. We report zero-PASS families separately because retained evidence differs. In fixed intent-swap grids, the checkers return no PASS on 2,689 off-diagonal executions. This is a rejection census: 57 WorkArena cells use session-scoped evidence; the other 2,632 lack classified rejection causes and independent target ground truth.\n  Each increment is specified before its own cells are scored. A supplement accompanies the OpenReview submission with the construction grammar, evidence, content-bound stage lineage and count reproducer.",
+    "abs": "http://arxiv.org/abs/2610.09142v1",
+    "pdf": "https://arxiv.org/pdf/2610.09142v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "该论文用基于源码的变异测试审计 AppWorld 与 WorkArena 的任务执行型验证器，构造出检查字段值守恒但效果错误的假通过案例，并用基数补丁等方法加以确认，同时报告意图交换网格上的拒绝普查。",
+      "relevance_reason": "验证器只核对字段值而漏掉效果差异，与 LVR 中「答案是否真正使用 latent 内容、如何判定证据与停止决策被实际采纳」的评价问题同构，可能为 latent 推理的因果性与验证设计提供借鉴，需核查其变异协议可否转用于内部状态审计。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-08T19:30:37.760769+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

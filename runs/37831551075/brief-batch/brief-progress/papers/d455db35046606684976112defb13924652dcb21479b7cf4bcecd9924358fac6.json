@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.09186",
+  "input_sha256": "bc48b8e479d2ce58e03a060707d92df9bf7be454d71c2ad805661e3c1de30d88",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-08T19:30:27.274902+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1937,
+        "output_tokens": 281,
+        "total_tokens": 2218,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.09186",
+    "title": "The Dichotomy Between Pattern Recognition and Step-by-Step Reasoning",
+    "authors": [
+      "Amrut Nadgir",
+      "Pratik Chaudhari",
+      "Vijay Balasubramanian"
+    ],
+    "categories": [
+      "cs.LG",
+      "cond-mat.dis-nn"
+    ],
+    "comment": null,
+    "summary": "We argue that pattern recognition and step-by-step reasoning are two ends of a spectrum. A large language model (LLM) learns to reason step-by-step when data is structured such that the next token depends on a small amount of preceding context. Inference in LLMs resembles pattern recognition when the next token depends on a large amount of preceding context. If the next token depends on only the $c$ most recent tokens, reasoning traces are paths on a De Bruijn graph whose nodes are $c$-length contexts and edges are next-token transitions between contexts. The set of reasoning traces of a task forms a directed acyclic subgraph of the De Bruijn graph. An LLM that has learned all edges of this subgraph can compose them to solve longer, unseen tasks, i.e., it reasons step-by-step. We prove that the number of edges is vanishingly small compared to the number of reasoning traces. Empirically, the number of training samples a transformer needs is a power law in the number of edges, so learning to reason step-by-step is sample efficient. We can induce De Bruijn structure in any task by maintaining a ``state'' that makes future reasoning independent of the past. The frequency of states in the reasoning trace determines $c$. We show, by fine-tuning Qwen2.5-1.5B-Instruct to solve equations and answer questions about stories, that frequent states (small $c$) result in higher accuracy but greater fragility to perturbations at test time. LLMs trained with a large $c$ are only as good as models that perform pattern recognition without reasoning. A moderate density of states balances accuracy and robustness. We show that real-world data has De Bruijn structure: Qwen3-14B and Qwen3-32B retain over 75% of their accuracy on GSM8K, MATH-500 and GPQA-Diamond when attention is restricted to a sliding window less than 15% as long as the full reasoning trace.",
+    "abs": "http://arxiv.org/abs/2610.09186v1",
+    "pdf": "https://arxiv.org/pdf/2610.09186v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "该文提出模式识别与逐步推理构成一个谱系：当下一个 token 只依赖最近 c 个 token 时，推理轨迹可视为 De Bruijn 图上的路径，并证明所需边数远少于轨迹数；通过在任意任务中引入“状态”来诱导这种结构，再微调 Qwen2.5-1.5B 解方程与故事问答，发现高频状态（小 c）精度高但对扰动更脆弱，中等状态密度可平衡精度与鲁棒性；还显示真实数据具有此类结构，限制滑动窗口注意力后大模型仍保留大部分准确率。",
+      "relevance_reason": "其「状态使未来推理独立于过去」与注意力窗口、状态密度影响精度—鲁棒性的分析，可能为 LVR 中推理状态表示、长度泛化与视觉证据筛选如何决定有效上下文提供理论线索，但其为纯文本设定，能否迁移到多模态 latent 推理尚待核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-08T19:30:27.274902+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

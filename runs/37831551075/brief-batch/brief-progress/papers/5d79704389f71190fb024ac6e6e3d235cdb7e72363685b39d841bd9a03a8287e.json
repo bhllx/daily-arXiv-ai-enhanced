@@ -1,0 +1,67 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.09519",
+  "input_sha256": "a4597ac9a09429c3cd7c35ed954ed3e3ef622d7efe1607bc92461139254724ce",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-08T19:28:45.382986+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1913,
+        "output_tokens": 192,
+        "total_tokens": 2105,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.09519",
+    "title": "Differential Refresh Policies for Models Trained on Lagging Data Snapshots: From a Single-Age Equivalence Limit to an Optimal Per-Segment Allocation",
+    "authors": [
+      "Amit Rajula"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.DC"
+    ],
+    "comment": null,
+    "summary": "Production machine-learning models are derived artifacts of time-bounded training snapshots: a deployed model is a materialized view over a training cut that ages the instant it is built. A common response is to replace the fixed retraining cadence with an adaptive trigger -- a weighted staleness score that retrains when accumulated source risk crosses a threshold. We show this is the wrong lever, and identify the right one. First, an equivalence limit: any refresh trigger that is a static, strictly monotone function of a single shared global training-data age is operationally equivalent to a calibrated uniform age timer, so a global staleness budget, however elaborately it weights segments, sources, and sensitivities, carries no scheduling information a clock does not. The limit also shows how to escape it: refresh segments differentially, giving each its own age and refresh interval, which is meaningful when refresh cost is separable across segments (incremental training or per-segment models). We solve the resulting budget-allocation problem. In the frequent-refresh regime each segment's optimal refresh rate is proportional to the square root of its risk $w_j λ_j$ (weight times change rate), and the optimal policy never costs more than the uniform timer, beating it by a closed-form Cauchy-Schwarz \"price of uniformity\" that is zero for homogeneous workloads and grows with heterogeneity. In a discrete-event simulation with real Poisson change events, the optimal policy lowers realized weighted stale exposure by 8-29% relative to the uniform timer at matched refresh budget, winning on 86-100% of seeds; a naive exposure-threshold policy does not, showing the allocation is what helps; and the advantage survives 50% rate-estimation noise. The leverage in model refresh is not a better score but a better action.",
+    "abs": "http://arxiv.org/abs/2610.09519v1",
+    "pdf": "https://arxiv.org/pdf/2610.09519v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "论文研究生产模型基于滞后数据快照的刷新策略，证明任何仅依赖单一全局训练数据年龄的静态单调刷新触发等价于统一计时器，进而提出按段差异化刷新，并给出预算分配的最优解与模拟验证。",
+      "relevance_reason": "其「单一全局标量触发等价于固定时钟」的论证可能启发 LVR 中停止决策与动态计算：若 THINK/LOOK/STOP 只依赖一个全局不确定性标量，是否也退化为固定步数策略，值得核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-08T19:28:45.382986+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.10366",
+  "input_sha256": "c8223dca65f02c5a5e44460d3db72eb9498370942bbe2cfd6198df41263ab67e",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-08T19:25:47.134803+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1833,
+        "output_tokens": 192,
+        "total_tokens": 2025,
+        "input_token_details": {
+          "cache_read": 1280
+        },
+        "output_token_details": {}
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.10366",
+    "title": "Koopman Observers for Diffusion Acceleration: Correcting Feature Forecasts with Shallow Measurements",
+    "authors": [
+      "Hanru Bai",
+      "Yuanchao Xu",
+      "Fengyi Li"
+    ],
+    "categories": [
+      "cs.LG",
+      "math.DS",
+      "stat.ML"
+    ],
+    "comment": "14 pages",
+    "summary": "Feature caching accelerates diffusion sampling by replacing expensive network evaluations with predictions from previously computed activations. However, forecasts based only on past features cannot directly incorporate changes in the current denoising state. We investigate whether inexpensive, freshly computed features can serve as observations for correcting these predictions. We introduce an observation-corrected Koopman framework for accelerating frozen diffusion models. Using calibration trajectories, we identify finite-dimensional, time-dependent Koopman approximations that jointly describe the increments of shallow and deep network features. During accelerated sampling, these operators predict the evolution of expensive deep features, while innovations in the observed shallow features correct the predicted state. Periodic full evaluations refresh the observer, and all generative-model parameters remain unchanged. This formulation enables controlled comparisons of temporal prediction and observation correction. Across three 10,000-image runs per dataset, our method reduces paired Inception-feature MSE by $19.9\\%$ on CIFAR-10 and $11.9\\%$ on a ten-class ImageNet subset relative to channelwise affine prediction under the same four-partial-step schedule. Matched ablations attribute additional reductions of $4.54\\%$ and $4.67\\%$ to observation correction. The observer achieves $1.89\\times$ and $1.85\\times$ measured speedups over DDIM-50, supporting improved reference-sampler fidelity without retraining the denoiser.",
+    "abs": "http://arxiv.org/abs/2610.10366v1",
+    "pdf": "https://arxiv.org/pdf/2610.10366v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "该论文把扩散采样中的特征缓存改写为观测器问题：用少量浅层特征作为「观测」来校正由 Koopman 算子预测的深层特征演化，从而在冻结模型、周期全量评估的前提下降低特征预测误差并加速采样。",
+      "relevance_reason": "虽非多模态推理工作，但其「廉价浅层观测校正昂贵深层状态预测、周期刷新」的机制，可能与 LVR 中 latent 状态的更新、浅层证据对深层表示的纠偏及贡献分配线索相关，具体迁移价值需核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-08T19:25:47.134803+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}
