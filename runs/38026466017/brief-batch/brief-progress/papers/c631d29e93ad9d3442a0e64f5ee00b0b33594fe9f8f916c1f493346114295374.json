@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.10996",
+  "input_sha256": "16591f7d746f011a69d5c84572c71bafe140519a0862aef0a09ef538826d8398",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-10T05:29:18.425234+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1797,
+        "output_tokens": 955,
+        "total_tokens": 2752,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 718
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.10996",
+    "title": "Invariant-Measure Reasoners: Stable Representations for Latent Reasoning",
+    "authors": [
+      "Yuto Inui",
+      "Takuya Konishi",
+      "Yoshinobu Kawahara"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Latent reasoning models repeatedly update a latent state using the same recurrent block. As the recurrent depth increases, the sequence of latent states may converge to a compact subset of the state space without necessarily converging to a fixed point. Existing models typically predict by applying a prediction head to a single latent state. However, the latent state can continue to change even after many updates, potentially making predictions unstable across recurrent depths. To address this instability, we introduce invariant-measure reasoners (ImR), a framework that uses an invariant measure as a stable representation. This measure describes the long-run distribution of latent states on the compact subset and is invariant under updates by the recurrent block. ImR predicts from the expectation of the prediction head's output under this measure. We use ImR in two ways: fine-tuning only the prediction head of existing models and training models from scratch. Both approaches reduce prediction instability and improve accuracy in many settings on maze and Sudoku tasks. In some settings, models trained with ImR exhibit non-fixed-point behavior more frequently than existing models yet achieve high accuracy even with such behavior, unlike existing models. These results suggest that ImR can leverage otherwise destabilizing dynamics for latent reasoning.",
+    "abs": "http://arxiv.org/abs/2610.10996v1",
+    "pdf": "https://arxiv.org/pdf/2610.10996v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P1",
+      "brief_summary": "针对循环式 latent reasoning 中潜状态随递归深度不断变化、预测不稳定（即使已收敛到紧凑子集而非不动点）的问题，提出「不变测度推理器」（ImR）：用递归更新下的不变测度描述潜状态长期分布，并以预测头在该测度下输出的期望作预测；通过只微调预测头或从头训练两种方式，在迷宫与数独任务上降低预测不稳定并提升准确率。",
+      "relevance_reason": "论文未涉及视觉或多模态输入，但「不变测度/期望读出」作为跨递归深度的稳定表示，以及其利用非不动点动力学的现象，可供核查能否迁移到 LVR 中 latent 推理状态的读出稳定性与长度泛化问题。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-10T05:29:18.425234+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

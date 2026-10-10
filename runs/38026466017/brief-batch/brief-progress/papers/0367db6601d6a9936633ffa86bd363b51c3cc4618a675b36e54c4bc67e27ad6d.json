@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.10965",
+  "input_sha256": "1389b171aec009224f4b9964ced17ee7370c4f36a14a68e55518d8710838a53a",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-10T05:29:44.871183+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1897,
+        "output_tokens": 225,
+        "total_tokens": 2122,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 20
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.10965",
+    "title": "Spectrally Targeted Muon",
+    "authors": [
+      "Vishrut Goyal",
+      "Rohan Ramkumar"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "The Muon optimizer orthogonalizes each update matrix, setting all of its singular values to one, and has proven highly effective for training large language models. It remains unclear, however, whether this success comes from amplifying small singular directions that gradient descent neglects or from suppressing large, degenerate directions that disrupt training. We introduce Spectrally Targeted Muon, which orthogonalizes only the singular values above or below a threshold $τ$, so that varying $τ$ interpolates between normalized SGD and Muon. It isolates the relevant singular subspaces with projections computed by Newton-Schulz iteration on a shifted Gram matrix, so no SVD is needed. We evaluate these variants on the CIFAR-10 and NanoGPT speedruns, tracking the effective rank of gradient, update, and weight matrices and a new metric, the alignment of updates with the tangent space of the weight matrix's isospectral manifold. We find three things. First, the small singular values of the momentum are not noise. Orthogonalizing everything except the few largest singular values of each matrix nearly matches Muon while touching only a small fraction of the momentum, whereas orthogonalizing only the top falls well short even though it holds almost all of it. On language models every momentum singular value is far below one, so targeted orthogonalization can only amplify, and Muon wins by making directions that are too small to train on at their raw scale trainable. Second, shrinking the largest singular values is what keeps the parameter spectrum flat; this is cheap, and it is not what drives the loss. Third, AdamW differs from Muon mainly in how slowly it builds structure, which explains its slower start and why warmup helps AdamW but only hurts Muon.",
+    "abs": "http://arxiv.org/abs/2610.10965v1",
+    "pdf": "https://arxiv.org/pdf/2610.10965v1",
+    "AI": {
+      "category": "EXCLUDE",
+      "priority": "NONE",
+      "brief_summary": "提出 Spectrally Targeted Muon：只对阈值 τ 以上或以下的奇异值做正交化，用位移 Gram 矩阵上的 Newton-Schulz 迭代代替 SVD，从而在归一化 SGD 与 Muon 之间插值，并在 CIFAR-10 与 NanoGPT 上分析梯度/更新/权重谱与等谱流形切空间对齐。",
+      "relevance_reason": "纯 LLM 优化器谱分析工作，不涉及视觉或多模态推理状态、证据获取与停止决策，也未提供可核查的 latent 推理方法线索，故排除。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-10T05:29:44.871183+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

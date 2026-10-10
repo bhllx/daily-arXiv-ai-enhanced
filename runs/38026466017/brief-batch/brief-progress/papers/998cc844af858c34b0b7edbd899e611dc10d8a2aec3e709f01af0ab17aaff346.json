@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.11146",
+  "input_sha256": "4bb77c8b3c80eb7de62cd66ea48b5accba3ac395eb87b13ae1fecb48a5e11ff4",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-10T05:27:05.742965+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1966,
+        "output_tokens": 758,
+        "total_tokens": 2724,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 518
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.11146",
+    "title": "Ranking Prior Alignment for Credit Risk Modeling: When Do External Priors Matter?",
+    "authors": [
+      "Qiye Lu",
+      "Jiang Ji",
+      "Liang Zhang"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": "8 pages, 5 figures, 14 tables",
+    "summary": "Cold-start credit scoring -- deploying models with scarce labeled data, weak features, or minimal capacity -- is a recurring problem in financial machine learning. When a new lending product launches, labeled default data is scarce, feature pipelines are immature, and models must be deployed with minimal capacity to avoid overfitting. Standard defenses operate on the same limited data; what is needed is a source of external regularization grounded in domain knowledge.\n  We propose Ranking Prior Alignment, a model-agnostic framework that distills external ranking priors (from domain experts, teacher models, or LLMs) into any scoring model via a temperature-scaled KL divergence loss. The framework unifies neural (MIL attention) and tree-based (XGBoost custom objective) architectures through a single formulation: L = L_task + gamma(t) * KL(P_agent || P_model), where gamma(t) follows an exponential decay schedule. The method requires no external model at inference, and its tree-based instantiation tolerates annotation noise up to eta = 0.5.\n  On an industrial dataset of over 1.5M merchants, MIL alignment achieves 7/7 positive evaluation cells at 3K bags (1 ID + 3 OOT + 3 degradation metrics; peak Delta AUC = +0.020 on OOT-1), and XGBoost ablation achieves 9/9 positive metrics at 300 bags. Cross-dataset validation on public Amex shows 5/5 positive folds (avg Delta AUC = +0.041). Four model families (MIL, XGBoost, LightGBM, Logistic Regression) and four teacher architectures show that the framework is both model-agnostic and prior-source-independent.\n  We further observe that alignment gains exhibit an inverse-scaling pattern: benefits grow as data abundance N, model capacity C, and feature quality Q decrease, helping practitioners decide when to invest in prior annotation.",
+    "abs": "http://arxiv.org/abs/2610.11146v1",
+    "pdf": "https://arxiv.org/pdf/2610.11146v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "提出 Ranking Prior Alignment 框架，用温度缩放 KL 散度把外部排序先验（领域专家、教师模型或 LLM）蒸馏进任意评分模型，统一 MIL 注意力与 XGBoost 自定义目标并采用指数衰减权重；在 150 万商户工业数据与公开 Amex 上验证，并观察到收益随数据量、模型容量与特征质量下降而增大的逆缩放现象。",
+      "relevance_reason": "其「外部先验蒸馏＋温度 KL＋衰减权重＋逆缩放」可作为类比线索，供核查 LVR 中何时值得引入外部监督或隐式推理信号（例如推理收益是否也随数据与容量减少而上升）；但与多模态视觉推理本身无直接联系。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-10T05:27:05.742965+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

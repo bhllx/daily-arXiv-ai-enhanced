@@ -1,0 +1,77 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.02660",
+  "input_sha256": "06ce000530a4fe70a8a2deed186b51290c9d358260d9c72dcada7a3272814394",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-10T05:33:46.229782+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1768,
+        "output_tokens": 693,
+        "total_tokens": 2461,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 471
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.02660",
+    "title": "SpectralCache: Accelerating Diffusion-Based World Models via Spectral Feature Caching",
+    "authors": [
+      "Zhendong Mi",
+      "Pu Zhao",
+      "Ziyu Hu",
+      "Xiaodong Yu",
+      "Yanzhi Wang",
+      "Grace Li Zhang",
+      "Shaoyi Huang"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.AI",
+      "cs.LG",
+      "cs.RO"
+    ],
+    "comment": null,
+    "summary": "Diffusion-based world models enable high-quality interactive environment generation but suffer from substantial inference overhead due to repeated Transformer evaluations during denoising. Existing caching methods mainly exploit temporal redundancy at the feature or token level, leaving the underlying mathematical structure of diffusion features largely unexplored. In this work, we reveal that world-model features exhibit highly stable singular subspaces across nearby denoising steps, while their singular values follow predictable evolution patterns. Building on this observation, we propose SpectralCache, a training-free spectral caching framework that reuses stable singular subspaces and estimates only low-dimensional singular values through linear extrapolation. We further exploit the spectral consistency between neighboring full-computation features to skip selected expensive backbone evaluations via singular value scaling. Extensive experiments on representative world models demonstrate that SpectralCache consistently improves inference efficiency while preserving generation quality. On HunyuanWorld-Voyager-13B, SpectralCache achieves 5.22x acceleration while maintaining a WorldScore of 65.90 for static scenes, substantially outperforming existing training-free caching methods in inference efficiency.",
+    "abs": "http://arxiv.org/abs/2610.02660v1",
+    "pdf": "https://arxiv.org/pdf/2610.02660v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文提出 SpectralCache，一个免训练的谱缓存框架：发现扩散世界模型相邻去噪步的特征奇异子空间高度稳定、奇异值演化可预测，于是复用稳定子空间并用线性外推估计低维奇异值，据此跳过部分主干网络评估，在 HunyuanWorld-Voyager-13B 上报告 5.22x 加速。",
+      "relevance_reason": "其「内部特征子空间跨步稳定、低维外推预测、按一致性跳过整块计算」的思路，或可为 LVR 中 latent 状态的更新预测、缓存复用及动态计算分配提供方法线索，值得核查该稳定性假设是否适用于推理链的内部表示。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-10T05:33:46.229782+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

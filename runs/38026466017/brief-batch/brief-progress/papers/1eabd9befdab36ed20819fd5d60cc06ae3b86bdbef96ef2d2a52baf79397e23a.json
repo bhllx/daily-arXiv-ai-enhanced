@@ -1,0 +1,72 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.11967",
+  "input_sha256": "2dd094ab135159d0c15befe46347374a35e45c8fc5f6e8943a7e3df4a9010874",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-10T05:15:47.169044+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1934,
+        "output_tokens": 756,
+        "total_tokens": 2690,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 548
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.11967",
+    "title": "Learning Which Correspondences to Trust: Confidence-Weighted Event-Camera Localization in LiDAR Maps",
+    "authors": [
+      "Panagiotis Kiousis",
+      "Kuangyi Chen",
+      "Jun Zhang",
+      "Friedrich Fraundorfer"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.RO"
+    ],
+    "comment": "8 pages, 8 figures/tables. Submitted to IEEE ICRA 2027 (under review). Code: https://github.com/panagiotisq/CELL",
+    "summary": "Localizing an event camera against a pre-built LiDAR map can be cast as dense optical-flow estimation between a rendered depth view and an event image, followed by a Perspective-n-Point (PnP) solver over the induced 3D-2D correspondences. Existing pipelines rely on geometric consensus during pose estimation, but do not explicitly model the reliability or pose informativeness, i.e., how strongly a correspondence constrains the camera pose, of individual correspondences. We show that the natural way to learn it -- using the per-correspondence error to constrain the learning of confidence -- suffers from a depth-dependent bias: small pixel errors reside predominantly at large depths and do not lead to high pose informativeness. Instead, in our method (CELL), we learn a per-correspondence confidence end-to-end through the pose, using a differentiable probabilistic PnP whose log-partition term encourages weight configurations that yield a better-constrained pose distribution. The learned confidence is used in three ways: (i) it reweights the flow supervision in a decoupled training scheme that keeps pose gradients out of the flow/edge backbone; (ii) it drives a probabilistic correspondence selection at test time; and (iii) together with the network's edge-probability it weights a final edge-matching refinement. We further design a partial-completion depth representation that adds signal without hallucinating across large gaps. On M3ED and DSEC our full system improves over the LEAR baseline on the majority of the evaluated sequences: it reduces the median translation error by up to 26.9% and the median rotation error by up to 15.8%.",
+    "abs": "http://arxiv.org/abs/2610.11967v1",
+    "pdf": "https://arxiv.org/pdf/2610.11967v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "提出 CELL，在事件相机对 LiDAR 地图定位中端到端学习逐对应点的置信度：借助可微概率 PnP 的对数配分项训练置信度，并将其用于流监督重加权、测试时对应点筛选与边缘匹配细化。",
+      "relevance_reason": "按对应点置信度筛选与重加权视觉证据、并由下游姿态目标驱动权重学习的做法，可能为 latent 视觉状态中的证据筛选与贡献分配提供核查线索；文中「像素误差置信度存在深度偏置」的分析也或可类比 latent 相似度中内容与位置因素的混淆。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-10T05:15:47.169044+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

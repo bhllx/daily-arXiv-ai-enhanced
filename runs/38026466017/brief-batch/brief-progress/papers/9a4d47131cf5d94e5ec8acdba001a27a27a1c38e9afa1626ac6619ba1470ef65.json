@@ -1,0 +1,83 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.12156",
+  "input_sha256": "7b18cd63c5c3764cbfbb80dc2afe419733124cfe0979994ed02292848ac16069",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-10T05:13:39.888275+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1787,
+        "output_tokens": 790,
+        "total_tokens": 2577,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 535
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.12156",
+    "title": "Connected Self Forcing: Beyond Local Learning in Video Autoregression",
+    "authors": [
+      "Dongbin Zhang",
+      "Chaoda Zheng",
+      "Kangjie Chen",
+      "Xiangyu Li",
+      "Shijia Chen",
+      "Jinhao Deng",
+      "Yuqi Zhang",
+      "Guangfeng Jiang",
+      "Hongbin Lin",
+      "Choo Sin Wai",
+      "Minqi Wang",
+      "Puyi Wang",
+      "Jingye Zhang",
+      "Yu Zhang",
+      "Xianming Liu",
+      "Boyang Wang"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": "Project Page: https://eastbeanzhang.github.io/CSF/",
+    "summary": "To stream long videos while maintaining visual quality and temporal consistency, Self Forcing mitigates exposure bias through self-rollout training on self-generated histories with key-value (KV) caching. To keep memory manageable, it detaches historical caches, preserving forward dependencies between chunks but severing the backward gradient paths. We introduce Connected Self Forcing, a training framework that reconnects gradient paths across autoregressive chunks, allowing feedback from later predictions to guide how earlier context is generated. These connections go beyond historical KV-writing: gradients pass through generated latents into the computations that produced them, linking the generation of earlier context to its use in later predictions. To make this connected training memory-efficient, we develop shortcut gradient replay, which recovers cross-chunk gradients without retaining the full rollout computation graph. Integrated with distribution matching distillation, Connected Self Forcing trains historical chunks according to both their direct supervision and their contribution to subsequent generation. Experiments on autoregressive video generation show improvements in long-horizon visual quality and temporal consistency, without changing the inference procedure.",
+    "abs": "http://arxiv.org/abs/2610.12156v1",
+    "pdf": "https://arxiv.org/pdf/2610.12156v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P1",
+      "brief_summary": "该工作提出 Connected Self Forcing：在自回归视频生成中不再像 Self Forcing 那样切断历史 KV 缓存的反向梯度，而是让梯度穿过生成的 latent 回传到产生它的计算，把早期上下文的生成与其在后续预测中的使用连起来；并用 shortcut gradient replay 在不保留完整 rollout 计算图的前提下恢复跨块梯度，结合分布匹配蒸馏，使历史块同时接受直接监督和「对后续生成的贡献」两类训练信号，推理流程不变。",
+      "relevance_reason": "「按历史块对后续生成的贡献来训练」与 LVR 关注的轨迹训练、贡献分配与监督直接相通，KV 缓存断梯度与重连也可供核查 latent 状态的使用与训练设计；但论文属于视频生成，迁移到 VLM 推理期状态属推测，需人工核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-10T05:13:39.888275+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

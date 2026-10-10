@@ -1,0 +1,72 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.10991",
+  "input_sha256": "5ac775cd77c85bc1097cc4a41d7d69f3d1dff2cb495d39b52b0ccb30f73823e3",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-10T05:29:19.339006+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1911,
+        "output_tokens": 517,
+        "total_tokens": 2428,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 304
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.10991",
+    "title": "Region-Aware CLS Token Augmentation for Fine-Grained Image Retrieval",
+    "authors": [
+      "Ian de Holanda Cavalcanti Bezerra",
+      "Vivek Trivedy",
+      "Lucas Pascotti Valem",
+      "Longin Jan Latecki"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Image retrieval methods often rely on a single global semantic descriptor extracted from an image, e.g., the [CLS] token in vision transformers. However, trying to squeeze all the semantic information of an image into a single descriptor can hurt downstream retrieval performance, especially for fine-grained retrieval tasks. In this work, we augment the semantic tokens in the newer visual transformers, the global [CLS] token and the four register tokens, with a carefully selected collection of spatial tokens, aiming to capture the spatial region representation that characterizes the contents captured in each of the semantic tokens. We leverage the DINOv2-reg model, which includes register tokens that emergently learn object and part-based representations. For each \"cue\" token ([CLS] and each register token), we find a \"buddy\" image patch token and extract an N x N patch region to produce a set of localized ROI tokens. Our approach automatically captures important regions of interest without any external bounding boxes or saliency modules, purely by matching semantic tokens with their spatial representation regions. Furthermore, we incorporate these tokens into a multi-vector retrieval framework inspired by ColBERT, enabling fine-grained matching via a per-token alignment mechanism while avoiding the large storage cost of keeping all patch embeddings. Through extensive experiments, we find that (1) register tokens encode useful fine-grained details that can complement the [CLS] token; (2) automatically pooled ROI tokens further improve fine-grained discrimination; and (3) multi-vector retrieval with a small set of tokens improves over a DINOv2-reg single-vector baseline while remaining tractable for large-scale search. The code is available at https://github.com/IdhcbIan/Augmenting_CLS_with_ROI_tokens.",
+    "abs": "http://arxiv.org/abs/2610.10991v1",
+    "pdf": "https://arxiv.org/pdf/2610.10991v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "该论文针对细粒度图像检索中单一全局 [CLS] 描述子信息不足的问题，在 DINOv2-reg 上为 [CLS] 与四个 register token 各匹配一个「buddy」图像块并抽取 N×N 区域得到 ROI token，再以类 ColBERT 的多向量框架做逐 token 匹配。",
+      "relevance_reason": "其「语义 token 自动匹配空间区域、以少量 token 实现细粒度匹配」的做法，可能为 LVR 中的视觉证据筛选与 token 预算分配提供可核查线索，但论文本身面向检索、未涉及推理过程。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-10T05:29:19.339006+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

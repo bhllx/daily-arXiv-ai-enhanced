@@ -1,0 +1,74 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.11171",
+  "input_sha256": "68983e0a8cee0ac1b5607ef250ec00566d4c00a6c364e3b808b7c19c6fe96a68",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-10T05:26:32.336740+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1898,
+        "output_tokens": 881,
+        "total_tokens": 2779,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 649
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.11171",
+    "title": "VAMR: Multi-Question Agentic Reasoning for Efficient Long-Form Video Understanding",
+    "authors": [
+      "Runquan Gui",
+      "Hanzhu Chen",
+      "Zehao Wang",
+      "Hanxin Zhu",
+      "Xin Li",
+      "Zhibo Chen"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "Long-form video understanding often involves multiple questions about different aspects of the same recording. Yet existing video agents typically process each question through an isolated tool-use trajectory. This repeatedly restarts video exploration and memory construction, missing opportunities to acquire evidence jointly and progressively build a shared understanding that supports the complete question set. We introduce \\textbf{VAMR} (\\textbf{V}ideo \\textbf{A}gent for \\textbf{M}ulti-Question \\textbf{R}easoning), which coordinates all questions about a video through one shared tool-use trajectory. At each round, a persistent policy model can invoke tools for one or more unresolved questions and submit answers for questions with sufficient evidence. Question-conditioned visual perception retrieves fine-grained clues for several questions in one call, while layered multi-question memory integrates reusable context into a shared video story and preserves separate evidence for individual questions. After supervised fine-tuning initializes this interaction protocol, we propose question-horizon policy optimization (\\qhpo) to optimize shared trajectories in which questions progress and finish at different rounds. Specifically, a question-level critic estimates the value of each active question, while round alignment maps each question advantage to the rounds that directly serve it before the aligned advantages are aggregated to optimize the shared actor. Across LVBench, Video-Holmes, and LongVideoBench, VAMR achieves the highest accuracy overall and the fewest reasoning rounds among iterative methods. On LVBench, it reaches 62.1\\% accuracy, exceeding VideoARM by \\textbf{4.3} points while reducing reasoning rounds and processed frames by \\textbf{85.9\\%} and \\textbf{61.4\\%}.",
+    "abs": "http://arxiv.org/abs/2610.11171v1",
+    "pdf": "https://arxiv.org/pdf/2610.11171v1",
+    "AI": {
+      "category": "MAIN",
+      "priority": "P1",
+      "brief_summary": "VAMR 让同一长视频的多个问题共用一条工具调用轨迹，通过问题条件视觉感知与分层多问题记忆联合获取并保留证据，再用 question-horizon policy optimization（问题级 critic 加轮次对齐）训练共享策略，在 LVBench 等基准上同时提升准确率并大幅减少推理轮数与处理帧数。",
+      "relevance_reason": "其共享轨迹中的问题级价值估计与轮次对齐可供核查 LVR 的贡献分配与轨迹训练，按问题判断「证据充分」再提交答案也对应证据筛选与 STOP 决策；但它属视频 agent 工具调用，并非 latent 状态生成，动态计算与成本—收益刻画需读原文核实。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-10T05:26:32.336740+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

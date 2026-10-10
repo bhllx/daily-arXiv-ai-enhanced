@@ -1,0 +1,71 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.11170",
+  "input_sha256": "54f8ff5de85d152e598b110ad724a02bbd59aa711be71365c8301561c008947e",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-10T05:26:32.576843+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1826,
+        "output_tokens": 617,
+        "total_tokens": 2443,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 391
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.11170",
+    "title": "SACQ: Structured Decoding with Memory-Conditioned Refinement for Long-Horizon Forecasting",
+    "authors": [
+      "Guo Cheng",
+      "Zhengzhuo Xu",
+      "Chenchen Jing",
+      "Jingyi Hou"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": "10 pages, 7 figures",
+    "summary": "Long-term time series forecasting (LTSF) models predominantly employ patch-based encoders terminated by a flatten readout head that maps the entire encoded historical memory to all future steps through a single shared projection. This implicit coupling of future positions obscures position-specific historical-to-future alignment and amplifies sensitivity to corrupted inputs and extreme supervision noise. We present SACQ, a plug-in structured prediction head that replaces flatten readout while keeping the encoder unchanged. SACQ adopts a two-stage decoding pipeline: it first establishes a coarse patch-grid forecast scaffold, then refines each future position through cross-attention over historical memory and merges the attention-derived correction with the coarse scaffold via a learned per-patch gate. To stabilize optimization under long horizons and noisy labels, we further propose a batch-adaptive scaled log-cosh loss that automatically calibrates robustness to the current residual scale, suppressing outlier gradients while preserving MSE-like sensitivity for typical errors. SACQ attains top-tier test MSE/MAE across PatchTST, DLinear, and patch-Mamba backbones with only modest incremental overhead in parameters and latency. Under inference-time input corruption and training-set label-noise stress tests, SACQ substantially outperforms flatten readouts, with ablation studies validating each architectural component.",
+    "abs": "http://arxiv.org/abs/2610.11170v1",
+    "pdf": "https://arxiv.org/pdf/2610.11170v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文提出 SACQ，一个即插即用的结构化预测头以取代扁平读出：先用 patch 网格生成粗预测脚手架，再通过历史记忆上的 cross-attention 对每个未来位置做细化，并以可学习门控融合，同时给出批次自适应的 scaled log-cosh 损失以应对长时程与噪声标签。",
+      "relevance_reason": "其「粗脚手架 + 记忆条件下逐位置 cross-attention 细化 + 门控」的解码流程，可能为 LVR 的 latent 状态更新、预测工作区细化与视觉证据筛选提供可核查的结构线索；自适应鲁棒损失对含噪轨迹监督也有参考价值，但需确认是否可迁移。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-10T05:26:32.576843+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

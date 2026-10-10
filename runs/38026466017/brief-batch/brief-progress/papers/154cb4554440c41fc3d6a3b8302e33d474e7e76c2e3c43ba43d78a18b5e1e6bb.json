@@ -1,0 +1,75 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.11362",
+  "input_sha256": "b59349ea996f3d77a0641342af6b37db9862b784a552c2df7ee9e1794f6569bb",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-10T05:23:19.872927+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1882,
+        "output_tokens": 686,
+        "total_tokens": 2568,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 481
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.11362",
+    "title": "Bernoulli Flow Models: Self-Consistent Generative Modeling for Binary Data",
+    "authors": [
+      "Hao Mo",
+      "Liying Yang",
+      "Shumin Yao",
+      "Xinxing Yu",
+      "Ajian Liu",
+      "Xudong Mao",
+      "Yanyan Liang"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.CV"
+    ],
+    "comment": null,
+    "summary": "Binary diffusion models typically require a large number of function evaluations (NFEs) to generate high-quality samples, making practical inference computationally expensive. Reducing NFEs while preserving sample quality without distillation or additional training remains a significant challenge. Existing binary diffusion models define a discrete one-step forward path and then derive the reverse posterior. In low-NFE settings requiring cross-step sampling, they approximate the true multi-step likelihood with a single-step likelihood transition, which severely degrades sample quality. To address this fundamental limitation and decouple the generative dynamics from fixed discrete time steps, we propose Bernoulli Flow Models (BFM). Rather than relying on sequential one-step Markov diffusion chains, BFM defines a unified continuous global Bernoulli probability flow path between data distributions and pure noise, from which we derive analytical closed-form posterior transitions over arbitrary time intervals. Consequently, reducing the inference NFE is no longer an approximation based on skipping discrete steps; it only requires re-evaluating the analytical posterior over a new time grid. This eliminates the structural training-inference mismatch inherent to discrete chains and yields self-consistent low-NFE sampling. Experiments show that BFM is highly robust to aggressive NFE reduction. On LSUN Churches 256x256, a BFM trained with 256 steps achieves an FID of 9.22 using only 16 sampling steps, whereas the state-of-the-art discrete baseline degrades to 204.10. BFM also remains competitive with continuous and discrete generative baselines under standard full-step inference. These results establish BFM as a theoretically rigorous, self-consistent, and practically effective framework for fast binary data generation.",
+    "abs": "http://arxiv.org/abs/2610.11362v1",
+    "pdf": "https://arxiv.org/pdf/2610.11362v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文提出 Bernoulli Flow Models，用统一的连续全局 Bernoulli 概率流路径替代离散一步 Markov 扩散链，导出任意时间区间的闭式后验转移，使低 NFE 采样不再依赖跳步近似，在二值图像生成上对激进降步较鲁棒。",
+      "relevance_reason": "其「连续流＋任意时间区间解析后验」的思路，可能为 LVR 中把推理状态更新与固定步数解耦、实现动态计算与低步数自洽生成提供方法线索，可供核查是否可迁移到多模态 latent 状态更新。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-10T05:23:19.872927+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

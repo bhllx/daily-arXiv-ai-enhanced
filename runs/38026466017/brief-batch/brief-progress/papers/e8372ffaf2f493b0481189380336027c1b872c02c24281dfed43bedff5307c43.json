@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.11683",
+  "input_sha256": "55c3e98160fdf6a3e0ea887998e73323762c24c043c6b242a9b4c523c416ef68",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-10T05:19:00.323332+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1854,
+        "output_tokens": 868,
+        "total_tokens": 2722,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 649
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.11683",
+    "title": "Camera-Noise Residuals for Face-Swap Detection: Redundant, Not Complementary, and Why",
+    "authors": [
+      "Danil Davydov",
+      "Bader Rasheed",
+      "Dmitriy Vatolin"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Fusing a learned camera-noise fingerprint with an RGB appearance backbone is an appealing route to generator-independent deepfake detection, because the noise residual is grounded in image-formation physics rather than in the texture statistics of a particular generator. We test, on FaceForensics++, whether a Noiseprint++ residual channel carries information \\emph{complementary} to an RGB Xception backbone for face-swap detection. A three-model ablation (RGB-only, residual-only, late-fusion) shows that fusion does not improve over RGB alone and that the residual branch alone is near chance. A seven-level bottleneck diagnostic localizes the cause: the noise maps do carry a discriminative signal, but it is statistical---carried by the per-sample first and second moments (mean, variance, energy) of the residual---and the per-sample \\texttt{InstanceNorm} layer placed at the noise-branch input, following the TruFor template, standardizes exactly those moments away (five-fold cross-validated AUC drops from $0.747$ to $0.554$). A context-crop control rules out cropping geometry, and two fixed-fusion variants that remove the bottleneck recover the statistical signal yet still fail to beat RGB on every dataset. We conclude that, on this manipulation distribution, the noise residual is redundant with RGB rather than complementary, and we give concrete guidance for practitioners adopting noise-residual fusion for face-swap detection.",
+    "abs": "http://arxiv.org/abs/2610.11683v1",
+    "pdf": "https://arxiv.org/pdf/2610.11683v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "该论文在 FaceForensics++ 上检验 Noiseprint++ 噪声残差通道与 RGB Xception 骨干的融合能否提升换脸检测，通过三模型消融与七层瓶颈诊断定位到判别信号来自残差图的逐样本一阶、二阶统计矩，且被噪声分支输入的 InstanceNorm 标准化抹除。",
+      "relevance_reason": "其「附加通道是否互补而非冗余、任务信号在何处被归一化抹除」的瓶颈诊断流程，可能可供核查 VLM 中视觉细节分支与 latent 推理状态是否冗余，以及归一化层是否压缩任务必要的统计信息，需人工核查迁移可行性。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-10T05:19:00.323332+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}
