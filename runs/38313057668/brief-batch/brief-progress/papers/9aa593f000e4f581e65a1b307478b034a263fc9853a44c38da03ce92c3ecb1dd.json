@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.13276",
+  "input_sha256": "9e682275e1ce1d3053e77b8a7205fdc04fb3e8675c0ebaa0c80ec4b497742ca7",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-12T21:58:03.310670+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1921,
+        "output_tokens": 812,
+        "total_tokens": 2733,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 597
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.13276",
+    "title": "CopRoute: Dependence-Aware Conformal Routing for Language Models",
+    "authors": [
+      "Siva Rajesh Kasa",
+      "Santhosh Kumar Kasa",
+      "Karan Gupta"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": "41 pages, 6 figures, 20 tables, accepted for poster presentation at the NeurIPS 2026 Workshop on On-Device Intelligence: Foundation Models under Real-World Constraints (ODI 2026)",
+    "summary": "Set-based language model routing aims to increase the coverage of the event where at least one model answers a query correctly while controlling the number of inference calls made. Existing risk-controlled routing policies bound the all-miss risk (the probability that every model in the selected set fails) by calibrating a single conformal threshold and applying it to a nested family of model sets. Because each model is scored in isolation, these policies ignore the dependence structure of model failures. Models that share training data or architecture tend to fail on the same queries, so two individually strong models can be jointly redundant while a weaker but complementary model covers the queries that the others miss. To account for this dependence, which existing risk-controlled policies ignore, we propose CopRoute, which orders models by how many new queries each one answers correctly beyond those already selected, decides per query how far down that order to go, and then picks the smallest cutoff that still meets the target risk. We show that CopRoute's ordering attains, on the design data, the best guarantee any efficient fixed-ordering algorithm can give for the average number of calls to the first correct model, and that a separate calibration step certifies the all-miss risk of the deployed sets. On RouterBench and RouterEval, CopRoute attains the fewest certified calls on nine of ten datasets at a target risk of 0.05 and on eight of ten at 0.10, making up to 79 percent fewer calls (median 24 percent) than the state-of-the-art risk-controlled policy at the same certified all-miss risk.",
+    "abs": "http://arxiv.org/abs/2610.13276v1",
+    "pdf": "https://arxiv.org/pdf/2610.13276v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "提出 CopRoute，一种考虑模型失败相关性的集合式语言模型路由方法：按每个模型相对已选集合新增答对的查询数排序，再为每个查询选择满足 all-miss 风险目标的最小截断，并在 RouterBench/RouterEval 上以更少推理调用达到同等风险控制。",
+      "relevance_reason": "其「按新增覆盖排序 + 每查询自适应截断 + 风险校准认证」的机制，可能可供核查 LVR 中依赖相关的证据源选择、动态计算量与停止决策的成本控制问题；但对象是纯文本模型路由，迁移到 latent 推理状态仍需人工判断。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-12T21:58:03.310670+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

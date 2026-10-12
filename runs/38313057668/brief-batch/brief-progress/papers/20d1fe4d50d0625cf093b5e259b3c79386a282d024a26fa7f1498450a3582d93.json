@@ -1,0 +1,76 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.13338",
+  "input_sha256": "30606aaae37d54562dfda2e288f683eb64c2aba328ed4d1c15a6dc4b11f9837a",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-12T21:57:03.307950+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1963,
+        "output_tokens": 315,
+        "total_tokens": 2278,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 128
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.13338",
+    "title": "VideoAWR: Reinforcing Video Flow Models with Decoupled-Timestep Advantage-Weighted Rectification",
+    "authors": [
+      "Zheming Fu",
+      "Wenbin Ning",
+      "Ruizhe He",
+      "Wei Shang",
+      "Xiaoxiao Ma",
+      "Lianrui Mu",
+      "Chang Liu",
+      "Lei Wang",
+      "Siming Fu"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": null,
+    "summary": "Regression-based RL for flow models mandates sampling \\emph{without} classifier-free guidance (CFG) to align the rectification target with the reference marginal velocity. Extending Advantage-Weighted Rectification (AWR), which dynamically scales this regression target based on reward, to video generation encounters a cold-start pathology: unguided rollouts collapse into low-fidelity regions where intra-group reward gaps remain wide but no longer track perceptual quality, rendering the optimization target arbitrary. Conversely, utilizing guided rollouts to restore fidelity, while keeping the regression target tied to the guided sampling distribution, provably triggers a geometric guidance blow-up under exponential-moving-average (EMA) updates. We propose \\textbf{VideoAWR}, which resolves this tension by untying sampling from the optimization anchor. An EMA reference policy generates \\emph{guided} rollouts to restore reward separability, while the trainable policy is rectified against the \\emph{unguided} conditional anchor. We prove this decoupled objective is mathematically exact: the centered advantage cancels the anchor in expectation, filtering out the reward-neutral guidance offset and retaining only the reward-correlated covariance increment. Consequently, inference runs single-branch and CFG-free, yet inference-time CFG preserves its original semantics. Furthermore, we introduce \\emph{Decoupled Timestep Rectification}, supervising each rollout at an independently sampled timestep without bias to improve sample efficiency. Experiments on Wan2.1-1.3B and 14B demonstrate stable optimization and superior visual and motion quality in \\emph{both} CFG-free and CFG-enabled regimes. Code is available at \\pdfstartlink attr{/Border [0 0 0]} user{/Subtype /Link /A << /S /URI /URI (https://github.com/Fuzm7/FlowAWR) >>}% \\textcolor{pearDark}{VideoAWR}\\pdfendlink.",
+    "abs": "http://arxiv.org/abs/2610.13338v1",
+    "pdf": "https://arxiv.org/pdf/2610.13338v1",
+    "AI": {
+      "category": "EXCLUDE",
+      "priority": "NONE",
+      "brief_summary": "提出 VideoAWR，将采样与回归锚点解耦，用 EMA 参考策略生成带引导的 rollout，同时让可训练策略对齐无引导条件锚点，用于视频流模型的强化学习后训练，并引入解耦时间步监督。",
+      "relevance_reason": "该工作属视频生成模型的 RL 微调与引导几何分析，未见与 VLM 推理中的 latent 状态、视觉证据使用或停止决策相关的具体线索，仅是生成质量优化，故不入选。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-12T21:57:03.307950+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

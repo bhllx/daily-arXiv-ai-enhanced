@@ -1,0 +1,72 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.13322",
+  "input_sha256": "235e5a7cb936c3152d24a0dee5ed16ab1222a5a829b40b09e97bba5c200850c5",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-12T21:57:23.001003+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1928,
+        "output_tokens": 634,
+        "total_tokens": 2562,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 416
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.13322",
+    "title": "CoVA: Composing VAE Representations for Generative Learning",
+    "authors": [
+      "Zhaowei Chen",
+      "Yikai Ge",
+      "Linze Li",
+      "Yao Tang",
+      "Xiang Li"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": null,
+    "summary": "Representation alignment with pretrained visual encoders improves diffusion transformer training but requires auxiliary encoders and extra training overhead. Recent approaches instead exploit representations from the generative model's own variational autoencoder (VAE). However, reconstruction-oriented VAE features are not optimized for the semantic discrimination and spatial structure needed for generative learning. We introduce \\textbf{CoVA} (\\textbf{Co}mposed \\textbf{VA}E Representations), a lightweight framework that composes VAE features online into stage-wise guidance for flow-matching training. A small latent composer is jointly trained with class supervision, masked latent reconstruction, and horizontal-flip consistency, yielding semantically discriminative, spatially structured dense features and sample-dependent class posteriors. CoVA aligns intermediate SiT features with the composed representations early in training, then removes the increasingly detrimental alignment and reuses detached composer posteriors for sample-dependent soft label conditioning. We further uncover a hidden confound in soft label conditioning: averaging class embeddings attenuates their magnitude, coupling semantic interpolation with conditioning strength. This attenuation alone can substantially improve FID while degrading Recall, revealing a non-semantic source of the apparent gain. CoVA corrects this confound by restoring the hard-label magnitude, isolating posterior-dependent directional semantics. CoVA adds only 8.5M training-only auxiliary parameters (1.3\\% of SiT-XL/2) and introduces no inference-time overhead. On ImageNet 256$\\times$256, CoVA reduces SiT-XL/2 FID from 17.2 to 7.4 (\\textbf{57\\%}) in 400K steps. With classifier-free guidance, it achieves an FID of \\textbf{2.03} in only 400 epochs, versus 2.06 after 1,400 epochs for vanilla SiT-XL/2.",
+    "abs": "http://arxiv.org/abs/2610.13322v1",
+    "pdf": "https://arxiv.org/pdf/2610.13322v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "CoVA 提出把生成模型自身 VAE 特征在线合成为分阶段引导表示，用于 flow-matching 训练：用类别监督、掩码重构与水平翻转一致性联合训练一个隐空间合成器，早期将 SiT 中间特征与合成表示对齐、后期改用其类别后验做样本相关的软标签条件。",
+      "relevance_reason": "其训练期「中间层特征与语义合成表示对齐」的监督方式，以及揭示软标签条件中幅值衰减这类非语义混淆会伪造增益的分析，可能为 LVR 的 latent 状态监督设计与收益归因提供借鉴线索，但需核查是否可迁移。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-12T21:57:23.001003+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

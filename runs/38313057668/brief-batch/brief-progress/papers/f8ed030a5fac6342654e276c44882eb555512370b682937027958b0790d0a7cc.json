@@ -1,0 +1,73 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.12883",
+  "input_sha256": "14f62b1c8533438fdf937fcebd2b33fa7250d464aaa4deae1bc6122fd109e135",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-12T22:03:31.961760+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1846,
+        "output_tokens": 614,
+        "total_tokens": 2460,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 388
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.12883",
+    "title": "HART: Hybrid Attention-RWKV Time series Foundation Model",
+    "authors": [
+      "Qingwen Lin",
+      "Boyan Xu",
+      "Shifeng Xie",
+      "Zhifeng Hao",
+      "Keli Zhang",
+      "Ruichu Cai"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Non-autoregressive multi-step forecasting (NAF) enables time series foundation models to predict an entire future horizon in a single forward pass. Despite its strong sequence modeling capabilities, RWKV-7 exhibits long-horizon degradation in our NAF experiments. In this setup, future patches are represented as missing inputs, requiring the recurrent state to evolve across the prediction horizon without new observations. Our analysis of RWKV-7's generalized delta rule suggests a mechanism we term Placeholder Idling Decay (PID): repeated state transitions can attenuate historical information when placeholder-driven writes provide insufficient compensation. Layer-wise analysis reveals reduced state-injection norms in most layers, while transition-matrix norms remain similar between historical and prediction regions, consistent with PID. Motivated by this analysis, we propose HART, a Hybrid Attention-RWKV Time-series Foundation Model that alternates attention and RWKV blocks, combining direct access to historical tokens with recurrent temporal modeling. Controlled experiments on GIFT-Eval and TIME-Benchmark show that HART improves over pure RWKV at medium and long horizons while maintaining comparable short-horizon performance, and achieves better aggregate performance than a comparably sized pure Transformer. With 36M parameters, HART achieves long-horizon MASE comparable to Toto-2.0-1B on GIFT-Eval (0.752 vs. 0.754), using approximately 1/28 of its parameters.",
+    "abs": "http://arxiv.org/abs/2610.12883v1",
+    "pdf": "https://arxiv.org/pdf/2610.12883v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "论文针对 RWKV-7 在非自回归多步时间序列预测中的长时程退化，分析其 generalized delta rule 并提出「占位符空转衰减」（PID）解释，进而提出交替堆叠 attention 与 RWKV 块的 HART 模型，在 GIFT-Eval 等基准上改善中长时程预测。",
+      "relevance_reason": "其「占位输入下循环状态反复转移导致历史信息衰减」的分析与 LVR 中长 latent 轨迹缺少新观测时内部状态信息衰减、坍缩的现象可供核查，层间状态注入范数与转移矩阵的诊断线索可能可迁移到 latent 状态保持的评价上。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-12T22:03:31.961760+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

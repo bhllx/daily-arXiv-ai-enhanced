@@ -1,0 +1,71 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.13299",
+  "input_sha256": "629f635bcf3a42feb5fadce27cc0ef7673595ddac4ea0035b9eeca7df407b0e7",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-12T21:57:49.217414+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1858,
+        "output_tokens": 810,
+        "total_tokens": 2668,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 591
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.13299",
+    "title": "Decoding Register Tokens Preserves Global Scene Details",
+    "authors": [
+      "David Jacob Drexlin",
+      "Julius Hense",
+      "Jonas Dippel"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.LG"
+    ],
+    "comment": "31 pages, 7 figures",
+    "summary": "Pretrained vision transformers learn structured image representations spanning spatial patch tokens and non-spatial tokens. Recent analyses suggest that non-spatial register tokens encode global scene properties such as illumination, blur, and style. Yet patch-based image decoders discard these outputs, leaving the decoder to recover image appearance from patches alone. We investigate whether retaining register features improves decoding when the complete spatial patch representation is already available. We study this question using representation autoencoders (RAEs) with frozen register-equipped encoders. Our decoder processes four register tokens together with all patch tokens through joint self-attention. Appearance probes, paired reconstruction-error analysis, and fixed-decoder register substitutions examine which global image properties are accessible from registers and how their values affect reconstructed pixels. For generation, we train a multi-head attention pooling (MHAP) predictor to recover register features from sampled patches, keeping the pretrained diffusion model and its samples unchanged. On ImageNet-1K, our ViT-B decoders achieve mean reconstruction FIDs of 0.472 with DINOv2 and 0.442 with DINOv3, reductions of 9.5% and 5.2% relative to their respective patch-only baselines. The corresponding PSNRs are 19.73 and 20.54 dB. For generation, our DINOv2 models achieve a mean FID of 1.641, 9.8% below the patch-only baseline on identical sampled patches.",
+    "abs": "http://arxiv.org/abs/2610.13299v1",
+    "pdf": "https://arxiv.org/pdf/2610.13299v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文在冻结编码器的表示自编码器中保留 register token 并与 patch token 联合注意力解码，用外观探针、重建误差配对分析和固定解码器替换来分析 register 承载的全局外观属性，并以 MHAP 预测器从 patch 恢复 register 特征，在 ImageNet-1K 上改善重建与生成 FID。",
+      "relevance_reason": "其外观探针与固定解码器替换等分析手段，可能可供核查 LVR 关心的非空间/汇总 token 中保留哪些视觉信息、信息是否坍缩；但论文目标是图像重建与扩散生成，未涉及推理状态生成与使用，迁移线索需人工判断。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-12T21:57:49.217414+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}
