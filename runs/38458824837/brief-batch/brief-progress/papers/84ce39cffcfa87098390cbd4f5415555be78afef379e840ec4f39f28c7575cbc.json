@@ -1,0 +1,73 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.13328",
+  "input_sha256": "a584af8d6fcb74a0beee0194b8455b520fa8b31108e02d43d9af67bda0a3f423",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-13T20:06:26.523117+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1976,
+        "output_tokens": 689,
+        "total_tokens": 2665,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 546
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.13328",
+    "title": "DuoRate: Two-Rate Per-Expert Precision Allocation for Mixture-of-Experts Serving",
+    "authors": [
+      "Mengqi Guo",
+      "Zhe Wei",
+      "Yuan Yuan",
+      "Jiunn Bin Lim",
+      "Boyi Pan",
+      "Michael Bi Mi"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": "29 pages, 13 figures, 12 tables",
+    "summary": "Serving a Mixture-of-Experts (MoE) model pays for expert precision twice: the resident footprint pays for every expert the router can reach, while each batch-one decode step pays only for the experts it selects. These are two different rate functionals over the same per-expert widths, yet published per-expert MoE allocators constrain only the first. We call the difference the store-read gap; in the released BitsMoE checkpoint, 2.54 bits per weight (bpw) of storage become 7.50 bpw of decode traffic. We propose DuoRate, which stores once and reads per workload. Offline, it stores one uniform tier of a prefix-readable weight stream and bakes a distortion tensor. Online, it profiles a workload's own prefill without labels and solves a Lagrangian rate-distortion allocation under the decode functional; routing frequency provably cancels from every per-expert decision, and the solve costs one dot product per expert and a bisection. A deployment therefore keeps a single artifact that prefill reads at the stored rate and decode reads at the workload's own rate. On Qwen3-30B-A3B, DuoRate reading 2.3 bpw exceeds every 2-bit-class baseline by 6.3 to 47.0 points of average accuracy, and at 2.9 bpw it matches 4-bit formats that read 1.4-1.6 bpw more. The advantage is largest under long decoding: on GSM8K, DuoRate at 2.9 bpw matches or exceeds every 4-bit format and trails BF16 by only 0.25 points, and at 2.6 bpw it still matches or exceeds the 4.5-bit NF4 and FP4. Against controls in its own format, the allocation alone is worth 0.07-0.11 bpw of read rate. Code will be released upon publication.",
+    "abs": "http://arxiv.org/abs/2610.13328v1",
+    "pdf": "https://arxiv.org/pdf/2610.13328v1",
+    "AI": {
+      "category": "EXCLUDE",
+      "priority": "NONE",
+      "brief_summary": null,
+      "relevance_reason": "该文关注 MoE 服务中的逐专家量化位宽分配与存储/解码速率差异，属于推理系统与压缩效率问题，既不涉及视觉或多模态推理状态，也没有可核查的状态生成、证据使用或停止决策线索，故排除。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-13T20:06:26.523117+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

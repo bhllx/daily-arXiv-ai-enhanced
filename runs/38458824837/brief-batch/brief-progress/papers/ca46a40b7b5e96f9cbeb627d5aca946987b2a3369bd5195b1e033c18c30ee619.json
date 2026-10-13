@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.13111",
+  "input_sha256": "67b336d06446cad94b20b11de15c84b5c32fcba0b42b0da776e3670056c1e54c",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-13T20:10:28.723990+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1981,
+        "output_tokens": 801,
+        "total_tokens": 2782,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 545
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.13111",
+    "title": "What Do Visual-Head Discovery Scores Actually Find? Attention Source, Necessity, and Random-Control Pitfalls in Vision-Language Models",
+    "authors": [
+      "Md Abdul Kadir",
+      "Daniel Sonntag"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": null,
+    "summary": "Attention heads that attend to image regions relevant to a question are increasingly used to steer, ground and interpret vision-language models (VLMs) and to reduce their hallucinations. They are mostly found by ranking heads with an attention- pattern score and validated by steering or masking them. We ask how the choices inside such a discovery score shape the heads it returns, and which of the two validations identifies them. On Qwen3-VL-8B-Instruct we vary the query type, the discovery corpus and the token positions whose attention is read (the attention source) in a full 2 x 3 x 2 design, and test all 12 head-sets for steerability (CERS: Contrastive Evidence-Region Steering score) and necessity (NCS: Necessity Con- trast Score) against layer-matched random head-sets. (1) The attention source and the query type reshape the selected heads far more than the corpus: changing the source keeps a median of 49 of the top-100 heads, the query 55 and the cor- pus 84, while two halves of the same data share 96-99. (2) Necessity follows the attention source: head-sets discovered from query-span attention are more nec- essary than last-token ones (difference 0.083, p=6 x 10^-10), and the two re- ferring + query-span sets lie 17-19 standard deviations above 250 layer-matched random sets (Holm-adjusted p=0.048). The referring + query-span effect re- plicates on several recent VLMs. (3) Steerability is not specific to the discovered heads: no discovered head-set steers better than its layer-matched random sets (rank p >= 0.14), and random sets drawn from the same or from any layer span the discovered sets' scores. Necessity therefore separates the discovery settings, while steering at this strength does not. We turn these findings into a protocol for reporting visual-head discoveries.",
+    "abs": "http://arxiv.org/abs/2610.13111v1",
+    "pdf": "https://arxiv.org/pdf/2610.13111v1",
+    "AI": {
+      "category": "MAIN",
+      "priority": "P1",
+      "brief_summary": "该文在 Qwen3-VL-8B-Instruct 等 VLM 上系统改变「视觉头」发现分数中的查询类型、发现语料与读取注意力的 token 位置，并用对比式证据区引导（CERS）与必要性对比分（NCS）对照同层随机头集检验选出的头，发现注意力来源与查询类型对选头的影响远大于语料，必要性随来源变化而可复现，而可引导性并不特异地指向被发现的头。",
+      "relevance_reason": "属于 VLM 视觉证据筛选与内部状态因果作用的诊断性失败分析：其「必要性有效、steering 不特异」的结论可供核查 LVR 中视觉旁路、注意力结构对 latent 内容判断的影响，以及以引导/遮蔽作为视觉证据使用的验证方式。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-13T20:10:28.723990+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

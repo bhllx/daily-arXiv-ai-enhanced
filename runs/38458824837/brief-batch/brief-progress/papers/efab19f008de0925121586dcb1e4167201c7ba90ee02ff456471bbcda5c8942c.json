@@ -1,0 +1,68 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.13208",
+  "input_sha256": "49666c075bd9c6737d53e07fc60a0caf6d8c6718fa1146284759913e04073700",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-13T20:08:52.368051+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1809,
+        "output_tokens": 571,
+        "total_tokens": 2380,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 346
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.13208",
+    "title": "How Much Computation Does Every Forecast Need? Structured Block Skipping in Two Time-Series Foundation Models",
+    "authors": [
+      "Max Bourgeat"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Time-series foundation models use the same network depth for every input, although forecasting windows differ in structure and difficulty. We test whether whole Transformer blocks can be removed at inference time in two pretrained models: Chronos-Bolt and TimesFM 2.5. Our bypasses avoid the original block computation and preserve the dense model exactly when all blocks are enabled. Masks are selected only on calibration windows and evaluated on 1,088 held-out windows from ETTh1, Traffic, Weather, and Exchange. At moderate sparsity, Chronos-Bolt with 7/11 candidate blocks and TimesFM with 16/20 blocks show little change in mean relative forecasting quality across datasets while reducing median A100 batch-1 latency by 11.2% and 13.4%. More aggressive TimesFM skipping accelerates inference further but substantially harms Traffic and Weather. Across both models, different equal-budget masks win on different windows, and a retrospective oracle significantly improves over the best static mask on every dataset. However, dataset-specific masks transfer inconsistently, and Chronos representations do not support reliable unseen-domain routing. These results establish cross-architecture structured redundancy and input-dependent opportunity, but not a deployable dynamic inference method.",
+    "abs": "http://arxiv.org/abs/2610.13208v1",
+    "pdf": "https://arxiv.org/pdf/2610.13208v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "在两个预训练时间序列基础模型（Chronos-Bolt、TimesFM 2.5）上，于推理期整块跳过 Transformer block，用校准窗口选掩码并在四个数据集的 1088 个留出窗口上评估，发现中等稀疏度下精度几乎不变而延迟下降 11–13%，但激进跳块严重损害部分数据集。",
+      "relevance_reason": "其「按输入分配计算量、结构化冗余、oracle 上界与掩码路由」的分析框架，可为 LVR 的动态计算与 STOP 决策提供可核查的方法线索，但该工作属时间序列域且作者自述尚不构成可部署的动态推理方法。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-13T20:08:52.368051+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

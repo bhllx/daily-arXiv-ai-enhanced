@@ -1,0 +1,79 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.12599",
+  "input_sha256": "d9dbb3802d60bc0468845e1c3a9a658af88ff9f378cca17a83bd81c6e01ba351",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-13T20:17:56.909905+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1939,
+        "output_tokens": 862,
+        "total_tokens": 2801,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 656
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.12599",
+    "title": "STAPLE: Static Sparse Upcycling of Pretrained Checkpoints via Embedding Modules",
+    "authors": [
+      "Ranajoy Sadhukhan",
+      "Euijin Hong",
+      "Sheng Cao",
+      "Zechun Liu",
+      "Shuowei Jin",
+      "Sha Li",
+      "Changlong Yu",
+      "Xin Liu",
+      "Qin Lu",
+      "Zhenyu Shi",
+      "Priyanka Nigam",
+      "Beidi Chen"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Sparse computation can scale the parametric capacity of LLMs without proportionally increasing active computation, but pretraining sparse architectures remains expensive and data-hungry. Existing sparse upcycling methods mainly target Mixture-of-Experts models, where expert homogeneity, sample inefficiency, and system overheads can limit practical scalability. Static sparse memory offers predictable access and token-specific updates that can help address these challenges, but naively integrating it into pretrained computation yields poor returns. In this work, we introduce STAPLE, a recipe built upon STEM for integrating static sparse memory into pretrained models. Whereas STEM replaces FFN up-projections with token-indexed embeddings, STAPLE retains them and adds the embeddings as a residual pathway, preserving pretrained computation while learning complementary token-specific information in a scalable manner. On OLMo-2 1B, STAPLE improves over continued dense training by 4.27 points on HumanEval, 2.80 on MBPP, 2.27 on GSM8K, and 1.65 on DROP. Average performance increases with static capacity, and improvements persist on the larger OLMo-2 7B backbone. STAPLE also outperforms static sparse baselines such as STEM and an Engram-style model, and achieves a higher average score than an MoE upcycling baseline while decoding 2x faster with less than half its GPU model memory and measured GPU energy per token in our throughput-oriented decoding evaluation. Importantly, despite introducing billions of parameters late in training, our host-offloaded implementation keeps generation throughput within 1.5% and training throughput within 3% of the dense baseline, while caching only the ~5% most frequent embeddings on GPU. These results show that static sparse memory can provide a sample-efficient, scalable, and sustainable path for expanding pretrained models without sparse pretraining from scratch.",
+    "abs": "http://arxiv.org/abs/2610.12599v1",
+    "pdf": "https://arxiv.org/pdf/2610.12599v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "STAPLE 提出一种静态稀疏上采样配方：在预训练 LLM 中保留原 FFN 上投影，额外加入 token 索引嵌入作为残差通路，在 OLMo-2 1B/7B 上以极小吞吐开销提升多项语言基准。",
+      "relevance_reason": "与 LVR 主线无直接关联，但其「保留原计算、以稀疏嵌入残差通路注入 token 级信息」以及容量与成本权衡的做法，可能为在 VLM 中低成本注入 latent 视觉记忆或扩充推理状态容量提供可供核查的工程线索。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-13T20:17:56.909905+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

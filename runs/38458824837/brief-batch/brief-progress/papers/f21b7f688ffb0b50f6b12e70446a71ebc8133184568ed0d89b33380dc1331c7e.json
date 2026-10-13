@@ -1,0 +1,76 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.13264",
+  "input_sha256": "dd7921b0df96c63ba46ac45b8d7742e41653d76a7a1f12cd7dc682cd69e800d5",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-13T20:07:46.093805+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1895,
+        "output_tokens": 950,
+        "total_tokens": 2845,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 709
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.13264",
+    "title": "CV-OPD: Contrastive Vision On-policy Distillation",
+    "authors": [
+      "Haowei Wang",
+      "Hao Lin",
+      "Qi Zhu",
+      "Jiayi Ji",
+      "Deyi Ji",
+      "Liujuan Cao",
+      "Rongrong Ji"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.LG",
+      "cs.MM"
+    ],
+    "comment": "16 pages, 7 figures, contrastive learning for on-policy distillation of VLMs. Computer Vision. Post-training. VLM. LLM",
+    "summary": "On-policy distillation (OPD) reveals versatility and convenience during VLM post-training, providing dense supervision for student from teacher. However, we observed an anomaly that the distilled VLM could still answer the questions accurately even when the related visual regions were masked or replaced with noise. Building on this observation, our quantitative and qualitative experiments demonstrate that OPD, which uses the answer as a hint, has failed to teach students to genuinely seek out and rely on visual evidence. Our theoretical analysis suggests that this failure arises from a shortcut enabled by the lack of visual constraints during distillation. To address the issue, we introduce Contrastive Vision On-policy Distillation (CV-OPD), which compares teacher distributions induced by positive and negative crops while conditioning on the same student prefix and augments optimization with a margin-based contrastive constraint, which is modulated with discrepancy gating across token and sample level. Specifically, CV-OPD first introduces a negative teacher unrelated to the answer and designs a Contrastive Divergence Loss (CDL) that constrains the feature distribution of student by contrasting the positive and negative teachers, correcting how the student exploits visual regions. The CV-OPD introduces a Discrepancy Aware Gate (DAG) that uses token-level and sample-level discrepancies to select visually relevant tokens for optimization, directing the student's attention toward visual content. Extensive experiments across a broad range of fine-grained visual benchmarks demonstrate that CV-OPD substantially alleviates shortcut and consistently improves the visual reasoning capabilities of existing VLMs.",
+    "abs": "http://arxiv.org/abs/2610.13264v1",
+    "pdf": "https://arxiv.org/pdf/2610.13264v1",
+    "AI": {
+      "category": "MAIN",
+      "priority": "P0",
+      "brief_summary": "论文发现 VLM 在 on-policy distillation（OPD）后，即使相关视觉区域被遮挡或替换为噪声仍能正确作答，据此指出 OPD 以答案为提示的训练未能让学生真正依赖视觉证据；为此提出 CV-OPD，用正负 crop 诱导的教师分布构造对比散度损失，并借 token 级与样本级差异门控挑选视觉相关 token 参与优化。",
+      "relevance_reason": "该文的遮挡/噪声诊断直接对应 LVR 关心的视觉旁路与「答案是否使用视觉内容」问题，其 token 级差异门控可供核查视觉证据筛选与监督信号分配的线索；不过它是后训练方法，未涉及 latent 推理状态生成，需自行判断结论可迁移性。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-13T20:07:46.093805+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

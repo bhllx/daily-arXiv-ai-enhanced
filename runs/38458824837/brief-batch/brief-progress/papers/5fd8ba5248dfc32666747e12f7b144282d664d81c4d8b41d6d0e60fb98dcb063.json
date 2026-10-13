@@ -1,0 +1,75 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.13548",
+  "input_sha256": "6613c700d29f29734a17608e36806c2edbc9ca360ac0c9e1a5855b4cb47b0136",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-13T20:03:36.594980+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1970,
+        "output_tokens": 805,
+        "total_tokens": 2775,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 604
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.13548",
+    "title": "Auditing VLM Benchmarks from Existing Evaluation Runs",
+    "authors": [
+      "Denis Degtiarev",
+      "Anna Gromova",
+      "Sergey Katkov",
+      "Artem Mikhailin",
+      "Safina Mukhamedshina",
+      "Albert Nasybullin",
+      "Karina Shaikhutdinova",
+      "Artem Tuzov"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": "11 pages, 5 figures. Accepted at the NeurIPS 2026 Workshop TAE (Trust-AI-Eval): Can We Trust AI Evaluation? (non-archival). Code and artifacts: https://github.com/avos-rnd/vlm-bench",
+    "summary": "Every evaluation run of a vision-language model (VLM) already produces per-question artifacts (predictions, judged correctness, metadata) that leaderboards reduce to a single score and then discard. We reuse those artifacts to audit the benchmark itself, and add an audit layer to VLMEvalKit: six detectors that run as post-processing over saved outputs, plus one additional text-only rerun with visual inputs removed, emitting a per-question report. The layer reports per-question findings together with aggregate audit statistics; for the headline quantities, it attaches permutation-null excess where applicable, interval estimates for proportions, and sensitivity to the model pool. Auditing MMStar, a benchmark curated specifically so that the image is indispensable, with three models, we find zero aggregate accuracy gain from the image on 20.2% of its questions. An item-matched permutation null accounts for 17.0%, leaving a +3.2 pp excess (corrected permutation p = 0.001). This excess is concentrated in the mathematics and science categories and is absent from coarse perception, a localization consistent with knowledge substituting for visual evidence; confirming that mechanism would require item-level review. A second detector flags 134 questions on which every model that answered in parseable form picked the same non-gold option, and these candidates peak in the perception categories, whereas the zero-gain excess is largest in mathematics and science & technology. Replacing the LLM judge with exact string matching changes no conclusion, and every scoring discrepancy between the two traces to one model whose free-form answers a parser cannot read. On a binary yes/no benchmark the detectors measurably fall out of calibration, a scope boundary that we measure and report. The audit layer, the prediction artifacts and the generated reports accompany this submission.",
+    "abs": "http://arxiv.org/abs/2610.13548v1",
+    "pdf": "https://arxiv.org/pdf/2610.13548v1",
+    "AI": {
+      "category": "MAIN",
+      "priority": "P1",
+      "brief_summary": "该论文复用既有 VLM 评测运行逐题产物，在 VLMEvalKit 上加入审计层（六个后处理检测器，加一次去除图像输入的纯文本重跑），审计 MMStar 等基准，量化图像对准确率的实际贡献并报告不一致题目。",
+      "relevance_reason": "依去图像重跑与置换零假设检验视觉证据是否为推理所必需，与 LVR 关注的视觉旁路、证据筛选和评价方法直接相关；其审计协议可供核查多模态推理中「视觉信息是否真被使用」的实验设计。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-13T20:03:36.594980+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

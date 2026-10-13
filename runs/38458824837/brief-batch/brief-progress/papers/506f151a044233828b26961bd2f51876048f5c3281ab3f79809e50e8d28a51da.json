@@ -1,0 +1,76 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.12514",
+  "input_sha256": "2215f608363268c03bc09c8b5fcf404b1a82369279bb0a80b75c2409f2cf1d3e",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-13T20:19:15.939011+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1901,
+        "output_tokens": 787,
+        "total_tokens": 2688,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 575
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.12514",
+    "title": "CORAL-KV: Compact Cross-Layer Prediction and Residual Coding for Autoregressive Video KV Caches",
+    "authors": [
+      "Albert Ge",
+      "Akash Haridas",
+      "Utkarsh Saxena",
+      "Ruijing Yang",
+      "Ian Colbert",
+      "Frederic Sala",
+      "Vikram Appia",
+      "Emad Barsoum"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Autoregressive video diffusion models maintain a growing attention key-value (KV) cache, making memory a key bottleneck for long video generation. Recently, clustering-based quantization has emerged as an effective method to compress video KV caches by grouping similar key and value vectors then quantizing residual errors. However, when later frames attend to the compressed history, small reconstruction errors can compound as the video grows. Beyond the within-layer similarity exploited by clustering, we find strong dependencies across cache layers in video models. This motivates Coral-KV - Calibrated Offline, Residual-coded, and Adapted Locally - a KV-cache compression framework that uses cache states in each layer to predict keys and values in subsequent layers, then quantizes the remaining prediction residuals. We construct compact block-diagonal-plus-low-rank (block-DPLR) predictors: block-diagonal components model channel relationships within each attention head, while a global low-rank term models dependencies between heads. Coral-KV exposes a flexible fidelity-memory trade-off: it can reuse its predictors across videos or refit lightweight block-diagonal predictors to the current video for higher fidelity. Across extensive evaluations on both HY-WorldPlay and MAGI-1, our reusable configuration improves PSNR over QVG-4 by 0.32 dB and 4.95 dB, respectively, while using 48% and 37% less cache memory. Against QVG-Pro, our video-adapted configuration improves MAGI-1 PSNR by 3.77 dB while using 33.7% less cache memory. Coral-KV also maintains higher reconstruction fidelity over extended generation and reduces temporal discontinuities while retaining comparable generation latency.",
+    "abs": "http://arxiv.org/abs/2610.12514v1",
+    "pdf": "https://arxiv.org/pdf/2610.12514v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文提出 Coral-KV：一个面向自回归视频扩散模型的 KV 缓存压缩框架，利用视频模型中跨层的强依赖，用前层缓存状态预测后层 key/value，再对预测残差做聚类量化，并以「块对角 + 低秩」预测器提供可复用与按视频重拟合两种保真度-内存权衡。",
+      "relevance_reason": "其「层间状态可由前层预测、只编码残差」的做法可能为核查 latent 推理状态沿深度的冗余程度、信息在层间的分布与缓存复用提供方法线索，但迁移到 VLM 推理仍需核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-13T20:19:15.939011+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

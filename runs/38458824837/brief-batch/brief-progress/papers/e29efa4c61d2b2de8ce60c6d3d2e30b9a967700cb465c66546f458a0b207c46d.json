@@ -1,0 +1,75 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.12694",
+  "input_sha256": "eb0de9d6dfb699ac7250b071ee5272dc5307390574aec646d112dbbe4b8293ee",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-13T20:17:13.038914+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1908,
+        "output_tokens": 950,
+        "total_tokens": 2858,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 704
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.12694",
+    "title": "Critical Mass: Structure-Disjoint Splits Drift With the Libraries They Are Built On",
+    "authors": [
+      "Tomo Oga",
+      "Devesh Shah",
+      "Cailum M. K. Stienstra",
+      "Gabriel Asher",
+      "Antonio H. de O. Fonseca",
+      "Niall O'Connor",
+      "Michael Widrich"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.CE"
+    ],
+    "comment": "Accepted at 40th Conference on Neural Information Processing Systems (NeurIPS 2026). Workshop: AI Data Readiness for Scientific Discovery",
+    "summary": "Molecular machine learning evaluates out-of-distribution performance with structure disjoint splits, a construction rule fixed once at the scale its library happened to have: threshold a pairwise distance, then assign whole connected components to folds. For predicting structures from mass spectra, the field has converged on single-linkage clustering under the myopic Maximum Common Edge Subgraph (MCES) distance at a threshold of 10. This convention was set on 29,000 molecules but public libraries now hold 227,690 molecules. MCES is NP-hard per pair over a quadratically growing set, and so the criterion has never been evaluated at that scale. We propose an optimized version of this criterion, allowing for computationally feasible application on the public libraries: Admissible bounds and a union-find skip reduce $2.6 \\times 10^{10}$ molecular pairs to only $1.15 \\times 10^{7}$ integer programs, a $2{,}259\\times$ saving, while provably producing the lossless partition. We find that at this scale the graph percolates. A single component holds $95.5\\%$ of the library, capping any test set at $4.5\\%$. What remains is not merely smaller, but systematically different: a held-out compound outweighs a training compound 88.1\\% of the time, because a fixed absolute budget is a tighter relative tolerance on a larger molecule. Large library benchmarks using this splitting rule naively therefore conflate structural novelty with extrapolation to larger, more complex chemistry.",
+    "abs": "http://arxiv.org/abs/2610.12694v1",
+    "pdf": "https://arxiv.org/pdf/2610.12694v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "论文检验分子机器学习中「结构不相交」划分惯例：提出 MCES 距离的可行优化算法（admissible 边界加 union-find 跳过，把 2.6×10^10 对分子压缩到 1.15×10^7 个整数规划），并发现库规模扩大后相似图连通、单一连通分量占 95.5%，使测试集被压到 4.5% 且系统性偏向更大更复杂的分子。",
+      "relevance_reason": "其「阈值化成对距离＋连通分量」的划分与大规模失效分析，可能为 LVR 中基于 latent 相似度的聚类、去重与训练-测试划分提供类比线索，并提示固定阈值在不同规模下含义漂移，可供核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-13T20:17:13.038914+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

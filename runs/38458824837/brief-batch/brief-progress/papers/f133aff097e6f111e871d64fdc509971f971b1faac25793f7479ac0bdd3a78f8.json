@@ -1,0 +1,78 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.13781",
+  "input_sha256": "640b909b1a8b1527b9e1d6f3327868d543f5f2beaa6808626c187534d8f9d82e",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-13T19:59:58.035966+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1884,
+        "output_tokens": 611,
+        "total_tokens": 2495,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 382
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.13781",
+    "title": "SimVTA: Simulation-Grounded Video-Trajectory Alignment for Driving World Action Models",
+    "authors": [
+      "Changhui Jing",
+      "Haochen Tian",
+      "Hongchen Li",
+      "Tianyu Li",
+      "Caojun Wang",
+      "Zihao Zhang",
+      "Yanhao Liu",
+      "Chengen Xie",
+      "Bailin Li",
+      "Hao Zhao",
+      "Zhenjie Yang"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": "Project page: https://opendrivelab.com/SimVTA/",
+    "summary": "Driving world action models (WAMs) learn from paired trajectories and future observations. Post-training with reinforcement learning allows the policy to explore alternative trajectories and improve planning using driving rewards. However, driving logs contain future videos only for the recorded trajectories, leaving these alternatives without corresponding visual supervision. Thus, we introduce SimVTA, a simulation-grounded post-training framework that combines trajectory optimization with video supervision. First, we sample candidate trajectories for each observation and use a real-world simulator (e.g., World Engine) to render future videos for high-reward candidates in real-world scenes reconstructed with 3D Gaussian Splatting (3DGS). This provides trajectory-matched supervision independent of the model's own predictions. Under a limited rendering budget, we prioritize video supervision for higher-error futures among these rendered candidates. Finally, we optimize trajectory planning with Group Relative Policy Optimization (GRPO) and use a flow-matching loss on the matched videos to update shared representations. At inference time, the model predicts trajectories directly, without simulator calls. On NAVSIM v1, applying SimVTA to a WAM initialization improves PDMS from 86.2 to 91.3 (+5.1). It achieves 88.2 EPDMS on NAVSIM v2 and an average HD-Score of 38.8 in closed-loop evaluation on HUGSIM. Ablations show that updating shared representations with video supervision improves planning, while prioritizing higher-error futures among high-reward trajectories further improves performance.",
+    "abs": "http://arxiv.org/abs/2610.13781v1",
+    "pdf": "https://arxiv.org/pdf/2610.13781v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "提出 SimVTA，一种基于仿真的驾驶世界行动模型后训练框架：对候选轨迹用 3DGS 重建场景与模拟器渲染未来视频，在有限渲染预算下优先监督高误差未来，并用 GRPO 与 flow-matching 损失同时优化轨迹规划与共享表示，推理时不再调用模拟器。",
+      "relevance_reason": "其「用匹配的未来视频监督共享内部表示」及「有限预算下优先监督高误差未来」的做法，可能与 LVR 中监督信号如何塑造 latent 状态、以及视觉监督的贡献分配与取舍问题相关，可供核查；但属驾驶策略与世界模型场景，与 VLM 推理状态生成的联系尚需确认。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-13T19:59:58.035966+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

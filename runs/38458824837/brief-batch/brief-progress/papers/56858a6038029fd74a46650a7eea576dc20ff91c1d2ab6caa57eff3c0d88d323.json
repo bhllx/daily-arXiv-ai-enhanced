@@ -1,0 +1,74 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.12530",
+  "input_sha256": "e699c8fc039ad1b994a1763c06f01eff270d92555d0770a6f5cdd934054163d4",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-13T20:18:54.950691+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1797,
+        "output_tokens": 580,
+        "total_tokens": 2377,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 365
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.12530",
+    "title": "CacheScope: Exact-Compute Allocation for Training-Free Diffusion Acceleration",
+    "authors": [
+      "Qinhan Lyu",
+      "Jusheng Zhang",
+      "Zhixing Zhang",
+      "Hao Liu",
+      "Zijie Liang",
+      "Jin Jiang",
+      "Keze Wang"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Training-free feature reuse accelerates diffusion transformer inference by replacing full denoising computation at selected steps with cached approximations. Existing methods mainly improve the reconstruction of skipped features, but we find that once a stable first-order reconstructor is used, increasing reconstruction complexity brings limited gains, whereas the placement of exact-computation steps has a much larger effect on fidelity. More importantly, absolute shallow-probe variation is jointly affected by input-trajectory displacement and network response strength, and therefore does not directly reflect cache risk. We address this confounding by normalizing probe-output variation with the corresponding input displacement, yielding a directional gain per unit trajectory movement. Based on this signal, we propose CacheScope, which identifies high-risk reuse steps online and selectively falls back to full denoising computation while leaving the underlying cache reconstructor unchanged. CacheScope requires no additional training, gradients, auxiliary networks, or prompt-specific offline schedule optimization. Across FLUX.1-dev, Wan2.1-T2V-1.3B, and Open-Sora 1.2, CacheScope achieves up to 3.57x acceleration and reduces median LPIPS by up to 70.1% over the strongest probe-based baseline.",
+    "abs": "http://arxiv.org/abs/2610.12530v1",
+    "pdf": "https://arxiv.org/pdf/2610.12530v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "研究无训练 diffusion transformer 推理加速：作者发现一旦使用稳定的一阶重建器，精确计算步骤的「位置」比重建复杂度更影响保真度，并提出用输入轨迹位移归一化探针输出变化，在线识别高风险复用步骤并选择性回退到完整去噪计算（CacheScope）。",
+      "relevance_reason": "其「在线风险信号＋选择性回退全量计算」的分配机制，可能为 LVR 中动态计算分配、何时停止廉价近似并重新精确计算的决策，以及缓存对 latent 状态影响的判断提供可核查线索，但对象是图像/视频生成而非多模态推理。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-13T20:18:54.950691+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}
