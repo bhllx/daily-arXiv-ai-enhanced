@@ -1,0 +1,73 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.16582",
+  "input_sha256": "f6aa206c8b926c38e683220ca95e293464999178a8876c30d1d00498a9193e3d",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T18:46:48.071501+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1761,
+        "output_tokens": 741,
+        "total_tokens": 2502,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 520
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.16582",
+    "title": "Characterizing and Mitigating Distributional Bias in Physics-Informed Generative Models",
+    "authors": [
+      "Tanja Bien",
+      "Samir Darouich",
+      "Lluís Pastor-Pérez",
+      "Vinh Tong",
+      "Loay Mualem",
+      "Mathias Niepert"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Physics-informed generative models augment a data-fitting objective with residual penalties that encourage physical constraints to hold in generated samples. However, improving constraint satisfaction need not improve fidelity to the data distribution. We study this conflict in residual-regularized diffusion models and identify two possible consequences. First, the same prediction error can incur different residual costs near different feasible states, preferring states with lower residual sensitivity (avoidance). Second, this preference can extend to feasible states outside the data support, where the residual also vanishes (leakage). Motivated by this analysis, we propose a data-anchored penalty that weights prediction errors by the residual Jacobian at the clean training sample and normalizes the resulting magnitude. This removes the incentive to relocate to less sensitive states without changing the model architecture or sampling procedure. Experiments on a controlled synthetic system, three PDE systems, and molecular transition-state generation with flow matching demonstrate the benefits of anchoring. Code is available at https://github.com/TanjaBien/anchored_diffusion.",
+    "abs": "http://arxiv.org/abs/2610.16582v1",
+    "pdf": "https://arxiv.org/pdf/2610.16582v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "该工作研究物理约束残差惩罚与数据分布保真度之间的冲突，指出残差正则化会使扩散模型偏好低残差敏感度的可行状态，甚至迁移到数据支撑之外的区域，并提出在干净训练样本处用残差 Jacobian 加权并归一化的 data-anchored penalty 来消除这种激励。",
+      "relevance_reason": "其正则项导致状态向低敏感区域漂移（avoidance/leakage）的分析与「把辅助惩罚锚定在数据样本处以避免状态偏离」的做法，可能可供核查 LVR 训练中辅助监督是否同样把 latent 状态推离视觉证据，属于方法线索而非直接主线。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T18:46:48.071501+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

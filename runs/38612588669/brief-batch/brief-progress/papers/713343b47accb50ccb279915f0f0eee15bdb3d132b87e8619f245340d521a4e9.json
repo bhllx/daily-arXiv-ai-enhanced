@@ -1,0 +1,74 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.18604",
+  "input_sha256": "a197d3193b879684a78116be5dd3d2bac18454c88996d00f0baf1da0205bcd1d",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T18:15:39.629806+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1959,
+        "output_tokens": 935,
+        "total_tokens": 2894,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 684
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.18604",
+    "title": "LLM2R: From Large Language Models to 3D Reassemblers",
+    "authors": [
+      "Zhouhan Zhong",
+      "Qiuhong Shen",
+      "Xingyi Yang",
+      "Jinyi Xu",
+      "Xinchao Wang"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.AI",
+      "cs.RO"
+    ],
+    "comment": "20 pages, 5 figures, 7 tables",
+    "summary": "3D part assembly aims to reconstruct a complete shape from a set of unassembled parts by predicting a rigid SE(3) transformation for each part. Because the placement of a part is rarely determined by its own geometry, the task demands reasoning over the entire part set, and existing methods, which rely on pairwise relations or iterative generation and verification, scale poorly to objects with many parts. We present LLM2R, which casts part assembly as sequence modeling with a pretrained decoder-only large language model (LLM): a Point-BERT encoder and a Q-Former compress each part into a block of geometric tokens, the blocks of all parts are concatenated, and a causal LLM adapted with Low-Rank Adaptation (LoRA) processes the sequence in one forward pass. Causal attention, however, lets the hidden states of a part observe only the parts that precede it. LLM2R therefore appends a block of learnable summary tokens after the last part: these tokens follow every part, so their states aggregate the whole assembly at a constant token cost, and a part-aware pose head fuses each part's states with them before predicting its rotation and translation. One architecture thus handles semantic and geometric assembly and predicts all poses in a single non-autoregressive pass. LLM2R achieves the highest part accuracy and success rate on all three PartNet categories, the best rotation error, translation error, and part accuracy on PartNeXt, and the lowest translation error and fastest inference on Breaking Bad, where only a fracture-specialized method is more accurate. Its advantage grows with the number of parts: at 100 parts it exceeds GARF by 33.5 points in part accuracy on Breaking Bad and Assembler by 29.1 points on PartNet, and it transfers zero-shot to unseen categories with more than 16 points higher part accuracy than the strongest of three baselines.",
+    "abs": "http://arxiv.org/abs/2610.18604v1",
+    "pdf": "https://arxiv.org/pdf/2610.18604v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文提出 LLM2R，将 3D 零件装配转化为序列建模：Point-BERT 编码器与 Q-Former 把每个零件压缩成一块几何 token，拼接后由 LoRA 微调的因果 LLM 一次前向处理，并在序列末尾附加可学习的 summary token 聚合整体装配状态，由 part-aware 位姿头融合后一次性非自回归预测所有零件的旋转与平移。",
+      "relevance_reason": "末尾 summary token 块以恒定 token 成本聚合全集合状态、part-aware 头融合局部与全局状态，可能为 LVR 的全局工作区、支持组合与 latent 状态聚合提供可核查的方法线索；其在零件数增多时的优势与零样本泛化也可能关联长度泛化问题，但属推测，需阅读原文确认。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T18:15:39.629806+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

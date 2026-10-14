@@ -1,0 +1,68 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.15139",
+  "input_sha256": "7850188a788068a06f5ffff79f8c6de9f6403016659505496d5a427a1630fef8",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T19:08:46.988709+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1890,
+        "output_tokens": 833,
+        "total_tokens": 2723,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 606
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.15139",
+    "title": "When Dynamic Scaling Fails: A Scale-State Feedback Governs Recurrent-State Quantization in Linear-Attention and SSM LLMs",
+    "authors": [
+      "Yuhang Jiang"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": "14 pages, 6 figures, 7 tables. NeurIPS 2026 Workshop on Long-Context Foundation Models (non-archival). Extended version: adds a cross-architecture containment comparison on Mamba-2 and corrects two claims in the workshop version. Code and project page: https://avalon-s.github.io/dynamic-scaling-fails/",
+    "summary": "Linear-attention and state-space LLMs carry long context in a fixed-size recurrent state, and quantizing that state is the natural way to cut its cost during long decode. Unlike a weight tensor, the state is rewritten at every step, so a quantizer applied at each step sits inside the recurrence and its errors compound. INT4 that leaves synthetic recall perfectly intact at the start destroys it a thousand steps later. The mechanism is a feedback between the quantizer scale and the state it is derived from. Yoking that scale to a full-precision reference removes the resulting norm explosion entirely, yet recovers only 1.8 of the 5.4 nats lost, so numerical instability and functional degradation are separable failures. The remainder is a resolution problem that locating outliers does not solve, since every outlier-aware scheme here loses to plain persistent scaling. Allocating bits across layers does help, but under article-disjoint splits a learned allocation collapses onto the trivial rule of protecting the first few layers. Run out to 32K, group-wise INT4 is worth no more than discarding the state. Contain the scale rather than locate outliers, and report the decode horizon at which a bit-width was certified.",
+    "abs": "http://arxiv.org/abs/2610.15139v1",
+    "pdf": "https://arxiv.org/pdf/2610.15139v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "研究线性注意力与 SSM 大模型中定长循环状态的量化：量化尺度与其所依赖状态之间形成反馈，使每步量化误差在递推中累积，长程解码后即使 INT4 也毁掉召回；作者用固定尺度、逐层比特分配等对照，将数值不稳定与功能退化区分为两类可分离的失败。",
+      "relevance_reason": "该文的「状态每步被重写、误差在递推内累积、须报告位宽被认证的解码视野」等线索，可能可供核查 LVR latent 状态更新的精度与长程稳定性及长度泛化评估方式，但论文不涉及视觉或多模态推理，联系需人工判断。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T19:08:46.988709+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

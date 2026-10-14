@@ -1,0 +1,72 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.14136",
+  "input_sha256": "b699521597e8473208760b0809c5024d6a90c9031fbdb6ddebd1b0e5f5b2b927",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T19:25:21.446749+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1910,
+        "output_tokens": 866,
+        "total_tokens": 2776,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 661
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.14136",
+    "title": "Correction Training for Diffusion Models",
+    "authors": [
+      "Donghoon Ahn",
+      "Runqian Wang",
+      "Alexei A. Efros",
+      "Taesung Park",
+      "Yash Belhe"
+    ],
+    "categories": [
+      "cs.AI"
+    ],
+    "comment": "Project page: https://sunovivid.github.io/correction-training/",
+    "summary": "Iterative sampling in diffusion models can lead to error accumulation due to exposure bias. The denoiser is trained on real images interpolated with noise, but at inference its inputs are constructed from its own imperfect predictions from the earlier steps, something it has never seen at training time. This might be one reason diffusion models often struggle without additional help, such as CFG. We introduce a correction step for diffusion models which attempts to reduce this training-inference gap. The corrector takes the base model's prediction as input and is trained against the same ground-truth target. This makes correction an explicit learning task, with training inputs provided by the base model. During sampling, at each denoising step, we iteratively refine the denoiser's clean-sample prediction. This allows us to correct predictions at intermediate denoising steps, preventing early artifacts from persisting into the final sample. Although the corrector is trained only on predictions from the base denoiser, it can be applied repeatedly to its own outputs at inference for better results. This simple framework leads to substantial improvement in sample quality while largely preserving diversity. We evaluate our method across DiT, SiT, and JiT. Our method substantially improves upon previously reported FID scores for unguided generation and, notably, unconditional generation, where producing high-quality samples without guidance has been particularly challenging. Our method achieves performance competitive with classifier-free guidance (CFG), and combining correction with CFG further improves diversity and reduces oversaturation typical of CFG. Finally, we show that the additional inference cost of correction can be amortized by distilling the refined predictions back into the base diffusion model, retaining the quality gains without additional inference-time overhead.",
+    "abs": "http://arxiv.org/abs/2610.14136v1",
+    "pdf": "https://arxiv.org/pdf/2610.14136v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "针对扩散模型迭代采样中的 exposure bias 与误差累积，训练一个以基础模型预测为输入、以同一真值为目标的修正器，在每个去噪步迭代精修 clean-sample 预测，并可将精修结果蒸馏回基础模型以摊薄额外推理开销。",
+      "relevance_reason": "其「对自身中间预测反复精修、再把额外迭代计算蒸馏回单次前向」的做法，可能与 LVR 中 latent 状态的迭代更新、误差累积以及推理计算摊销（loop 训练与蒸馏）相关，可供核查，但论文本身是图像生成任务。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T19:25:21.446749+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

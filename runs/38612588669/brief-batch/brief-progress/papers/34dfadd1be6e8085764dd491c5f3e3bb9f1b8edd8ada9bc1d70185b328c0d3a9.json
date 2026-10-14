@@ -1,0 +1,74 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.17735",
+  "input_sha256": "69ec6b975f894af3c685f12daaba6bc524ef50cd684406facd3909039823a50f",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T18:28:58.304965+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1804,
+        "output_tokens": 513,
+        "total_tokens": 2317,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 292
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.17735",
+    "title": "Train for Many, Update with One: Improving Multi-Sample Reasoning via Fenchel-Bregman Posterior Learning",
+    "authors": [
+      "Sungjun Lim",
+      "Adrian Robert Minut",
+      "Nico Carlsen Daheim",
+      "Mohammad Emtiyaz Khan",
+      "Kyungwoo Song",
+      "Thomas Möllenhoff"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "Multi-sample reasoning measures candidate coverage, the probability that at least one of $K$ candidates is correct. However, minimizing the average loss of individual attempts does not directly optimize candidate coverage. We therefore formulate finite-$K$ posterior learning, which trains a distribution over solver parameters to reduce the probability that all $K$ independently generated candidates fail. To optimize this objective efficiently, we propose a Fenchel-Bregman (FB) approach that requires only one posterior draw per update, rather than the $K$ used by direct Monte Carlo optimization. FB first uses an exact Fenchel reformulation to separate problem-specific weights from the posterior update, enabling one-draw posterior updates. It then applies a closed-form Bregman update to track these weights through an exponential running average of observed failures, reusing the same draw. We instantiate FB with IVON, a variational optimizer for Gaussian posteriors over solver parameters, yielding Fenchel-Bregman IVON (FBI). Across diverse recursive and autoregressive reasoning tasks, FBI improves candidate coverage. In a matched comparison, it achieves comparable Pass@10 using 12.3% of the direct Monte Carlo baseline's measured training time per update.",
+    "abs": "http://arxiv.org/abs/2610.17735v1",
+    "pdf": "https://arxiv.org/pdf/2610.17735v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文将多采样推理（Pass@K 覆盖）重新表述为有限 K 后验学习：在求解器参数上训练一个分布以降低 K 个候选全部失败的概率，并提出只需一次后验采样的 Fenchel-Bregman 方法，实例化为 FBI，在递归与自回归推理任务上提升候选覆盖并减少训练时间。",
+      "relevance_reason": "研究问题属纯文本多候选覆盖的训练目标，不在视觉 latent 主线上，但其「多轨迹覆盖 + 单次采样更新 + 指数滑动权重」的训练监督机制，可能可供核查于 LVR 多轨迹 latent 训练中的贡献分配与采样成本问题。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T18:28:58.304965+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

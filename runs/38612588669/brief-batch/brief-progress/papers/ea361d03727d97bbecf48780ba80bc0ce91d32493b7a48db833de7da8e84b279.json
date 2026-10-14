@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.16298",
+  "input_sha256": "153040b11f54c38c8eed1c0f52fa87008868f6fe9100dc88c5995012dcddf90c",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T18:51:45.103412+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1854,
+        "output_tokens": 1009,
+        "total_tokens": 2863,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 801
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.16298",
+    "title": "Memory-Efficient Integer-Only Training of Deep Neural Networks",
+    "authors": [
+      "Hazem Hesham Yousef Shalby",
+      "Fabrizio Pittorino",
+      "Manuel Roveri"
+    ],
+    "categories": [
+      "cs.AI"
+    ],
+    "comment": "19 pages",
+    "summary": "Training neural networks in reduced precision can yield significant efficiency gains, yet all existing methods that scale to standard computer vision benchmarks retain floating-point in at least one stage, typically the weight update or optimizer state. We present a training algorithm that scales to modern deep neural networks, in which every tensor (weights, gradients, and activations) is stored as INT8, and every operation (forward pass, backward pass, weight update, optimizer update) is performed in integer arithmetic. Specifically, tensors are stored as signed integer mantissas paired with explicit power-of-two exponents, on which integer-only operations are performed using five custom composable building blocks (products, sums, divide-by-constant, nonlinear functions, and weight updates). This allows complete implementation of trainable integer layers, including convolutions, batch and layer normalization, softmax, and GELU. A per-group velocity mechanism with independent exponent tracking preserves gradient precision across neurons and channels with diverse magnitudes. As every tensor fits in INT8, training memory is roughly 4x smaller than the FP32 baseline. We validate our training algorithm on CNNs (ResNet-18/34/50/101, MobileNetV2) and Vision Transformers (ViT-Ti / B), demonstrating for the first time that training neural networks with INT8 tensors and integer arithmetic can achieve competitive accuracy on CIFAR-10, CIFAR-100 and ImageNet at a reduced memory budget.",
+    "abs": "http://arxiv.org/abs/2610.16298v1",
+    "pdf": "https://arxiv.org/pdf/2610.16298v1",
+    "AI": {
+      "category": "EXCLUDE",
+      "priority": "NONE",
+      "brief_summary": "提出一种全整数训练算法：权重、梯度、激活均以 INT8 存储，用带二次幂指数的有符号整数尾数完成前反向、优化器与权重更新，在 CNN 与 ViT 上验证了训练内存约为 FP32 的四分之一且精度可比。",
+      "relevance_reason": "论文研究通用视觉骨干网络的量化训练与内存效率，未涉及多模态推理的状态生成、证据使用或停止决策；其低精度表示与训练成本优化和 LVR 关注的 latent 状态内容、缓存与获取证据只有极间接的联系，缺乏可核查的具体线索。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T18:51:45.103412+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

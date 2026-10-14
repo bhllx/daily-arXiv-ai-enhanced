@@ -1,0 +1,77 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.18141",
+  "input_sha256": "c9c2e392ca389cd5bbd9b46253792426e83220677bdf3c6d904d9e8e12813c20",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T18:22:00.017113+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1828,
+        "output_tokens": 653,
+        "total_tokens": 2481,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 406
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.18141",
+    "title": "Mitigating Cross-Modal Hallucinations by Correcting Modality Misrouting in Omnimodal LLMs",
+    "authors": [
+      "Yu Mi",
+      "Licheng Pan",
+      "Jiayi Zhu",
+      "Qirui Liu",
+      "Yitong Qiao",
+      "Changtong Xu",
+      "Tao Wei",
+      "Fei Sun",
+      "Zhixuan Chu",
+      "Kui Ren"
+    ],
+    "categories": [
+      "cs.AI"
+    ],
+    "comment": "21 pages, 10 figures",
+    "summary": "Omnimodal large language models (OLLMs) are susceptible to cross-modal hallucinations under audio-visual interference. We find that, for a substantial fraction of incorrect joint predictions, the question-relevant unimodal branch can still recover the correct answer, suggesting that task-relevant evidence can remain recoverable from the relevant modality even when it is not reflected in the joint prediction. We refer to this recoverable failure pattern as \\emph{modality misrouting}. We propose CaRe (Conflict-aware Residual Intervention), a training-free inference-time method for identifying and correcting modality misrouting. CaRe uses a text-only modality probe to identify a candidate modality-specific counterfactual branch, and flags potential misrouting when its prediction conflicts with the original joint prediction. For such cases, CaRe computes a residual direction from the discrepancy between the counterfactual and fused representations and uses it to steer the original multimodal state toward the relevant modality evidence, while retaining both modalities in the original audio-visual inference path. The intervention strength is adapted based on the confidence of the counterfactual branch. Experiments on CMM and AVHBench across two OLLMs show that CaRe consistently outperforms the evaluated inference-time hallucination-mitigation baselines.",
+    "abs": "http://arxiv.org/abs/2610.18141v1",
+    "pdf": "https://arxiv.org/pdf/2610.18141v1",
+    "AI": {
+      "category": "MAIN",
+      "priority": "P1",
+      "brief_summary": "论文发现 omnimodal LLM 在音视频干扰下存在「modality misrouting」现象：相当一部分联合预测错误的样本，其任务相关的单模态分支仍能给出正确答案，说明证据可恢复却未被联合预测采用；为此提出免训练的推理期方法 CaRe，用文本模态探针定位候选的模态特异性反事实分支，在预测冲突时由反事实与融合表示的差异计算残差方向，用以引导原始多模态状态，并按反事实分支置信度调节干预强度。",
+      "relevance_reason": "「单模态分支仍可恢复正确答案」的诊断与 LVR 关注的视觉旁路、证据保留却未被使用高度对应，其反事实残差方向引导也可供核查是否为在推理期把模态证据注入内部状态的可借鉴手段。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T18:22:00.017113+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

@@ -1,0 +1,73 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.15384",
+  "input_sha256": "cdebcc43ddaa4284a4201e03b43c02476f6f4f92503cdf96ce78a74c6ec8727f",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T19:05:04.190159+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1915,
+        "output_tokens": 794,
+        "total_tokens": 2709,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 584
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.15384",
+    "title": "E8 Lattice Key Quantization for Low-Bit KV-Cache Compression",
+    "authors": [
+      "Sasho Nedelkoski",
+      "Alexander Acker",
+      "Soeren Becker",
+      "Dominik Scheinert",
+      "Odej Kao"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "Compressing the key-value (KV) cache is essential for serving long-context large language models (LLMs) under memory constraints. While current scalar quantization methods achieve significant compression, they typically face a quality-fidelity trade-off, either suffering from performance instability at 2-bit precision or necessitating 3-bit keys to maintain model quality. In this work, we demonstrate that a uniform low-bit k2v2 configuration (2-bit keys and 2-bit values) can preserve near-baseline quality by using vector quantization (VQ) based on the $E_8$ lattice for KV keys. We show that structured VQ exploits correlations across adjacent dimensions to achieve signal-to-quantization-noise ratios (SQNR) higher than those of independent scalar quantization at the same key payload rate. To ensure practical utility, we adapt a table-based asymmetric scoring algorithm that avoids explicit codebook dequantization during attention computation and preserves decode-throughput parity with scalar baselines. Across five LLM families, our $E_8$ k2v2 approach yields \\textasciitilde$6\\times$ KV compression, roughly 20\\% smaller than scalar k3v2 (3-bit keys and 2-bit values), while retaining near-baseline long-context perplexity. In our full-suite perplexity evaluation, $E_8$ improves over scalar k3v2 in 80\\% of model--dataset--context settings. These results indicate that $E_8$ lattice VQ improves quality per byte while keeping throughput at parity, suggesting that structured key quantization is a useful primitive for KV-compression stacks. Overall, our work provides a low-overhead primitive for expanding the quality-memory frontier in long-context LLM inference.",
+    "abs": "http://arxiv.org/abs/2610.15384v1",
+    "pdf": "https://arxiv.org/pdf/2610.15384v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文用基于 E8 格点的向量量化对 LLM 的 KV 缓存 key 做低位宽量化，配合表驱动非对称打分避免显式反量化，在 2-bit key/2-bit value 下接近基线长上下文困惑度并保持解码吞吐。",
+      "relevance_reason": "其「利用相邻维度相关性、以结构化 VQ 提升每字节 SQNR」的思路，可能为压缩 latent 推理状态或视觉证据缓存时抑制信息坍缩提供可核查的方法线索；但原文只针对文本 KV 缓存，与 VLM 推理状态的适配性尚需人工判断。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T19:05:04.190159+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

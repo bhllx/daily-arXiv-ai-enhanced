@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.17132",
+  "input_sha256": "783ade2969ef841c5c92dcf1e759141318e6b6ae5a39ddc6fea0c9ab7233f9a6",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T18:38:34.289960+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1913,
+        "output_tokens": 641,
+        "total_tokens": 2554,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 401
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.17132",
+    "title": "Masked Attention Pooling Is Invariant to Padding and Permutation: A Formal Proof in Lean",
+    "authors": [
+      "Yusuf Khaled Sadek",
+      "Enes Yilmaz"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": "9 pages, 1 figure, 2 tables. Code: https://github.com/y2x0/masked-attention-lean",
+    "summary": "Attention-based multiple instance learning (MIL) pools a variable-size bag of instance embeddings into one vector. In batched training, bags are padded to a common length, and the pooled output is expected not to depend on how much padding was added or on the order in which instances are stored. This expectation holds only if padded rows are removed from both the numerator and the softmax normalizer. Common implementation idioms meet it only under side conditions. Zeroing padded features alone does not work. Masking logits with $-\\infty$ fails on empty bags and on nonfinite padding. Masking with a large negative constant is exact only after floating-point underflow. We define masked attention pooling with a guarded normalizer and prove in Lean 4 with mathlib that it is invariant under any bijective reindexing of rows and under appending any finite number of masked rows with arbitrary real features and logits. We also prove that values at masked positions are irrelevant and that an all-masked bag maps to zero. The theorems hold for arbitrary finite index types and feature dimensions. Using the jax-lean certificate pipeline, we connect these theorems to the Jaxpr traced from the JAX kernel itself. Lean checks translation certificates for two concrete shapes, identifies the generated functions with the generic specification, and transfers both invariances to the imported Jaxpr's real-arithmetic semantics. All audited theorems depend only on Lean's three standard axioms. The results concern ideal real arithmetic. Floating-point execution, XLA, and the JAX tracer and importer remain outside the proof.",
+    "abs": "http://arxiv.org/abs/2610.17132v1",
+    "pdf": "https://arxiv.org/pdf/2610.17132v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "用 Lean 4 与 mathlib 形式化定义带守卫归一化器的掩码注意力池化，证明其在行置换和追加任意掩码行下不变、掩码位置取值无关、全掩码输出为零，并经 jax-lean 证书流程把定理连接到 JAX kernel 导出的 Jaxpr 实数语义（仅限理想实数算术）。",
+      "relevance_reason": "其「掩码行不影响池化结果、掩码处取值无关」的严格结论，可能与 LVR 中视觉 token 掩码、剪枝或填充是否改变注意力池化与 latent 状态这一证据筛选问题相关，可供核查；但对象是 MIL 池化的理想实数算术，未涉及多模态推理，联系偏间接。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T18:38:34.289960+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

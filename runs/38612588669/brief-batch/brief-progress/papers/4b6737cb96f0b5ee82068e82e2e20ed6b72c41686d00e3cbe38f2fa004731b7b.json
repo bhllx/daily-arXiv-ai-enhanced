@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.17266",
+  "input_sha256": "b6c9e7b80829146e34b92c4d35de742ccb2af25ebba67ce150882163e1c07285",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T18:36:43.859987+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1875,
+        "output_tokens": 704,
+        "total_tokens": 2579,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 474
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.17266",
+    "title": "RL Post-Training Diffusion Language Models Along Their Own Generation Paths",
+    "authors": [
+      "Vaibhav Singh",
+      "Eugene Belilovsky"
+    ],
+    "categories": [
+      "cs.AI"
+    ],
+    "comment": "9 pages, 6 figures",
+    "summary": "Diffusion language models are a promising and more efficient alternative to autoregressive models. However, most RL post-training techniques are not easily adapted to these models. One issue is that diffusion language models generate answers through many intermediate states, deciding at each step which masked positions to reveal and which tokens to place in them. Many existing RL methods used in this setting approximate intractable sequence likelihoods or weight every denoising step by the same advantage, without explicitly distinguishing how these intermediate states of the denoising trajectory affect the expected reward. To address this issue of trajectory blindness, we introduce PACT (Potential-Anchored Consistency of Transitions). Motivated by a reward-tilted reference distribution, PACT jointly learns the policy and a scalar potential that scores each intermediate state, anchored by terminal reward. For each sampled denoising transition, a consistency loss matches the policy-to-reference log-probability ratio of revealed tokens to the change in this potential. This formulation requires neither sequence-likelihood estimation nor importance-ratio clipping. On four tasks, PACT improves LLaDA-8B-Instruct by +9.9 points on GSM8K, +12.0 on MATH500, +55.7 on Countdown, and +72.6 on Sudoku, and reaches the best average accuracy across the four tasks reported for this model, +3.7 points over the next best method. Further compared to AGRPO, it reaches that baseline's best accuracy in about half the training compute on GSM8K.",
+    "abs": "http://arxiv.org/abs/2610.17266v1",
+    "pdf": "https://arxiv.org/pdf/2610.17266v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P1",
+      "brief_summary": "论文针对扩散语言模型 RL 后训练中的「轨迹盲」问题，提出 PACT：联合学习策略与一个对每个去噪中间状态打分的标量势函数，以终末奖励锚定，并用一致性损失匹配已揭示 token 的策略-参考对数概率比与势变化，在四个文本推理任务上提升 LLaDA-8B-Instruct。",
+      "relevance_reason": "其用终末奖励锚定的标量势对每个中间去噪状态分配贡献、无需序列似然估计的做法，可能为 LVR 中 latent 推理状态的贡献分配与轨迹监督提供训练侧借鉴，但论文为纯文本扩散模型，能否迁移到多模态推理状态需核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T18:36:43.859987+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

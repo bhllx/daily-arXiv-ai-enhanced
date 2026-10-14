@@ -1,0 +1,74 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.15509",
+  "input_sha256": "f673fd2311ba7c66309fb55eedb4b9d1bedd824322ab09589d78eb241572c22e",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T19:03:14.867451+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1849,
+        "output_tokens": 749,
+        "total_tokens": 2598,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 538
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.15509",
+    "title": "CacheLink: Functional KV Transport for Zero-Prefill Cross-Model Context Handoff",
+    "authors": [
+      "Haomiao Qiu",
+      "Yining Tang",
+      "Zijia Song",
+      "Ruizi Han",
+      "Ziyue Qiao",
+      "Miao Zhang"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "KV caches make long-context serving efficient by reusing past computation, but model switching breaks this reuse and forces the receiver to prefill the context again. We study \\emph{zero-prefill cross-model context handoff}: translating a sender cache into a receiver-compatible state so that the receiver can continue directly without prefilling same context. Existing affine transport methods show that receiver KV states can be substantially reconstructed from sender caches. However, through extensive analyses, we find that reconstruction fidelity is a poor proxy for receiver utility. Similar K/V reconstruction errors can lead to substantially different attention patterns, predictive distributions, and downstream accuracy, because conventional reconstruction objectives overlook the query-dependent functional importance of K and V in receiver attention. We thus introduce CACHELINK, which learns a coupled K/V correction through the receiver behavior directly. Across four independently trained sender--receiver pairs and seven evaluation panels, CACHELINK improves the equal-weight mean over all methods for every pair. In matched diagnostics, CACHELINK changes K/V squared error by less than 0.4% while substantially changing receiver attention and next-token behavior. At 32K context, it reduces handoff latency by up to $7.27\\times$ relative to receiver re-prefill. Our findings verify that reconstruction fidelity alone is insufficient and that preserving the receiver computation induced by the transported cache is important for effective cross-model KV transport.",
+    "abs": "http://arxiv.org/abs/2610.15509v1",
+    "pdf": "https://arxiv.org/pdf/2610.15509v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P1",
+      "brief_summary": "论文研究跨模型 KV 缓存的零预填上下文交接，发现 K/V 重建误差与接收方实际效用关系很弱，转而提出 CacheLink，以接收方注意力与下一 token 行为为监督直接学习耦合的 K/V 校正。",
+      "relevance_reason": "其「重建保真度不是接收方效用的好代理」这一诊断，以及用接收方行为而非重构误差衡量状态可用性的做法，可能可迁移到 LVR 中 latent 状态转移与视觉信息是否真正被使用的评价，供核查如何以注意力与预测分布判断 latent 内容是否保留任务必要信息。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T19:03:14.867451+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

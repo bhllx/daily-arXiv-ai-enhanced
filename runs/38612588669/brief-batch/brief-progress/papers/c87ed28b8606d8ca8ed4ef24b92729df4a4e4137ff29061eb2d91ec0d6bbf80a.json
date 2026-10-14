@@ -1,0 +1,73 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.13992",
+  "input_sha256": "ad6e1ffa502ed7b811fca37bb20890448d988388a6030b40e3f13e5d5204b2a0",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T19:27:46.183942+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1864,
+        "output_tokens": 818,
+        "total_tokens": 2682,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 619
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.13992",
+    "title": "How Vision Transformers Represent Position: A Mechanistic Comparison of Absolute and Rotary Positional Encodings",
+    "authors": [
+      "Mahmoud Mannes",
+      "Nikhil Maturi",
+      "Parva Mehta",
+      "Jiwon Jeong",
+      "Aravind Singaram Kannappan"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Positional embeddings encode the spatial position of each image patch in a Vision Transformer (ViT), allowing the model to distinguish different spatial arrangements of visual content. However, we know little about how the choice of embedding shapes a vision transformer's internal representation. In this work, we show that Absolute Positional Embeddings (APE) and Rotary Positional Embeddings (RoPE) encode spatial position through different internal mechanisms: APE stores position in explicit features, while RoPE builds it inside attention and rebuilds it when it is withheld. Specifically, in APE models, sparse autoencoders recover causal row- and column-specific features, whereas interventions on RoPE reveal distinct rotary components that separately encode row and column information. Additionally, causal interventions selectively disabling RoPE's row or column rotations show that decodable row and column information can be independently removed and, once rotations are restored, partly reconstructed, in part by axis-specialized attention heads. Both mechanisms are causally important for classification: permuting APE's positional features across patches reduces top-1 accuracy by 24--31 points, and ablating the rotations of RoPE's primary rebuilding head reduces it more than ablating those of any other head. Our findings show that the choice of positional encoding fundamentally changes how spatial information is organized and processed inside Vision Transformers. More broadly, our work demonstrates how mechanistic analysis can reveal how models construct, reconstruct, and maintain structured representations, providing a basis for targeted interventions in vision models.",
+    "abs": "http://arxiv.org/abs/2610.13992v1",
+    "pdf": "https://arxiv.org/pdf/2610.13992v1",
+    "AI": {
+      "category": "MAIN",
+      "priority": "P1",
+      "brief_summary": "论文用稀疏自编码器与因果干预，比较 ViT 中绝对位置嵌入（APE）与旋转位置嵌入（RoPE）编码空间位置的内部机制差异，并验证二者对分类的因果重要性。",
+      "relevance_reason": "直接诊断视觉模型内部如何构建、保留和重建位置与几何结构，并涉及专门化注意力头，与「几何/任务必要信息是否留在内部状态」及位置、注意力结构对 latent 相似度影响的考察线索直接相关，可供核查其干预方法能否迁移到 LVR 的表征诊断。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T19:27:46.183942+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

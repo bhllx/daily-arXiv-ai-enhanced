@@ -1,0 +1,71 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.14863",
+  "input_sha256": "0b1f99d0b7adbef308f1e9ea190b7f38227ee009c42b59769707cbc01fcc6fbe",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T19:13:44.744050+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1896,
+        "output_tokens": 920,
+        "total_tokens": 2816,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 672
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.14863",
+    "title": "WeatherBridge: Forecast-Aware Multi-Source Input Adaptation for Pretrained Weather Forecasting Models",
+    "authors": [
+      "Mutian Xi",
+      "Xinyu Su",
+      "Xiaohui Zhong",
+      "Hao Li"
+    ],
+    "categories": [
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "Data-driven weather forecasting models are commonly trained on ERA5, yet operational deployment must use timely initial states from physics-based numerical weather prediction (NWP) systems whose distributions differ substantially from ERA5. Direct initialization with these states can degrade autoregressive forecasts, motivating input adaptation that keeps the pretrained forecasting model unchanged. Here, we introduce WeatherBridge, a unified, source-conditioned adapter that maps heterogeneous operational NWP initial states to ERA5 reference states without updating the pretrained forecasting model. WeatherBridge predicts the structured residual corrections with a Swin-UNet and injects source embeddings across multiple spatial scales, allowing the model to capture shared atmospheric structure and source-specific discrepancies. Its training objective combines latitude-weighted ERA5 reconstruction with One-step Rollout Alignment (ORA), which backpropagates one-step forecast error through a frozen FuXi model to optimize the adapted states for both initial state fidelity and downstream forecast compatibility. We evaluate WeatherBridge using daily GFS, HRES, and CMA initializations from 1 January to 22 November 2025 across six variables and lead times up to 240 hours. Relative to raw source initialization of FuXi, WeatherBridge reduces the mean RMSE of FuXi over the 6- 240-hour rollout for 17 of 18 source-variable combinations, with a median reduction of 10.2% and a maximum reduction of 46.3%. The adapter trained with frozen FuXi also improves FengWu forecasts on GFS inputs without retraining either the adapter or FengWu. These results demonstrate that forecast-aware input adaptation can improve forecasts from heterogeneous operational NWP inputs and transfer across pretrained ERA5-based forecasting models.",
+    "abs": "http://arxiv.org/abs/2610.14863v1",
+    "pdf": "https://arxiv.org/pdf/2610.14863v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "WeatherBridge 研究在冻结预训练天气预报模型的前提下，用源条件适配器把异构业务 NWP 初始场映射到 ERA5 参考状态：以 Swin-UNet 预测结构化残差修正并在多尺度注入源嵌入，训练目标结合纬度加权重建与 One-step Rollout Alignment，使适配后的初始状态兼顾保真度与下游预报兼容性，并在 GFS/HRES/CMA 初始场和 FuXi、FengWu 上验证。",
+      "relevance_reason": "「冻结主干 + 输入适配器 + 可微下游 rollout 对齐」的训练范式可能为 LVR 提供线索：在不更新推理模型时用下游目标驱动视觉侧适配，以缓解输入分布错配与信息坍缩，其可迁移性尚需核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T19:13:44.744050+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

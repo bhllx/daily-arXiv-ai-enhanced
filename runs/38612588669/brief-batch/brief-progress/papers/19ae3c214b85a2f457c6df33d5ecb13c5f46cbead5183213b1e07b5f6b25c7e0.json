@@ -1,0 +1,72 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.17093",
+  "input_sha256": "6df1e15ebf09d5d9d001cc4e5143770dec6888095c66ff008316a481125d40c0",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T18:39:07.902447+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 2014,
+        "output_tokens": 825,
+        "total_tokens": 2839,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 566
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.17093",
+    "title": "SFT Leaves a Reproducible Signature in Activation Geometry: Calibrating Post-Training Interpretability Against Run-to-Run Noise",
+    "authors": [
+      "Xupeng Chen",
+      "Chenqian Le",
+      "Jiayi Cheng",
+      "Runhao Li",
+      "Michael Yue"
+    ],
+    "categories": [
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "A model diff credits post-training with whatever separates a base checkpoint from one post-trained descendant, presuming a rerun would land close by. On the sparse co-activation graph of Qwen3-1.7B it does not: two LoRA-SFT reruns sit over half as far apart as either sits from the base. We score each base-to-post contrast against the run-to-run band of its own recipe, and show that $k$ runs certify no better than $p=1/(k+1)$ under run exchangeability, however large the effect, so the band $z$-score is a descriptive scale. SFT leaves a large, reproducible signature: base $\\to$ SFT displaces the graph by 17.8 pairwise-distance SDs beyond the mean distance between four independent LoRA-SFT runs, and the pre-registered estimator replicates on Llama-3.1-8B with Llama-Scope. At 29 steps each, four SFT and four DPO runs occupy disjoint displacement ranges, a gap $5.0\\times$ and $5.6\\times$ the spreads of the two arms, without any band. All bands use graphs built on one GPU architecture. Three other readings stop short of a verdict: DPO band counts (3/4, 1/4, 3/4 contrasts outside at 12, 29, 60 steps) show no consistent dose ordering while its displacement stays flat; light GRPO is a secondary non-detection, not an absence, and we run no equivalence test; and the graph concentration read as an RL signature is already in the zero-RL base. A pre-registered causal sweep at three edge budgets on 4,816 held-out prompts found the displaced sources load-bearing ($12\\times$ a matched random control in mean, $3.5\\times$ in median at 10,000 edges), but their stage-specificity interaction reversed at two budgets and the third failed its faithfulness gate, so we claim calibrated structural displacement, not a changed mechanism. Scope: one backbone, one SFT recipe and general-text probe states for the full protocol.",
+    "abs": "http://arxiv.org/abs/2610.17093v1",
+    "pdf": "https://arxiv.org/pdf/2610.17093v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "该论文在 Qwen3-1.7B 的稀疏共激活图上测量 base→SFT 的位移，用多次 LoRA-SFT 重跑之间的差异作为噪声带做校准，认为 SFT 留下可复现的结构位移，而 DPO/GRPO 的读数未形成一致结论；再用预注册的因果扫描检验被位移的来源是否真正承担作用，并主动把结论限定为「经校准的结构位移」而非机制改变。",
+      "relevance_reason": "「以重跑噪声校准内部表示层面的发现」与「用因果扫描判断被位移成分是否 load-bearing」两条做法，可供核查 LVR 中 latent 状态或视觉证据的因果贡献、贡献分配与解释稳健性；但研究对象是纯文本模型的后训练分析，不含视觉或多模态推理，属方法线索而非主线工作。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T18:39:07.902447+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

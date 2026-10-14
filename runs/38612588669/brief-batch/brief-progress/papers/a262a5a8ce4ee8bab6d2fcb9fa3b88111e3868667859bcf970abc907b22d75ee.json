@@ -1,0 +1,79 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.15730",
+  "input_sha256": "6dae2bf1e2e1de2bd9fb3d9bd517ab4cfe5b2947e35b8481e2670a106e9f30c5",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T19:00:06.846091+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1878,
+        "output_tokens": 705,
+        "total_tokens": 2583,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 479
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.15730",
+    "title": "A Dependency-Aware Multi-GPU Training Framework for Temporal Graph Neural Networks",
+    "authors": [
+      "Yang Zhao",
+      "Yue Dai",
+      "Liang Qiao",
+      "Buxin Tu",
+      "Bo Liu",
+      "Sen Zhang",
+      "Yi Zhang",
+      "Xiaoyu Hao",
+      "Jun Shi",
+      "Junshi Chen",
+      "Hong An"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.DC"
+    ],
+    "comment": null,
+    "summary": "Temporal graph neural networks (TGNNs) achieve superior performance in many dynamic graph learning tasks. These models use node state vectors (i.e., memories) to capture and record graph changes (i.e., events), and then exploit these memories to assist prediction. However, this memory-centric design makes multi-GPU training challenging because predictions for later events often depend on memory updates from earlier events. To maintain model quality, existing multi-GPU TGNN training schemes strictly preserve all event dependencies, which limits parallelism and causes expensive cross-GPU memory synchronization. In this work, we observe that many of these dependencies can be handled more flexibly without harming training quality. Specifically, (a) dependencies in TGNN training have high locality in both time and graph topology, (b) the short-range dependencies missed within a large batch can often be recovered cheaply, and (c) many memory updates are not immediately needed. Based on these observations, we propose DepBloom to accelerate multi-GPU TGNN training with three techniques: (1) temporally bounded spatial partitioning to reduce unnecessary cross-GPU synchronization and improve parallelism; (2) intra-batch memory refinement to recover missing short-range temporal dependencies inside enlarged batches; and (3) critical-path optimization to prioritize urgent memory updates while deferring non-critical work during multi-GPU pipeline execution. Experimental results across representative models and diverse datasets show that DepBloom achieves an average speedup of 2.84$\\times$ and up to 5.16$\\times$ over state-of-the-art methods, while maintaining comparable or better model accuracy.",
+    "abs": "http://arxiv.org/abs/2610.15730v1",
+    "pdf": "https://arxiv.org/pdf/2610.15730v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文提出 DepBloom 多 GPU 时序图神经网络训练框架：基于依赖在时间和图拓扑上的局部性、批内缺失短程依赖可廉价恢复、部分记忆更新非即时必需这三点观察，设计时序有界空间划分、批内记忆修正与关键路径优化，在保持精度的同时显著加速训练。",
+      "relevance_reason": "其核心是把节点状态向量（memory）更新的依赖做局部性分析与延迟调度，这对 latent 推理中推理状态的更新顺序、并行/循环生成与「何时必须更新」的决策可能提供方法线索，值得核查其依赖建模与关键路径判据能否迁移到 THINK/LOOK/STOP 的成本权衡上。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T19:00:06.846091+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

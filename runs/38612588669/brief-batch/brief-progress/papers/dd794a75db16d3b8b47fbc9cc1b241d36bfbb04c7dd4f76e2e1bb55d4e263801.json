@@ -1,0 +1,73 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.14657",
+  "input_sha256": "3d12b535edfe947a51c076f4d344a84a3e8ba4909f2e29faa3f43bbd9b35e80e",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T19:17:49.568315+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1897,
+        "output_tokens": 733,
+        "total_tokens": 2630,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 484
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.14657",
+    "title": "TGuide: Faster Autoregressive Video Diffusion via Historical Trajectory Guidance",
+    "authors": [
+      "Zhuo Chen",
+      "Bin Zou",
+      "Fanyue Wei",
+      "Lixin Duan",
+      "Angela Yao",
+      "Wen Li"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": "23 pages, 5 figures. Project page: https://zhuochen02.github.io/tguide/",
+    "summary": "Can autoregressive video diffusion be accelerated further when only four denoising steps remain? Existing feature caching approaches struggle in this regime, as large feature changes between denoising timesteps undermine both direct reuse and lightweight predictors. We observe that features across video chunks remain strongly correlated at matching denoising timesteps, offering a complementary source of guidance. Building on this insight, we introduce TGuide, a framework that accelerates autoregressive video diffusion through a lightweight Anchor-Transport-Correct (ATC) predictor guided by historical sampling trajectories. Our ATC combines two complementary references: the current chunk's preceding-step features preserve its spatial structure, while the previous chunk's same-timestep features provide information at the target denoising stage. By integrating these references through spatial retrieval and adaptive correction, ATC improves velocity prediction accuracy despite the large gaps between denoising steps. To mitigate error accumulation across both denoising steps and video chunks, we train the predictor on its own autoregressive rollouts, allowing it to adapt to states shaped by its own earlier predictions. An optional confidence-aware scheduler further adjusts the quality-efficiency trade-off. Experiments on Self Forcing, Causal Forcing, and HY-WorldPlay show that TGuide preserves generation quality while achieving denoising speedups of up to $1.89\\times$ over the original 4-step generators. On Self Forcing, TGuide generalizes from 81-frame training videos to 333-frame generation, approximately four times the training length, while exceeding the original model's VBench score.",
+    "abs": "http://arxiv.org/abs/2610.14657v1",
+    "pdf": "https://arxiv.org/pdf/2610.14657v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P1",
+      "brief_summary": "论文提出 TGuide，用轻量的 Anchor-Transport-Correct 预测器结合历史采样轨迹（当前 chunk 前一步特征与前一 chunk 同时刻特征，经空间检索与自适应校正）来加速少步自回归视频扩散去噪，并在自身自回归 rollout 上训练预测器以抑制误差累积，在 4 步生成器上取得至多 1.89× 加速。",
+      "relevance_reason": "其「跨片段同阶段特征复用」「在自生成轨迹上训练以缓解误差累积」「训练 81 帧却泛化到 333 帧」等线索，可能为 LVR 的 latent 状态更新、轨迹监督与长度泛化提供可核查的方法借鉴；但任务与视觉推理主线相距较远，需确认迁移可行性。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T19:17:49.568315+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

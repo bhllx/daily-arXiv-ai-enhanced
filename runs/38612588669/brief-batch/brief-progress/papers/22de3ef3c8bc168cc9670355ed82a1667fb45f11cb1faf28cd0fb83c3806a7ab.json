@@ -1,0 +1,80 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.18001",
+  "input_sha256": "847ee214be99930c7f9818d8777dd4949323f05ab3fd40238c87cc6bc7c34640",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T18:24:24.433305+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1806,
+        "output_tokens": 648,
+        "total_tokens": 2454,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 417
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.18001",
+    "title": "Match the Canvas, Not Just the Answer: Predictability-Aware SFT for Diffusion Language Models",
+    "authors": [
+      "Miao Li",
+      "Hanyang Jiang",
+      "Hengyu Fu",
+      "Baihe Huang",
+      "Yating Liu",
+      "Yuhang Cai",
+      "Changkun Guan",
+      "Zhongzhu Chen",
+      "Jiecheng Lu",
+      "Michael A. Boateng",
+      "Pascal Van Hentenryck"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.AI",
+      "cs.CL"
+    ],
+    "comment": null,
+    "summary": "Diffusion language models (DLMs) enable flexible parallel generation by resolving tokens according to the model's evolving predictability rather than a fixed left-to-right order. This flexibility, however, introduces training choices absent from standard autoregressive teacher forcing: which reference tokens are visible when a target is supervised and how much generation space is allocated. Standard supervised fine-tuning (SFT) typically makes these choices through random masking, independently of inference. Our analysis shows how this training-inference mismatch can misdirect supervision. Random masking can conceal prediction errors or penalize uncertainty that decoding would otherwise resolve, while the attention-visible input length can change which response formulations the model favors, even when the underlying solution is unchanged. Motivated by these findings, we propose Predictability-Aware Canvas Selection and Supervision (PACS), an SFT method. PACS uses the model's own predictability to select each example's attention-visible input length and supervises reference tokens immediately before their confidence-guided revelation. Across reasoning and code-generation benchmarks, PACS consistently achieves the highest mean accuracy among the compared SFT methods, with gains of up to 12.84 percentage points over vanilla SFT on individual benchmarks. Code will be released upon publication.",
+    "abs": "http://arxiv.org/abs/2610.18001v1",
+    "pdf": "https://arxiv.org/pdf/2610.18001v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P1",
+      "brief_summary": "论文分析扩散语言模型 SFT 中随机掩码与并行解码不一致造成的监督错位（掩盖错误、惩罚解码本可消解的不确定性、可见输入长度影响答案形式），提出 PACS：用模型自身可预测性选择注意力可见的输入长度，并在置信度引导的揭示时刻附近监督相应 token，在推理与代码基准上提升平均准确率。",
+      "relevance_reason": "虽为纯文本 DLM 训练方法，但其「按模型可预测性分配可见上下文与监督时机」的线索可能为 LVR 中并行/扩散式推理状态的训练监督与动态计算分配提供借鉴，值得核查其掩码与长度选择是否可用于 latent 步骤的监督设计。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T18:24:24.433305+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

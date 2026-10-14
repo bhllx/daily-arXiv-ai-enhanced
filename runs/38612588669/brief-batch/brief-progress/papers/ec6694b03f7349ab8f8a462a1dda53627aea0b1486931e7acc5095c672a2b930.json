@@ -1,0 +1,76 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.13995",
+  "input_sha256": "6875c511e0499fe6cad344838bfb65bbfae39dbb81a5a90592408f346fe0f2d4",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T19:27:37.922000+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1847,
+        "output_tokens": 571,
+        "total_tokens": 2418,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 368
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.13995",
+    "title": "GameSmith: Scaling Zero-Sum Self-Play with Synthesised Games",
+    "authors": [
+      "Weixian Waylon Li",
+      "Jiaxin Zhang",
+      "Han Zhou",
+      "Chengzu Li",
+      "Ke Wang",
+      "Fengxiang He",
+      "Yiwen Guo"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.AI",
+      "cs.CL"
+    ],
+    "comment": null,
+    "summary": "Post-training large language models (LLMs) on two-player zero-sum games provides a verifiable reward, and the gains have been shown to transfer to general reasoning. Existing pipelines, however, rely on a handful of hand-written games and on advantage estimators tied to them, so both the supply of games and the advantage estimate on a large corpus limit scaling. We present GameSmith, which scales both. An LLM synthesises games inside templates whose reward, observation, and hidden-information code is fixed. Each game is verified by seed-paired replay and by an independent re-implementation of its specification, then expanded into encoding, rule, and size variants, giving 26 new games in 29 families and 336 verified variants from the three SPIRAL templates. The model is distilled from the self-play of a larger teacher (Qwen3-32B) on these games and then trained by self-play reinforcement learning with CRAB, an advantage estimator that credits each decision against a shrinkage estimate of the expected return of its position and is defined on every variant. On Qwen3-4B-Base, distillation raises the 13-benchmark mean pass@1 from 45.5 to 62.5, above the three SPIRAL games at the same budget, and self-play with CRAB reaches 64.9. The ordering holds across models, and transfer grows with the number of game families.",
+    "abs": "http://arxiv.org/abs/2610.13995v1",
+    "pdf": "https://arxiv.org/pdf/2610.13995v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "GameSmith 用 LLM 在固定模板内合成并校验大量二人零和游戏，先用大模型自博弈蒸馏、再用自博弈强化学习微调小型 LLM，其中 CRAB 通过位置的收缩期望回报估计为每个决策分配优势，从而提升通用推理基准成绩。",
+      "relevance_reason": "其「逐决策信用分配」与自博弈轨迹训练，可能为 LVR 中推理轨迹的贡献分配与监督提供可核查的方法线索；但工作属纯文本游戏后训练，不涉及视觉状态或 latent 推理，迁移需自行判断。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T19:27:37.922000+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

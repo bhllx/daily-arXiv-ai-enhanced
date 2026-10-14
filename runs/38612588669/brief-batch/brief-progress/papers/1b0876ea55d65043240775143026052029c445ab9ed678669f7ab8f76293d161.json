@@ -1,0 +1,75 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.18026",
+  "input_sha256": "f2cfefae0ae21e88a64fc9779c367f17a17c38da195d4565b6beffaec0e9069a",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T18:24:08.419839+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1793,
+        "output_tokens": 902,
+        "total_tokens": 2695,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 677
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.18026",
+    "title": "ChampionKV: Head-Wise Adaptive Budget Allocation for KV Cache Compression",
+    "authors": [
+      "Yuechuan Chen",
+      "Yanda Guo",
+      "Xiaoxi Liu",
+      "Weilin Ruan",
+      "Huanbo Xu",
+      "Ruyi Wang",
+      "Wei Zhu"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "Some observation-window-based KV cache compressors use prompt attention to identify important tokens but allocate uniform or predefined budgets across heads, overlooking input-dependent differences in budget demand. We propose ChampionKV, an input-adaptive head-wise budget allocator for long-context KV cache compression. It uses the maximum aggregated observation-window attention score as a lightweight empirical proxy for attention concentration, assigning larger budgets to heads with dispersed attention and smaller budgets to concentrated heads. An abnormal-head mask and a floor-budget mechanism improve robustness under weak attention responses. ChampionKV plugs into compressors such as SnapKV and PyramidKV without changing their token-selection procedures. On LongBench and RULER, both Champion variants consistently improve over their SnapKV and PyramidKV base compressors; the improvements are largest and statistically significant on Llama3.1-70B-Instruct, especially under tight budgets, whereas results on the tested 7B/8B models remain competitive but mixed. ChampionKV does not uniformly outperform Ada-KV, whose global cross-head Top-K selection retains an advantage in several settings. Controlled analysis further shows improved retained attention mass over the corresponding base compressors at negligible overhead.",
+    "abs": "http://arxiv.org/abs/2610.18026v1",
+    "pdf": "https://arxiv.org/pdf/2610.18026v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "提出 ChampionKV：面向长上下文 KV cache 压缩的输入自适应 head 级预算分配器，用 observation-window 注意力聚合峰值作为注意力集中度的经验代理，偏向分散的 head 多分预算，并加入异常 head 掩码与预算下限；可挂载 SnapKV、PyramidKV，在 LongBench 与 RULER 上评测。",
+      "relevance_reason": "其「按 attention 集中度做 head 级预算分配 + 下限/掩码鲁棒机制」可能为 LVR 中按 head 或层动态分配 latent 计算、筛选保留视觉证据提供方法线索，但能否迁移到多模态推理状态尚需核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T18:24:08.419839+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

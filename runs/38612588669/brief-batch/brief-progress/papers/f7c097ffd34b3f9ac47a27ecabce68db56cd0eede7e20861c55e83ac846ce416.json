@@ -1,0 +1,74 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.16272",
+  "input_sha256": "e1765ec6c3eea43e409723ebba47cda262b9ea293ceb62690ee13de4afd07142",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T18:52:18.840224+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1846,
+        "output_tokens": 733,
+        "total_tokens": 2579,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 511
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.16272",
+    "title": "Graph3R: Unifying View Graph Initialization with Feed-Forward Reconstruction",
+    "authors": [
+      "Jingwen Yu",
+      "Hengli Wang",
+      "Jianhao Jiao",
+      "Zhonghang Liu",
+      "Ping Tan",
+      "Hong Zhang"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.RO"
+    ],
+    "comment": null,
+    "summary": "Feed-forward reconstruction recovers camera poses and dense geometry from image sets whose views are assumed to come from a single scene. In practice, uncurated image collections often contain views from disjoint scenes, and reconstructing these views jointly can corrupt camera poses and geometry. Existing pipelines typically resolve view associations in separate stages before final reconstruction, leaving view graph initialization and reconstruction inference only loosely coupled. We introduce Graph3R, which unifies view graph initialization with feed-forward reconstruction through a shared geometric representation. A lightweight verification head predicts pairwise covisibility from the multi-view features of $π^3$ to construct a view graph. This graph classifies the input views into scene groups. For each group, we mask the shared features before decoding camera poses and dense geometry. Reusing the multi-view features allows Graph3R to reconstruct disjoint scenes separately with a single backbone pass. Across three benchmarks, Graph3R improves average maximum recall at 100% precision by upto 8.99 percentage points over the baseline, while improving reconstruction quality on mixed-scene inputs. Regarding the multi-session mapping task, Graph3R improves cross-session localization and achieves competitive pose estimation accuracy, while delivering a runtime speedup of approximately $35.9\\times$ over the baseline when reconstructing the query group. By integrating learned view association with geometric inference, our approach takes a step toward end-to-end reconstruction from uncurated image collections.",
+    "abs": "http://arxiv.org/abs/2610.16272v1",
+    "pdf": "https://arxiv.org/pdf/2610.16272v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "Graph3R 在 π³ 的多视图共享特征上训练一个轻量验证头预测成对共视关系，构建 view graph 把输入视图划分为不同场景组，再按组掩码共享特征、一次前向解码相机位姿与稠密几何，从而在混合场景图像集合上统一视图关联与重建。",
+      "relevance_reason": "其「用共享特征验证视图相关性并据此分组、掩码后再解码」的机制，可能为 LVR 中针对视觉证据（token/view）的可信度筛选与 latent 状态分组提供可核查的类比线索，但领域相距较远，仅为启发式联想。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T18:52:18.840224+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

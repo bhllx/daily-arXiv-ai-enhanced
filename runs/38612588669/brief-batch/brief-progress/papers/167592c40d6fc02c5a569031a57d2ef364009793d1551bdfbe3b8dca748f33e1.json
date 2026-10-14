@@ -1,0 +1,71 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.16906",
+  "input_sha256": "fb175568cbfa12888a0df9584b1c0cab783f18f823616e5e8a767bfc2866e941",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T18:41:53.793823+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1930,
+        "output_tokens": 633,
+        "total_tokens": 2563,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 411
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.16906",
+    "title": "Mining Cross-Modal Perception Gaps in Autonomous Driving: When Camera and LiDAR Disagree",
+    "authors": [
+      "Hongsen Cao",
+      "Mona Jaber",
+      "Shanxin Yuan",
+      "Ahmed Sayed"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": null,
+    "summary": "Multi-modal fusion for 3D object detection assumes that cameras and LiDAR are broadly complementary. In practice, how much each modality is trusted at a given location is decided by learned weights that are neither characterized nor auditable. We label every ground-truth object by which modalities detected it, then mine the resulting 0.4M-object database across nuScenes, KITTI, and Waymo. Because the patterns shift with distance from the ego vehicle, we read the mined model through Spatially Stratified Feature Attribution (SSFA), which conditions Shapley attribution on distance zones and exposes structure that global attribution averages away. Three assumptions built into the current fusion design do not hold. The modality-preference boundary tracks the object itself: a traffic cone is nearly six times as likely as a truck to be seen by the camera alone (16.8% vs. 2.9%), regardless of range. Camera-only detections peak at 10-30 m, inside the band usually ceded to LiDAR, and fall away on either side. The drivers of failure are not additive either: the distance - density interaction alone outweighs the entire main effect of viewing direction. We further find that modality dominance is directionally non-stationary, with objects behind the vehicle being markedly more LiDAR-dominant than those in front. We compile the mined structure into a Modality Reliability Map and inject it into four pretrained fusion detectors through a lightweight attention layer. This improves performance by up to 1.3 mean Average Precision (mAP) while fine-tuning under 4% of their parameters in 2-3 GPU-hours. Our work lifts reliability out of the weights and treats it as a quantity that can be examined before deployment. That is what a safety measure for multi-modal perception must rest on.",
+    "abs": "http://arxiv.org/abs/2610.16906v1",
+    "pdf": "https://arxiv.org/pdf/2610.16906v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "该论文在 nuScenes、KITTI、Waymo 上按「哪些模态检测到」给每个真值目标打标，构建约 0.4M 目标数据库，并用按距离分区条件化的 Shapley 归因（SSFA）分析相机与 LiDAR 的感知差异，最后把归纳出的模态可靠性图通过轻量注意力层注入四种预训练融合检测器。",
+      "relevance_reason": "其按空间分层做 Shapley 贡献归因、并把模态可靠性作为可审计量注入注意力层的做法，可能为 LVR 中视觉证据筛选与跨模态／跨层贡献分配提供可供核查的方法线索。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T18:41:53.793823+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

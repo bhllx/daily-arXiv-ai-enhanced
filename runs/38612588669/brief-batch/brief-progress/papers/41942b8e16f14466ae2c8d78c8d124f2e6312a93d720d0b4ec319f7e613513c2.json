@@ -1,0 +1,74 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.17530",
+  "input_sha256": "67263495210e6229cf88073b205446dc4978d67336208114a2664eb6d7b21b6f",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T18:32:36.878927+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1996,
+        "output_tokens": 775,
+        "total_tokens": 2771,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 570
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.17530",
+    "title": "TwinPrune: Density-Aware Two-Phase Token Pruning for Vision-Language Models",
+    "authors": [
+      "Kai Liu",
+      "Anqi Li",
+      "Junxian Li",
+      "Zhixin Wang",
+      "Zhikai Chen",
+      "Renjing Pei",
+      "Yulun Zhang"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": "Our code is availabel at https://github.com/Kai-Liu001/TwinPrune",
+    "summary": "We propose a unified spatial-density signal to score token importance for both inference phases: bipartite merge for prefill and KV eviction for decode, yielding measurable gains in each stage. To isolate the two phases, we split benchmarks by scoring logic. Prefill probes (MMBench, POPE, ScienceQA) evaluate only the first decoded token; their accuracy reflects prefill logits argmax before any decode KV eviction. Full-pipeline probes (TextVQA, DocVQA, MM-Vet) assess the complete generated sequence and capture both phases. We identify a critical evaluation pitfall: decode pruning claims validated solely on prefill probes measure prefill quality, not decode performance. Experiments show discarding all visual KV during decode barely affects prefill-probe accuracy but degrades TextVQA and MM-Vet drastically; this insensitivity stems from the scoring rule, not compression intensity.Evaluated on seven model variants (InternVL-3.5, Qwen3-VL, LLaVA-1.5) and three full-pipeline benchmarks, our method achieves a three-way Pareto frontier across compute, memory and accuracy. Density-based prefill compression maintains strong accuracy, scales linearly with visual token count, and delivers 100x faster token selection at high resolution. For decode, density top-k KV eviction consistently outperforms strong baselines H2O, SnapKV and StreamingLLM on TextVQA and MM-Vet across three retention ratios. At 0.125 keep ratio on TextVQA, it surpasses H2O by 9.6 points; InternVL-3.5 models (2B to 38B) maintain a 7 to 10 point advantage. Compression scales favorably with model size: every measured 8B to 38B model transition reduces accuracy loss instead of worsening it. We suggest MM-Vet or DocVQA as mandatory full-pipeline validation for any decode-phase claims. Our code is available at https://github.com/Kai-Liu001/TwinPrune",
+    "abs": "http://arxiv.org/abs/2610.17530v1",
+    "pdf": "https://arxiv.org/pdf/2610.17530v1",
+    "AI": {
+      "category": "MAIN",
+      "priority": "P1",
+      "brief_summary": "提出统一的空间密度打分，同时用于 VLM 推理两阶段的 token 剪枝：prefill 的二部合并与 decode 的 KV 淘汰，在七个模型变体上验证，并指出现有 decode 剪枝工作只用 prefill 探针评测的陷阱。",
+      "relevance_reason": "视觉 token/KV 的保留与筛选直接关系 LVR 关注的「视觉细节是否留在内部状态」；其 prefill/decode 分阶段探针设计可供核查「丢弃全部视觉 KV 是否影响答案」的视觉旁路与信息坍缩评测。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T18:32:36.878927+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

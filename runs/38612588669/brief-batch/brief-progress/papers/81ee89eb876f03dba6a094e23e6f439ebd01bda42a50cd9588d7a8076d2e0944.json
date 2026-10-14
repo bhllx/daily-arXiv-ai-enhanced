@@ -1,0 +1,75 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.17285",
+  "input_sha256": "9cfac05fb38e62adca0918522acab8441794429624be11b71ab05b477c2394f4",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T18:36:32.315073+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1874,
+        "output_tokens": 799,
+        "total_tokens": 2673,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 536
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.17285",
+    "title": "Which Geometry on Which Layer? Measured Sign-Spectral Assignment in Mixed-Optimizer Training",
+    "authors": [
+      "Hiroki Naganuma",
+      "Laura Gomezjurado",
+      "Mahdi Ghaznavi",
+      "Ganesh Talluri",
+      "Atsushi Nitanda",
+      "Seng Pei Liew",
+      "Ryuichiro Hataya",
+      "Ioannis Mitliagkas"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": "35 pages, including appendices",
+    "summary": "Modern neural-network training uses mixed recipes, assigning AdamW-like or sign-based updates to embedding and output layers and spectral updates to hidden matrices. These assignments are usually fixed by layer type, without a clear criterion for selecting the appropriate geometry. We turn sign-versus-spectral assignment into a measurable, layerwise decision problem. For ideal memoryless steps, we derive a finite-batch ratio of conservative descent-lemma lower bounds for spectral and sign updates. Its closed form separates signal efficiency from a geometry-dependent global curvature factor. In the positive-signal regime, the same smoothness assumption gives two-sided bounds that determine which step has the larger conditional expected decrease when the ratio crosses explicit noise-dependent thresholds. We then derive a local directional quadratic score from gradient alignments and Hessian-vector products and use it in Generalized-Scion (G-Scion) to control layerwise routing. In a controlled input-rank experiment, including directional curvature matches the measured same-iterate ordering in all seven aggregate settings, whereas the curvature-free proxy selects the opposite geometry. On 31M GPT-2, the output score routes the output layer from spectral warmup to sign, and G-Scion improves validation loss over fixed Scion in memoryless and matched-momentum comparisons. ViT-B/16 results further show that a spectral edge assignment can outperform fixed Scion outside language modelling. These results suggest that optimizer geometry need not be hard-coded by layer type and are a first step toward understanding how it should be assigned.",
+    "abs": "http://arxiv.org/abs/2610.17285v1",
+    "pdf": "https://arxiv.org/pdf/2610.17285v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文把混合优化器中「sign 更新 vs spectral 更新」的按层分配转成可测量的逐层决策问题：为理想无记忆步推导两种保守下降界之比的闭式（区分信号效率与几何相关曲率因子），再由梯度对齐与 Hessian-向量乘积构造局部方向二次分数，用于 G-Scion 的逐层路由；受控输入秩实验中含曲率的方向分数与实测同迭代排序一致，31M GPT-2 与 ViT-B/16 上路由可改善或匹敌固定 Scion。",
+      "relevance_reason": "与 LVR 主线无直接关系，但「用梯度对齐与曲率构造逐层可测分数、据此切换更新几何」的诊断式路由与代价比较思路，可能可供核查 latent 推理模块中不同深度层、不同更新规则的选择与监督分配设计。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T18:36:32.315073+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

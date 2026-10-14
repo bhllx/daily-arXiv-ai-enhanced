@@ -1,0 +1,71 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.18858",
+  "input_sha256": "fc890814a73b58979dfd9cdc47151d935497f74021d2f53b677b6dff99c602d3",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T18:11:06.671122+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1901,
+        "output_tokens": 580,
+        "total_tokens": 2481,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 343
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.18858",
+    "title": "Visual Tokens on Demand: Visual Budgeting for Scalable and Efficient Multi-Image Reasoning in Multimodal LLMs",
+    "authors": [
+      "Aimon Rahman",
+      "Joymallya Chakraborty",
+      "Vidit Bansal",
+      "Abhishek Dan"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": null,
+    "summary": "Multimodal large language models have advanced rapidly, but most remain optimized for single-image inputs. Multi-image reasoning is costly because each image adds many visual tokens, increasing encoding and attention demands. Existing techniques that address the above issue, including visual token pruning, token merging, visual token compression, learned resampling, hierarchical compression, retrieval-augmented visual reasoning, and memory-based architectures, have largely been designed for single-image scenarios, where redundancy is primarily spatial and local. Multi-image reasoning introduces additional challenges: redundancy may occur across images, task-relevant evidence may be sparse or distributed, and aggressive per-image compression can remove details needed for comparison, counting, temporal reasoning, retrieval, or evidence grounding. Moreover, existing token-reduction methods are often either (i) training-free but inference-inefficient, typically relying on accessing attention matrices to get token-importance that may be impractical to access with memory-efficient attention implementations such as FlashAttention, or (ii) training-dependent, requiring the base MLLM to be retrained or adapted to a new compressed-token paradigm. In this work, we study scalable multi-image reasoning and understanding without retraining the base model and without accessing attention matrices at inference time. To this end, we propose mmVB, a lightweight plug-and-play module that assigns query-conditioned per-image token budgets via cross-image context, adding only 1.6M trainable parameters while reducing visual input tokens by 9x. This reduction yields 5x faster time-to-first-token and 7x fewer prefill FLOPs, while maintaining 94.4% of full-resolution accuracy across eight multi-image reasoning benchmarks.",
+    "abs": "http://arxiv.org/abs/2610.18858v1",
+    "pdf": "https://arxiv.org/pdf/2610.18858v1",
+    "AI": {
+      "category": "MAIN",
+      "priority": "P1",
+      "brief_summary": "论文研究多图场景下的可扩展高效推理，提出 mmVB 轻量即插即用模块，依据查询与跨图上下文为每张图分配 token 预算，在不重训基座模型、不访问注意力矩阵的前提下将视觉输入 token 减少 9x，TTFT 提速 5x，并在八个多图推理基准上保留 94.4% 全分辨率准确率。",
+      "relevance_reason": "其按查询动态丢弃跨图冗余、保留比较/计数/证据定位所需视觉细节的做法，与 LVR 关注的视觉细节保留与视觉证据筛选直接相关；可供核查的线索是预算决策是否被后续推理真正使用，以及压缩是否造成信息坍缩而非单纯降本。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T18:11:06.671122+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

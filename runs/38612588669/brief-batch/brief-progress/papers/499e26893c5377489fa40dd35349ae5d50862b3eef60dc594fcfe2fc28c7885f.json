@@ -1,0 +1,78 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.17882",
+  "input_sha256": "d5b30046d880420c024fe6e99bad177fee38d86dfeb9d69c9df55afe81f042a6",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T18:26:34.775218+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1839,
+        "output_tokens": 685,
+        "total_tokens": 2524,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 457
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.17882",
+    "title": "Diagnose-to-Generate: Eliminating Structural Distortions in Flow Models via Patch-Level Grounded Alignment",
+    "authors": [
+      "Yifan Li",
+      "Lishuai Gao",
+      "Tong Zhang",
+      "Qilong Huang",
+      "Chen Zhao",
+      "Zhuoliang Kang",
+      "Jie Hu",
+      "Yujie Zhong",
+      "Fenghe Tang",
+      "S Kevin Zhou",
+      "Xiaoming Wei"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": null,
+    "summary": "Flow-based image generators achieve strong semantic synthesis but still produce localized structural distortions, such as malformed hands and limbs. Existing post-training methods typically optimize global scalar rewards, which provide weak spatial credit assignment and may alter well-formed regions while correcting local defects. We present \\textit{Diagnose-to-Generate (D2G)}, a grounded alignment framework that separates visual diagnosis from generative optimization. We construct \\textbf{Achilles-600K}, a region-annotated dataset for structural anomalies, and train \\textbf{ARGUS} through supervised cold-start and Region-Aware Group Relative Policy Optimization to predict anomaly categories and bounding boxes. These diagnoses are converted into confidence-weighted spatial rewards for our \\textbf{Patch-level Flow-GRPO}. We further identify that global stochastic exploration can shift semantic regions across group rollouts, making patch-wise relative advantages spatially inconsistent. Our \\textbf{Trajectory-Preserving Stochastic Sampling (TPSS)} anchors early denoising with deterministic ODE trajectories and introduces stochasticity only at later steps, thereby limiting intra-group spatial drift while retaining local exploration. Experiments on FLUX.1-dev and SD3.5 show improved structural fidelity with preserved FID and CLIP scores. Consistent gains under HumanRefiner, zero-shot GPT-4.1, and blinded human evaluation further demonstrate that the improvements extend beyond the training reward model.",
+    "abs": "http://arxiv.org/abs/2610.17882v1",
+    "pdf": "https://arxiv.org/pdf/2610.17882v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "提出 Diagnose-to-Generate 框架：构建区域标注数据集并训练诊断模型 ARGUS 预测异常类别与边界框，再将其转成 patch 级置信加权奖励，配合 Patch-level Flow-GRPO 与 TPSS（前期用确定性 ODE 轨迹、后期才注入随机性）抑制流式图像生成的局部结构畸变。",
+      "relevance_reason": "其「区域诊断→patch 级信用分配」与轨迹保持采样对 rollout 空间漂移的约束，可能为 LVR 中 latent 状态贡献分配与探索稳定性提供可核查的方法线索，但对象是图像生成对齐，与 VLM 推理无直接关系，故仅作方法借鉴。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T18:26:34.775218+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

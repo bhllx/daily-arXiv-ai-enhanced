@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.15159",
+  "input_sha256": "2643bf40d0047898c5dc3e806879477e939eede186aa290d163970b95ffcde69",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T19:08:22.498207+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 2020,
+        "output_tokens": 746,
+        "total_tokens": 2766,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 530
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.15159",
+    "title": "Beyond Adjacent Layers: Graph-Guided Layer Fusion for Compressing Large Language Models",
+    "authors": [
+      "Muhammad Usama",
+      "Yeoreum Jung"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": "Accepted at NeurIPS 2026. Code: https://github.com/Usama1002/fcm-layer-fusion",
+    "summary": "Existing depth-compression methods for large language models (LLMs) score layers individually or group only adjacent or contiguous layers, implicitly assuming that functional redundancy is local. We test this assumption by computing full pairwise Centered Kernel Alignment (CKA) similarity matrices for thirteen LLMs from six architecture families (1.6B-14B parameters). Non-adjacent layers have 3.6-15.9x more high-similarity pairs than adjacent ones, a structure that prior similarity-based layer merging has not systematically exploited. We propose Fusion via Community Mining (FCM), which builds the full L x L similarity graph, uses spectral community detection to find clusters of functionally equivalent layers, keeps the highest-Block-Influence layer in each cluster, and applies LoRA recovery; a pre-specified rule computed only on calibration data chooses between cosine and CKA similarity. At 2x compression, FCM lowers mean perplexity below ShortGPT on twelve of thirteen models, significantly on ten (Welch's t-test with Holm-Bonferroni correction; up to 50% on Qwen3-4B), with Mistral-7B the only loss (+13.4%). Against FlattenGPT, SWM, and DeltaLLM under matched calibration and recovery, FCM gives the best perplexity on ten of thirteen models (mean rank 1.15), and it also outperforms MKA on three anchor models. FCM matches or exceeds ShortGPT on 15 of 20 zero-shot reasoning cells and also improves MMLU, LAMBADA, HumanEval pass@1, and free-form generation quality. The 2x-compressed Qwen2.5-7B has 46% fewer parameters, 42% lower peak VRAM, and 84% higher decode throughput on a single A100. Spectral grouping outperforms Fisher contiguous segmentation by 41% and uniform partitioning by 51%, and FCM's advantage grows beyond a 2x crossover up to 3x and persists at the 14B scale. Code: https://github.com/Usama1002/fcm-layer-fusion",
+    "abs": "http://arxiv.org/abs/2610.15159v1",
+    "pdf": "https://arxiv.org/pdf/2610.15159v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "该论文研究 LLM 深度压缩：对六个架构家族共 13 个模型计算全对 CKA 相似度矩阵，发现非相邻层的高相似冗余显著多于相邻层，据此提出用谱社区检测聚类功能等价层、保留代表层并加 LoRA 恢复的 FCM 方法。",
+      "relevance_reason": "其「全对表示相似度矩阵 + 按层聚类」的分析流程，可能可供核查 LVR 中视觉证据在跨深度层间的相似度与冗余分布，但原文仅面向文本压缩，与推理期 latent 状态生成无直接联系，属需人工核查的方法线索。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T19:08:22.498207+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

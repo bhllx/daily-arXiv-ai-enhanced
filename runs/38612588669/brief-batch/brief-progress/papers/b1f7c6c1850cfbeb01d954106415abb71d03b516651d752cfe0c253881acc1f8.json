@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.15058",
+  "input_sha256": "792a21e2ecc016ff719c0d5fe20c8c94571a5b8dd5993aeb64391ad0682927df",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T19:10:11.568769+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1924,
+        "output_tokens": 881,
+        "total_tokens": 2805,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 678
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.15058",
+    "title": "The Optimal Decoder is Tilted Temperature",
+    "authors": [
+      "Nikolaos Papagiannis",
+      "Ananth Grama",
+      "Wojciech Szpankowski"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Larger sample budgets benefit from higher sampling temperatures in LLMs, but what temperature tuning optimizes and why it works remain poorly understood. We seek to answer these questions: we pose decoding as pass@$k$ maximization subject to two constraints that encode critical decoding failure modes: an entropy floor preventing diversity collapse, and a cross-entropy ceiling preventing implausibility. We prove that this maximization takes the form of a single closed-form conditional sampling rule, the \\emph{tilted temperature} $q^\\star \\propto \\bigl(p e^{ηV}\\bigr)^{1/T}$. Here, the tilt comes from a verifier potential $V$ that quantifies how likely a partial generation is to eventually pass. Ordinary temperature sampling, verifier-greedy decoding, and reward-tilted policies represent special cases. We further show that, under a natural rule for scaling the diversity budget with sample size $k$, the resulting optimal temperature increases with $k$, turning empirical choice into a theorem. The optimum still needs the unknown verifier potential, which we estimate using two design approaches. In the online setting, our J-EOS algorithm jointly tracks the two constraint multipliers and learns the verifier potential from binary pass/ fail feedback alone. In the offline setting, we show that when the model is calibrated, its log-probability tracks correctness up to an affine map. Under this condition, the tilt collapses into the exponent and the optimum reduces to ordinary temperature sampling. Calibrated Temperature Decoding (CTD) then fits one scalar offline and samples with zero additional inference-time overhead relative to temperature sampling. Building on these decision rules, we design a practical decoding algorithm for code generation and evaluate it alongside CTD on benchmarks including HumanEval and MBPP, showing improvements over standard and adaptive decoding baselines.",
+    "abs": "http://arxiv.org/abs/2610.15058v1",
+    "pdf": "https://arxiv.org/pdf/2610.15058v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文把 LLM 解码建模为带熵下界和交叉熵上界的 pass@k 最大化，推导出闭式「tilted temperature」采样规则，并给出在线（J-EOS）与离线（CTD）两种 verifier potential 估计方式，在代码生成基准上评估。",
+      "relevance_reason": "其按「最终通过概率」倾斜采样分布、用二元反馈在线估计 verifier potential 的做法，可能迁移到 LVR 中 latent 轨迹的加权采样、证据筛选与随样本数增长的计算预算分配，可供人工核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T19:10:11.568769+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

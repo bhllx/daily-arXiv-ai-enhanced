@@ -1,0 +1,71 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.14017",
+  "input_sha256": "cfc15c66b5534f4179bef5a337df4c219f63be5321ff57928a4a6616e628743d",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T19:26:31.570310+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1895,
+        "output_tokens": 826,
+        "total_tokens": 2721,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 617
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.14017",
+    "title": "Barycentric Anchored Weight Search for Robust Model Merging",
+    "authors": [
+      "Antoni Buades",
+      "Jose-Luis Lisani"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.AI",
+      "cs.CV"
+    ],
+    "comment": null,
+    "summary": "We propose Barycentric Anchored Search, a post-hoc weight-space procedure for improving fine-tuned vision models under distribution shift without additional gradient training or increased inference cost. Given a pre-trained initialization and two checkpoints fine-tuned on a source dataset, the method constructs barycentric candidate weights and performs a small derivative-free search along directions connecting each candidate to the pre-trained model. Candidate weights are selected using a small validation subset of one or more out-of-distribution (OOD) datasets; the selected model is then evaluated on the held-out portions of those datasets, on additional OOD benchmarks, and on the ImageNet validation set to quantify the robustness-accuracy trade-off. The method is inspired by simplex-based derivative-free optimization, including Nelder-Mead and Torczon multidirectional search, but is specialized to the geometry of neural network weight merging. Unlike Model Soup, which typically benefits from many fine-tuned checkpoints, and unlike Model Stock, which applies a fixed geometric merge, our approach uses only two fine-tuned checkpoints and iteratively adapts the merge using validation feedback from OOD data. Experiments with CLIP ViT-B/32 show that the proposed search substantially improves performance on held-out OOD data, including ImageNet-A, ImageNet-R, and ImageNet-Sketch, while keeping ImageNet accuracy competitive. The resulting weights also improve transfer to OOD datasets not used during candidate selection, outperforming the original fine-tuned checkpoints, naive model soups, and Model Stock in our evaluations. These results suggest that lightweight optimization in anchored weight space provides a practical alternative to fixed weight-averaging rules, geometric merging, or single-model selection.",
+    "abs": "http://arxiv.org/abs/2610.14017v1",
+    "pdf": "https://arxiv.org/pdf/2610.14017v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "论文提出 Barycentric Anchored Search：在预训练初始化与两个微调 checkpoint 之间构造权重重心候选，用少量 OOD 验证集驱动无梯度搜索来挑选合并权重，在 CLIP ViT-B/32 上考察鲁棒性与 ImageNet 精度权衡。",
+      "relevance_reason": "权重空间合并与几何搜索本身不涉及推理期 latent 状态生成，但「以验证反馈迭代筛选候选权重」的做法与 LVR 中候选 latent 轨迹的搜索、选择及停止策略可能有类比线索，可供核查其是否影响视觉表示的细节保留。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T19:26:31.570310+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

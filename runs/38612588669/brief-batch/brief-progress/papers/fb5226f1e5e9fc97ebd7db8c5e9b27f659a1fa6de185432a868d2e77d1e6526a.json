@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.15246",
+  "input_sha256": "83fdb708fc2372d999d91ff9d2a7c30535037a83ba9caed8d09c8a6e1b382000",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T19:07:13.801147+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1819,
+        "output_tokens": 731,
+        "total_tokens": 2550,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 528
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.15246",
+    "title": "ObsSpec: Accelerating Agentic Reinforcement Learning with Observation Speculation",
+    "authors": [
+      "Kyle Montgomery",
+      "Wang Zhang",
+      "Chenguang Wang"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Tool-using agents alternate between model generation and tool execution, waiting for each tool call to complete before starting the next generation. This sequential execution is costly during agentic reinforcement learning (RL), which requires large batches of multi-turn rollouts. We introduce ObsSpec, an observation speculation pipeline for agentic RL that uses a small world model to predict tool outputs while the environment executes, allowing the policy to begin its next generation early. ObsSpec retains speculative work only when the predicted and actual observations match exactly, making rollout collection lossless, while co-training keeps the world model up to date as the policy learns. On terminal-use tasks, predictions from a 0.6B world model exactly match actual observations in 66.4% of attempts and arrive roughly 16 times faster. Using these predictions, ObsSpec reduces agent latency by 9.3% and 14.2% for 8B and 32B policies. Across controlled experiments, we characterize the regimes in which ObsSpec reduces agent latency under shared policy resources. Finally, because ObsSpec overlaps policy generation with tool execution, it is architecturally compatible with existing techniques for accelerating RL. Code is available at https://github.com/kylemontgomery1/verl-recipe/tree/obsspec/obsspec.",
+    "abs": "http://arxiv.org/abs/2610.15246v1",
+    "pdf": "https://arxiv.org/pdf/2610.15246v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "提出 ObsSpec：在 agentic RL 中用小世界模型在环境执行工具调用时提前预测工具输出，使策略提前开始下一轮生成，并仅保留与实际观测完全一致的推测结果，配合协同训练保持世界模型同步更新，从而降低 rollout 延迟。",
+      "relevance_reason": "其「提前预测下一步观测—精确匹配校验—只接受一致结果」与协同更新的设计，可能为 LVR 中如何生成并验证下一步推理状态或证据预测提供可核查的方法线索；但对象是文本工具输出，与视觉推理的联系尚需人工确认。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T19:07:13.801147+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

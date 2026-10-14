@@ -1,0 +1,72 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.14961",
+  "input_sha256": "2c835e515e2b080eac8ca5c766197f3513b502b44cd5ee8499c64fc040d7cefa",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T19:11:59.711876+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 2074,
+        "output_tokens": 806,
+        "total_tokens": 2880,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 566
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.14961",
+    "title": "HiPAD: A Unified Gait, Audio-Visual, and Personality Fusion Network for Depression Detection, with a Hierarchical Personality Ablation and the Calibration Limits of Domain-Adapted LLMs",
+    "authors": [
+      "Karol Chlasta",
+      "Piotr Struzik"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.CL",
+      "cs.CV",
+      "cs.SD"
+    ],
+    "comment": "9 pages, 3 figures, 5 tables. Accepted at the 34th ACM International Conference on Multimedia (MM '26), Rio de Janeiro, Grand Challenge track. Authors' extended version: the appendices restore the extended related work, figures, tables and discussion omitted from the conference version for length",
+    "summary": "We present HiPAD, a single fusion network submitted to all six sub-tracks of the MPDD-AVG 2026 depression-detection challenge, covering the Elder and Young cohorts and three modality sets (gait, audio-visual, and both), each combined with personality descriptions. The network encodes each available modality with a shared BiLSTM, zero-pads absent modalities, and applies cross-modal attention only when at least two of gait, audio and video are present. Personality, which dominates our results, is kept out of the attention and fused by concatenation. Because the architecture is identical in every sub-track, differences between them reflect the data rather than the model, and we use this to study three questions. Our main finding is that the personality description, roughly 150 tokens about who the subject is, carries more depression signal than audio, video, and gait combined: gait plus personality alone (TLS 0.647) beats every configuration that includes audio and video. First, a four-level ablation of the personality description (L0-L3) quantifies this: removing every personality-derived feature, including the Big Five scores that earlier MPDD ablations keep, lowers the Track-Level Score by 0.499 to 0.507 and leaves the model at chance. Second, domain-adapting the personality encoder with LoRA (7B) or QLoRA (72B) on PHQ-8/9 data raises binary Cohen's $κ$ by 0.13 but lowers the overall score by distorting the PHQ-9 regression; a frozen RoBERTa-large encoder does better at this sample size. Third, at fixed architecture, handcrafted clinical features (eGeMAPS, OpenFace action units) outperform generic deep features (wav2vec2, DenseNet) on the audio-visual tracks. The unified system reaches a cross-track G-Score of 0.482; with under 100 subjects per cohort, the limiting factors are the size of the representation and the calibration of the outputs, not the choice of architecture.",
+    "abs": "http://arxiv.org/abs/2610.14961v1",
+    "pdf": "https://arxiv.org/pdf/2610.14961v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "HiPAD 是一个统一的多模态抑郁检测融合网络，用共享 BiLSTM 编码步态、音视频，并在至少两模态存在时做跨模态注意力，人格描述仅拼接融合；作者据此做人格描述的四级消融、LoRA/QLoRA 域适应以及手工与深度特征对比，发现约 150 token 的人格文本比音频、视频、步态合计携带更多信号。",
+      "relevance_reason": "远领域工作，但其「短文本属性压过视觉等模态」的消融证据与域适应后输出校准反而变差的观察，可能为 LVR 中视觉证据是否真被使用、信息旁路与评价指标张力的诊断设计提供参照，具体可核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T19:11:59.711876+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

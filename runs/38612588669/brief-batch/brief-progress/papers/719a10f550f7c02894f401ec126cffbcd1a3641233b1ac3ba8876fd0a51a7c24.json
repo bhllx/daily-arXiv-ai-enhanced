@@ -1,0 +1,74 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.15922",
+  "input_sha256": "0f42c1432aae6c3363d1b3ff96397da1d5ee68435597f2cf4b66b1e2b41701e9",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T18:57:46.747245+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1899,
+        "output_tokens": 930,
+        "total_tokens": 2829,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 695
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.15922",
+    "title": "Frequency-Step Cache: Separating Synchronization and Repair for Efficient Autoregressive Video Diffusion",
+    "authors": [
+      "Kerry Xu",
+      "Param Misra",
+      "Zachary Stenglein",
+      "Athri Karunamurthy",
+      "Fanjiang Ye",
+      "Yuke Wang"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.LG"
+    ],
+    "comment": "30 pages, 11 figures, 18 tables",
+    "summary": "Autoregressive (AR) video generation enables long-horizon synthesis but requires repeated forward passes through large diffusion transformers. Training-free caching reduces this cost by reusing intermediate computation, yet existing controllers often couple two decisions: when to synchronize the cache exactly and how much computation to repair between synchronizations. We introduce Frequency-Step Cache (FSC), which separates these roles. FSC schedules exact full-computation anchors on a dense-to-sparse trajectory, while a lightweight latent-space risk based on frequency-resolved drift and token age controls inter-anchor repair through whole-step replay, selective token recomputation, or full repair. On SkyReels-V2, whole-step reuse provides most of the acceleration, while selective token computation is most effective as fidelity repair. A controlled ablation shows that using one reactive signal for both synchronization and repair reduces fidelity at matched latency, with the same separation advantage observed on FramePack and Matrix-Game. Across multiple autoregressive video backbones, FSC improves speed-quality trade-offs. On SkyReels-V2, FSC-Speed reaches 2.36x speedup versus MotionCache's 2.275x while improving SSIM by 0.019 and PSNR by 0.5 dB. At MotionCache-matched speed, FSC-Quality improves SSIM by 0.031 and PSNR by 1.0 dB and lowers LPIPS by 0.024. Without retuning, FSC-Quality transfers to SkyReels-V2 14B at 2.12x speedup versus 1.79x for MotionCache.",
+    "abs": "http://arxiv.org/abs/2610.15922v1",
+    "pdf": "https://arxiv.org/pdf/2610.15922v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "提出 Frequency-Step Cache，在自回归视频扩散中把缓存的两类决策解耦：用密集到稀疏的锚点决定何时做全量同步计算，再用基于频域漂移和 token age 的 latent 风险信号决定锚点之间做整步复用、选择性 token 重算还是完全修复，从而改善速度-质量折中。",
+      "relevance_reason": "其「何时同步全量计算、间隔内补多少修复」的两段式调度与基于 latent 漂移/陈旧度的风险度量，可能为 LVR 中 latent 状态的刷新时机与缓存陈旧修复提供可核查的方法线索；但该工作属视频生成，与推理期状态使用和停止决策的对应关系需人工确认。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T18:57:46.747245+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

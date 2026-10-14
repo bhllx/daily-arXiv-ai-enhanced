@@ -1,0 +1,71 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.17355",
+  "input_sha256": "1a5e6700cf388be44b89d1d9a84f1e4cf6100c14d1b659cd9e373770f0262cc0",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T18:35:29.930964+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1908,
+        "output_tokens": 1007,
+        "total_tokens": 2915,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 770
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.17355",
+    "title": "WIRE: Weight Space Implicit Representation Encoding of Frozen Video LLMs",
+    "authors": [
+      "Ameen Ali",
+      "Tamim Zoabi",
+      "Lior Wolf",
+      "Chaim Baskin"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": null,
+    "summary": "Video language models represent a video as a long sequence of visual embeddings in a decoder's input. Every visual embedding is processed by every decoder layer during prefill, stored in the key value cache, and attended by every generated token, so a long video raises prefill, memory, and generation cost at once. We present WIRE (Weight Space Implicit Representation Encoding), which reduces this recurring cost by moving part of the video conditioned computation of a frozen video language model from its input activations into a temporary low rank update of its weights. WIRE keeps a short explicit visual context, so the update acts as a correction rather than a replacement of the video. WIRE first compresses the full resolution embeddings of each frame into a small set of carrier tokens using a question conditioned bidirectional selective scan, and physically contracts the decoder input so every decoder layer, cache entry, and decoding step operates on the shorter sequence. Hypernetworks at selected decoder layers read the compressed forward pass together with a readout of the full resolution features removed by contraction and generate LoRA updates to the attention and feedforward projections. The updates are merged after prefill, so autoregressive decoding runs the unmodified frozen backbone. On Qwen3-VL-8B, WIRE with 16 carrier tokens per frame contracts the visual stream by $3.5\\times$, reduces decoder prefill time by $3.35\\times$ at 256 frames and $4.14\\times$ at 1024 frames, shrinks the key value cache proportionally, and keeps per token decoding latency approximately constant. Across nine benchmark settings at 256 frames, it obtains the highest average accuracy among efficient video language models we evaluate under a common 256 frame budget.",
+    "abs": "http://arxiv.org/abs/2610.17355v1",
+    "pdf": "https://arxiv.org/pdf/2610.17355v1",
+    "AI": {
+      "category": "MAIN",
+      "priority": "P1",
+      "brief_summary": "提出 WIRE，用问题条件的双向选择性扫描把每帧压成少量 carrier token，将冻结视频 LLM 中部分视频条件计算从输入激活搬到超网络生成的临时低秩权重更新（LoRA）里，prefill 后合并更新，解码仍走原骨干，从而缩短序列、缩小 KV cache 并降低 prefill 成本。",
+      "relevance_reason": "直接触及「视觉细节在压缩后是否仍保留于内部状态」这一表示问题：其全分辨率特征 readout 驱动的权重空间修正，可能为缓解视觉信息坍缩、把视觉状态写入权重的 LVR 设计提供可核查线索，但论文面向效率而非 latent 推理，需读原文确认细节保留与推理收益。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T18:35:29.930964+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

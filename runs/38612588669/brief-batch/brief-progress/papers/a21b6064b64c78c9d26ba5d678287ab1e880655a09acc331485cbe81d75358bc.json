@@ -1,0 +1,71 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.17644",
+  "input_sha256": "f01ba4289f10880675008a3886498b2a1afd0c93ce452cdd7ce37bce3f694565",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T18:30:50.694700+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1770,
+        "output_tokens": 278,
+        "total_tokens": 2048,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 88
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.17644",
+    "title": "DisaggKD: Efficient Knowledge Distillation through Teacher-Student Disaggregation and a Fused Loss",
+    "authors": [
+      "Ruixuan Tu",
+      "Yuyang Dong"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.CL",
+      "cs.DC"
+    ],
+    "comment": null,
+    "summary": "Knowledge distillation (KD) frameworks place teacher and student on the same GPUs, so per-GPU memory limits the teachers that fit. DisaggKD separates them across nodes: teacher replicas stream hidden states to the student, a KD loss over row windows and vocabulary shards equals the full-vocabulary loss in exact arithmetic without forming the full-vocabulary logits, and a prefetch ring paces producer and trainer. Closed-form memory and traffic models locate the memory limits of each layout. On the Qwen3.5-35B-A3B to 9B pair, the disaggregated layout matches the LM loss of the colocated run with the same loss and is faster than that run; our fused loss also lets a colocated run train on as few nodes at faster speed, while the split is memory efficient when the student spans several nodes. On the larger pairs, colocated runs with a fused loss still run OOM where the split trains, because teacher weights and student states fill the budget.",
+    "abs": "http://arxiv.org/abs/2610.17644v1",
+    "pdf": "https://arxiv.org/pdf/2610.17644v1",
+    "AI": {
+      "category": "EXCLUDE",
+      "priority": "NONE",
+      "brief_summary": "该论文提出 DisaggKD：把知识蒸馏的教师与学生拆分到不同节点，教师副本跨节点流式传输隐藏状态，并用行窗口与词表分片上的融合损失替代全词表 logits，同时给出显存与通信量的闭式模型。",
+      "relevance_reason": "内容为蒸馏训练的分布式显存与通信工程优化，未涉及视觉或多模态推理状态、latent 生成、证据获取或停止决策，也无可迁移至 LVR 的具体方法线索，故排除。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T18:30:50.694700+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

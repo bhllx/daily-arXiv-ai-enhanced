@@ -1,0 +1,68 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.14939",
+  "input_sha256": "50f952a8c6c8dc04294d5e89fff691523091b4bbf627999c1c60130ec69a7830",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T19:12:42.813390+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1819,
+        "output_tokens": 481,
+        "total_tokens": 2300,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 225
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.14939",
+    "title": "VC-OPD: Visual Counterfactual On-Policy Distillation for Grounded Vision-Language Reasoning",
+    "authors": [
+      "Jiahe Feng"
+    ],
+    "categories": [
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "GRPO-style reinforcement learning has advanced vision-language reasoning, but its sequence-level rewards provide limited credit assignment for individual reasoning tokens. On-policy distillation (OPD) addresses this issue by providing dense supervision on student-generated trajectories, yet standard OPD assigns similar importance to all teacher-preferred tokens, including template phrases and visually irrelevant continuations. We introduce Visual Counterfactual On-Policy Distillation (VC-OPD), a grounding-aware distillation method that prioritizes tokens whose correctness depends on image-specific evidence. After a teacher-supervised warm start that stabilizes response formats and reduces noisy rollouts, VC-OPD performs on-policy distillation with two teacher evaluations for each student trajectory: one under the original image and one under a counterfactual image with corrupted instance-specific evidence. The original-image teacher distribution determines the distillation target, while the original--counterfactual teacher gap estimates token-level visual dependence and softly reweights the loss. To avoid unstable response-level update scales, VC-OPD further applies mass-preserving normalization to the token weights. This design preserves the dense supervision of OPD while shifting learning capacity toward visually grounded reasoning tokens. Experiments on multimodal reasoning benchmarks show that VC-OPD improves visual reasoning performance and produces more effective token-level distillation.",
+    "abs": "http://arxiv.org/abs/2610.14939v1",
+    "pdf": "https://arxiv.org/pdf/2610.14939v1",
+    "AI": {
+      "category": "MAIN",
+      "priority": "P1",
+      "brief_summary": "针对 GRPO 类序列级奖励难以做 token 级信用分配、而标准 on-policy distillation 又对模板化与视觉无关 token 同等加权的问题，提出 VC-OPD：先用教师监督预热稳定输出格式，再用原图与「证据被破坏的反事实图」两次教师评估，以两者的分布差估计 token 的视觉依赖度并对蒸馏损失加权，配合质量守恒归一化把学习容量转向真正依赖图像证据的推理 token。",
+      "relevance_reason": "反事实图像对比给出的 token 级视觉依赖权重，可作为判断推理状态是否真正使用视觉证据、筛选有贡献 token 以及缓解视觉旁路和信息坍缩的参考线索；但该工作停留在训练期监督重加权，未涉及 latent 状态的生成与更新，其权重估计是否等价于因果贡献仍需核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T19:12:42.813390+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

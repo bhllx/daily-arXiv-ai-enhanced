@@ -1,0 +1,68 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.14921",
+  "input_sha256": "55f8112da2e5d7bdca65722ab89567add993e4f880e7b56308e1f152e130560f",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T19:12:56.603280+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1975,
+        "output_tokens": 717,
+        "total_tokens": 2692,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 490
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.14921",
+    "title": "Representation Drift in Continual Learning: LoRA versus N-gram Memory",
+    "authors": [
+      "Hao Wu"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": "28 pages, 7 figures",
+    "summary": "A language model that keeps learning online must not slowly erode its own base capabilities. We ask which part of a modern LLM should absorb continual updates, by measuring how each choice changes the model's internal representations. On a 48-layer mixture-of-experts model with a native pretrained N-gram memory, we train a seven-task chain under three update mechanisms with identical data and budgets: updating only the N-gram memory table, continually training one shared LoRA adapter, and training a fresh LoRA per task that is merged into the backbone. We capture fixed-context representations at every layer and task boundary. Updating only the N-gram memory changes the base model's representations of general math and code inputs by 26%/15% (relative RMS), against 64%/35% for merged and 97%/39% for shared LoRA. This drift does not grow with the number of tasks: it reaches 25% after the first task and stays there for all seven, while both LoRA variants keep accumulating. Its generic behaviour is essentially unchanged (no code problem lost, math NLL -0.01), and every change is confined to inspectable, reversible table rows. The cost appears elsewhere: N-gram memory acquires new tasks more weakly and its stored tasks interfere with one another, losing as much old-task NLL as shared LoRA. We show that this forgetting is governed by drift on the learned tasks' own inputs, measured from the checkpoint at which each was learned, not by generic drift (Spearman rho=0.85; rho=0.71 on Llama-3-8B), and we derive the exact relations behind it: with a frozen head, every pairwise logit margin changes by the projection of drift onto a head-difference direction. These results support a design principle for long-running online learning: write new knowledge only into the memory table and keep the backbone fixed; the remaining problem, interference between stored tasks, then lies inside the memory.",
+    "abs": "http://arxiv.org/abs/2610.14921v1",
+    "pdf": "https://arxiv.org/pdf/2610.14921v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "在一个带原生 N-gram 记忆的 48 层 MoE 模型上，用七个任务的链式训练比较三种持续更新方式（只更新 N-gram 表、共享 LoRA、每任务 LoRA 后合并），在每个层级与任务边界采集固定上下文表示，量化漂移并分析其与遗忘、logit margin 变化的关系。",
+      "relevance_reason": "其「逐层、固定上下文、以不同更新机制对比」的内部表示漂移度量思路，可能可供核查 LVR 中 latent 状态在生成或更新后保留了多少任务必要信息；但研究对象为纯文本持续学习，与视觉多模态推理无直接关联，属于方法线索。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T19:12:56.603280+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

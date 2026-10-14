@@ -1,0 +1,78 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.17827",
+  "input_sha256": "ba8ab49690f29686bad808823f31804825821e9813fe88b4de592169170cbb13",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T18:27:43.274471+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1901,
+        "output_tokens": 679,
+        "total_tokens": 2580,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 473
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.17827",
+    "title": "Benchmarking and Training Reward Models for Cross-Source Evidence Grounding in Search Agents",
+    "authors": [
+      "Haochen Zhao",
+      "Minsheng Hao",
+      "Zheng Li",
+      "Yifan Li",
+      "Zikang Liu",
+      "Bowen Qin",
+      "Yuhao Cheng",
+      "Chuang Fan",
+      "Haosheng Zou",
+      "Jeff Chen",
+      "Sujian Li"
+    ],
+    "categories": [
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "Existing approaches to training and evaluating search agents focus heavily on final-answer quality, largely neglecting how generated answers map back to retrieved evidence. Recent methods track citations to enforce grounding, but citation support alone does not establish source independence or whether an answer appropriately handles conflicting evidence. We argue that credibility in open-web retrieval depends on principled cross-source evidence grounding that accounts for source independence and systematically attributes and adjudicates conflicting evidence, while hierarchical judgments of these grounding decisions provide a unified signal for training and evaluation. To this end, we propose an evaluation framework, Cross-Source Evidence Grounding (CSEG), that employs a fine-grained, six-layer decision tree over the complete search trajectory. We introduce CSEG-Bench and trainable reward models to provide targeted supervision following this framework. Our approach helps eliminating the severe data skew of natural trajectories by providing targeted coverage over complex, deep-layer decision paths, such as cross-source conflict resolution and nuanced attribution, that standard rollouts fail to capture. Specifically, (1) we define the hierarchy at label, node, and path levels; (2) we construct 1,160 verified trajectories over nine canonical paths by rewriting answers on real retrieved document pools, with independent frontier judges reproducing the entire gold path and human experts deciding inclusion; (3) we train CSEG-RM, which reaches 83.9% exact accuracy on our benchmark while lying on the performance-token efficiency Pareto frontier. Experiments that use this reward alone to supervise a frozen-retrieval answer policy raise the independently judged mean label from 2.83 to 4.19, and show that learning the hierarchy generalizes across layers at a fraction of frontier-judge cost.",
+    "abs": "http://arxiv.org/abs/2610.17827v1",
+    "pdf": "https://arxiv.org/pdf/2610.17827v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文提出 CSEG 评估框架与 CSEG-Bench，用覆盖完整搜索轨迹的六层决策树刻画跨来源证据溯源、归因与冲突消解，并训练奖励模型 CSEG-RM 为答案策略提供分层监督。",
+      "relevance_reason": "其分层奖励建模与轨迹级证据归因、冲突裁决监督，可能为 LVR 中视觉证据筛选与「答案是否真正使用 latent/证据」的信用分配提供可核查的监督信号设计线索；但对象为文本检索代理，向多模态 latent 推理的迁移仍需核实。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T18:27:43.274471+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

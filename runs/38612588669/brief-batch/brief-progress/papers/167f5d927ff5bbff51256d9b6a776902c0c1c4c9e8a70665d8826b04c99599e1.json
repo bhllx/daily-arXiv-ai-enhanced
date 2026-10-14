@@ -1,0 +1,71 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.18516",
+  "input_sha256": "7925cda6cec1822561c61a50541278e9896c8fe58930ea9af5e2e8d486901a2f",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T18:17:11.662767+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1963,
+        "output_tokens": 807,
+        "total_tokens": 2770,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 583
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.18516",
+    "title": "Two For The Price Of One: Curvature-Aware Pruning Preserves Influence Functions Too",
+    "authors": [
+      "Mehdi Makni",
+      "Natalia Ponomareva",
+      "Rahul Mazumder"
+    ],
+    "categories": [
+      "cs.LG",
+      "stat.ML"
+    ],
+    "comment": null,
+    "summary": "Post-training pruning enables efficient deployment, but conventional methods do not explicitly preserve internal-gradient alignment between sparse and dense models. We study novel connections between downstream performance of compressed models and the ability to retain gradient information via influence-function preservation. Central to this connection is a curvature-aware objective that accounts for both layer activations and backpropagated gradients. Despite its promise, this objective remains underexplored in pruning due to a lack of efficient solvers. We introduce $\\texttt{CACTUS}$, a novel ADMM-based optimizer supporting both pruning and sparse-plus-low-rank decompositions of pre-trained weights. Compared to LLM-Surgeon which targets the same objective, $\\texttt{CACTUS}$ can achieve over an order-of-magnitude speedup. At $50\\%$ pruning of Qwen3-4B, $\\texttt{CACTUS}$ reduces the C4 perplexity gap to the dense model by $45\\%$, improves compressed-to-dense per-sample gradient cosine similarity on WikiText-2 from $0.670$ to $0.755$, and runs over $28\\times$ faster than LLM-Surgeon on substantially weaker hardware. By preserving influence functions, $\\texttt{CACTUS}$ supports effective data selection. On Llama-3.2-3B, fine-tuning a fresh dense model on the $5\\%$ of data selected by $\\texttt{CACTUS}$ achieves $49.44\\%$ accuracy on BIG-Bench Hard, compared with $47.22\\%$ using ALPS and $49.54\\%$ using dense-model selection. Finally, integrating $\\texttt{CACTUS}$ with LoGRA, a recent gradient-projection strategy, on Qwen3-4B with MLP layers pruned to 2:4 sparsity and a rank-64 correction retains a $0.711$ cosine alignment with dense LoGRA-projected C4 gradients.",
+    "abs": "http://arxiv.org/abs/2610.18516v1",
+    "pdf": "https://arxiv.org/pdf/2610.18516v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文研究后训练剪枝中如何保持压缩模型与稠密模型的影响函数（梯度）对齐，提出基于 ADMM 的优化器 CACTUS，同时支持剪枝与稀疏加低秩分解，显著加速剪枝并改善困惑度与逐样本梯度余弦相似度，还可用于数据选择。",
+      "relevance_reason": "其以「压缩—稠密」逐样本梯度余弦相似度量化内部信息保留、并用影响函数做训练数据选择的做法，可能为 LVR 中 latent 状态是否保留任务必要信息、以及轨迹训练的数据与贡献分配提供可核查的度量线索，但论文本身未涉及视觉或多模态推理，迁移属推测。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T18:17:11.662767+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

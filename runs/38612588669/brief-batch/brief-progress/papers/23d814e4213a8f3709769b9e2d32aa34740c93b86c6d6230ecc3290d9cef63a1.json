@@ -1,0 +1,71 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.16653",
+  "input_sha256": "50d22907411cace2a1f16ad117e84aa4d8f491d6612b6003bef931f0d0030967",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T18:45:36.579347+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1927,
+        "output_tokens": 836,
+        "total_tokens": 2763,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 582
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.16653",
+    "title": "Counting with Attention and LayerNorm: Norm Scaling and Representation Geometry",
+    "authors": [
+      "Ayyub Shaffy",
+      "Manoj Dhakal",
+      "Safal Shrestha",
+      "Keith W. Ross"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": "29 pages, 8 figures, 3 tables",
+    "summary": "Counting is a simple task on which transformers can nevertheless fail at long sequence lengths. We study the cost of counting in a single attention layer, up to a maximum length $L$, focusing on how softmax attention and layer normalization shape the representation from which the count is recovered. We mainly focus on regression read-out but also consider classification read-out. For regression, we show unnormalized linear attention counts exactly at parameter norms independent of $L$. For softmax attention, regression cannot count exactly with finite parameters; it recovers the count after rounding, but only when the vector parameter norms grow with $L$. We measure this cost by $B_{\\min}$, the smallest bound that can be placed on every trainable vector to ensure exact counting after rounding, and derive tight rates. At fixed model dimension, $B_{\\min}$ grows as $L$ without normalization, as $L^{3/2}$ under bare post-normalization, and as $L^{3/4}$ with learned post-normalization. The last rate is unexpected: post-normalization discards the magnitude that carries the count and might be expected to make counting harder, yet with a learnable gain it counts at a smaller norm than softmax without normalization. Bare pre-normalization is different: it bounds the attention scores, so beyond a finite length no parameter norm suffices. A classification read-out keeps every norm bounded under every placement, but a dense head stores one output vector per count and costs more in storage. Experiments on the post-normalized model reproduce this split between the two read-outs. Together, our theoretical and empirical findings characterize how self-attention, layer-normalization placement, and read-out choice shape the representation geometry and parameter cost of counting in the minimal single-head architecture studied here.",
+    "abs": "http://arxiv.org/abs/2610.16653v1",
+    "pdf": "https://arxiv.org/pdf/2610.16653v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "论文在单层单头注意力上研究长度 L 内的计数任务，分析 softmax 注意力与 LayerNorm 位置如何塑造读出计数的表示几何，推导精确计数所需最小参数范数 B_min 随 L 的紧致增长速率（无归一化为 L、post-norm 为 L^{3/2}、可学习 post-norm 为 L^{3/4}），并比较回归与分类读出的差异及实验验证。",
+      "relevance_reason": "该工作从表示几何与范数缩放角度刻画注意力、归一化对内部状态承载信息（计数）的长度相关成本，可能为 LVR 中 latent 状态的容量、长度泛化与表示几何分析提供线索，但研究对象为纯文本计数、非视觉多模态推理，联系需人工核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T18:45:36.579347+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

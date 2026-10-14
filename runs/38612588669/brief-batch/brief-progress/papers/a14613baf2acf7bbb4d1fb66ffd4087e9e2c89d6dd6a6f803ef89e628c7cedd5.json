@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.13990",
+  "input_sha256": "ab8fec2ba0340ca47d852967e08407b9222219d22346e20fcf5e869daca6a2b1",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T19:27:52.818084+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1791,
+        "output_tokens": 639,
+        "total_tokens": 2430,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 438
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.13990",
+    "title": "DoSA: Dots Sparse Attention",
+    "authors": [
+      "Fanxu Meng",
+      "Taosong Fang"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Sparse attention visits few keys, yet finding them can still require scoring every key with every indexer head. We introduce DoSA (Dots Sparse Attention), a lossless method for making this computation conditional while preserving exact token selection. Its central observation is that Top-K selection requires sufficient evidence to reject a candidate, not necessarily its full score. A seed set supplies a lower bound on the winning threshold. Nonnegative head projections and joint residual bounds upper-bound positive contributions, while activation-informed aggregation bounds the magnitude subtracted by negative heads. The certificate directs full scoring toward candidates that remain eligible; exact-score filtering further reduces writeback and selection work. We establish the certificate and its exact-selection conditions, and analyze how geometry and selection margins govern its effectiveness. Our GPU implementation accelerates the complete Indexer by up to 2.74 times over SGLang and 1.69 times over LiteTopK across English, Chinese, and code workloads. End-to-end evaluation on GLM-5.2 and DeepSeek-V3.2 achieves up to 1.94 times and 1.50 times time-to-first-token speedups over the two baselines, respectively.",
+    "abs": "http://arxiv.org/abs/2610.13990v1",
+    "pdf": "https://arxiv.org/pdf/2610.13990v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "提出 DoSA，用种子集下界与残差上界构造证书，使稀疏注意力的 Top-K 打分只在候选仍可能入选时才做完整计算，在保持精确选择的同时降低写作回与选择开销，并在 GPU 上实现。",
+      "relevance_reason": "其「以界证书判断是否值得完整打分」的条件计算与精确筛选思路，可能可供核查 latent 推理中视觉证据／键值筛选与动态计算的成本问题；但论文面向纯文本 LLM 注意力加速，未涉及多模态状态或推理使用，联系属推测。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T19:27:52.818084+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

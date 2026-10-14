@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.17448",
+  "input_sha256": "6048843f06f64a4c8b1fe652d55728a838cbc58692c007d24551ceaa27d617f6",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T18:33:29.549791+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1911,
+        "output_tokens": 719,
+        "total_tokens": 2630,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 503
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.17448",
+    "title": "TableVision: Recovering Verified Structure from Historical Tables",
+    "authors": [
+      "Todd Y. Zhou",
+      "James M. Snyder"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": null,
+    "summary": "Gaps, skips, and mistakes are the normal state of a historical register: rows go missing, tables cross page breaks, columns slip under wrong names, and column sums disagree with the corresponding row entries. Readers read digits correctly but lose the table structure. On seven clean panels of election returns, the best open-source reader reproduces 99.0\\% of the digits but files only 83.7\\% of the figures in the correct cells and gets 11 of 30 columns correct. TableVision treats table structure recovery as the problem. On three degraded 1888 pages, Amazon Textract files only 1 of 1494 figures correctly; TableVision correctly files 99.2\\%, and all 51 columns its exact-total check releases are correct. A dynamic program cuts a volume into blocks by how many columns sum to their last line; witnesses read the cells; the gate classifies each column as exactly reconciling, flagged as faithful to a page whose arithmetic is wrong, or withheld. A theory of the sum check says which errors it cannot see and why its optimal block is about $θ^{-1/2}$ rows at defect rate $θ$. On 2201 columns of Wisconsin electoral data, the gate accepts 2042, flags 118, and withholds 41; failure rises with column length $R$ as $1-(1-θ)^R$ at 1.1 defects per 1000 cells in general elections; official returns confirm 933 of 934 testable accepted sums and all 35 testable flagged totals; and the deployment added 491\\,359 gated precinct rows to a 9.3-million-row dataset. One implication is that the design of the verification block is critical.",
+    "abs": "http://arxiv.org/abs/2610.17448v1",
+    "pdf": "https://arxiv.org/pdf/2610.17448v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文把历史表格的结构恢复当作问题，用动态规划按「有多少列的和等于末行」把卷宗切成区块，再以门控将每列判为精确对账、标记为可靠但页码算术有误、或拒绝采信，并用求和检验理论刻画其无法察觉的错误与最优区块行数。",
+      "relevance_reason": "其「三态验证门控 + 按可靠性选择验证区块粒度」的做法，可能为 LVR 中 LOOK/STOP 的视觉证据筛选、是否拒绝作答以及验证成本与缺陷率的权衡提供可供核查的方法线索，但论文本身并非 latent 推理研究。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T18:33:29.549791+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

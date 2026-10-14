@@ -1,0 +1,72 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.13996",
+  "input_sha256": "2e205df3a29e3bff1101123efbfc5c4a4995c5fdf302ca3e4aa2fdf870023701",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T19:27:33.756983+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1852,
+        "output_tokens": 919,
+        "total_tokens": 2771,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 706
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.13996",
+    "title": "Splicing Hints into Reasoning Traces: Learning from Demonstrator Failures",
+    "authors": [
+      "Hamed Mahdavi",
+      "Pouria Mahdavinia",
+      "Majid Farhadi",
+      "Vasant Honavar"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.AI"
+    ],
+    "comment": "39 pages, 3 figures",
+    "summary": "Reinforcement learning with verifiable rewards improves mathematical reasoning when a final answer can be checked, but a correct answer does not certify the derivation behind it, and proof problems offer no answer to check. Replacing the check with a reasoning model as an in-loop verifier faces a fundamental obstacle: the policy must already produce occasional correct attempts for any reward to exist, which it may never do at olympiad level. We instead move verification and repair out of the training loop and into offline data generation with SPLICE, a workflow in which a second model, given only a reference solution, edits a reasoning model's traces as they are generated: it verifies progress, truncates a failed trace at its last verified step, and splices in an adaptively strengthened hint until progress resumes. The resulting dataset includes repaired examples whose sampled unaided trajectory failed, with failed continuations removed and progress repeatedly checked against the reference solution. A model finetuned on SPLICE traces outperforms the same model distilled from the reasoning model's unedited traces on AIME and, under a grading protocol validated against human grades, on olympiad proofs. The trained model's own traces show a corresponding behavioral signature: at difficult points it announces a branch in the style of the spliced hints and takes riskier steps, with predictive entropy rising there and just after, a pattern absent from the model trained on unedited traces.",
+    "abs": "http://arxiv.org/abs/2610.13996v1",
+    "pdf": "https://arxiv.org/pdf/2610.13996v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P1",
+      "brief_summary": "提出 SPLICE：用一个仅见参考解的第二个模型在推理模型生成轨迹时逐步验证进展，在最后已验证步骤截断失败轨迹并拼接自适应增强的提示，从而离线构造含修复样本的数据集；蒸馏微调后在 AIME 与奥林匹克证明上优于用未编辑轨迹蒸馏的模型。",
+      "relevance_reason": "虽为纯文本数学推理、无视觉输入也无显式 latent，但其「按步验证—截断失败前缀—注入提示」的轨迹监督与离线数据构造方式，可能为 LVR 的中间状态监督、贡献分配和轨迹训练数据构造提供可核查线索。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T19:27:33.756983+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

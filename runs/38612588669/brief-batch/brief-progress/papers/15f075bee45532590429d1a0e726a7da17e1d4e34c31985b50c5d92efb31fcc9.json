@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.16268",
+  "input_sha256": "4f790f76fe2d7a99ceef9e381acc89b6966a4fe6b0ec5b2080ebd055eb8a5242",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T18:52:21.537858+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1878,
+        "output_tokens": 720,
+        "total_tokens": 2598,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 520
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.16268",
+    "title": "Error Correction in Trained TTT Layers",
+    "authors": [
+      "Yuhe Hu",
+      "Wen Jia Hu"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.CL"
+    ],
+    "comment": "13 pages, 3 figures. Code and saved results included as ancillary material and at https://github.com/aliceyh7/ttt-error-correction",
+    "summary": "Test-time-training (TTT) layers update fast-weight memory while processing an input sequence. A gradient-based update, however, does not by itself establish how the memory revises an existing association. We study the structure and empirical role of prediction-derived updates in released TTT implementations. For dot-product objectives, we characterize the absence of a prediction-error residual and establish conditions under which inner-loop ascent and descent are equivalent after reparameterization. For the LayerNorm-based squared-error objective used by TTT-Linear and TTT-MLP, we derive the inner gradient and identify a prediction-derived component that cancels at the released initialization in the zero-epsilon limit. We then measure the full normalized prediction's contribution on three trained checkpoints. Removing this contribution while retaining the LayerNorm Jacobian gives a mean gradient norm ratio of 0.25 to 0.32 across the models. On 100,303 tokens from War and Peace, the same intervention with local per-token norm matching raises perplexity by 2.8-2.9% on TTT-Linear-760M and 1.3B, whereas freezing all fast-weight updates raises it by factors of 4.2-4.5. Separate synthetic tests illustrate the dependence of plain delta-rule overwriting on step size. The results distinguish a prediction-derived update from its behavioral value and show why implementation analysis and live interventions are both needed to assess test-time memory.",
+    "abs": "http://arxiv.org/abs/2610.16268v1",
+    "pdf": "https://arxiv.org/pdf/2610.16268v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文分析已发布 TTT 层中由预测误差驱动的 fast-weight 更新，推导 dot-product 目标下缺失误差残差的条件与 LayerNorm 平方误差目标的内层梯度，并在三个训练好的 checkpoint 上用移除预测分量、冻结更新等干预测量其对困惑度的贡献。",
+      "relevance_reason": "其「拆出内部更新分量并结合逐 token 范数匹配的干预来量化状态贡献」的思路，可能为 LVR 中 latent 状态如何被更新、以及答案对 latent 内容的依赖与贡献分配提供可供核查的分析线索。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T18:52:21.537858+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

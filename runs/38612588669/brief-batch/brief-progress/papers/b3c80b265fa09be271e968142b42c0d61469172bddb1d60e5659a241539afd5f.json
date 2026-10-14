@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.14409",
+  "input_sha256": "dc6fb4cd839302a70063455a88ffa6cfe516040d9c96b859ca7941c1ffafd425",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T19:21:21.833118+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1949,
+        "output_tokens": 711,
+        "total_tokens": 2660,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 526
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.14409",
+    "title": "PotentialEP: Backprop-Free Training of CIFAR-Scale Generative Models via Equilibrium Propagation",
+    "authors": [
+      "Alex Gower"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.ET",
+      "cs.NE"
+    ],
+    "comment": "Under review at ICLR 2027. Code: github.com/alexgower/EnergyMatchingEqProp",
+    "summary": "Generating an image with a diffusion or flow-matching model typically involves integrating a velocity field for hundreds of sequential steps. That computation suits a GPU poorly and an analog neuromorphic substrate well, where one fast, low-power physical relaxation could replace the whole sequence. Two things are needed: a generative algorithm whose computation is a relaxation, and a way to train it without backpropagation, whose global gradient transport is hard to realise in analog. Energy Matching supplies the first, sampling by gradient-descent relaxation on a time-independent potential - but obtaining the gradient that descent follows is itself a backward pass, once per integration step. We prove that a predictive coding network with a single linear injection term added to its energy relaxes to a state whose visible layer carries that gradient inherently, with an error that vanishes for small injection strengths. An Energy Matching model trained by backpropagation can therefore be loaded into this network unchanged and sampled by relaxation alone, matching the original model's FID to within 0.04 at CIFAR-10 and ImageNet-32 scale. The network can also be trained without backpropagation: Equilibrium Propagation reproduces backpropagation's parameter updates to a cosine similarity of 0.9998, and training end to end with those updates reaches an FID of 3.64 on unconditional CIFAR-10 against 3.54 for backpropagation. To our knowledge this is the first CIFAR-10 generative model trained with Equilibrium Propagation, and the first at competitive quality by any backpropagation-free rule. This quality does not require group normalisation or attention: an architecture of only convolutions and pointwise nonlinearities, both native to an analog crossbar, reaches an FID of 3.51 when trained by backpropagation.",
+    "abs": "http://arxiv.org/abs/2610.14409v1",
+    "pdf": "https://arxiv.org/pdf/2610.14409v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文提出 PotentialEP：用 Energy Matching 配合 Equilibrium Propagation 训练 CIFAR 规模的扩散/流生成模型，并证明加入线性注入项的预测编码网络松弛后的可见层状态天然携带所需梯度，从而免去逐步反向传播。",
+      "relevance_reason": "其松弛式状态收敛与免反向传播的信用分配机制，可能为 LVR 中 latent 推理状态的轨迹训练与贡献分配提供可核查线索，但该工作面向图像生成、未涉及多模态推理。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T19:21:21.833118+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

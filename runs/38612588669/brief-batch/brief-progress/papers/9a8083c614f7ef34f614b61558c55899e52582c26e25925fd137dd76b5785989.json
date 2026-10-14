@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.18614",
+  "input_sha256": "4ff4df4a635291da9adeafc66cf903371b97a3d61392a3399f6efd1e8d23e995",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T18:15:23.905750+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1906,
+        "output_tokens": 990,
+        "total_tokens": 2896,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 760
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.18614",
+    "title": "Can an Agent Learn to Predict Its Own Failure? Outcome-Grounded Confidence Calibration in LLM Agents",
+    "authors": [
+      "Ashutosh Hathidara"
+    ],
+    "categories": [
+      "cs.AI",
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Controlling an acting LLM agent means deciding, at each step of a long-horizon task, whether to trust its next action, abstain, or hand off to a human. That decision needs a per-step confidence signal predicting whether the current rollout will eventually succeed. The agent's own self-reported verbalized confidence is the natural candidate, but existing reinforcement learning methods calibrate it against the correctness of a decision at the current step. We propose a method to calibrate it against the eventual outcome of a multi-step episode: under GRPO, the group of rollouts for a task supplies success labels, and a proper scoring rule scores each step's confidence against the realized outcome. In offline RL on recorded trajectories of a Qwen2.5-7B agent in ALFWorld, TextWorld, and WebShop environments, the AUROC of step confidence against episode outcome rises from near chance to 0.68-0.85, and the top-10% of steps the agent is most confident about succeed ~4.3x more often than average. In online RL on the live ALFWorld agent, four calibration rewards improve early-step AUROC, expected calibration error goes from 0.42 to below 0.12, and selective execution improves over both the untrained agent and a format-only RL control, without degrading task success. We also introduce an evaluation protocol that separates episode depth, task difficulty, and attempt-level foresight, which shows where the gain lies: the trained agent recognizes from its first step which tasks it will fail, while telling a succeeding attempt from a failing one at the same task is harder, with some early-window signal emerging on TextWorld.",
+    "abs": "http://arxiv.org/abs/2610.18614v1",
+    "pdf": "https://arxiv.org/pdf/2610.18614v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P1",
+      "brief_summary": "论文研究 LLM agent 能否用自报的每步置信度预测整段 episode 的最终成败，在 GRPO 下借助同一任务 rollout 组提供的成功标签与 proper scoring rule 校准该置信度，并在 ALFWorld、TextWorld、WebShop 上以离线与在线 RL 检验 AUROC、校准误差和选择性执行。",
+      "relevance_reason": "「以最终结果校准逐步置信度」提供了一条把 episode 级标签回传到单步的训练线索，可能启发 LVR 中 STOP 决策与逐步贡献分配的监督方式，可供核查；但该工作为纯文本 agent、无视觉输入与 latent 推理状态，其可迁移性尚需判断。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T18:15:23.905750+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

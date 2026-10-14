@@ -1,0 +1,74 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.15046",
+  "input_sha256": "bcf1ee794e34a1f9e28371427430a532dadab765de4a6de1ac540d15401eb7ed",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T19:10:21.488756+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1922,
+        "output_tokens": 698,
+        "total_tokens": 2620,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 459
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.15046",
+    "title": "Belief Embedding Tree Search",
+    "authors": [
+      "Christopher Solinas",
+      "Radovan Haluška",
+      "Martin Schmid",
+      "Michael Buro",
+      "Nathan R. Sturtevant",
+      "Michael Bowling"
+    ],
+    "categories": [
+      "cs.AI",
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Beliefs in a Partially Observable Markov Decision Process (POMDP) are posterior distributions over the hidden state given the agent's history of actions and observations. They summarize everything the history says about the state, so planning in a POMDP is planning in a Markov decision process (MDP) over beliefs. Belief MDPs have continuous state spaces even for finite POMDPs, and exact planning in them is intractable in general. Planners must therefore approximate beliefs and estimate values. Monte Carlo planners do both inside a search tree, with an approximate belief at every node and a value estimate at every leaf. Approximations usually consist of sets of sampled states, with leaf values coming from rollouts, hand-designed bounds, or learned networks. Policies and values computed from these approximations are limited by their quality, and prior methods with learned networks rely on hand-chosen summaries of the sampled states. A belief representation should be computable from the parent node's representation through the POMDP's dynamics, let the search sample from it, and be learned so that it provides the information that policies and value functions need. We present Belief Embedding Tree Search (BETS), a Monte Carlo planner that meets these requirements by representing each node's belief with a generative distribution embedding (GDE) while updating it through the POMDP dynamics. BETS trains its belief model alongside its policy and value networks through experience, with the realized hidden state of the POMDP as the belief model's training target. We evaluate BETS on six configurations of RockSample, LightDark, and PocMan against BetaZero and three planners without learned components. BETS is competitive or leading on all six, while every baseline falls far behind on at least one. Where beliefs are highest-dimensional, it outperforms them by a large margin, even without search.",
+    "abs": "http://arxiv.org/abs/2610.15046v1",
+    "pdf": "https://arxiv.org/pdf/2610.15046v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "论文提出 BETS，在 POMDP 的蒙特卡洛树搜索中用生成式分布嵌入表示每个节点的信念，并随动力学递推更新，同时以真实隐藏状态为监督训练信念模型，与策略和价值网络联合学习，在 RockSample、LightDark、PocMan 六个配置上与 BetaZero 及无学习组件的规划器比较。",
+      "relevance_reason": "其「信念状态」作为可递推更新的嵌入表示、以监督目标约束其信息含量、并供策略与价值函数使用，可能为 LVR 中 latent 状态的更新方式、监督来源及 latent 内容是否真正被使用提供类比线索，但领域距离较远，需核查其表示是否具备可迁移性。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T19:10:21.488756+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

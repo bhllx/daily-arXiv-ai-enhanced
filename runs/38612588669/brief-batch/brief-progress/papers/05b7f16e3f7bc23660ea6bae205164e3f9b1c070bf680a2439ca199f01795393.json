@@ -1,0 +1,71 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.16940",
+  "input_sha256": "390d81dade07f95d5c503cbbf999f56e7575d60e897bdffead60764d8e903d42",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T18:41:30.554612+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1951,
+        "output_tokens": 882,
+        "total_tokens": 2833,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 667
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.16940",
+    "title": "KNN Implementation Details Can Dramatically Change Performance: An Example from Cover Trees",
+    "authors": [
+      "Amol Khanna",
+      "Edward Raff"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.AI",
+      "cs.IR"
+    ],
+    "comment": "40th Conference on Neural Information Processing Systems (NeurIPS 2026). Track on Evaluations and Datasets",
+    "summary": "Nearest neighbor search algorithms are widely used and have a long history, but we find that key implementation details are seldom reviewed in articles about them. These details can materially impact performance, and thus change the conclusions one makes about a given algorithm's superiority. In this article, we highlight these impacts by reviewing the Cover Tree as an example, producing RustKNN, a unified Rust implementation of three construction variants of the Cover Tree with three query modes. Our analysis reveals: (1) the optimal query strategy depends on $k$ and on the dataset (single-tree search is fastest at $k{=}1$ on three of our four largest datasets, while dual-tree search is fastest at $k{\\ge}5$ on the three largest), and choosing the wrong query mode can cost up to a $7.5\\times$ factor in runtime; (2) the cover tree base parameter, set to 2 in theory and 1.3 in practice, is not a safe default for dual-tree search: 1.3 is optimal on only one of seven datasets, and on covtype it is $1.6\\times$ slower than the optimum; (3) among five micro-optimizations, only early-exit distance computation has a consistent effect, and that effect grows with dimension (none at $d{=}32$, $1.31\\times$ at $d{=}54$, and $1.49\\times$ at $d{=}784$); and (4) all-nearest-neighbor and held-out benchmarks yield different implementation rankings. All main timing tables report medians over 20 independent allocations with bootstrap 95% confidence intervals. RustKNN is open source at https://github.com/CrowdStrike/RustKNN.",
+    "abs": "http://arxiv.org/abs/2610.16940v1",
+    "pdf": "https://arxiv.org/pdf/2610.16940v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "该文以 Cover Tree 为例，用统一的 Rust 实现 RustKNN 检验三种构建变体与三种查询模式下的实现细节，发现查询策略、base 参数默认值、微优化以及基准设置都会显著改变近邻搜索的运行时间与算法排名结论。",
+      "relevance_reason": "近邻检索是视觉证据筛选与检索式推理流程中的底层操作，该文关于查询模式随 k 和数据规模反转成本结论、默认超参不安全的发现，可能供核查 LVR 中证据检索的成本-精度权衡，以及比较 latent 推理方法时对实现细节与基准设置的控制。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T18:41:30.554612+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

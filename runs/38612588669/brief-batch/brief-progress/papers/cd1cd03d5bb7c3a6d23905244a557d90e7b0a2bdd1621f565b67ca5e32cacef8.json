@@ -1,0 +1,73 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.18853",
+  "input_sha256": "bdde5c63606a526ffa33a09067d49127dae8bed96c07ddea1e1618036b578d47",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T18:11:19.124477+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1849,
+        "output_tokens": 769,
+        "total_tokens": 2618,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 548
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.18853",
+    "title": "Two Clocks: Why Larger Rollout Batches Learn Slower but Fail on Schedule in Reinforcement Learning with Verifiable Rewards",
+    "authors": [
+      "Yuante Li",
+      "Junwei Quan",
+      "Kai Qiu",
+      "Kate Zhang",
+      "Yicheng Tao"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "Reinforcement learning with verifiable rewards (RLVR) relies on costly model-generated responses, motivating larger rollout batches and square-root learning-rate scaling. Reported to approximately preserve progress per sample with one optimizer step per rollout, this rule is less understood in practical multi-step training. We develop a two-clock framework that separates the samples needed to make progress from those consumed before collapse. Under a local quadratic model, the square-root rule preserves first-order drift per sample but not progress: larger batches take fewer, longer updates and lose more to curvature, yielding a learning-rate-dependent critical batch beyond which sample efficiency degrades. A drift-threshold hypothesis predicts a complementary failure clock whose sample count remains approximately invariant along the square-root rule. Controlled GRPO experiments on Qwen2.5-Math-1.5B across a $16\\times$ batch range support both predictions. Ratio clipping delays failure, especially for larger batches, but the progress gap persists without it. Widening the clip trades stability for a transient speed gain. The progress gap reappears on another dataset, a general-purpose checkpoint, and a 7B model. Finally, we use the two-clock framework to derive a simple multi-step RLVR schedule: start below the critical batch and switch to a larger batch before failure. Our code is available at: https://github.com/WinstonLiyt/two-clocks-rlvr.",
+    "abs": "http://arxiv.org/abs/2610.18853v1",
+    "pdf": "https://arxiv.org/pdf/2610.18853v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文提出 two-clock 框架，把 RLVR 中「取得进展所需样本」与「崩溃前消耗样本」分开，在局部二次模型下推导出 critical batch 与失效时钟，并用 Qwen2.5-Math-1.5B 的 GRPO 实验在 16 倍 batch 范围内验证，进而给出一套多步 batch 调度。",
+      "relevance_reason": "LVR 常用 RLVR 类目标训练，其 critical batch、平方根缩放与双时钟分析可供核查：rollout 规模与更新步长如何影响 latent 推理训练的样本效率与失效时机；但原文不涉及视觉或多模态推理。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T18:11:19.124477+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

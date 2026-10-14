@@ -1,0 +1,72 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.16465",
+  "input_sha256": "03acfb7f8b249a0604c26387cdcbe8f6e3080b9af706145568bae25358e25706",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T18:48:49.821184+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1931,
+        "output_tokens": 868,
+        "total_tokens": 2799,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 609
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.16465",
+    "title": "Teaching Vision-Language Models to Decline: Support Completion Against Mirage",
+    "authors": [
+      "Alfaj Uddin Ahmed",
+      "Md. Shaown Miah",
+      "Md Arid Hasan",
+      "Syed Ishtiaque Ahmed",
+      "Sayeed Shafayet Chowdhury"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": "23 pages, 10 figures. Includes supplementary material",
+    "summary": "Vision-language models answer questions about images they were never shown, a failure called mirage. Such an answer can be correct without being justified by the evidence, and the difference matters wherever a model's output is checked by someone who did not see its input. We locate the failure in the training objective: cross-entropy separates a model that reads the image from one that ignores it by only the conditional mutual information between answer and image, and no training example rewards declining. We formalise support completion, TIDE, which also shows each training question with a blank image, a same-domain wrong image and an out-of-domain image, with targets that decline, and prove that under TIDE every image-blind predictor is suboptimal by at least 1.04 nats per example, that the optimum declines exactly on the counterfactual kinds while keeping its behaviour on valid images, and that for any finite model the error of its answer-or-decline decision, declining on valid input plus answering on invalid input, is bounded below by how well its representation separates valid from invalid evidence. On Qwen2.5-VL-7B under a frozen held-out protocol with two judges, the three-condition predecessor of TIDE reduced the invalid-evidence mirage rate from 0.759 to 0.097 and the blank-image rate from 0.700 to 0.003 at a false-abstention cost of 0.126; label-free grounding raised the rate to 0.859, a likelihood-advantage contrast moved it only to 0.718 because its empty-image term carries no gradient, and grounding applied after support completion re-opened the mirage. The four-condition protocol on three base models, with seeds and component ablations, is in progress and not reported here.",
+    "abs": "http://arxiv.org/abs/2610.16465v1",
+    "pdf": "https://arxiv.org/pdf/2610.16465v1",
+    "AI": {
+      "category": "MAIN",
+      "priority": "P1",
+      "brief_summary": "论文把 VLM「mirage」现象（对从未展示的图像作答、答案未被证据支持）归因于训练目标中缺乏拒答激励，提出支持补全训练 TIDE：同一问题搭配空白图、同域错误图与域外图并将目标设为拒答，证明图像盲预测器在 TIDE 下每例至少次优 1.04 nats，并在 Qwen2.5-VL-7B 上将无效证据幻景率从 0.759 降到 0.097。",
+      "relevance_reason": "直接涉及答案是否真正依赖视觉证据、视觉旁路与拒答/停止决策；其「答或拒的决策误差受表示区分有效与无效证据的能力下界约束」这一结论，可供核查 latent 状态中的证据筛选与 STOP 判据时参考。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T18:48:49.821184+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

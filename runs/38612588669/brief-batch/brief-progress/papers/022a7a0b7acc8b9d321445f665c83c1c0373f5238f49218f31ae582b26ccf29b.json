@@ -1,0 +1,73 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.15250",
+  "input_sha256": "37b2f3c21c445a2ff106a1678d6bdc1d6beb96b03961bb42d3d955373e008627",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T19:07:07.250854+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1855,
+        "output_tokens": 787,
+        "total_tokens": 2642,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 552
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.15250",
+    "title": "Correlation-Aware Reconstruction for Multivariate Time Series Anomaly Detection",
+    "authors": [
+      "Md. Johir Raihan",
+      "Zahra Zamanzadeh Darban",
+      "Yueyang Liu",
+      "Flora D. Salim",
+      "Levin Kuhlmann",
+      "Mahsa Salehi"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Reconstruction-based detectors for multivariate time series anomaly detection typically learn a single entangled representation of normal behavior and flag anomalies based on reconstruction error. However, real-world anomalies are not only isolated spikes in a single channel but also disruptions in the relationships between channels, where each sensor individually appears normal, but their joint behavior deviates from the norm. Because these models compress both temporal evolution and inter-channel structure into this single space, they lack an explicit mechanism to isolate such inter-channel dependencies from normal temporal dependencies, leading to lower detection rates for cross-channel anomalies. We propose CARMA (Correlation-Aware Reconstruction for Multivariate Time Series Anomaly Detection), which is a reconstruction-based variational autoencoder with two complementary latent spaces: a temporal latent that captures sequential dynamics, and a correlation latent that is trained to reconstruct the window's pairwise Pearson correlations. Both representations are fused in the signal decoder, and anomalies are detected from the reconstruction error. We evaluate CARMA on the TSB-AD-M benchmark suite (17 datasets, 180 series) against 29 baseline methods, and show that it significantly outperforms all of them across multiple threshold-free and range-aware metrics, achieving a VUS-PR of 0.4929. Ablations show that removing the correlation branch degrades performance, that adding a second latent without supervision recovers only part of the gain, and that supervising the correlation latent with an explicit correlation target accounts for the rest and produces a sharper error response at anomalies.",
+    "abs": "http://arxiv.org/abs/2610.15250v1",
+    "pdf": "https://arxiv.org/pdf/2610.15250v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "提出 CARMA，一种双隐空间的重建式 VAE：一个隐空间建模时序动态，另一个被显式监督以重建窗口内通道间的两两 Pearson 相关，两者在解码器中融合，并以重建误差检测异常；在 TSB-AD-M（17 数据集、180 序列）上对比 29 个基线方法。",
+      "relevance_reason": "时序异常检测与 LVR 主线较远，但其把关系性信息从时序动态中拆到独立隐空间、用显式监督目标训练该支路、并通过消融核查各支路贡献的做法，可能为 LVR 中分离视觉关系与推理状态、验证 latent 内容是否被真正使用提供方法线索，可供核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T19:07:07.250854+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

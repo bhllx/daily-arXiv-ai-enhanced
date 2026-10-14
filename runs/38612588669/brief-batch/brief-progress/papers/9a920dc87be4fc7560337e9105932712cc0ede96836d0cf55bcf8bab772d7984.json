@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.15185",
+  "input_sha256": "4c5a76dbdd276d4f431a779ac2371e7c29847f6179678e637b70bbc86606b46b",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T19:08:01.356396+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1815,
+        "output_tokens": 816,
+        "total_tokens": 2631,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 566
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.15185",
+    "title": "DeltaNet-PC: Test-Time Memory Without Backpropagation Through Time",
+    "authors": [
+      "Todd Morrill",
+      "Richard Zemel"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Test-time memorization of sequential information is a foundational capability for any intelligent system that needs to rapidly store and retrieve data, as demonstrated by the attention mechanism in large language models. However, Transformers and linear attention variants are trained via backpropagation through time (BPTT), which has drawbacks such as its enormous memory requirements. Predictive coding (PC), an algorithm that optimizes a prediction-error energy function with local updates, offers a compelling solution but still lacks test-time memory for sequential data. We develop a solution to this problem by treating the per-step memory update $ΔS_t$ as a latent variable, as opposed to a slow weight to be learned. By taking the log probability of a standard PC-based probabilistic model, we derive a PC-native solution for verbatim sequence memory, and relate our update rule to common choices in the linear attention literature (e.g., DeltaNet). We present an extensive set of empirical tests to probe our system's properties, including its scaling capacity, memory footprint, and ability to infer a context from evidence (e.g., bank (river) vs. bank (money)). We show how DeltaNet-PC can be used for storing single sequences of data, multiple sequences of data, and key-value associative memory pairs with perfect recall accuracy.",
+    "abs": "http://arxiv.org/abs/2610.15185v1",
+    "pdf": "https://arxiv.org/pdf/2610.15185v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P1",
+      "brief_summary": "论文提出 DeltaNet-PC，把每步记忆更新 ΔS_t 当作 latent 变量而非缓慢学习的权重，从预测编码的概率模型推导出无需 BPTT 的逐字序列记忆更新规则，并与 DeltaNet 等线性注意力做法建立联系；实验考察容量扩展、内存占用、从证据推断语境（bank 河岸 vs 银行）以及键值联想记忆的精确召回。",
+      "relevance_reason": "其「逐步状态更新本身即 latent 变量、用局部预测误差而非 BPTT 更新」的思路，可能为 LVR 中 latent 推理状态的产生与监督、以及免反向传播的轨迹训练提供可供核查的方法线索，语境消歧实验也与视觉证据筛选问题相关；但该工作只面向序列记忆，未涉及视觉或多模态推理。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T19:08:01.356396+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

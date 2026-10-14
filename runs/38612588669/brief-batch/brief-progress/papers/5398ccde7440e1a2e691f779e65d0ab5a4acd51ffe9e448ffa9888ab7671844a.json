@@ -1,0 +1,83 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.16985",
+  "input_sha256": "3d5c4a03c83cd5591d10237c7291b8edd5bb2a450b3af54e313ab8b2173fdc06",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T18:40:47.935280+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1954,
+        "output_tokens": 813,
+        "total_tokens": 2767,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 595
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.16985",
+    "title": "AUGUstus: Autonomous Driving VLA Model with Unified Generation and Understanding",
+    "authors": [
+      "Yuqi Ye",
+      "Caigao Jiang",
+      "Zhuonan Wang",
+      "Congyuan Pei",
+      "Chao Qu",
+      "Changhao Peng",
+      "Junhong Lin",
+      "Qize Yu",
+      "Zetian Song",
+      "Guangzhao Fu",
+      "Chongruo Wu",
+      "Shiyu Huang",
+      "Shuchang Zhou",
+      "Honggou Yang",
+      "Wei Gao"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "Vision-language-action (VLA) models show strong potential for end-to-end autonomous driving by leveraging world knowledge and understanding to excel in long-tail scenarios. However, current VLAs have two limitations: 1) Degeneration into vision-action (VA) models. For low latency, regression/flow-based methods directly generate actions but underuse VLM understanding, causing unsafe, unexplainable actions. 2) Autoregressive high latency. Autoregressive methods sequentially generate chain-of-thought (CoT) and action tokens, fully leveraging VLM understanding, but high latency hinders deployment. To enable low-latency deployment while using CoT to assist action generation, we propose AUGUstus, an Autonomous-driving VLA model with Unified Generation and Understanding. We unify diffusion-based action generation and autoregressive CoT understanding in one model, where understanding only serves generation. Joint CoT supervision preserves VLM spatial understanding in shared representation for safer, more accurate trajectories. AUGUstus-mode orders action generation before CoT, so CoT supervises reliable actions during training while inference needs only action output, enabling low latency. AUGUstus-GRPO, a unified GRPO algorithm, jointly optimizes action and CoT, improving action performance. Experiments show AUGUstus achieves 94.6 PDMS on NAVSIMv1 and 90.7 EPDMS on NAVSIMv2, SOTA planning without scorer module. On nuScenes, it achieves average L2 error 0.27 m and average collision rate 0.05%, best among compared methods. To validate AUGUstus practicality, we train on in-house data with 512 NVIDIA H800 GPUs for ~2 days, evaluate on an internal 1,000 km dataset, and preliminarily deploy on a real vehicle, achieving 12 Hz operation. Project page: https://augustus-ad.github.io",
+    "abs": "http://arxiv.org/abs/2610.16985v1",
+    "pdf": "https://arxiv.org/pdf/2610.16985v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P1",
+      "brief_summary": "提出自动驾驶 VLA 模型 AUGUstus，将扩散式动作生成与自回归 CoT 理解统一在一个模型中，并采用先动作后 CoT 的排序与联合 GRPO 训练，使 CoT 仅在训练期监督共享表示、推理期只输出动作以降低延迟。",
+      "relevance_reason": "其「CoT 只在训练期提供监督、推理期不使用」的设计，与 LVR 中语言轨迹监督如何塑造并写入共享表示、以及推理期是否真正使用 latent 内容的贡献分配问题可能相关，可供核查；但整体面向驾驶规划，与视觉推理主线的距离需自行判断。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T18:40:47.935280+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

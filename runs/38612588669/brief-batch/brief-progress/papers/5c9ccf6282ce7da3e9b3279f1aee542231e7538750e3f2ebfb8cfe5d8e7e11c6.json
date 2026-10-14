@@ -1,0 +1,74 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.17590",
+  "input_sha256": "ae517819b3926e4fe124a0179fa8b377dd3af56ab2b784ec34fe3c3f0473914a",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T18:31:58.716570+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1942,
+        "output_tokens": 606,
+        "total_tokens": 2548,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 360
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.17590",
+    "title": "Revisiting the 16x Pretraining Compute Gap between Diffusion and Autoregressive Language Models",
+    "authors": [
+      "Guanghan Wang",
+      "Bing He",
+      "Zhan Shi",
+      "Benoit Dumoulin",
+      "Hanqing Lu",
+      "Volodymyr Kuleshov"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.AI"
+    ],
+    "comment": "project page: https://guanghanwang.com/dlm-scaling",
+    "summary": "Diffusion language models (DLMs) have attracted wide attention for their fast, parallel decoding, but they are believed to be far less efficient to train than autoregressive language models (ARMs): a widely cited study reports that a DLM needs roughly 16x the training compute of an ARM to match its likelihood, a figure that has made pretraining DLMs from scratch look prohibitive at scale. We find that the methodology behind this figure has fallen out of step with current DLM practice: it scores the model with its evidence lower bound (ELBO) and trains a full-sequence, decoder-only model. We therefore revisit the scaling laws of DLMs, adopting the exact likelihood under the model's own decoding order, block diffusion training, an encoder-decoder architecture, and a sweep over the block sizes used in practice. Under this new protocol, we study across ten model variants, about 1,700 models in total, and find that pretraining DLMs is far cheaper than previously thought. Concretely, scoring with the exact likelihood reduces the compute multiple to 12.8x; block diffusion training and an encoder-decoder architecture further reduce it to 7.8x at block size 32, and smaller block sizes narrow it to 4.6x at block size 8 and 3.0x at block size 4. We complement these scaling analyses with an empirical rule for the optimal decoder depth of encoder-decoder block diffusion, a held-out compute budget beyond the fitting range at which the gap between variants persists, and downstream benchmark results where likelihood improvements carry over to accuracy. Overall, the 16x figure substantially overstates the pretraining cost gap between DLMs and ARMs, and pretraining DLMs from scratch is far more viable than previously assumed.",
+    "abs": "http://arxiv.org/abs/2610.17590v1",
+    "pdf": "https://arxiv.org/pdf/2610.17590v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "该论文重新检验「diffusion LM 预训练算力约为 AR LM 的 16 倍」这一结论，指出原评估使用 ELBO 与整序列 decoder-only 设定已偏离当前实践，改用模型自身解码顺序下的精确似然、block diffusion 训练与 encoder-decoder 结构，并对 block size 做扫描，在约 1700 个模型上重拟合 scaling law，将算力倍数降至 12.8x–3.0x 区间。",
+      "relevance_reason": "与视觉推理主线不直接相关，但其 block diffusion 训练、解码顺序似然与 block size／解码深度的算力-质量权衡，可能为 LVR 中 diffusion 式并行状态生成的分块粒度与深度选择提供可核查线索。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T18:31:58.716570+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

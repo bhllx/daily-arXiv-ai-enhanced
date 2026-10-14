@@ -1,0 +1,73 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.18598",
+  "input_sha256": "525935340604aea3372c649a2790d454b552c3a7dbe76ce043c26b3e3507e4c7",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T18:15:49.063289+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1842,
+        "output_tokens": 913,
+        "total_tokens": 2755,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 676
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.18598",
+    "title": "Rethinking Projector Training in Multimodal LLMs",
+    "authors": [
+      "Fabian Gröger",
+      "Naël Ouerghemi",
+      "Shuo Wen",
+      "Maria Brbić"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.AI",
+      "cs.CL"
+    ],
+    "comment": "NeurIPS 2026 camera-ready",
+    "summary": "Multimodal LLMs are typically trained by first aligning a vision encoder with a language model via projector training on large image-caption datasets, followed by joint training of the full multimodal model. Despite its widespread use, the role of the projector training stage remains poorly understood. We find that (i) using only $10$ to $20\\%$ of the data for training the projector already recovers most downstream performance gains, and (ii) projectors trained on different datasets can be linearly interpolated while largely preserving performance. These results suggest that projector training mainly performs a coarse alignment, which many different projectors achieve equally well. Motivated by these findings, we propose PORTAL, a training-free projector initialization that requires neither paired image-caption data nor gradient-based optimization, but only per-modality summary statistics. PORTAL computes an optimal-transport-based map between Gaussian approximations of the vision and language feature distributions on a shared principal subspace, so that the projector training stage can be skipped entirely. Without any paired data, PORTAL matches the standard pipeline trained on 558k image-caption pairs across six LLM backbones, two vision encoders, and 16 benchmarks. It outperforms that pipeline in $3$ of $7$ (vision encoder, LLM) settings and reaches an average $98\\%$ of its score across the other four.",
+    "abs": "http://arxiv.org/abs/2610.18598v1",
+    "pdf": "https://arxiv.org/pdf/2610.18598v1",
+    "AI": {
+      "category": "MAIN",
+      "priority": "P1",
+      "brief_summary": "论文重新审视多模态 LLM 中 projector 对齐阶段的作用：发现仅用 10%–20% 数据即可恢复大部分下游收益、不同数据训出的 projector 可线性插值，据此提出 PORTAL——无需配对图文数据与梯度优化，仅用各模态汇总统计量，在共享主子空间上以最优传输对齐视觉与语言特征的高斯近似来初始化 projector。",
+      "relevance_reason": "其诊断「projector 主要完成粗对齐、多种 projector 等价」直接关系到 LVR 关心的视觉细节是否必须保留到内部状态、信息坍缩程度，以及无配对数据下 latent 视觉状态与语言状态的初始化，可供核查视觉信息进入 LLM 前的损失与可替换性。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T18:15:49.063289+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

@@ -1,0 +1,74 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.17141",
+  "input_sha256": "95657e4be5222426d62d21ef213f95e2cde0ad6fc4f4f27566d6918a5493383c",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T18:38:34.219482+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1873,
+        "output_tokens": 709,
+        "total_tokens": 2582,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 477
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.17141",
+    "title": "MARS: Systematic Multi-Level Acceleration for World Action Models",
+    "authors": [
+      "Zengyuan Zuo",
+      "Yongchang Zhang",
+      "Guangyu Zhao",
+      "Tianze Zhang",
+      "Biao Wu",
+      "Meng Fang",
+      "Yiwu Zhong"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": null,
+    "summary": "World Action Models (WAMs) have emerged as a promising alternative for embodied intelligence by jointly predicting future world states and robot actions. However, their heavy visual encoding and iterative generative inference incur substantial latency, limiting their applicability to high-frequency closed-loop control. Existing training-free acceleration methods typically optimize a single stage, yielding limited speedups or degraded control under aggressive reuse. In this work, we systematically profile the inference overhead of WAMs and observe abundant redundancy across Transformer computation, diffusion denoising, and consecutive policy queries. However, the safe removal of such redundancy depends strongly on its impact on action prediction and control sensitivity. Based on these observations, we introduce \\textbf{MARS}, a training-free and plug-and-play framework for multi-level WAM acceleration. MARS selectively removes low-impact attention computation, adaptively accelerates diffusion inference according to motion granularity, and speculatively reuses predicted future visual representations across consecutive queries with online verification. Together, these complementary mechanisms provide remarkable acceleration while limiting approximation error. Extensive experiments across LIBERO, LIBERO-PRO, and RoboCasa show that MARS achieves up to $4.00\\times$, $3.94\\times$, and $2.10\\times$ end-to-end speedups, respectively, while maintaining task success rate close to the original policy. Moreover, MARS generalizes across different model backbones and across simulation and real-robot experiments, substantially improving the efficiency--performance trade-off of WAM inference. Our code is available at https://github.com/PKU-VaLuE-Lab/MARS.",
+    "abs": "http://arxiv.org/abs/2610.17141v1",
+    "pdf": "https://arxiv.org/pdf/2610.17141v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文剖析世界动作模型（WAM）联合预测未来世界状态与机器人动作时的推理开销，提出免训练、即插即用的 MARS 框架：选择性删除低影响注意力计算、按运动粒度自适应加速扩散去噪，并对跨查询复用的预测视觉表征做在线校验，在 LIBERO、RoboCasa 与真机上取得最高约 4 倍加速且成功率接近原策略。",
+      "relevance_reason": "其「推测复用未来视觉表征＋在线校验」与低影响计算/去噪步的自适应裁剪，可能为 LVR 中 latent 状态缓存复用的安全性与动态计算分配提供可供核查的方法线索，但研究对象是机器人动作策略而非 VLM 推理。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T18:38:34.219482+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

@@ -1,0 +1,72 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.14568",
+  "input_sha256": "7b109e498127fe689ad5b0e0f3f81fcadcc609088dabc413e173283a3f190d42",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T19:19:15.957297+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1823,
+        "output_tokens": 674,
+        "total_tokens": 2497,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 471
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.14568",
+    "title": "FrameFold: Response-Guided KV Cache Consolidation for Autoregressive Long Video Generation",
+    "authors": [
+      "Muyu Liu",
+      "Mingming Liu",
+      "Hong Gu",
+      "Yuyao Zhang",
+      "Qin Lu"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": "26 pages, 14 figures",
+    "summary": "In autoregressive video generation, retaining all historical key-value (KV) states increases memory usage and per-step attention costs as videos grow longer. A fixed cache budget bounds these costs but raises the challenge of preserving historical content that supports consistent, high-quality generation. Existing methods control cache size through history selection or consolidation, yet deciding what to retain and how to limit the loss of useful content remains a shared challenge. Our analysis shows that spatial queries depend on different historical content and that higher current attention coverage does not necessarily yield better long-video quality. We introduce FrameFold, a training-free KV cache consolidation method that compares the content retrieved by the same recent historical queries before and after merging to guide both representative construction and merge selection. Exploiting temporal redundancy between adjacent historical entries, FrameFold merges their KV states into shared representatives while retaining complete spatial grids. It fits value-merging coefficients in closed form by matching conditional attention responses, then selects the merge with the lowest remaining response distortion. Under matched KV cache budgets, experiments on Self Forcing and Causal Forcing at 30 and 60 seconds and on LongLive at 120 seconds demonstrate improved consistency and visual quality. Continuous eight-minute Self Forcing rollouts further show less quality degradation than the baselines.",
+    "abs": "http://arxiv.org/abs/2610.14568v1",
+    "pdf": "https://arxiv.org/pdf/2610.14568v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "提出免训练的 KV 缓存合并方法 FrameFold：以相邻历史条目的时序冗余为基础，比较同一批近期历史查询在合并前后检索到的内容，闭式拟合 value 合并系数并选取响应失真最小的合并方案，在长视频自回归生成中保持一致性。",
+      "relevance_reason": "论文属视频生成，不直接研究视觉推理，但其「按注意力响应失真选择合并、并保留完整空间网格」的缓存整合准则，可能为 LVR 中缓存与注意力结构如何影响 latent 内容保留、以及历史状态如何压缩提供可核查线索。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T19:19:15.957297+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

@@ -1,0 +1,71 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.14688",
+  "input_sha256": "7e97d4b96140b4b4685a8fe1d9da678b6f03015f6ee67ccf64752d782676f732",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T19:17:08.691079+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1784,
+        "output_tokens": 577,
+        "total_tokens": 2361,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 371
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.14688",
+    "title": "Accelerating Cross-Model LLM Inference via Attention Map Reuse",
+    "authors": [
+      "Zhan Jin",
+      "Yuze Luo",
+      "Bin Cui",
+      "Xupeng Miao"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "LLM-augmented data workflows often involve multiple heterogeneous models operating over substantial shared context, such as schemas, tool specifications, interaction history, and intermediate results. Although prefix caching can reduce prefilling overhead, existing approaches are largely limited to reuse within the same model because KV states are tightly coupled to model-specific architectures. We present MapFlow, a system for efficient heterogeneous LLM serving via cross-model attention map reuse. Instead of reusing KV states, MapFlow reuses attention maps, which capture token dependency patterns and are more transferable across models. To enable efficient and accurate reuse, we combine partial recomputation with lightweight linear translation across layers and heads. To make attention reuse practical for long contexts, we further introduce block-level sparse compression and a fused retrieval kernel. Experiments show that MapFlow reduces prefilling latency and improves end-to-end serving efficiency while preserving generation quality across heterogeneous model pairs and multi-turn routing workloads. These results suggest that attention maps provide an effective reusable state for heterogeneous LLM serving, especially in prefix-heavy data workflows. Our code is available: https://github.com/PKU-DAIR/MapFlow.",
+    "abs": "http://arxiv.org/abs/2610.14688v1",
+    "pdf": "https://arxiv.org/pdf/2610.14688v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "提出 MapFlow：在异构 LLM 服务中不复用 KV 状态，而是复用跨模型更可迁移的 attention map，通过部分重算、轻量线性变换、块级稀疏压缩与融合检索核降低预填充延迟并保持生成质量。",
+      "relevance_reason": "其把 attention map 视为可跨模型复用的状态、并以块级稀疏与检索选取保留部分，可能为 LVR 中注意力结构对 latent 相似度的影响以及视觉证据筛选提供线索，但该文为纯文本推理效率工作，与多模态推理机制的联系需人工核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T19:17:08.691079+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

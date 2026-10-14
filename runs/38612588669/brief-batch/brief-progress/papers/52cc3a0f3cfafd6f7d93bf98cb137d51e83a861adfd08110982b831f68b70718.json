@@ -1,0 +1,71 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.16261",
+  "input_sha256": "b0c7aec39d23524b38d8df711de3be04f385b79e791291806d3e43f64a68f3f9",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T18:52:27.573952+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1923,
+        "output_tokens": 597,
+        "total_tokens": 2520,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 388
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.16261",
+    "title": "Hardware-Friendly Token-Group Activation Quantization for Low-Bit Mamba Super-Resolution",
+    "authors": [
+      "Jinwoo Chung",
+      "Jangho Kim"
+    ],
+    "categories": [
+      "cs.AI",
+      "cs.CV",
+      "cs.LG"
+    ],
+    "comment": "Accepted to NeurIPS 2026. 32 pages, 6 figures. Code: https://github.com/imaboybut/TGQ-MambaSR",
+    "summary": "Mamba-based super-resolution models are efficient alternatives to Transformer-based restoration backbones, but their low-bit post-training quantization remains challenging because selective scan, Mamba's input-dependent state-space operator, induces different activation ranges across spatial tokens. Thus, a single layer-wise clipping range poorly matches all tokens. We propose Token-Group Quantization, a hardware-friendly activation PTQ framework that statically approximates a hardware-unfriendly post-scan grouping oracle, where tokens with similar preferred clipping ranges are assigned to the same group. To avoid runtime post-scan grouping in static low-bit inference, a lightweight predictor infers the groups from pre-scan features available before the quantized scan path. During calibration, we form pseudo-labels by clustering post-scan activation descriptors that capture similar rounding--clipping behavior. At inference, the frozen predictor maps pre-scan features to groups and selects entries from offline-calibrated group-wise clipping-bound tables, without runtime statistics collection, dynamic clipping updates, or post-scan group assignment. To address low-bit restoration degradation, we further introduce a Frequency-Preserving Refinement (FPR) objective for clipping-bound calibration. FPR aligns Fourier amplitude and phase between full-precision teacher and quantized student outputs to preserve high-frequency structures. Across PTQ protocols, bit-widths, backbones, and tasks, our method consistently outperforms prior Mamba and SR PTQ baselines, transfers to Transformer SR and Vision Mamba classification, composes with rotation-based quantization, and achieves 2.23x speedup on Jetson Orin Nano over FP16. Code is available here.",
+    "abs": "http://arxiv.org/abs/2610.16261v1",
+    "pdf": "https://arxiv.org/pdf/2610.16261v1",
+    "AI": {
+      "category": "EXCLUDE",
+      "priority": "NONE",
+      "brief_summary": "该论文提出 Token-Group Quantization，一个面向低比特 Mamba 超分辨率的硬件友好激活 PTQ 框架：用轻量预测器从 pre-scan 特征预测分组，从而静态选择离线标定的分组裁剪边界，并引入频域保持精修目标缓解低比特复原退化。",
+      "relevance_reason": "研究对象是超分辨率模型的训练后量化与推理加速，虽涉及 Mamba 扫描状态与分组预测，但目标是数值精度与硬件效率，不涉及多模态推理链、latent 推理状态生成或证据决策，缺乏可迁移的状态或监督线索。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T18:52:27.573952+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

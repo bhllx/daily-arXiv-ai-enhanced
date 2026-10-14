@@ -1,0 +1,73 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.17109",
+  "input_sha256": "9ba322018f7c4f8bac37f5b8c99137a6679cbd032f85b8bb401fb09b9d765aba",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T18:38:52.302807+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1781,
+        "output_tokens": 531,
+        "total_tokens": 2312,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 302
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.17109",
+    "title": "Masked Diffusion for Travel Diaries Synthesis",
+    "authors": [
+      "Pascal Jutras-Dubé",
+      "Raziq Zaman",
+      "Fabian Bastin",
+      "Cinzia Cirillo",
+      "Ruqi Zhang"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.SI"
+    ],
+    "comment": null,
+    "summary": "Because household travel surveys combine household characteristics, variable-length person rosters, vehicle rosters, and trip chains, existing synthesis pipelines split them across separate models or flatten them into cropped fixed-length vectors. Representation, rather than modeling, becomes the bottleneck: splitting severs cross-segment dependence, and cropping truncates the household-structure distribution. We instead tokenize the diary and keep the object whole: each household-day becomes one token sequence with count tokens for vehicles, persons, and trips, and distinct symbols for padded, hidden, unobserved, and inapplicable positions. We introduce DiaryBridge, a masked diffusion model that bridges the fully hidden sequence to the distribution of complete diaries by unmasking positions in any order. One trained model, conditioned on any observed subset, performs synthesis and partial-diary completion alike. Experiments on real data extracted from the 2017/2018 Regional Travel Survey of the Baltimore region show that DiaryBridge generates travel reflecting vehicle availability and employment status, recovers shared trips using other household members' observed diaries, and better reproduces aggregate demand across modes, purposes, and departure periods than the learned baselines.",
+    "abs": "http://arxiv.org/abs/2610.17109v1",
+    "pdf": "https://arxiv.org/pdf/2610.17109v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "论文提出 DiaryBridge，将家庭出行日记整体 token 化为变长序列（含车辆/成员/行程计数 token 与 padded、hidden、unobserved、inapplicable 等区分符号），用掩码扩散模型以任意顺序解掩，单模型即可在给定任意观测子集时同时做合成与部分补全，并在巴尔的摩真实调查数据上优于学习基线。",
+      "relevance_reason": "其「区分 hidden/unobserved 位置并以任意顺序逐步解掩」的掩码扩散机制，可能与 LVR 中 latent 状态更新顺序、被遮挡或缺失视觉证据的表示处理及部分观测下的条件生成有概念性联系，可供核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T18:38:52.302807+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

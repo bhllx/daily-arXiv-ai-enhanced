@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.18575",
+  "input_sha256": "f53bcc0880f8ae08e58a2bd9048a5849ace00614084d6a3b65de45deb6a2fa86",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T18:16:07.215119+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1725,
+        "output_tokens": 650,
+        "total_tokens": 2375,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 439
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.18575",
+    "title": "Detecting Unreliable Classifications from Quantized Models",
+    "authors": [
+      "Ananya Kotla",
+      "Jorge T. Gomez"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": "1 figure, 5 tables",
+    "summary": "Post-training INT8 quantization is typically validated by checking accuracy retention, which requires ground-truth labels often unavailable in low-resource clinical settings. We show a label-free alternative: comparing a model's own output before and after quantization. We compute cosine similarity between the FP32 and INT8 models' output probability vectors for each prediction, which requires only a single forward pass. This output-agreement similarity separates lower-accuracy predictions across four evaluated architectures (ResNet-50, VGG-16-BN, Wide ResNet-50, and ViT-B/16) under fixed-percentile splits, outperforming a confidence-only baseline for all four. These results show that quantized models can be compared to their baselines to assess their drift and determine whether they are well suited for clinical deployment.",
+    "abs": "http://arxiv.org/abs/2610.18575v1",
+    "pdf": "https://arxiv.org/pdf/2610.18575v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "该文提出一种免标签的量化模型可靠性检测方法：对每个预测计算 FP32 与 INT8 模型输出概率向量之间的余弦相似度，仅需一次前向，在四种架构上按固定百分位划分即可分离低准确率预测，并优于仅用置信度的基线。",
+      "relevance_reason": "以「两个模型变体的输出分布一致性」作为免标签可靠性信号，可能为 LVR 中无标注条件下的推理可靠性判断与停止决策提供方法线索；但此处比较的是分类概率向量而非 latent 推理状态，能否迁移到 latent 相似度或证据累积需要核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T18:16:07.215119+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

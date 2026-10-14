@@ -1,0 +1,74 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.15235",
+  "input_sha256": "efff39033e98145000b3b1ec83e1cbb0bef2866692e830e39ed99bd066c50451",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T19:07:20.806625+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1926,
+        "output_tokens": 574,
+        "total_tokens": 2500,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 368
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.15235",
+    "title": "MoMaTune: Model, Match, Then Tune Language Models for Numerical Records",
+    "authors": [
+      "Weimin Lyu",
+      "Jingfen Zhang",
+      "Lingdao Sha",
+      "Peng sun",
+      "Xiaowei Chen",
+      "Vincent Gao",
+      "Rui Song"
+    ],
+    "categories": [
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "Despite remarkable progress in language understanding and generation, decoder language models continue to exhibit striking failures on numerical data. Numerical examples are typically serialized as text by concatenating feature names with their values (e.g., fat:3.4), while conventional task adaptation applies loss only to the downstream prediction target. This leaves two structures weakly supervised: within-value sensitivity, where digit position determines numerical magnitude, because token cross-entropy contains no explicit numerical metric; and across-field structure, where measurements in the same record are statistically dependent, because target-only tuning provides no direct loss on the measurements or their dependencies. We introduce MoMaTune (Model, Match, then Tune), a two-stage post-training strategy organized around these supervision gaps. Stage 1 applies Model, ordinary next-token prediction densely over label-free serialized records, and optionally adds Match, a same-record consistency objective that aligns representations of different partial views of the same example. Stage 2 applies Tune, supervised fine-tuning for downstream target prediction. We evaluate MoMaTune on 169,285 records from eight public datasets, with 339 of 340 input fields numerical. At 1.5B parameters, Model raises the eight-dataset masked-value imputation aggregate from 0.106 to 0.401, while the three-dataset correct-context gain rises from 0.058 to 0.167. On diagnostics, Model also increases sensitivity to numerically consequential digit changes, while Match improves robustness to informative partial views. Adding Tune yields higher target-supervised embedding aggregates for each tested Stage-1 parent, and the two-stage recipes obtain higher aggregate scores than Tune alone. The same pattern is observed at 4B, 9.6B, and 27B parameters when model embeddings are used for downstream prediction.",
+    "abs": "http://arxiv.org/abs/2610.15235v1",
+    "pdf": "https://arxiv.org/pdf/2610.15235v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文提出 MoMaTune 两阶段后训练策略：先在无标签序列化记录上做密集下一词预测（Model）并可加同记录多视图表示对齐（Match），再做下游目标监督微调（Tune），以弥补数值记录中值内敏感性与跨字段依赖的监督缺口，并在八个公开数据集上评测。",
+      "relevance_reason": "其「Match」同一示例不同局部视图的表示一致性目标，以及对非答案内容施加密集辅助监督的思路，可能为 LVR 中 latent 表示的多视图一致性与答案之外内容的监督分配提供可核查线索。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T19:07:20.806625+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

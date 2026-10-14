@@ -1,0 +1,76 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.15141",
+  "input_sha256": "ea6def34ade18defc3c9f547ad899397b8e2457b23a30909f94a33a42691951b",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T19:08:39.616283+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1912,
+        "output_tokens": 653,
+        "total_tokens": 2565,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 421
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.15141",
+    "title": "Single-step Retrosynthesis via Reinforcement Learning from Forward Feedback",
+    "authors": [
+      "Zixun Lan",
+      "Zhenfu Liu",
+      "Yi Li",
+      "Xinheng Wang",
+      "Mingmin Chi",
+      "Qibiao Wang",
+      "Jie Zhu",
+      "Xiaohui Tian",
+      "Fei Ma"
+    ],
+    "categories": [
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "Single-step retrosynthesis is a one-to-many inverse problem, yet most models are trained and evaluated against a single recorded reactant set. Reference-based training gives no explicit positive signal for unrecorded alternatives, and exact-match evaluation rejects non-matching predictions regardless of chemical plausibility. We propose Retrosynthesis via Reinforcement Learning from Forward Feedback (RetroRLFF), which optimizes reactant generation using both reference agreement and forward consistency with the target product. Starting from a supervised decoder-only Transformer, RetroRLFF generates complete reactant candidates and uses a frozen forward reaction model to predict products. A sequence-level reward combines reference agreement and forward consistency while penalizing invalid outputs. Direct Advantage-Based Policy Optimization updates the policy without human preference annotations or a preference-trained reward model. On USPTO-50K, RetroRLFF outperforms all 14 baselines in candidate-level round-trip accuracy at k = 1, 3, 5, and 10. With approximately 50 million parameters, it achieves 90.1% top-1 round-trip accuracy, exceeding R-SMILES, the strongest competing baseline on this metric, by 8.5 percentage points. Compared with its supervised policy, round-trip accuracy increases from 83.1% to 90.1%, while exact-match accuracy is maintained at 57.9% versus 57.5%. In an anonymized expert assessment of 131 randomly selected test cases, organic synthesis experts prefer RetroRLFF over EditRetro in 67.9% of comparisons. These results support forward feedback as a training signal for improving forward consistency while retaining top-1 reference recovery. Expert assessment provides complementary evidence of synthetic feasibility on the selected cases, although neither forward consistency nor expert preference establishes experimental feasibility.",
+    "abs": "http://arxiv.org/abs/2610.15141v1",
+    "pdf": "https://arxiv.org/pdf/2610.15141v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "提出 RetroRLFF：在监督训练的解码器 Transformer 上生成候选反应物，用冻结的正向反应模型预测产物，构造「参考一致性 + 正向一致性 + 无效输出惩罚」的序列级奖励，以直接优势策略优化更新策略，在 USPTO-50K 上提升往返准确率并保持 top-1 参考复现。",
+      "relevance_reason": "把外部前向模型反馈当作序列级奖励来训练生成策略，可能与 latent 推理中的轨迹监督、验证器反馈和贡献分配有可借鉴线索；其一多对多问题与单一参考评估的错配，也可能启发 LVR 多假设与证据筛选的评价方式，均需核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T19:08:39.616283+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

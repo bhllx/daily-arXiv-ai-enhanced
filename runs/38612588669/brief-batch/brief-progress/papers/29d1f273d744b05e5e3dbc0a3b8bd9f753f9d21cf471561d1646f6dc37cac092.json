@@ -1,0 +1,71 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.16655",
+  "input_sha256": "bc03afe8266fbfa89e6b8737efa73bdebf0852d4c19a51970c3ffba274eade64",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T18:45:28.444913+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1938,
+        "output_tokens": 744,
+        "total_tokens": 2682,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 535
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.16655",
+    "title": "Does a Hosted Decision Model Respect Irrelevant Alternatives? A Pre-Registered Test of Option-Set Dependence in Jev",
+    "authors": [
+      "Dushyant Rajput",
+      "Nirdesh Chauhan",
+      "Siddharth Kosaraju"
+    ],
+    "categories": [
+      "cs.AI",
+      "cs.CL"
+    ],
+    "comment": null,
+    "summary": "Decision APIs that return a probability for each option are routinely used as if those probabilities were properties of the options themselves. That reading is valid only if the model satisfies independence of irrelevant alternatives (IIA): adding an option that is neither the right answer nor its strongest rival should leave the odds between those two unchanged. We test this in a pre-registered study of jev-1.13.0, a hosted decision model, using 299,463 calls on intent classification (BANKING77, CLINC150) and topic classification (AG News). Every added option moves the log-odds between the gold label and the strongest wrong label: the root-mean-square systematic shift is 0.20-0.52 nats, 1.2 to 3 times the run-to-run variation, even when the added option takes at most 0.1% of the probability mass. The shifts are directional. An option similar to the wrong answer draws probability from it (+0.10 nats toward the gold label). A paraphrase of the wrong answer produces an intermediate pattern: the gold label's probability is almost conserved, but the paraphrase receives only about a third of the wrong answer's share rather than the half that strict substitution implies. The distortion grows steadily with the logarithm of the number of options, reaching about 1 nat at 255 options, and off-domain padding pushes the odds against the gold label. In contrast, questions packed into one call do not interact (bias < 0.001). Scoring each option with an independent yes/no question removes the option-set dependence but picks the right answer 8.7 points less often. Jev sits between two local baselines, an option-independent scorer and a prompt readout. Its probabilities are best read as relative to the option list they were computed over.",
+    "abs": "http://arxiv.org/abs/2610.16655v1",
+    "pdf": "https://arxiv.org/pdf/2610.16655v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "以预注册实验在托管决策模型 jev-1.13.0 上做近 30 万次调用，检验其按选项输出的概率是否满足无关选项独立性（IIA）：加入既非正确答案也非最强竞争者的选项仍会系统性推动金标签与最强错误标签之间的对数几率，且偏移随选项数对数增长。",
+      "relevance_reason": "其对「逐一独立打分 vs 联合读选项集」的对比与选项集依赖度量，可供核查 LVR 中把 latent 读出的概率当作选项属性、并据此做验证或置信停止这一假设是否成立。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T18:45:28.444913+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

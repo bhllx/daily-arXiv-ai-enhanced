@@ -1,0 +1,75 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.17062",
+  "input_sha256": "72f91fa67f4e5b908f569cdd4b9e8a4bbeb4bb36d33afd37076de9c6ef19c74b",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T18:39:32.588451+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1834,
+        "output_tokens": 881,
+        "total_tokens": 2715,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 665
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.17062",
+    "title": "Gradient Routing Localizes and Removes Unintended Behaviors in RL",
+    "authors": [
+      "Jake Ward",
+      "Shawn Hu",
+      "Aria Wong",
+      "Nathan Hu",
+      "Bryce Woodworth",
+      "Alexander Matt Turner",
+      "Alex Cloud"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "We propose a mitigation to reward hacking in reinforcement learning. Our setup involves a misspecified reward function that gives rise to unintended behavior, and a monitor used to detect unintended behavior. As with frontier AI systems, the monitor makes systematic errors. Consequently, using the monitor for data filtering or to apply a reward penalty fails to prevent the model from learning unintended behavior (\"reward hacking\"). To address this problem, we introduce GRAFT: Gradient Routing Adapter Fine Tuning. Rather than penalizing or filtering flagged samples during training, GRAFT constrains gradient updates on those samples to a sacrificial set of new parameters. This has two benefits: First, because the monitor is not part of the reward function, the model does not learn to hide misbehavior. Second, ablating the sacrificial parameters reduces or entirely stops the unintended behavior while maintaining improved performance on target tasks. We demonstrate these benefits in RL environments where reward penalties cause models to learn to reward hack in undetected ways, training models ranging from 135M to 8B parameters. Additionally, we show a similar effect at a larger scale by distilling frontier LLM trajectories containing reward hacking into Qwen3-32B, without teaching that model to reward hack. Overall, our work suggests GRAFT may be a promising approach for leveraging imperfect monitors during post-training in settings where true performance is difficult to evaluate.",
+    "abs": "http://arxiv.org/abs/2610.17062v1",
+    "pdf": "https://arxiv.org/pdf/2610.17062v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文提出 GRAFT，将监控器标记样本上的梯度更新约束到一组新增的「牺牲」参数，以避免模型学会隐藏奖励黑客行为，并可通过消融这些参数削弱或消除非预期行为；在 135M–8B 的 RL 环境及蒸馏 Qwen3-32B 上验证。",
+      "relevance_reason": "其「按样本路由梯度 + 参数消融定位行为」的做法，可能为 LVR 中轨迹训练的贡献分配、监督信号隔离以及用消融检验 latent 状态因果作用提供训练侧线索，但论文不涉及视觉输入或 latent 推理，迁移性待核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T18:39:32.588451+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

@@ -1,0 +1,71 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.14332",
+  "input_sha256": "4b2738e5c3c5f45c5155712ee99d88a78c8775425f1bda56433746629f56a9e0",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T19:22:51.540009+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1957,
+        "output_tokens": 851,
+        "total_tokens": 2808,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 608
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.14332",
+    "title": "TraceSampler: Making Sampling Errors Predictable and Correctable for Accelerated Generative Sampling",
+    "authors": [
+      "George Matthew",
+      "Guoqiang Zhang",
+      "Kenta Niwa"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "Accurate sampling from continuous-time generative models can require many model evaluations. Low-step sampling reduces cost, but coarse updates introduce endpoint errors that can accumulate and degrade generation quality. We introduce TraceSampler, a post-training method that corrects these errors without modifying the pretrained model. Rather than optimising low-step updates directly, TraceSampler models endpoint error as a sample-specific prediction problem. A higher-step reference integration over the same interval provides the supervised target, while a compact representation makes high-dimensional error predictable from the sampling trace. This representation combines shared residual structure, trace-derived directions, and a low-rank remainder, so shallow per-step MLP heads predict sample-dependent coefficients. These coefficients drive a two-stage learned residual correction: the first stage predicts the full endpoint residual, while an intermediate backbone evaluation provides new trace information to predict the remaining residual; this evaluation is reused by the following step. TraceSampler is evaluated with Rectified Flow on CIFAR-10, SiT-XL/2 on ImageNet-256, and SD3.5 Medium for text-to-image generation. At 10 steps, it reduces trajectory MSE relative to matched-step Euler by 90.5% on CIFAR-10 and 85.6% on ImageNet-256, while achieving FID scores of 2.692 and 2.189, close to 120-step Heun references of 2.601 and 2.056 with 24$\\times$ fewer backbone evaluations. On SD3.5 Medium, TraceSampler improves image quality and prompt following; at 10 steps, ImageReward rises from 0.752 to 0.906 while trajectory MSE falls by 70.7%. These gains preserve Euler's backbone-evaluation budget, add less than 0.4% inference FLOPs, and incur negligible wall-clock overhead, showing that coarse-step sampling error can be made predictable from the sampling trace and efficiently corrected.",
+    "abs": "http://arxiv.org/abs/2610.14332v1",
+    "pdf": "https://arxiv.org/pdf/2610.14332v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "TraceSampler 是一种后训练方法，用于加速扩散/Rectified Flow 等连续时间生成模型的低步采样：把端点误差建模为样本相关的预测问题，用高阶参考积分作监督，将高维误差分解为共享残差结构、轨迹导出方向与低秩余项，并由浅层 MLP 头预测系数，经两阶段残差修正（中间评估结果被下一步复用）降低误差。",
+      "relevance_reason": "原文「从采样轨迹预测高维误差、分解为共享/轨迹方向/低秩余项并做两阶段修正」的思路，可能可供核查 latent 推理循环中的状态漂移预测、残差修正与中间评估复用；但该文面向图像生成采样而非视觉推理，迁移性属推测。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T19:22:51.540009+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

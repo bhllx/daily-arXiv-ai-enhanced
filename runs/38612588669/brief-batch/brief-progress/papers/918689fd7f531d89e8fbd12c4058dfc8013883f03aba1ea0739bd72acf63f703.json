@@ -1,0 +1,68 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.14762",
+  "input_sha256": "e491e70364a5cd591931cd06c2f3c14b93822844f9c97a08424331dc0a2da6df",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T19:15:27.814673+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1800,
+        "output_tokens": 889,
+        "total_tokens": 2689,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 688
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.14762",
+    "title": "CrossMean: Model Merging by Pairing Merged and Expert Activations",
+    "authors": [
+      "Moshe Eliasof"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Model merging combines fine-tuned experts into one network without retraining, and closed-form methods compute each merged layer from statistics of its input activations. However, these statistics are measured on a single expert, while in the merged model, each layer receives activations from the merged layers that precede it. Recent work re-measures these statistics in the merged model but still forms them from a single network. We formulate closed-form methods as a linear system and show that they use the same matrix on both sides. We then introduce CrossMean, which replaces this matrix on one side with a bilinear statistic that pairs merged and expert activations. From the same statistics, we also derive a label-free criterion that indicates the task sets in which accounting for the merged activations improves the merge more. Empirically, task sets with a lower criterion value show a larger improvement. On the eight-task benchmark of each vision backbone that we tested and on BERT encoders, CrossMean improves on merging with statistics measured on the experts, and with all linear layers merged, it also improves on re-measuring these statistics in the merged model. These results suggest that merging benefits from pairing merged and expert activations.",
+    "abs": "http://arxiv.org/abs/2610.14762v1",
+    "pdf": "https://arxiv.org/pdf/2610.14762v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文将闭式模型合并形式化为线性系统，指出现有方法两侧使用同一矩阵，提出 CrossMean 用配对「已合并模型激活」与「专家激活」的双线性统计替换其中一侧，并由此导出无标签准则来预测哪些任务集合能从这一改动中获得更大提升。",
+      "relevance_reason": "其逐层配对合并/专家激活统计的思路，可能为考察 latent 推理状态在多层传递中与原模型表示的一致性或缓存失配提供可供核查的方法线索，但该工作面向参数空间合并，与 VLM 推理无直接联系。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T19:15:27.814673+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

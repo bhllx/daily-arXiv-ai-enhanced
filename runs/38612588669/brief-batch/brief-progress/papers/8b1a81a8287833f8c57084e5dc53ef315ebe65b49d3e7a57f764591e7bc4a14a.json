@@ -1,0 +1,72 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.15218",
+  "input_sha256": "a552433c2e8b85f470168782faaa89b4da012cfa6bb0c8f91eb354a447eb6273",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T19:07:46.656254+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1999,
+        "output_tokens": 833,
+        "total_tokens": 2832,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 544
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.15218",
+    "title": "Running Fewer Loops Removes Refusal Behaviour in Recurrent-Depth Language Models",
+    "authors": [
+      "Seyedarmin Azizi",
+      "Erfan Baghaei Potraghloo",
+      "Arya Fayyazi",
+      "Saeid Shokoufa",
+      "Massoud Pedram"
+    ],
+    "categories": [
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "A recurrent-depth language model reuses one block of weights several times in a row. The number of repetitions, which we call loops, is chosen when the model runs, not when it is trained, and running fewer is cheaper and faster, so a deployment may choose to do it. Running fewer loops also makes these models less safe, and the loss of safety is larger than the loss of anything else we measured. We study four released Ouro checkpoints and Huginn-0125. At half of its trained depth, Ouro-1.4B-Thinking still solves 0.692 of the GSM8K maths problems, against 0.775 at full depth, keeping 89% of its accuracy. Over the same reduction, the rate at which it helps with harmful requests rises from 0.038 to 0.205, 5.3 times higher. The information is not lost: a linear classifier reads whether a request is harmful from the model's internal state after a single loop, with an ROC AUC of 0.967 against 0.986 at full depth. What the missing loops remove is the refusal that should follow. We measure the effect with four instruments, one generating no text at all, and reproduce it on a second model family. Removing a single direction from Ouro-1.4B's internal state at full depth drops its refusal rate on harmful prompts from 0.950 to 0.130, identifying what the shallow model is missing. Two run-time repairs do not help: the models' early-exit rules do not spend more loops on harmful requests, and choosing a depth per request does not recover the loss. Changing the training does. Standard safety training makes the shallow model safe only by refusing 0.865 of harmless requests, while training at randomly chosen depths reaches a separation of +0.399 between harmful and harmless refusal at one loop, against +0.118. On Huginn-0125 it keeps harmful help at or below 0.040 at every depth from 1 to 32 loops, where standard training reaches 0.194, and it costs no accuracy at full depth.",
+    "abs": "http://arxiv.org/abs/2610.15218v1",
+    "pdf": "https://arxiv.org/pdf/2610.15218v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P1",
+      "brief_summary": "研究循环深度语言模型在减少循环次数时的安全退化：在四个 Ouro 检查点与 Huginn-0125 上，用四种手段（含不生成文本的探测）显示减半深度仍保留约 89% 数学准确率，但配合有害请求的比例从 0.038 升到 0.205；线性分类器在单循环内部状态仍能高度判别有害请求，而从内部状态移除单一方向即可复现拒绝消失，运行时早退与按请求选深度均无法修复，随机深度训练则可恢复有害/无害拒绝的分离度。",
+      "relevance_reason": "该工作是纯文本循环深度模型，其「少算力即少循环」的深度—行为权衡、内部状态仍线性可读却未被下游使用、以及单方向因果移除，可能为 LVR 中停止/深度决策、latent 状态的贡献分配与监督设计提供可供核查的线索，但需研究者自行迁移到多模态推理场景。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T19:07:46.656254+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

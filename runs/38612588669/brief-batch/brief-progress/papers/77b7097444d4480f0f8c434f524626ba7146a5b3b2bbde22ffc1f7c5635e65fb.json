@@ -1,0 +1,72 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.14277",
+  "input_sha256": "b4e5f73519e8fa7337b2b87ea734afb58ed5c0d4e55659c4cf2153c837cf9628",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T19:23:35.827519+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1904,
+        "output_tokens": 758,
+        "total_tokens": 2662,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 545
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.14277",
+    "title": "Echo: Error-Compensated 4-Bit Tensor-Parallel Communication for LLM Training and Inference",
+    "authors": [
+      "Xingyu Xie",
+      "Xiaoyong Xie",
+      "Zhouchen Lin",
+      "Kim-Chuan Toh"
+    ],
+    "categories": [
+      "cs.AI",
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Tensor parallelism ends every layer with an all-reduce that sits between two dependent matrix multiplications, so its cost cannot be hidden and grows as compute outpaces interconnect bandwidth. Sending 4-bit instead of 16-bit values would cut this cost by nearly 4x, but the all-reduce must add the values it carries, and rounding the sum injects an error at every call. Model quality depends on how these errors accumulate over layers, yet existing methods treat each call on its own. We present Echo, a 4-bit all-reduce for training and inference that controls the accumulated error. Echo moves data in 4 bits and sums in high precision, so each value is quantized at most twice per call for any number of GPUs. The summation reveals each injected error, and Echo feeds it back into later calls, so old errors cancel instead of accumulating. We prove that the accumulated error stays bounded independently of depth. On A100 GPUs, Echo is 2.09x faster than the 16-bit NCCL all-reduce on 1 GB messages. It speeds up the time to first token by up to 1.16x and the training step by up to 1.09x on an idle interconnect, and by up to 1.44x and 1.38x as background traffic grows. It keeps the average accuracy over seven benchmarks within 0.4 points of 16-bit inference on Qwen3-8B. In 10B-token pretraining, its final loss is less than 0.9% above that of 16-bit training. Echo needs no FP8 or FP4 hardware.",
+    "abs": "http://arxiv.org/abs/2610.14277v1",
+    "pdf": "https://arxiv.org/pdf/2610.14277v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "论文提出 Echo，一种面向张量并行的 4-bit all-reduce 通信方案：数据以 4 bit 传输、以高精度求和，并把每次调用中暴露的量化误差反馈进后续调用，从而让旧误差相互抵消，证明累计误差与深度无关；在 A100 上取得加速并基本保持精度。",
+      "relevance_reason": "其「误差反馈使累计误差有界、不随深度增长」的机制，可能与 LVR 中 latent 状态跨步量化或被压缩时的误差累积、以及多步轨迹训练的监督分配问题存在概念联系，可供核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T19:23:35.827519+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

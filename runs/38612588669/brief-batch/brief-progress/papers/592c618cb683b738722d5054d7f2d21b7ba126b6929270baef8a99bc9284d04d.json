@@ -1,0 +1,74 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.16545",
+  "input_sha256": "6b091bf28c98f5cb30e16d31d844c394d59f4ef4c57a18c12b0ba2b5f2014b2c",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T18:47:32.033097+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1816,
+        "output_tokens": 621,
+        "total_tokens": 2437,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 412
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.16545",
+    "title": "Heuristics are Not Enough: Calibrated and Corrected Caching for Video Diffusion Acceleration",
+    "authors": [
+      "Jiyue Jiang",
+      "Zhiyu Huo",
+      "Yuhan Chen",
+      "Yanruisheng Shao",
+      "Gong Zhang",
+      "Lei Deng"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "Feature caching has become a mainstream training-free strategy for accelerating video diffusion models by reusing intermediate outputs across denoising steps. However, existing adaptive methods rely on heuristic difference measures misaligned with actual generation quality, employ a single global threshold that ignores heterogeneous phase dynamics, and never validate their budget estimates against true approximation error, allowing systematic bias to propagate uncorrected. We propose \\textbf{AlignCache}, a closed-loop caching framework that directly aligns scheduling decisions with their true influence on the final generated video through three tightly coupled components: (1) phase-adaptive budget routing that partitions the denoising trajectory into structurally distinct phases, each governed by an independent threshold and a staleness-aware guard; (2) closed-loop threshold calibration that exploits counterfactual error measurement at the classifier-free guided output level to adjust decision boundaries online via an EMA feedback loop; and (3) momentum-augmented draft synthesis combining direction-magnitude gated residual extrapolation with anchor-guided unconditional correction. By transforming scheduling from a static risk accumulator into a feedback-driven, self-correcting controller, AlignCache consistently achieves superior acceleration-quality trade-offs across state-of-the-art video generation models. Our code is available at https://github.com/jiangjyjy/AlignCache.",
+    "abs": "http://arxiv.org/abs/2610.16545v1",
+    "pdf": "https://arxiv.org/pdf/2610.16545v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "提出 AlignCache，一个面向视频扩散模型加速的闭环特征缓存框架，用分阶段阈值路由、基于反事实误差的在线阈值校准和动量式草稿合成，来改进去噪过程中复用中间特征的调度决策。",
+      "relevance_reason": "其「启发式差异度量与真实质量错位、预算估计未与真实误差核对」的诊断，以及对复用/重算决策做闭环校准的思路，可能为 LVR 中动态计算分配、停止决策与 latent 相似度判据的可靠性问题提供可核查线索；但属视频生成加速场景，需人工判断迁移价值。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T18:47:32.033097+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

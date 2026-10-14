@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.14290",
+  "input_sha256": "d2c5c603b67ccff23dd59f549edfa7b5c0f9cfad05a9350a818633376b086d03",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T19:23:28.129490+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1866,
+        "output_tokens": 620,
+        "total_tokens": 2486,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 383
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.14290",
+    "title": "Layer-wise Input Recoverability in Deep Neural Networks",
+    "authors": [
+      "Maxwell Spiridonov",
+      "Alireza Rahmansetayesh",
+      "Pierre Baldi"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "The inner workings of deep neural networks are still not well understood. The information bottleneck framework, which characterizes deep networks by the mutual information between their hidden representations and the network's input, has been used to identify compression of input information with respect to an input image and output labels. We instead study how much of a layer's own input is recoverable from the layer's output in convolutional neural networks (CNNs). A convolutional layer applies its filters to one input patch at a time, so we evaluate recoverability on sampled input patches with a reconstruction-based probe and not on the entire feature map. The probe's size thus depends on channels and kernel size and not on feature map size, which lets our method scale to deep CNNs with wide feature maps. For each layer, we compare pretrained, random, and reconstruction-optimized encoders, using linear and linear-plus-residual-MLP decoders. We measure recoverability as $R^2$ between input patches and their reconstructions on a held-out set. Across nine ImageNet CNNs, recoverability generally decreases with depth but is more consistently predicted by the compression of the layer. Learning-attributed recoverability, the difference between pretrained and random encoders, is not uniform across architectures. We introduce single-property random controls, which transfer one pretrained property onto a random encoder, and find that each control changes recoverability with a consistent sign across models: copying pretrained singular vectors tends to raise recoverability, while copying the pretrained singular-value spectrum or activation sparsity lowers it.",
+    "abs": "http://arxiv.org/abs/2610.14290v1",
+    "pdf": "https://arxiv.org/pdf/2610.14290v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P1",
+      "brief_summary": "论文用逐输入 patch 的重建探针与 R² 指标，测量 CNN 各卷积层输出还能恢复多少该层输入，并在九个 ImageNet 模型上比较预训练、随机与重建优化编码器，还用单属性随机控制（复制奇异向量、奇异值谱、激活稀疏度）归因可恢复性来源。",
+      "relevance_reason": "其「隐藏状态能恢复多少输入视觉信息」的探针范式与深度相关的压缩趋势，可供核查 LVR 中视觉细节保留与信息坍缩的度量与层级分析；单属性控制思路或许能用于区分 latent 内容受何种表示属性影响，但该文只做 CNN 图像分类，迁移到 VLM 推理需自行验证。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T19:23:28.129490+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

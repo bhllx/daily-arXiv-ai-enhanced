@@ -1,0 +1,75 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.14605",
+  "input_sha256": "0b88c52e5e02270daf4e9ae7edcae4ac7f663112d5aefa5de426e9419b26bb74",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T19:18:49.112297+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1820,
+        "output_tokens": 813,
+        "total_tokens": 2633,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 587
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.14605",
+    "title": "Decoupling Knowledge Forgetting and Refusal Learning in MLLM Unlearning",
+    "authors": [
+      "Haodong Chen",
+      "Shengtao Wen",
+      "Dong Liang",
+      "Lingbing Guo",
+      "Xiang Chen"
+    ],
+    "categories": [
+      "cs.AI",
+      "cs.CL",
+      "cs.IR",
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Current evaluations of multimodal unlearning typically focus on whether a model stops outputting target information. This surface-level criterion, however, masks two critical failure modes. First, knowledge suppression techniques often induce confabulation, leading the model to hallucinate facts about the unlearned subject. Second, refusal training merely alters observable behavior without erasing the underlying knowledge; such models might decline open queries but still identify correct answers under multiple-choice probing. To overcome these limitations, we propose Forget-Aware Self-Distillation (FASD). This method is designed to achieve honest ignorance, a state where the model genuinely loses the target knowledge and learns to acknowledge its absence. FASD separates these goals into two complementary channels. The behavior channel distills appropriate refusals from an ignorance-prompted copy of the model itself. Crucially, target tokens are masked from the teacher distribution to avoid accidentally reteaching the forgotten concepts. Simultaneously, the knowledge channel directly suppresses ground-truth answer spans independently of the model's generated responses. Experiments demonstrate that FASD successfully unlearns target knowledge, prevents information leakage in open-ended tasks, and preserves performance on retained data. The resulting model not only forgets the specified information but accurately recognizes the boundaries of its own knowledge. Code and data will be released upon publication.",
+    "abs": "http://arxiv.org/abs/2610.14605v1",
+    "pdf": "https://arxiv.org/pdf/2610.14605v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "该论文研究多模态大模型遗忘，指出「是否停止输出」这一表层指标会掩盖两类失败：知识抑制引发虚构、拒绝训练只改行为未抹除知识；为此提出 Forget-Aware Self-Distillation，把行为与知识拆成两个通道，从自身模型蒸馏拒绝行为（并掩蔽目标 token 以免重新教会），同时直接抑制 ground-truth 答案片段。",
+      "relevance_reason": "与 LVR 主线无直接关系，但「行为通道／知识通道」解耦监督、在 teacher 分布中掩蔽目标 token 的做法，可能为 latent 推理中的监督信号设计、答案信息是否经 latent 泄漏的核查提供线索。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T19:18:49.112297+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

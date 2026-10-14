@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.16759",
+  "input_sha256": "d5558262fa8c385022f04b7407cb159e101e3565f47bfe865a4b2f36652d37eb",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T18:44:11.001281+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1925,
+        "output_tokens": 577,
+        "total_tokens": 2502,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 366
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.16759",
+    "title": "Image Tokenizers Should Be Trained Between Images",
+    "authors": [
+      "Ole Beißwenger",
+      "Jan-Niklas Dihlmann",
+      "Hendrik Lensch"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": "Project page: https://graphics.cs.uni-tuebingen.de/papers/interptok/",
+    "summary": "Latent diffusion models generate images as codes of an image tokenizer, whose decoder turns them into the pixel image. Recent tokenizers improve how well these codes reconstruct an image and how easily a generator learns them. Yet a generator does not reproduce the codes of training images, and when a generated code lands outside what the decoder expects, the decoded image contains imperfections. Current methods make the decoder more robust to generated codes by adding noise during training. However, generated codes lie between the training codes and resemble their mixture more than one of them plus noise. To improve generated images, decoders should therefore be trained on codes in the space between training samples. We propose InterpTok, which fine-tunes MAETok to decode mixtures of image codes into natural images. Since no target image exists between two training samples, a discriminator judges whether each decoded mixture looks as natural as its two sources. A mixing ratio loss requires the decoded mixture to keep the mixing ratio of the two codes. Together, they prevent collapse to a trivial solution and yield a sharp and natural composition of both images. InterpTok keeps MAETok's reconstruction quality and improves interpolation quality more than threefold, the best of all tokenizers in a recent benchmark. Beyond interpolation, InterpTok improves the generation FID of a matched diffusion transformer from 11.61 to 8.48 without guidance, and even reaches 8.11 at an eighth of the sampling steps, where the generator on MAETok's codes worsens. The generator trained on our tokenizer also reaches the final result of the one trained on MAETok at half the training steps. Our findings show that the space between image codes can and should be explicitly supervised rather than ignored.",
+    "abs": "http://arxiv.org/abs/2610.16759v1",
+    "pdf": "https://arxiv.org/pdf/2610.16759v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文提出 InterpTok：微调 MAETok 的解码器，使其能把两张图像码的混合解码为自然图像，用判别器判断混合结果是否自然、并用混合比例损失约束信息保留，从而提升插值质量与匹配生成器的 FID。",
+      "relevance_reason": "该工作对 latent 码空间中「训练样本之间」区域做显式监督，并以比例损失防止坍缩，可能为 LVR 中处理不在训练分布的 latent 推理状态、维持其内容保真与监督方式提供可核查的方法线索；本身属图像生成，与多模态推理主线关联间接。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T18:44:11.001281+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

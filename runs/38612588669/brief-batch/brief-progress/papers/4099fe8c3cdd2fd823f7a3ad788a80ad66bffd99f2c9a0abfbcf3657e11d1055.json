@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.15629",
+  "input_sha256": "93bafb4bd4e4071b30ce4f94ddb52ecd884c93b61904d876cad83ddd5b950ebf",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T19:01:48.770104+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1775,
+        "output_tokens": 630,
+        "total_tokens": 2405,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 413
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.15629",
+    "title": "The Price of Precision: A Calibrated Cost Model for Mixed-Precision LLM Serving",
+    "authors": [
+      "Mukund Athmaram",
+      "Manoj Rao",
+      "Liang Ma"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Choosing a mixed-precision configuration for large language model (LLM) serving trades speed against accuracy. Allocators that use average bit-width or a memory budget as a speed proxy can miss changes in the resource that limits execution. We argue that served speed can be limited by compute, weight loading, or key-value (KV) cache access, depending on the phase, batch size, and context length. A byte-based proxy does not capture all of these costs, so fewer bits do not always mean faster serving. To address this gap, we build a cost model that accounts for the binding resource and use it in two ways. First, as a predictor: given a configuration and operating point, it estimates serving latency using constants calibrated for the model, GPU, and serving stack. We evaluate its accuracy across three hardware classes. Second, as an allocator: we combine modeled time costs with measured per-tensor accuracy costs and use a dynamic program to select a configuration under a latency or accuracy budget. We compare its configurations against byte-aware and sensitivity-only allocation.",
+    "abs": "http://arxiv.org/abs/2610.15629v1",
+    "pdf": "https://arxiv.org/pdf/2610.15629v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "论文为 LLM 混合精度推理服务构建了一个标定的代价模型：区分计算、权重加载与 KV cache 访问中真正限制速度的「约束资源」，用它预测服务延迟，并结合逐张量精度代价，通过动态规划在延迟或精度预算下选择配置。",
+      "relevance_reason": "其「按约束资源建模 + 动态规划在预算下分配」的思路可能可供核查：LVR 中 THINK/LOOK/STOP 的收益成本也可能受不同瓶颈资源支配，而非单一代理量（如字节数或 token 数），可类比为在延迟预算下分配精度或计算。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T19:01:48.770104+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.15933",
+  "input_sha256": "d95a0d30133d37d3aec69b489ba14285ddba433579ed6557d56bb4d5fde4bdab",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T18:57:22.481013+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1932,
+        "output_tokens": 936,
+        "total_tokens": 2868,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 677
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.15933",
+    "title": "Error-Based Bidirectional Predictive Coding Enables Deep, 4-Bit Predictive Coding Networks",
+    "authors": [
+      "Garrett Kinman",
+      "Zeljko Zilic"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Predictive coding networks (PCNs) promise properties not offered by backpropagation-trained networks: learning from purely local information, a single network that both discriminates and generates, and flexible inference by energy minimization. However, their iterative inference is expensive, making hardware acceleration desirable, and a useful, efficient accelerator needs both depth and aggressive quantization. Canonical state-based PC delivers neither: its inference signal decays exponentially with depth, so deep models fail to train, and low precision makes it worse. We show that pairing two recent methods carries the full PCN property set into the deep, 4-bit regime: bidirectional PC (bPC), which unifies discrimination and generation, and the error-based reparameterization (ePC), which optimizes prediction errors rather than states during inference. Error optimization delivers the output signal to every layer in a single backward pass, removing the signal decay; one additional element, global-norm clipping of the error gradients, stabilizes the error dynamics at depth. The resulting ePC+bPC model trains stably up to at least eight layers and retains its full-precision accuracy and clean class-conditional generation under W4A4E4 quantization-aware training, across FP4 and three posit formats. On six-layer networks, where state-based bPC collapses to chance, ePC+bPC classifies more than 50 accuracy points above it after one epoch of training, with class-conditional generations 5-9x better in RMSE. 4-bit quantization is nearly free: full-precision and 4-bit accuracies differ by at most ~5 points, and by under two in the best-performing formats. We characterize the two failure modes the method overcomes, bounded signal decay in state-based PC and error divergence in unregularized error optimization, and discuss implications for a 4-bit-native PCN accelerator.",
+    "abs": "http://arxiv.org/abs/2610.15933v1",
+    "pdf": "https://arxiv.org/pdf/2610.15933v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "研究如何把预测编码网络（PCN）的特性带入深层与 4-bit 量化场景：结合双向 PC（bPC）与基于误差的重参数化（ePC），并加入误差梯度全局范数裁剪，缓解基于状态的 PC 随深度指数衰减、低精度下更严重的失败，使至少八层网络在 W4A4E4 量化感知训练下稳定训练并保留分类与类条件生成能力。",
+      "relevance_reason": "PCN 的迭代能量最小化推断、逐层误差信号与低精度状态表示，可能与 LVR 中 latent 状态的循环更新、深度方向信息保真及状态量化线索相关；不过该工作面向硬件加速与图像分类/生成，与视觉语言推理无直接联系，迁移属推测，需核查其误差优化是否真能维持跨层有效信号。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T18:57:22.481013+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

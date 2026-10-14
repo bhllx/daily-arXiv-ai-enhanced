@@ -1,0 +1,71 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.14998",
+  "input_sha256": "05ca0cb10f8488b0dee80dad09f912f552ef9f4ceed5709b2ffaab34835d402a",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T19:11:08.392660+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1918,
+        "output_tokens": 717,
+        "total_tokens": 2635,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 449
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.14998",
+    "title": "Recurrent In-Context Learning for Tabular Foundation Models",
+    "authors": [
+      "Tejas Vaidhya",
+      "Gaurav Sahu",
+      "Irina Rish"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "Tabular foundation models adapt to new datasets through in-context learning (ICL), and, like most transformers, they tie computational depth to the number of independently parameterized layers. We ask whether the ICL stage of such a model needs a distinct set of parameters for every layer, or only depth. We introduce Tab-Loop, which replaces the 12 untied ICL blocks of TabICLv2 with 4 tied blocks applied $k$ times and changes nothing else: the encoders, decoder, synthetic prior and training recipe are shared with an untied baseline trained for the same compute. At matched pretraining compute (18.2 EFLOP) and matched inference compute (12 block applications), Tab-Loop matches the baseline with 62\\% fewer parameters (10.4M vs.\\ 27.6M): held-out log loss is 0.4583 vs.\\ 0.4588, mean accuracy on 200 TALENT datasets is 84.10\\% vs.\\ 83.92\\%, and Elo on 38 TabArena datasets is 1409 vs.\\ 1396. A 4-block untied control with Tab-Loop's parameter count, which sees 32\\% more training tables for the same compute, trails both (83.46\\%; Elo 1343). Because weights are shared, depth becomes a choice made at inference. Accuracy rises with the number of loops through the trained range and holds beyond it, and continued training with deeper loops extends the useful range, reaching the baseline's stage-2 scores at 4--5$\\times$ its inference compute. At this scale, the ICL stage of a tabular foundation model needs depth more than it needs distinct parameters.",
+    "abs": "http://arxiv.org/abs/2610.14998v1",
+    "pdf": "https://arxiv.org/pdf/2610.14998v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P1",
+      "brief_summary": "作者提出 Tab-Loop，把表格基础模型 TabICLv2 的 12 个独立参数 ICL 块换成 4 个共享参数块重复应用 k 次，在同等预训练与推理算力下以少 62% 参数达到与 baseline 相当的 log loss、准确率和 Elo；由于权重共享，深度变成推理期可选变量，准确率在训练范围之外仍能维持，且用更深循环继续训练可扩展有效深度。",
+      "relevance_reason": "其「共享参数块循环堆叠 + 推理期选深度 + 超出训练循环数仍不退化」的结论，可能为 LVR 中 loop 式推理状态更新、动态计算分配与深度泛化提供可核查的方法线索；但任务为表格 ICL、无视觉状态，需核查该深度外推行为能否迁移到 VLM 推理。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T19:11:08.392660+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

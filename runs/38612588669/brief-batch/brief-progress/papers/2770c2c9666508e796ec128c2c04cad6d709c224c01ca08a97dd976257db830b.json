@@ -1,0 +1,72 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.15365",
+  "input_sha256": "a47b24a3aecb4de5c1594a2b9efe0c903ca7f30bbb1722a1e11383cc02af2e35",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T19:05:18.716098+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1853,
+        "output_tokens": 623,
+        "total_tokens": 2476,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 393
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.15365",
+    "title": "TRACE: Temporal Risk Assessment and Concept Editing for Safer Language Generation",
+    "authors": [
+      "Ankur Garg",
+      "Xuemin Yu",
+      "Hassan Sajjad",
+      "Samira Ebrahimi Kahou"
+    ],
+    "categories": [
+      "cs.AI",
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Large language models (LLMs) can produce harmful content while generating a response. A useful safeguard should not only detect this risk during generation but also intervene while leaving safe responses largely unchanged and provide an auditable record of the internal patterns supporting its decisions. We propose TRACE (Temporal Risk Assessment and Concept Editing), a framework that tracks harmful-response risk during generation, selectively edits token activations, and leaves an auditable trace of its detection and steering decisions. TRACE learns a codebook of recurring activation patterns, with each codebook vector representing a latent concept. At inference time, it assigns each token activation to the nearest codebook vector to obtain the corresponding concept. A gated recurrent unit (GRU) processes the activations and their assigned concept features to predict completed-response harmfulness and a monotone cumulative streaming risk. During steering, activations assigned to harmful concepts are steered along directions defined by nearby benign targets. An external LLM labels the learned concepts post hoc, making detection sequences and harmful-to-benign edit records interpretable. Experiments across three generators and the WildGuard and S-Eval benchmarks show that TRACE improves streaming F1 over Kelp in five of six comparisons while remaining competitive on completed-response detection. TRACE's selective steering reduces Harmbench attack success with little change in refusal on originally safe responses. The post-hoc audit reveals recurring semantic structure in the learned concepts and distinct traces associated with harmful detection, safe generation, and activation edits.",
+    "abs": "http://arxiv.org/abs/2610.15365v1",
+    "pdf": "https://arxiv.org/pdf/2610.15365v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "TRACE 在语言模型生成过程中做风险检测与干预：学习一个激活模式码本，把每个 token 激活最近邻映射为潜在概念，用 GRU 综合激活与概念特征预测整句有害性和单调累积的流式风险，并将有害概念的激活沿邻近良性方向选择性编辑，同时留下可供事后审计的检测与编辑记录。",
+      "relevance_reason": "纯文本安全生成工作，但「token 激活→码本概念分配→循环网络追踪状态→对潜在方向选择性编辑并审计」的线索，可能可供核查 LVR 中内部概念是否真正被使用、以及如何干预与追溯潜在状态，需判断其向视觉多模态推理迁移的可行性。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T19:05:18.716098+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

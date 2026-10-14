@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.15570",
+  "input_sha256": "efbb9a5618f19a18a397fe33f3a6fc83faa468f7acd1663eec4faf5aae185af7",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T19:02:32.057877+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1951,
+        "output_tokens": 816,
+        "total_tokens": 2767,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 617
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.15570",
+    "title": "Truncation Samplers Are Nested: Comparing Decoding Rules Is a Measurement Problem",
+    "authors": [
+      "Rasul Khanbayov",
+      "Hasan Kurban"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.CV"
+    ],
+    "comment": null,
+    "summary": "Settling one comparison between two truncation samplers has cost six thousand A100-hours, and nothing says in advance how far apart two samplers can be. We observe that almost every deployed truncation rule keeps a prefix of the probability-sorted vocabulary, so any two such rules are nested at every decoding step. Nesting yields a closed-form per-step distance and a coupling under which both samplers emit identical text until they first disagree. Accumulated over a generation, this gives a separation certificate that bounds the difference between two samplers on any bounded outcome, is computable from logs a comparison already produces, and equals their sequence-level total variation distance exactly when neither rule ever overtakes the other. Two consequences follow without measurement: exactness is fragile, and certifying a small difference requires the two retained masses to agree to very high precision at every step. On six open-weight models over four math and science benchmarks, the certificate for every hyperparameter grid we tested is at least 0.998, so a bound alone rarely settles a comparison, although two members of one family can be far closer. What remains useful is the coupling, which gives an unbiased paired estimator that cuts variance $1.2$-$3.8\\times$ against prompt-level pairing. Read against benchmark sizes at the default pair's variance and our point estimate of its between-prompt component, resolving a one-point difference needs 8 to 32 samples per prompt on GSM8K, MATH-500 and GPQA-Diamond and about 210 on AIME 2025; at that component's upper confidence bound GPQA-Diamond needs more than 32 and AIME 2025 cannot be resolved at any sample count. Choosing a truncation sampler is a measurement problem at least as much as a design one. The code is available at https://github.com/KurbanIntelligenceLab/truncation-samplers.",
+    "abs": "http://arxiv.org/abs/2610.15570v1",
+    "pdf": "https://arxiv.org/pdf/2610.15570v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文观察到常见截断采样规则每一步都保留概率排序词表的前缀、因而彼此嵌套，据此给出每步闭式距离与耦合、序列级分离证书，并得到一个无偏配对估计器，把与 prompt 级配对的比较方差降低 1.2–3.8 倍。",
+      "relevance_reason": "论文不涉及视觉或 latent 状态，与主线无直接关联；但其耦合构造与配对估计/方差缩减线索可能可供核查，用于比较不同推理配置或 latent 推理变体时的评测成本与显著性判断。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T19:02:32.057877+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

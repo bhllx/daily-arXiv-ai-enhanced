@@ -1,0 +1,72 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.16593",
+  "input_sha256": "6b37ee7cc9e437bd7a4ce17ac45cae51ab2db2f2eb87dd1a20937bfc1dcbbc9d",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T18:46:28.556719+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1875,
+        "output_tokens": 434,
+        "total_tokens": 2309,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 222
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.16593",
+    "title": "Double-Rollout Reinforcement Learning with Sampling-based Reward Estimation",
+    "authors": [
+      "Haifeng Qian",
+      "David Mosallanezhad",
+      "Christian Munley",
+      "Adithya Renduchintala",
+      "Oleksii Kuchaiev"
+    ],
+    "categories": [
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "Reinforcement learning with verifiable rewards (RLVR) implemented with Group Relative Policy Optimization (GRPO) has driven substantial progress in training reasoning language models. However, verifiable outcome rewards provide an imperfect measure of reasoning quality: a correct final answer may not be supported by the reasoning trace, whereas an incorrect rollout may contain a nearly correct reasoning trajectory. We present empirical evidence for this mismatch and hypothesize that the resulting reward noise contributes to instability in reinforcement learning for both reasoning accuracy and token efficiency. To address this credit assignment challenge, this paper proposes double-rollout reinforcement learning. For each sampled rollout, we truncate its reasoning trace, sample multiple continuations from the truncated prefix, and replace the original reward with the mean continuation reward, yielding a more robust estimate of reasoning quality. This double-rollout algorithm incurs only a moderate increase in compute cost and yet reaches substantially higher accuracies across math and coding tasks and across Qwen and Nemotron models than baseline algorithms with fewer RL steps. For example, using only DAPO data it trains Nemotron-3-Nano-30B-A3B to reach 95.4% on AIME 2026, versus 91.5% by GRPO and substantially above state of the art for this model size, within 30 RL steps. When combined with length-based rewards, the same algorithm further improves the accuracy-efficiency Pareto frontier over existing efficiency optimizations. These findings suggest that the double-rollout reward estimation is an effective and cost-efficient way to improve both the accuracy and token efficiency of reasoning RL.",
+    "abs": "http://arxiv.org/abs/2610.16593v1",
+    "pdf": "https://arxiv.org/pdf/2610.16593v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文提出 double-rollout 强化学习：对每条采样轨迹截断推理过程并从该前缀采样多个续写，以续写奖励均值替换原奖励，得到更稳健的推理质量估计，缓解结果奖励噪声带来的信用分配问题，在数学与代码任务上提升准确率与 token 效率。",
+      "relevance_reason": "纯文本 reasoning RL 的奖励估计与信用分配方法，其「截断前缀＋多续写采样」的监督构造可能为 LVR 中 latent 轨迹训练、贡献分配与停止决策的评估提供可核查线索，但尚无视觉或 latent 状态实验。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T18:46:28.556719+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

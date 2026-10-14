@@ -1,0 +1,75 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.17666",
+  "input_sha256": "4e161d0cde3bfe990c90771af1579fd336e2f805179992c7ecd76843ea300274",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T18:30:34.374393+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1855,
+        "output_tokens": 420,
+        "total_tokens": 2275,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 192
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.17666",
+    "title": "DeltaTTG: Training Multi-Turn Agents with a Token-to-Go Progress Meter",
+    "authors": [
+      "Xuyan Ye",
+      "Xiyan Fu",
+      "Shengda Fan",
+      "Jiawei Cui",
+      "Yankai Lin",
+      "Wei Lu"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.AI",
+      "cs.CL"
+    ],
+    "comment": null,
+    "summary": "Reinforcement learning with verifiable rewards (RLVR) for multi-turn agents relies on sparse terminal rewards that say little about individual steps. Within-group step comparisons depend on reliable state matching and sufficiently diverse sampled outcomes, while direct step scoring may require costly external evaluators, human annotations, or task-specific heuristics. We introduce DeltaTTG to learn a reusable progress signal through a shared progress meter, using low-cost supervision from diverse policies' recorded trajectories without task-specific progress rules. Its supervision target, Token-to-Go (TTG), the number of tokens remaining to be generated until task completion, serves as an observable proxy for remaining completion effort. During actor training, changes in the frozen meter's estimates redistribute outcome-derived advantages across steps without altering the reward, preserving each trajectory's advantage sign and token-average scale. On ALFWorld, PaperSearchQA, and BFCLv3, DeltaTTG improves the average score over GRPO by 5.7 and 7.2 points with Qwen3-4B and Llama-3.1-8B-Instruct, respectively, outperforms all compared RL baselines on average, and keeps actor-training GPU-hours close to GRPO. Further experiments show improved sample efficiency and out-of-domain performance, and support the meter's ability to distinguish step quality and guide test-time action selection across actor sizes. The code is available at https://github.com/Xuyan923r/DeltaTTG.",
+    "abs": "http://arxiv.org/abs/2610.17666v1",
+    "pdf": "https://arxiv.org/pdf/2610.17666v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文提出 DeltaTTG：用冻结的共享 progress meter 预测「Token-to-Go」（完成任务前还需生成的 token 数）作为可观测的进度代理，从而在多轮智能体的 RLVR 训练中把终局奖励的优势重分配到各步，不改变奖励本身，并在 ALFWorld、PaperSearchQA、BFCLv3 上取得平均分提升。",
+      "relevance_reason": "其「由轨迹学习进度信号并重分配步骤优势」的监督与贡献分配思路，可能为 LVR 中 latent 轨迹训练、逐步信用分配和停止/继续决策提供可核查的方法线索，但原文面向纯文本多轮 agent、不含视觉与 latent 状态。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T18:30:34.374393+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

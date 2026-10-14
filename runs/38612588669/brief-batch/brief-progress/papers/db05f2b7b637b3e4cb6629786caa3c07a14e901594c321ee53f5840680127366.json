@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.18085",
+  "input_sha256": "9bb59e7167e0e434daae66c39c1dde94ef8007d82b17e3f557ccf3864ed01b55",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T18:23:12.092883+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1885,
+        "output_tokens": 1017,
+        "total_tokens": 2902,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 805
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.18085",
+    "title": "Same Function, Different Trajectory: No Standard Optimizer Is Equivariant to Transformer Reparameterization",
+    "authors": [
+      "Bum Jun Kim"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.NE"
+    ],
+    "comment": "55 pages, 8 figures",
+    "summary": "We show that two Transformers representing the same function can follow different training trajectories. For example, doubling a query matrix and halving its key matrix preserves the model's function but changes the gradient scales seen by the optimizer. Our theoretical analysis establishes that standard block-local first-order optimizers fail to scale updates with parameters under a shared learning rate. For AdamW, transforming the first- and second-moment estimates alone does not correct the mismatch between parameter and update scales. To make runs restarted from equivalent checkpoints follow the same trajectory, we balance matrix pairs and transform their moment estimates together, bringing distinct but equivalent training states to the same starting point. To correct scale imbalance between paired Transformer matrices without changing predictions, we propose Symmetry-Aware Gradient Geometry Stabilization (SAGGS), which periodically equalizes the Frobenius norms of exact symmetry pairs, and its damped variant, Soft SAGGS. SAGGS reduces perplexity (PPL) by $0.374\\pm0.026$ at 101M parameters on WikiText-103, and Soft SAGGS reduces PPL by $0.780\\pm0.040$ in a 31M modern-architecture replication, both under scale imbalance. In a 123.8M checkpoint-resume experiment, reciprocally rescaling matrix pairs barely changes validation loss at restart but increases final PPL by $3.78\\pm0.42$; hard and soft rebalancing recover to within $0.02$ PPL of the control.",
+    "abs": "http://arxiv.org/abs/2610.18085v1",
+    "pdf": "https://arxiv.org/pdf/2610.18085v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "论文指出表示同一函数的两种 Transformer 参数化会在标准优化器下走出不同训练轨迹，理论分析表明块局部一阶优化器对这类重参数化不具等变性，并提出 SAGGS 与 Soft SAGGS，通过周期性均衡对称矩阵对的 Frobenius 范数修正尺度失衡，在语言模型上降低 PPL。",
+      "relevance_reason": "重参数化对称与梯度尺度均衡属于表示/梯度几何议题，可能为循环或权重共享的 latent 推理模块训练中的尺度失衡与状态均衡提供可供核查的线索，但原文未涉及多模态推理。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T18:23:12.092883+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

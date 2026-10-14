@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.14576",
+  "input_sha256": "36cae586be51310a98a5f79a98c2ef4a75bd41774778e00df89339758948c6d6",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T19:18:59.019815+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1957,
+        "output_tokens": 792,
+        "total_tokens": 2749,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 566
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.14576",
+    "title": "Iterate on an LLM, Serve on an SLM",
+    "authors": [
+      "Keegan Wang"
+    ],
+    "categories": [
+      "cs.AI",
+      "cs.MA"
+    ],
+    "comment": "Accepted to the NeurIPS 2026 2nd Workshop on Agentic AI Benchmarks and Applications for Enterprise Tasks (AABA4ET)",
+    "summary": "As frontier LLMs gain more capabilities, the cost to run them also goes up. At the same time, small language models (SLMs) also gain more capabilities but have largely been able to keep their cost stable, offering 5-40 times cheaper inference for the narrow, repetitive subtasks that agents decompose work into. However, the standing limiting factor is getting the correct behavior out of a small model in a fast, efficient, and economical way. Unfortunately, in most cases, zero-shot small models fail narrow production tasks. Furthermore, retraining one every time the behavior changes is too slow to iterate on. We propose doing both in sequence. First, develop the desired behavior in prompt space, on a frontier model, with immediate feedback from live traffic. Then, once the behavior converges, distill the recorded production behavior (not synthetic imitations of it) into an SLM through supervised fine-tuning (SFT). We show a proper use case of this method through a scheduling agent for home-care agencies that fans out a single yes/no safety decision per caregiver-shift pair on GPT-5.4-nano. A LoRA-tuned Qwen3-8B trained on 11.6k recorded production decisions reaches 0.913 agreement, while the teacher (GPT-5.4-nano), re-run on its own recorded prompts, agrees with itself only 72.7% of the time, pointing to the fact that the SLM may also be more consistent. Furthermore, when the two disagreed, a blinded professional scheduler sided with the student 48-29. Finally, we find that the SLM has approximately 2.5 times lower median latency and is a fraction of the cost. We believe this lifecycle of quick building, live feedback, and cheap inference is a blueprint for others building similar systems.",
+    "abs": "http://arxiv.org/abs/2610.14576v1",
+    "pdf": "https://arxiv.org/pdf/2610.14576v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "提出「先在前沿 LLM 的 prompt 空间用实时流量反馈迭代出目标行为，再把真实生产决策记录蒸馏到 SLM」的两阶段流程，并在家庭护理排班的逐对 yes/no 安全决策代理上验证（LoRA 微调 Qwen3-8B 达 0.913 一致率，延迟与成本更低）。",
+      "relevance_reason": "论文用真实推理记录（而非合成模仿数据）做 SFT 蒸馏并进行教师自一致性与人工盲评比较，可供核查 LVR 中推理轨迹的训练监督来源与贡献分配问题；但工作本身为纯文本企业代理应用，未涉及视觉状态或 latent 推理。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T19:18:59.019815+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

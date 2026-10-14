@@ -1,0 +1,73 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.16761",
+  "input_sha256": "da8f9e38a58b42e206c7326535d17e956d2e79d0960feb8fa1d780cccea06392",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T18:44:08.441010+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1878,
+        "output_tokens": 653,
+        "total_tokens": 2531,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 455
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.16761",
+    "title": "Separating Prompt Harmfulness from Interaction Safety via Partial Generation",
+    "authors": [
+      "Ram Vikas Mishra",
+      "Shashank Aggarwal",
+      "Jahnavi Kumar",
+      "Amit Awekar"
+    ],
+    "categories": [
+      "cs.AI",
+      "cs.IR",
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "LLM-based information systems need safety guardrails. Most guardrails classify the prompt alone. If the prompt looks harmful, the system rejects it before any answer is generated. This is costly. Many rejected prompts would have received a safe response. Users lose help they should have received from the information system. This cost grows as conversational and generative search becomes common. Prompt-level labels treat harm as a property of the query. But harm depends on what the model actually writes. Existing input-output guards do look at responses. But they judge a finished response, so the decision comes after full generation. However, we observe that safety of model interaction with the input prompt can be inferred early with only partial output. So the system can start generating, watch the partial response, and stop only if it turns harmful. We test this idea in three steps. First, we build a dataset of 41,944 prompt-response pairs with seven open weights LLMs from three families: Llama, Gemma, and Qwen. Second, we show that prompt harmfulness and interaction safety differ. Prompt labels and response labels agree on only 50.46\\% of items (Cohen's $κ$ = 0.06). Of the prompts that make any model respond harmfully, only 3.5\\% do so for all seven LLMs. Third, we show that partial responses carry most of the signal. Fine-tuned classifiers predict response-level harm well (best AUPRC 0.885, F1 0.807). About one third of the response tokens recover almost full-response AUPRC.",
+    "abs": "http://arxiv.org/abs/2610.16761v1",
+    "pdf": "https://arxiv.org/pdf/2610.16761v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文区分「提示词有害性」与「交互安全性」，用 Llama、Gemma、Qwen 等七个开源模型构建 4 万余条提示-响应对，并训练分类器仅凭部分已生成响应预测响应级危害，从而支持边生成边判断、必要时提前停止。",
+      "relevance_reason": "其「观察部分输出即做停止决策」的思路与 LVR 中基于部分推理状态判断是否继续、何时终止的问题可能相通，可供核查前缀信号能否迁移到 latent 状态的 early-stop 与验证机制。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T18:44:08.441010+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

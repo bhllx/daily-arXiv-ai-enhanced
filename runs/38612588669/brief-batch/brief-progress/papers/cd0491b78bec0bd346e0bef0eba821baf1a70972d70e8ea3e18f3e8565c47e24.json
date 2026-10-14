@@ -1,0 +1,74 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.16368",
+  "input_sha256": "f11d49f6cd8eb118989eaf67d98bdcefe607301d00b19619b33030848c747cf4",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T18:50:05.795586+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1911,
+        "output_tokens": 624,
+        "total_tokens": 2535,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 426
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.16368",
+    "title": "LoopQuant: Accurate and Efficient Post-Training Quantization for Looped Transformers",
+    "authors": [
+      "Zhixiong Zhao",
+      "Zukang Xu",
+      "Xing Hu",
+      "Lifeng Liu",
+      "Guangyu Sun",
+      "Dawei Yang"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "Looped Language Models (LoopLMs) improve parameter efficiency by recursively reusing shared Transformer modules, yet their repeated computation over evolving recurrent states poses new challenges for low-bit deployment. Existing post-training quantization (PTQ) methods, largely designed for feed-forward Transformers, fail to account for cross-loop activation dynamics, heterogeneous loop sensitivity, and recursive error propagation, leading to substantial performance degradation at low precision. To address these challenges, we propose LoopQuant, a loop-aware PTQ framework for accurate and efficient low-bit quantization of LoopLMs. LoopQuant is built on three core components: 1) Cross-Loop Distribution Canonicalization (CLDC) learns a shared quantization-friendly representation across recurrent states while preserving parameter sharing; 2) Interaction-Aware Loop-wise Precision Allocation (ILPA) allocates activation precision under a fixed bit budget by modeling task-level loop sensitivity and cross-loop interactions; and 3) Loop-Conditioned Task Calibration (LCTC) further aligns quantized inference with the low-bit recursive trajectory through lightweight task-space calibration. Extensive experiments across LoopLM architectures demonstrate that LoopQuant consistently outperforms existing low-bit PTQ methods. On Ouro-2.6B, LoopQuant under W4A4 surpasses all W4A8 baselines in performance, while reducing model memory by 65.3% with only 3.4% additional storage overhead over naive INT4 and achieving a 1.7 times decoding speedup over BF16. These results demonstrate a strong balance among accuracy, compression, and inference efficiency, providing a practical and deployment-friendly solution for low-bit LoopLM inference. The code is available at [https://github.com/Kishon-zzx/LoopQuant].",
+    "abs": "http://arxiv.org/abs/2610.16368v1",
+    "pdf": "https://arxiv.org/pdf/2610.16368v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "提出 LoopQuant，一个面向循环复用共享模块的 LoopLM 的低比特训练后量化框架，通过跨循环表示规范化、按循环的精度分配与任务空间校准来缓解递归误差传播。",
+      "relevance_reason": "原文对跨循环激活动态、逐循环敏感度与递归误差传播的刻画，可能为 LVR 中循环式 latent 状态更新、表示稳定性及不同深度贡献分配提供方法线索；但研究对象是纯文本量化的部署效率，与视觉多模态推理无直接关联，需核查其分析是否可迁移。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T18:50:05.795586+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

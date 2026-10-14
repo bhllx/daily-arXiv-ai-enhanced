@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.17365",
+  "input_sha256": "6ebf05b2396c3616b00692d8edf39e33483b744374f7089d65643e8b1cf8e6ab",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T18:35:18.813420+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1851,
+        "output_tokens": 622,
+        "total_tokens": 2473,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 406
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.17365",
+    "title": "When Goals Leak Across Relationships: How Cached Goal Representations Shape Cross-Client Decisions",
+    "authors": [
+      "Saloni Gupta",
+      "Sébastien Krier",
+      "Glenn Matlin"
+    ],
+    "categories": [
+      "cs.AI"
+    ],
+    "comment": "10 pages, 4 figures. Accepted at NeurIPS 2026 Workshops on Interpreting Agent Behavior (IAB) and Agents in the Wild (AIWild)",
+    "summary": "As LLM agents take on more autonomous roles, they may interact with multiple clients and counterparties whose goals and incentives conflict. If an agent maintains shared inference state across these interactions, information associated with one relationship may influence decisions made for another. We test OLMo-3-7B-Instruct in a controlled two-client environment with 20 market scenarios, where each client is assigned an opposing objective. With shared conversational memory, the model deviates from the current client's objective in 22% of eligible decisions. We then investigate how these goals are represented in the KV cache. Linear probes show that client-goal ownership becomes highly recoverable in middle layers and is concentrated in particular attention heads. We use these results to identify where to intervene in the cache and test whether these representations affect the model's decisions. Ablating the competitor's cached goal representations at these locations shifts the model toward the current client. The effect is larger for heads identified by probing than for randomly selected heads, and larger when ablating goal tokens than matched non-goal tokens from the same client. Our results show that client-specific goal representations persist in the KV cache and can causally influence decisions made for other clients, highlighting the importance of relationship-specific state isolation in persistent LLM agents.",
+    "abs": "http://arxiv.org/abs/2610.17365v1",
+    "pdf": "https://arxiv.org/pdf/2610.17365v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "该论文在双客户市场场景中测试 OLMo-3-7B-Instruct，发现共享对话记忆会让一个客户的目标影响另一客户的决策；随后用线性探针在 KV cache 中定位客户目标的所有权表示，并通过定向消融验证其因果作用。",
+      "relevance_reason": "其「探针定位表示 + 按层与注意力头定向消融」的因果归因思路，可能可供核查 LVR 中 latent 视觉证据是否真被答案使用、贡献如何分配，以及缓存与注意力结构对 latent 状态的影响；但研究对象是文本 agent 的目标状态，迁移到视觉推理仍需验证。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T18:35:18.813420+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.15589",
+  "input_sha256": "fa76e123fc015a07b21a594defd6ec059ba278ca00b48b1fa40ef0ce5efef9c9",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T19:02:18.777990+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1845,
+        "output_tokens": 619,
+        "total_tokens": 2464,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 396
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.15589",
+    "title": "The Gradient That Top-k Distillation Never Computes",
+    "authors": [
+      "Rasul Khanbayov",
+      "Hasan Kurban"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.CL"
+    ],
+    "comment": null,
+    "summary": "Many deployed distillation pipelines show the student a truncated view of the teacher: keep the top-k probabilities, renormalize, and minimize a divergence on what remains. Renormalization is assumed to account for the missing mass. We prove that it removes the visibility of tail mass, not the freedom to move it. The renormalized objective depends only on log-odds among the retained tokens, so at each position its gradient along the directions that control tail mass is exactly zero; on a real teacher that component measures $2$-$3\\times10^{-15}$ of the gradient. The full-vocabulary gradient equals the truncated gradient plus a residual weighted by the tail masses, and training acts only on the first term. Without the cross-entropy term, a top-k student's tail mass drifts away from the teacher's while a full-vocabulary control moves slightly toward it; with it, the gap shrinks about fourfold but persists. On seven open-weight teachers, the retained set determines the teacher's distribution only from $k=d+1$ ($d$ the hidden dimension): recovery is exact from there on all seven, and commonly cached sizes sit below it. In our off-policy runs the practical effect is real but smaller than the choice of teacher-student pair. Renormalization is a normalization, not a safeguard. The code is available at https://github.com/KurbanIntelligenceLab/top-k-distillation.",
+    "abs": "http://arxiv.org/abs/2610.15589v1",
+    "pdf": "https://arxiv.org/pdf/2610.15589v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文分析 top-k 蒸馏中「重归一化」的梯度后果：证明截断目标只依赖保留 token 间的 log-odds，沿控制尾部质量的方向梯度恒为零，全词表梯度等于截断梯度加尾部质量加权残差，并在七个开源教师上观察到 k=d+1 起才能精确恢复教师分布、学生尾部质量会漂移。",
+      "relevance_reason": "其关于截断蒸馏丢失尾部监督、梯度可分解为截断项与残差的分析，可能为 LVR 训练中监督信号如何作用于 latent 状态、信息坍缩与贡献分配提供可核查线索，但论文本身不涉及视觉或多模态推理。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T19:02:18.777990+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

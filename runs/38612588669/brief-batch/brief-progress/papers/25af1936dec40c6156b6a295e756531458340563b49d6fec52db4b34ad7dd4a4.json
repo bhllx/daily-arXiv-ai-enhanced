@@ -1,0 +1,74 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.16415",
+  "input_sha256": "049f0b6ada0a5481325a09987d1855e9593a7e05bc13dff18e3cc5c8e882cbd2",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T18:49:41.942785+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1878,
+        "output_tokens": 630,
+        "total_tokens": 2508,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 403
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.16415",
+    "title": "Chain Dimension Scaling: Communication-Efficient Loop-Style Scaling for Industrial Short-Video Ranking",
+    "authors": [
+      "Zhimeng Jiang",
+      "Yuening Li",
+      "Ruixiao Sun",
+      "Yuanzhen Lin",
+      "Kun Jin",
+      "Chuan He",
+      "Liang Liu"
+    ],
+    "categories": [
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "Industrial recommendation rankers keep scaling in width and depth to billions of parameters, but this increasingly incurs costs in parameter growth, distributed communication overhead, and training inefficiency. We introduce \\underline{C}hain \\underline{D}imension \\underline{S}caling (CDS), a scaling strategy orthogonal to width and depth. CDS repeatedly applies a single feature-interaction block with parameters shared across iterations, so the number of iterations (the chain length) becomes a new scaling dimension that adds no parameters. A lightweight intra-chain residual connection stabilizes optimization and improves quality. CDS enables two regimes. In the \\emph{compression regime}, shallow blocks with a longer chain match deeper baselines with fewer parameters and faster training; in the \\emph{quality-scaling regime}, increasing chain length under a fixed parameter budget yields consistent offline and online gains, suggesting the chain dimension adds modeling capacity beyond parameter reuse. We evaluate CDS in a large-scale multi-task short-video ranking system in production. In the compression regime, CDS stays within $0.03\\%$ of baseline offline quality while reducing trainable parameters by 26.6\\% and improving training throughput by 6.4\\%, with neutral-to-positive online participation. In the quality-scaling regime, quality improves monotonically with chain length. Wall-clock analysis shows the efficiency gain comes mainly not from reduced FLOPs but from lower cross-device synchronization overhead and reduced optimizer update cost. These results position parameter-shared iterative computation as a practical, communication-efficient scaling axis for industrial ranking systems.",
+    "abs": "http://arxiv.org/abs/2610.16415v1",
+    "pdf": "https://arxiv.org/pdf/2610.16415v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文提出 CDS：在工业短视频排序系统中把同一个特征交互块重复迭代、参数跨迭代共享，使「链长」（迭代次数）成为不增加参数的新扩展维度，并用链内残差连接稳定优化；在生产系统上比较压缩与质量扩展两种 regime 的离线在线效果、训练吞吐与延迟构成。",
+      "relevance_reason": "参数共享的循环迭代、以迭代次数作为额外建模容量、以及残差稳定深层循环的做法，可能为 LVR 中 loop 式 latent 状态更新的深度/长度扩展与训练稳定性提供可核查线索，但其任务与视觉或多模态推理无直接关系，深度收益是否源于参数复用之外也需另行核实。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T18:49:41.942785+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

@@ -1,0 +1,75 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.18642",
+  "input_sha256": "7eb5ed1aadb9cdfe9bdf02b73b66783b47a0474e1b7da9452d3f4b3c91c398ac",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T18:14:56.756175+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1819,
+        "output_tokens": 590,
+        "total_tokens": 2409,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 368
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.18642",
+    "title": "MultiAlloc: Budget-Aware Precision Allocation for KV Cache Quantization",
+    "authors": [
+      "Yangchengyu Zhou",
+      "Zhiping Wu",
+      "Runchang Jiang",
+      "Dongdong Ren",
+      "Youfang Han",
+      "Wei Zhao",
+      "Dongqi Cai",
+      "Wenbin Li"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": "Code: https://github.com/RL-MIND/MultiAlloc",
+    "summary": "The Key-Value (KV) cache constitutes a dominant source of memory consumption during large language model (LLM) inference, particularly in long-context and complex reasoning scenarios. Existing KV cache quantization methods have explored different compression granularities, including layer-wise precision adjustment and token-level information preservation. In practical deployment, however, the key challenge is not merely compression, but how to allocate limited quantization resources among heterogeneous precision preservation strategies under a fixed KV cache memory budget. We propose MultiAlloc, a profiling-guided precision allocation framework for KV cache quantization that adaptively distributes limited quantization resources between layer-wise precision enhancement and token-wise preservation. MultiAlloc employs lightweight offline profiling to characterize layer sensitivity and token importance, enabling adaptive precision allocation under a fixed memory constraint. Guided by the profiled memory--accuracy trade-off, it automatically derives an effective precision allocation strategy without online allocation search, and applies the resulting policy during inference. Extensive experiments on reasoning and long-context benchmarks demonstrate that MultiAlloc consistently improves over layer-wise, token-wise, and recent multi-granularity KV cache quantization methods under matched memory budgets across diverse models, including Mistral, Llama, DeepSeek-Qwen, and QwQ.",
+    "abs": "http://arxiv.org/abs/2610.18642v1",
+    "pdf": "https://arxiv.org/pdf/2610.18642v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文提出 MultiAlloc，一个由轻量离线 profiling 驱动的 KV cache 量化框架，在固定显存预算下自适应地在「层级精度提升」与「token 级信息保留」两类策略之间分配量化资源，并直接落成推理期策略，无需在线搜索。",
+      "relevance_reason": "其按 token 重要性保留信息、并按层敏感度分配有限精度预算的思路，可能为 LVR 中「在显存/计算预算下保留关键视觉证据于内部状态」提供可核查的分配与筛选线索；但该工作仅面向纯文本 LLM 的长上下文推理，能否迁移到多模态 latent 状态尚需核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T18:14:56.756175+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

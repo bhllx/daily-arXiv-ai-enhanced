@@ -1,0 +1,71 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.16337",
+  "input_sha256": "d86102cd57341b9500548bab65eab0ae3c4d0456cdf128ba3de312a1212c2ff8",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T18:50:46.013053+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1871,
+        "output_tokens": 793,
+        "total_tokens": 2664,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 538
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.16337",
+    "title": "WorldRoPE: Probabilistic World-Centric Rotary Embedding for Multi-View Attention",
+    "authors": [
+      "Mijeong Kim",
+      "Kyujin Lim",
+      "Bohyung Han"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.AI"
+    ],
+    "comment": "Project page: https://cv.snu.ac.kr/research/WorldRoPE",
+    "summary": "Rotary Positional Embedding (RoPE) is widely used to encode relative positions in Transformers. In multi-view settings, however, patch coordinates are defined independently in each image: the same 3D point can therefore have different coordinates across views, making them insufficient for establishing cross-view correspondences. We introduce WorldRoPE, a probabilistic world-centric RoPE for multi-view attention. At each layer, WorldRoPE back-projects each patch token into a set of volumetric Gaussian primitives in a shared world frame. These primitives represent multiple plausible 3D supports for a token, jointly capturing alternative depth hypotheses, depth uncertainty, and the finite spatial extent of its patch frustum. When a key token's support is projected into a query view, it induces a distribution over where that key may appear in the query image. WorldRoPE integrates the rotary operator over this distribution in closed form, combining rotations at the projected primitive centers according to their mixture weights with covariance-dependent attenuation. This makes attention less sensitive to uncertain key locations in the query view, without rasterizing or warping token features. The formulation reduces to deterministic RoPE when the support collapses to a point. Across layers, the predicted geometry guides cross-view attention, while the updated features refine the geometry used at the next layer. Experiments on novel view synthesis, depth estimation, and 3D geometry reconstruction demonstrate the effectiveness of WorldRoPE for multi-view Transformers.",
+    "abs": "http://arxiv.org/abs/2610.16337v1",
+    "pdf": "https://arxiv.org/pdf/2610.16337v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "提出 WorldRoPE：一种面向多视图注意力的概率化世界坐标旋转位置编码。它把每个 patch token 反投影为共享世界坐标系中的一组体素高斯基元，用以表达多种深度假设、深度不确定性及 patch 视锥的空间延展，并将旋转算子在该分布上闭式积分，按混合权重与协方差衰减调制注意力，使注意力对不确定的关键位置更不敏感；当支撑退化为点时还原为确定性 RoPE。",
+      "relevance_reason": "用「多假设 + 不确定性协方差」刻画视觉证据在世界坐标中的 latent 表示并按不确定性加权注意力，可能为 LVR 中如何保留几何/任务必要信息、按证据可靠性筛选视觉旁路提供可核查的方法线索，但该文面向新视角合成与三维重建，未涉及推理期 latent 状态生成。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T18:50:46.013053+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

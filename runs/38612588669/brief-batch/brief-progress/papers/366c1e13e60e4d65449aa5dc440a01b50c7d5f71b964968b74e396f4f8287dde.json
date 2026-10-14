@@ -1,0 +1,76 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.18143",
+  "input_sha256": "a0ee66f05fb5ca0a8e33d87c2bce8f6530e42db0a797a10d6b2f048f826b1336",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T18:21:51.109613+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1822,
+        "output_tokens": 455,
+        "total_tokens": 2277,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 270
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.18143",
+    "title": "RadixFlow: Filling Execution Bubbles in Prefix-Cached Hybrid LLM Serving",
+    "authors": [
+      "Huihao Jing",
+      "Wenbin Hu",
+      "Shaojin Chen",
+      "Haochen Shi",
+      "Haoyu Huang",
+      "Sirui Zhang",
+      "Yuxuan Liu",
+      "Zhongwei Xie",
+      "Haoran Li"
+    ],
+    "categories": [
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "Prefix reuse improves LLM inference by sharing the KV cache of common prompt prefixes. This helps only if the scheduler can execute a matched branch in the current worker round. Schedulers assume that a matched prefix is ready, which holds for full attention but fails for hybrid LLMs. There, a branch (the consumer) may need recurrent state that another branch (the producer) is still computing in the same round. The native scheduler stops its waiting-queue scan at this blocked consumer, and the resulting head-of-line blocking creates \\emph{execution bubbles}: idle batch slots that independent work could fill. We introduce RadixFlow, which decouples prefix matching from state readiness. Its state-ready traversal turns a global scan barrier into a local wait: only the consumer is blocked until the next round, while feasible independent branches keep filling the batch under the native state check. On five hybrid models, RadixFlow lowers mean latency by 3\\% to 24\\% and worker rounds by 11\\% to 44\\% at almost unchanged reuse. On the larger Qwen3.5 models, ablations show that most of the gain comes from traversal, which adds little on a full-attention control. Heavier rounds limit how much of this saving reaches latency.",
+    "abs": "http://arxiv.org/abs/2610.18143v1",
+    "pdf": "https://arxiv.org/pdf/2610.18143v1",
+    "AI": {
+      "category": "EXCLUDE",
+      "priority": "NONE",
+      "brief_summary": "RadixFlow 针对混合 LLM 服务中的前缀缓存调度问题，将前缀匹配与循环状态就绪解耦，用局部等待替代全局扫描屏障以减少执行气泡，在五个混合模型上降低时延与 worker 轮次。",
+      "relevance_reason": "该工作是推理服务系统的批调度与 KV/循环状态就绪优化，关注吞吐与延迟而非视觉或多模态推理状态的保留、生成与使用，未见可核查的 LVR 借鉴线索，故排除。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T18:21:51.109613+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

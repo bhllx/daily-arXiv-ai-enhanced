@@ -1,0 +1,71 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.16105",
+  "input_sha256": "c5662bb5609e294bc00285b1035768f8e97aeb64d91c4294f504947f77134e2f",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T18:55:10.733250+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1854,
+        "output_tokens": 488,
+        "total_tokens": 2342,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 281
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.16105",
+    "title": "Beyond Policy Rollouts: Embedding-Space Directional Exploration with Anchored Noise for LLM RLVR",
+    "authors": [
+      "Daijiao Liu",
+      "Huiyi Wang",
+      "Lina Yao",
+      "Dong Gong"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Reinforcement learning with verifiable rewards (RLVR) typically uses small rollout groups per prompt, where repeated sampling from the same policy can yield highly similar trajectories, reducing within-group reward variation and weakening group-relative advantage signals. Existing remedies such as higher sampling temperature, entropy bonuses, asymmetric clipping, and larger rollout budgets broaden sampling or modify policy updates but leave rollout conditioning unchanged. In this paper, we propose EDEN (Embedding-space Directional Exploration via anchored Noise), which intervenes at the rollout source through anchored input perturbations. EDEN explores beyond the policy's own rollouts. Within the same rollout budget, it replaces a small fraction of standard rollouts in each group with rollouts that the same policy generates from the prompt plus a single appended, perturbed embedding position, rather than from the prompt alone. Gaussian noise drives variation, while a shared anchor provides a common conditioning direction within each prompt group. Selected perturbed rollouts contribute to GRPO updates with downweighted advantages, and the model architecture, discrete decoding, and test-time inference remain unchanged. Across model scales and mathematical reasoning benchmarks, EDEN outperforms GRPO and the exploration controls evaluated in the same pipeline, with the largest gains in sampled solution coverage. Analyses show that more prompt groups provide non-zero group-relative learning signals and that noise and anchoring play complementary roles. Intervening at the rollout source is thus an effective lever for exploration in RLVR.",
+    "abs": "http://arxiv.org/abs/2610.16105v1",
+    "pdf": "https://arxiv.org/pdf/2610.16105v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "提出 EDEN：在 rollout 源头做锚定噪声干预，把每组的少量标准 rollout 替换为在 prompt 后追加一个扰动 embedding 位置所生成的轨迹，并以降权优势加入 GRPO 更新，提升 LLM 数学推理 RLVR 的探索多样性与解覆盖。",
+      "relevance_reason": "属纯文本 RLVR 探索增强，与视觉 latent 推理无直接关联；但其在输入表示层注入锚定噪声、刻意拉开组内条件差异以扩大学习信号的做法，可能为 latent 推理状态的多样性探索与优势分配提供可供核查的方法线索。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T18:55:10.733250+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

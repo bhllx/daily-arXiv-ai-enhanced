@@ -1,0 +1,85 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.17338",
+  "input_sha256": "c0972ee9637a2d92dacd3a989773ba8bcd99b97443df44bca273ad596ff9581e",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T18:35:40.762063+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1788,
+        "output_tokens": 811,
+        "total_tokens": 2599,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 586
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.17338",
+    "title": "Budgeted KV-Cache Repair for Evolving Contexts",
+    "authors": [
+      "Han Yu",
+      "Wenhui Zhu",
+      "Jincheng Cao",
+      "Rui Cai",
+      "Yuanda Xu",
+      "Zhengze Zhou",
+      "Xiwen Chen",
+      "Hao Wang",
+      "Xuanzhao Dong",
+      "Han Shi",
+      "Menglin Zhou",
+      "Shayan Mohajer Hamidi",
+      "Lin Su",
+      "Mina Razghandi",
+      "Sayan Ghosh",
+      "Qing Lan",
+      "Rohit Jain",
+      "Alborz Geramifard"
+    ],
+    "categories": [
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "Language-model agents revise their working context as information becomes obsolete, but deleting text does not erase its influence on cached computation. Later key-value (KV) states remain conditioned on the deleted content, while recomputing the entire retained suffix can be costly. We introduce budgeted KV-cache repair: recovering task performance by recomputing a user-chosen fraction of the retained suffix. Comparing repair allocations under identical relevance scores and token budgets, we find that refreshing coherent regions can substantially outperform refreshing isolated tokens. This finding motivates Semantic-Unit Refresh (SUR), which allocates the budget to query-relevant text regions using inexpensive embedding scores, without training or an auxiliary transformer forward. To execute these repairs efficiently, a layer-packed executor processes selected states together at each layer while preserving full causal cache access. Across five models, SUR achieves strong recovery in controlled deletion tasks while recomputing only 2-5% of the suffix. On four natural multi-hop QA datasets, it achieves near-full-recompute exact match at a 5% budget with lower post-edit latency. The executor accelerates fragmented refresh by up to 16.1x over interval-wise execution.",
+    "abs": "http://arxiv.org/abs/2610.17338v1",
+    "pdf": "https://arxiv.org/pdf/2610.17338v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P1",
+      "brief_summary": "论文研究语言模型智能体更新上下文后，KV 缓存中仍残留已删除内容影响的问题，提出在给定预算下只重算保留后缀的一小部分来恢复任务性能，并用基于嵌入分数的 Semantic-Unit Refresh 把预算分配给查询相关的语义区域，另设计分层打包执行器加速碎片化重算。",
+      "relevance_reason": "其「刷新连续区域优于刷新孤立 token」的发现与预算分配、重要性打分机制，可供核查 LVR 中哪些内部状态需保留或重算、以及缓存与注意力结构对 latent 状态的影响，并关联动态计算的收益-成本权衡；但面向纯文本任务，属方法借鉴线索而非直接主线。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T18:35:40.762063+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

@@ -1,0 +1,81 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.15715",
+  "input_sha256": "9a64b7bc668c9a925aa583e0259d8d23a32c7b0645d601623372aa08fcc4d1e8",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T19:00:27.891341+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1907,
+        "output_tokens": 706,
+        "total_tokens": 2613,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 476
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.15715",
+    "title": "History Replays Itself: Unleashing Long-Context Capability in Linear Attention",
+    "authors": [
+      "Li Nanbo",
+      "Firas Laakom",
+      "Yilan Zhang",
+      "Piotr Piękos",
+      "Yimeng Chen",
+      "Liangyu Wang",
+      "Yifan Xu",
+      "Mateusz Ostaszewski",
+      "Dandan Guo",
+      "Wenyi Wang",
+      "Yanning Dai",
+      "Yuhui Wang",
+      "Jürgen Schmidhuber"
+    ],
+    "categories": [
+      "cs.AI",
+      "cs.LG"
+    ],
+    "comment": "See our project in https://nanboli.github.io/notebank-page",
+    "summary": "Linear attention promises the efficiency needed for long-context language modelling, yet its fixed-size recurrent state must simultaneously support ongoing computation and preserve information from an ever-growing history. This coupling has reinforced a prevailing view that the state's memory capacity defines the model's long-context capability. We challenge this presumed ceiling: \\emph{recurrent computation need not bear the full burden of long-term storage}. We introduce NoteBank, a sparse episodic memory that archives selected text before future queries are known, uses the backbone's native features for writing and addressing, and reads retrieved evidence through its native forward computation via replay. This \\emph{training-free, plug-and-play} interface requires no external embedding model, separately trained retriever, or separate neural reader. At one million tokens, it raises Gated DeltaNet's mean accuracy across six RULER retrieval tasks from 1.7% to 70.3%, with no observed significant retrieval degradation from 4K to 1M tokens. This recovery adds $\\leqslant$0.025% to analytical FLOPs, with persistent context storage approximately 1/2,600 that of a Transformer's full MHA KV cache at matched width, depth, and precision. Experiments extend from three 1.3B recurrent backbones to Mamba-2-8B and post-trained Qwen3.5-9B, demonstrating gains on LongBench v1/v2 and MemoryAgentBench. Together, these results show that sparse evidence storage and native replay can substantially expand the long-context capability of pretrained linear attention models while retaining the efficiency of recurrent computation.",
+    "abs": "http://arxiv.org/abs/2610.15715v1",
+    "pdf": "https://arxiv.org/pdf/2610.15715v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P1",
+      "brief_summary": "论文提出 NoteBank：一种免训练、即插即用的稀疏情景记忆，在后续查询未知前先写入选中的文本片段，用主干自身特征完成写入与寻址，并通过原生前向计算「回放」检索到的证据，将线性注意力模型在百万级 token 检索上的准确率大幅提升，同时几乎不增加算力与存储。",
+      "relevance_reason": "「解耦循环状态与长期存储、按需检索并以原生前向回放证据」这一接口，可能与 LVR 关于状态容量、视觉证据筛选与检索式 latent 推理的讨论相关，可供核查；但论文对象是纯文本线性注意力，向多模态推理的可迁移性尚未验证。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T19:00:27.891341+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

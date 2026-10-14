@@ -1,0 +1,72 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.15929",
+  "input_sha256": "bcf378f715bb62665889c2c30cb2f2c29ee1b4d774d649f1f691543c58c9774a",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T18:57:39.605972+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1917,
+        "output_tokens": 775,
+        "total_tokens": 2692,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 520
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.15929",
+    "title": "When Trackers Fail: VLM-Guided Verification and Recovery for Robust Video Object Segmentation",
+    "authors": [
+      "Valay Bundele",
+      "Susmit Agrawal",
+      "Mehran Hosseinzadeh",
+      "The Nam Nguyen",
+      "Hendrik P. A. Lensch"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": "Accepted to NeurIPS 2026",
+    "summary": "Recent trackers built on foundation models such as the Segment Anything Model (SAM) achieve strong performance by propagating object masks through memory. However, this strength is also a key source of failure: under occlusion, reappearance, or distractors, an incorrect prediction can enter the tracking loop and be propagated over time, resulting in persistent identity drift. Existing approaches seek to prevent such failures through improved memory and temporal modeling, but once a failure occurs, the tracker has no explicit mechanism to recognize or correct it. We address this gap with Dual-Agent, a failure-aware tracking framework that complements propagation with explicit verification and recovery. We address this gap with Dual-Agent, a failure-aware tracking framework that complements propagation with explicit verification and recovery. A vision-language verification agent first reasons over spatio-temporal context to determine whether the tracker is still following the target. When a failure is detected, a correction agent uses temporal context to recover the target before tracking continues. The correction agent is trained on real SAM3 failures, augmented with targeted identity-switch and distractor perturbations that expose it to challenging ambiguities during recovery. On LVOS-v2 and SecVOS, Dual-Agent improves SAM3 by 1.2 and 2.7 $J\\&F$, respectively. Importantly, the proposed framework transfers without retraining to SAM2.1, SeC, and Cutie, as well as to long-term video object tracking benchmarks including LaSOT-ext, TNL2K, and VOT-LT2022. Our results show that explicitly reasoning about when tracking fails and how to recover provides a complementary path to robust tracking beyond improving propagation alone. Project page: valaybundele.github.io/Dual-Agent.",
+    "abs": "http://arxiv.org/abs/2610.15929v1",
+    "pdf": "https://arxiv.org/pdf/2610.15929v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文提出 Dual-Agent 框架：由视觉语言验证 agent 基于时空上下文判断跟踪器是否仍锁定目标，检出失败后由纠错 agent 结合时序上下文恢复目标，纠错模块在真实 SAM3 失败样本加身份切换与干扰扰动上训练，在 LVOS-v2、SecVOS 及多个 VOT 基准上验证并可免训练迁移到 SAM2.1、SeC、Cutie。",
+      "relevance_reason": "其中用 VLM 显式判断「当前传播是否已失效」并触发重新获取证据，可能为 LVR 中 THINK/LOOK/STOP 的停止与再观察决策、以及失败样本监督设计提供可供核查的线索；但研究对象是视频跟踪的纠错恢复，验证信号能否迁移到 latent 推理状态仍待确认。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T18:57:39.605972+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

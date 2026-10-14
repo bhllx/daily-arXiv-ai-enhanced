@@ -1,0 +1,73 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.15417",
+  "input_sha256": "a9b0ef537ed28f798f37af6999c6610deba9efe09d769de883d154e8bf94c8f2",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T19:04:14.495717+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1886,
+        "output_tokens": 784,
+        "total_tokens": 2670,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 576
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.15417",
+    "title": "SpecFit: Not All Draft Tokens Cost the Same in Offloaded MoE Inference",
+    "authors": [
+      "Hongliang Cao",
+      "Xiuyu Li",
+      "Siqi Wang",
+      "Ziming Wang",
+      "Jingmin Zhu",
+      "Hailong Yang"
+    ],
+    "categories": [
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "Mixture-of-experts (MoE) models activate only a few experts per token, but when their expert weights are offloaded to host memory, host-to-device (H2D) expert transfers enter the critical path of decoding. Speculative decoding verifies several draft tokens in one forward pass, yet in an MoE model each verified token activates its own experts, so a larger draft tree transfers more experts. Because of this H2D cost, speculative decoding commits several tokens per verification cycle yet is sometimes even slower than autoregressive decoding. Based on this observation, we propose SpecFit, which chooses the verified draft subtree to maximize predicted throughput rather than acceptance length. SpecFit estimates the expected number of committed tokens from draft path probabilities and predicts cycle time from the node count and the per-layer union of the experts the subtree activates; this union is a monotone submodular coverage function, so each node pays only for the experts it adds. An exact search over ancestor-closed subtrees returns the subtree with the highest predicted throughput; run after each draft level, the same search also decides when to stop drafting, and the unmodified target verifies the result. On CNN/DailyMail summarization and a GSM8K subset with Qwen3-30B-A3B, SpecFit decodes 21.6% and 7.0% faster than EAGLE-3 with the same expert cache and 1.97x and 1.72x as fast as vanilla EAGLE-3. Code is available at https://github.com/Chlience/SpecFit.",
+    "abs": "http://arxiv.org/abs/2610.15417v1",
+    "pdf": "https://arxiv.org/pdf/2610.15417v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "针对 MoE 模型专家权重卸载后投机解码的 H2D 传输开销，提出 SpecFit：用 draft 路径概率估计可提交 token 数、用子树激活专家的并集预测周期时间，搜索使预测吞吐最大的祖先封闭子树，并在每层草稿后据此决定何时停止草稿。",
+      "relevance_reason": "其按成本模型筛选候选子树、并在每轮判断是否继续的机制，可能与 LVR 的动态计算分配与停止决策（STOP）可供核查；但该文属 MoE 推理系统优化，不涉及视觉推理或 latent 状态。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T19:04:14.495717+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

@@ -1,0 +1,102 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.18654",
+  "input_sha256": "32c832af39c202d141dad88f6a81c36da3284a0784cfe9cd38c6923762bf7ff4",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T18:14:42.541395+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1770,
+        "output_tokens": 688,
+        "total_tokens": 2458,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 478
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.18654",
+    "title": "Kwai Summary Attention V2 Technical Report",
+    "authors": [
+      "OneRec Team",
+      "Chenglong Chu",
+      "Guohong Mu",
+      "Guowang Zhang",
+      "Hao Peng",
+      "Hui Wang",
+      "Jian Liang",
+      "Jiangxia Cao",
+      "Jiao Ou",
+      "Jiaxin Deng",
+      "Lu Ren",
+      "Muhao Wei",
+      "Ruiming Tang",
+      "Tianle Xu",
+      "Wenwu Ou",
+      "Xingmei Wang",
+      "Zhixin Ling",
+      "Zhiyuan Liang",
+      "Ziqi Wang",
+      "Chaoyi Ma",
+      "Haixiao Gao",
+      "Kuo Cai",
+      "Renpu Liu",
+      "Ruochen Yang",
+      "Wenlong Xu",
+      "Xinqi Jin",
+      "Yan Sun",
+      "Yifan Wang",
+      "Yingzhi He",
+      "Yiyu Wang",
+      "Yusen Huo",
+      "Zhaojie Liu",
+      "Zihan Zhou"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.AI",
+      "cs.IR"
+    ],
+    "comment": "Work in progress",
+    "summary": "Summary-token architectures such as Kwai Summary Attention (KSA) compress distant context into learnable Summary token per chunk, and hybrid variants interleave these layers with full attention to retain exact access to the original text. In such hybrid KSA-Full architecture, the interleaving inserted summary tokens are served as a streaming flow role across different layers. Although effective, however, it also introduce some bottlenecks: (1) the different layers summary compression chunk must be same, therefore hard to reach a flexible KV Cache compression, e.g., different layer set different summary compression chunk window. (2) in the full-attention layers, the summary token introduced additional computation cost, but such layer ignore them and still pay quadratic prefilling, therefore unfriendly to the computation side. Motivated by them, we developed the KSA V2, which not only achieves a more flexible KV cache memory compression but also reduces the computation cost in Full attention layer. Specifically, we found that the summary tokens can serve two roles: the KV memory and sparse indexer.",
+    "abs": "http://arxiv.org/abs/2610.18654v1",
+    "pdf": "https://arxiv.org/pdf/2610.18654v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "提出 KSA V2，针对 summary-token 与 full attention 交替的混合架构，允许各层使用不同的摘要压缩窗口以实现更灵活的 KV cache 压缩，并让 summary token 兼作 KV 记忆与稀疏索引器，以降低 full attention 层的预填充计算。",
+      "relevance_reason": "其「按层可变压缩窗口」与 summary token 兼具记忆和稀疏索引两种角色的设计，可能为 LVR 中 latent 状态在跨深度缓存、内容压缩与视觉证据筛选方面的线索提供可核查参考，但该工作面向纯文本效率，未涉及多模态推理。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T18:14:42.541395+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

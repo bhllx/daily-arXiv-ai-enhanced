@@ -1,0 +1,75 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.18729",
+  "input_sha256": "1f932415aa6239689f1861ca227068ea8acc42dfc5e1616bd3ccb2d4da5ead71",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-14T18:13:29.255932+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1951,
+        "output_tokens": 955,
+        "total_tokens": 2906,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 698
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.18729",
+    "title": "Segment Where You Look: Attention as the Interface Between Language Models and Segmenters",
+    "authors": [
+      "Eslam Abdelrahman",
+      "Hamza Omar Alkaf",
+      "Yuheng Li",
+      "Siddharth Srinivasan Iyer",
+      "Nanxuan Zhao",
+      "Eli Shechtman",
+      "Krishna Kumar Singh",
+      "Mohamed Elhoseiny"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": null,
+    "summary": "Vision-language models (VLMs) that segment from language must pass the location of the referent to a pixel decoder. The dominant interface compresses it into the hidden state of a single [SEG] token, a d-dimensional vector with no spatial index, and leaves the decoder, which never sees the expression, to recover the referent's extent. We show that the VLM already computes a better signal: the [SEG] token's attention over the image tokens, which is defined on the patch grid by construction. Probing a frozen segmentation VLM, we find that this attention yields 18 to 22 more gIoU than the [SEG] hidden state when read by the same probe, that it gains nothing from the image where the hidden state does, and that it is concentrated in the late layers. Building on these findings, we introduce AttnSeg, which replaces the [SEG] embedding with this attention as the decoder's prompt. A learned, signed combination of the attention heads forms a dense spatial prompt, and an attention-guidance objective supervises it directly. A two-stage recipe first trains the VLM to localize without the decoder, then trains the decoder to refine, within the budget of standard fine-tuning. Applied to Sa2VA, AttnSeg improves ReasonSeg by 6.4 gIoU and GS-Eval by 10.2 at 4B (4.2 and 9.6 over the same model fine-tuned on the same data), and by 8.8 and 11.3 at 14B. The gains reach 13 to 18 gIoU on object parts, multiple objects, and single objects, where the referent must be singled out, and are negligible on stuff regions, which the decoder already recovers unaided. Code and models are available at https://eslambakr.github.io/attseg_project_page/",
+    "abs": "http://arxiv.org/abs/2610.18729v1",
+    "pdf": "https://arxiv.org/pdf/2610.18729v1",
+    "AI": {
+      "category": "MAIN",
+      "priority": "P1",
+      "brief_summary": "论文研究「VLM 如何把指称位置传给像素解码器」这一接口：指出主流做法把位置压缩进单个无空间索引的 [SEG] 隐状态，而 [SEG] 对图像 token 的注意力天然定义在 patch 网格上；通过探测冻结的分割 VLM 比较二者，并提出 AttnSeg，用注意力头的可学习带符号组合作为解码器的稠密空间提示，配合注意力引导监督与两阶段训练。",
+      "relevance_reason": "其探针式诊断直接比较隐状态与注意力图对空间/视觉证据的保留程度（注意力高出 18–22 gIoU，且隐状态还依赖图像），可供核查 LVR 中 latent 状态是否真正携带任务必要的视觉与几何信息，以及注意力结构能否作为潜在状态的空间证据筛选信号。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-14T18:13:29.255932+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}
