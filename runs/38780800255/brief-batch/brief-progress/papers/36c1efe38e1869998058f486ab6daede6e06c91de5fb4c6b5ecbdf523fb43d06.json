@@ -1,0 +1,75 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.20071",
+  "input_sha256": "f4a86c67887cbe3b989b6717654c869d3701cf90503af2fb42e37346b49334dd",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-15T18:00:22.216690+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1891,
+        "output_tokens": 675,
+        "total_tokens": 2566,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 460
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.20071",
+    "title": "Rethinking Prediction Horizons: Decoupling Model Queries from State Updates in Few-Step MeanFlow",
+    "authors": [
+      "Tinglan Wang",
+      "Haixu Liu",
+      "Shaobo Chen",
+      "Nuo Qian",
+      "Qi Gao",
+      "Kai Wen",
+      "Yu Yao"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.AI"
+    ],
+    "comment": "36 pages, including appendices",
+    "summary": "MeanFlow predicts interval-average velocities, but conventional few-step sampling ties the interval queried from the model to the duration of the state update. We separate these two quantities at inference, fixing the model, update grid, and number of queries while varying the prediction horizon. Our central finding is that the horizon response depends on both query position and the states entering that query. Across seven independently trained CIFAR-10 checkpoints at classifier-free guidance (CFG) scale 2, a longer horizon worsens FID at early steps but improves it at the midpoint. To probe whether query time alone determines this response, we fix the midpoint query and current/subsequent guidance while changing only earlier CFG. In held-out factorial outcomes on five previously studied checkpoints, the mean midpoint horizon benefit increases from 0.109 to 1.308 FID, indicating sensitivity to the incoming-state distribution. A frozen four-query rule reduces mean CIFAR-10 FID by 2.023 without retraining or extra queries, including gains on five checkpoints trained after rule selection. A milder rule also improves mean FID by 1.041 on a stronger frozen grid, with fixed-rule FID gains on the evaluated public ImageNet-256 and AFHQ checkpoints. However, matched-budget calibration favors query-start shifting in historical CIFAR tests, and the tested Horizon allocation adds no FID benefit beyond Grid+Start on two public ImageNet models. Thus, prediction horizon is a distinct, position- and state-sensitive inference control, but not a universally preferred one.",
+    "abs": "http://arxiv.org/abs/2610.20071v1",
+    "pdf": "https://arxiv.org/pdf/2610.20071v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "在少步 MeanFlow 采样中把「模型查询的预测区间」与「状态更新时长」在推理期解耦：固定模型、更新网格与查询次数，只改变预测视野，发现其收益取决于查询位置和进入该查询的状态分布，并据此提出免训练的四查询规则以改善 FID，同时指出该视野并非普遍更优。",
+      "relevance_reason": "预测视野与状态更新的解耦、以及规则对进入状态分布的敏感性，可能为 LVR 中循环 latent 状态更新的步长与查询/计算预算分配提供方法线索，需核查其是否可迁移到多模态推理轨迹。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-15T18:00:22.216690+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

@@ -1,0 +1,80 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.20497",
+  "input_sha256": "ee5b7ad0c068d5588021399819c23f0afca790c66ab051172e8e434fc920e44f",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-15T17:54:42.246193+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1877,
+        "output_tokens": 692,
+        "total_tokens": 2569,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 456
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.20497",
+    "title": "Hindsight-Privileged RLVR: Single-Rollout Token Credit Without Group Sampling",
+    "authors": [
+      "Wei Chen",
+      "Yubing Wu",
+      "Zhou Xu",
+      "Haoyue Zhang",
+      "Delu Zeng",
+      "Jiahao Wang",
+      "Junmei Yang",
+      "Pan tiewen",
+      "Jingfeng Liu",
+      "Zhiheng Zhou",
+      "Bo Li",
+      "Min Chen"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "Reinforcement learning with verifiable rewards (RLVR) trains language models from checked task outcomes, but assigning a terminal reward to individual reasoning tokens or actions remains difficult. Group-relative methods such as Group Relative Policy Optimization (GRPO) sample several attempts per prompt, but lose their reward-based learning signal when all attempts receive the same outcome. We propose Hindsight-Privileged RLVR (HP-RLVR), a single-rollout method that turns a completed trajectory's own future into token-level update weights. The generating policy snapshot scores each eligible token under its causal history and under a hindsight context containing the realized future and verifier feedback. A normalized Jensen--Shannon divergence between the two views weights the reward relative to a historical baseline, yielding bounded token credit for both successful and failed attempts, with no reference solution or learned critic. In paired Qwen3-8B runs over a shared $100$-step schedule, HP-RLVR trains $1.21\\times$, $1.46\\times$, and $2.30\\times$ faster than GRPO on mathematics, code generation, and ALFWorld, using one eighth the rollouts per prompt. Accuracy is comparable overall, with HP-RLVR ahead on mathematics at all three sizes and GRPO ahead on code and ALFWorld. In ALFWorld, $43.2\\%$ (4B) and $49.0\\%$ (8B) of GRPO's gradient-norm records are zero, versus none for HP-RLVR.",
+    "abs": "http://arxiv.org/abs/2610.20497v1",
+    "pdf": "https://arxiv.org/pdf/2610.20497v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P1",
+      "brief_summary": "提出 HP-RLVR：一种单次 rollout 的 RLVR 方法，用同一轨迹的因果历史视角与「事后视角」（含已实现未来和验证器反馈）之间的归一化 Jensen–Shannon 散度，为每个 token 生成有界信用权重，无需参考解或 critic，在数学、代码和 ALFWorld 上以更少 rollout 达到与 GRPO 相当的准确率。",
+      "relevance_reason": "其 token 级信用分配与「失败轨迹也有梯度信号」的设计，可能为 LVR 中 latent 轨迹的贡献分配、奖励稀疏和 GRPO 全同结果导致的零信号问题提供可核查的训练线索；但原文为纯文本任务，未涉及视觉状态。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-15T17:54:42.246193+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

@@ -1,0 +1,76 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.19292",
+  "input_sha256": "8593d27617fb8e45765532150f19200755a8a46cbeb15fef6267ede4b571f914",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-15T18:13:46.068006+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1870,
+        "output_tokens": 1003,
+        "total_tokens": 2873,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 755
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.19292",
+    "title": "Whose turn is it? Context-guided model routing for stateful agents",
+    "authors": [
+      "Anikesh Parashar",
+      "Avik Dutta",
+      "Vashu Chauhan",
+      "Sumit Gulwani",
+      "Priyanshu Gupta",
+      "Hosein Hasanbeig",
+      "Vu Le",
+      "Ashish Tiwari",
+      "Jack Williams"
+    ],
+    "categories": [
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "Model routing can reduce the cost of LLM applications by assigning simpler requests to cheaper models without sacrificing the quality of the response. However, most routers treat requests as independent. Stateful agents do not operate under this assumption: a user turn may require multiple model and tool calls, its difficulty depends on the state produced by earlier turns, and changing models can sacrifice reuse of the conversational prompt cache. We study zero-shot, cost-aware routing at the user-turn boundary, systematically varying the routing rule, access to session history, candidate models that differ in size, reasoning effort, or model provider, and prompt-cache behavior. We evaluate on multi-turn versions of SheetCopilot and SpreadsheetBench 2, where persistent workbooks and cross-turn dependencies make isolated routing decisions especially brittle. At a matched offloading rate, giving the router session history improves task pass rate over the same router without history, with gains for every model pair; history-aware routing remains within one point of always using the expensive model. We also found that cost depends on execution dynamics rather than token prices alone: the cheaper model's per-task cost advantage narrows from 6.8x to 3.2x on longer sessions. A closed form cache analysis further shows that downward switches (expensive to cheap) recover their cache cost within two LLM calls, whereas upward switches do not break even under the evaluated conditions. Together, these results show that agent routing is a sequential decision problem: effective policies must account for what happened earlier in the session and for the asymmetric cost of switching models.",
+    "abs": "http://arxiv.org/abs/2610.19292v1",
+    "pdf": "https://arxiv.org/pdf/2610.19292v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "研究有状态 agent 在用户轮边界上的零样本、成本感知模型路由：系统变化路由规则、是否可见会话历史、候选模型（规模/推理强度/厂商）与 prompt cache 行为，在多轮 SheetCopilot 和 SpreadsheetBench 2 上评估；发现同等卸载率下历史感知路由提升通过率，且下切（贵→廉）的缓存成本两次调用内可收回，上切则不能回本。",
+      "relevance_reason": "把路由刻画为依赖会话状态的序贯决策并量化模型切换的非对称缓存成本，可能为 LVR 中动态计算分配、推理模式切换与状态/KV cache 复用的收益—成本分析提供可核查的借鉴线索；该工作为纯文本表格任务，迁移性需进一步核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-15T18:13:46.068006+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

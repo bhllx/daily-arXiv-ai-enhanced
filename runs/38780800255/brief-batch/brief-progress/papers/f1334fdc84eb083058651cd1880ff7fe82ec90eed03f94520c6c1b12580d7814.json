@@ -1,0 +1,72 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.19169",
+  "input_sha256": "ba7d63c0aab55a2f466fd76d38ca1b0e547f65213993a727f9b37692ee34bf54",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-15T18:15:45.191376+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1948,
+        "output_tokens": 490,
+        "total_tokens": 2438,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 291
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.19169",
+    "title": "Verification Turns Capability Gaps into Routing Decisions: Small Language Models for Clinical Documentation",
+    "authors": [
+      "Nina Fatehi",
+      "Meysam Ghaffari",
+      "Animesh Agarwal",
+      "Anushka Swarup",
+      "Carlos Morato"
+    ],
+    "categories": [
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "Clinical note generation from doctor--patient dialogue is high-volume and hallucination-intolerant: a fabricated laboratory value can create patient-safety risk, not a quality regression. We ask whether an agentic \\emph{verification} architecture, rather than generator scale, can make a small language model viable here. Holding a four-evaluator verification stack and refinement policy fixed and swapping only the generator between a 4B-parameter model with a QLoRA adapter and a frontier baseline, the small model reaches $0.984$ claim-level factual entailment against $0.992$ and comes within $3.3$ points on completeness, generating entirely on-device. Its deficit is confined to \\emph{inter-section structural fidelity}---arrangement rather than clinical comprehension, and the axis on which it also falls furthest below the corpus's reference notes. Because that deficit is an explicit verifier decision rather than a silent quality difference, it becomes a routing policy: run the small model by default, escalate what the verifier rejects. Measured end to end, that it achieved a similiar verified-rate acceptance to the frontier-only acceptance in this test set ($99.6\\%$ vs.\\ $98.4\\%$ over $250$ encounters) while routing $62$, documenting three quarters without a frontier \\emph{generation} call. Ablating the loop separates architecture from scale: unrefined, the small model is accepted on $26.8\\%$ of encounters and the frontier model on $74.8\\%$, so verification does the most work where the generator is weakest. We also contribute section-scoped refinement, which preserves unflagged sections by construction rather than instruction, and find the baseline is not uniformly stronger---its provider refused two trauma-related transcripts the on-device model handled and certified, one facet of a provider dependency a served adapter does not carry.",
+    "abs": "http://arxiv.org/abs/2610.19169v1",
+    "pdf": "https://arxiv.org/pdf/2610.19169v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文在临床对话生成病历场景中固定四评估器验证栈与精化策略，仅替换生成器（4B QLoRA 模型 vs 前沿基线），并用验证结果作路由：默认小模型、被拒时升级，另提出按小节范围的精化以保留未标记内容。",
+      "relevance_reason": "纯文本、无视觉或 latent 状态，但「验证器判定→升级/路由」与按范围精化的做法，可供核查 LVR 中验证筛选、STOP/升级决策与局部状态更新的分工问题。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-15T18:15:45.191376+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

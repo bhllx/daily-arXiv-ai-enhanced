@@ -1,0 +1,78 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.19376",
+  "input_sha256": "c86ea2355cd242c5c640c05918679da0d191f4d17f23f8905b7077ee04eef827",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-15T18:11:53.144106+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1818,
+        "output_tokens": 906,
+        "total_tokens": 2724,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 653
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.19376",
+    "title": "DeLoop: Repeated Actions as Self-Supervision for Long-Horizon Agents",
+    "authors": [
+      "Tianle Chen",
+      "Pushkar Singh",
+      "Ketan Todi",
+      "Biswajit Paria",
+      "Qijia He",
+      "Wenqi Wang",
+      "Yuwen Tan",
+      "Jike Zhong",
+      "Sugato Basu",
+      "Deepti Ghadiyaram",
+      "Arjun Akula"
+    ],
+    "categories": [
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "Language-model agents that run long tasks often redo work they have already done: they re-issue a tool call they made earlier and get back exactly the same observation, a step that adds no new information. We identify this failure as a loop. Loops appear natively in Qwen, Llama, and Gemini agents and become far more common once the agent's history is compressed to fit its context window. To reduce these loops, we propose DeLoop, a self-supervised training method. DeLoop builds on a simple observation: the agent's own rollout can provide the supervision needed to learn from its loops. We use a looping action as a negative example and the first later non-looping action in the same rollout as a positive example. DeLoop learns from these pairs through direct preference optimization and does not require task rewards, gold answers, or LLM judges. On CodeGym under compression, DeLoop reduces the share of Qwen3-8B tasks containing loops from 57.3% to 6.1%. It also uses about one third as many steps per task, with similar task success. On Qwen3-32B, DeLoop reduces loops and steps while raising task success from 37.7% to 44.8%.",
+    "abs": "http://arxiv.org/abs/2610.19376v1",
+    "pdf": "https://arxiv.org/pdf/2610.19376v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文把长程 LLM agent 反复发出相同工具调用、得到相同观察的现象定义为「loop」，并提出 DeLoop：取自身 rollout 中循环动作为负例、其后第一个非循环动作为正例，用 DPO 自监督训练，不需要任务奖励、标准答案或 LLM 评判；在 CodeGym 压缩历史设定下显著降低含 loop 任务比例与步数，大模型上任务成功率也有提升。",
+      "relevance_reason": "属纯文本 agent 工作、未涉及视觉或多模态 latent 状态，但其对「重复且不带来新信息的步骤」的刻画与免奖励偏好对构造方式，可能可供核查 LVR 中冗余推理步的识别、停止决策与轨迹级监督；历史压缩触发 loop 这一点也与状态压缩下信息保留问题相关。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-15T18:11:53.144106+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

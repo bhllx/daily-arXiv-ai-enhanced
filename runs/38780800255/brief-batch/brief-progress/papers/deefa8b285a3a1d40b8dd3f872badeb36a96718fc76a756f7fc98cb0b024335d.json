@@ -1,0 +1,73 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.19068",
+  "input_sha256": "105cab08ba7a3da7f6a36a5c3ef0edcc77fa1dcb9a4f1a3d3737343ebc633b37",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-15T18:17:13.379747+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1942,
+        "output_tokens": 974,
+        "total_tokens": 2916,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 705
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.19068",
+    "title": "Plan or Retrieve First? A Scale Study of Tool Discovery Architectures",
+    "authors": [
+      "Mingfei Zhang",
+      "Amit Surana",
+      "Ziauddin Majid",
+      "Chenxi Wang",
+      "Michael Xu"
+    ],
+    "categories": [
+      "cs.AI",
+      "cs.IR"
+    ],
+    "comment": null,
+    "summary": "Tool-augmented LLM agents discover relevant APIs from large registries before planning execution, yet finite context windows prohibit injecting all tool definitions into a single prompt. The dominant approach, which we term Retrieve-then-Plan (RtP), embeds the user query and retrieves similar tools via approximate nearest-neighbor search. We study an alternative Plan-then-Retrieve (PtR) paradigm in which the LLM first generates Abstract Tool Stubs (hypothesized function signatures describing needed capabilities) which then serve as retrieval queries against the registry. Evaluating on ToolBench (46,984 unique API endpoints, 50 categories) across single-tool (G1), intra-category multi-tool (G2), and cross-category multi-tool (G3) query subsets, we find a clear complexity-dependent crossover: RtP outperforms PtR on single-tool queries while PtR outperforms RtP on multi-tool queries. This crossover holds at every retrieval budget (k=1 to 20), is robust across registry sizes from 1k to 47k APIs, and is consistent across model families (Gemini 2.5 Flash and gpt-oss-120b). We characterize a stub-hallucination failure mode (the LLM invents plausible but non-existent API names) that acts as a double-edged sword: on simple queries PtR's stubs abstract away proper-noun signals that RtP matches directly, yet on complex queries the same mechanism decomposes multi-faceted intent into functional sub-needs. We further analyze token overhead and show that PtR's extra discovery call roughly doubles inference cost, which pays off on multi-tool queries but hurts on single-tool ones, motivating complexity-adaptive routing as a practical direction, one that can be driven by a zero-cost signal already present in the pipeline (RtP's top-1 retrieval score).",
+    "abs": "http://arxiv.org/abs/2610.19068v1",
+    "pdf": "https://arxiv.org/pdf/2610.19068v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文在 ToolBench（约 4.7 万 API）上系统比较两种工具发现架构：主流的「先检索再规划」(RtP) 与替代性的「先规划再检索」(PtR，让 LLM 先生成抽象工具桩再作为检索查询)，发现两者在单工具与多工具查询上存在随复杂度变化的交叉，并刻画「桩幻觉」失败模式、token 开销与复杂度自适应路由。",
+      "relevance_reason": "PtR「先生成抽象假设、再据此获取证据」的流程可能与 LVR 中先形成抽象 latent 状态再检索视觉证据的思路同构；桩幻觉的双刃剑（抽象掉专名信号 vs 分解复合意图）可供核查 latent 抽象程度与细节保真间的权衡，基于 top-1 检索分数的零成本路由也可能为 STOP／动态计算提供线索，均属推测性迁移。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-15T18:17:13.379747+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

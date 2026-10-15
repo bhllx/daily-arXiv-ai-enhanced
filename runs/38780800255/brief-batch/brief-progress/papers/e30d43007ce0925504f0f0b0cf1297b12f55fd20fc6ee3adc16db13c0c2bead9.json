@@ -1,0 +1,76 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.19257",
+  "input_sha256": "34d72483d33a6e0d84b9b6213fe8dffe58bf44a4ae21f48c2ee513cfbca1489f",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-15T18:14:11.677056+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1826,
+        "output_tokens": 847,
+        "total_tokens": 2673,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 608
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.19257",
+    "title": "Long-horizon Video Generation with Slot Memory Addressed By Region Tokens",
+    "authors": [
+      "Eren Cetin",
+      "Julius Erbach",
+      "Vukasin Bozic",
+      "Hyojun Go",
+      "Zixiang Zhao",
+      "Nikolai Kalischek",
+      "Federico Tombari",
+      "Konrad Schindler",
+      "Dominik Narnhofer"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": "23 pages, 13 figures, 6 tables. Project page: https://eren-cetin.github.io/SMART/",
+    "summary": "Memory for long-horizon video generation must satisfy two competing requirements: it must remain bounded so generation can continue indefinitely, while still recovering what was observed at a place when the camera returns, regardless of how long ago it was seen. Reconstruction-based memories provide spatial recall by caching and reprojecting explicit geometry, but require growing storage and depend on estimated 3D structure. Recurrent memories keep a constant-size state, but retention is governed by temporal recurrence, causing old observations to fade with time. We introduce SMART, a slot memory addressed by region tokens, which combines bounded storage with spatially addressed recall. SMART stores content in a constant-size slot recurrence whose writes are addressed by the observing camera and whose reads are queried by the rendering camera, without constructing an explicit 3D representation or maintaining a growing cache. Consequently, recall is conditioned on inter-view geometry rather than on recency. Each read additionally provides a confidence estimate that conditions a chunk-causal diffusion transformer, allowing it to selectively trust retrieved content while relying on its generative prior elsewhere. On long trajectories in Memory Maze and Minecraft, SMART maintains high-fidelity recall far beyond its training horizon while using constant memory and per-step cost.",
+    "abs": "http://arxiv.org/abs/2610.19257v1",
+    "pdf": "https://arxiv.org/pdf/2610.19257v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文提出 SMART：一种由区域 token 寻址的 slot 记忆，用于长时程视频生成。写入由观察相机寻址、读取由渲染相机查询，在不建显式 3D 表示、不增长缓存的前提下保持常数大小状态，并输出读取置信度来条件化 chunk-causal 扩散 transformer；在 Memory Maze 与 Minecraft 上实现超出训练时域的回忆。",
+      "relevance_reason": "其「常数大小 slot 状态＋按查询几何寻址读写＋用置信度决定是否采信检索内容」的机制，可能为 LVR 中 latent 工作区的状态更新、视觉证据筛选与 LOOK/STOP 类决策提供方法线索，能否迁移到语言推理状态尚待核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-15T18:14:11.677056+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

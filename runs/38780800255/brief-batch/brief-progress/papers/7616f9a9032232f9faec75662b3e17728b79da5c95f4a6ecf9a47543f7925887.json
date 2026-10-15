@@ -1,0 +1,73 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.19768",
+  "input_sha256": "17305c37a5564812a0be109925a1e11ce8dba0862bf337670625be07e056f7dd",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-15T18:04:53.735723+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1892,
+        "output_tokens": 635,
+        "total_tokens": 2527,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 400
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.19768",
+    "title": "Learning to Compute Is Not Learning to Retain or Reuse in Looped Transformers",
+    "authors": [
+      "Peilong Zhou",
+      "Hongtao Zhang",
+      "Yulong Huang",
+      "Cangyuan Li",
+      "Mingyu Chen",
+      "Ying Wang"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": "31 pages",
+    "summary": "Looped transformers compute by applying one block repeatedly, so they can run for more loops than they were trained with. Recurrent reasoners are known to overthink: iterating past the trained depth can turn a correct answer into a wrong one. Such a late error can reflect failed computation, loss of retention, or a state that later computation cannot reuse. We separate these cases in in-context Mealy-machine execution, where a simulator supplies intermediate targets and exact counterfactuals for hidden-state interventions. Models trained to answer at loop 32 are fully correct there but keep only 22% of these answers at loop 64. Retention depends on what training asks for: supervising one randomly chosen position per example, instead of always the last, keeps 99.8%, and randomizing the number of training loops also helps; truncating gradients, as in progressive training against overthinking, does not. The computation itself is exact: position $k$ is computed at loop $k$, and swapping its loop-$k$ hidden vector for the one from another input redirects every later position to that input's exact continuation (237/237 pairs in each of ten models). Retention, however, is not reuse. Even in models that keep nearly all answers, holding each position $k$ fixed from loop $k$ drops accuracy to 4--6%, whereas holding it from loop $k+4$ is harmless. A released recurrent maze network trained to avoid overthinking behaves the same way. Learning to compute is thus not learning to retain, and avoiding overthinking does not make a state reusable when its answer first appears.",
+    "abs": "http://arxiv.org/abs/2610.19768v1",
+    "pdf": "https://arxiv.org/pdf/2610.19768v1",
+    "AI": {
+      "category": "MAIN",
+      "priority": "P0",
+      "brief_summary": "论文在上下文 Mealy 机执行任务上研究 looped transformer：模型在训练循环深度内完全正确，循环加倍后仅保留 22% 答案；通过只监督随机位置、随机化训练循环数可把保留率提到 99.8%，而梯度截断无效；并用隐藏状态替换证明位置 k 的计算精确但对齐复用有限。",
+      "relevance_reason": "直接涉及 latent 循环推理的状态更新、过思考（overthinking）与停止/复用，明确区分「算得对」「留得住」「可复用」三类失败，与 THINK/LOOK/STOP 的收益成本、支持组合及循环长度泛化关注高度相关，其监督位置影响保留的结论可供核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-15T18:04:53.735723+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

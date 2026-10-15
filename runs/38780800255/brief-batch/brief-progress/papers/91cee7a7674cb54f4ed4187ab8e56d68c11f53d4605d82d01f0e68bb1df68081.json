@@ -1,0 +1,76 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.19103",
+  "input_sha256": "fb8d78e3958fa7b2a505514684b94915cbd7c04397a4c2606eb07785f9447965",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-15T18:16:46.878209+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1857,
+        "output_tokens": 766,
+        "total_tokens": 2623,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 535
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.19103",
+    "title": "Contextual Credit Policy Optimization",
+    "authors": [
+      "Huiwen Han",
+      "Ziyao Zeng",
+      "Zihao Zhu",
+      "Sisong Bei",
+      "Hao Wang",
+      "Hongyu Xu",
+      "Yan Han",
+      "Degui Zhi",
+      "Zhiwen Fan"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Group-based reinforcement learning enables large language model agents to learn from sparse outcome rewards in long-horizon tasks. Recent methods derive step-level credit by comparing observation-matched experiences across trajectories. However, identical observations can occur in different contexts, and matched peers are not equally informative for a given decision. Moreover, favorable terminal outcomes can obscure redundant actions or detours within successful trajectories. To address these two challenges, we propose Contextual Credit Policy Optimization (CCPO). For the first, CCPO weights observation-matched peers from other trajectories by contextual similarity, computed from frozen LLM representations and accumulated trajectory statistics, allowing peers from similar contexts to contribute more to a step's baseline. For the second, CCPO pairs historical credit, which compares the realized return against the weighted peer baseline, with future credit, which measures the change in contextual outcome value over a short realized continuation. A step is thus credited for the progress it makes, not only for its trajectory's eventual outcome. Both credits are computed in hindsight from rollouts already collected for training, enabling CCPO to address these challenges without an auxiliary value critic. Across two Qwen2.5-Instruct backbones (1.5B and 7B), CCPO achieves up to 97.4% success on ALFWorld and 79.4% on WebShop and outperforms GRPO by up to 21.6 and 18.5 points. Ablations show that contextual weighting outperforms uniform weighting, and that historical and future credit serve as complementary learning signals.",
+    "abs": "http://arxiv.org/abs/2610.19103v1",
+    "pdf": "https://arxiv.org/pdf/2610.19103v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "提出 CCPO：用冻结 LLM 表示与累积轨迹统计计算上下文相似度，对跨轨迹的「观测匹配」同侪基线加权，并把历史信用与短期实际延续上的未来信用配对，实现无需价值 critic 的步级信用分配，在 ALFWorld 与 WebShop 上优于 GRPO。",
+      "relevance_reason": "其无 critic 的步级信用分配和「历史+未来」双信号，可能为 LVR 轨迹训练中 latent 步骤的贡献分配与监督提供线索；基于冻结表示的上下文加权也可供核查 latent 相似度中内容、位置与缓存的影响，但论文为纯文本 agent 场景，迁移到视觉推理需另行验证。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-15T18:16:46.878209+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

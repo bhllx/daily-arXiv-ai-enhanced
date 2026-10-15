@@ -1,0 +1,74 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.20057",
+  "input_sha256": "de05582a82a8850c415accf7f28d6f6e30ceaa06ef76ed38ac1a5298adcf0a35",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-15T18:00:30.159772+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1915,
+        "output_tokens": 836,
+        "total_tokens": 2751,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 613
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.20057",
+    "title": "Beyond Correctness: Compute-Responsive Data Selection for Reasoning Model Post-Training",
+    "authors": [
+      "Liang He",
+      "Xiangyu Li",
+      "Yuxin Wang",
+      "Hanbin Zhang",
+      "Mingyu Cao",
+      "Zhaomiao Guo",
+      "Xilu Wang"
+    ],
+    "categories": [
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "Reasoning language models increasingly rely on test-time compute scaling, yet most existing work studies how to allocate inference computation while treating the model itself as fixed. We ask a complementary question: can reasoning models be post-trained to make better use of a given amount of test-time compute, and which examples are most useful for this goal? Our key observation is that reasoning problems differ substantially in their response to additional computation. Some are already solved under limited compute, others remain unresolved even after further reasoning, while a distinct subset changes from complete initial failure to success when additional reasoning is provided. We call these compute-responsive (CR) examples and introduce Compute-Responsive Data Selection (CRDS), a post-training data-selection principle that prioritizes examples with empirically demonstrated marginal utility from additional reasoning. On Qwen3-8B, SFT on CR examples recovers 45.3\\% of held-out low-compute failures, compared with 40.6\\% when training on already-solved examples. The advantage extends beyond the selected CR split: SFT-CR reaches 51.8\\% overall accuracy on an independently sampled test distribution, with the gain concentrated on compute-responsive problems. CR training also shifts the compute--accuracy frontier across inference budgets from 512 to 4,096 tokens, outperforming matched non-CR training throughout and reaching 48.1\\% recovery at the largest budget. The same pattern is supported across multiple data sources, remains visible under on-policy distillation, and extends to Llama-3.1-8B-Instruct when CR sets are reconstructed separately for that model. Better test-time compute utilization can therefore be learned through post-training, with recoverable responses to additional reasoning providing a particularly informative signal for selecting training examples.",
+    "abs": "http://arxiv.org/abs/2610.20057v1",
+    "pdf": "https://arxiv.org/pdf/2610.20057v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P1",
+      "brief_summary": "论文提出按「额外推理计算能否把初始失败转为成功」筛选后训练数据（CRDS），在 Qwen3-8B、Llama-3.1-8B 上用 SFT 与 on-policy 蒸馏验证：用 compute-responsive 样本训练可提升低算力失败恢复率并改善 512–4096 token 的算力—准确率前沿。",
+      "relevance_reason": "纯文本任务、不涉及视觉，但以「对额外推理的边际效用」作为样本选择与监督信号，可能可供核查 LVR 训练中如何挑选能从 latent 推理步骤获益的样本、以及如何评估推理步骤的贡献分配。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-15T18:00:30.159772+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

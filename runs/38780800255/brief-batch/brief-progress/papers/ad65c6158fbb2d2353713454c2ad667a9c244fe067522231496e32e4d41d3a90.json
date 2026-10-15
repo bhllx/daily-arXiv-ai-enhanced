@@ -1,0 +1,74 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.20543",
+  "input_sha256": "ea09cc965202fcc031324ea6b42cea98df51fddc0c84674a5b0c2e6890202fe8",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-15T17:54:00.223904+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1848,
+        "output_tokens": 789,
+        "total_tokens": 2637,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 555
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.20543",
+    "title": "Reliability-Aware Multimodal Sentiment Prediction Under Local Modality Missingness",
+    "authors": [
+      "Minghao Kong",
+      "Deng Yao",
+      "Xi Zhang",
+      "Ying Gao",
+      "Jiurun Chen",
+      "Zirong Liu",
+      "Rongjie Wang"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": null,
+    "summary": "Multimodal sentiment models are usually evaluated on complete utterances, yet streams often lose a contiguous span of text, audio, or video. We study local missingness on aligned CMU-MOSEI features. Our reliability-aware network (RM-Net) keeps the original temporal positions, represents unobserved positions with a learned token, outputs bounded per-modality intensity contributions gated by observation quality, and is trained with dual-view masking of contiguous segments. We fuse five RM-Net seeds with a LoRA-adapted BERT text expert, using a fusion weight that depends only on the visible fraction of content tokens. Architecture, checkpoint, and fusion choices were made on the validation split. On the held-out split, the fused model reaches a macro-F1 of 0.655 on clean inputs and 0.634 under 40\\% mixed missingness; its two-view average exceeds the auxiliary-head baseline by 0.024 (95\\% video-cluster bootstrap interval [0.003, 0.045]). Because this split was inspected during development, these numbers are not a blind test. For explanations, exact Shapley attributions over the eight modality subsets and position-level occlusion show that top-ranked positions reduce the predicted-class probability faster than random positions (AUC gap 0.113 on validation). We also describe an auditable word-level alignment pipeline for raw clips; its outputs do not feed the predictive models.",
+    "abs": "http://arxiv.org/abs/2610.20543v1",
+    "pdf": "https://arxiv.org/pdf/2610.20543v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文研究对齐 CMU-MOSEI 特征上连续片段缺失时的多模态情感预测，提出 RM-Net：保留原始时序位置、用可学习 token 表示未观测位置、输出受观测质量门控的有界模态强度贡献，并以双视角片段掩码训练，另用 Shapley 归因与位置级遮挡做解释。",
+      "relevance_reason": "其「缺失位置用可学习 token + 按观测质量门控模态贡献」的设计，可能为 LVR 中视觉证据缺失、证据筛选与 latent 状态贡献分配提供方法线索；位置级遮挡与 Shapley 归因可供核查证据因果作用与评价方式，虽属情感分类任务，仍需较多迁移核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-15T17:54:00.223904+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}
