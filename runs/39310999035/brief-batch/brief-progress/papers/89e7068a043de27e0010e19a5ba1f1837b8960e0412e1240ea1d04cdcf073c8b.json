@@ -1,0 +1,73 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.23558",
+  "input_sha256": "6a48727b50b5fcde04ecc312952a8e38b503d86f23e6fd3af5c7a00b21a2a23f",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-19T19:31:48.418357+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1830,
+        "output_tokens": 889,
+        "total_tokens": 2719,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 698
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.23558",
+    "title": "LiveSync: Iterative Self-Training for Lip-Sync Generation",
+    "authors": [
+      "Huaishao Luo",
+      "Huan Zhang",
+      "Guanbo Bao",
+      "Yinglu Liu",
+      "Youzheng Wu",
+      "Xiaodong He"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": null,
+    "summary": "Audio-driven lip synchronization aims to match target speech through localized mouth and jaw articulation while preserving subject identity, head pose, and surrounding facial context. Naturally recorded videos provide synchronized reconstruction targets but rarely offer pairs that are matched in identity and pose yet differ primarily in speech-related articulation. Mask-based training enables reconstruction from these videos, but random-reference inputs differ from the aligned self-reference used at inference. We present LiveSync, an iterative self-training framework in which a single mask-based model generates pseudo pairs and is refined for deployment. The model is first trained on a curated real-video corpus augmented with externally generated clips covering under-represented visual conditions. A frozen checkpoint then uses independently sampled audio to generate mouth-edited references from real-video frames, copying pixels outside the edit mask from each source frame. After confidence filtering, these references are paired with aligned masked inputs and original real-frame targets. The retained pseudo pairs are mixed with real training data to refine the same model from its current weights, updating training supervision without adding inference stages. Although we instantiate the framework with a single-pass GAN-based model, the self-training strategy could in principle also be adapted to diffusion-based models. Experimental results show that LiveSync achieves leading synchronization performance on HDTF and competitive performance compared with the baselines on the AIGC-LipSync subset, while maintaining low inference latency.",
+    "abs": "http://arxiv.org/abs/2610.23558v1",
+    "pdf": "https://arxiv.org/pdf/2610.23558v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "LiveSync 提出音频驱动唇形同步的迭代自训练框架：单一掩码模型用独立采样音频生成口部编辑参考，经置信度筛选后与真实训练数据混合，从当前权重继续微调，不增加推理阶段。",
+      "relevance_reason": "其「冻结模型生成伪配对＋置信度筛选＋与真实数据混合迭代自训」以及缓解训练/推理输入分布不匹配的思路，可能为 LVR 中 latent 轨迹的伪监督构造与筛选提供可核查的方法线索。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-19T19:31:48.418357+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

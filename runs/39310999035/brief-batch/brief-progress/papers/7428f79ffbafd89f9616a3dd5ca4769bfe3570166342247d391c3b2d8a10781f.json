@@ -1,0 +1,75 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.23297",
+  "input_sha256": "083a302be74bfc642c405fc4f5a4a2476fd680dbbe932ac6354b25a2347eaf7b",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-19T19:35:24.301554+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1903,
+        "output_tokens": 848,
+        "total_tokens": 2751,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 608
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.23297",
+    "title": "FlashReFocus: Interactive Image Refocusing in Seconds",
+    "authors": [
+      "Ching-Heng Cheng",
+      "Chia-Ming Lee",
+      "Ming-Ching Chang",
+      "Xin Li",
+      "Yu-Lun Liu",
+      "Chih-Chung Hsu"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.AI",
+      "eess.IV"
+    ],
+    "comment": "38 pages (8 main + appendix), 47 figures, 16 tables. Project page: https://ming053l.github.io/FlashReFocus/ Code: https://github.com/ming053l/FlashReFocus",
+    "summary": "Single-image refocusing changes the focal plane and depth of field of a photograph after capture. It is inherently interactive: users try many focal points and blur strengths on one image, so each edit should be fast and change only the blur. Recent generative methods, however, rerun large diffusion models for every edit. We observe that the two sub-problems differ in kind: recovering the all-in-focus image is ill-posed and needs a generative prior, whereas rendering blur is largely determined by depth and the focal plane. We therefore propose FlashReFocus, which runs diffusion once per photograph and renders every edit with a lightweight network. To address the ill-posed restoration, a one-step diffusion deblurrer with a decoder refiner recovers fine detail efficiently while balancing fidelity and perceptual quality. For precise control, the renderer is conditioned on an explicit defocus map and uses defocus-bias attention, which lets pixels at similar defocus share information without interference from pixels at other depths; in-focus content stays unchanged, and editing the map yields tilt-shift and two focal planes. To further test generalization to unseen cameras, we collect 3CReal, a three-camera benchmark of 89 pairs. FlashReFocus achieves the best perceptual fidelity for zero-shot bokeh rendering on EBB! and 3CReal, refocuses 148.3x faster than GenRefocus, and takes about half a second per further edit, 462x faster.",
+    "abs": "http://arxiv.org/abs/2610.23297v1",
+    "pdf": "https://arxiv.org/pdf/2610.23297v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "该论文提出 FlashReFocus，把单图重对焦拆成两部分：每张照片只跑一次的一步扩散去模糊器（带解码器精修）负责恢复全清晰图，轻量渲染网络负责按需生成模糊；渲染以显式 defocus map 为条件并使用 defocus-bias attention，另构建三相机基准 3CReal，报告约 148 倍与 462 倍的加速。",
+      "relevance_reason": "与 LVR 主线无直接关系，但其按深度／散焦相似度分组共享信息、并显式以深度相关图作为注意力条件的做法，可能为 LVR 中按深度或位置组织视觉 latent、抑制不同深度内容互相干扰提供可供核查的注意力结构线索。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-19T19:35:24.301554+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

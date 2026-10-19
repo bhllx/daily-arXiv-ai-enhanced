@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.23324",
+  "input_sha256": "b5ca856e87c7196c5ebcdcb4db1518811674c9128fd13d1b87d4d0a4ce3a0f61",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-19T19:34:53.098135+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1889,
+        "output_tokens": 811,
+        "total_tokens": 2700,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 568
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.23324",
+    "title": "CatchUp: Depth-Aware Re-Admission of Visual Tokens for Efficient Large Vision-Language Models",
+    "authors": [
+      "Eunju Park",
+      "Uiwon Hwang"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": "WACV 2027. Code: https://github.com/pej0918/CatchUp",
+    "summary": "Large Vision-Language Models (LVLMs) repeatedly process hundreds of visual tokens across decoder layers, incurring substantial computation and memory costs. Existing inference-time visual token pruning methods often irreversibly remove low-ranked tokens, although the set of visual tokens receiving high query-conditioned attention can change across decoder depth. Recoverable routing preserves skipped tokens for later reconsideration, but re-admits them with stale representations after bypassing intermediate transformations. We further find that replacing stale re-admitted states with their current-depth oracle states from a full-token reference trajectory substantially improves grounding performance. We therefore propose CatchUp, a training-free framework for depth-aware visual-token re-admission. CatchUp repeatedly re-evaluates query-conditioned visual relevance, processes only selected visual tokens through each decoder interval, and preserves deferred tokens for later re-admission. Upon re-admission, CatchUp approximates missed representation evolution using reference-to-current transition signals from semantically and spatially related visual tokens. Across three referring-expression grounding datasets and six multimodal benchmarks, CatchUp achieves the highest average relative retention in both benchmark groups at 64-, 128-, and 192-token budgets. At a 64-token budget with 88.9% fewer active visual tokens, CatchUp retains 92.17% of the full model's performance on average across six multimodal benchmarks while reducing end-to-end latency by 8.0%. Code is available at https://github.com/pej0918/CatchUp",
+    "abs": "http://arxiv.org/abs/2610.23324v1",
+    "pdf": "https://arxiv.org/pdf/2610.23324v1",
+    "AI": {
+      "category": "MAIN",
+      "priority": "P1",
+      "brief_summary": "论文提出 CatchUp，一种免训练、深度感知的视觉 token「再准入」框架：在每个解码区间重估查询条件下的视觉相关性，只计算被选中的 token，并把被推迟的 token 留待后续再准入，再准入时用语义与空间相关 token 的参考—当前转移信号近似其缺失的表示演化，以在低 token 预算下保住 grounding 与多模态基准性能。",
+      "relevance_reason": "直接触及视觉细节是否保留在内部状态、以及随解码深度被裁剪后如何恢复的问题；其「延迟再准入状态陈旧使 grounding 变差、替换为当前深度 oracle 状态可显著回升」的发现，可供核查 LVR 中信息坍缩、动态视觉证据筛选与状态更新的联系。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-19T19:34:53.098135+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

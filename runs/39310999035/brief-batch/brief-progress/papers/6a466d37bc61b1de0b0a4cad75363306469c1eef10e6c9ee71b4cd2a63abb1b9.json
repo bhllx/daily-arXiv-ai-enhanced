@@ -1,0 +1,72 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.23167",
+  "input_sha256": "2b1a80b07bf3b6b69b089e438b77b6398b0774c99fcd0144d19e498a99bff2c2",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-19T19:37:37.391316+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1881,
+        "output_tokens": 830,
+        "total_tokens": 2711,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 562
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.23167",
+    "title": "LongForge: Measuring and Improving Long-Context Instruction Data via Evidence-Assertion Reasoning Graphs",
+    "authors": [
+      "Ziyang Chen",
+      "Junlong Jia",
+      "Xing Wu",
+      "Tinghao Yu",
+      "Songlin Hu"
+    ],
+    "categories": [
+      "cs.AI"
+    ],
+    "comment": "Work in progress",
+    "summary": "Existing quality control for long-context instruction-tuning data is a one-shot judgment inside the generation pipeline that leaves only a scalar, revealing neither which document parts an answer uses nor how many reasoning steps it writes down; the data can thus be neither audited nor controlled. We formalize data quality as a property of the alignment structure among document, question, and answer, and build LongForge, which pairs an analyzer that measures long-context data with a synthesizer that generates it. The analyzer reverse-reconstructs each sample into an evidence-assertion reasoning graph and programmatically computes four dimensions on it: breadth, depth, correctness, and completeness. Every reading traces back to specific evidence spans and reasoning steps, making data auditable. Measuring seven mainstream datasets reveals two previously unquantified defects: breadth barely grows with document length, and depth is generally low, the two being nearly orthogonal. The synthesizer then embeds the analyzer into generation, gating on correctness and completeness and deferring breadth and depth to a training-time mixture over measured values, which makes the training distribution controllable. On two backbones, its two mixtures, LongForge-1 and LongForge-N, outperform the strongest baseline by 2.2-4.7 points on average over six long-context benchmarks, and in a controlled comparison that holds the gate and the candidate pool fixed, raising breadth and depth alone is worth a further 1.16 points, making the structural distribution of training data a lever on downstream quality rather than only a description of it.",
+    "abs": "http://arxiv.org/abs/2610.23167v1",
+    "pdf": "https://arxiv.org/pdf/2610.23167v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文把长上下文指令数据质量形式化为文档、问题与答案之间的对齐结构，提出 LongForge：分析器将样本逆向重构为「证据—断言推理图」，按 breadth、depth、correctness、completeness 四个维度程序化度量，合成器再按测得的广度与深度值控制训练分布。测量七个数据集发现广度几乎不随文档变长而增长、深度普遍偏低且二者近乎正交，两个混合版本在六个长上下文基准上平均超过最强基线 2.2–4.7 分。",
+      "relevance_reason": "其「证据跨度—推理步数」的可审计结构度量与按测量值控制的训练分布混合，可能为 LVR 的视觉证据筛选、轨迹监督与训练数据配比提供可核查线索；但论文限于纯文本长上下文，未涉及视觉或 latent 状态生成，联系需进一步确认。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-19T19:37:37.391316+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

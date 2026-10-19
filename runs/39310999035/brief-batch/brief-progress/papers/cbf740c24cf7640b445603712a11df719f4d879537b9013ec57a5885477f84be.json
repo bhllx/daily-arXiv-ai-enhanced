@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.23213",
+  "input_sha256": "111094e5ac13758e09841beabfd52789f64a227d6f76235e954c3f518c85696e",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-19T19:37:07.026388+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1774,
+        "output_tokens": 737,
+        "total_tokens": 2511,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 502
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.23213",
+    "title": "Not All Test-Time Compute Is Evidence: Model-Specific Bias in LLM Reasoning",
+    "authors": [
+      "Ming Shen",
+      "Tianjun Yao"
+    ],
+    "categories": [
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "Test-time scaling methods implicitly assume that additional computation from the same model provides independent evidence. We show that this assumption fails within a single reasoning model: errors are correlated across repeated samples, across reasoning depth, and in the model's own self-evaluation, so more compute from the same model is not more evidence. We introduce DIA (Disagreement-triggered Independent Arbitration), which treats disagreement between an intermediate-stage and the final-stage prediction as a per-question signal of reasoning instability and resolves it by asking a small panel of heterogeneous models to solve the question independently, without seeing either candidate, and aggregating their answers directly. Across seven benchmarks and two base models, DIA outperforms full chain-of-thought in 12 of 14 settings, including a 7.00% gain on MuSiQue, while activating on only $\\sim 17\\%$ of examples and using up to 47.2% fewer tokens than a multi-agent baseline. Ablations show that both independent solving and solver heterogeneity are necessary for these gains.",
+    "abs": "http://arxiv.org/abs/2610.23213v1",
+    "pdf": "https://arxiv.org/pdf/2610.23213v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P1",
+      "brief_summary": "论文指出 test-time scaling 隐含「同一模型更多计算即更多独立证据」的假设不成立：重复采样、推理深度与自评价上的错误高度相关；为此提出 DIA，以中间阶段与最终阶段预测的分歧作为逐题不稳定信号，触发一个异构小模型面板在看不到候选答案的情况下独立求解并直接聚合。",
+      "relevance_reason": "「同源计算不构成独立证据」「分歧作为不稳定/需再计算的触发信号」「异构独立仲裁」这几条线索可供核查，可能为 LVR 的动态计算与 THINK/STOP 决策、多 latent 假设的筛选与聚合提供借鉴；但该工作为纯文本、无视觉证据路径，迁移到 LVR 属推测。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-19T19:37:07.026388+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

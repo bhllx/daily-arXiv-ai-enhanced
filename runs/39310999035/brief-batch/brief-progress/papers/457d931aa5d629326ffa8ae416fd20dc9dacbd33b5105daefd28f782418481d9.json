@@ -1,0 +1,72 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.23328",
+  "input_sha256": "387ccb7de0215c3cf67b304408496cabc0f0e0adea580969e59793366253d253",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-19T19:34:49.283366+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 2012,
+        "output_tokens": 797,
+        "total_tokens": 2809,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 596
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.23328",
+    "title": "Peak-Memory Schedules You Can Trust: Exact Realization, Certified Optimality, and the Limits of Recomputation for Inference",
+    "authors": [
+      "Ivan Fomin",
+      "Ivan Koryabkin",
+      "Boris Sheludko"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.DS",
+      "cs.PF"
+    ],
+    "comment": "24 pages, 5 figures. Preprint",
+    "summary": "Real-time inference on small devices needs low activation memory without extra latency, which makes operator order the most valuable memory lever: it is free in time. We show that the usual way of deploying a better order, handing it back to the compiler and regenerating code, is unreliable. In PyTorch Inductor the regenerated program misses its predicted peak in 22 of 54 CPU configurations. It is worse than the stock program in 9 of them and in 19 of 50 on a GPU, and on the GPU it also changes numerical results. We instead profile the generated program, model its memory exactly from its own statements and their read/write effects, and permute those statements. We prove that this realizes the modeled peak whenever allocation does not depend on history. It does so to the byte, with bitwise-identical results, in all our CPU runs. On the GPU we characterize why the caching allocator breaks the condition. To know when to stop, we give forward and reverse \"trap\" lower bounds, each computable with $O(n^2)$ minimum cuts. They certify the found order optimal for 94% of held-out wrapper graphs and all 16 microcontroller-class models we study, in under a second. So most inference graphs are already scheduled optimally. Branching networks are the exception, where reordering is free and pays, e.g. 10.0% on DeepLabV3. In compiled training we save up to 7.6%. Beyond the certified optimum we study selective recomputation with per-operator caps. It is strongly NP-hard for every fixed cap even at treewidth two, encodes knapsack exactly on series-parallel graphs, and is solvable exactly on bounded treewidth. It is useless on public tiny models whose peak is a single layer, but on architectures that hold a cheap value for a late reuse it pays: on the public ReDimNet speaker networks, whose order is already optimal, it lowers the peak by 5.2-6.1% at under 0.4% extra MACs, with bitwise-identical outputs.",
+    "abs": "http://arxiv.org/abs/2610.23328v1",
+    "pdf": "https://arxiv.org/pdf/2610.23328v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "该论文研究推理期算子执行顺序对峰值激活内存的影响：通过剖析已生成程序并置换语句来精确实现建模峰值，用前向/反向 trap 下界（最小割）证书判定顺序是否最优，并分析带算子上限的选择性重计算的复杂度与收益。",
+      "relevance_reason": "其「以可计算下界证书决定何时停止优化」与「重计算以算力换内存」的思路，可能与 LVR 中 STOP 决策、动态计算收益与成本核算形成类比，可供核查其是否可迁移。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-19T19:34:49.283366+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

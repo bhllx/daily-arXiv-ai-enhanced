@@ -1,0 +1,79 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.23181",
+  "input_sha256": "053275d2255cf9f0a74f88f367047518e8cd3163e31f2f7dc8bbf99129cebd99",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-19T19:37:29.343103+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1896,
+        "output_tokens": 606,
+        "total_tokens": 2502,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 390
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.23181",
+    "title": "Tree-Aware Posterior Distillation for Long-Horizon Agentic Reinforcement Learning",
+    "authors": [
+      "Heming Zou",
+      "Qi Wang",
+      "Yixiu Mao",
+      "Yun Qu",
+      "Yuyi Guo",
+      "Zeyuan Liu",
+      "Chenglin Li",
+      "Weijie Liu",
+      "Saiyong Yang",
+      "Xiangyang Ji"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.AI",
+      "cs.CL"
+    ],
+    "comment": null,
+    "summary": "Reinforcement learning with verifiable rewards has become a scalable post-training paradigm for large language models. However, training agents over long-horizon interactions presents two challenges: using only terminal rewards makes turn-level credit assignment sparse and high-variance, while sequential mini-batch updates on a fixed rollout batch introduce policy staleness as the current policy drifts from the behavior policy. Existing approaches obtain denser credit via learned critics, process reward models, or on-policy distillation, but they rely on a value network, step-level annotations, or a stronger external teacher that increase training complexity. Meanwhile, importance sampling and clipping mitigate policy drift, but they do not specify a finite target that stops sequential updates from overshooting. In this work, we introduce TreeOPSD, a critic-free, tree-aware posterior self-distillation framework for long-horizon agentic reinforcement learning. Treating each interaction turn as a tree node, TreeOPSD branches alternative continuations from shared prefixes and recursively backs up terminal rewards into implicit turn-level credit. It then maps each credit to a closed-form, bounded teacher distribution parameterized by the likelihood ratio relative to the frozen behavior policy. Minimizing the divergence between this teacher and the student policy recovers the policy-gradient direction as the tangent at the behavior policy while bounding updates toward a finite target across sequential mini-batches. Empirically, TreeOPSD improves agentic capabilities across several competitive benchmarks and model scales, especially for long-horizon tasks, e.g., raising the average accuracy of Qwen3-30B-A3B-Thinking-2507 by 4.97 points over GRPO on the Deep Research setting.",
+    "abs": "http://arxiv.org/abs/2610.23181v1",
+    "pdf": "https://arxiv.org/pdf/2610.23181v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "提出 TreeOPSD：把每个交互轮视为树节点，从共享前缀分支备选续写并将终端奖励递归回传为隐式回合级信用，再用无 critic 的后验自蒸馏把信用映射为有界教师分布以稳定长程 agentic RL 训练。",
+      "relevance_reason": "其树状分支加奖励回传的贡献分配机制与「以冻结行为策略似然比为有界蒸馏目标」的思路，可能为 LVR 中推理轨迹的信用分配、监督信号与更新约束提供方法线索，可否迁移到 latent 状态尚待核查；纯文本设定，无视觉表示内容。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-19T19:37:29.343103+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

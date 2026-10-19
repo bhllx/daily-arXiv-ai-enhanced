@@ -1,0 +1,74 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.23042",
+  "input_sha256": "a30d98f79f9c6805714ae1d63cf3890f54119df57f3c9fc661a3ed08f22a6971",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-19T19:39:18.364455+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1833,
+        "output_tokens": 798,
+        "total_tokens": 2631,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 589
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.23042",
+    "title": "GR-OPD: Group-Relative Sequence Credit for On-Policy Distillation",
+    "authors": [
+      "Yushu Wang",
+      "Renkai Yang",
+      "Jingcao Xu",
+      "Zili Geng",
+      "Haihong Tang",
+      "Yaohui Jin",
+      "Hao He"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "On-policy distillation (OPD) provides token-level teacher feedback, yet common sampled-token updates assign credit locally and omit the effects of earlier actions on subsequent feedback. We introduce \\method{} (Group-Relative On-Policy Distillation), which decouples feedback computation from credit assignment by aggregating token feedback into calibrated sequence-level credit. We establish a theoretical basis for this approach by showing that, under ideal on-policy assumptions, broadcasting raw summed feedback to every response token yields an unbiased estimate of the negative gradient of the sequence-level reverse-KL objective. To support effective learning in practice, \\method{} discounts later feedback that may become less reliable under distribution shift and uses same-prompt rollout groups to calibrate teacher guidance. It preserves relative response preferences while retaining a controlled fraction of the group mean, which we term collective teacher pressure. Across five Qwen3 teacher--student settings and six mathematical reasoning benchmarks, \\method{} outperforms vanilla OPD in macro Avg@K in every setting, including gains of 10.9 and 11.5 percentage points in two settings with matched thinking patterns. It also maintains stable training under mismatched thinking patterns, where vanilla OPD collapses. Ablations show that retaining an appropriate amount of collective teacher pressure can improve learning, while excessive collective teacher pressure or an unrestricted feedback horizon can destabilize training.",
+    "abs": "http://arxiv.org/abs/2610.23042v1",
+    "pdf": "https://arxiv.org/pdf/2610.23042v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P1",
+      "brief_summary": "提出 GR-OPD，把 on-policy distillation 的 token 级教师反馈聚合、校准为序列级 credit，理论上说明理想 on-policy 假设下广播求和反馈是无偏的序列级 reverse-KL 负梯度估计，并在多个 Qwen3 师生数学推理设定上优于 vanilla OPD。",
+      "relevance_reason": "其序列级 credit 聚合、对后期反馈的折扣以及同 prompt rollout 组校准，可能为 latent 推理轨迹的贡献分配与监督可靠性提供可核查线索；但该工作是纯文本 LLM 蒸馏，未涉及视觉或多模态内部状态。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-19T19:39:18.364455+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

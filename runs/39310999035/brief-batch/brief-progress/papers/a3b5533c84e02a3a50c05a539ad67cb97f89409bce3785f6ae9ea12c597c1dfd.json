@@ -1,0 +1,71 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.22925",
+  "input_sha256": "9e042e96b1a03347cfab4caea244ce47b9d39f11b3afb3d113fe7674c85d9cf3",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-19T19:41:07.058369+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1912,
+        "output_tokens": 491,
+        "total_tokens": 2403,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 305
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.22925",
+    "title": "Scalable Levenberg-Marquardt Training Framework for Deep Learning",
+    "authors": [
+      "Xianghao Wang",
+      "Johan Barthélemy",
+      "John Taylor"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.DC"
+    ],
+    "comment": null,
+    "summary": "The Levenberg-Marquardt (LMA) algorithm is a widely used nonlinear least-squares solver known for its rapid convergence. For small-scale neural networks, LMA provides better convergence and architectural robustness than first-order optimizers like Adam. However, LMA imposes prohibitive memory and computational costs. These costs are primarily from the Jacobian matrix, whose dimensions scale with both the number of samples and parameters. This bottleneck prevents its use in large-scale neural networks. Recent efforts scale LMA using preconditioned conjugate gradient (PCG) solvers to avoid materializing the Jacobian. However, PCG only approximates the solution, requiring many network propagations and a task-specific preconditioner. Other studies optimize LMA to reduce costs, but they restrict their methods to specific tasks or network architectures. As a result, LMA remains impractical for training general large-scale neural networks. In this paper, we propose LeMA, a distributed LMA algorithm for large-scale neural network training on multi-GPU platforms. Our contributions are twofold: First, an exact dual formulation of LMA removes the memory dependence on the parameter dimension. Second, a Jacobian sharding strategy computes Jacobian shards on the fly and in parallel to avoid materializing the full Jacobian. For large-scale neural networks, LeMA reduces the memory footprint of LMA from quadratic in the number of parameters to quadratic in the batch size. This makes exact LMA steps feasible for billion-parameter models without approximate PCG solves. Furthermore, for a convolutional neural network with 1,000,022,632 parameters on an 8-GPU node, LeMA achieves a 7.97x speedup over a single GPU, corresponding to a 99.7% strong scaling efficiency.",
+    "abs": "http://arxiv.org/abs/2610.22925v1",
+    "pdf": "https://arxiv.org/pdf/2610.22925v1",
+    "AI": {
+      "category": "EXCLUDE",
+      "priority": "NONE",
+      "brief_summary": "提出 LeMA：面向大规模神经网络多 GPU 训练的分布式 Levenberg-Marquardt 算法，通过对偶形式与 Jacobian 分片避免显式构造 Jacobian，把内存开销从参数维度二次降为批大小二次。",
+      "relevance_reason": "该文属二阶优化器与分布式训练工程，仅涉及训练效率与显存，未触及视觉细节保留、latent 推理状态生成或证据使用等主线问题，也无可核查的状态或监督机制借鉴线索。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-19T19:41:07.058369+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

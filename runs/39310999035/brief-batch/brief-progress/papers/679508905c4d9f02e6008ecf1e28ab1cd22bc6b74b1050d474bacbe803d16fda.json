@@ -1,0 +1,73 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.23044",
+  "input_sha256": "d58b200b7f2b701d7544a59800ce848083f7cad5e4ac4b96cc6ddc3dbd1e3886",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-19T19:39:09.660669+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1896,
+        "output_tokens": 579,
+        "total_tokens": 2475,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 355
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.23044",
+    "title": "Where Does the Performance Go? Understanding and Recovering Performance Regressions in C-to-Rust Translation",
+    "authors": [
+      "Zhiqiang Yuan",
+      "Chong Wang",
+      "Zhenhao Zhou",
+      "Junwei Liu",
+      "Xin Peng"
+    ],
+    "categories": [
+      "cs.AI",
+      "cs.PL"
+    ],
+    "comment": null,
+    "summary": "Rust is increasingly adopted as a memory-safe successor to C, and transpilers such as \\crust{} can migrate entire C projects while preserving their behavior. Preserving behavior, however, does not guarantee preserving performance. We study this gap on 20 real-world C projects and their \\crust{} translations. On the eight projects used for analysis, the translated Rust is more than 3\\% slower than the original C on 12 of 19 operations, by up to 62.2\\%. By comparing execution-cost profiles, optimized LLVM IR, and compiler optimization remarks across each C--Rust pair, we trace these slowdowns to nine recurring performance issues, spanning residual runtime work, missed compiler optimizations, and C-style source patterns, and derive an optimization direction for each. We then present \\ourtool{}, an LLM-based approach that encodes these issues as reusable optimization rules to recover the performance of translated Rust. \\ourtool{} profiles each project to locate hot functions and matches them against rule-specific patterns. The LLM then checks each rule's rewrite preconditions against the project context before rewriting, and a rewrite is kept only if it passes both functional and performance validation. On 41 operations from twelve held-out projects, \\ourtool{} preserves C outputs on all tested workloads and speeds up 40 operations over the \\crust{} translations, 18 of which end up faster than the original C. It outperforms the general-purpose coding agent \\codex{} on 31 of the 37 operations where both preserve C outputs, and outperforms its own variant without rule guidance on 34 of the 41 operations.",
+    "abs": "http://arxiv.org/abs/2610.23044v1",
+    "pdf": "https://arxiv.org/pdf/2610.23044v1",
+    "AI": {
+      "category": "EXCLUDE",
+      "priority": "NONE",
+      "brief_summary": "该论文研究 C 到 Rust 转译中的性能回退问题：通过对比执行开销画像、优化后 LLVM IR 与编译器优化报告，归纳出九类重复出现的慢化原因，并据此用规则引导的 LLM 重写热点函数，仅在通过功能与性能双重验证时保留改写。",
+      "relevance_reason": "对象是 C-to-Rust 代码转译的性能归因与 LLM 重写，不涉及视觉或多模态推理状态、证据筛选或 latent 生成；其「画像定位热点＋规则前置条件＋验证保留」属通用代码优化流程，未提供可供核查的 LVR 借鉴线索，故排除。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-19T19:39:09.660669+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

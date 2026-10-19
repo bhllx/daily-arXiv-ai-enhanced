@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.23475",
+  "input_sha256": "47abe624b75cf15b30adf8244282d37a27d3fa871931eb15f287d0bbe2bbcd73",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-19T19:32:47.007575+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1919,
+        "output_tokens": 805,
+        "total_tokens": 2724,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 572
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.23475",
+    "title": "TAN: A Size- and Form-Adaptive Masked-Convolution Encoder for Tissue Graphs",
+    "authors": [
+      "Jan Herschel",
+      "Anselm von Gladiss"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": null,
+    "summary": "Tissue graphs represent histology images as graphs over tissue-conforming superpixels, which keeps homogeneous tissue regions intact instead of cutting them into rectangular patches. To embed superpixels, current encoders crop them to bounding boxes and then pad, resize, or mask them, so background or fill values can leak into the node features. This matters in practice, and especially in medical imaging, where a prediction should depend on the tissue and not on an arbitrary preprocessing choice: on BACH, changing only the fill of the masked region shifts the accuracy of frozen encoders by up to 6 percentage points, larger than the differences among the four best encoders under mean fill, and the preferred fill differs between datasets, so it cannot be fixed once and for all. We present TAN (Tissue-Aware Network), a compact convolutional encoder (0.41M parameters) that processes each superpixel at its native shape and extent and excludes background from every operation, which makes its embeddings exactly invariant to the fill by construction. Under identical masks and an identical graph classifier, TAN's accuracy on BACH is not significantly different from that of the 303M-parameter foundation model UNI (81.1% vs. 80.7-82.6%, depending on the fill), with ~740x fewer parameters, ~1,190x fewer FLOPs, and no pretraining. On BRACS, TAN is close to a ResNet18 trained under the same protocol and trails the histopathology foundation models. An ablation with TAN's architecture but standard processing of fill-padded crops shows that masking keeps accuracy similar (nominally higher on BACH, lower on BRACS, within noise) at less than half the FLOPs.",
+    "abs": "http://arxiv.org/abs/2610.23475v1",
+    "pdf": "https://arxiv.org/pdf/2610.23475v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "提出 TAN（Tissue-Aware Network），一种面向组织图超像素的轻量掩码卷积编码器，按超像素原生形状与范围处理、在各操作中排除背景，使嵌入对填充值严格不变，并在 BACH 上以约 0.41M 参数接近 303M 的 UNI。",
+      "relevance_reason": "该工作揭示填充值可改变冻结编码器精度达 6 个百分点，其「只在有效区域卷积、构造上对填充不变」的设计，可能为 LVR 中抑制无关视觉内容渗入 latent 状态、视觉证据筛选与预处理稳健性提供架构层面线索，可供核查但未涉及推理或 latent 生成。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-19T19:32:47.007575+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

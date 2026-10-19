@@ -1,0 +1,78 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.22788",
+  "input_sha256": "653ae5911622270285d4a6b929e4ad8430c8ba5cf8497022fc7af29784ecc722",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-19T19:42:49.986511+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1745,
+        "output_tokens": 550,
+        "total_tokens": 2295,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 294
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.22788",
+    "title": "Next Token or Vector? Learning How Far to Decode",
+    "authors": [
+      "Sai Sreenivas Chintha",
+      "Chidera Biringa",
+      "Rishab Sharma",
+      "Anusha Agrawal",
+      "Prachi Badarayani",
+      "Gemma Zhang",
+      "Nigel Boachie Kumankumah",
+      "Marco Ayala",
+      "Sulaiman Vesal"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.AI",
+      "cs.ET"
+    ],
+    "comment": null,
+    "summary": "Standard autoregressive decoding advances one token at a time, even when several upcoming tokens can be predicted together. We propose CADENCE (Context-Adaptive DEcoding), a generation method that learns both what to draft and how far to draft. Gaussian prediction heads represent future spans as continuous latent vectors, and a shared decoder converts the selected vector into token predictions in parallel. A learned router selects the prediction length from the model's own hidden states and predicted Gaussian parameters, adapting generation granularity to the current context with single-token generation as a fallback. The backbone verifies each proposed continuation and retains the prefix that matches its greedy predictions. Experiments with Llama-3.1-8B-Instruct on Alpaca, GSM8K, and HumanEval show that router-selected positions yield higher draft acceptance than applying the corresponding prediction length everywhere. CADENCE achieves up to 1.3x higher generation throughput than standard greedy decoding.",
+    "abs": "http://arxiv.org/abs/2610.22788v1",
+    "pdf": "https://arxiv.org/pdf/2610.22788v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P1",
+      "brief_summary": "提出 CADENCE，用高斯预测头把未来若干 token 的片段编码为连续 latent 向量，共享解码器并行转成 token 预测，并由学习到的 router 依据隐藏状态与高斯参数决定每次草拟的长度，主干再验证并保留与贪心预测一致的前缀；在 Llama-3.1-8B-Instruct 上测试 Alpaca、GSM8K、HumanEval，吞吐最高提升约 1.3 倍。",
+      "relevance_reason": "纯文本工作，但「latent 向量刻画未来片段 + 由隐藏状态学习决定生成多远 + 验证保留」的机制，可能与 LVR 中动态计算、停止/长度决策以及 latent 状态筛选与验证的线索相关，可供核查其 router 信号能否迁移到多模态推理解码。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-19T19:42:49.986511+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

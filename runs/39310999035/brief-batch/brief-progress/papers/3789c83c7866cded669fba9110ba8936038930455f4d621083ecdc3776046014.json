@@ -1,0 +1,73 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.23617",
+  "input_sha256": "4073fef6470058a847c0a55a9211891df91eb60b4bfecf2f168512084e089bd4",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-19T19:30:44.730207+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1936,
+        "output_tokens": 723,
+        "total_tokens": 2659,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 491
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.23617",
+    "title": "GEMS: Molecular Structure Elucidation as Learned Search over Isomer Graphs",
+    "authors": [
+      "Utku Umur Acikalin",
+      "Yingheng Wang",
+      "Goncalo J. Gouveia",
+      "Tyler J. Schwertfeger",
+      "Frank C. Schroeder",
+      "Carla P. Gomes"
+    ],
+    "categories": [
+      "cs.AI"
+    ],
+    "comment": "36 pages, 9 figures, 17 tables",
+    "summary": "Identifying small-molecule structures from molecular formulas and tandem mass spectra remains a bottleneck in untargeted metabolomics and natural-product discovery. Even when database retrieval or de novo prediction misses the exact structure, the resulting candidates can provide starting points for exploring nearby structures through a few bond edits. We introduce GEMS (Guided Editing of Molecular Structures), which refines candidates through learned 2-switch bond edits that preserve the molecular formula and each atom's total valence. GEMS uses MIST, a pretrained spectrum-to-fingerprint model, to predict fingerprint probabilities once per spectrum. A neural policy compares each candidate's fingerprint with these predictions, links present features to the atoms and bonds that generate them, and scores all valid edits in one forward pass. The policy is trained on shortest edit paths between structures, so it can be pretrained on PubChem isomers without spectra and then fine-tuned with spectrum-predicted fingerprints. At inference, GEMS searches from multiple initial candidates matching the supplied molecular formula and ranks candidates by fingerprint agreement and multi-start consensus. With the target structure excluded from PubChem initialization, three edit rounds achieve Hit@1/Hit@10 of 29.64%/50.81% on NPLIB1 and 30.22%/41.33% on MassSpecGym, exceeding published baselines under comparable settings. On NPLIB1, GEMS achieves higher identification accuracy in about 3.3 minutes end to end, compared with 26.2 hours for our FRIGID run. GEMS also improves identification from generated candidates, including those refined by FRIGID. Experiments with exact target fingerprints identify fingerprint prediction error as a bottleneck in target recovery and final ranking. Deeper search recovers additional targets without retraining, with larger gains from weaker initial candidates.",
+    "abs": "http://arxiv.org/abs/2610.23617v1",
+    "pdf": "https://arxiv.org/pdf/2610.23617v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "GEMS 针对由分子式与串联质谱推断小分子结构的问题，把候选结构的精化建模为一次前向即可评估全部合法 2-switch 键编辑的学习式搜索：神经策略用预训练指纹预测比对候选特征，按最短编辑路径预训练，并在推理时多起点搜索、按指纹一致性与一致性投票排序。",
+      "relevance_reason": "其「在结构化离散状态上按学习策略逐步编辑、以最短编辑路径做轨迹监督、用多起点一致性与搜索深度控制取舍」的框架，可能为 LVR 的 latent 轨迹监督、迭代状态更新与停止/排序决策提供可核查的方法线索（该工作本身不涉及视觉或多模态推理）。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-19T19:30:44.730207+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

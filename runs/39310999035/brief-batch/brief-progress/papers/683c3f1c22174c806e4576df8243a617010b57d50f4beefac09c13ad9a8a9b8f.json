@@ -1,0 +1,72 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.22435",
+  "input_sha256": "38251539434ccfe19f0db2c29aeef0b95055dfdc16ce896ef02edbb8bb605dfb",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-19T19:48:16.143295+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1881,
+        "output_tokens": 732,
+        "total_tokens": 2613,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 466
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.22435",
+    "title": "TRACE: Transformer Residual Activation Codebook Encoding for Communication-efficient Distributed Edge Inference",
+    "authors": [
+      "Muhammad Azlan Qazi",
+      "Alexandros Iosifidis",
+      "Qi Zhang"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.AI",
+      "cs.DC"
+    ],
+    "comment": null,
+    "summary": "Distributed Transformer inference across co-located edge devices is fundamentally communication-bound, as exchanging activations between sequence-parallel partitions dominates inference latency under commodity edge bandwidths. Existing compression schemes reduce this cost but retain a structural bottleneck: the received data must still undergo key/value projection before attention can proceed, serializing computation behind communication. This paper presents Transformer Residual Activation Codebook Encoding (Trace), a framework that addresses these limitations. Trace places a Vector Quantizer (VQ) at the post-attention residual of every Transformer layer and precomputes codebook-indexed key/value representations. During inference, exchanged activations are encoded into compact codebook indices, allowing receivers to directly recover keys and values through table lookup instead of executing the downstream computations required to derive them. By eliminating the received data downstream computation, Trace enables communication--computation overlap and reduces a key latency bottleneck in distributed Transformer inference. A hierarchical clustering further structures the learned codebook into a multi-resolution hierarchy, enabling runtime adaptation of the communication bitrate without retraining. The framework supports two operating variants: one prioritizing accuracy and the other balancing accuracy and efficiency through buffer-compatible quantization. Experiments on ViT-Base (ImageNet-1K and CIFAR-100) and ViViT-B (UCF-101) show that Trace achieves up to 1.89% higher accuracy and up to 1.27x end-to-end inference speedup compared with the state-of-the-art VQ-based distributed inference framework. Compared with uncompressed sequence-parallel inference, Trace reduces communication overhead by up to 22,624x.",
+    "abs": "http://arxiv.org/abs/2610.22435v1",
+    "pdf": "https://arxiv.org/pdf/2610.22435v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文提出 TRACE：在每层 Transformer 的 post-attention 残差处放置向量量化器，并预计算以码本索引的 key/value，使接收端通过查表直接恢复 KV 而非重做投影，从而让通信与计算重叠；再用层次聚类把码本组织成多分辨率结构，支持运行时调整码率无需重训。在 ViT-Base（ImageNet-1K、CIFAR-100）与 ViViT-B（UCF-101）上评测。",
+      "relevance_reason": "其用可学习码本离散化并复用中间激活、以查表替代下游计算的思路，可能为 LVR 中 latent 状态的压缩表示与运行时计算/带宽预算自适应提供可核查线索，但需确认这种有损离散化是否仍保留推理所需的视觉细节与实体关系（涉及信息坍缩风险）。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-19T19:48:16.143295+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

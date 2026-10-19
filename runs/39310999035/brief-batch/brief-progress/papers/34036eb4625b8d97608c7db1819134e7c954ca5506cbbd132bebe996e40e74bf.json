@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.22698",
+  "input_sha256": "b3b4a00240b05cfc5f7f01dba955d1bd2fc50db71e068995aaf66c071287d9e6",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-19T19:44:33.793450+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1941,
+        "output_tokens": 831,
+        "total_tokens": 2772,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 597
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.22698",
+    "title": "Repair, Retry, and the Cost of Hindsight: Verifier Feedback in Formal Theorem Proving",
+    "authors": [
+      "Jack Li",
+      "Sophia Li"
+    ],
+    "categories": [
+      "cs.AI"
+    ],
+    "comment": "NeurIPS 2026 Workshop on AI for Verifiable Coding",
+    "summary": "Verifier-guided self-repair conditions a model on feedback from failed attempts before it tries again, without weight updates. Yet two findings in prior work are in tension: verifier feedback can improve repair of failures, but self-repair itself can provide little-to-no advantage over independent resampling. We reconcile these findings in Lean theorem proving through controlled one-step experiments that hold the preceding failure fixed while varying whether the failed proof is shown, whether the compiler error corresponds to that failure, and the retry instruction. We test frozen Qwen3.6-27B, a general-purpose model, and DeepSeek-Prover-V2-7B, a specialized prover, on difficult MiniF2F problems. We find two opposing effects. Showing the model its failed predecessor reduces success and sharply increases copying of it, while on Qwen adding that attempt's compiler error recovers the loss, to the level of the diagnostic alone. Replacing the predecessor with another theorem's failed proof largely removes the degradation on both models; on Qwen, replacing the diagnostic with another problem's error substantially reduces the recovery. Without the failed proof, correct diagnostics show no resolved advantage over wrong-diagnostic controls on either model. The failed-proof penalty persists with and without the retry instruction, whereas Qwen's diagnostic recovery is weaker without it. In 11-problem sequential experiments through 64 attempts, Qwen retains a correct-diagnostic benefit within failed-proof histories, while DeepSeek-Prover shows no resolved recovery. However, no tested one-step feedback condition establishes an advantage over instruction-only resampling, nor does 64-attempt sequential repair with failed proofs and correct diagnostics at equal token budgets. Verifier feedback can thus improve repair without overcoming the performance loss from conditioning on a failed attempt.",
+    "abs": "http://arxiv.org/abs/2610.22698v1",
+    "pdf": "https://arxiv.org/pdf/2610.22698v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P1",
+      "brief_summary": "论文在 Lean 形式化定理证明中用固定前次失败的单步受控实验，分别变化是否展示失败证明、编译错误是否与失败对应、重试指令等条件，检验 verifier 反馈驱动的自我修复；结果显示展示失败证明会降低成功率并显著增加复制，对应诊断可部分恢复该损失，但在等 token 预算下各反馈条件均未优于仅指令重采样。",
+      "relevance_reason": "其关于「条件于失败历史造成的信息坍缩与诊断归因、修复与独立重采样在等预算下的收益对比」的受控分析，可能为 LVR 中 latent 迭代更新与并行采样的收益/成本评估、证据筛选与停止决策提供可核查线索。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-19T19:44:33.793450+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}
