@@ -1,0 +1,74 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.24462",
+  "input_sha256": "874e27f75bb951d9a8e095248f6e975dac90b915b5b7c17a8843829cce025a52",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-20T18:44:09.325536+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1900,
+        "output_tokens": 835,
+        "total_tokens": 2735,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 586
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.24462",
+    "title": "O-SCD++: Replay-Free Online Scene Change Detection via Recursive Evidence Fusion",
+    "authors": [
+      "Chamuditha Jayanga Galappaththige",
+      "Jason Lai",
+      "Lloyd Windrim",
+      "Timothy Patten",
+      "Donald G. Dansereau",
+      "Niko Suenderhauf",
+      "Dimity Miller"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": "Project Page:https://chumsy0725.github.io/O-SCD/",
+    "summary": "Online scene change detection requires an agent to detect what has changed in a previously mapped environment while it is still on site, observing from unconstrained viewpoints and without access to future observations. This causal setting is strictly harder than its offline counterpart, and online methods have consistently trailed offline accuracy. O-SCD closed that gap by treating change as a persistent property of a 3D Gaussian splatting map of the reference scene, surpassing the strongest offline methods in change detection accuracy while operating at over 10 frames per second. O-SCD optimizes a change field over the Gaussians of the reference map, refitting it to all past cue maps at every frame, a step that consumes more than half of the per-frame budget and forces accuracy to be traded against speed. We present a replay-free formulation that eliminates this trade-off. Because the reference map stays fixed, rendering the change field is a linear operation. Each new observation can therefore be carried onto the map's Gaussians directly, by a single backward pass of the renderer, which reduces multi-view fusion to an exact two-scalar recursion per Gaussian. Past observations are never stored or revisited. The self-supervised objective that O-SCD minimizes by descent also determines the decision threshold exactly, by sorting, yielding a label-free per-frame cutoff whose margin provides a selective-prediction signal. On PASLCD, our method improves mean intersection over union from 0.489 to 0.575 and throughput from 11.8 to 25.6 frames per second, even exceeding O-SCD's offline result while remaining strictly causal.",
+    "abs": "http://arxiv.org/abs/2610.24462v1",
+    "pdf": "https://arxiv.org/pdf/2610.24462v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "论文提出 O-SCD++，面向在线（因果）场景变化检测：把「变化」建模为参考 3D 高斯地图上的持久字段，借助渲染器的单次反向传播把每个新观测直接融合进高斯，将多视图融合化简为每个高斯两个标量的精确递归，并用自监督目标的排序结果确定无标签的逐帧判定阈值。",
+      "relevance_reason": "其「不回放、递归证据融合」的在线状态更新与「阈值由目标排序精确给出、边际量充当选择性预测信号」的做法，可能与 LVR 中 latent 状态的增量更新、证据累积及停止/置信判断存在概念联系，可供核查；但任务领域（3D 地图变化检测）与 VLM 推理相距较远，仅为潜在启发。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-20T18:44:09.325536+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

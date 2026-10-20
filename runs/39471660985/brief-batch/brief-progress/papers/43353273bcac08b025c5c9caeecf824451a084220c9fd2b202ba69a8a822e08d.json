@@ -1,0 +1,77 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.25418",
+  "input_sha256": "e6bfe9b3f45a961e1b6adc4fede4c1d1122ac370216045718766439f8cdc9f6c",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-20T18:29:52.096542+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1861,
+        "output_tokens": 710,
+        "total_tokens": 2571,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 495
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.25418",
+    "title": "From Label Priors to Task Evidence: Efficient Long-Video Frame Selection via Bayesian GRPO",
+    "authors": [
+      "Shuochen Chang",
+      "Bingjie Gao",
+      "Qingyang Liu",
+      "Qianli Ma",
+      "Yibo Miao",
+      "Haonan Zhao",
+      "Zhaohe Liao",
+      "Xiaofeng Zhang",
+      "Jiangtong Li",
+      "Li Niu"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": null,
+    "summary": "Multimodal Large Language Models (MLLMs) face significant scalability challenges in long-video understanding due to quadratic attention complexity and context window constraints. Existing retrieval-based approaches typically rely on supervised learning from static keyframe annotations. However, these label priors often fail to align with the actual information required by downstream MLLMs for complex reasoning, creating a misalignment between the training target and inference needs. To bridge this gap, we propose a probabilistic framework that reformulates frame selection as latent-variable inference. We first initialize a lightweight policy using supervised learning to capture general visual saliency. Then, we treat a frozen MLLM as a task environment and use its answer likelihood as dense task evidence to refine the policy via Bayesian Group Relative Policy Optimization (GRPO). Within this formulation, the negative log-likelihood (NLL) over ground-truth answer tokens provides a principled dense reward, while a prior-matching KL term preserves semantic consistency with the elicited label prior. This process transitions the selection principle from static label priors to task evidence. Extensive experiments on Video-MME, MLVU, and LongVideoBench demonstrate that our selector achieves competitive accuracy with MLLM-based scorers while retaining the inference efficiency of lightweight methods. The selector is trained once with a frozen MLLM environment and transfers directly to multiple downstream MLLMs without retraining. Code is available at \\url{github.com/Miraclecsc/Frame_Selection_GRPO}.",
+    "abs": "http://arxiv.org/abs/2610.25418v1",
+    "pdf": "https://arxiv.org/pdf/2610.25418v1",
+    "AI": {
+      "category": "MAIN",
+      "priority": "P1",
+      "brief_summary": "把长视频帧选择重新表述为潜变量推断：先用监督学习初始化轻量选择策略，再以冻结 MLLM 的答案似然作为稠密任务奖励，用 Bayesian GRPO 配合先验匹配 KL 项微调策略，训练一次即可迁移到多个下游 MLLM。",
+      "relevance_reason": "帧选择本质是视觉证据筛选，与「哪些视觉细节需保留给推理使用」直接相关；以 MLLM 答案似然充当证据贡献的稠密奖励，可供核查其是否反映真实证据使用而非静态标注先验，以及策略迁移到不同下游模型的稳健性。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-20T18:29:52.096542+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

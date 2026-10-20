@@ -1,0 +1,71 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.24750",
+  "input_sha256": "5845a4fe8de3573794cebdff73f6886ce174dfe859d7128ffc96e56ff290673d",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-20T18:39:53.388253+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1811,
+        "output_tokens": 649,
+        "total_tokens": 2460,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 371
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.24750",
+    "title": "CorrFlow: Self-Correcting Flow Matching",
+    "authors": [
+      "Hangwei Zhang",
+      "Nathan Rouillé",
+      "Chuanxia Zheng"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.AI"
+    ],
+    "comment": "Project Page: https://fogradio.github.io/corrflow-project",
+    "summary": "Flow-matching models generate samples through iterative velocity predictions, but typically do not revisit these predictions using the intermediate representations that produced them. We introduce CorrFlow, a self-correcting flow-matching framework that reuses this information through a lightweight refiner. Under rectified-flow interpolation, the error of the one-step clean prediction equals the realized velocity residual scaled by the noise level. Motivated by this identity, the refiner learns to predict residual corrections from the base model's clean prediction, conditioning, noise level and hidden states from the same forward pass. The correction is added to the base velocity before each sampling update, so subsequent predictions are made from the corrected state. This requires no additional base-model evaluations and only one lightweight refiner evaluation per step. Our theoretical analyses establish conditions under which feature reuse outperforms raw-input affine predictors and refiner training achieves greater residual-risk reduction than continued base-model training under a matched training compute budget. Experiments on class-conditional image generation, text-to-video generation and image-to-video generation show consistent improvements over the corresponding base models, including gains in visual quality and physical consistency. Project Page: https://fogradio.github.io/corrflow-project",
+    "abs": "http://arxiv.org/abs/2610.24750v1",
+    "pdf": "https://arxiv.org/pdf/2610.24750v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "提出 CorrFlow 自校正 flow matching 框架：在 rectified-flow 插值下，单步干净预测的误差等于按噪声水平缩放的实现速度残差，据此用轻量 refiner 复用同一次前向的干净预测、条件、噪声水平与隐藏状态来预测残差修正，叠加到基础速度上再进行后续采样更新。理论分析比较了特征复用与原始输入仿射预测器，以及在匹配训练算力下 refiner 训练与继续训练基模型的残差风险下降；在类别条件图像、文生视频和图生视频生成上报告了一致改进。",
+      "relevance_reason": "其「复用同次前向的隐藏状态预测残差、在每步更新前修正当前状态」的机制，可能与 LVR 的 latent 状态更新、错误累积抑制及监督信号设计有可核查的方法线索，但其理论条件是否适用于多模态推理状态需人工判断。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-20T18:39:53.388253+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

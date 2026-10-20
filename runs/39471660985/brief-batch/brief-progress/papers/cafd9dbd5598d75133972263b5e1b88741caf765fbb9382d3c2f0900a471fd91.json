@@ -1,0 +1,74 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.25005",
+  "input_sha256": "d04bcc6382047d794831c42196fc0175e6a15ad04a6a940c6d714c18baa3b7d4",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-20T18:36:07.807265+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1820,
+        "output_tokens": 801,
+        "total_tokens": 2621,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 560
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.25005",
+    "title": "ReTrace: Visual Backtracking for Efficient Multimodal Large Language Models",
+    "authors": [
+      "Guangzong Si",
+      "Dong Wang",
+      "Yifan Yu",
+      "Miao Liu",
+      "Panwang Pan",
+      "Wentao Zhu"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.AI"
+    ],
+    "comment": "Accepted to Findings of EMNLP 2026, forthcoming",
+    "summary": "Multimodal Large Language Models (MLLMs) encode images into dense visual token sequences, creating substantial attention and KV-cache overhead. Existing visual token compression methods reduce this cost by pruning low-saliency tokens in shallow layers, but this practice couples temporary computational deactivation with irreversible information deletion. We show that this coupling breaks an intrinsic inference pattern in MLLMs. Through layer-wise attention analysis, we identify \\textbf{Visual Backtracking}: visual pivots remain spatially stable, yet in middle layers they actively retrieve context from tokens that appeared unimportant earlier. Thus, early low-saliency tokens can be inactive for computation while still being useful for later reasoning. Motivated by this finding, we propose \\textbf{ReTrace}, a backtracking-aware compression framework that introduces a dormant token state. ReTrace caches non-pivot tokens outside expensive layer-wise computation, restores them during the backtracking window, and prunes only after their information has been absorbed. Experiments on Qwen2.5-VL and InternVL3 demonstrate nearly 90\\% reductions in FLOPs and KV cache, a 2.83$\\times$ prefilling speedup, and strong performance retention across complex vision-language benchmarks.",
+    "abs": "http://arxiv.org/abs/2610.25005v1",
+    "pdf": "https://arxiv.org/pdf/2610.25005v1",
+    "AI": {
+      "category": "MAIN",
+      "priority": "P1",
+      "brief_summary": "论文通过逐层注意力分析发现 MLLM 中的「Visual Backtracking」现象：中层会重新取用早期看似不重要的视觉 token，据此提出 ReTrace，用可休眠 token 状态把非枢轴 token 移出昂贵计算、在回溯窗口内恢复、待信息被吸收后再剪枝，在 Qwen2.5-VL 与 InternVL3 上大幅降低 FLOPs 与 KV cache。",
+      "relevance_reason": "该工作直接涉及视觉细节是否保留在内部状态、以及剪枝「暂停计算」与「删除信息」耦合导致的信息坍缩问题，其分层注意力诊断与视觉证据筛选、动态计算成本的研究兴趣相关，可供核查其对 latent 状态保留与长度泛化的启示。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-20T18:36:07.807265+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

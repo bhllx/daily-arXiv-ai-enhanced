@@ -1,0 +1,74 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.25325",
+  "input_sha256": "37a6d7e833253151b9cf98ba50d4e46acf3f93c0a1dfee6d8c44fa051a4434cc",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-20T18:31:38.471334+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1820,
+        "output_tokens": 637,
+        "total_tokens": 2457,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 411
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.25325",
+    "title": "Where Groups Split: A Probe Prior for Nonzero Within-Group Variance in RL Post-Training",
+    "authors": [
+      "Jonah Ellison",
+      "Mateo Ruiz",
+      "Owen Pell",
+      "Tomas Duncun",
+      "Hanae Fujita",
+      "Ingrid Solberg",
+      "Caleb Nguyen"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Group relative policy optimization learns from a prompt only when the rewards in the sampled group disagree. With a binary verifier, a group that is entirely correct or entirely incorrect has within-group variance zero and a zero advantage. Uniform sampling continues to spend rollouts on prompts that are unanimous now and stay unanimous as training goes on. Pass rate is a weak forecast of that future. Two prompts at the same pass rate can move apart: one into the range where a finite group splits, and one toward a ceiling where the group becomes unanimous again. Aperture estimates the later pass rate from a short probe. A small subset of the pool is trained with the same recipe, every prompt is scored on the base model and on the probe model, and the two pass rates are plugged into the probability that a group of the training size is all wrong or split. The resulting weight is a static prior. It can be used alone or multiplied by an online scheduler, and the GRPO update is left as it is. On mathematical and logical reasoning with 1.7B and 4B models, the prior improves greedy accuracy over uniform GRPO and raises the fraction of groups with a nonzero advantage. The same prior still helps when it is combined with dynamic sampling or with selective rollouts.",
+    "abs": "http://arxiv.org/abs/2610.25325v1",
+    "pdf": "https://arxiv.org/pdf/2610.25325v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文提出 Aperture：用同一训练配方在池中小子集上训练一个 probe 模型，对每个 prompt 在基础模型与 probe 模型上分别打分，把两个通过率代入「训练组全错或分裂」的概率，作为静态先验对 GRPO 的 prompt 采样加权，以增加非零优势组比例、提升贪心准确率。",
+      "relevance_reason": "其按「是否还存在学习信号」重新分配训练算力的做法，可能可供核查 LVR 训练中如何筛出仍有 latent 贡献、尚未坍缩的样本或轨迹；但纯文本 RL 后训练的采样调度，与视觉多模态推理状态无直接关系。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-20T18:31:38.471334+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

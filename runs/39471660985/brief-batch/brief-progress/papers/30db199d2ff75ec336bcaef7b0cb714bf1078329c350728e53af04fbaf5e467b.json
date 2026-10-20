@@ -1,0 +1,73 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.24346",
+  "input_sha256": "6230f1464f383d88ebbf4003974935d034370b4dcfc416a12067e8d7cbf047c1",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-20T18:45:56.357720+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1894,
+        "output_tokens": 737,
+        "total_tokens": 2631,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 496
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.24346",
+    "title": "Measuring the Task Value of Precision Upgrades in Closed-Loop Agents",
+    "authors": [
+      "Sicheng Lyu",
+      "Xinyu Wang",
+      "Yu Gu",
+      "Lei Ding",
+      "Ziyang Song",
+      "Xiao-Wen Chang"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "A low-precision agent can call its full-precision (BF16) model at selected decisions as a fallback. A learned precision router chooses where to call it from the disagreement between the two models and is judged by end-to-end success. An inserted BF16 action, however, can rescue a failing task or damage a succeeding one. We argue that a fallback's value is the number of tasks it saves minus the number it spoils, measured for the intervention that will actually run. From restored states, we run paired branches that cross which model supplies the current action with which model continues, separating replacement of one action, takeover of later execution, and both. On Qwen3 agents with simulated 4-bit weights in tau2-bench, replacing the first action where the two models differed in tool use changed many task outcomes, but rescues and damages nearly cancelled, and on held-out telecom tasks the action-only estimate was negative. Replacing both the action and the continuation had a positive net gain in two of five exploratory lower-bit stress settings. Two references changed outcomes at fixed bit width: replacing an action with that of a second 4-bit checkpoint changed about as many outcomes as replacing it with the BF16 action, and reordering tool-argument keys changed outcomes while the executed tool call stayed identical. At common states, the additional value of the BF16 action over that checkpoint remained unresolved. A frozen uncertainty trigger found more outcome changes than random selection, while its net benefit stayed within the range of random selection. We recommend evaluating each fallback by its signed task benefit under the intended continuation, against same-precision references, before attributing gains to more bits.",
+    "abs": "http://arxiv.org/abs/2610.24346v1",
+    "pdf": "https://arxiv.org/pdf/2610.24346v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P1",
+      "brief_summary": "论文研究闭环 agent 在关键决策处回退调用 BF16 全精度模型的价值度量：从恢复状态出发做配对分支，分别考察「替换单个动作」、「接管后续执行」及两者兼有的净任务收益，并在 tau2-bench 的 Qwen3 agent 上发现替换动作的拯救与损害近乎抵消、部分低精度设置下才有正增益。",
+      "relevance_reason": "其配对干预与「净收益＝拯救数−损害数」的度量思路可能可供核查 LVR 中插入一次 latent／额外计算对最终答案的因果贡献，以及「只替换一步」与「接管后续生成」的区别；但研究对象是纯文本工具调用 agent，无视觉与 latent 状态，属方法线索而非主线工作。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-20T18:45:56.357720+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

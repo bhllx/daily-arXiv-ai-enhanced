@@ -1,0 +1,75 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.25004",
+  "input_sha256": "5d47d90bc183642fb49dbe8ef3a1cbc9978e9e9d0b1ab58152e1f14a115c5f66",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-20T18:36:09.280704+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1791,
+        "output_tokens": 632,
+        "total_tokens": 2423,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 400
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.25004",
+    "title": "UpLoop: Upcycling Large Language Models with Gated Loop",
+    "authors": [
+      "Tieyuan Chen",
+      "Huabin Liu",
+      "Yingtao Zhang",
+      "Shijie Li",
+      "Tengyu Pan",
+      "Weiyao Lin",
+      "Jianguo Li"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "Looped large language models trade parameter storage for recurrent computation, but most are trained from scratch. In practice, pretraining with looped depth is expensive, making post-training upcycling of a pretrained non-looped LLM an attractive alternative. We introduce \\textbf{UpLoop}, a post-training recipe based on \\emph{layer-wise} recurrence. Instead of looping a whole model or a middle block, UpLoop loops each selected layer locally, preserving the pretrained depth hierarchy and avoiding feature-space mismatch. To make loop execution useful, we add hidden-wise gates on the attention and MLP residual branches, so later loops act as progressive refinements rather than redundant rewrites. Empirically, UpLoop breaks the commonly observed saturation at two loops ($R=2$) in prior looped models. Starting from Qwen3-4B Base and applying SFT, UpLoop improves the average accuracy across 20 benchmarks by 6.17\\% at $R=3$. We use $R=3$ as the main setting for the best accuracy--cost trade-off, while both native and extrapolated $R=4$ yield further gains.",
+    "abs": "http://arxiv.org/abs/2610.25004v1",
+    "pdf": "https://arxiv.org/pdf/2610.25004v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P1",
+      "brief_summary": "提出 UpLoop 后训练方案：不循环整个模型或中间块，而是让每个选定层局部循环，保留预训练深度层级；并在注意力与 MLP 残差分支上加 hidden-wise 门控，使后续循环成为渐进精化。以 Qwen3-4B 为例，R=3 时 20 个基准平均提升 6.17%，突破了此前 R=2 的饱和，R=4 仍有增益。",
+      "relevance_reason": "纯文本的循环计算与状态更新线索可供核查：逐层局部循环加门控是否能迁移到 VLM latent 推理的迭代状态生成，缓解多次循环的冗余改写与饱和，并与长度泛化问题相关。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-20T18:36:09.280704+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

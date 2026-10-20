@@ -1,0 +1,72 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.25842",
+  "input_sha256": "616b6769593a39978aca9d37410d4f505bdb5599365de0dc9c9675abc53dfb09",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-20T18:21:56.070137+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1840,
+        "output_tokens": 695,
+        "total_tokens": 2535,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 406
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.25842",
+    "title": "Not Every Rollout Needs Distillation: Correctness-Filtered On-Policy Self-Distillation",
+    "authors": [
+      "Harrison Zhao",
+      "Lei Huang",
+      "Fei Liu",
+      "Wen Shi",
+      "Zijian Jin"
+    ],
+    "categories": [
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "On-policy self-distillation (OPSD) supervises student-generated trajectories with a reference-conditioned version of the same base model. We ask whether every trajectory supplies distinct supervision that warrants its distillation cost. Gradient measurements on Qwen3-1.7B at initialization reveal that correct and incorrect responses have similar individual gradient magnitudes, but incorrect responses have approximately three times the coherent gradient share. Their estimated population-mean directions also largely overlap. A signal--noise model fitted at a small group size tracks alignment at larger group sizes without refitting. Motivated by these measurements, we introduce correctness-filtered OPSD (C-OPSD), which generates one response per problem and distills only a subset of incorrect responses. Removing unselected rows before both distillation forwards avoids their teacher/student forward and student backward work. Across Qwen3-1.7B, 4B, and 8B on AIME24, AIME25, and HMMT25, C-OPSD achieves on-par performance with full OPSD. In a measured micro-batch-size-four implementation, executed rows decrease by approximately 68%, and with retained rows packed into full micro-batches, training takes about 40% less time while rollout generation remains unchanged. Together, the measurements and training results connect outcome-conditioned supervision redundancy to more compute-efficient distillation.",
+    "abs": "http://arxiv.org/abs/2610.25842v1",
+    "pdf": "https://arxiv.org/pdf/2610.25842v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文追问 on-policy self-distillation 中每条 rollout 是否都提供值得其蒸馏开销的独特监督：在 Qwen3-1.7B 初始化时测量发现正确与错误响应的单样本梯度幅度相近，但错误响应的「相干梯度」占比约高三倍，且两者估计的总体均值方向大体重叠；据此提出 correctness-filtered OPSD，每题只采样一条响应并仅蒸馏部分错误响应，跳过未选中行以省去前后向计算，在 1.7B/4B/8B 与 AIME、HMMT 上性能与完整 OPSD 相当，训练时间约降四成。",
+      "relevance_reason": "其以梯度相干性判别轨迹监督冗余、按正确性筛选训练轨迹的做法，可能为 LVR 中 latent/推理轨迹的监督选择与贡献分配提供具体筛选线索，但该工作纯文本、无视觉状态，能否迁移到多模态推理轨迹尚待核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-20T18:21:56.070137+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

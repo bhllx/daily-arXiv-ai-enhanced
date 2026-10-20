@@ -1,0 +1,72 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.24294",
+  "input_sha256": "401615a45fd4c74b06f5ecc2b29688dce3a7924979af6a87d0a1f5f6d885f76f",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-20T18:46:58.154835+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1923,
+        "output_tokens": 1008,
+        "total_tokens": 2931,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 795
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.24294",
+    "title": "Not Every User Says It All: Training Tool-Using Agents Beyond Ideal Simulated Users",
+    "authors": [
+      "Han Bao",
+      "Zheyuan Zhang",
+      "Kaiwen Shi",
+      "Yanfang Ye"
+    ],
+    "categories": [
+      "cs.AI",
+      "cs.CL"
+    ],
+    "comment": "22 pages, 11 figures, under review",
+    "summary": "Tool-using agents are trained and evaluated almost exclusively with strong simulated users who state every detail clearly, yet real users are often weaker. We construct weak users by masking sentences of a simulated user's replies, holding the task and the user's knowledge fixed, and cross-evaluate agents trained with strong and weak users on tau2-bench and ToolWOZ. Weak users lower the success of every policy, and training with them does not help: no policy trained with weak users, through fixed masks, mixtures or a curriculum, serves weak users better than the strong-trained policy beyond run-to-run noise, and prompting the agent to ask more does not help either. We propose StaGPO (State-Grouped Policy Optimization): the agent writes what the task needs, what is missing and how it is being filled, and GRPO uses this state to compare turns of different rollouts that reach the same situation, assigning step-level credit. Within the standard recipe of a small SFT cold start followed by RL, StaGPO makes weak-user training useful: on ToolWOZ, the Qwen3.5-2B policy trained with weak users reaches 76.8% with weak users, the highest of any Qwen3.5-2B policy we trained, 4.8 points above GRPO and 2.8 above the strongest baseline; it is also 5.4 points above GRPO with strong users, and generalises to an unseen mask rate; trained with strong users instead, it serves weak users at least as well as GRPO trained with weak users. On tau2-bench it scores highest with weak users for both models, by a small margin for Qwen3.5-4B.",
+    "abs": "http://arxiv.org/abs/2610.24294v1",
+    "pdf": "https://arxiv.org/pdf/2610.24294v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P1",
+      "brief_summary": "论文用遮蔽模拟用户回复的方式构造「弱用户」，在 tau2-bench 与 ToolWOZ 上评测工具使用智能体，发现弱用户降低所有策略表现且针对弱用户训练无效；随后提出 StaGPO，让智能体显式写出任务所需、缺失与补全状态，GRPO 据此对到达相同情境的不同 rollout 轮次做 step-level 信用分配。",
+      "relevance_reason": "显式状态分组下的步级信用分配，可为 LVR 轨迹训练、贡献分配与「同一情境」对齐监督提供方法线索，但其与视觉或 latent 状态的结合仍需核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-20T18:46:58.154835+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

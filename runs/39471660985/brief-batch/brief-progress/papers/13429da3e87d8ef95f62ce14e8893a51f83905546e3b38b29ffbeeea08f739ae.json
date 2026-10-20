@@ -1,0 +1,71 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.25447",
+  "input_sha256": "88122360fad601d354fb705ff07d2475d93f700a513a00cf4756e2936208fbf9",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-20T18:29:31.426386+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1881,
+        "output_tokens": 907,
+        "total_tokens": 2788,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 667
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.25447",
+    "title": "Enhanced Masked Diffusion Unlearning",
+    "authors": [
+      "Tomer Garber",
+      "Tom Tirer"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.AI",
+      "cs.CL"
+    ],
+    "comment": null,
+    "summary": "Masked diffusion language models (MDLMs) generate text by iteratively unmasking tokens with bidirectional context. As these models reach real-world deployment, machine unlearning becomes essential. This process aims to remove the influence of a designated \"forget set\" without retraining from scratch, so that sensitive, copyrighted, or restricted content can no longer be elicited while preserving retained capabilities. Masked Diffusion Unlearning (MDU) is the first publicly available unlearning method customized for these models: it tunes the model $p_θ$ to match a frozen prompt-masked anchor $p_{\\mathrm{anchor}}$ on the forget set by minimizing the anchor-last divergence $\\mathrm{KL}(p_θ\\Vert p_{\\mathrm{anchor}})$. We identify two failure modes of MDU. First, random answer masking can leave key forget tokens visible to the anchor even when the question is fully masked. Second, at a memorized (near-one-hot) prediction, the anchor-last logit gradient vanishes while the anchor-first divergence $\\mathrm{KL}(p_{\\mathrm{anchor}} \\Vert p_θ)$ logit gradient does not. As a result, MDU training stalls on the tokens we most need to forget. Backed by theoretical and empirical analyses, we propose Enhanced Masked Diffusion Unlearning (EMDU): anchor-first KL divergence toward a frozen anchor whose entire answer span is masked. On TOFU and RWKU benchmarks using LLaDA-8B and Dream-7B, our EMDU matches or exceeds the forgetting of MDU and adapted AR baselines, while better preserving retain utility.",
+    "abs": "http://arxiv.org/abs/2610.25447v1",
+    "pdf": "https://arxiv.org/pdf/2610.25447v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文研究掩码扩散语言模型的机器遗忘，指出现有 MDU 的两个失效模式——随机答案掩码会让关键遗忘 token 对锚点可见、在近似 one-hot 预测处 anchor-last KL 的 logit 梯度消失；据此提出 EMDU，改为对答案跨度整体掩码的冻结锚点做 anchor-first KL，并在 TOFU、RWKU 上验证遗忘效果与保留能力的平衡。",
+      "relevance_reason": "多步迭代去掩码生成、掩码粒度对状态泄漏的影响，以及 KL 方向选择导致的梯度消失问题，可能为 latent 推理状态的训练监督与逐步更新目标设计提供可供核查的线索；但论文本身不涉及视觉或多模态推理，迁移属推测，需人工判断。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-20T18:29:31.426386+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

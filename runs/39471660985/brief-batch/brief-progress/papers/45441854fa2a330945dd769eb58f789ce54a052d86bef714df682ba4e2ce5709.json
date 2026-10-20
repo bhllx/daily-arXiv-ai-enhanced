@@ -1,0 +1,80 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.25034",
+  "input_sha256": "9b3e53c0137bc0d50aee3b266d3bae8cc913b87b6294b3b7aaafece298388d99",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-20T18:35:29.386233+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1885,
+        "output_tokens": 714,
+        "total_tokens": 2599,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 478
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.25034",
+    "title": "Beyond the Teacher: Understanding and Preserving Distillation Overshoot in Agentic On-Policy Distillation",
+    "authors": [
+      "Jike Zhong",
+      "Ming Li",
+      "Yuxiang Lai",
+      "Xi Xiao",
+      "Sheng Zhang",
+      "Ritwick Chaudhry",
+      "Tianle Chen",
+      "Jingyu Xie",
+      "Zheda Mai",
+      "Shao-Yuan Lo",
+      "Konstantinos Psounis",
+      "Yuanyuan Lei"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.CL"
+    ],
+    "comment": "Code: https://github.com/Jike338/SPOD",
+    "summary": "On-policy distillation (OPD) trains agents on their own trajectories using supervision from a stronger teacher. We uncover a counterintuitive phenomenon in multi-turn agentic tasks: a smaller, initially weaker student can substantially outperform its teacher during training, only to regress as distillation continues. We term this phenomenon distillation overshoot. Through decision- and task-level analyses, we trace overshoot to two competing effects of OPD: repairing weak student decisions and eroding successful student choices that the teacher disfavors. Early in training, repair outpaces erosion, allowing the student to combine the teacher's corrections with its own strengths and surpass the teacher. As training continues, erosion overtakes repair, causing these gains to vanish. Motivated by this finding, we propose Success-Preserving On-Policy Distillation (SPOD), which selectively masks conflicting teacher supervision on successful student choices and introduces a soft probability floor to counteract their erosion, while retaining teacher guidance elsewhere. SPOD requires only binary episode success and model probabilities already available during OPD. Across two model families and three agentic benchmarks, SPOD consistently outperforms ordinary OPD and evaluated variants, improving final success by up to 15.2 percentage points and surpassing the teacher by up to 20.0 points. Moreover, SPOD's final checkpoints outperform even ordinary OPD's best intermediate checkpoints in all six settings, demonstrating that beyond-teacher gains can be not only preserved but further extended. Code: https://github.com/Jike338/SPOD",
+    "abs": "http://arxiv.org/abs/2610.25034v1",
+    "pdf": "https://arxiv.org/pdf/2610.25034v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文发现多轮 agentic 任务中 on-policy distillation 存在「蒸馏过冲」：较弱的学生在训练中先超越教师、随后回退，并归因于修复弱决策与侵蚀教师不认可的学生成功决策两种效应的竞争；据此提出 SPOD，仅在成功轨迹上屏蔽冲突的教师监督并加入概率下界，从而保住并扩大超越教师的收益。",
+      "relevance_reason": "其「选择性屏蔽教师监督以保护学生成功行为」的做法，可能为 LVR 中推理轨迹训练、贡献分配与监督冲突（如何避免教师监督抹掉有效的 latent 推理状态）提供可核查的借鉴，但论文面向文本智能体蒸馏、无视觉与 latent 状态，联系需自行判断。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-20T18:35:29.386233+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

@@ -1,0 +1,68 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.25480",
+  "input_sha256": "e3c71080b2695cf80fe41443759f0a013177148dbc99c11d1d98affb64bb775e",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-20T18:29:00.786698+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1913,
+        "output_tokens": 208,
+        "total_tokens": 2121,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 53
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.25480",
+    "title": "Consistent LLM Call Handling Across Java Frameworks: A Reference Implementation and Benchmark",
+    "authors": [
+      "Oleksandr Klymenko"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": "7 pages, 2 figures, 3 tables, 1 listing. Code and data: https://github.com/alxkm/llm-call-guard",
+    "summary": "Java applications reach large language models (LLMs) through an integration framework, and rely on it to handle a failing provider: to retry what can be retried and nothing else, to wait as long as the provider asks, never to present a truncated answer as complete, and to record each failure in the application's metrics. We state these expectations as a six-clause reliability contract and measure Spring AI 2.0.1 and LangChain4j 1.21.0 against it with a scripted OpenAI-compatible provider: fifteen failure scenarios, synchronous and streaming, three repetitions. LangChain4j meets it in 47 of 77 applicable cases with its defaults and in 51 of 83 when configured explicitly, Spring AI in 72 of 77 and 76 of 83; both deliver a stream that ended without its terminator as a complete answer. We then place one implementation of the contract beneath both frameworks, at the HTTP boundary - an OkHttp interceptor for Spring AI, an HttpClient for LangChain4j, and a java.net.http transport for code without a framework - sharing a 725-line core that depends only on the JDK and the Micrometer Observation API. With it, all three clients behave identically and meet the contract in 90 of 91 cases; the remaining case is a policy trade-off between retrying a hung provider and waiting for a slow first token. Against a local model server the layer rejected none of 700 calls, and it adds a median of 32-217 microseconds to a call.",
+    "abs": "http://arxiv.org/abs/2610.25480v1",
+    "pdf": "https://arxiv.org/pdf/2610.25480v1",
+    "AI": {
+      "category": "EXCLUDE",
+      "priority": "NONE",
+      "brief_summary": null,
+      "relevance_reason": "论文研究 Java 框架（Spring AI、LangChain4j）对 LLM 调用失败的可靠性契约、重试与流完整性，并在 HTTP 层实现统一拦截器，属于工程基础设施，未涉及 VLM 内部状态、视觉证据或 latent 推理，缺少可借鉴的状态/决策线索。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-20T18:29:00.786698+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

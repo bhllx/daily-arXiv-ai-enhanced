@@ -1,0 +1,79 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.25553",
+  "input_sha256": "05162df906f871b11b6d4fdf43d6f9e8003d703efc7197cd7d4ae23d00e48c68",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-20T18:27:12.487338+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1964,
+        "output_tokens": 907,
+        "total_tokens": 2871,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 688
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.25553",
+    "title": "Narrow Decision Models: A System-1 Architecture for Calibrated, Typed Decisions",
+    "authors": [
+      "Carlos André Antunes",
+      "Aldry Albuquerque",
+      "Gabriel de Melo Schmith",
+      "Natã Batista",
+      "Pedro Oziel Escobar da Silva",
+      "Stefano Benko Rossi",
+      "Lingrid Dietrich Lorenz da Silva",
+      "Flávia Cristina da Costa",
+      "Thiago Bertotto",
+      "Luis Fernando Fausto"
+    ],
+    "categories": [
+      "cs.AI",
+      "cs.CL",
+      "cs.LG"
+    ],
+    "comment": "27 pages, 6 figures, 4 tables. A first training on real documents is summarized; full results on real data in production are left to a companion paper",
+    "summary": "System One models, introduced with TypeSafe's Jev, answer typed questions about a state with calibrated probabilities instead of generated text: choosing among options described in natural language (Choice), placing the state on an ordered scale (Score), or judging a yes/no statement (Noul). Jev is general-purpose: one set of weights, served as an API and adapted to a domain only through the request. We study the other end of the design space. A Narrow Decision Model (NDM) offers the same interface but is trained for the decisions of one organization, is small enough to run on its own infrastructure, and has an open architecture whose properties can be stated and tested. The state can be any text or structured record about which decisions are made; our running case is the routing of court communications. The architecture serializes a request as a prefix tree (the state, then each question, then each option) and runs a bidirectional encoder under a block attention mask with logical positions, so that each answer is, by construction, invariant to the order of its options and independent of the other questions asked. Routing through an organization chart is a composition of Choice decisions with an explicit \"none of these\" option. We describe training with proper scoring rules through a curriculum, calibration and abstention, decisions composed by rubrics, and a protocol that accepts or rejects the mechanism before held-out data is opened. A minimal validation on public and fictitious data shows that the invariances hold to rounding in a trained model, that a small instance routes on organization charts it has never seen well above lexical retrieval, and that, at equal compute, the block architecture reaches a lower loss than a pairwise cross-encoder. A first instance trained on real legal documents agrees with the LLM classifier in production on 91% of held-out documents.",
+    "abs": "http://arxiv.org/abs/2610.25553v1",
+    "pdf": "https://arxiv.org/pdf/2610.25553v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "论文提出 Narrow Decision Model：面向单一组织的 System-1 架构，把请求序列化为前缀树，用双向编码器加 block attention mask 与逻辑位置输出 Choice／Score／Noul 三类带校准概率的决策，并描述课程式训练、校准与弃权、决策组合及机制验收协议。",
+      "relevance_reason": "其基于校准概率的弃权机制与「先验收机制再打开留出数据」的协议，可能为 LVR 的停止决策和因果作用评估提供参照；块注意力与逻辑位置构造出的选项顺序不变性，可供核查推理状态表示是否需保持类似不变量。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-20T18:27:12.487338+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

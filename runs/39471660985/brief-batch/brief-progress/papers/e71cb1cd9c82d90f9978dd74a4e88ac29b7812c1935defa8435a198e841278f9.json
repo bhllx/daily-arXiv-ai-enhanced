@@ -1,0 +1,68 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.24085",
+  "input_sha256": "1e732b76c1d0a6d6329423e73c6e811f31fcd3e1d77a5f479955ec63f2195eb0",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-20T18:49:20.713269+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1974,
+        "output_tokens": 688,
+        "total_tokens": 2662,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 468
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.24085",
+    "title": "GLOW: General Linear Models Optimized with Ward's Method",
+    "authors": [
+      "Matt Higger"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Neuroimaging seeks brain regions whose imaging features correlate with variables of interest (e.g., diagnosis, age), usually via the General Linear Model (GLM). Region-Based Analysis dilutes or splits any effect that does not fill exactly one atlas region. Voxel-Based Analysis, with Cluster Extent Thresholding and Threshold-Free Cluster Enhancement built on it, fits a GLM per voxel and groups adjacent significant voxels. But neighboring voxels can share a statistic without sharing a GLM, which a per-voxel statistic cannot detect.\n  GLOW (General Linear Models Optimized with Ward's method) instead builds a hierarchy of nested regions by greedily minimizing GLM error (provably a special case of Ward's clustering). Maximum-statistic (Westfall-Young) permutation controls family-wise error over all regions. Significance spreads to an effect's nested fragments and the regions containing it; a final pruning step seeks whole, pure effect extents.\n  We plant synthetic effects of known extent and varying strength in Human Connectome Project (HCP) diffusion images and in white noise. Pruning delivers wholeness: GLOW returns a spatially consistent effect as one region on 57% of HCP trials, the best baseline on 35%; baselines recover comparable volume, but in many pure pieces. The cost is positive predictive value (PPV): GLOW is more sensitive (by up to 0.29), but its regions overrun the effect, mostly because no hierarchy region isolates it, not because of pruning. On HCP, GLOW's mean Dice gains 0.059 over the best baseline at weaker effects and gives back 0.005 at stronger ones.\n  On white noise, GLOW trails by up to 0.61 Dice: its hierarchy holds the effect, but its permutation test does not certify it. Runtime grows roughly linearly with voxel count, about 4.5 times the voxel-wise methods' on the full HCP volume. The PPV loss may trace to the assumption of spatially independent residuals.",
+    "abs": "http://arxiv.org/abs/2610.24085v1",
+    "pdf": "https://arxiv.org/pdf/2610.24085v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "面向神经影像，提出 GLOW：按 GLM 误差最小化贪心合并体素、构建嵌套区域层次（Ward 聚类特例），用最大统计量置换控制族错误率并剪枝，以恢复完整效应范围；在 HCP 与白噪声上以 Dice、PPV、运行时间评估。",
+      "relevance_reason": "「相邻单元共享统计量却不共享模型」的诊断，以及层次化候选区域加置换显著性筛选、牺牲 PPV 换取范围完整性，可能为 latent 状态下定位与验证任务相关证据、筛选视觉线索并控制多重比较提供思路，可作远域类比核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-20T18:49:20.713269+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

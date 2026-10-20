@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.24991",
+  "input_sha256": "8762fb6f156772db7ad3fbdf8ae984cc90767d2f167432cc979fc4e70184338c",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-20T18:36:22.268231+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1972,
+        "output_tokens": 891,
+        "total_tokens": 2863,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 654
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.24991",
+    "title": "Certified Sparse Attention via Perturbed Retrieval",
+    "authors": [
+      "Runguo Li"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.CL"
+    ],
+    "comment": "58 pages (10 pages main text, 48 pages appendix), 10 figures, 35 tables",
+    "summary": "Sparse attention speeds up long-context decoding by reading few keys of the KV cache, but existing methods do not control the error of a query, and on real KV caches their errors have heavy tails. We show that perturbing the score of every key with an independent Exp(1) variable turns threshold retrieval into sampling keys with probability proportional to their attention weights. Lowering the threshold along a geometric grid gives nested samples, a Horvitz--Thompson estimate of the output at every level, and confidence bounds that hold simultaneously over all levels, so each head stops at the first level whose certificate meets the target error $\\varepsilon$. With fresh perturbations at every decoding step, each certificate fails with probability at most $δ$ during generation. At a suitable threshold, the estimator reads $O(\\varepsilon^{-2}\\log(1/δ))$ values regardless of the context length, and no adaptive method reads fewer, up to constants. A 4-bit scan with deterministic bounds, shared across a grouped-query-attention group, generates the candidates exactly but reads every key. On three LLMs and ten settings at 16K--128K tokens, no certificate is violated, and at equal keys read our 90th-percentile error is 4.6--7.9$\\times$ lower than that of the best of 15 baseline families. At equal bytes, the best baselines have 0.6--1.6 times our 90th-percentile error and at least 4.9 times our largest. End to end, our method stays within one point of dense attention on tasks and within 0.1\\% in PG-19 perplexity, and the strongest baselines at equal bytes score as well. On CPU, decoding steps at 32K--128K tokens run 1.1--1.4$\\times$ faster than dense attention on the same 16-bit cache.",
+    "abs": "http://arxiv.org/abs/2610.24991v1",
+    "pdf": "https://arxiv.org/pdf/2610.24991v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文对每个 key 的注意力分数加独立 Exp(1) 扰动，使阈值检索等价于按注意力权重采样，并在几何网格上得到嵌套样本、Horvitz–Thompson 输出估计与对所有层级同时成立的置信界，从而让每个 head 在首个满足目标误差 ε 的层级停止，实现有误差证书的稀疏注意力，并在多个 LLM 与长上下文设置上验证误差与速度收益。",
+      "relevance_reason": "其可证明的误差证书与逐层自适应停止机制可能可供核查 LVR 中「何时停止读取视觉证据」的 STOP 决策、证据筛选与计算预算分配；但该方法是 token 级 KV 检索、不涉及推理状态，迁移线索需人工核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-20T18:36:22.268231+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

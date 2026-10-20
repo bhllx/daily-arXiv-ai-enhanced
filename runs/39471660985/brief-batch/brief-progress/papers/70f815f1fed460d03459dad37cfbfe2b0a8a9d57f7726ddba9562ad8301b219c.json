@@ -1,0 +1,73 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.25604",
+  "input_sha256": "a10f7d7a2c4d60e7e24b27f90a8b9fe34f8dc8cbb0735d4488d50a2d5bf6f2e8",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-20T18:26:24.550314+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1941,
+        "output_tokens": 551,
+        "total_tokens": 2492,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 334
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.25604",
+    "title": "Adversarial Post-Training of Foundation Models for High-Frequency Trading",
+    "authors": [
+      "Alexandre Bismuth",
+      "Kang Li",
+      "Aramis Marti-Shahandeh",
+      "Valentin Mohl",
+      "Jakob Foerster",
+      "Anisoara Calinescu"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": "Accepted at the 7th ACM International Conference on AI in Finance (ICAIF '26), Milan, Italy. 9 pages, 5 figures, 4 tables. Code: https://github.com/alexandre-bismuth/WGAN-Post-Training",
+    "summary": "While autoregressive foundation models trained on limit order book (LOB) data show state-of-the-art performance for market simulation, pre-training with cross-entropy neither penalizes the compounding of sampling errors over free-running rollouts nor targets desired market properties. We introduce a post-training method for LOB foundation models using a Wasserstein generative adversarial network (GAN) objective. A critic, trained online on rollouts through the true, non-differentiable matching engine, guides updates from evolution strategies over rank-4 LoRA perturbations of the pre-trained generator, under a KL trust region. For efficiency, we use EGGROLL (Evolution Guided GeneRal Optimisation via Low-rank Learning), a memory-efficient variant of evolution strategies. On a held-out panel, adversarial post-training improves LOB-Bench realism by 17.6% (WS-21) and 17.0% (Mean-$L_1$), while selection-matched random-perturbation and compute-matched continued-pre-training controls yield no improvement. Post-training is thus a necessary stage that more pre-training does not replace. Per-position divergence measurements show that it slows error accumulation over 500-message rollouts from $3.1\\times$ to $2.3\\times$. Adversarial post-training is also inexpensive, requiring under 50M training tokens and 12 GPU-hours per seed, three orders of magnitude below the 48B-token pre-training budget. Ablations over critic inputs, optimizers, and the population-rollout trade-off, together with an analysis of reward hacking, yield practical design guidelines for adversarial post-training.",
+    "abs": "http://arxiv.org/abs/2610.25604v1",
+    "pdf": "https://arxiv.org/pdf/2610.25604v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文为限价单簿（LOB）基础模型提出对抗式后训练：以 Wasserstein GAN 形式，用经过真实匹配引擎的 rollout 在线训练 critic，并借 EGGROLL 演化策略对 rank-4 LoRA 扰动更新生成器，在 KL 信赖域下提升市场模拟的真实性与长时间 rollout 的误差累积表现。",
+      "relevance_reason": "其用对抗 critic 直接监督自由运行 rollout、以缓解采样误差累积的思路，可能为 LVR 中长程 latent 轨迹训练、逐步贡献分配与误差累积诊断提供可核查的方法线索；跨领域迁移尚未验证，需较多核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-20T18:26:24.550314+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

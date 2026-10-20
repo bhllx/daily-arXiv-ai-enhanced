@@ -1,0 +1,74 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.24607",
+  "input_sha256": "2761740a28fd63bd3b60a2215917f1e9a22cd8cd2291bba5f110b6e5ef6a382c",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-20T18:41:49.848480+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1806,
+        "output_tokens": 770,
+        "total_tokens": 2576,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 517
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.24607",
+    "title": "IntriAdapt: Generalizable Intrinsic-Guided Test-Time Adaptation for Metric Geometry Estimation",
+    "authors": [
+      "Jiaxing Chen",
+      "Zizheng Yan",
+      "Jingyu Zhuang",
+      "Jinwei Chen",
+      "Shuguang Cui",
+      "Guanying Chen",
+      "Qingnan Fan"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": null,
+    "summary": "Recovering metric 3D geometry from images is fundamentally ill-posed due to perspective projection ambiguity. Current geometry models incorporate supplied or predicted intrinsics during inference, but do not use them to supervise model adaptation. To refine these predictions, test-time adaptation (TTA) typically relies on external depth measurements. In this paper, we instead use camera intrinsics as an output-side geometric verifier. Comparing the point cloud's viewing rays with those defined by the known intrinsics yields a direct measure of geometric inconsistency. We propose \\textit{IntriAdapt}, a TTA framework that minimizes this closed-form geometric residual. By optimizing a lightweight LoRA adapter on a frozen geometry foundation model, our method aligns the prediction with the specific camera model without depth sensors or external priors. We further extend this approach to video sequences, demonstrating that adapting a short sequence generalizes to other sequences captured by the same camera. The adapted model processes held-out images in a feed-forward pass, without repeating optimization for each frame. Experiments on ten single-image and seven sequence benchmarks across multiple base models show that \\textit{IntriAdapt} consistently outperforms both unadapted and oracle-intrinsics baselines in metric accuracy and relative geometry.",
+    "abs": "http://arxiv.org/abs/2610.24607v1",
+    "pdf": "https://arxiv.org/pdf/2610.24607v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文提出 IntriAdapt：把已知相机内参当作输出端的几何验证器，通过比较点云视线与内参定义的视线得到闭式几何残差并最小化它，在冻结的几何基础模型上只优化轻量 LoRA 适配器，无需深度传感器或外部先验；并扩展到视频序列，使短序列上适配的模型可前馈迁移到同一相机的其他序列。",
+      "relevance_reason": "用闭式几何残差充当无标签自监督信号来驱动适配器、且不改变冻结基础模型，这一「输出端验证器 + 轻量适配」线索可供核查是否迁移到 LVR 中的视觉证据筛选、latent 状态自验证与训练监督设计，但其本身属几何估计任务，与 VLM 推理状态生成无直接关系。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-20T18:41:49.848480+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

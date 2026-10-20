@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.24220",
+  "input_sha256": "e2bd559841bc546ff81a17d99b3460b57b2ade54b3123c7f3486f35a9f08603f",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-20T18:47:47.614879+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1958,
+        "output_tokens": 934,
+        "total_tokens": 2892,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 704
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.24220",
+    "title": "Hidden Trajectories Don't Lie: Correcting Corruption Drift for Test-Time Adaptation",
+    "authors": [
+      "Amirhossein Sabour",
+      "Amir Khasahmadi",
+      "Mengliu Zhao"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": "35 pages, 15 figures",
+    "summary": "Test-time adaptation (TTA) adapts pretrained models to distribution shifts encountered during deployment. However, most existing methods rely on the weight representations of the final layer or signals derived from the model's output probability distribution. We study hidden trajectories: the ordered sequence of intermediate representations produced across a deep neural network. We observe that clean and corrupted trajectories become more separable as corruption severity increases. We introduce Drift-TTA, which adds zero-initialized low-rank adapters to a frozen backbone and trains them to align corrupted hidden trajectories with those from cleaner inputs. The approach supports two variants: a source-dependent version trained with clean targets, and a source-free setting that learns from corrupted images at different severities. We develop an online TTA approach that freezes the backbone and adapters while updating a scalar gate to control adaptation strength. We further cast trajectory alignment as MAP inference under a Gaussian observation model and derive a KL-based transfer bound characterizing test-time trajectory misalignment in terms of offline residual error, residual dimensionality, and distribution shift between offline and test corruptions. We evaluate Drift-TTA on CIFAR-10-C, CIFAR-100-C, and ImageNet-C using supervised ViTs and CLIP models. On CIFAR-100-C at severity 5, our source-free online approach improves accuracy over no TTA by 13.3 percentage points with ViT-B/16 and 11.6 percentage points with CLIP ViT-B/16, reaching 74.9% and 47.4%, respectively. Under the same setting, prior TTA baselines yield ECEs of 18.00% for ViT and 14.70% for CLIP, while our approach reduces them to 9.53% and 5.77%, respectively. These results demonstrate that hidden trajectory alignment provides an effective signal for both offline correction and lightweight online test-time adaptation.",
+    "abs": "http://arxiv.org/abs/2610.24220v1",
+    "pdf": "https://arxiv.org/pdf/2610.24220v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "研究深度网络中间表征的有序序列（hidden trajectories），提出 Drift-TTA：在冻结骨干上加入零初始化低秩适配器，把受损输入的隐藏轨迹对齐到更干净输入的轨迹，含源相关与无源两种变体及在线门控更新，并把轨迹对齐写成高斯观测模型下的 MAP 推断、给出 KL 迁移界。",
+      "relevance_reason": "其按深度对齐中间表征并量化轨迹错位，可能为 LVR 中视觉证据在内部状态中的保留程度、以及 latent 相似度受深度与位置影响提供可供核查的分析线索；但该工作面向纯视觉分类的测试时自适应，不涉及多模态推理或推理期 latent 状态生成。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-20T18:47:47.614879+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

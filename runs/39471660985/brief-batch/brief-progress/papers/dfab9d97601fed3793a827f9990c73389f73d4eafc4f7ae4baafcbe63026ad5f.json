@@ -1,0 +1,68 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.23893",
+  "input_sha256": "32a905aa00678f71aa03d56fcdc531edeb093e7503e591340c053e59b296952d",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-20T18:54:29.433731+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1915,
+        "output_tokens": 678,
+        "total_tokens": 2593,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 436
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.23893",
+    "title": "Path-Conditioned Attention Mobility: From Depth to Execution Hubs in SegFormer",
+    "authors": [
+      "Aleksandr Druzhinin"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": "27 pages, 8 figures; includes supplementary material",
+    "summary": "Transformer compression often couples two distinct quantities: retained attention capacity and the number of sequential depths at which that capacity is executed. We study whether useful attention functions in a hierarchical vision transformer are locally mobile across depth. Using SegFormer-B5 for human segmentation, we find that some task-relevant attention heads can be relocated to nearby depths, but only when their computational context is respected. Head-only relocation is insufficient, while joint adaptation of the relocated head and surrounding representation boundary improves functional preservation; replacing donor-specific normalization and spatial-reduction preprocessing causes large degradation. We use this path-conditioned mobility to reorganize retained attention from depth into width. Starting from a fixed parent with 120 retained Stage-3 heads across 40 attention execution depths, we consolidate the same 120-head budget into 20 execution hubs. Under a layout-matched three-seed recovery control, K20 reaches 0.960686 +/- 0.000059 mIoU versus 0.960400 +/- 0.000074 for the corresponding State120 control. The paired point difference is +0.000285, while a paired image-bootstrap confidence interval includes zero; we therefore interpret the result as no measurable quality penalty rather than statistical superiority. For deployment, FOLDED_VEC preserves donor-specific paths while vectorizing their execution. Relative to the same 120-head State120 parent, it reduces end-to-end NVIDIA L4 latency by 5.28%, 3.15%, and 3.58% at batch sizes 1, 4, and 8. These results suggest that attention redundancy includes not only removable capacity but also execution-depth redundancy, provided that the computational path defining a relocated function is preserved.",
+    "abs": "http://arxiv.org/abs/2610.23893v1",
+    "pdf": "https://arxiv.org/pdf/2610.23893v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P1",
+      "brief_summary": "该论文研究分层视觉 Transformer（SegFormer-B5 人像分割）中的注意力头能否在深度方向局部迁移，发现仅迁移头不够、需联合调整相邻表示边界并保留捐赠者特定的归一化与空间降采样路径；据此把 120 个保留头从 40 个执行深度整合为 20 个执行 hub，报告质量无可测损失并使端到端延迟下降约 3%–5%。",
+      "relevance_reason": "其「执行深度冗余」与「路径条件化上下文必须一并保留」的发现，可能为 LVR 中顺序 latent 步骤能否压缩为更少或并行步骤、以及推理状态上下文对功能保持的作用提供可核查线索，但该工作本身并非多模态推理研究。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-20T18:54:29.433731+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

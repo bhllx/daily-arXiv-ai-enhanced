@@ -1,0 +1,73 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.24826",
+  "input_sha256": "7c49756a536bbd24878083ae668fa3df85c06960811a670ff52c38679a47009a",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-20T18:38:48.791207+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1795,
+        "output_tokens": 815,
+        "total_tokens": 2610,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 591
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.24826",
+    "title": "Compose the Horizon: Parameter-Shared Blockwise Forecasting under a Sequential-Compute Trade-off",
+    "authors": [
+      "Zeyan Li",
+      "Weiheng Li",
+      "Shengda Zhuo",
+      "Libing Chen",
+      "Min Chen",
+      "Yin Tang"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Most long-horizon forecasters emit the complete future in one pass. We ask whether a compact operator can instead be reused to emit contiguous future blocks, trading stored parameters for sequential computation. Recursive Functional Decomposition (RFD) factorizes the horizon mapping into three parameter-shared block predictions. The blocks occupy disjoint future intervals and are concatenated, not added as trend, seasonal, or residual components, and each emitted block joins the rolling context that conditions the next application. In controlled three-seed experiments, removing forward feedback hurts all four evaluated datasets while stopping gradients through it changes little, so the useful signal is the evolving forecast state itself; reapplying the shared operator helps consistently, but by less than widening it. The model uses 0.08--0.46M parameters, yet its sequential channel-wise execution is slower and more memory-intensive than an iterative baseline at high channel count. In a frozen long-context evaluation against ten strong baseline families, RFD records lower test error in 23 of 24 cells; the comparison is cross-protocol, with RFD using 512/720-step context and the baselines using 96.",
+    "abs": "http://arxiv.org/abs/2610.24826v1",
+    "pdf": "https://arxiv.org/pdf/2610.24826v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文提出递归函数分解（RFD），用参数共享的算子分块滚动预测长时程未来，并把已发出的块回灌进滚动上下文；通过消融考察前向反馈和回传梯度的影响，讨论以存储参数换取顺序计算时的速度与显存代价。",
+      "relevance_reason": "参数共享算子的迭代复用与「块回灌上下文」可能为 LVR 循环/latent 状态的生成与更新方式提供线索，其「去掉前向反馈普遍有害、阻断其回传梯度影响不大」的消融可供核查 latent 步间监督与状态贡献分配时参照，但领域相隔较远，属待核查的方法借鉴。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-20T18:38:48.791207+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

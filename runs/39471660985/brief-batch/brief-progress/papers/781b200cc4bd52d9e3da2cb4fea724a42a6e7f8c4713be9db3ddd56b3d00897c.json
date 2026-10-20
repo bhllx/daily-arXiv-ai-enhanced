@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.25595",
+  "input_sha256": "45ddc42baee01c8bb0547ed90cf5e7f345f54b8a3e038cd057d638ff93a98e03",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-20T18:26:32.261429+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1818,
+        "output_tokens": 828,
+        "total_tokens": 2646,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 614
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.25595",
+    "title": "ViMoLa: Discrete Motion Tokens for Language-Guided Video Generation",
+    "authors": [
+      "Bishoy Galoaa",
+      "Sarah Ostadabbas"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": null,
+    "summary": "Language-guided video generation often captures scene content while missing the requested motion. We present ViMoLa (Video Motion Language), which predicts a motion prior from language and injects it into a frozen image-to-video backbone. A spatial vector-quantized autoencoder compresses dense trajectories into 64 tokens from a 512-entry codebook; a 28M-parameter transformer predicts the tokens from text; and zero-gated cross-attention adapters condition every frozen Wan~2.2 DiT block through forward hooks. Trained on 462K videos from Something-Something~v2 and Kinetics-400, ViMoLa raises directional accuracy from 0.287 to 0.442 (chance 0.250), with similar measured generative quality. Across-prompt shuffled codes achieve 0.283, supporting the importance of prompt-matched token content. A low-rank adapter reaches 0.428 at 1.45% additional forward-pass FLOPs, and reusing the tokenizer and language model with newly trained CogVideoX adapters raises accuracy from 0.301 to 0.398. Control remains imperfect: oracle codes reach 0.531, compound-motion gains are smaller, and the adapter does not explicitly preserve token-to-patch assignments.",
+    "abs": "http://arxiv.org/abs/2610.25595v1",
+    "pdf": "https://arxiv.org/pdf/2610.25595v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "ViMoLa 用空间向量量化自编码器把稠密轨迹压成 64 个离散运动 token，由小型 transformer 从文本预测，再通过零门控 cross-attention 适配器注入冻结的图像到视频骨干，以补上语言指令中的运动信息。",
+      "relevance_reason": "其「离散 token 瓶颈 + 从文本预测 + 注入冻结骨干」链路及打乱 token 的对照消融，可能为 LVR 中 latent 状态如何生成、注入以及如何检验其内容是否被真正使用提供可核查的方法线索，但主题属视频生成而非 VLM 推理。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-20T18:26:32.261429+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

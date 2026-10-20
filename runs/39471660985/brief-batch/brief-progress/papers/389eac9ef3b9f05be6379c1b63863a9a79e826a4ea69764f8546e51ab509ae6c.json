@@ -1,0 +1,77 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.26064",
+  "input_sha256": "82a4ebf838dcc278cfdc3be8803e546385a5d4804b2f6b98efbd760ecf310f5d",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-20T18:17:50.738882+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1911,
+        "output_tokens": 538,
+        "total_tokens": 2449,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 297
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.26064",
+    "title": "Learning the Dose Manifold: A Latent Diffusion Framework for Volumetric Dose Prediction in Automated Radiotherapy Treatment Planning",
+    "authors": [
+      "J. Boyer-Chammard",
+      "R. Vauclin",
+      "M. C. Biston",
+      "P. Maury",
+      "M. Gau",
+      "S. Stathakis",
+      "V. Grégoire",
+      "N. Paragios",
+      "E. Deutsch",
+      "N. Komodakis"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": "27 pages, 7 figures plus graphical abstract",
+    "summary": "Automated treatment planning (ATP) aims to reduce the unwarranted inter-planner variability of manual planning, while improving treatment quality and efficiency. Most ATP pipelines rely on the prediction of the achievable three-dimensional dose distribution for a given anatomy and the subsequent optimization of machine parameters to reproduce it. Diffusion-based methods are largely slice-wise due to the high dimensionality of radiotherapy data, and assume a one-to-one mapping between anatomy and optimal dose despite the multi-objective nature of treatment planning. They are evaluated on their ability to match reference doses and rarely on their integration in ATP frameworks. We present LaDose, a latent diffusion framework for fully volumetric dose prediction. An autoencoder learned on dose distributions, trained so that perturbed latents decode to plausible doses, compresses dose maps 128-fold and enables 3D diffusion on a single GPU. Prescription values are represented as exact scalar vectors that bypass the image encoder, avoiding resampling and latent compression. Multiscale classifier-free guidance allows for the modulation of clinical trade-offs at inference, without retraining or additional labeled data. On 900 clinically delivered head-and-neck volumetric modulated arc therapy plans from five centers, LaDose reached a median absolute error of 1.18 Gy (1.4--1.8\\% of the prescription) and was the only one of six frameworks free of systematic bias with respect to the reference distribution. Guidance scales acted predictably on target coverage and organ-at-risk sparing. Integrated with direct aperture optimization, the pipeline generated plans in 15.2 minutes; in a blinded review, senior clinicians rated 14 of 15 plans acceptable without editing.",
+    "abs": "http://arxiv.org/abs/2610.26064v1",
+    "pdf": "https://arxiv.org/pdf/2610.26064v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "提出 LaDose：在剂量分布上训练自编码器将三维剂量图压缩 128 倍，再于潜空间做扩散生成整体积剂量预测，处方值以标量向量绕过图像编码器直接注入，并用多尺度无分类器引导在推理时调节靶区覆盖与危及器官保护的权衡。",
+      "relevance_reason": "与 LVR 无直接关系，但有三条可供核查的线索：任务必需标量绕过编码器以避开潜空间压缩损失、对扰动 latent 仍解码出合理输出的训练约束（对应潜表示中的必要信息保留）、以及引导尺度在推理时调节权衡，或可用于思考视觉证据注入与推理期权衡控制。需注意其 latent 为生成用压缩码，并非推理状态。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-20T18:17:50.738882+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

@@ -1,0 +1,72 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.26837",
+  "input_sha256": "936a1beec776eeeaca9cd09af0581caf0e20c3022983a5030e1533cce09c9734",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-20T18:07:44.914277+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1865,
+        "output_tokens": 535,
+        "total_tokens": 2400,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 297
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.26837",
+    "title": "SpecKCast: Spectral Kalman Forecasting for Diffusion Acceleration",
+    "authors": [
+      "Javad Rajabi",
+      "Hakki Can Karaimer",
+      "David B. Lindell",
+      "Babak Taati",
+      "Michael S. Brown"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": "34 pages, 19 figures",
+    "summary": "Diffusion Transformers (DiTs) achieve high-fidelity image and video generation, but they suffer from substantial inference costs due to repeated transformer evaluations across many denoising steps. Feature caching reduces this cost by reusing features across denoising steps. Recent forecasting methods extend this idea by extrapolating features to skipped steps instead of reusing them. However, existing forecasting methods extrapolate the features they predict uniformly, even though the spatial-frequency components of these features change most at different stages of denoising. They also overlook that denoising progresses nonuniformly, so equal step intervals can correspond to very different amounts of change. These mismatches amplify forecast errors as more steps are skipped, limiting the achievable acceleration. We propose SpecKCast, a training-free method that forecasts the model output in the frequency domain. SpecKCast applies a 2D discrete cosine transform (DCT) to the output and tracks each coefficient with a lightweight Kalman filter along a band-specific time coordinate derived from the noise schedule. The filter tracks each coefficient's value and rate of change, and the transformer is evaluated only when the filter's forecast uncertainty exceeds a threshold. Experiments on FLUX.1-dev, Qwen-Image, Wan2.1-14B, and HunyuanVideo show that SpecKCast achieves a better trade-off between acceleration and fidelity than existing caching and forecasting methods, reaching up to 6x speedup with less than 0.05 GiB of additional memory.",
+    "abs": "http://arxiv.org/abs/2610.26837v1",
+    "pdf": "https://arxiv.org/pdf/2610.26837v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文提出免训练方法 SpecKCast：对 DiT 输出做 2D DCT，用轻量 Kalman 滤波沿噪声调度导出的分带时间坐标跟踪各频率系数的值与变化率，仅当预测不确定度超过阈值时才执行一次 transformer，在 FLUX.1-dev、Qwen-Image、Wan2.1-14B 等上以极小额外内存取得最高 6 倍加速。",
+      "relevance_reason": "主题为扩散生成加速，与 LVR 主线无直接关系；但其用 Kalman 滤波维护状态值及变化率、并以预测不确定度阈值决定是否重新计算的做法，可能为 latent 状态的时序更新与动态计算／停止决策提供可供核查的方法线索。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-20T18:07:44.914277+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

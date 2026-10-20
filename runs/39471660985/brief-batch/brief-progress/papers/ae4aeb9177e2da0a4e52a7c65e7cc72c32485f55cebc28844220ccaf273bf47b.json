@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.25577",
+  "input_sha256": "b2698d2c14ad5fdb976139cc49d730923d2cca6cf895b7b0a013828e91f0afbb",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-20T18:26:49.273870+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1862,
+        "output_tokens": 812,
+        "total_tokens": 2674,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 561
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.25577",
+    "title": "Finite Interaction Lens: Structured Precision Sharing for Vision-Language Models",
+    "authors": [
+      "Nozomu Fujisawa"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.CV"
+    ],
+    "comment": "32 pages",
+    "summary": "Identifying which visual interventions interact in a vision-language model requires comparing their joint and separate effects. The resulting four-output difference can be small enough for rounding error to obscure it. We introduce the Finite Interaction Lens (FIL), a mixed-precision method for evaluating finite intervention families. At each selected linear projection, FIL decomposes each candidate's input into a native state, two single-intervention components, and a full-dimensional mixed residual. It projects the single-intervention components at higher precision and reuses the same numerical contributions in the joint candidates, while retaining every mixed residual and nonlinear trajectory. We derive a local cancellation identity and a conditional bound on error propagation through a smooth nonlinearity. In one MLP of Qwen3-VL-4B-Instruct, FIL reduces final interaction MSE by 94.4% on 16 synthetic families and by 99.85% and 99.35% in two separate four-image COCO studies, relative to a control that has the same nominal BF16-product budget and higher-precision single interventions but projects each joint candidate independently. One image accounts for most of the absolute gain in each COCO study. Higher-accuracy multi-product BF16 arithmetic on all candidates gives lower aggregate error at similar total query times. Single-product BF16 already recovers the reference choices in both candidate-selection tasks we tested. On these development inputs, FIL improves interaction fidelity at a fixed nominal precision budget. Its practical value depends on a task that needs the extra fidelity.",
+    "abs": "http://arxiv.org/abs/2610.25577v1",
+    "pdf": "https://arxiv.org/pdf/2610.25577v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文提出 Finite Interaction Lens（FIL），一种混合精度方法：在选定的线性投影处把每个候选输入分解为原生状态、两个单干预分量与满维混合残差，对单干预分量以更高精度投影并在联合候选中复用同一数值贡献，从而降低「联合效果减单独效果」四输出差分中被舍入误差淹没的部分，并在 Qwen3-VL-4B-Instruct 的一个 MLP 上以合成族与 COCO 四图研究验证误差下降。",
+      "relevance_reason": "该工作不涉及 latent 推理状态或生成机制，但其对干预交互效应（joint 与 separate 之差）的可靠数值估计，可能可供核查 LVR 中视觉证据筛选、视觉干预贡献与交互度量的评估做法，属需较多核查的方法线索。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-20T18:26:49.273870+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

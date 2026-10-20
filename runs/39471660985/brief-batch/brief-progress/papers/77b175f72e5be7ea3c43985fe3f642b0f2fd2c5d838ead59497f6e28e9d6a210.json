@@ -1,0 +1,73 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.24188",
+  "input_sha256": "638ba34202d93d128234767d165850e969429a2aaea8f20027ac8b3635b1f733",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-20T18:48:01.383035+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1824,
+        "output_tokens": 618,
+        "total_tokens": 2442,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 367
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.24188",
+    "title": "On Reparameterizing the Score Function",
+    "authors": [
+      "Mohammad Hossein Amani",
+      "Leonardo Bocchieri",
+      "Maxime Peyrard",
+      "Clément Hongler",
+      "Robert West"
+    ],
+    "categories": [
+      "cs.LG",
+      "stat.ML"
+    ],
+    "comment": "Accepted at NeurIPS 2026. 23 pages",
+    "summary": "Policy gradients for autoregressive sequence models differentiate each token's log-probability while holding the conditioning history fixed. This discards information about how earlier decisions shape later conditional distributions, creating a credit-assignment bottleneck when rewards are sparse. We introduce History-Reparameterized (HR) policy gradients, which replace the frozen prefix in the score function with a differentiable reparameterized or relaxed history, allowing gradients of downstream log-probabilities to propagate backward through the generated trajectory. The resulting history-pathwise term is generally biased when added directly, so we derive Optimal HR (OHR), a centered control-variate estimator with a closed-form coefficient that minimizes the trace of the gradient variance at the population level. The variance reduction is governed by temporal structure in the policy dynamics: random or weakly structured policies provide little benefit, while policies with learned sequential dependencies yield informative history-pathwise corrections. For discrete tokens, the choice of relaxation is crucial: embedding-level relaxation yields substantial variance reduction that grows with horizon, whereas straight-through Gumbel-Softmax yields essentially none in our diagnostics. We validate the method on a Gaussian linear Markov model, a sparse-reward T-maze with a recurrent policy, and an autoregressive Transformer model for small Traveling Salesman Problem (TSP) instances.",
+    "abs": "http://arxiv.org/abs/2610.24188v1",
+    "pdf": "https://arxiv.org/pdf/2610.24188v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文提出 History-Reparameterized（HR）策略梯度，把 score function 中冻结的 conditioning history 换成可微或松弛的历史，使下游 token log-prob 的梯度能沿整条生成轨迹回传；并推导 OHR——一种带闭式系数的居中控制变量估计量以最小化梯度方差，在 Gaussian 线性 Markov 模型、稀疏奖励 T-maze 和小规模 TSP 上验证。",
+      "relevance_reason": "其「历史路径项」贡献分配与方差控制，可能为 LVR 中 latent 轨迹训练的监督信号设计提供线索；值得核查的是它关于随机/弱结构策略收益甚微、以及 embedding 级松弛的方差缩减随 horizon 增长而 straight-through 几乎无收益等结论，是否适用于 latent 推理轨迹。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-20T18:48:01.383035+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

@@ -1,0 +1,72 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.24480",
+  "input_sha256": "27f9906698b8154d688dd6763f69324e3a7fd512b28378fe14b1776da05588b8",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-20T18:43:57.265847+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1905,
+        "output_tokens": 683,
+        "total_tokens": 2588,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 465
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.24480",
+    "title": "RiSE: Residual Subspace Expert for Generalizable Text-Centric Image Forgery Localization",
+    "authors": [
+      "Kahim Wong",
+      "Kemou Li",
+      "Yiming Chen",
+      "Haiwei Wu",
+      "Jiantao Zhou"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": null,
+    "summary": "As AI-assisted image editing becomes increasingly prevalent, Text-Centric Image Forgery Localization (TFL) is essential for protecting trust in financial and legal records. However, we observe that existing TFL detectors predominantly rely on Full-Parameter Fine-Tuning (FPFT) and fail to generalize to unseen forgery types because FPFT can induce low-rank feature collapse and overfit training artifacts. Meanwhile, prior detectors capture diverse forgery traces with a single unified representation, making subtle traces entangled and difficult to learn. To address these challenges, we propose RiSE, a Residual Subspace Expert model that preserves pre-trained priors by freezing principal SVD components and adapting only the residual subspaces with a ViT-only segmentor to avoid feature collapse. RiSE introduces forgery-aware residual experts, where each expert is trained independently on a training subset with a particular forgery type, and we show that cross-domain localization performance improves consistently as more experts are added. At inference, we introduce Latent Perturbation Confidence (LPC), which selects the most confident expert by analytically computing the latent-perturbed output. LPC enables efficient confidence estimation with a single forward pass, avoiding repeated forward passes on perturbed samples and improving expert selection. By training on synthetic forgery data, RiSE with 1 expert outperforms prior methods on real-world forgery images by 20.4% while reducing training steps by 10 times. Scaling the number of experts to 9 yields a 35.8% gain. RiSE remains effective with DCT feature, even when the majority of the parameters is frozen with RGB-only pretraining. Code: https://github.com/KahimWong/RiSE.",
+    "abs": "http://arxiv.org/abs/2610.24480v1",
+    "pdf": "https://arxiv.org/pdf/2610.24480v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "提出 RiSE，冻结预训练 SVD 主成分、仅适配残差子空间，并按伪造类型训练多个独立专家，实现文本中心图像伪造定位的跨域泛化；推理时用潜空间扰动置信度（LPC）在单次前向中选择最可信专家。",
+      "relevance_reason": "其「低秩特征坍缩」诊断与残差子空间适配可供核查 LVR 中视觉信息坍缩与冻结先验保留问题；LPC 借潜空间扰动在单次前向估计置信度，或可启发推理期停止决策与证据筛选，但属跨任务推测，需人工核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-20T18:43:57.265847+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}
