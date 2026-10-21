@@ -1,0 +1,71 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.27569",
+  "input_sha256": "b687eea2122e406f83ce8733ce7ff6f78fa1aa1398dfdfd7b99f5e4019d34fd0",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-21T18:26:02.426867+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1919,
+        "output_tokens": 615,
+        "total_tokens": 2534,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 399
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.27569",
+    "title": "Two Is Enough: Binary Classification Priors Suffice for Multi-Class In-Context Tabular Prediction",
+    "authors": [
+      "Zhixiong Cheng",
+      "Shiyuan Han",
+      "Jingjing Suo",
+      "Zhengli Wang"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Tabular foundation models (TFMs) pretrain a transformer on large-scale synthetic priors so that a single forward pass yields zero-shot tabular prediction. TabICLv2 samples the class count of its classification prior during pretraining, and the prevailing configuration caps it at ten. We report a counter-intuitive result: setting this cap directly to two---making every pretrained classification task binary---still yields weights that perform zero-shot K-way classification 2. On the 38 TabArena classification datasets (200 bootstrap rounds, anchored at default RF = 1000), the binary two-stage recipe reaches 1590.1 Elo, above the official default at 1568.0 (+22.1), above TabPFN-v2.6 (1577.1) and RealTabPFN-v2.5 (1521.6). A production-scale validation on 60 real-world credit-scoring institutions independently confirms the direction: the same checkpoint improves test AUC on 44 of 60 institutions (paired Wilcoxon p = 0.0007 for AUC, p = 0.0002 for KS) at +1.5 inference cost. Mechanistically, classification in TabICLv2 is carried not by a fixed-cardinality output head but by an in-context comparison operator matching query-row embeddings against class-conditional embeddings, so the cardinality of the output space is set by the labels present in the context, not by the label space seen during pretraining. This makes a binary prior structurally cheaper to generate and cache than a ten-class prior, demotes \"number of classes\" from an architectural constraint to a tunable hyperparameter, and points to a class-count-agnostic regime of TFM pretraining.",
+    "abs": "http://arxiv.org/abs/2610.27569v1",
+    "pdf": "https://arxiv.org/pdf/2610.27569v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文把 TabICLv2 表格基础模型的分类先验类别数上限直接设为二，发现纯二分类先验预训练仍可零样本完成 K 类分类，并在 38 个 TabArena 数据集与 60 家信贷机构的线上验证中报告提升。",
+      "relevance_reason": "其机制并非固定类数输出头，而是以上下文标签构造类条件嵌入、再用 in-context 比较算子匹配查询嵌入，这一「输出与比较结构由上下文证据决定」的做法或可为 latent 状态按证据集合动态组合提供核查线索；与视觉推理无直接关系，需评估迁移可行性。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-21T18:26:02.426867+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

@@ -1,0 +1,75 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.27986",
+  "input_sha256": "b0977b7011210f25c09f0886e63ad314f8d89c7c94c27f3268bbcbeefa756b80",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-21T18:21:03.234072+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1773,
+        "output_tokens": 626,
+        "total_tokens": 2399,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 400
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.27986",
+    "title": "Recast the Past: Stable Long Video Generation with Full Context Memory",
+    "authors": [
+      "Yukuo Ma",
+      "Cong Liu",
+      "Junke Wang",
+      "Junqi Liu",
+      "Haibin Huang",
+      "Zuxuan Wu",
+      "Xuelong Li"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.AI"
+    ],
+    "comment": "Code: https://github.com/scottykma/Recam",
+    "summary": "Long-horizon video generation requires retaining an ever-expanding history, but conditioning on its growing token sequence is costly. Existing methods restrict or compress historical context, potentially losing information needed for future generation. This work proposes ReCam, which groups local spatiotemporal blocks of historical latents into vectors and projects them directly into the high-dimensional hidden space of a Diffusion Transformer. The model learns to use the resulting memory tokens through native self-attention, reducing token count while retaining block-level access to the full history. To mitigate temporal drift during autoregressive rollout, we further introduce dual-pointer denoising with separate noise schedules for recent context and target frames. Among the evaluated methods, ReCam achieves the highest VBench-Long overall score of 80.1 and competitive static-scene revisitation performance on R2M-Bench. It also leads on all four consistency metrics for off-screen subject reappearance, including clothing consistency of 4.09 versus 3.03 for the best baseline.",
+    "abs": "http://arxiv.org/abs/2610.27986v1",
+    "pdf": "https://arxiv.org/pdf/2610.27986v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "提出 ReCam：把长视频历史 latent 的局部时空块聚合成向量并直接投影到 Diffusion Transformer 的高维隐空间作为 memory token，经原生自注意力读取全历史；另用对近期上下文与目标帧采用不同噪声调度的双指针去噪缓解自回归漂移，在 VBench-Long 等基准取得高分。",
+      "relevance_reason": "其「块级压缩历史 latent 再由自注意力读取」可为 LVR 在有限 token 下保留视觉证据、维持长程状态提供方法线索，近期/目标分离的噪声调度也可能关联长程状态更新的漂移问题，但是否可迁移到推理期状态而非视频生成仍需核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-21T18:21:03.234072+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

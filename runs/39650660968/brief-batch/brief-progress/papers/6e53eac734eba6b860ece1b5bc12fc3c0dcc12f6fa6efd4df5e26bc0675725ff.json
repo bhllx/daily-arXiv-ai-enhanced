@@ -1,0 +1,73 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.28059",
+  "input_sha256": "2bbf67bdd1400ac56de0972ee3300455b562c5c1c29c0d9a1f5fbbc20e8d714e",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-21T18:20:13.884770+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1932,
+        "output_tokens": 616,
+        "total_tokens": 2548,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 366
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.28059",
+    "title": "Auditing Where Concept Bottleneck Accuracy Comes From on CUB",
+    "authors": [
+      "Sascha Saralajew",
+      "Eleonora Poeta",
+      "Eliana Pastor",
+      "Ammar Shaker"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.AI",
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Concept Bottleneck Models (CBMs) promise predictions that humans can inspect and correct through concepts such as \"curved beak\". Yet on CUB-200-2011, their standard benchmark, progress is measured like that of ordinary classifiers: by task and concept accuracy. Neither reveals whether the label is predicted from the exposed concept scores, or whether a concept is supported by visual evidence of that concept rather than by co-occurring features such as cues to the species as a whole. We audit where the accuracy of CBMs and Concept Embedding Models (CEMs) on CUB comes from. The CUB annotations are too noisy to explain it: class-level training labels agree with per-image annotations on only ~82% of image--concept pairs, and classifiers trained on per-image annotations reach only ~37% species accuracy. Leakage probes show that CEM predictions cannot be reconstructed from their concept scores; the missing class information sits in internal embeddings. We identify four design axes through which class information can enter concept scores---receptive field, shared versus concept-specific representations, norm-dependent scoring, and task supervision. An ablation shows that most of it enters through non-local features: restricting a ResNet50 backbone to local BagNet patches lowers the accuracy recoverable from concept scores from 72% to 43%, close to what ground-truth annotations support, while joint training raises it again at the cost of concept accuracy. Localization and occlusion show that locality makes grounding measurable but does not guarantee it: under class-level labels, local concept scores use the head as a proxy for body, wing, and tail concepts, and CEM concept scores barely respond to occluding their supporting part. Task and concept accuracy should thus support, not drive, the evaluation of CBMs, and given the noisy annotations, CUB accuracy gaps should not be overinterpreted.",
+    "abs": "http://arxiv.org/abs/2610.28059v1",
+    "pdf": "https://arxiv.org/pdf/2610.28059v1",
+    "AI": {
+      "category": "MAIN",
+      "priority": "P1",
+      "brief_summary": "该文在 CUB 上审计概念瓶颈模型与 CEM 的准确率来源，用泄漏探针、设计轴消融、局部化与遮挡实验检验概念分数是否由对应视觉证据支持，并揭示非局部特征和联合训练带来的类别信息泄漏。",
+      "relevance_reason": "其「预测是否真正使用暴露的概念分数」及证据接地诊断，与 LVR 关注答案是否使用视觉 latent 内容、信息坍缩和证据筛选高度相通；泄漏探针与遮挡评估可供核查 latent 的可解释性，但对象是概念分数而非推理期 latent，迁移边界需注意。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-21T18:20:13.884770+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

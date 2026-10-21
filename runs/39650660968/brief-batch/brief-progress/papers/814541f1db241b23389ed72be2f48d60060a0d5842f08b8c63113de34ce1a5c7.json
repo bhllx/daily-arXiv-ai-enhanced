@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.27689",
+  "input_sha256": "97d91d90f49dcf605fffc164db1951f9bde38df100018ec7f08dd55287476bdb",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-21T18:24:17.729416+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 2029,
+        "output_tokens": 534,
+        "total_tokens": 2563,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 345
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.27689",
+    "title": "Influence Is the Target-Response Jacobian Times Residuals",
+    "authors": [
+      "Paul Geertsema",
+      "Simon Geertsema"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": "19 pages, 2 figures, 8 tables",
+    "summary": "We introduce the target-response Jacobian $J = [\\partial \\hat y_i/\\partial y_j]$, which measures how model predictions respond to changes in individual training targets. $J$ complements training-data attribution (TDA) methods, which characterize sensitivity to the weights placed on training observations in the loss rather than to their targets, and can be computed matrix-free at the same cost as influence-based TDA methods. We show that sample-weight influence $\\mathcal{I}$ and $J$ follow from the same implicit differentiation argument and differ only by a per-example multiplier: for pointwise losses, $\\mathcal{I} = J\\operatorname{diag}(m)$ exactly at any stationary point with an invertible Hessian. For canonical-link losses (squared error, logistic, Poisson) the multiplier is the training residual, $\\mathcal{I} = J\\operatorname{diag}(r)$, and softmax cross-entropy obeys a multiclass version. The identity predicts three ways in which influence fails when used in place of $J$: small residuals shrink its predicted shift towards zero (interpolation collapse), residuals of mixed sign wash out its direction (direction washout), and under softmax cross-entropy it collapses a training point's per-class sensitivities towards its own true class (true-class collapse). We score both operators against refitting with a per-prediction $R^2$ across target perturbations, with no rescaling. On tanh networks trained with squared error (Friedman #1) and logistic loss (MAGIC, HIGGS), with $N$ from 2,000 to $10^6$, $J$ reaches $R^2$ between 0.99 and 1.00, whereas influence's $R^2$ is negative on every dataset. On an MNIST softmax classifier, influence's $R^2$ is again negative, while $J$ reaches 0.92. On HIGGS, one row of $J$, holding all $10^6$ sensitivities of one prediction, takes under 0.2 seconds on an RTX 3090 after a one-time setup of under five minutes, whereas refitting would take $10^6$ refits.",
+    "abs": "http://arxiv.org/abs/2610.27689v1",
+    "pdf": "https://arxiv.org/pdf/2610.27689v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文提出 target-response Jacobian J（预测对单个训练目标扰动的敏感度），证明样本权重影响函数等于 J 乘以残差乘子，并分析残差导致的影响函数失效模式，最后用逐预测的 refit R² 对比两种算子。",
+      "relevance_reason": "其将敏感度分解为目标响应与残差乘子的做法，可能为 latent 推理轨迹中的贡献分配与监督信号归因提供可核查的工具线索，但论文本身不涉及多模态或推理期状态。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-21T18:24:17.729416+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}
