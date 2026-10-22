@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.29604",
+  "input_sha256": "2dd2beb90b41dffaa465bcfc0c434f32fb790302189cfbf1494aa51af8401673",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-22T18:13:00.878741+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 2008,
+        "output_tokens": 489,
+        "total_tokens": 2497,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 290
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.29604",
+    "title": "Local and Global Recursive Ridge Regression for Online Residual Correction of Frozen Multivariate Forecasters under Label Delay",
+    "authors": [
+      "Takumi Fujimoto",
+      "Hiroaki Nishi"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "A frozen multi-horizon forecaster can be corrected online from its own residuals. However, under label delay the target of a block arrives only after the whole horizon has passed, and the corrector's retained state grows with the number of channels. Aiming to combine a small retained state with a large error reduction, we propose DRiC (DCT Ridge Corrector), which fits a ridge regression of the leading discrete cosine transform (DCT) coefficients of the next residual block on those of the frozen forecast and of the latest input block, with sufficient statistics updated recursively. Its local variant, DRiC-L, keeps one such regression per channel; its global variant, DRiC-G, pools all channels into one regression, whose statistics do not depend on the channel count. A guard tracks a running scale of the frozen forecast's residual for each channel; it skips updates on blocks far outside that scale and clips the issued correction. We evaluate on seven datasets (four ETT series, Weather with its missing-value codes filled, Electricity, and Traffic) with DLinear, PatchTST, and iTransformer backbones, against 10 naive, gradient-trained, and closed-form methods. DRiC-L with eight DCT coefficients (DRiC-L8) reduces the mean squared error (MSE) by 14.55% on average over 126 conditions, against 12.98% for ELF, the most accurate comparator, while retaining 15-17 times less state, although ELF is more accurate on Traffic. DRiC-G retains 14.6 kB on the 321-channel Electricity data and 18.9 kB on the 862-channel Traffic data and is the most accurate method at or below its state on both. However, 5 to 7 of the 10 comparators, all with at least 10 times its state, are more accurate there. On the unfilled Weather file, DRiC-L8 without the guard has on average 8.0 times the frozen forecast's MSE, whereas with the guard it reduces the MSE by 7.94%. Code: https://github.com/keiotakmin/dric.",
+    "abs": "http://arxiv.org/abs/2610.29604v1",
+    "pdf": "https://arxiv.org/pdf/2610.29604v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "提出 DRiC：对冻结多变量多步预测器的残差块，用 DCT 低阶系数的岭回归做在线校正，充分统计量递归更新，并给出逐通道与全通道池化两种变体及残差尺度 guard。",
+      "relevance_reason": "其以固定大小递归状态压缩历史、并用 guard 监测残差尺度决定跳过更新与裁剪修正的做法，可能为 LVR 中轻量推理状态的维护、更新门控与视觉证据筛选提供可核查线索；但任务与视觉推理相距较远。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-22T18:13:00.878741+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

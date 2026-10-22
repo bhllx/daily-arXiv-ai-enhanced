@@ -1,0 +1,68 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.28871",
+  "input_sha256": "563420175c5c830b0a2adcc9d1960895a9c757f6125d4b45aa254b3b8f2159bf",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-22T18:21:28.224556+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1939,
+        "output_tokens": 481,
+        "total_tokens": 2420,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 299
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.28871",
+    "title": "How Much Gradient Does Truncated Backprop Lose in Looped Transformers?",
+    "authors": [
+      "Aur Shalev Merin"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": "31 pages, 4 figures, 11 tables. Code, pre-registrations and results: https://github.com/Aur-Shalev-Merin/lost-gradient-looped-transformers",
+    "summary": "Looped transformers reuse one block of layers many times and are often trained by backpropagating through only the last k loops. We measure how much of the weight gradient this throws away, exactly and for every k from one backward pass, on nine looped language models, and report three findings. First, on a trained model this lost gradient is set near the output: once the loop count is well above k, it barely changes with the loop count (within about 0.03 from 32 to 64 loops on the three models we tested, as a pre-registered test predicted for Parcae). Where the backward signal shrinks, $ρ^k$, with $ρ$ the signal's fitted shrink per loop, approximates it at moderate loop counts but overstates it at long ones, because the fitted $ρ$ drifts up as the fit takes in more loops. On Ouro the signal grows, and keeping two of four loops still loses 81% of the final output's gradient. Second, the lost gradient falls during fine-tuning, by 0.07-0.22 within 300 steps on three of four models, on held-out problems too. The fall is not just the read-out's share of the gradient; training only the layers outside the loop reproduced up to half of it, and it also falls under truncated training. So a trained model's value overstates what truncation removes later. Third, we could not show that it predicts the training cost of truncation better than rules that need no measurement: on two new models it tied Parcae's cost at the same k, in a test too small to separate them.",
+    "abs": "http://arxiv.org/abs/2610.28871v1",
+    "pdf": "https://arxiv.org/pdf/2610.28871v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P1",
+      "brief_summary": "该论文在九个循环语言模型上精确测量了只对最后 k 次循环反传所丢弃的权重梯度，并考察它随循环长度与微调的变化，以及能否预测截断训练的实际代价。",
+      "relevance_reason": "循环块复用与截断反传直接对应循环式 latent 推理的训练监督和贡献分配问题；其「丢失梯度集中于输出附近、随循环数变化不大」的观察，可供核查深层循环状态是否实际获得监督。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-22T18:21:28.224556+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

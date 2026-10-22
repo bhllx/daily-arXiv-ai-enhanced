@@ -1,0 +1,71 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.28773",
+  "input_sha256": "924761c52eaaa742984c893c659edd893477219a3876dd8dd0d2ee5ff1a82f00",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-22T18:22:28.662213+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1772,
+        "output_tokens": 682,
+        "total_tokens": 2454,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 420
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.28773",
+    "title": "Building a Nested LADDER for LLM Unstructured Post-Training Pruning",
+    "authors": [
+      "Nicolás Mauricio Cuadrado Ávila",
+      "Ivo Gollini Navarrete",
+      "Martin Takáč",
+      "Samuel Horváth"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Non-uniform allocation can improve post-training pruning of large language models, yet quality can still degrade sharply at high sparsity. To control degradation as sparsity increases, we introduce LADDER (Layer-Wise Allocation via Damage-Driven Evaluation and Refinement), which allocates sparsity incrementally. At each step, it evaluates pruning an additional fraction of weights from each eligible layer and commits the layer update that causes the least end-to-end degradation per removed parameter. This process produces non-uniform sparsity profiles and exactly nested masks across multiple budgets. We evaluate LADDER on five OPT, Llama, and Qwen models across 10-90% sparsity, using SparseGPT as its candidate-generation backend and comparing against uniform and adaptive allocation baselines. Results reveal a clear operating-regime trade-off: LADDER is comparable or slightly weaker at benign sparsity but becomes substantially more robust from 70% onward. This high-sparsity advantage largely persists after posterior distillation across four of five models and translates into improved retention of aggregate zero-shot accuracy.",
+    "abs": "http://arxiv.org/abs/2610.28773v1",
+    "pdf": "https://arxiv.org/pdf/2610.28773v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "论文提出 LADDER，按层逐步分配稀疏度：每步评估从各候选层多剪一部分权重后对端到端性能的损害，选「单位参数去除代价最小」的层更新，从而在多个预算下得到非均匀且严格嵌套的剪枝掩码；在 OPT、Llama、Qwen 五个模型、10–90% 稀疏度上与均匀及自适应分配基线比较，发现高稀疏度（70% 以上）时更稳健。",
+      "relevance_reason": "其「按边际端到端损害分配预算」的原则可能与 LVR 中逐步分配 latent 步数或视觉证据获取的计算/停决策略同构，可供核查这类按边际收益分配资源的思路能否用于 THINK/LOOK/STOP 的收益—成本权衡，但尚无与视觉推理的直接联系。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-22T18:22:28.662213+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}
