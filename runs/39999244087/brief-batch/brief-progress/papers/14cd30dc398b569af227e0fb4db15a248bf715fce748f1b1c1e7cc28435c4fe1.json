@@ -1,0 +1,79 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.31111",
+  "input_sha256": "b0938e0412e05ccdc29c0f699399066d375d6f653041001e8399eae6c5f9e76f",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-23T18:03:50.494097+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1888,
+        "output_tokens": 558,
+        "total_tokens": 2446,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 334
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.31111",
+    "title": "Where Do Long Captions Fail? Position-Aware Diagnosis and Reinforcement Learning for Detailed Image Captioning",
+    "authors": [
+      "Yuanze Hu",
+      "Zhichao Yang",
+      "Junwei Jing",
+      "Xin Yang",
+      "Wenxuan Liu",
+      "Tinghai Zhang",
+      "Jia Fu",
+      "Hongzhi Zhang",
+      "Xiangyu Wu",
+      "Ruiming Tang",
+      "Tingting Gao",
+      "Han Li"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": "Accepted at NeurIPS 2026. 38 pages, 3 figures; includes references, appendices, and the paper checklist",
+    "summary": "Detailed image captioning is usually framed as an amount problem: a model should mention more visual facts while avoiding hallucination. However, autoregressive VLMs generate captions as ordered sequences, and later generations may be produced under weaker or noisier visual grounding. We therefore argue that long-form captioning should be studied not only by what facts are mentioned, but also by where they appear. We introduce a position-aware rubric representation that decomposes dense human references into atomic visual claims, verifies generated captions against those claims, and induces a quartile-wise composition of supported, hallucinated, and generic content. This lens reveals two qualitatively different failures in long captions: models tend to produce unsupported specificity in the middle, while the final portion often escapes into vague, non-evidential language rather than simply accumulating more hallucination. A same-reference human control does not exhibit these patterns; additional human audits examine the visual validity of the induced labels. Motivated by this diagnosis, we propose PAGER (Position-Aware Grounded Evidence Reinforcement), a GRPO training objective with separate signals for supported fine-grained middle evidence, evidence-bearing tail continuation, claim coverage, and content-aware length control. The result is a closed loop: the same ordered claim representation identifies where long captions fail and supplies the position-specific reward needed to repair those failures. Experiments on detailed-caption benchmarks show that PAGER improves position-wise grounding and pairwise caption preference while preserving competitive global caption quality.",
+    "abs": "http://arxiv.org/abs/2610.31111v1",
+    "pdf": "https://arxiv.org/pdf/2610.31111v1",
+    "AI": {
+      "category": "MAIN",
+      "priority": "P1",
+      "brief_summary": "论文把详细图像描述拆成原子视觉断言，按位置四分位统计「有支撑」「幻觉」「空泛」内容，指出长 caption 中段易出现无支撑的具体化、尾段易滑向模糊表述，并据此提出 PAGER：带中段细粒度证据、尾部证据延续、断言覆盖与长度控制等分项信号的 GRPO 训练目标。",
+      "relevance_reason": "其「视觉 grounding 随生成位置衰减」的诊断与按位置分配训练信号，可为 LVR 中的视觉旁路、信息坍缩及贡献分配提供可核查的评测与奖励线索，但奖励能否迁移到 latent 轨迹尚需阅读原文。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-23T18:03:50.494097+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

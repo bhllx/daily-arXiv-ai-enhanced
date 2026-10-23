@@ -1,0 +1,79 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.30951",
+  "input_sha256": "7eba5fba7ccf8a36cb224a0a18bca5fb4869f937b068b1d92f2a56aaf01b4805",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-23T18:05:18.523389+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1926,
+        "output_tokens": 471,
+        "total_tokens": 2397,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 266
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.30951",
+    "title": "OpenAttention: One Percent Is Enough with Tail Proxies",
+    "authors": [
+      "Hyunwoo Yu",
+      "Jongbeom Lee",
+      "Hyunbin Kim",
+      "Sungjun Park",
+      "Jaemin Choi",
+      "Jincheol Yang",
+      "Seunghun Moon",
+      "Bongjoon Hyun",
+      "Kyomin Sohn",
+      "Kyeongbo Kong",
+      "Suk-Ju Kang"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.AI"
+    ],
+    "comment": "27 pages. Project page: https://hyunwoo137.github.io/OpenAttention/ ; Code: https://github.com/hyunwoo137/OpenAttention",
+    "summary": "Sparse attention reads only a small subset of the key-value cache, and how to treat the unread tail remains a key challenge. Discarding the tail biases the output, and sampling it as previous approaches do fails at reads of 5% and below, where the tail likely holds heavy hitters the selector missed. Our key observation is that the simplest possible proxy, one token that folds the entire tail into its count-aware mean, already yields lower output error than a sample at every read behind a practical selector. We further show in closed form that at low reads sampling nearly doubles the weight error of discarding while a single proxy stays below it. Building on these findings, we explore approximating the dense attention distribution with a few proxies that target the tail. We propose OpenAttention, a pipeline of clustering, ErrorGate and top-k selection followed by a count-aware mean proxy. To implement clustering and selection both efficiently and effectively, we design training-free Query-Geometry Clustering (QGC) and a Query-Geometry Selector (QGS), which compress the keys while respecting the query directions. Additionally, unlike prior methods that rank clusters by centroid alone, ErrorGate allocates the exact read by the estimated weight error of each cluster. On RULER-32K HARD with Llama-3.1-8B, OpenAttention retains 99% of dense accuracy at a 1% read. It also achieves state-of-the-art accuracy across models, context lengths and datasets. Our customized attention kernel, OpenAttention.flash, runs the decode attention stage 10$\\times$ faster than dense attention at a 1% read.",
+    "abs": "http://arxiv.org/abs/2610.30951v1",
+    "pdf": "https://arxiv.org/pdf/2610.30951v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "针对稀疏注意力中未读取 KV 尾部带来的输出偏差，论文提出用「计数感知均值」单一代理概括尾部，并构建 OpenAttention 流水线，由无训练 Query-Geometry 聚类与选择器加 ErrorGate 分配读取预算，在低读取率下保持接近 dense 的精度。",
+      "relevance_reason": "其「用计数感知均值代理未读尾部、按估计权重误差分配读取」的思路，可能为 VLM 中视觉 token 压缩、缓存淘汰与 latent 状态汇总提供近似线索，需核查这类汇总是否保留任务必要的视觉细节。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-23T18:05:18.523389+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

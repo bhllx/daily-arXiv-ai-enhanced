@@ -1,0 +1,79 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.30814",
+  "input_sha256": "42c24c004501357a7a6b1da48586ad30391df6f61501d50f268ff47e0d3e6f41",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-23T18:07:06.381109+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1910,
+        "output_tokens": 648,
+        "total_tokens": 2558,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 411
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.30814",
+    "title": "DRILL: Training World Models to Improve Policies, Not Predict Pixels",
+    "authors": [
+      "Zhaolu Kang",
+      "Tailong Luo",
+      "Lei Wei",
+      "Guangyuan Dong",
+      "Sihan Liu",
+      "Yingjie He",
+      "Siheng Wang",
+      "Shuaibo Li",
+      "Rongchao Zhang",
+      "Zhen Tian",
+      "Richeng Xuan",
+      "Zhichao Hu"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": "NeurIPS 2026",
+    "summary": "World models are increasingly used to reduce environment interaction when post-training vision-language-action (VLA) policies with reinforcement learning. Yet they are typically trained to predict pixels one step ahead, even though their role here is not merely to render visually faithful videos but to produce learning signals from imagined rollouts that improve the policy. We show that this mismatch is substantial: lower pixel MSE can produce worse policy gradients, and a world model trained for policy utility can yield better downstream policies despite 17% higher pixel MSE on the next frame. We propose the Downstream-Return Imagination Learning Loop (DRILL), a bilevel framework that updates the world model to maximize the policy's return after an inner GRPO update on imagined rollouts. DRILL has two instantiations. DRILL-VWI is a closed-form surrogate, requiring no additional simulator rollouts, that reweights prediction errors by policy visitation, the group-relative GRPO advantage, and model confidence. DRILL-IMG is a full meta-gradient method that differentiates through the inner update using truncated Hessian-vector products. We show that DRILL-VWI recovers the local one-step component of the DRILL-IMG meta-gradient under score-compatibility and small-residual assumptions. Across five manipulation simulators and two VLA backbones, DRILL-IMG raises mean success rate by 13.1 points over WMPO and 7.9 points over RLVR-World, and complements RLVR pretraining rather than competing with it. More broadly, we believe video world models for VLA reinforcement learning can be productively trained by the policy gradients they produce, not only by pixel-level prediction.",
+    "abs": "http://arxiv.org/abs/2610.30814v1",
+    "pdf": "https://arxiv.org/pdf/2610.30814v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文指出用像素预测误差训练视频世界模型与「为 VLA 策略提供有效学习信号」这一目标并不一致，提出 DRILL 双层框架，以 imagined rollout 上内层 GRPO 更新后的策略回报来更新世界模型，并给出按策略访问、优势和置信度重加权误差的闭式近似 DRILL-VWI 与基于截断 Hessian-向量积的元梯度方法 DRILL-IMG。",
+      "relevance_reason": "研究对象是 VLA 的机器人操作世界模型而非 LVR，但「低像素误差反而给出更差策略梯度」以及按下游回报重加权预测误差的训练信号设计，可供核查 latent 视觉状态的训练目标是否应对齐任务效用与贡献分配。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-23T18:07:06.381109+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

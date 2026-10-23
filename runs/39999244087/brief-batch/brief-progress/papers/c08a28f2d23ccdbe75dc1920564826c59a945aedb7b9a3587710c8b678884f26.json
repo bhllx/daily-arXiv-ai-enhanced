@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.30899",
+  "input_sha256": "48e74242c75a5a39e057d3bf0072de794c31c93555931da78cd1d077aedd9f45",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-23T18:06:01.386939+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1911,
+        "output_tokens": 660,
+        "total_tokens": 2571,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 414
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.30899",
+    "title": "Parameter Learning in Active Inference via Variational Message Passing",
+    "authors": [
+      "Benedikt Waldeck"
+    ],
+    "categories": [
+      "cs.AI",
+      "cs.LG"
+    ],
+    "comment": "Accepted for publication in the proceedings of the 7th International Workshop on Active Inference (IWAI 2026), Springer CCIS",
+    "summary": "Active inference casts perception, learning and planning as variational inference, where the Expected Free Energy (EFE) defines the planning objective. Recent work showed that EFE minimization can be written as Variational Free Energy (VFE) minimization on a generative model augmented with epistemic priors, and that the resulting entropy-corrected objective is minimized by sum-product message passing (SP-MP) on modified factor functions. These formulations treat model uncertainty as inference over a finite set of known models. We extend them to planning during learning, where beliefs over the observation and transition parameters $θ_A$, $θ_B$ are Dirichlet priors. Closed-form Dirichlet updates are usually obtained by a structured mean-field factorization between parameters and states, but under exactly that factorization the information-gain corrections vanish. We resolve this by giving every factor its own parameter prior, frozen during a rollout. Conjugacy then makes each factor belief a product of a marginal over the categorical variables and a one-step Bayes posterior of the parameters. This reintroduces the datum-dependent parameter posteriors that mean-field factorization destroys. We show that evaluating the epistemic priors under the resulting Bethe joint recovers the information gains. Stationarity of this single closed-form objective yields SP-MP whose factor functions are augmented by the information-gain weight. Experiments on two grid POMDPs, in which only a planner that learns the model finds the safe route, show that the method plans to efficiently learn $θ_A$ and $θ_B$. It reaches the goal on every episode, whereas SP-MP planners with the same inference update plateau or take the risky route.",
+    "abs": "http://arxiv.org/abs/2610.30899v1",
+    "pdf": "https://arxiv.org/pdf/2610.30899v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "论文把 active inference 中 Expected Free Energy 最小化扩展到边学习参数边规划的设定：为每个因子设置 rollout 期间冻结的 Dirichlet 参数先验，用共轭性恢复被平均场分解抹掉的、依赖数据的参数后验，并在 Bethe 联合下证明信息增益项回归，从而得到因子函数带信息增益权重的 sum-product 消息传递，在两个 grid POMDP 上验证其能兼顾到达目标与高效学习参数。",
+      "relevance_reason": "其因子图上的信念更新与显式信息增益权重，可能为 LVR 中 latent 状态如何随证据更新、以及「何时该去获取视觉证据」的价值分配提供形式化线索，但能否迁移到 VLM 推理状态仍需核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-23T18:06:01.386939+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}
