@@ -1,0 +1,79 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.32057",
+  "input_sha256": "afdbb70a076a10c120ad8bab5324de1fedc0251276b7b9b84eba6eb364ecf0de",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-26T19:40:01.537930+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1827,
+        "output_tokens": 698,
+        "total_tokens": 2525,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 491
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.32057",
+    "title": "HyScale: Scaling Long-Context Training for Learned Sparse Attention",
+    "authors": [
+      "Yangsheng Deng",
+      "Xinjing Huang",
+      "Yulong Wang",
+      "Yunzhuo Liu",
+      "Jun Hu",
+      "Shuyong Tang",
+      "Junchi Zeng",
+      "Mingji Han",
+      "Ray Ying",
+      "Key Zhang",
+      "Luo Mai"
+    ],
+    "categories": [
+      "cs.AI",
+      "cs.DC"
+    ],
+    "comment": null,
+    "summary": "We present HyScale, a long-context training system for learned sparse attention. Learned sparse attention is a promising architecture for million-token contexts, widely adopted in production since DeepSeek-V3.2. Selection, however, grows into the training bottleneck. For each query, it scores every previous token whereas sparse attention reads only $k$; worse, current systems materialize a full score table and repeat selection during recomputation. Our key insight is that the output of selection is not an activation, but rather a set of indices. Building on it, HyScale introduces HyTopK and selection replay. HyTopK finds each query's exact top-$k$ on the fly without a score table, while selection replay reuses forward-pass selection in recomputation. Together with holistic system optimizations tackling end-to-end training challenges, HyScale speeds up GLM-5.1 training on 1M-token sequences by 2.07$\\times$ over Megatron-LM on 512 H20 GPUs. It also speeds up the CSA layers of DeepSeek-V4-Flash and the QSA layers of Qwen3.8-Flash-Next by 2.01$\\times$ and 1.57$\\times$ at 1M tokens on 32 H800 GPUs.",
+    "abs": "http://arxiv.org/abs/2610.32057v1",
+    "pdf": "https://arxiv.org/pdf/2610.32057v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "提出 HyScale 长上下文训练系统：用 HyTopK 在不物化全量分数表的情况下在线求出每个 query 的精确 top-k，并用 selection replay 在重计算时复用前向得到的稀疏选择索引，从而缓解 learned sparse attention 中 token 选择的训练瓶颈。",
+      "relevance_reason": "论文把「选择」的输出视为索引集合而非激活并在重算中复用，可能为长上下文 VLM 推理里视觉证据筛选结果的缓存与 LOOK 成本核算提供工程线索；但其本身不涉及推理状态表示或 latent 内容使用，需核查如何迁移。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-26T19:40:01.537930+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

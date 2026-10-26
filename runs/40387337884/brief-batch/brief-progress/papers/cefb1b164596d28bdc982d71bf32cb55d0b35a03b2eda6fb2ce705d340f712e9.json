@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.32110",
+  "input_sha256": "80674a6f60cef271bf56a80097b535f5ea09d6591421709cd38fac0e98c6a6c0",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-26T19:39:19.640004+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1979,
+        "output_tokens": 1024,
+        "total_tokens": 3003,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 634
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.32110",
+    "title": "Who Verifies the Tools? How Warped Formatters Mislead Agents and Their Verifiers",
+    "authors": [
+      "William Jeffries"
+    ],
+    "categories": [
+      "cs.AI",
+      "cs.SE"
+    ],
+    "comment": "Accepted as a poster at the Who Verifies the Agents? workshop at NeurIPS 2026 (non-archival). 12 pages, 3 figures. Code and data: https://github.com/williamcodes/who-verifies-the-tools",
+    "summary": "Agents and verifiers often rely on the text a tool prints, and that text can misrepresent what the tool actually did, even when the tool's computation is correct. We saw this happen in a production RAG research system used by the Pilsudski Institute in New York, where tool output formatters misled an agent into giving wrong or incomplete information to users. Each tool did its job correctly, but its output omitted search limits, result caps, or identifier namespaces. We also recreated an unlabeled estimate caught in code review before release. We studied whether these formatters misled agents and verifiers and how much the repaired wording helps. We fed tool results to agents using two formatter versions: one with the key omissions and one with all missing details clearly stated. That difference alone changed what the agents claimed and what the verifiers accepted. Unsupported agent claims dropped substantially for three of the four failure types. In one test, verifiers went from accepting incorrect answers 90 out of 90 times to rejecting them 90 out of 90 times. A control showed the verifiers could catch the errors once they were given the missing facts and asked to judge correctness. We include the audit prompt we used with Codex and Claude Code in an exploratory demonstration, written with prior knowledge of our own system's defects. When pointed at an old version of our own system, it rediscovered the defects that were still live and surfaced twelve more we had not catalogued. When pointed at OpenClaw and Hermes, two of the best-known open-source agentic systems, it found warped formatters in both. We opened PRs to fix both, and the OpenClaw fix has already been merged. Practitioners can run the same prompt on their own systems today.",
+    "abs": "http://arxiv.org/abs/2610.32110v1",
+    "pdf": "https://arxiv.org/pdf/2610.32110v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文报告生产 RAG 系统中工具输出格式化器省略搜索上限、结果条数、标识符命名空间等关键信息，使 agent 给出错误或不全的结论且 verifier 照单接受；作者用「删信息版」与「补齐版」两套格式化措辞做对照消融，统计无支撑声明与 verifier 接受率的变化，并给出一段审计提示词在多个开源 agent 系统中查找同类缺陷。",
+      "relevance_reason": "其「同一计算结果、不同证据呈现方式即改变声明与验证判定」的对照设计，以及验证器在缺失事实时难以否决错误答案的结论，可供核查 VLM 中视觉证据序列化与筛选（如裁切范围、来源元数据丢失）对 latent 推理状态和 verifier 监督可靠性的影响。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-26T19:39:19.640004+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

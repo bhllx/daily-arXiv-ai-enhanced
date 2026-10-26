@@ -1,0 +1,68 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.32398",
+  "input_sha256": "be1659fb32b7390d40b3f39f950860260119e0e2e7e09bcf2e7b96deeb4defe6",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-26T19:35:56.374845+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 2056,
+        "output_tokens": 767,
+        "total_tokens": 2823,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 535
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.32398",
+    "title": "An Error Budget for Shuffled Multimodal Windows in the 3rd WEAR Challenge: Stacking, Count Constraints and Seam Matching",
+    "authors": [
+      "Soheil Kooklan"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": "12 pages, 10 tables, 1 figure. Technical report on a post-deadline system for the 3rd WEAR Dataset Challenge at HASCA 2026. Code: https://github.com/soheilkooklan/wear-seam-decoder",
+    "summary": "The 3rd WEAR Dataset Challenge asks for an activity label for every one-second window of four unseen participants. Each window has 15 VideoMAEv2 frame embeddings, the accelerometer signal of one random limb, and the windows are shuffled. This report is an empirical analysis of one system built after the challenge deadline. Window classifiers are stacked with features averaged over per-participant graphs of video neighbours and scored successor candidates, and a mean-field style decoder with a soft count constraint per activity labels all windows of a participant together. The setting is offline and transductive, and the count constraint relies on each activity being performed once. In a participant-wise simulation with participant-level bootstrap intervals, stacking added 0.051 macro F1 over stage-1 fusion and the count constraint 0.011 (95% interval 0.006 to 0.017). A quadratic seam distance ranks the true same-limb successor first among about 720 candidates in 83.9% of cases, but adding it to the link model changed macro F1 by -0.0001 (-0.0006 to 0.0005). With the decoder settings and the mixing weight chosen inside the folds and the mislabelled spans left out of training, the system scores 0.936 in simulation (0.940 for participants who performed each activity once); the submitted configuration scores 0.938 (0.943). Per-participant scores range from 0.80 to 0.97. These results come from a non-nested stacking protocol that uses unlabelled features transductively, so they are not a fully inductive estimate. An oracle that averages the final unary scores over the true segments reaches 0.973, and 79% of the remaining errors involve the null class. On the private leaderboard, which no choice used, the selected Kaggle submission scored 0.9231 (public 0.9254, with bounds partly tuned there), and a later one with bounds chosen in simulation scored 0.9247 (public 0.9253).",
+    "abs": "http://arxiv.org/abs/2610.32398v1",
+    "pdf": "https://arxiv.org/pdf/2610.32398v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "该技术报告分析一个第三届 WEAR 挑战赛的赛后系统：以堆叠的窗口分类器、参与者图上的视频近邻特征平均、带软计数约束的平均场式离线解码器，以及肢体接缝距离排序来为乱序窗口打标签，并给出分项误差预算与自举区间。",
+      "relevance_reason": "其「误差预算」式分解（如 oracle 按真实片段平均后仍余 0.973、多数剩余错误集中于 null 类）与带全局计数约束的离线解码，可能为 LVR 中证据聚合、贡献分配与误差归因的评价表述提供参照，但任务领域相距较远，需核查可迁移性。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-26T19:35:56.374845+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

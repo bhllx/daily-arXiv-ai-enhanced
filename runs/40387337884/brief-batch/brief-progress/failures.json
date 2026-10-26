@@ -1,0 +1,1035 @@
+[
+  {
+    "paper_id": "2610.32978",
+    "input": {
+      "id": "2610.32978",
+      "title": "SceneBloom: Agentic Indoor Environment Generation with Realistic and Diverse Layouts for Embodied Learning",
+      "authors": [
+        "Yuhan Liu",
+        "Lianhui Qin",
+        "Shenji Wan"
+      ],
+      "categories": [
+        "cs.CV",
+        "cs.AI",
+        "cs.RO"
+      ],
+      "comment": null,
+      "summary": "Training generalizable embodied agents requires realistic, varied, and simulation-ready indoor environments. Language-guided methods support semantic planning and object-level reasoning, but precise spatial grounding remains difficult. Visual generative models offer rich priors over plausible arrangements, yet their outputs require geometric reasoning to become physically valid 3D scenes. We introduce SceneBloom, an agentic framework that combines visual layout sampling with contract-guided 3D compilation. A hierarchical sampler uses diffusion priors to generate furniture arrangements within functional zones. A compiler then uses relations extracted from each proposal to guide geometric fitting and local pose correction. Across five room types, SceneBloom attains the highest visual quality and physical stability among the compared methods and is the only method with no detected mesh collisions and out-of-bounds objects. Its layouts are also closer to the distribution of real rooms than those of all compared baselines. Object navigation policies trained in these realistic scenes achieve a higher success rate in held-out real scans than those trained on an equal number of real training scans. Code is available at https://github.com/Tinaliu0123/scenebloom.",
+      "abs": "http://arxiv.org/abs/2610.32978v1",
+      "pdf": "https://arxiv.org/pdf/2610.32978v1"
+    },
+    "stage": "parse",
+    "errors": [
+      {
+        "type": "OutputParserException",
+        "message": "Function BriefAnalysis arguments:\n\n{\"category\": \"EXCLUDE\", \"priority\": \"NONE\", \"brief_summary\": 该工作提出 SceneBloom，用扩散先验采样家具布局并经几何编译成物理可行的室内 3D 场景，用于训练具身导航策略。, \"relevance_reason\": \"属于具身学习的环境/数据生成，未涉及 VLM 的内部推理状态、视觉证据筛选或停止决策，也未提出可供迁移的状态生成或监督机制线索，故排除。\"}\n\nare not valid JSON. Received JSONDecodeError Expecting value: line 1 column 62 (char 61)\nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/OUTPUT_PARSING_FAILURE \nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/OUTPUT_PARSING_FAILURE "
+      }
+    ],
+    "attempt_count": 1,
+    "raw_response": {
+      "content": "",
+      "tool_calls": [
+        {
+          "id": "call_00_cv5aoh4z2piymfrb82q9gbkc",
+          "function": {
+            "arguments": "{\"category\": \"EXCLUDE\", \"priority\": \"NONE\", \"brief_summary\": 该工作提出 SceneBloom，用扩散先验采样家具布局并经几何编译成物理可行的室内 3D 场景，用于训练具身导航策略。, \"relevance_reason\": \"属于具身学习的环境/数据生成，未涉及 VLM 的内部推理状态、视觉证据筛选或停止决策，也未提出可供迁移的状态生成或监督机制线索，故排除。\"}",
+            "name": "BriefAnalysis"
+          },
+          "type": "function"
+        }
+      ],
+      "parsed_tool_calls": [],
+      "invalid_tool_calls": [
+        {
+          "name": "BriefAnalysis",
+          "args": "{\"category\": \"EXCLUDE\", \"priority\": \"NONE\", \"brief_summary\": 该工作提出 SceneBloom，用扩散先验采样家具布局并经几何编译成物理可行的室内 3D 场景，用于训练具身导航策略。, \"relevance_reason\": \"属于具身学习的环境/数据生成，未涉及 VLM 的内部推理状态、视觉证据筛选或停止决策，也未提出可供迁移的状态生成或监督机制线索，故排除。\"}",
+          "id": "call_00_cv5aoh4z2piymfrb82q9gbkc",
+          "error": "Function BriefAnalysis arguments:\n\n{\"category\": \"EXCLUDE\", \"priority\": \"NONE\", \"brief_summary\": 该工作提出 SceneBloom，用扩散先验采样家具布局并经几何编译成物理可行的室内 3D 场景，用于训练具身导航策略。, \"relevance_reason\": \"属于具身学习的环境/数据生成，未涉及 VLM 的内部推理状态、视觉证据筛选或停止决策，也未提出可供迁移的状态生成或监督机制线索，故排除。\"}\n\nare not valid JSON. Received JSONDecodeError Expecting value: line 1 column 62 (char 61)\nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/OUTPUT_PARSING_FAILURE ",
+          "type": "invalid_tool_call"
+        }
+      ],
+      "finish_reason": "tool_calls"
+    }
+  },
+  {
+    "paper_id": "2610.32813",
+    "input": {
+      "id": "2610.32813",
+      "title": "HarnessMM: Recursive Self-Improvement for Harness Token Efficiency",
+      "authors": [
+        "Yuhua Jiang",
+        "Chang Xu",
+        "Feifei Gao",
+        "Li Zhao"
+      ],
+      "categories": [
+        "cs.AI"
+      ],
+      "comment": null,
+      "summary": "Agent harnesses repeatedly invoke reasoning after tool feedback, even when an earlier call has already fixed the next action. We introduce HarnessMM (Harness Minus Minus), a method for improving harness token efficiency through guarded decision reuse and recursive self-improvement (RSI). RSI iteratively refines companion harness configurations from training feedback, with validation selecting the configuration for deployment. A controller at the model-tool boundary reuses resolved decisions to replace later reasoning callbacks while actor weights remain fixed. Executable Decision Graphs store exact actions, literal arguments, causal dependencies, and public guards. Guarded Decision Reuse activates these persistent decisions from observed receipts; Certified Callback Substitution executes them through the native interface and records removal of the registered slow callback. New semantic decisions, unsupported evidence, and selector abstention invoke the original actor again. The representation restricts what feedback may change, while complete-task measurements establish quality and cost. On HumanEval, HarnessMM preserves Codex success at 90.82\\% while reducing Tokens/task (k) from 66.72 to 47.02 (29.54\\% saving). For DeepSeek Harness, success rises from 71.43\\% to 85.71\\% while Tokens/task (k) fall from 96.28 to 11.62 (87.93\\% saving). A separate MBPP ablation measures 26.91\\% lower cost than single-use graphs and 19.52\\% lower cost than retained callbacks. These results establish guarded decision reuse as a practical way to reduce repeated reasoning in existing harnesses.",
+      "abs": "http://arxiv.org/abs/2610.32813v1",
+      "pdf": "https://arxiv.org/pdf/2610.32813v1"
+    },
+    "stage": "parse",
+    "errors": [
+      {
+        "type": "OutputParserException",
+        "message": "Function BriefAnalysis arguments:\n\n{\"category\">METHOD</｜DSML｜>\n<｜DSML｜: \"提出 HarnessMM（Harness Minus Minus），在模型-工具边界用带 guard 的可执行决策图复用已解决决策、替代后续重复推理回调，并以递归自改进加验证选择来更新 harness 配置；在 HumanEval 与 MBPP 上以完整任务质量与 token 成本衡量收益。\", \"relevance_reason\": \"研究对象是纯文本 agent harness 的 token 效率，不含视觉状态；但「guard 判定复用、证据不足或弃权时回退原始 actor」的选择性调用机制，可能可供核查为 LVR 中跳过或触发潜在推理步骤、以及证据充分性门控的类比线索。\"}\n\nare not valid JSON. Received JSONDecodeError Expecting ':' delimiter: line 1 column 12 (char 11)\nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/OUTPUT_PARSING_FAILURE \nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/OUTPUT_PARSING_FAILURE "
+      }
+    ],
+    "attempt_count": 1,
+    "raw_response": {
+      "content": "",
+      "tool_calls": [
+        {
+          "id": "call_00_r3t0tywfu5a7zxxyfhnopexm",
+          "function": {
+            "arguments": "{\"category\">METHOD</｜DSML｜>\n<｜DSML｜: \"提出 HarnessMM（Harness Minus Minus），在模型-工具边界用带 guard 的可执行决策图复用已解决决策、替代后续重复推理回调，并以递归自改进加验证选择来更新 harness 配置；在 HumanEval 与 MBPP 上以完整任务质量与 token 成本衡量收益。\", \"relevance_reason\": \"研究对象是纯文本 agent harness 的 token 效率，不含视觉状态；但「guard 判定复用、证据不足或弃权时回退原始 actor」的选择性调用机制，可能可供核查为 LVR 中跳过或触发潜在推理步骤、以及证据充分性门控的类比线索。\"}",
+            "name": "BriefAnalysis"
+          },
+          "type": "function"
+        }
+      ],
+      "parsed_tool_calls": [],
+      "invalid_tool_calls": [
+        {
+          "name": "BriefAnalysis",
+          "args": "{\"category\">METHOD</｜DSML｜>\n<｜DSML｜: \"提出 HarnessMM（Harness Minus Minus），在模型-工具边界用带 guard 的可执行决策图复用已解决决策、替代后续重复推理回调，并以递归自改进加验证选择来更新 harness 配置；在 HumanEval 与 MBPP 上以完整任务质量与 token 成本衡量收益。\", \"relevance_reason\": \"研究对象是纯文本 agent harness 的 token 效率，不含视觉状态；但「guard 判定复用、证据不足或弃权时回退原始 actor」的选择性调用机制，可能可供核查为 LVR 中跳过或触发潜在推理步骤、以及证据充分性门控的类比线索。\"}",
+          "id": "call_00_r3t0tywfu5a7zxxyfhnopexm",
+          "error": "Function BriefAnalysis arguments:\n\n{\"category\">METHOD</｜DSML｜>\n<｜DSML｜: \"提出 HarnessMM（Harness Minus Minus），在模型-工具边界用带 guard 的可执行决策图复用已解决决策、替代后续重复推理回调，并以递归自改进加验证选择来更新 harness 配置；在 HumanEval 与 MBPP 上以完整任务质量与 token 成本衡量收益。\", \"relevance_reason\": \"研究对象是纯文本 agent harness 的 token 效率，不含视觉状态；但「guard 判定复用、证据不足或弃权时回退原始 actor」的选择性调用机制，可能可供核查为 LVR 中跳过或触发潜在推理步骤、以及证据充分性门控的类比线索。\"}\n\nare not valid JSON. Received JSONDecodeError Expecting ':' delimiter: line 1 column 12 (char 11)\nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/OUTPUT_PARSING_FAILURE ",
+          "type": "invalid_tool_call"
+        }
+      ],
+      "finish_reason": "tool_calls"
+    }
+  },
+  {
+    "paper_id": "2610.32517",
+    "input": {
+      "id": "2610.32517",
+      "title": "VERA-Hand: A Verified Multidimensional Benchmark for 2D Hand Pose Estimation in Third-Person Dynamic Gesture Videos",
+      "authors": [
+        "Gibran Benitez-Garcia",
+        "Hiroki Takahashi"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "comment": "Accepted to WACV 2027",
+      "summary": "Hand landmarks serve as input for gesture recognition, sign language understanding, and touchless human-computer interaction. Yet hand pose estimators are typically evaluated with frame-wise localization metrics such as PCK or MPJPE, which are computed over matched predictions and overlook missed or spurious hands, handedness errors, and temporal instability. To address these limitations, we present VERA-Hand, a benchmark that evaluates estimators using manually verified, frame-level 2D annotations for 10,690 hands across four complementary dimensions (detection, localization, identification, and temporal stability), as well as a joint Pose-F1 metric that requires both correct detection and accurate localization. Evaluating six estimators spanning hand-specific, whole-body, reconstruction-based, and foundation-model paradigms, we find that no estimator dominates: rankings reorder sharply across dimensions. VERA-Hand also exposes failures that localization-only and downstream evaluations may not reveal, including cross-hand overlap in over 85% of frames for a recent foundation model. A post-hoc cleanup case study demonstrates how the benchmark can validate corrective interventions, while stratified analyses show that robustness varies across motion-blur classes and hand regions. We release the verified annotations, protocol, and code at https://gibranbenitez.github.io/VERA_Hand/",
+      "abs": "http://arxiv.org/abs/2610.32517v1",
+      "pdf": "https://arxiv.org/pdf/2610.32517v1"
+    },
+    "stage": "parse",
+    "errors": [
+      {
+        "type": "OutputParserException",
+        "message": "Function BriefAnalysis arguments:\n\n{\"category\">EXPLORATORY</｜DSML｜: \n\nare not valid JSON. Received JSONDecodeError Expecting ':' delimiter: line 1 column 12 (char 11)\nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/OUTPUT_PARSING_FAILURE \nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/OUTPUT_PARSING_FAILURE "
+      }
+    ],
+    "attempt_count": 1,
+    "raw_response": {
+      "content": "",
+      "tool_calls": [
+        {
+          "id": "call_00_vt6rmromtpvbi4zsgxb1ewzg",
+          "function": {
+            "arguments": "{\"category\">EXPLORATORY</｜DSML｜: ",
+            "name": "BriefAnalysis"
+          },
+          "type": "function"
+        }
+      ],
+      "parsed_tool_calls": [],
+      "invalid_tool_calls": [
+        {
+          "name": "BriefAnalysis",
+          "args": "{\"category\">EXPLORATORY</｜DSML｜: ",
+          "id": "call_00_vt6rmromtpvbi4zsgxb1ewzg",
+          "error": "Function BriefAnalysis arguments:\n\n{\"category\">EXPLORATORY</｜DSML｜: \n\nare not valid JSON. Received JSONDecodeError Expecting ':' delimiter: line 1 column 12 (char 11)\nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/OUTPUT_PARSING_FAILURE ",
+          "type": "invalid_tool_call"
+        }
+      ],
+      "finish_reason": "length"
+    }
+  },
+  {
+    "paper_id": "2610.32370",
+    "input": {
+      "id": "2610.32370",
+      "title": "Adaptive Control of Scientific Instruments with Nonstationary Responses through Multimodal Agents",
+      "authors": [
+        "Guoyang Shi",
+        "Hongwen Li",
+        "Yiding Yu",
+        "Zhuang Fu",
+        "Siqi Ding",
+        "Zhengyuan Chen",
+        "JianGuo Chen",
+        "Hanyue Zhao",
+        "Tianyuan Liu"
+      ],
+      "categories": [
+        "cs.AI"
+      ],
+      "comment": null,
+      "summary": "Controlling scientific instruments requires parameters to be adjusted progressively in response to feedback from successive operations. When unobserved operating conditions evolve with operational history, responses become nonstationary, and a static mapping from actions to responses becomes inadequate for decisions across shots. Shot-to-shot tuning of neutral beam injection (NBI) ion sources in magnetic confinement fusion devices is representative of this class of problems: the conditions of electrode surfaces and vacuum are difficult to observe directly, discharge outcomes vary between shots, and experiments are costly and carry operational risks. We propose a physically grounded multimodal agent with three independently auditable components. Deterministic algorithms extract symbolic physical quantities and visual evidence from multichannel waveforms; a memory with two layers organizes trajectories from the current task, experience from earlier tasks, and procedural knowledge, from which a multimodal large language model (MLLM) generates candidate actions; and an independent action feasibility check enforces action constraints before execution. In a strictly chronological replay of 455 shots from four EXL-50U platforms, physical symbols alone outperformed waveform images alone by 0.21-0.32 in macro-F1 for quality classification across all four evaluated models. Retrieved context increased the mean agreement with historical action directions by 22.4-42.7 percentage points, whereas the contribution of visual evidence varied across models. Under supervised operation on five ion sources, the system achieved a beam-extraction rate of 86.80% across 409 executed shots. These results demonstrate the engineering feasibility of the framework for supervised sequential tuning on a physical scientific instrument.",
+      "abs": "http://arxiv.org/abs/2610.32370v1",
+      "pdf": "https://arxiv.org/pdf/2610.32370v1"
+    },
+    "stage": "parse",
+    "errors": [
+      {
+        "type": "OutputParserException",
+        "message": "Function BriefAnalysis arguments:\n\n{\"category\": \"EXPLORATORY\", \"priority\": \"P2\", \"brief_summary\": \"论文针对聚变 NBI 离子源这类响应非平稳的科学仪器逐发调参问题，提出多模态智能体：用确定性算法从多通道波形中抽取物理符号与视觉证据，经双层记忆由 MLLM 生成候选动作，执行前独立\n\nare not valid JSON. Received JSONDecodeError Unterminated string starting at: line 1 column 64 (char 63)\nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/OUTPUT_PARSING_FAILURE \nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/OUTPUT_PARSING_FAILURE "
+      }
+    ],
+    "attempt_count": 1,
+    "raw_response": {
+      "content": "",
+      "tool_calls": [
+        {
+          "id": "call_00_o747w9uw7f8lpwk0dzwh0ahs",
+          "function": {
+            "arguments": "{\"category\": \"EXPLORATORY\", \"priority\": \"P2\", \"brief_summary\": \"论文针对聚变 NBI 离子源这类响应非平稳的科学仪器逐发调参问题，提出多模态智能体：用确定性算法从多通道波形中抽取物理符号与视觉证据，经双层记忆由 MLLM 生成候选动作，执行前独立",
+            "name": "BriefAnalysis"
+          },
+          "type": "function"
+        }
+      ],
+      "parsed_tool_calls": [],
+      "invalid_tool_calls": [
+        {
+          "name": "BriefAnalysis",
+          "args": "{\"category\": \"EXPLORATORY\", \"priority\": \"P2\", \"brief_summary\": \"论文针对聚变 NBI 离子源这类响应非平稳的科学仪器逐发调参问题，提出多模态智能体：用确定性算法从多通道波形中抽取物理符号与视觉证据，经双层记忆由 MLLM 生成候选动作，执行前独立",
+          "id": "call_00_o747w9uw7f8lpwk0dzwh0ahs",
+          "error": "Function BriefAnalysis arguments:\n\n{\"category\": \"EXPLORATORY\", \"priority\": \"P2\", \"brief_summary\": \"论文针对聚变 NBI 离子源这类响应非平稳的科学仪器逐发调参问题，提出多模态智能体：用确定性算法从多通道波形中抽取物理符号与视觉证据，经双层记忆由 MLLM 生成候选动作，执行前独立\n\nare not valid JSON. Received JSONDecodeError Unterminated string starting at: line 1 column 64 (char 63)\nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/OUTPUT_PARSING_FAILURE ",
+          "type": "invalid_tool_call"
+        }
+      ],
+      "finish_reason": "length"
+    }
+  },
+  {
+    "paper_id": "2610.32193",
+    "input": {
+      "id": "2610.32193",
+      "title": "Evidence-Grounded SLM Behavioral Prediction Architecture for Future Assistance Use",
+      "authors": [
+        "Adeyemi Adeseye",
+        "Aisvarya Adeseye",
+        "Hannu Tenhunen",
+        "Jouni Isoaho"
+      ],
+      "categories": [
+        "cs.AI"
+      ],
+      "comment": "Accepted for publication at the 2027 International Conference on Artificial Intelligence and Applied Intelligent Systems (AIAIS 2027), to be held in Hong Kong from 22 to 24 January 2027",
+      "summary": "Users often exhibit changes in interaction behavior before explicitly seeking assistance, enabling systems to anticipate future assistance use. This is especially important in high-stakes environments, where delayed assistance can have operational, financial, or safety consequences. However, conventional Large Language Models (LLMs) are often unsuitable for continuous on-device behavioral prediction because of their computational and memory demands. Behavioral patterns are also highly individual and device-specific, motivating local processing that preserves privacy and data sovereignty. Small Language Models (SLMs) offer a promising alternative, but their ability to reason reliably over low-level sequential interaction events remains underexplored. This study introduces Evidence-Grounded Local Behavioral Prediction (ELBP), a four-layer architecture combining deterministic interaction processing, dual-view behavioral representation, SLM-based prediction, and evidence verification with abstention. Three instruction-tuned models of 3B parameters or fewer were evaluated using raw, structured, dual-view, and complete ELBP configurations. The best-performing model, Qwen2.5-3B with ELBP, achieved a full-set F1-score of 0.80 and PR-AUC of 0.84, representing a 15.9\\% relative improvement over raw-event prompting and 17.6\\% over XGBoost, while full-set ECE decreased by 43.2\\% relative to raw-event prompting. With evidence verification and abstention, selective F1 increased to 0.84 at 91\\% coverage and evidence support reached 96\\%. These results show that structured behavioral representation and evidence-verified selective prediction can improve the reliability of behavioral forecasting in SLMs.",
+      "abs": "http://arxiv.org/abs/2610.32193v1",
+      "pdf": "https://arxiv.org/pdf/2610.32193v1"
+    },
+    "stage": "parse",
+    "errors": [
+      {
+        "type": "OutputParserException",
+        "message": "Function BriefAnalysis arguments:\n\n{\"category\">EXPLORATORY</｜DSML｜: \n\nare not valid JSON. Received JSONDecodeError Expecting ':' delimiter: line 1 column 12 (char 11)\nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/OUTPUT_PARSING_FAILURE \nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/OUTPUT_PARSING_FAILURE "
+      }
+    ],
+    "attempt_count": 1,
+    "raw_response": {
+      "content": "",
+      "tool_calls": [
+        {
+          "id": "call_00_bgsufyx0357xhpjsangl5iyd",
+          "function": {
+            "arguments": "{\"category\">EXPLORATORY</｜DSML｜: ",
+            "name": "BriefAnalysis"
+          },
+          "type": "function"
+        }
+      ],
+      "parsed_tool_calls": [],
+      "invalid_tool_calls": [
+        {
+          "name": "BriefAnalysis",
+          "args": "{\"category\">EXPLORATORY</｜DSML｜: ",
+          "id": "call_00_bgsufyx0357xhpjsangl5iyd",
+          "error": "Function BriefAnalysis arguments:\n\n{\"category\">EXPLORATORY</｜DSML｜: \n\nare not valid JSON. Received JSONDecodeError Expecting ':' delimiter: line 1 column 12 (char 11)\nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/OUTPUT_PARSING_FAILURE ",
+          "type": "invalid_tool_call"
+        }
+      ],
+      "finish_reason": "length"
+    }
+  },
+  {
+    "paper_id": "2610.32181",
+    "input": {
+      "id": "2610.32181",
+      "title": "Not All Information Is Worth Asking For: Decision-Informed Information Seeking with LLMs",
+      "authors": [
+        "Seunghan Lee",
+        "Jun Seo",
+        "Junhyeok Kang",
+        "Jaehoon Lee",
+        "Sangjun Han",
+        "Sungdong Yoo",
+        "Minjae Kim",
+        "Tae Yoon Lim",
+        "Dongwan Kang",
+        "Hwanil Choi",
+        "Soonyoung Lee",
+        "Wonbin Ahn"
+      ],
+      "categories": [
+        "cs.AI",
+        "cs.CL",
+        "cs.LG"
+      ],
+      "comment": null,
+      "summary": "Large language models (LLMs) are increasingly used to support decisions under incomplete information, where deciding what to look up and when to stop matters as much as the final answer. However, LLMs fall into an information trap: They pay for checks, i.e., costly pieces of evidence, that cannot change their decision or are not worth their cost, and they keep asking when the evidence is already sufficient. To this end, we propose Decision-Informed Value-of-information Acquisition (DIVA), a simple yet effective procedure for LLM information seeking based on the decision value of evidence. DIVA 1) lets the LLM specify a small decision model, i.e., how likely a bad outcome is and how each check would shift this probability, through short numeric questions and 2) values each candidate check by how much its imagined outcomes improve the decision net of its cost, stopping when no check is worth its cost. Its variant, DIVA-U, further accounts for the LLM's uncertain estimates of how strongly each check shifts this probability. DIVA is training-free and applies to any LLM. Across four domains and 20 LLMs, DIVA-U has lower regret, i.e., value lost relative to the best possible decision, than every LLM baseline on real-world data, mainly by stopping once evidence suffices, and DIVA cuts the regret of the best LLM baseline by 75% in synthetic scenarios where every check's reliability is given. Code: github.com/seunghan96/diva.",
+      "abs": "http://arxiv.org/abs/2610.32181v1",
+      "pdf": "https://arxiv.org/pdf/2610.32181v1"
+    },
+    "stage": "parse",
+    "errors": [
+      {
+        "type": "OutputParserException",
+        "message": "Function BriefAnalysis arguments:\n\n{\"category\">METHOD</｜DSML｜>\n<｜DSML｜: \"提出免训练的 DIVA/DIVA-U：让 LLM 用短数值问题给出小型决策模型，并按“检查结果能带来的决策收益减去成本”评估候选证据，在无检查值得成本时停止。\", \"relevance_reason\": \"其价值信息驱动的证据获取与停止准则，可供核查如何用于 LVR 的 LOOK/STOP 成本收益决策，以及估计不确定性下何时停止取证。\"}\n\nare not valid JSON. Received JSONDecodeError Expecting ':' delimiter: line 1 column 12 (char 11)\nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/OUTPUT_PARSING_FAILURE \nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/OUTPUT_PARSING_FAILURE "
+      }
+    ],
+    "attempt_count": 1,
+    "raw_response": {
+      "content": "",
+      "tool_calls": [
+        {
+          "id": "call_00_xctfmzfvpp7bmtny7adbq4io",
+          "function": {
+            "arguments": "{\"category\">METHOD</｜DSML｜>\n<｜DSML｜: \"提出免训练的 DIVA/DIVA-U：让 LLM 用短数值问题给出小型决策模型，并按“检查结果能带来的决策收益减去成本”评估候选证据，在无检查值得成本时停止。\", \"relevance_reason\": \"其价值信息驱动的证据获取与停止准则，可供核查如何用于 LVR 的 LOOK/STOP 成本收益决策，以及估计不确定性下何时停止取证。\"}",
+            "name": "BriefAnalysis"
+          },
+          "type": "function"
+        }
+      ],
+      "parsed_tool_calls": [],
+      "invalid_tool_calls": [
+        {
+          "name": "BriefAnalysis",
+          "args": "{\"category\">METHOD</｜DSML｜>\n<｜DSML｜: \"提出免训练的 DIVA/DIVA-U：让 LLM 用短数值问题给出小型决策模型，并按“检查结果能带来的决策收益减去成本”评估候选证据，在无检查值得成本时停止。\", \"relevance_reason\": \"其价值信息驱动的证据获取与停止准则，可供核查如何用于 LVR 的 LOOK/STOP 成本收益决策，以及估计不确定性下何时停止取证。\"}",
+          "id": "call_00_xctfmzfvpp7bmtny7adbq4io",
+          "error": "Function BriefAnalysis arguments:\n\n{\"category\">METHOD</｜DSML｜>\n<｜DSML｜: \"提出免训练的 DIVA/DIVA-U：让 LLM 用短数值问题给出小型决策模型，并按“检查结果能带来的决策收益减去成本”评估候选证据，在无检查值得成本时停止。\", \"relevance_reason\": \"其价值信息驱动的证据获取与停止准则，可供核查如何用于 LVR 的 LOOK/STOP 成本收益决策，以及估计不确定性下何时停止取证。\"}\n\nare not valid JSON. Received JSONDecodeError Expecting ':' delimiter: line 1 column 12 (char 11)\nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/OUTPUT_PARSING_FAILURE ",
+          "type": "invalid_tool_call"
+        }
+      ],
+      "finish_reason": "tool_calls"
+    }
+  },
+  {
+    "paper_id": "2610.32177",
+    "input": {
+      "id": "2610.32177",
+      "title": "$Ψ$-0.6: Adaptive Streams of Thought in a Unified Vision-Language World Model",
+      "authors": [
+        "Khai Loong Aw",
+        "Klemen Kotar",
+        "Baihan Zhang",
+        "Yifan Liu",
+        "Lilian Chen",
+        "Atlas Kazemian",
+        "Rahul Venkatesh",
+        "Daniel Yamins"
+      ],
+      "categories": [
+        "cs.AI",
+        "cs.CV",
+        "cs.LG"
+      ],
+      "comment": null,
+      "summary": "Humans reason about the physical world by flexibly combining different forms of inference as a problem unfolds. Achieving this flexibility is a major open challenge in AI: capabilities often remain separated across specialized models, limiting how they can be composed and jointly adapted to a task. We introduce $Ψ$-0.6, a unified vision-language world model that adaptively composes perception, language, geometry, and simulation within a shared reasoning process we call streams of thought. These streams interleave images, text, and explicit representations of geometry and motion, all of which the model can generate and interpret through a shared token interface. $Ψ$-0.6 surpasses leading open-weight models zero-shot on multi-view spatial reasoning, with further gains from reasoning through geometric intermediates. It also supports counterfactual simulation: generating and interpreting imagined scenes to determine, for example, whether moving an object would obstruct a pathway. Reinforcement learning from task feedback jointly optimizes the selection, generation, and use of intermediate representations, improving visual question-answering accuracy with gains that transfer to unseen benchmarks. $Ψ$-0.6 offers a path toward adaptive physical reasoning -- not only predicting the physical world but also choosing the representations through which to reason.",
+      "abs": "http://arxiv.org/abs/2610.32177v1",
+      "pdf": "https://arxiv.org/pdf/2610.32177v1"
+    },
+    "stage": "parse",
+    "errors": [
+      {
+        "type": "OutputParserException",
+        "message": "Function BriefAnalysis arguments:\n\n{\"category\">MAIN</｜DSML｜: \n\nare not valid JSON. Received JSONDecodeError Expecting ':' delimiter: line 1 column 12 (char 11)\nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/OUTPUT_PARSING_FAILURE \nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/OUTPUT_PARSING_FAILURE "
+      }
+    ],
+    "attempt_count": 1,
+    "raw_response": {
+      "content": "",
+      "tool_calls": [
+        {
+          "id": "call_00_t1kp93vs6ktsf0wjbp3ccjdh",
+          "function": {
+            "arguments": "{\"category\">MAIN</｜DSML｜: ",
+            "name": "BriefAnalysis"
+          },
+          "type": "function"
+        }
+      ],
+      "parsed_tool_calls": [],
+      "invalid_tool_calls": [
+        {
+          "name": "BriefAnalysis",
+          "args": "{\"category\">MAIN</｜DSML｜: ",
+          "id": "call_00_t1kp93vs6ktsf0wjbp3ccjdh",
+          "error": "Function BriefAnalysis arguments:\n\n{\"category\">MAIN</｜DSML｜: \n\nare not valid JSON. Received JSONDecodeError Expecting ':' delimiter: line 1 column 12 (char 11)\nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/OUTPUT_PARSING_FAILURE ",
+          "type": "invalid_tool_call"
+        }
+      ],
+      "finish_reason": "length"
+    }
+  },
+  {
+    "paper_id": "2610.32175",
+    "input": {
+      "id": "2610.32175",
+      "title": "Curvature-Aware Clipping: Mitigating Bias in DPSGD via Approximate Second-Order Information",
+      "authors": [
+        "Xincheng Xu",
+        "Thilina Ranbaduge",
+        "Thierry Rakotoarivelo",
+        "David Smith"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.CR"
+      ],
+      "comment": "Accepted at the 18th International Workshop on Optimization for Machine Learning (OPT 2026)",
+      "summary": "Differentially Private Stochastic Gradient Descent (DPSGD) has become the de facto standard for training deep neural networks with rigorous privacy guarantees. However, the utility of DPSGD is constrained by gradient clipping bias and DP noise. While existing work has tried to address these issues, the geometric misalignment caused by clipping bias remains a critical challenge. To bridge this gap, we propose a novel framework, Curvature-Aware Differentially Private Stochastic Gradient Descent (CA-DPSGD), which leverages approximate second-order information to construct an optimal, curvature-aware clipping space. CA-DPSGD integrates a rectified estimator for the curvature matrix and is coupled with an anisotropic noise mechanism to ensure privacy guarantees. Extensive empirical experiments demonstrate that our approach outperforms state-of-the-art clipping methods.",
+      "abs": "http://arxiv.org/abs/2610.32175v1",
+      "pdf": "https://arxiv.org/pdf/2610.32175v1"
+    },
+    "stage": "parse",
+    "errors": [
+      {
+        "type": "OutputParserException",
+        "message": "Function BriefAnalysis arguments:\n\n{\"category\": \"EXCLUDE\", \"priority\": \"NONE\", \"brief_summary\": 该论文研究差分隐私随机梯度下降中的梯度裁剪偏差问题，提出利用近似二阶信息构造曲率感知裁剪空间，并配合各向异性噪声机制（CA-DPSGD）。, \"relevance_reason\": \"内容为差分隐私训练的优化与噪声机制，未涉及视觉或多模态推理的内部状态、证据使用或计算决策，缺少可供借鉴的具体线索。\"}\n\nare not valid JSON. Received JSONDecodeError Expecting value: line 1 column 62 (char 61)\nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/OUTPUT_PARSING_FAILURE \nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/OUTPUT_PARSING_FAILURE "
+      }
+    ],
+    "attempt_count": 1,
+    "raw_response": {
+      "content": "",
+      "tool_calls": [
+        {
+          "id": "call_00_pyjxjglpowqamkngirk01dfl",
+          "function": {
+            "arguments": "{\"category\": \"EXCLUDE\", \"priority\": \"NONE\", \"brief_summary\": 该论文研究差分隐私随机梯度下降中的梯度裁剪偏差问题，提出利用近似二阶信息构造曲率感知裁剪空间，并配合各向异性噪声机制（CA-DPSGD）。, \"relevance_reason\": \"内容为差分隐私训练的优化与噪声机制，未涉及视觉或多模态推理的内部状态、证据使用或计算决策，缺少可供借鉴的具体线索。\"}",
+            "name": "BriefAnalysis"
+          },
+          "type": "function"
+        }
+      ],
+      "parsed_tool_calls": [],
+      "invalid_tool_calls": [
+        {
+          "name": "BriefAnalysis",
+          "args": "{\"category\": \"EXCLUDE\", \"priority\": \"NONE\", \"brief_summary\": 该论文研究差分隐私随机梯度下降中的梯度裁剪偏差问题，提出利用近似二阶信息构造曲率感知裁剪空间，并配合各向异性噪声机制（CA-DPSGD）。, \"relevance_reason\": \"内容为差分隐私训练的优化与噪声机制，未涉及视觉或多模态推理的内部状态、证据使用或计算决策，缺少可供借鉴的具体线索。\"}",
+          "id": "call_00_pyjxjglpowqamkngirk01dfl",
+          "error": "Function BriefAnalysis arguments:\n\n{\"category\": \"EXCLUDE\", \"priority\": \"NONE\", \"brief_summary\": 该论文研究差分隐私随机梯度下降中的梯度裁剪偏差问题，提出利用近似二阶信息构造曲率感知裁剪空间，并配合各向异性噪声机制（CA-DPSGD）。, \"relevance_reason\": \"内容为差分隐私训练的优化与噪声机制，未涉及视觉或多模态推理的内部状态、证据使用或计算决策，缺少可供借鉴的具体线索。\"}\n\nare not valid JSON. Received JSONDecodeError Expecting value: line 1 column 62 (char 61)\nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/OUTPUT_PARSING_FAILURE ",
+          "type": "invalid_tool_call"
+        }
+      ],
+      "finish_reason": "tool_calls"
+    }
+  },
+  {
+    "paper_id": "2610.32153",
+    "input": {
+      "id": "2610.32153",
+      "title": "Sparsity-driven emergence of functional modularity in multitask neural networks",
+      "authors": [
+        "Bowen Shi",
+        "Qi Ouyang",
+        "Long Qian"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "comment": "34 pages, 6 figures, including Supplementary Information",
+      "summary": "Neural networks can learn multiple tasks, but how learning organizes shared computation into specialized and reusable components remains poorly understood. In this work, we show that sparsity inducing regularization promotes functional modularity in multitask networks without predefined module boundaries. Using functional profiling in multilayer perceptrons and a lightweight transformer, we identified compact, task-selective subnetworks, termed functional tokens. Across rule-based task families, selectively retaining these tokens preserves their associated functions while reducing performance on other tasks. Such specialization develops preferentially in deeper layers during training, while earlier layers retain shared computation. Regularization strength and form shape module compactness and specialization, while task weighting alters functional allocation. Moreover, extracted functional tokens can be recombined through alternative pathways to reconstruct a learned composite computation without retraining, preserving their connectivity and learned weights. Our results suggest that sparsity-constrained optimization shapes not only parameter use but also the organization and reuse of learned computation.",
+      "abs": "http://arxiv.org/abs/2610.32153v1",
+      "pdf": "https://arxiv.org/pdf/2610.32153v1"
+    },
+    "stage": "parse",
+    "errors": [
+      {
+        "type": "OutputParserException",
+        "message": "Function BriefAnalysis arguments:\n\n{\"category\">METHOD</｜DSML｜: \n\nare not valid JSON. Received JSONDecodeError Expecting ':' delimiter: line 1 column 12 (char 11)\nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/OUTPUT_PARSING_FAILURE \nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/OUTPUT_PARSING_FAILURE "
+      }
+    ],
+    "attempt_count": 1,
+    "raw_response": {
+      "content": "",
+      "tool_calls": [
+        {
+          "id": "call_00_ymy5pgr0xk6e5ps8bx4m8trz",
+          "function": {
+            "arguments": "{\"category\">METHOD</｜DSML｜: ",
+            "name": "BriefAnalysis"
+          },
+          "type": "function"
+        }
+      ],
+      "parsed_tool_calls": [],
+      "invalid_tool_calls": [
+        {
+          "name": "BriefAnalysis",
+          "args": "{\"category\">METHOD</｜DSML｜: ",
+          "id": "call_00_ymy5pgr0xk6e5ps8bx4m8trz",
+          "error": "Function BriefAnalysis arguments:\n\n{\"category\">METHOD</｜DSML｜: \n\nare not valid JSON. Received JSONDecodeError Expecting ':' delimiter: line 1 column 12 (char 11)\nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/OUTPUT_PARSING_FAILURE ",
+          "type": "invalid_tool_call"
+        }
+      ],
+      "finish_reason": "length"
+    }
+  },
+  {
+    "paper_id": "2610.32146",
+    "input": {
+      "id": "2610.32146",
+      "title": "Separating Angular Alignment from Radial Ordering in Hyperbolic Vision-Language Models",
+      "authors": [
+        "Mingyang Gao",
+        "Yuwei Wu",
+        "Shiyu Luo",
+        "Wei Wu",
+        "Xiaomeng Fan",
+        "Qihao Lv",
+        "Haoyu Zhang",
+        "Rui Gao",
+        "Bingzhen Liu",
+        "Zhi Gao",
+        "Che Sun"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "comment": "34 pages, 12 figures",
+      "summary": "Hyperbolic vision-language models are well suited to modeling the hierarchical structure of multimodal data, because hyperbolic volume grows exponentially with radius, enabling low-distortion representations of tree-like taxonomies from general to specific concepts. However, existing pretraining objectives for hyperbolic vision-language models entangle semantic alignment with entailment modeling, forcing radial coordinates to simultaneously encode semantic matching and hierarchical structure, leading to conflicting geometric constraints. In this paper, we introduce AURORA, a hyperbolic vision-language framework that decouples the objectives through angular alignment and a novel Radial-Angular Order Cone (RAOC) for entailment modeling. Angular alignment captures semantic similarity while preserving the radial structure for representing hierarchies. Unlike conventional entailment cones, RAOC determines angular allowance from relative parent-child radial gaps. It is incorporated into hierarchical entailment contrastive training to capture partial-order relations. We further introduce a norm regularization term that prevents undesirable radial degeneration for stable training. We train models on millions of image-text pairs and evaluate them across zero-shot classification, image-text retrieval, hierarchical reasoning, and compositional understanding. Our model consistently outperforms strong Euclidean and hyperbolic vision-language baselines, demonstrating the effectiveness of decoupling semantic alignment from hierarchical entailment modeling.",
+      "abs": "http://arxiv.org/abs/2610.32146v1",
+      "pdf": "https://arxiv.org/pdf/2610.32146v1"
+    },
+    "stage": "parse",
+    "errors": [
+      {
+        "type": "OutputParserException",
+        "message": "Function BriefAnalysis arguments:\n\n{\"category\": \"EXPLORATORY\", \"priority\": \"P2\", \"brief_summary\": \"论文提出 AURORA 双曲视觉-语言框架，把语义匹配交由角度对齐、把层级蕴含交由依据父子径向差确定角度容限的 Radial-Angular Order Cone 建模，并加入范数正则稳定训练，在百万级图文对上训练并评测零样本分类、检索、层级推理与组合理解。\", \"relevance_reason\": \"与 LVR 主线的联系在表示几何而非推理期\n\nare not valid JSON. Received JSONDecodeError Unterminated string starting at: line 1 column 217 (char 216)\nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/OUTPUT_PARSING_FAILURE \nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/OUTPUT_PARSING_FAILURE "
+      }
+    ],
+    "attempt_count": 1,
+    "raw_response": {
+      "content": "",
+      "tool_calls": [
+        {
+          "id": "call_00_8zy42avlk3dt3h3slnw8ude8",
+          "function": {
+            "arguments": "{\"category\": \"EXPLORATORY\", \"priority\": \"P2\", \"brief_summary\": \"论文提出 AURORA 双曲视觉-语言框架，把语义匹配交由角度对齐、把层级蕴含交由依据父子径向差确定角度容限的 Radial-Angular Order Cone 建模，并加入范数正则稳定训练，在百万级图文对上训练并评测零样本分类、检索、层级推理与组合理解。\", \"relevance_reason\": \"与 LVR 主线的联系在表示几何而非推理期",
+            "name": "BriefAnalysis"
+          },
+          "type": "function"
+        }
+      ],
+      "parsed_tool_calls": [],
+      "invalid_tool_calls": [
+        {
+          "name": "BriefAnalysis",
+          "args": "{\"category\": \"EXPLORATORY\", \"priority\": \"P2\", \"brief_summary\": \"论文提出 AURORA 双曲视觉-语言框架，把语义匹配交由角度对齐、把层级蕴含交由依据父子径向差确定角度容限的 Radial-Angular Order Cone 建模，并加入范数正则稳定训练，在百万级图文对上训练并评测零样本分类、检索、层级推理与组合理解。\", \"relevance_reason\": \"与 LVR 主线的联系在表示几何而非推理期",
+          "id": "call_00_8zy42avlk3dt3h3slnw8ude8",
+          "error": "Function BriefAnalysis arguments:\n\n{\"category\": \"EXPLORATORY\", \"priority\": \"P2\", \"brief_summary\": \"论文提出 AURORA 双曲视觉-语言框架，把语义匹配交由角度对齐、把层级蕴含交由依据父子径向差确定角度容限的 Radial-Angular Order Cone 建模，并加入范数正则稳定训练，在百万级图文对上训练并评测零样本分类、检索、层级推理与组合理解。\", \"relevance_reason\": \"与 LVR 主线的联系在表示几何而非推理期\n\nare not valid JSON. Received JSONDecodeError Unterminated string starting at: line 1 column 217 (char 216)\nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/OUTPUT_PARSING_FAILURE ",
+          "type": "invalid_tool_call"
+        }
+      ],
+      "finish_reason": "length"
+    }
+  },
+  {
+    "paper_id": "2610.32075",
+    "input": {
+      "id": "2610.32075",
+      "title": "RADIANT: Object-Centric Feed-Forward Global Illumination",
+      "authors": [
+        "Sarah Zhang",
+        "Zhiyang Dou",
+        "Minghao Guo",
+        "Benjamin Tod Jones",
+        "Wojciech Matusik"
+      ],
+      "categories": [
+        "cs.CV",
+        "cs.GR",
+        "cs.LG"
+      ],
+      "comment": null,
+      "summary": "Feed-forward neural renderers synthesize global illumination across novel 3D scenes without per-scene optimization or runtime ray tracing. Existing transformer-based renderers tokenize individual triangles, so self-attention scales quadratically with mesh resolution. Yet macroscopic radiative transport is governed by the underlying surface geometry and object arrangements rather than a particular mesh discretization; finer tessellation can thus inflate token counts without changing the underlying transport physics, motivating a discretization-agnostic and object-centric representation. We introduce RADIANT (RADiance-based Inter-Actor Neural Transformer), an object-centric architecture for feed-forward global illumination from point inputs. By representing each object with a compact budget of 32 surface-patch tokens, RADIANT decouples attention sequence length from polygon counts. In a single network, an inter-object scene transformer models 3D radiative exchange and a view decoder renders images at target camera poses. To capture light transport without materializing O(N^2) bias matrices, invariant form-factor attention embeds geometric distances and surface orientations directly into query-key dot products as SE(3)-invariant inner products weighted by learned area and material gains. For primary visibility without mesh connectivity, camera rays cross-attend scene tokens guided by depth-tested point splats in a shared spherical frame. Across a 1.03M-scene benchmark under matched model capacity, RADIANT reaches 25 dB tone-mapped PSNR in 5x fewer training steps than RenderFormer, and achieves 32.2 dB at 600k steps (+3.3 dB over RenderFormer and +7.6 dB over RenderFormer-V2). We further demonstrate the scalability of RADIANT, which completes a 512x512 forward pass of a 500-object scene in 0.83 s, with computational cost scaling with the number of objects rather than polygons.",
+      "abs": "http://arxiv.org/abs/2610.32075v1",
+      "pdf": "https://arxiv.org/pdf/2610.32075v1"
+    },
+    "stage": "parse",
+    "errors": [
+      {
+        "type": "OutputParserException",
+        "message": "Function BriefAnalysis arguments:\n\n{\"category\": \"EXPLORATORY\", \"priority\": \"P2\", \"brief_summary\": \"提出物体级前馈神经渲染器：每物体用 32 个表面 patch token 表示，并在单个网络中由 inter-object transformer 与视角解码器完成全局光照与新视角合成。\", \"relevance_reason\": \"与 LVR 主线距离较远，但其以 SE(3) 不变内积把几何距离与朝向写入 query-key、并用固定 token 预算压缩物体表示，可能供核查实体\n\nare not valid JSON. Received JSONDecodeError Unterminated string starting at: line 1 column 181 (char 180)\nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/OUTPUT_PARSING_FAILURE \nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/OUTPUT_PARSING_FAILURE "
+      }
+    ],
+    "attempt_count": 1,
+    "raw_response": {
+      "content": "",
+      "tool_calls": [
+        {
+          "id": "call_00_t0hhpr30yanvcoe3123wuvoy",
+          "function": {
+            "arguments": "{\"category\": \"EXPLORATORY\", \"priority\": \"P2\", \"brief_summary\": \"提出物体级前馈神经渲染器：每物体用 32 个表面 patch token 表示，并在单个网络中由 inter-object transformer 与视角解码器完成全局光照与新视角合成。\", \"relevance_reason\": \"与 LVR 主线距离较远，但其以 SE(3) 不变内积把几何距离与朝向写入 query-key、并用固定 token 预算压缩物体表示，可能供核查实体",
+            "name": "BriefAnalysis"
+          },
+          "type": "function"
+        }
+      ],
+      "parsed_tool_calls": [],
+      "invalid_tool_calls": [
+        {
+          "name": "BriefAnalysis",
+          "args": "{\"category\": \"EXPLORATORY\", \"priority\": \"P2\", \"brief_summary\": \"提出物体级前馈神经渲染器：每物体用 32 个表面 patch token 表示，并在单个网络中由 inter-object transformer 与视角解码器完成全局光照与新视角合成。\", \"relevance_reason\": \"与 LVR 主线距离较远，但其以 SE(3) 不变内积把几何距离与朝向写入 query-key、并用固定 token 预算压缩物体表示，可能供核查实体",
+          "id": "call_00_t0hhpr30yanvcoe3123wuvoy",
+          "error": "Function BriefAnalysis arguments:\n\n{\"category\": \"EXPLORATORY\", \"priority\": \"P2\", \"brief_summary\": \"提出物体级前馈神经渲染器：每物体用 32 个表面 patch token 表示，并在单个网络中由 inter-object transformer 与视角解码器完成全局光照与新视角合成。\", \"relevance_reason\": \"与 LVR 主线距离较远，但其以 SE(3) 不变内积把几何距离与朝向写入 query-key、并用固定 token 预算压缩物体表示，可能供核查实体\n\nare not valid JSON. Received JSONDecodeError Unterminated string starting at: line 1 column 181 (char 180)\nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/OUTPUT_PARSING_FAILURE ",
+          "type": "invalid_tool_call"
+        }
+      ],
+      "finish_reason": "length"
+    }
+  },
+  {
+    "paper_id": "2610.32045",
+    "input": {
+      "id": "2610.32045",
+      "title": "Do AI-for-Science Agents Preserve Model Safety?",
+      "authors": [
+        "Michael Yew Chuan Lee",
+        "Manya Sriram",
+        "N. Benjamin Erichson"
+      ],
+      "categories": [
+        "cs.AI"
+      ],
+      "comment": null,
+      "summary": "AI-for-Science agents are increasingly being used for formulating scientific hypotheses, running autonomous experiments, and interpreting evidence. These agents are constructed by integrating a large language model (LLM) into a domain-specific agent harness, which in turn can improve the LLM's scientific capability and enable the model to orchestrate scientific tools. In this work, we ask whether model safety is preserved when an LLM is integrated in an AI-for-Science agent harness. We evaluate five agent harnesses on 50 harmful chemistry requests. Specifically, we study how the safety behavior changes under direct prompting, two simple adversarial prompting strategies, and an adaptive attack. Across four recent GPT variants, our results show that the agent harness can increase harmful compliance even under direct prompting. More critically, we find that adaptive attacks that are largely unsuccessful against the base LLM suddenly become highly successful after the agent harness is introduced. Our results show that the safety behavior of the base LLM is not durable once a harness is introduced. Thus, as AI-for-Science agents become more capable and autonomous, the community needs to evaluate and align the agent using domain-specific safety benchmarks.",
+      "abs": "http://arxiv.org/abs/2610.32045v1",
+      "pdf": "https://arxiv.org/pdf/2610.32045v1"
+    },
+    "stage": "parse",
+    "errors": [
+      {
+        "type": "OutputParserException",
+        "message": "Function BriefAnalysis arguments:\n\n{\"category\": \"EXCLUDE\", \"priority\": \"NONE\", \"brief_summary\": 该论文评估 AI-for-Science agent harness 是否保持底座 LLM 的安全行为，用 50 个有害化学请求在多种提示与自适应攻击下测试五个 harness 和四个 GPT 变体。, \"relevance_reason\": \"研究焦点是化学领域智能体的安全对齐与越狱，不涉及视觉或多模态推理中的内部状态、证据筛选或停止决策，也未提供可迁移的表示或训练线索。\"}\n\nare not valid JSON. Received JSONDecodeError Expecting value: line 1 column 62 (char 61)\nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/OUTPUT_PARSING_FAILURE \nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/OUTPUT_PARSING_FAILURE "
+      }
+    ],
+    "attempt_count": 1,
+    "raw_response": {
+      "content": "",
+      "tool_calls": [
+        {
+          "id": "call_00_fransl9m0fqyxm5g5tt46zew",
+          "function": {
+            "arguments": "{\"category\": \"EXCLUDE\", \"priority\": \"NONE\", \"brief_summary\": 该论文评估 AI-for-Science agent harness 是否保持底座 LLM 的安全行为，用 50 个有害化学请求在多种提示与自适应攻击下测试五个 harness 和四个 GPT 变体。, \"relevance_reason\": \"研究焦点是化学领域智能体的安全对齐与越狱，不涉及视觉或多模态推理中的内部状态、证据筛选或停止决策，也未提供可迁移的表示或训练线索。\"}",
+            "name": "BriefAnalysis"
+          },
+          "type": "function"
+        }
+      ],
+      "parsed_tool_calls": [],
+      "invalid_tool_calls": [
+        {
+          "name": "BriefAnalysis",
+          "args": "{\"category\": \"EXCLUDE\", \"priority\": \"NONE\", \"brief_summary\": 该论文评估 AI-for-Science agent harness 是否保持底座 LLM 的安全行为，用 50 个有害化学请求在多种提示与自适应攻击下测试五个 harness 和四个 GPT 变体。, \"relevance_reason\": \"研究焦点是化学领域智能体的安全对齐与越狱，不涉及视觉或多模态推理中的内部状态、证据筛选或停止决策，也未提供可迁移的表示或训练线索。\"}",
+          "id": "call_00_fransl9m0fqyxm5g5tt46zew",
+          "error": "Function BriefAnalysis arguments:\n\n{\"category\": \"EXCLUDE\", \"priority\": \"NONE\", \"brief_summary\": 该论文评估 AI-for-Science agent harness 是否保持底座 LLM 的安全行为，用 50 个有害化学请求在多种提示与自适应攻击下测试五个 harness 和四个 GPT 变体。, \"relevance_reason\": \"研究焦点是化学领域智能体的安全对齐与越狱，不涉及视觉或多模态推理中的内部状态、证据筛选或停止决策，也未提供可迁移的表示或训练线索。\"}\n\nare not valid JSON. Received JSONDecodeError Expecting value: line 1 column 62 (char 61)\nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/OUTPUT_PARSING_FAILURE ",
+          "type": "invalid_tool_call"
+        }
+      ],
+      "finish_reason": "tool_calls"
+    }
+  },
+  {
+    "paper_id": "2610.32009",
+    "input": {
+      "id": "2610.32009",
+      "title": "GS-MoE: Training-Free MoE Compression via Groupwise Subspace Sharing and Pruning",
+      "authors": [
+        "Carson Cary",
+        "Yukai Jin",
+        "Yihao Huang",
+        "Zhankai Ye",
+        "Fangyi Li",
+        "Ting Hua",
+        "Xin Liu",
+        "Shangqian Gao"
+      ],
+      "categories": [
+        "cs.LG"
+      ],
+      "comment": null,
+      "summary": "Mixture-of-Experts (MoE) models reduce computation through sparse activation, but storing their expert parameters remains a major memory bottleneck. We introduce GS-MoE, a training-free compression framework that addresses redundancy across and within experts through two compression axes: shared-subspace rank and expert intermediate width. Groupwise low-rank representations capture shared structure across experts while retaining expert-specific projections, and Nyström-based neuron compression reduces intermediate width within each expert. For fixed shared subspaces, we derive per-expert reconstruction-error reductions from the reconstruction objective and use them to guide expert grouping. Budgets are allocated hierarchically using a gradient-free layer-importance score to guide the allocation of rank and width budgets across layers, which eigenvalues and leverage then distribute as non-uniform ranks across groups and intermediate widths across experts. Experiments demonstrate the complementary benefits of compression along both axes, particularly at high compression rates on fine-grained MoE models. On DeepSeek-MoE-16B-Base, at a 60% reduction in total model parameters, GS-MoE retains approximately 90% of the uncompressed model's average reasoning performance, compared with 73% for D$^2$-MoE, while achieving 20% lower out-of-domain perplexity. We provide a code implementation at: https://github.com/cbacary/GS-MoE",
+      "abs": "http://arxiv.org/abs/2610.32009v1",
+      "pdf": "https://arxiv.org/pdf/2610.32009v1"
+    },
+    "stage": "parse",
+    "errors": [
+      {
+        "type": "OutputParserException",
+        "message": "Function BriefAnalysis arguments:\n\n{\"category\">EXCLUDE</｜DSML｜: \n\nare not valid JSON. Received JSONDecodeError Expecting ':' delimiter: line 1 column 12 (char 11)\nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/OUTPUT_PARSING_FAILURE \nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/OUTPUT_PARSING_FAILURE "
+      }
+    ],
+    "attempt_count": 1,
+    "raw_response": {
+      "content": "",
+      "tool_calls": [
+        {
+          "id": "call_00_61a2uf6c9sam6pvcgo3equ50",
+          "function": {
+            "arguments": "{\"category\">EXCLUDE</｜DSML｜: ",
+            "name": "BriefAnalysis"
+          },
+          "type": "function"
+        }
+      ],
+      "parsed_tool_calls": [],
+      "invalid_tool_calls": [
+        {
+          "name": "BriefAnalysis",
+          "args": "{\"category\">EXCLUDE</｜DSML｜: ",
+          "id": "call_00_61a2uf6c9sam6pvcgo3equ50",
+          "error": "Function BriefAnalysis arguments:\n\n{\"category\">EXCLUDE</｜DSML｜: \n\nare not valid JSON. Received JSONDecodeError Expecting ':' delimiter: line 1 column 12 (char 11)\nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/OUTPUT_PARSING_FAILURE ",
+          "type": "invalid_tool_call"
+        }
+      ],
+      "finish_reason": "length"
+    }
+  },
+  {
+    "paper_id": "2610.31944",
+    "input": {
+      "id": "2610.31944",
+      "title": "Towards Trustworthy AI-Enabled Emergency Medical Dispatch: Uncertainty-Aware Ambulance Travel Time Estimation",
+      "authors": [
+        "Muhammad Adil Abid",
+        "Johan Holmgren",
+        "Fabian Lorig",
+        "Jesper Petersson"
+      ],
+      "categories": [
+        "cs.LG"
+      ],
+      "comment": "15 pages, 5 figures, 5 tables. Accepted at ICSOB 2026",
+      "summary": "Emergency medical dispatch increasingly relies on AI-enabled decision support systems when making ambulance dispatch decisions. In this process, accurate ambulance travel time estimates are essential for timely resource allocation and prehospital care. However, existing ambulance travel time estimation approaches typically produce only single point predictions. Consequently, they do not indicate how reliable an individual estimate is or how much uncertainty it carries. This limitation is particularly problematic in safety-critical emergency medical service dispatch operations, where trips with similar expected travel times may exhibit substantially different levels of uncertainty. Furthermore, real-world ambulance trip logs may contain domain-specific artefacts, such as co-located healthcare facilities and physically implausible travel speeds. These artefacts can degrade point prediction accuracy and affect the prediction task on which subsequent uncertainty estimation depends. To address these challenges, we propose an uncertainty-aware methodology for ambulance travel time estimation and evaluate it through a retrospective real-world scenario study using two years of ambulance trip data from the Skåne region in Sweden. The proposed methodology moves beyond average-case point predictions by generating context-adaptive prediction intervals with stable empirical coverage across the evaluated operationally important contexts. The resulting prediction intervals provide explicit information about predictive uncertainty that can support more transparent and risk-sensitive ambulance dispatch decision-making.",
+      "abs": "http://arxiv.org/abs/2610.31944v1",
+      "pdf": "https://arxiv.org/pdf/2610.31944v1"
+    },
+    "stage": "parse",
+    "errors": [
+      {
+        "type": "OutputParserException",
+        "message": "Function BriefAnalysis arguments:\n\n{\"category\": \"EXCLUDE\", \"priority\": \"NONE\", \"brief_summary\": 该论文针对急救医疗调度中的救护车行驶时间估计，提出考虑不确定性的方法，输出上下文自适应的预测区间，并用瑞典 Skåne 地区两年真实行程数据做回顾性评估。, \"relevance_reason\": \"研究对象是行程时间的回归预测与其输出级不确定性校准，不涉及内部推理状态、视觉证据使用或多步生成，也未讨论计算量分配与停止决策，与 LVR 主线缺少可核查的具体借鉴线索。\"}\n\nare not valid JSON. Received JSONDecodeError Expecting value: line 1 column 62 (char 61)\nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/OUTPUT_PARSING_FAILURE \nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/OUTPUT_PARSING_FAILURE "
+      }
+    ],
+    "attempt_count": 1,
+    "raw_response": {
+      "content": "",
+      "tool_calls": [
+        {
+          "id": "call_00_rjurotcf4il6sgneyasyxi55",
+          "function": {
+            "arguments": "{\"category\": \"EXCLUDE\", \"priority\": \"NONE\", \"brief_summary\": 该论文针对急救医疗调度中的救护车行驶时间估计，提出考虑不确定性的方法，输出上下文自适应的预测区间，并用瑞典 Skåne 地区两年真实行程数据做回顾性评估。, \"relevance_reason\": \"研究对象是行程时间的回归预测与其输出级不确定性校准，不涉及内部推理状态、视觉证据使用或多步生成，也未讨论计算量分配与停止决策，与 LVR 主线缺少可核查的具体借鉴线索。\"}",
+            "name": "BriefAnalysis"
+          },
+          "type": "function"
+        }
+      ],
+      "parsed_tool_calls": [],
+      "invalid_tool_calls": [
+        {
+          "name": "BriefAnalysis",
+          "args": "{\"category\": \"EXCLUDE\", \"priority\": \"NONE\", \"brief_summary\": 该论文针对急救医疗调度中的救护车行驶时间估计，提出考虑不确定性的方法，输出上下文自适应的预测区间，并用瑞典 Skåne 地区两年真实行程数据做回顾性评估。, \"relevance_reason\": \"研究对象是行程时间的回归预测与其输出级不确定性校准，不涉及内部推理状态、视觉证据使用或多步生成，也未讨论计算量分配与停止决策，与 LVR 主线缺少可核查的具体借鉴线索。\"}",
+          "id": "call_00_rjurotcf4il6sgneyasyxi55",
+          "error": "Function BriefAnalysis arguments:\n\n{\"category\": \"EXCLUDE\", \"priority\": \"NONE\", \"brief_summary\": 该论文针对急救医疗调度中的救护车行驶时间估计，提出考虑不确定性的方法，输出上下文自适应的预测区间，并用瑞典 Skåne 地区两年真实行程数据做回顾性评估。, \"relevance_reason\": \"研究对象是行程时间的回归预测与其输出级不确定性校准，不涉及内部推理状态、视觉证据使用或多步生成，也未讨论计算量分配与停止决策，与 LVR 主线缺少可核查的具体借鉴线索。\"}\n\nare not valid JSON. Received JSONDecodeError Expecting value: line 1 column 62 (char 61)\nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/OUTPUT_PARSING_FAILURE ",
+          "type": "invalid_tool_call"
+        }
+      ],
+      "finish_reason": "tool_calls"
+    }
+  },
+  {
+    "paper_id": "2610.31908",
+    "input": {
+      "id": "2610.31908",
+      "title": "PixGR: Pixel-Space Generative Decoding for Fast Feed-Forward 3D Reconstruction",
+      "authors": [
+        "Ranran Huang",
+        "Wenjing Bian",
+        "Weixun Luo",
+        "Ye Mao",
+        "Krystian Mikolajczyk"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "comment": "Project page: https://ranrhuang.github.io/pixgr/",
+      "summary": "We present PixGR, an efficient framework that integrates lightweight pixel-space generative modeling into feed-forward 3D Gaussian reconstruction to model scene uncertainty. Context observations are encoded once into a scene latent representation, which conditions generative decoding from noisy target views to produce a shared 3D Gaussian representation. We formulate this process using pixel-space flow matching, enabling end-to-end optimization of 3D reconstruction with direct pixel-space generative supervision through differentiable rendering. This avoids VAE-based latent compression and error propagation inherent in previous two-stage pipelines. To preserve feed-forward efficiency, PixGR caches the scene representation and performs iterative inference using a lightweight DiT decoder. Experiments demonstrate that PixGR outperforms regression-based approaches in challenging sparse-view settings, particularly with widely spaced observations and view extrapolation. Meanwhile, it maintains sub-second inference and remains competitive with substantially heavier pretrained generative models. Our project page is available at https://ranrhuang.github.io/pixgr/.",
+      "abs": "http://arxiv.org/abs/2610.31908v1",
+      "pdf": "https://arxiv.org/pdf/2610.31908v1"
+    },
+    "stage": "parse",
+    "errors": [
+      {
+        "type": "OutputParserException",
+        "message": "Function BriefAnalysis arguments:\n\n{\"category\">METHOD</｜DSML｜: \"P2\", \"brief_summary\": \"提出 PixGR，将轻量像素空间生成建模（flow matching）引入前馈 3D 高斯重建：上下文视图仅编码一次得到场景 latent，再以此条件化从噪声目标视图出发的生成式解码，并以可微渲染做端到端像素监督，兼顾亚秒级推理。\", \"relevance_reason\": \"\n\nare not valid JSON. Received JSONDecodeError Expecting ':' delimiter: line 1 column 12 (char 11)\nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/OUTPUT_PARSING_FAILURE \nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/OUTPUT_PARSING_FAILURE "
+      }
+    ],
+    "attempt_count": 1,
+    "raw_response": {
+      "content": "",
+      "tool_calls": [
+        {
+          "id": "call_00_826x5ouxpse94ic9z23ea8mz",
+          "function": {
+            "arguments": "{\"category\">METHOD</｜DSML｜: \"P2\", \"brief_summary\": \"提出 PixGR，将轻量像素空间生成建模（flow matching）引入前馈 3D 高斯重建：上下文视图仅编码一次得到场景 latent，再以此条件化从噪声目标视图出发的生成式解码，并以可微渲染做端到端像素监督，兼顾亚秒级推理。\", \"relevance_reason\": \"",
+            "name": "BriefAnalysis"
+          },
+          "type": "function"
+        }
+      ],
+      "parsed_tool_calls": [],
+      "invalid_tool_calls": [
+        {
+          "name": "BriefAnalysis",
+          "args": "{\"category\">METHOD</｜DSML｜: \"P2\", \"brief_summary\": \"提出 PixGR，将轻量像素空间生成建模（flow matching）引入前馈 3D 高斯重建：上下文视图仅编码一次得到场景 latent，再以此条件化从噪声目标视图出发的生成式解码，并以可微渲染做端到端像素监督，兼顾亚秒级推理。\", \"relevance_reason\": \"",
+          "id": "call_00_826x5ouxpse94ic9z23ea8mz",
+          "error": "Function BriefAnalysis arguments:\n\n{\"category\">METHOD</｜DSML｜: \"P2\", \"brief_summary\": \"提出 PixGR，将轻量像素空间生成建模（flow matching）引入前馈 3D 高斯重建：上下文视图仅编码一次得到场景 latent，再以此条件化从噪声目标视图出发的生成式解码，并以可微渲染做端到端像素监督，兼顾亚秒级推理。\", \"relevance_reason\": \"\n\nare not valid JSON. Received JSONDecodeError Expecting ':' delimiter: line 1 column 12 (char 11)\nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/OUTPUT_PARSING_FAILURE ",
+          "type": "invalid_tool_call"
+        }
+      ],
+      "finish_reason": "length"
+    }
+  },
+  {
+    "paper_id": "2610.31897",
+    "input": {
+      "id": "2610.31897",
+      "title": "Learning Structured Sparsity for Large Models: Bridging Model Compressibility and Efficient Inference",
+      "authors": [
+        "Tianxiang Xia",
+        "Kai Lion",
+        "Niao He",
+        "Michael Muehlebach",
+        "Melanie Zeilinger",
+        "Hao Ma"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "comment": "35 pages, 26 figures, 14 tables. Project website: https://egretwalker.github.io/S-SALAAD/",
+      "summary": "Scaling laws continue to reward increases in model scale, while the resulting computational and memory demands drive greater reliance on cloud infrastructure for inference. Yet unreliable network connectivity, communication delays, and privacy requirements can make such reliance impractical, motivating local execution on edge devices. Local deployment requires models to fit within limited memory and execute efficiently with the available computational resources. Recent work has shown that learning sparse-plus-low-rank representations enables elastic compression of a single checkpoint to multiple memory budgets. However, fewer parameters do not necessarily translate into faster inference. Indexing overhead and irregular memory access in unstructured sparse components can offset computational savings. To address this critical deployment barrier, we introduce S-SALAAD, a unified framework that jointly learns the model weights and their low-rank and structured sparse components during training. The framework supports a family of hardware-compatible structured sparsity patterns. It couples this structure learning with budget-aware compression and dedicated CPU and GPU kernels that exploit the learned structure for acceleration, enabling efficient inference from a single checkpoint across memory budgets. Experiments on Llama2 and Qwen3 models, covering both pretraining and distillation, show that S-SALAAD advances the empirical Pareto frontier in perplexity, memory, and inference latency across multiple hardware platforms relative to the evaluated baselines. These results show that structured learning can translate elastic compressibility into reduced memory requirements and lower inference latency, enabling practical deployment of large models on edge devices.",
+      "abs": "http://arxiv.org/abs/2610.31897v1",
+      "pdf": "https://arxiv.org/pdf/2610.31897v1"
+    },
+    "stage": "parse",
+    "errors": [
+      {
+        "type": "OutputParserException",
+        "message": "Function BriefAnalysis arguments:\n\n{\"category\": \"EXCLUDE\", \"priority\": \"NONE\", \"brief_summary\": 该文提出 S-SALAAD 框架，在训练中联合学习权重及其低秩与结构化稀疏分量，并配套 CPU/GPU 内核，以实现单个 checkpoint 在多内存预算下的高效压缩推理。, \"relevance_reason\": \"工作聚焦于大模型压缩与部署加速（稀疏模式、内存预算、推理延迟），不涉及视觉或多模态推理状态、证据使用或停止决策，也未提供可迁移到 LVR 的内部表示或状态更新线索。\"}\n\nare not valid JSON. Received JSONDecodeError Expecting value: line 1 column 62 (char 61)\nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/OUTPUT_PARSING_FAILURE \nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/OUTPUT_PARSING_FAILURE "
+      }
+    ],
+    "attempt_count": 1,
+    "raw_response": {
+      "content": "",
+      "tool_calls": [
+        {
+          "id": "call_00_gh8r8vjoet10h2pve2i7x38u",
+          "function": {
+            "arguments": "{\"category\": \"EXCLUDE\", \"priority\": \"NONE\", \"brief_summary\": 该文提出 S-SALAAD 框架，在训练中联合学习权重及其低秩与结构化稀疏分量，并配套 CPU/GPU 内核，以实现单个 checkpoint 在多内存预算下的高效压缩推理。, \"relevance_reason\": \"工作聚焦于大模型压缩与部署加速（稀疏模式、内存预算、推理延迟），不涉及视觉或多模态推理状态、证据使用或停止决策，也未提供可迁移到 LVR 的内部表示或状态更新线索。\"}",
+            "name": "BriefAnalysis"
+          },
+          "type": "function"
+        }
+      ],
+      "parsed_tool_calls": [],
+      "invalid_tool_calls": [
+        {
+          "name": "BriefAnalysis",
+          "args": "{\"category\": \"EXCLUDE\", \"priority\": \"NONE\", \"brief_summary\": 该文提出 S-SALAAD 框架，在训练中联合学习权重及其低秩与结构化稀疏分量，并配套 CPU/GPU 内核，以实现单个 checkpoint 在多内存预算下的高效压缩推理。, \"relevance_reason\": \"工作聚焦于大模型压缩与部署加速（稀疏模式、内存预算、推理延迟），不涉及视觉或多模态推理状态、证据使用或停止决策，也未提供可迁移到 LVR 的内部表示或状态更新线索。\"}",
+          "id": "call_00_gh8r8vjoet10h2pve2i7x38u",
+          "error": "Function BriefAnalysis arguments:\n\n{\"category\": \"EXCLUDE\", \"priority\": \"NONE\", \"brief_summary\": 该文提出 S-SALAAD 框架，在训练中联合学习权重及其低秩与结构化稀疏分量，并配套 CPU/GPU 内核，以实现单个 checkpoint 在多内存预算下的高效压缩推理。, \"relevance_reason\": \"工作聚焦于大模型压缩与部署加速（稀疏模式、内存预算、推理延迟），不涉及视觉或多模态推理状态、证据使用或停止决策，也未提供可迁移到 LVR 的内部表示或状态更新线索。\"}\n\nare not valid JSON. Received JSONDecodeError Expecting value: line 1 column 62 (char 61)\nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/OUTPUT_PARSING_FAILURE ",
+          "type": "invalid_tool_call"
+        }
+      ],
+      "finish_reason": "tool_calls"
+    }
+  },
+  {
+    "paper_id": "2610.31835",
+    "input": {
+      "id": "2610.31835",
+      "title": "SAGE: A hybrid vision-language and geometry framework for work-zone pathway prediction under temporary traffic control",
+      "authors": [
+        "Jiaxi Liu",
+        "Keshu Wu",
+        "Weizhe Tang",
+        "Bofeng Cao",
+        "Sikai Chen",
+        "Xiaopeng Li",
+        "Steven T. Parker",
+        "Bin Ran"
+      ],
+      "categories": [
+        "cs.CV",
+        "cs.RO"
+      ],
+      "comment": "26 pages, 9 figures, 7 tables. Project page: https://hhjj233.github.io/SAGE-page/",
+      "summary": "Temporary traffic control redirects vehicles through work zones, requiring automated vehicles to connect an interpretation of the visible devices to a continuous passing path. Geometric predictors can provide several plausible paths, yet selecting the one consistent with the temporary control remains difficult. We propose SAGE (Semantic-to-Action Grounded Execution), a read-decide-execute-check framework that separates path construction, path preference, and control compliance within a shared candidate space. The central idea is to use a vision-language model's (VLM's) trajectory as a preference over intact geometric candidates. A role-decoupled generator constructs the candidates, and rank fusion combines each candidate's geometric score with its agreement with the VLM trajectory. Supervision structured around the Manual on Uniform Traffic Control Devices (MUTCD) trains SAGE-VLM to state the lane status and hazard side before its passage decision and trajectory. The predicted hazard side enters image-space predicates derived from MUTCD provisions, which support a final intervention bounded in score and displacement. On 2,306 real-world ROADWork validation episodes, the candidates include a path within 10 px of the human demonstration in 87% of episodes, yet selection regret accounts for 53% of the geometric ranker's error. SAGE reduces average and final displacement errors by 8.3% and 12.0% relative to the ranker, mostly in the far field, and hard-constraint violations by 37%. The trajectory opinion improves all four tested generator-selector combinations. SAGE is comparable to state-of-the-art VLM modules in accuracy, with a faster-responding VLM, and outperforms four other adapted driving VLMs in displacement error and safety measures. Project page: https://hhjj233.github.io/SAGE-page/.",
+      "abs": "http://arxiv.org/abs/2610.31835v1",
+      "pdf": "https://arxiv.org/pdf/2610.31835v1"
+    },
+    "stage": "parse",
+    "errors": [
+      {
+        "type": "OutputParserException",
+        "message": "Function BriefAnalysis arguments:\n\n{\"category\": \"METHOD\", \"priority\": \"P2\", \"brief_summary\": \"提出 SAGE，将 VLM 输出的轨迹作为对几何候选路径的偏好，用角色解耦生成器构造候选并以 rank fusion 融合几何分数与 VLM 轨迹一致性，同时按 MUTCD 规则监督模型先陈述车道状态与危险侧、再给出通行决策与轨迹，最后用图像空间谓词做有界修正。\", \"relevance_reason\": \"其\n\nare not valid JSON. Received JSONDecodeError Unterminated string starting at: line 1 column 214 (char 213)\nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/OUTPUT_PARSING_FAILURE \nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/OUTPUT_PARSING_FAILURE "
+      }
+    ],
+    "attempt_count": 1,
+    "raw_response": {
+      "content": "",
+      "tool_calls": [
+        {
+          "id": "call_00_f31ss550kz02cku0tbps3axa",
+          "function": {
+            "arguments": "{\"category\": \"METHOD\", \"priority\": \"P2\", \"brief_summary\": \"提出 SAGE，将 VLM 输出的轨迹作为对几何候选路径的偏好，用角色解耦生成器构造候选并以 rank fusion 融合几何分数与 VLM 轨迹一致性，同时按 MUTCD 规则监督模型先陈述车道状态与危险侧、再给出通行决策与轨迹，最后用图像空间谓词做有界修正。\", \"relevance_reason\": \"其",
+            "name": "BriefAnalysis"
+          },
+          "type": "function"
+        }
+      ],
+      "parsed_tool_calls": [],
+      "invalid_tool_calls": [
+        {
+          "name": "BriefAnalysis",
+          "args": "{\"category\": \"METHOD\", \"priority\": \"P2\", \"brief_summary\": \"提出 SAGE，将 VLM 输出的轨迹作为对几何候选路径的偏好，用角色解耦生成器构造候选并以 rank fusion 融合几何分数与 VLM 轨迹一致性，同时按 MUTCD 规则监督模型先陈述车道状态与危险侧、再给出通行决策与轨迹，最后用图像空间谓词做有界修正。\", \"relevance_reason\": \"其",
+          "id": "call_00_f31ss550kz02cku0tbps3axa",
+          "error": "Function BriefAnalysis arguments:\n\n{\"category\": \"METHOD\", \"priority\": \"P2\", \"brief_summary\": \"提出 SAGE，将 VLM 输出的轨迹作为对几何候选路径的偏好，用角色解耦生成器构造候选并以 rank fusion 融合几何分数与 VLM 轨迹一致性，同时按 MUTCD 规则监督模型先陈述车道状态与危险侧、再给出通行决策与轨迹，最后用图像空间谓词做有界修正。\", \"relevance_reason\": \"其\n\nare not valid JSON. Received JSONDecodeError Unterminated string starting at: line 1 column 214 (char 213)\nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/OUTPUT_PARSING_FAILURE ",
+          "type": "invalid_tool_call"
+        }
+      ],
+      "finish_reason": "length"
+    }
+  },
+  {
+    "paper_id": "2610.31778",
+    "input": {
+      "id": "2610.31778",
+      "title": "Benchmarks Are Surprisingly Compaction-Friendly",
+      "authors": [
+        "Jeanne Salle",
+        "Hardik Bhatnagar",
+        "Matthias Bethge",
+        "Sahar Abdelnabi",
+        "Maksym Andriushchenko"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "comment": "25 pages, 11 figures",
+      "summary": "Long horizon agentic tasks are now pushing LLM agents past their context window. To continue the task, the agent scaffold has to free up the context window, a process known as context compaction. Compaction is generally lossy by design: agents can silently lose task constraints, instructions, or their reasoning behind earlier decisions. Although compaction is a standard component of coding agent scaffolds, it has not been studied systematically with frontier models on realistic, long horizon agentic tasks. Previous work evaluate smaller open weight models on toy or synthetic trajectories. We fix the agent scaffold (OpenCode), implement five compaction strategies inside it, and evaluate three frontier models on three long horizon benchmarks (PaperBench, ProgramBench, PostTrainBench). For the two 1M context models, the compaction threshold does not measurably affect the task performance, whereas GPT-5.3-Codex, the model with the smallest context window, performs worse at lower thresholds on PaperBench and, less clearly, on PostTrainBench. No compaction method outperforms default self-summarization, and methods that discard more content cost some models up to 20 points while leaving other models the same. Compaction can, however, silently remove task constraints: on ProgramBench, the first compaction summary already drops about one third of the task's anticheating rules on average, and this rises monotonically with the number of compactions. On real user-agent sessions from SWE-chat, instructions about how the agent should work and what it should not do are dropped around 6 times more than specifications of what to build. We argue that current benchmarks are compaction-friendly: i.e., the objective is fixed and the agent's progress stays on disk, so most of what compaction discards can be recovered, except constraints that don't exist anywhere else.",
+      "abs": "http://arxiv.org/abs/2610.31778v1",
+      "pdf": "https://arxiv.org/pdf/2610.31778v1"
+    },
+    "stage": "parse",
+    "errors": [
+      {
+        "type": "OutputParserException",
+        "message": "Function BriefAnalysis arguments:\n\n{\"category\">METHOD</｜DSML｜: \"在固定的 OpenCode scaffold 内实现五种 context compaction 策略，用三个前沿模型在三个长程 agent benchmark 上评测压缩阈值与策略对任务表现的影响，并统计压缩摘要丢失任务约束的比例。\", \"relevance_reason\": \"其「多种状态压缩策略 + 量化哪些任务必要约束被丢弃、哪些可从外部恢复」的度量方式，可供核查 latent/工作区状态压缩中的信息坍缩与必要信息保留评价，但对象是文本上下文而非视觉 latent，迁移性待判断。\"}\n\nare not valid JSON. Received JSONDecodeError Expecting ':' delimiter: line 1 column 12 (char 11)\nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/OUTPUT_PARSING_FAILURE \nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/OUTPUT_PARSING_FAILURE "
+      }
+    ],
+    "attempt_count": 1,
+    "raw_response": {
+      "content": "",
+      "tool_calls": [
+        {
+          "id": "call_00_ouopeq1xicaboameg1fdzsx5",
+          "function": {
+            "arguments": "{\"category\">METHOD</｜DSML｜: \"在固定的 OpenCode scaffold 内实现五种 context compaction 策略，用三个前沿模型在三个长程 agent benchmark 上评测压缩阈值与策略对任务表现的影响，并统计压缩摘要丢失任务约束的比例。\", \"relevance_reason\": \"其「多种状态压缩策略 + 量化哪些任务必要约束被丢弃、哪些可从外部恢复」的度量方式，可供核查 latent/工作区状态压缩中的信息坍缩与必要信息保留评价，但对象是文本上下文而非视觉 latent，迁移性待判断。\"}",
+            "name": "BriefAnalysis"
+          },
+          "type": "function"
+        }
+      ],
+      "parsed_tool_calls": [],
+      "invalid_tool_calls": [
+        {
+          "name": "BriefAnalysis",
+          "args": "{\"category\">METHOD</｜DSML｜: \"在固定的 OpenCode scaffold 内实现五种 context compaction 策略，用三个前沿模型在三个长程 agent benchmark 上评测压缩阈值与策略对任务表现的影响，并统计压缩摘要丢失任务约束的比例。\", \"relevance_reason\": \"其「多种状态压缩策略 + 量化哪些任务必要约束被丢弃、哪些可从外部恢复」的度量方式，可供核查 latent/工作区状态压缩中的信息坍缩与必要信息保留评价，但对象是文本上下文而非视觉 latent，迁移性待判断。\"}",
+          "id": "call_00_ouopeq1xicaboameg1fdzsx5",
+          "error": "Function BriefAnalysis arguments:\n\n{\"category\">METHOD</｜DSML｜: \"在固定的 OpenCode scaffold 内实现五种 context compaction 策略，用三个前沿模型在三个长程 agent benchmark 上评测压缩阈值与策略对任务表现的影响，并统计压缩摘要丢失任务约束的比例。\", \"relevance_reason\": \"其「多种状态压缩策略 + 量化哪些任务必要约束被丢弃、哪些可从外部恢复」的度量方式，可供核查 latent/工作区状态压缩中的信息坍缩与必要信息保留评价，但对象是文本上下文而非视觉 latent，迁移性待判断。\"}\n\nare not valid JSON. Received JSONDecodeError Expecting ':' delimiter: line 1 column 12 (char 11)\nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/OUTPUT_PARSING_FAILURE ",
+          "type": "invalid_tool_call"
+        }
+      ],
+      "finish_reason": "length"
+    }
+  },
+  {
+    "paper_id": "2610.31765",
+    "input": {
+      "id": "2610.31765",
+      "title": "SyncVid: World-Equivariant Diffusion for Synchronized Video Generation",
+      "authors": [
+        "Farhad G. Zanjani",
+        "Animesh Karnewar",
+        "Fatih Porikli",
+        "Amirhossein Habibian"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "comment": "28 pages, 8 figures, 9 tables. Project page: https://qualcomm-ai-research.github.io/SyncVid-Webpage",
+      "summary": "Generating multiple videos of a dynamic scene from a single reference video requires synthesizing both observed and unobserved content consistently across viewpoints. Existing camera-control methods for video diffusion typically rely on architectural mechanisms, including camera embeddings, cross-view attention, and geometric conditioning. Although effective for static scene content, these approaches often struggle with the fine-grained, dynamic geometry that must remain coherent across views and over time. We synchronize the diffusion process itself by sampling the Gaussian noise prior in a canonical 3D space derived from the source video and rasterizing it into target cameras, rather than sampling independently in each 2D image plane. Our method, SyncVid, lifts a monocular video into a canonical 4D representation, associates noise with scene geometry and unseen space, and rasterizes the resulting structured noise into arbitrary views. Because rendering can introduce local correlations, we further propose a cross-view-consistent whitening procedure that decorrelates neighboring pixels while preserving correspondence across views. The structured noise serves as the diffusion prior for a LoRA-adapted pretrained video diffusion model, requiring no architectural modifications. By enforcing spatiotemporal and cross-view coherence at the source of stochasticity, SyncVid generates synchronized videos and improves both perceptual quality and cross-view consistency in our experiments. Project page: https://qualcomm-ai-research.github.io/SyncVid-Webpage.",
+      "abs": "http://arxiv.org/abs/2610.31765v1",
+      "pdf": "https://arxiv.org/pdf/2610.31765v1"
+    },
+    "stage": "parse",
+    "errors": [
+      {
+        "type": "OutputParserException",
+        "message": "Function BriefAnalysis arguments:\n\n{\"category\": \"EX\n\nare not valid JSON. Received JSONDecodeError Unterminated string starting at: line 1 column 14 (char 13)\nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/OUTPUT_PARSING_FAILURE \nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/OUTPUT_PARSING_FAILURE "
+      }
+    ],
+    "attempt_count": 1,
+    "raw_response": {
+      "content": "",
+      "tool_calls": [
+        {
+          "id": "call_00_3o2dhaaudqtsof200w87rgts",
+          "function": {
+            "arguments": "{\"category\": \"EX",
+            "name": "BriefAnalysis"
+          },
+          "type": "function"
+        }
+      ],
+      "parsed_tool_calls": [],
+      "invalid_tool_calls": [
+        {
+          "name": "BriefAnalysis",
+          "args": "{\"category\": \"EX",
+          "id": "call_00_3o2dhaaudqtsof200w87rgts",
+          "error": "Function BriefAnalysis arguments:\n\n{\"category\": \"EX\n\nare not valid JSON. Received JSONDecodeError Unterminated string starting at: line 1 column 14 (char 13)\nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/OUTPUT_PARSING_FAILURE ",
+          "type": "invalid_tool_call"
+        }
+      ],
+      "finish_reason": "length"
+    }
+  }
+]

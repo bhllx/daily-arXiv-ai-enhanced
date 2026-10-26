@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.32794",
+  "input_sha256": "2105505db530c185a9407dc7aa990dd61215a92e74f5c33dd2de71ae385d021c",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-26T19:32:55.307330+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1780,
+        "output_tokens": 463,
+        "total_tokens": 2243,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 286
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.32794",
+    "title": "Consommé: Conditioned Token Merging for Split Inference",
+    "authors": [
+      "Man Ngo",
+      "Jan S. Rellermeyer"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": null,
+    "summary": "Split inference partitions a Vision Transformer between a resource-constrained edge device and a server. However, transmitting intermediate tokens across the communication channel is costly. Deploying fine-tuned backbones to every endpoint becomes expensive as well. We study token reduction for split inference under a frozen backbone, where only a small adapter is shipped. We observe that the CLS token plays a dual role: it acts as the global summary the receiver needs for classification, and it serves as a signal on which patches to keep. We propose Consommé, a method utilizing both characteristics. There, an information bottleneck compresses the CLS token into a compact latent which is transmitted in place of the full CLS token and conditions a learned patch gate merging patches into exactly $k$ tokens via soft assignment. It reaches any budget in a single step, thus escaping the per-layer cap of bipartite matching (BPM). On DeiT-S/T, it leads all methods at aggressive token budgets and remains operable at shallow splits where BPM cannot operate, while matching fine-tuned methods at gentle budgets at a fraction of their deployment cost.",
+    "abs": "http://arxiv.org/abs/2610.32794v1",
+    "pdf": "https://arxiv.org/pdf/2610.32794v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "研究冻结 ViT 主干下 split inference 的 token 缩减：用信息瓶颈把 CLS 压缩为紧凑 latent 传输，并以其为条件学习 patch gate，通过软分配一步合并到任意 k 个 token。",
+      "relevance_reason": "「压缩后的 latent 作为条件信号筛选视觉 token」可能与 LVR 的内部状态瓶颈、视觉证据筛选和计算预算控制相关，可供核查；但其目标主要是通信效率而非推理机制。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-26T19:32:55.307330+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}
