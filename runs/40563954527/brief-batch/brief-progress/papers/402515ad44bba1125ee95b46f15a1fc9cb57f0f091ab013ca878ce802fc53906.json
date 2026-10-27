@@ -1,0 +1,73 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.35303",
+  "input_sha256": "c608c8a8853132f61ffd682b219ef1b9143c5b15f0d620dbb6dfb1bc1803dc2d",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-27T18:59:03.927962+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1877,
+        "output_tokens": 716,
+        "total_tokens": 2593,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 493
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.35303",
+    "title": "InterQ-RL: Interaction-Aware Correction of Execution Mismatch in Quantized Agentic RL",
+    "authors": [
+      "Yingbo Hao",
+      "Song Liu",
+      "Guanghua Yu",
+      "Zhaojing Zhou",
+      "Jianchen Zhu",
+      "Yi Zou"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Multi-turn agent reinforcement learning (RL) relies on long closed-loop rollouts, making generation and KV-cache costs a major bottleneck. Quantized rollout reduces these costs, but its low-precision executor also serves as the behavior policy and can induce execution mismatch with the learner. Existing quantized-RL methods are designed primarily for single-turn generation. They align the learner forward with quantized rollout or correct the current-token rollout-learner ratio, without modeling the policy history that produces each agent state. Even after quantization alignment, residual rollout-learner mismatch accumulates along the state-reaching policy history, so a current action may look locally aligned despite a mismatched history. We introduce InterQ-RL (Interaction-aware Quantized Reinforcement Learning) to correct this post-alignment mismatch. It applies bounded execution-prefix correction over the state-reaching policy history, allocates correction strength across action segments by effective support under a fixed displacement budget, and requires no additional model forward pass. We evaluate dense and mixture-of-experts (MoE) backbones from 4B to 30B on ALFWorld, WebShop, and ScienceWorld, with all quantized arms sharing the same rollout with 8-bit weights, activations, and KV cache (W8A8-KV8). Across four environment-backbone settings, InterQ-RL achieves the strongest quantized endpoint result, matching BF16 to within 0.7 points and exceeding it in two settings. It matches or exceeds the learning speed of alignment alone while avoiding its late performance regression.",
+    "abs": "http://arxiv.org/abs/2610.35303v1",
+    "pdf": "https://arxiv.org/pdf/2610.35303v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文关注量化多轮 agent RL 中 8-bit 权重、激活与 KV cache rollout 与 learner 之间沿状态历史累积的执行失配，提出 InterQ-RL：在状态达成策略历史上做有界前缀校正，按有效支撑在固定位移预算内分配校正强度，且不增加额外前向。",
+      "relevance_reason": "其「KV cache 与低精度 rollout 使行为策略偏离 learner、且失配随历史累积」的观察，可能可供核查 LVR 中 latent 轨迹训练的信号归因与缓存精度对内部状态保真度的影响；但论文无视觉或 latent 推理实验，借鉴点需较多核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-27T18:59:03.927962+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

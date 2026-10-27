@@ -1,0 +1,71 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.34056",
+  "input_sha256": "7d5826dbc4a374b82d7864367051026c4176bb5dc5dc6545dc43a77d4558b636",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-27T19:10:30.150696+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1884,
+        "output_tokens": 640,
+        "total_tokens": 2524,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 437
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.34056",
+    "title": "INTRA: Interleaved Non-contiguous Token spaRse Attention",
+    "authors": [
+      "Yuxuan Xia",
+      "Wenbo Lu",
+      "Shaoyi Zheng",
+      "Shengjie Wang"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": "26 pages, 8 figures, including appendices. Code: https://github.com/NovTi/INTRA",
+    "summary": "Transformers achieve strong performance across modalities but are bottlenecked by the quadratic cost of attention. Sparse attention can reduce this cost, but effective sparsity must preserve useful long-range communication and map well to GPU hardware. We introduce INTRA--Interleaved Non-contiguous Token spaRse Attention--a hardware-aware static sparse attention design based on a relay-communication view under Computational Query Set (CQS) constraints. Rather than directly covering all token-to-token interactions within each sparse layer, INTRA uses complementary sparse groups to provide short mediated communication paths across layers. Scatter forms relay groups that sample broadly across local neighborhoods, while Gather reconnects these groups in subsequent layers. Under a partition model, this structure guides CQS-compatible sparse patterns with global reachability. Our CQS-aware FlashAttention-style kernel computes structured indices at runtime, loads selected non-contiguous tokens, and packs them densely for computation. On an A100, INTRA achieves a $1.53\\times$ speedup in $2K$ FLUX.1-dev generation, with better measured image quality than evaluated CLEAR configurations after LoRA self-distillation. On LLaMA-3.1-8B, it improves long-context prefill efficiency with strong teacher-forced retrieval performance under matched LoRA adaptation. Attention-only benchmarks further show up to $8.4\\times$ and $10.4\\times$ speedups over MoBA and density-constrained NSA, respectively.",
+    "abs": "http://arxiv.org/abs/2610.34056v1",
+    "pdf": "https://arxiv.org/pdf/2610.34056v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "提出 INTRA 这一硬件感知的静态稀疏注意力设计：用 Scatter/Gather 互补稀疏组在层间搭建短程中继通信路径，并配套可在运行时生成结构化索引的 CQS-aware FlashAttention 核，在 FLUX.1-dev 生成与 LLaMA 长上下文预填上取得加速。",
+      "relevance_reason": "稀疏模式直接规定了跨层长程信息通路与注意力结构，可能作为核查「视觉细节与证据能否保留在内部状态中」的对照变量，但论文未涉及多模态推理，线索需较多核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-27T19:10:30.150696+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

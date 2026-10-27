@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.35710",
+  "input_sha256": "55555f0b190b6599022635b42e7689ba61ad2c1b9c4a319794e1d1bf59633e3e",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-27T18:55:42.836225+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1942,
+        "output_tokens": 899,
+        "total_tokens": 2841,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 663
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.35710",
+    "title": "Detecting bus delays and service anomalies in Niterói with autoencoder latent feature representations",
+    "authors": [
+      "Matheus Germano",
+      "Claudio E. C. Campelo"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": "14 pages, 9 figures, 11 tables. Full report for the NetMob 2026 Data Challenge (Niterói, Brazil). Winner of the Best Poster award",
+    "summary": "Bus riders judge service by two failures: single trips that run late, and days on which the whole system misbehaves. We ask whether one unsupervised representation of raw GPS telemetry can serve both diagnoses on the NetMob 2026 Niterói bus dataset. An autoencoder compresses each trip into a 64-dimensional latent vector; the frozen encoder feeds supervised delay classifiers, and the reconstruction error serves as an anomaly score. Two findings are negative. First, the latent representation does not improve delay detection: gradient boosting on per-trip summary features reaches $0.846 \\pm 0.013$ ROC-AUC against $0.838 \\pm 0.016$ for the best latent setup, and the gap becomes significant once the preprocessing filters are relaxed. Second, two of the three external checks of the anomaly score were circular. Retraining without rainfall removes the rain association ($5.4\\%$ against $5.0\\%$ flagged, $p = 0.84$) and an apparent citywide disruption on 23 March. What survives is a day-level signal stable across three autoencoders (Spearman $ρ\\geq 0.96$), driven mostly by day type, with degraded-telemetry days still separable within weekday and weekend strata. The alarm threshold limits detection more than the score does: a pooled percentile cut flags $5.7\\%$ of trips on the worst degraded day, while re-scaling within each bus line flags $29.3\\%$. The delay model rests almost entirely on one feature, no latent dimension is individually interpretable, and 22 chronic line-directions carry half of all delayed trips.",
+    "abs": "http://arxiv.org/abs/2610.35710v1",
+    "pdf": "https://arxiv.org/pdf/2610.35710v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "该论文用自编码器把 Niterói 公交的原始 GPS 行程压缩为 64 维 latent 向量，冻结编码器后接监督式延误分类器、以重构误差作异常分数，检验同一无监督表示能否同时支撑单趟延误与系统级异常诊断；结果多为负向。",
+      "relevance_reason": "其负结果——latent 未优于人工汇总特征（0.838 对 0.846 ROC-AUC）、且判决阈值比异常分数更决定检出率——可能与 LVR 中「latent 是否真正携带额外信息」及停止/判决机制的评估设计形成间接对照，但领域相距较远，仅供核查其消融与阈值设置。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-27T18:55:42.836225+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

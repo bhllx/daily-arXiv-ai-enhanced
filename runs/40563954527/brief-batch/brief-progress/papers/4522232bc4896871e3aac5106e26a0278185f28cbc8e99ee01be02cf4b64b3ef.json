@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.35023",
+  "input_sha256": "454cb18c35ba5a496557cd644665ee1461f0d795b34f8cbedde13f377719b650",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-27T19:01:51.759651+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1967,
+        "output_tokens": 634,
+        "total_tokens": 2601,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 411
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.35023",
+    "title": "BellowsKV: One Latent for Many Layers, Expanded on Demand",
+    "authors": [
+      "Jiamu Zhang",
+      "Hanjie Chen"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Large language models (LLMs) now serve as the backbone of agents that reason over many turns, call tools, and pursue long-horizon tasks. To avoid recomputation, a model stores the attention keys and values of all past tokens in a key-value (KV) cache. Each layer maintains its own cache, so KV-cache memory can become the main bottleneck for GPU serving. Most compression methods operate within a single layer, by quantizing the cache entries, reducing the channel dimension, or evicting less important tokens. All three lose substantial accuracy at high compression ratios. Cross-layer methods share one compressed cache across adjacent layers to go beyond this limit. However, these methods also degrade sharply at high compression ratios. We find that the KV-cache representations of adjacent layers are quite different, whereas the input hidden states of adjacent layers are highly similar. We also find that, under the same memory budget, reducing the dimension of this shared latent loses far more accuracy than quantizing it. Based on these findings, we propose BellowsKV, a training-free method that maps the hidden states of n adjacent layers to one shared latent per token. At inference time, each layer reads its own keys and values from this latent through a layer-specific projection. We keep the latent at full dimension and compress it in two other ways: BellowsKV-Quant stores the latent at low precision, which is nearly lossless because the latent has no dominant outlier channels; BellowsKV-Evict makes one shared eviction decision per block, because the layers rank token importance very similarly. Across Llama-3.1-8B, Mistral-7B and Qwen2.5-7B, BellowsKV-Quant retains about 99% of full-cache accuracy at 3.6x compression and 97-98% at 13-14x, where the strongest cross-layer method retains at most 84% at 16x. Code: https://github.com/MorrisZJ/BellowsKV",
+    "abs": "http://arxiv.org/abs/2610.35023v1",
+    "pdf": "https://arxiv.org/pdf/2610.35023v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "该文提出无训练的 KV-cache 压缩方法：把相邻 n 层的输入隐状态映射为每个 token 一个共享 latent，各层再通过层专属投影读出自己的 key/value，并选择低精度存储或块级统一逐出，在多个 7–8B 模型上以 3.6–14 倍压缩保持大部分精度。",
+      "relevance_reason": "其发现「相邻层隐状态高度相似而 KV 表示差异显著」、且共享 latent 降维比量化更伤精度，可能为 LVR 中跨层 latent 状态复用与维度/精度取舍提供可核查线索，但与视觉推理本身无直接联系。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-27T19:01:51.759651+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

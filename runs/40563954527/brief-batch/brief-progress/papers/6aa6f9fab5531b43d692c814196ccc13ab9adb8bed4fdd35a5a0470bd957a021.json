@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.33695",
+  "input_sha256": "999878066558b72953af7fa79bbeef0511002120889a7a2efc6e135927e94d66",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-27T19:13:51.496914+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1862,
+        "output_tokens": 526,
+        "total_tokens": 2388,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 309
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.33695",
+    "title": "Scalable Unrolled Chains for MRI Reconstruction",
+    "authors": [
+      "Emiljo Mëhillaj",
+      "Ender Konukoglu"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": "23 pages (including supplementary material), 14 figures. Accepted at WACV 2027",
+    "summary": "Unrolled variational networks achieve state-of-the-art performance for accelerated MRI reconstruction, but standard end-to-end training becomes prohibitively memory intensive as the number and width of cascades increase. We propose a memory-efficient training framework that updates a randomly sampled cascade while retaining supervision from the final reconstruction loss. The error signal is propagated from the end of the chain to the sampled cascade using an activation-light backward pass that avoids storing full chain activations, thereby decoupling training memory from chain length. A time-conditioned network shared across cascades further keeps the parameter count independent of chain length. The backward pass is approximate only through frozen normalization statistics, and a trained exact gradient control shows the approximation leaves reconstruction quality unchanged. The framework remains trainable at chain lengths and cascade widths where standard end-to-end backpropagation exhausts GPU memory. On fastMRI single-coil knee and multi-coil brain reconstruction, our method consistently outperforms other local training approaches. On high-SNR knee slices, our method surpasses E2E-VarNet at $8\\times$ and matches it at $4\\times$, while on the complete brain validation set it surpasses E2E-VarNet at $8\\times$ and achieves comparable performance at $4\\times$, with fewer parameters, lower peak memory, and faster per-iteration training. Code is available at https://github.com/emehillaj/scalable-unrolled-mri.",
+    "abs": "http://arxiv.org/abs/2610.33695v1",
+    "pdf": "https://arxiv.org/pdf/2610.33695v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P1",
+      "brief_summary": "该论文面向加速 MRI 重建的展开式变分网络，提出随机采样单个 cascade 并仍从最终重建损失回传梯度的省显存训练框架，配合不存储整链激活的轻量反向传播与跨 cascade 共享的时间条件网络，使训练显存与参数量不随链长增长。",
+      "relevance_reason": "其「长迭代链 + 时间条件共享参数 + 局部采样监督仍用终局损失」的做法，可能为 VLM 循环式 latent 推理的链长扩展、贡献分配与训练成本提供可核查线索，但本身不涉及视觉推理或 latent 状态分析。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-27T19:13:51.496914+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

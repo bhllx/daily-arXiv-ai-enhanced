@@ -1,0 +1,75 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.33769",
+  "input_sha256": "703d9c434ea4967f677c1d21a7372a93886be0533bf5ef53b481da6e99f45962",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-27T19:13:15.415131+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1893,
+        "output_tokens": 637,
+        "total_tokens": 2530,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 430
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.33769",
+    "title": "CFL-aware edge design for graph neural solvers of hyperbolic transport",
+    "authors": [
+      "Jinyoung Jeong",
+      "Joseph B. Choi",
+      "Xinlun Cheng",
+      "H. S. Udaykumar",
+      "Sanghun Choi",
+      "Stephen S. Baek"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.AI",
+      "physics.flu-dyn"
+    ],
+    "comment": null,
+    "summary": "Hyperbolic partial differential equations (PDEs) transport information at finite speed along characteristics, often producing shocks and discontinuities that are challenging to capture numerically. Graph neural networks (GNNs) offer learned update rules, but neighbor aggregation alone does not tell a GNN how far information must travel and along which edge. As a result, when a GNN model takes a time step larger than what was used in training, shock fronts smear and oscillations grow. In this work, we ask whether making the scale of transport explicit as an edge-local Courant-Friedrichs-Lewy (CFL) signal can enhance GNNs' ability to model hyperbolic PDEs. Holding the architecture fixed, we vary only the information given to each edge, from a raw edge form to forms that progressively expose the edge-local transport interaction through direction, length, and wave speed. Because all of these are computed from the same ingredients, what changes is not the amount of information but its form. The results show a consistent pattern, in which feature count is not the limiting factor, and appending CFL directly to a raw edge form produces almost no benefit. The CFL conditioning proves most effective when the edge information already exposes the transport interaction, reducing final-step error by 10.4-14.4%, and the improvement widens as the step size grows larger. Notably, this improvement arises not from smearing the solution but from suppressing oscillations near shocks. These results point to a specific design principle that CFL conditioning is most effective when the edge representation already separates the direction of interaction from spatial scale, so that the CFL value has a well-defined quantity to modulate.",
+    "abs": "http://arxiv.org/abs/2610.33769v1",
+    "pdf": "https://arxiv.org/pdf/2610.33769v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文在架构固定的前提下，把边局部 CFL 信号以不同形式加入 GNN 的边特征，用于求解双曲型 PDE，考察其对超出训练步长时激波振荡与误差的影响；在边表示已分离方向与尺度时，末步误差降低约 10.4–14.4%。",
+      "relevance_reason": "其核心线索是把消息传递的传播尺度显式编码在边上，以改善训练外大步长的泛化，可能为 LVR 中 latent 状态传播范围、尺度信息形式及长度泛化的设计提供可供核查的借鉴。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-27T19:13:15.415131+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

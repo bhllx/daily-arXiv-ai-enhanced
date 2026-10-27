@@ -1,0 +1,68 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.34566",
+  "input_sha256": "d0f1ce25cf469c43923891527d9cd29146bc73b5627dbcb239d907b0bb9eda3c",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-27T19:06:46.146171+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 2043,
+        "output_tokens": 716,
+        "total_tokens": 2759,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 490
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.34566",
+    "title": "Error Diffusion Replaces Latent Weights: Training Binary-Weight Language Models on a Few Bits of Dithered State",
+    "authors": [
+      "Pierre-Olivier Bonin"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": "Accepted at SLM-Agents: 1st Workshop on SLMs for Agentic Systems, NeurIPS 2026, Paris, France. 16 pages, 4 figures. Code: https://github.com/pierreolivierbonin/error-diffusion-binary-weight-lms",
+    "summary": "Binary-weight language models store one bit per weight, but training them keeps a full-precision latent copy of each weight plus Adam state, about 96 extra bits per weight, so a deployed binary model cannot be adapted on the device that runs it. We replace the latent weight with a 2-8-bit residual buffer quantized by stochastic rounding, which cuts the training state per weight from 97 bits to 3-9, up to 19x less. The resulting error-diffusion (ED) optimizer moves the residual-carrying loop of image halftoning onto the weight-update path. Each buffer accumulates the unrealized part of every update and flips the weight when the accumulated value crosses a threshold, and it works only when its quantization grid has a level exactly at that threshold. Under this threshold-alignment rule, 4-bit buffers match 8-bit buffers on a binary multilayer perceptron benchmark, and the same rule lifts a different latent-free optimizer, Bop, from a 10-point deficit at 4 bits to full-precision accuracy. On character-level transformers with 97% of parameters binary, ED trains within 5-11% of the latent-weight reference at a 2,000-step budget and within 1.7% at convergence. On scaling ladders over enwik8 and wikitext-103, up to 19M parameters on enwik8 (70M with the wikitext-103 embeddings), the latent-free loss stays within -2.3% to +2.9% of the reference at all six sizes once a per-step cap on the buffer update removes a launch instability; without the cap it trails by 10% at the largest tokenized size. A deployed binary model continues training under ED at one tenth of the latent training state, matching latent-weight continuation, and a fused CPU kernel completes the adaptation within a 275 MB training-memory budget, which latent-weight training cannot. A 250-step probe sets the flip learning rate at any new scale.",
+    "abs": "http://arxiv.org/abs/2610.34566v1",
+    "pdf": "https://arxiv.org/pdf/2610.34566v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "该文用 2–8-bit 随机舍入残差缓冲替代二值权重训练中的全精度 latent 权重与 Adam 状态，把图像半色调的误差扩散搬到权重更新路径，在 MLP、字符级 Transformer 及 enwik8/wikitext-103 规模阶梯上验证其精度接近 latent 权重参考，并支持设备端继续训练。",
+      "relevance_reason": "其「残差累积—阈值翻转」的无 latent 状态更新与阈值对齐规则，可能为 LVR 中如何以低精度缓冲维持和更新 latent 推理状态提供借鉴线索；但该方法面向训练优化而非推理期状态生成，需核查可迁移性。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-27T19:06:46.146171+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

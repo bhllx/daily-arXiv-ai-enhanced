@@ -1,0 +1,71 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.33483",
+  "input_sha256": "ce0fb6de313df3d3aafdee81daad2309883defe7db2a153d4fe083912d4d3e8d",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-27T19:16:12.141399+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1781,
+        "output_tokens": 552,
+        "total_tokens": 2333,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 318
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.33483",
+    "title": "Error-Subspace Calibration for Multi-Task Model Merging",
+    "authors": [
+      "Yeseul Cho",
+      "Hanseul Cho",
+      "Chulhee Yun"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.AI"
+    ],
+    "comment": "25 pages",
+    "summary": "Model merging combines task-specific expert models into a single model without joint training on their original datasets, but often incurs a performance gap relative to the individual experts. Post-merging calibration can reduce this gap through task-specific representation alignment, but the alignment objective alone does not specify which feature directions to correct. We propose Error-Subspace Calibration (ESCal), a post-merging calibration framework that identifies low-dimensional error subspaces from weight differences between expert and merged models. At each intermediate block boundary, a bridge module projects the merged representation onto the next block's input-projection error subspace and maps these coordinates to an additive correction in the current block's output-projection error subspace. The subspace bases remain fixed, so calibration learns only these linear maps, yielding a parameter-efficient mechanism for feature correction. We find that ESCal brings the merged model closer to the experts in both representations and predictions, indicating more faithful recovery of task-specific behavior. Experiments on vision and natural language understanding benchmarks show that ESCal improves merged-model performance across diverse architectures and merging methods using a small calibration set for each task.",
+    "abs": "http://arxiv.org/abs/2610.33483v1",
+    "pdf": "https://arxiv.org/pdf/2610.33483v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文提出 ESCal，一种多任务模型合并后的校准框架：从专家模型与合并模型的权重差中提取低维误差子空间，在每个中间层用固定基底加线性桥接模块把合并表示投影到该子空间并输出加性修正，以少量校准数据参数高效地缩小与专家模型的差距。",
+      "relevance_reason": "「在中间层沿低维误差子空间做加性表示修正」的机制可供核查：是否可用于纠正 VLM 推理中被压缩或漂移的视觉与中间状态，或作为轻量适配器提升 latent 状态保真度；但该文研究模型合并而非推理，未涉及推理期状态生成、证据获取或停止决策，借鉴属推测。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-27T19:16:12.141399+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

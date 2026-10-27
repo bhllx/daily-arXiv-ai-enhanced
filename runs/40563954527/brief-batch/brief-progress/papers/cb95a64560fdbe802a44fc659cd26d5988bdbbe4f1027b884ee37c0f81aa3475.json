@@ -1,0 +1,71 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.34409",
+  "input_sha256": "3f83027d094a88a3114421cd945cbc94a7285a47419baa9dd075ea35ae380bc5",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-27T19:07:49.568623+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1906,
+        "output_tokens": 516,
+        "total_tokens": 2422,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 289
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.34409",
+    "title": "Dynamic Multi-Step Decoding for Time-Series Foundation Models",
+    "authors": [
+      "Birmjune Kim",
+      "Hyungju Lee",
+      "Hyun Oh Song"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.AI"
+    ],
+    "comment": "23 pages including appendix, 2 figures, 20 tables",
+    "summary": "Time-series forecasting models typically use a fixed decoding strategy at inference time: either one-shot prediction of the full horizon or autoregressive rollout over atomic chunks. While one-shot decoding reduces error accumulation, it can discard useful sequential structure; conversely, autoregressive decoding preserves temporal dependencies but may compound errors. We argue that the optimal decoding strategy is not fixed across inputs, but should be selected adaptively for each forecasting instance. We propose a dynamic strategy selector that treats the forecast rollout schedule as an inference-time decision problem for frozen pretrained time-series foundation models. The selector is a learned network that ranks candidate rollout schedules using hidden states of the backbone, and is trained on historical windows of the evaluated tasks for each backbone. To make the candidate set tractable over the exponentially large space of horizon partitions, we use dynamic programming that reduces candidate evaluation to quadratic complexity while preserving much of the oracle gain. At deployment, five independently trained selectors vote on each decision, and the policy follows their consensus, falling back to the backbone's one-shot forecast where they disagree. The construction requires only the backbone's hidden states and lightweight selectors, with no fine-tuning of the forecasting backbone. On fev-bench with a frozen Chronos-2 backbone, agreement-gated selection improves point-forecast skill (MASE) over one-shot decoding with statistical significance, mostly on longer horizons. It recovers about 6-8% of the gain that the same dynamic program attains with ground-truth selection. With a frozen Moirai-1.1-R-small backbone, the improvement is also significant on the full benchmark, and for both backbones we claim gains in point accuracy only.",
+    "abs": "http://arxiv.org/abs/2610.34409v1",
+    "pdf": "https://arxiv.org/pdf/2610.34409v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "该工作把时序基础模型的预测展开方式视为逐样本的推理期决策问题：在主干冻结的前提下，用轻量选择器依据主干隐状态为候选展开调度打分排序，并以动态规划压缩候选空间、五个选择器投票共识决定最终调度，在 fev-bench 上于长horizon主要提升点预测的 MASE。",
+      "relevance_reason": "「一次输出全horizon还是分块自回归」的自适应选择接近 LVR 中 LOOK/STOP 式的动态计算与停止决策，且决策直接读取主干隐状态，可供核查隐状态是否真的决定策略；但领域为时序预测，迁移到视觉多模态推理尚需验证。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-27T19:07:49.568623+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

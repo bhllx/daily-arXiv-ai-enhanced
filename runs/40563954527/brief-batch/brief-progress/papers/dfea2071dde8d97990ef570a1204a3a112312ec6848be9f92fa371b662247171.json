@@ -1,0 +1,71 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.34782",
+  "input_sha256": "ed07eacf16d0f82be3fbdfe4a514673c56a8a03845e03a43b7748d07bb8dd862",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-27T19:04:34.802352+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1893,
+        "output_tokens": 565,
+        "total_tokens": 2458,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 358
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.34782",
+    "title": "ToDoPro: Faster and Better Reference-Based Generation: Early Token Reduction via Downsampled Self-Probing",
+    "authors": [
+      "Caiyi Sun",
+      "Yujing Sun",
+      "Siu-Ming Yiu"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "Recent generic reference-based image generation models natively support multiple conditions by concatenating all reference image and text tokens into a joint sequence processed by a single Diffusion Transformer (DiT). However, this versatile paradigm comes at an efficiency cost: accommodating multiple references leads to a token explosion, incurring massive $\\mathcal{O}(N^2)$ computational complexity. Most acceleration methods operate inside the DiT, showing limited capability in reducing spatial redundancy and failing to alleviate peak VRAM. While some pre-model token reduction alternatives exist, they inevitably introduce external models. This raises a question: Is it possible to achieve acceleration and memory savings while preserving compatibility with in-model techniques and requiring no additional parameters? In this work, we realize this goal by proposing the early Token reduction via Downsampled self-Probing (ToDoPro). By executing a few denoising steps on spatially $2\\times$ downsampled reference images, this cheap probing stage utilizes the DiT model itself to effectively and efficiently extract reference token importance. Using the probed importance, we apply a hierarchical reduction before the main denoising stage: we completely discard low-importance tokens, substitute mid-importance tokens with their downsampled counterparts to cheaply preserve global context, and keep high-importance tokens. Experiments across three base models and two benchmarks demonstrate that our early reduction accelerates inference significantly and mitigates peak GPU memory. Furthermore, we can improve generation quality by safely filtering out noisy, uninformative reference tokens, enabling the model to concentrate its limited attention capacity on genuinely useful tokens. The code will be released at https://github.com/scy639/ToDoPro",
+    "abs": "http://arxiv.org/abs/2610.34782v1",
+    "pdf": "https://arxiv.org/pdf/2610.34782v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "提出 ToDoPro：先在 2× 下采样参考图上跑少量去噪步，用 DiT 自身做廉价「自探测」估计参考 token 重要性，再在主去噪前按重要性分层丢弃、替换为下采样版本或保留，以降低 token 爆炸带来的 O(N²) 开销与显存峰值。",
+      "relevance_reason": "「用模型自身低成本前向估计视觉 token 重要性并按层级裁剪」可能为 LVR 的视觉证据筛选与计算预算分配提供可核查线索，但论文面向图像生成，未涉及推理状态或多模态问答。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-27T19:04:34.802352+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

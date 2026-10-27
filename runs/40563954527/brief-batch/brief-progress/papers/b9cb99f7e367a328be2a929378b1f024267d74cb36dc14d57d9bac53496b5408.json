@@ -1,0 +1,75 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.34092",
+  "input_sha256": "cd5e2879eb57ea4705fb2e54f09383914f6810fa0c79b12a2503b8b29a5d9a63",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-27T19:10:25.687157+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1880,
+        "output_tokens": 571,
+        "total_tokens": 2451,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 363
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.34092",
+    "title": "Learning the Autoregressive: Direct Score-Difference Estimation with Amortized Future Credit for Video Distillation",
+    "authors": [
+      "Zixuan Duan",
+      "Yabo Chen",
+      "Xunzhi Xiang",
+      "Xin Zhang",
+      "Haibin Huang",
+      "Yin Chen",
+      "Chi Zhang",
+      "Qi Fan"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": null,
+    "summary": "Few-step distillation for autoregressive (AR) video generation commonly first initializes an AR student and then refines it with distribution matching distillation (DMD). This refinement process faces two challenges. First, although initialization already yields a reasonably capable student, DMD obtains the refinement direction indirectly by estimating the full student score before forming the teacher-student correction. Second, detached-history training prevents the generator from assigning credit to a current chunk for its influence on subsequent chunks. We introduce Leta, a few-step distillation framework that addresses these challenges with ScoreDelta and FutureCredit. ScoreDelta directly estimates the teacher-student correction from denoising residuals, while FutureCredit learns an auxiliary cross-chunk update signal from vector-Jacobian products (VJPs) of next-chunk teacher residuals. Leta combines these signals into a joint teacher-guided update field in a single forward pass during generator updates. Teacher evaluations and credit VJPs are used only for estimator training. For ScoreDelta, we establish population equivalence to score-difference estimation and a conditional approximation advantage under limited capacity in a fixed-feature linear model. In our controlled experiments, Leta improves over DMD by 0.9 points on VBench and 0.66 on VideoAlign. This advantage persists at a higher generator update frequency (a generator-to-estimator update ratio of G:E=1:1), where Leta improves over DMD by 1.6 on VBench and 0.35 on VideoAlign. Project page: https://scdzx.github.io/Leta/.",
+    "abs": "http://arxiv.org/abs/2610.34092v1",
+    "pdf": "https://arxiv.org/pdf/2610.34092v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文提出 Leta 少步蒸馏框架：用 ScoreDelta 从去噪残差直接估计师生分数修正，并用 FutureCredit 借下一 chunk 教师残差的 VJP 学习跨 chunk 信用信号，在单次前向中合成教师引导更新场，用于自回归视频生成。",
+      "relevance_reason": "其指出的「detached-history 使当前 chunk 无法获得对后续 chunk 影响的信用」与 LVR 中自回归推理步间的轨迹监督和贡献分配问题相近，VJP 摊销未来信用的做法可供核查能否迁移到 latent 轨迹训练。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-27T19:10:25.687157+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

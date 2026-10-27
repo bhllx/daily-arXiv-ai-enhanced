@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.34886",
+  "input_sha256": "084f41af839ac5d3263da979ed39765725d3df87cd39a65a1c5739c0e5546091",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-27T19:03:15.416012+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1963,
+        "output_tokens": 770,
+        "total_tokens": 2733,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 591
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.34886",
+    "title": "ThinkBit: Search Codewords, Recalibrate Scales, Select by Reasoning",
+    "authors": [
+      "Rhea Sanjay Sukthanker",
+      "Pashmina Cameron"
+    ],
+    "categories": [
+      "cs.AI",
+      "cs.CL"
+    ],
+    "comment": null,
+    "summary": "Reasoning language models generate thousands of tokens per answer, and generation speed is limited by memory bandwidth, so storing weights in two bits instead of bfloat16 can potentially make inference 8$\\times$ cheaper. Two-bit methods are usually judged by perplexity and multiple-choice question-answering accuracy, both of which say little about whether a model can still reason through more difficult problems. We present ThinkBit, a strictly scalar two-bit framework built to preserve reasoning, in which every weight is an integer codeword times a bfloat16 scale shared by a group of weights. We first use a sensitivity metric to assign each layer a ternary, 2-bit, or 3-bit tier to allocate bitwidths optimally among layers. This is followed by a layerwise Gumbel-softmax-based scalar quantization algorithm that searches for optimal codewords block by block. Since a layerwise scheme does not capture how quantized layers interact with each other, we recalibrate scales, with the codewords frozen, using a knowledge-distillation-based loss against the teacher model. We then perform a short quantization-aware training (QAT) stage that lets the model mimic the base model's distribution by reassigning codewords. Finally, a paired reasoning test on training problems selects the final checkpoint between the recalibration stage and the QAT stage. On Qwen3-1.7B at matched size, our recalibrated checkpoint scores 46.7 on MATH-500 against 30.0 for EfficientQAT trained on the same data, and 73.0 after QAT on reasoning traces; at 0.52 GB it is smaller than every published 2-bit GGUF of the model yet more accurate on MATH-500. We show that this framework scales and up to 14B, a 3.74 GB model scores 94.8 on MATH-500, against 97.5 for the 29.5 GB bfloat16 model.",
+    "abs": "http://arxiv.org/abs/2610.34886v1",
+    "pdf": "https://arxiv.org/pdf/2610.34886v1",
+    "AI": {
+      "category": "EXCLUDE",
+      "priority": "NONE",
+      "brief_summary": "提出 ThinkBit 两比特权重量化框架，用敏感度分层、逐块码字搜索、蒸馏式 scale 重校准与短程 QAT 保留文本推理模型在 MATH-500 等基准上的表现。",
+      "relevance_reason": "论文处理的是权重压缩与量化部署，未涉及视觉信息保留、latent 推理状态生成或证据筛选，仅在推理成本层面有间接关联，缺少可迁移到 LVR 的具体线索。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-27T19:03:15.416012+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

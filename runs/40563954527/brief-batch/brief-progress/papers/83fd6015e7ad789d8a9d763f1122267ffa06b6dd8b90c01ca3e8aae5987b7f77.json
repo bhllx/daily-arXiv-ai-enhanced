@@ -1,0 +1,72 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.34561",
+  "input_sha256": "c04c98f35d864a4933b70de9eb787850d29ba0a13e394d6d2c663eba5a05c561",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-27T19:06:55.374116+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1960,
+        "output_tokens": 761,
+        "total_tokens": 2721,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 546
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.34561",
+    "title": "GRASP: Group-Adaptive Hybrid RL-SFT Post-Training for Medical VQA without Reasoning Annotations",
+    "authors": [
+      "Wanqi Dong",
+      "Wanyue Dong",
+      "Jingze Ge",
+      "Mehul Motani"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "Adapting general-purpose vision-language models (VLMs) to medical visual question answering (VQA) is valuable for helping clinicians read images and make diagnoses, but annotated data are scarce and provide only short answers, without reasoning annotations. Supervised fine-tuning (SFT) fits these labels but overfits to them and amplifies their biases, eroding out-of-domain (OOD) generalization. Reinforcement learning (RL) better preserves generalization but never uses the gold answer as a training target: GRPO-style algorithms learn from the contrast between correct and incorrect answers within a group of sampled responses, so all-correct or all-wrong groups give no correctness signal. Existing SFT-RL hybrids either apply SFT and RL in separate stages or switch between them per question, or need reasoning traces from experts or stronger models, which medical VQA data lack. We propose GRASP, which combines RL and SFT in every update using only short answers: RL lets the model explore its own reasoning, SFT teaches the gold answer after that reasoning to supply the direct supervision RL lacks, and their balance adapts to how well the model answers each question. Tuning only about 1% of the parameters with LoRA, GRASP outperforms all compared training objectives both in domain and on OOD open-ended questions across Qwen3-VL-8B, InternVL3-8B and Gemma 3-4B. On an OOD benchmark spanning eight imaging modalities, GRASP-trained InternVL3-8B and Qwen3-VL-8B beat all 10 compared general and medical VLMs in open-ended accuracy, including models trained on up to 2,600 times more data or with over 250 times more trainable parameters. We release MedTerse, a dataset of 12.9K short-answer questions, and our code at https://github.com/sea-comet/GRASP-MedVQA.",
+    "abs": "http://arxiv.org/abs/2610.34561v1",
+    "pdf": "https://arxiv.org/pdf/2610.34561v1",
+    "AI": {
+      "category": "MAIN",
+      "priority": "P2",
+      "brief_summary": "提出 GRASP，在每次参数更新中同时使用 RL 与 SFT：先让模型自行探索推理，再对金标短答案做直接监督，并按各题答题情况自适应调节二者权重，用于缺乏推理标注的医学 VQA 后训练，仅用 LoRA 调约 1% 参数。",
+      "relevance_reason": "其「无推理轨迹、仅用短答案做轨迹级监督」与按题难度自适应分配探索/监督权重的设计，与 LVR 训练中的监督信号来源和贡献分配问题相关，可供核查；但不涉及 latent 状态生成或视觉证据内部机制。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-27T19:06:55.374116+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

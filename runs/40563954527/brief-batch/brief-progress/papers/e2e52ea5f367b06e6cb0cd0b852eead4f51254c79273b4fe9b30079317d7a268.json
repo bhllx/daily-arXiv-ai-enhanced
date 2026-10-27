@@ -1,0 +1,75 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.33625",
+  "input_sha256": "05164c8fc3eb77826032e4a2ea6b229e35c3e229338f9188e9ae22bca7dd064f",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-27T19:14:46.069518+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1821,
+        "output_tokens": 620,
+        "total_tokens": 2441,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 415
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.33625",
+    "title": "RAQ-MLA: Role-Aware Quantization for Multi-Head Latent Attention Caches",
+    "authors": [
+      "Tianqi Chen",
+      "Xunchao Li",
+      "Linchuan Xie",
+      "Guanghua Yu",
+      "Jianchen Zhu",
+      "Peisong Wang",
+      "Jian Cheng"
+    ],
+    "categories": [
+      "cs.AI",
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Multi-Head Latent Attention (MLA) has been adopted by recent frontier large language models. Instead of per-head keys and values, MLA caches a compressed KV latent that is up-projected into keys and values at decode time, together with a narrow positional key that carries position information into the attention score. Existing KV-cache quantization methods are designed around the keys and values of standard attention and do not account for what MLA actually caches, which costs accuracy at low bit widths. We analyze the MLA cache both in activation distribution and in how quantization error propagates to the attention output, and show that the two cached tensors play different roles: the latent mainly supplies the values, whereas the positional key dominates the attention score. We therefore propose RAQ-MLA (Role-Aware Quantization for Multi-Head Latent Attention Caches), which fits an invertible transform to each cached tensor against the error that tensor delivers to the attention output: attention-weighted value error for the latent and score perturbation for the positional key. Without training, RAQ-MLA quantizes the full MLA cache to about 2.5 bits per element, a 6.5x increase in theoretical KV-cache capacity, while remaining nearly lossless on reasoning and coding tasks across four MLA models.",
+    "abs": "http://arxiv.org/abs/2610.33625v1",
+    "pdf": "https://arxiv.org/pdf/2610.33625v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文分析 MLA 缓存中压缩 KV latent 与窄位置 key 在激活分布及量化误差传播上的不同角色，提出免训练的角色感知量化方法，将整份 MLA 缓存压缩至约 2.5 bit 并宣称在四个 MLA 模型的推理与编程任务上近乎无损。",
+      "relevance_reason": "与 LVR 主线无直接关系，但其按「对注意力输出的误差贡献」区分不同缓存张量的做法，可能为判断 latent 状态中哪些成分真正影响答案提供分析线索，可供核查是否能迁移到推理期 latent 的作用归因。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-27T19:14:46.069518+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

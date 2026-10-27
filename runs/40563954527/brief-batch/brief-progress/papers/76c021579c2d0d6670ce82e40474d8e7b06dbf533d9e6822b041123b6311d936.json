@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.34545",
+  "input_sha256": "25084587a3bd3fb76d9ebbb23ccc96343a64a7e5fa6b6e8b35e04d07e6f5f3e8",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-27T19:07:03.770218+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1928,
+        "output_tokens": 731,
+        "total_tokens": 2659,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 483
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.34545",
+    "title": "VTC-AUDIT: An Interventional Reliability Audit for Visual-Token Compression under Paired Image Shifts",
+    "authors": [
+      "Isaac",
+      "Li"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": "9 pages, 6 tables. Code and experimental results: https://github.com/IsaacLi74/VTC-AUDIT",
+    "summary": "Visual-token compression is usually evaluated by clean accuracy and efficiency, but these averages do not reveal failures that compression introduces under an image shift where the uncompressed model stays correct. We introduce VTC-AUDIT, which estimates this incremental risk only on pairs where the full model is correct on both images and the compressed model is correct on the clean image. The four arms then cross two binary choices: which image selects the retained token positions, and which image supplies the visual features. We audit three open 8-9B vision-language models on four tasks and eight pre-specified shifts. We evaluate two training-free compressors---hard-pruning DivPrune and prune-and-merge ApET---at a matched 25% retained-position budget, producing 708,000 inference records. Reselecting positions on the shifted image, rather than reusing the clean-image positions, raises the failure rate in all six model-compressor settings. The increase is 3.04-9.60 percentage points for DivPrune and 2.05-4.20 percentage points for ApET, with every 95% interval above zero. Repeating the audit on a separately resampled second manifest reproduces all six increases. In a pooled monitor audit across the four benchmarks, support Jaccard instability fails the practical AUROC criterion of 0.65 in all six settings, whereas clean compressed-model uncertainty clears it. Thus, support turnover is a weak ranking signal under the audited benchmark mixture, while clean compressed-model uncertainty is substantially more informative. These results suggest that future visual-token compression evaluations should report conditional reliability alongside clean accuracy and efficiency.",
+    "abs": "http://arxiv.org/abs/2610.34545v1",
+    "pdf": "https://arxiv.org/pdf/2610.34545v1",
+    "AI": {
+      "category": "MAIN",
+      "priority": "P1",
+      "brief_summary": "论文提出 VTC-AUDIT，只在「未压缩模型在两幅图上都正确、压缩模型在原图上正确」的配对样本上估计视觉 token 压缩带来的增量失效风险，交叉两种选择：由哪张图决定保留位置、由哪张图提供视觉特征；用两种免训练压缩器在三个 8–9B VLM、四个任务、八种偏移上完成审计，并比较 support Jaccard 与干净样本不确定性作为监测信号。",
+      "relevance_reason": "该审计直接考察压缩后视觉证据能否继续支撑正确回答，属视觉细节保留与证据筛选的诊断工作；其「support turnover 排序信号偏弱、干净压缩模型不确定性更具信息量」的结论可供核查是否可用于 latent 视觉状态的可信度监测与停止决策。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-27T19:07:03.770218+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

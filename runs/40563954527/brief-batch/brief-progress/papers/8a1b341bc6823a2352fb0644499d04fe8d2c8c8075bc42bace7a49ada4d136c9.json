@@ -1,0 +1,71 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.34177",
+  "input_sha256": "1b1653ef4f25acc00c053fa33040a32c2eb9f8eb9d906cdbebbc85dce4aa6dd0",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-27T19:09:46.057125+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1955,
+        "output_tokens": 797,
+        "total_tokens": 2752,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 595
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.34177",
+    "title": "Freeze What Is Settled, Cache What Is Smooth: Spatial Freezing Keeps Step Caching in Its Low-Error Regime",
+    "authors": [
+      "Baiyan Li",
+      "Ganxuan Yang"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.LG",
+      "cs.MM"
+    ],
+    "comment": "10 pages, 7 figures",
+    "summary": "Instruction-based image editors built on diffusion transformers run tens of denoising steps. Training-free acceleration either reuses features across steps (step caching) or stops computing the regions an edit leaves untouched (region freezing), and the two have been combined before. We ask how a high speed-up target should be split between them. On Qwen-Image-2.1, freezing does more than remove tokens: it lowers the cost of every step, so the step cache can reach the same overall speed-up with a conservative threshold that keeps its error small. A per-step cost model fitted on development runs predicts held-out latency with a median error of 4.0% and reproduces the speed ceilings of the region methods we re-implemented (2.73$\\times$ predicted vs. 2.70$\\times$ measured for RegionE). Driving frozen tokens to the model's one-step $x_0$ estimate beats returning them to the reference image on every development sample, and in 90% of measured cases the composed error stays below the sum of the two individual errors. The resulting method, FreezePlan, keeps five full steps and gives the rest of the budget to TaylorSeer. On a pre-registered test split it runs 5.05$\\times$ faster end to end at 29.8 dB PSNR to the original output, with no significant drop in a VLM judge score; TaylorSeer at 5.02$\\times$ reaches 23.5 dB. The curve extends to 5.99$\\times$ at 28.0 dB. Swapping in the region selectors of prior methods under our schedule lowers median PSNR by only 0.5--0.6 dB, which places the gain in the schedule and budget split rather than in the selector.",
+    "abs": "http://arxiv.org/abs/2610.34177v1",
+    "pdf": "https://arxiv.org/pdf/2610.34177v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文研究基于扩散 Transformer 的图像编辑中，逐步缓存与区域冻结两类免训练加速应如何分配加速预算，提出按步成本模型与 FreezePlan 调度，在 Qwen-Image-2.1 上取得约 5 倍端到端加速。",
+      "relevance_reason": "其用误差预算决定哪些内部特征可复用、哪些区域可冻结，并分析复合误差的写法，可能为 LVR 中 latent 状态的跳步复用与计算分配提供核查线索；但任务属图像编辑加速，与视觉推理相距较远。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-27T19:09:46.057125+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

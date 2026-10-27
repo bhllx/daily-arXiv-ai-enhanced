@@ -1,0 +1,68 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.33360",
+  "input_sha256": "7a3abf75c9bde54601329dfe9d01a15bd579d9b6d2373903e5103ec374579832",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-27T19:17:22.137164+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1774,
+        "output_tokens": 548,
+        "total_tokens": 2322,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 363
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.33360",
+    "title": "LSTM-Style Looped Transformers with Shared KV Caches",
+    "authors": [
+      "Andreas Kirsch"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": "12 pages + 14 pages appendix",
+    "summary": "Recurrent transformers reuse weights to perform deep computation with fewer parameters. We study an LSTM-style transformer that also shares one key--value cache across its recurrent core. At width 1024, it uses 40.4% fewer parameters than an untied control at nearly matched forward FLOPs, and reduces persistent cache sets from fifteen to four. Parallel training supplies cache entries from a standard-attention pass, whereas continuation reads entries produced recursively using shared attention. We address this mismatch by aligning the two training passes' cache entries with a consistency loss during the final 10% of a fixed training-token budget. Across three model widths on FineWeb, this removes 81--89% of the continuation-loss penalty relative to full-cache evaluation. The improvement replicates on disjoint documents for two training seeds. Across four widths and 1.05--4.19B training tokens, the loss cost of weight tying is smallest at lower token budgets, suggesting an opportunity to use recurrent computation when data and model storage are limited.",
+    "abs": "http://arxiv.org/abs/2610.33360v1",
+    "pdf": "https://arxiv.org/pdf/2610.33360v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文研究一种 LSTM 式循环 Transformer，在循环核心中共享单个 KV cache 以减少参数和持久缓存，并用一致性损失对齐并行训练与递归续写两种方式产生的 cache 条目。",
+      "relevance_reason": "其跨循环共享 KV cache 及对齐并行/递归 cache 的监督方式，可能为 LVR 中循环式 latent 状态更新与「缓存如何影响 latent 相似度」的分析提供线索，但纯文本设定下可迁移性尚待核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-27T19:17:22.137164+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

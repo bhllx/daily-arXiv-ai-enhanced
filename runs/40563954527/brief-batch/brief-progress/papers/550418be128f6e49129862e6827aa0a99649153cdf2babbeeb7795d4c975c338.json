@@ -1,0 +1,73 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.33688",
+  "input_sha256": "e45fbf4a0a9e1955c1d91f659f709a302655934c91a1b0ce4b0135d7e7e49bf8",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-27T19:14:01.306581+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1887,
+        "output_tokens": 860,
+        "total_tokens": 2747,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 636
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.33688",
+    "title": "Rescuing Your Pruning: Rethinking Visual Token Pruning and Post-Training Recovery in MLLMs",
+    "authors": [
+      "Peiran Yin",
+      "Hao Wu",
+      "Zihao Yang",
+      "Haozhe Hu",
+      "Xudong Wang",
+      "Xiaoyu Shen"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": null,
+    "summary": "Visual token pruning substantially reduces the inference cost of multimodal large language models (MLLMs), yet existing methods are mostly training-free and plug-and-play. They treat the resulting performance drop as an inevitable cost of compression and pursue increasingly complex pruning rules. We rethink this view through two questions: how much of the loss can post-training rescue, and, building on this recovery, how can joint compression push pruning to its limit? We curate a 282K-sample post-training mixture covering general VQA, reasoning, OCR, and grounding, and post-train 36 configurations that drop or merge tokens under a unified protocol. Post-training rescues most of the loss, even for OCR and grounding, and its adaptation gain in closing the gap between the pruned and the dense model grows as the budget tightens. For joint compression, we find that the vision encoder, not the LLM, dominates prefill time in native-resolution MLLMs, so where tokens are removed matters more than how many: keeping 40% of tokens at the encoder runs faster than keeping 10% at the projector. Our best configuration prunes the encoder lightly and the projector aggressively, leaves the LLM intact, and keeps general understanding and reasoning at the dense level. It accelerates the LLM stage by 3.49x but the end-to-end time-to-first-token by only 1.54x, showing that LLM-stage speedups overstate end-to-end gains. We hope these findings offer insights for future research on joint visual token compression. Our data, protocol, and code will be released.",
+    "abs": "http://arxiv.org/abs/2610.33688v1",
+    "pdf": "https://arxiv.org/pdf/2610.33688v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文重新审视 MLLM 视觉 token 剪枝：构建 282K 样本后训练混合数据，在统一协议下后训练 36 种丢弃/合并 token 的配置，考察损失可恢复程度及剪枝位置与比例对端到端时延的影响。",
+      "relevance_reason": "剪枝位置与保留比例实质决定哪些视觉细节留在内部状态，其「encoder 端留 40% 快于 projector 端留 10%」及后训练可挽回大部分（含 OCR、grounding）损失的结论，可供核查视觉证据筛选与视觉信息坍缩的可补偿边界，但论文本身未涉及 latent 推理状态生成。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-27T19:14:01.306581+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

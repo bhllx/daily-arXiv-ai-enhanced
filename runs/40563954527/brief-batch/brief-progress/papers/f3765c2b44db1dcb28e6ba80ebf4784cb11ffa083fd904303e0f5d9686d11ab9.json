@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.34440",
+  "input_sha256": "ab5f6f691ec0465ad682407938153ec13c3e69e3468d818722476e8f0d7c2967",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-27T19:07:40.407296+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1967,
+        "output_tokens": 564,
+        "total_tokens": 2531,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 344
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.34440",
+    "title": "Speculative Decoding for Mixture-of-Experts Models: Expert Bytes, Kernel Bandwidth and the Best Draft Length",
+    "authors": [
+      "Yuzheng Lan"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.DC",
+      "cs.PF"
+    ],
+    "comment": "35 pages, 7 figures, 8 tables",
+    "summary": "Speculative decoding checks several drafted tokens in one verification pass. On a mixture-of-experts (MoE) model, consecutive tokens often select the same experts. A deduplicating engine reads each selected expert once per pass, so it requests fewer bytes than a per-slot engine, which reads it once per token. We write a step's time as the bytes each kernel requests over its effective bandwidth, plus fixed time. Under geometric acceptance, we derive from this step time when speculation is faster than plain decoding. The best draft length is a monotone staircase in the acceptance rate. We bound how a bandwidth error moves each result, and we check the main steps in Lean. Deduplication is faster exactly where its share $\\bar u(n)$ of the per-slot bytes is below its ratio $r(n)$ of the per-slot bandwidth. On llama.cpp Metal, MLX-LM and llama.cpp CUDA, which we modified to deduplicate, the per-slot kernel has the higher effective bandwidth (r = 0.32 to 0.75). Thus deduplication is faster only from 5 to 8 tokens per pass, or never. We fit the bandwidths on one layer's expert operation, run alone, in under an hour per model. Bytes from routing traces over these bandwidths predict the time that deduplication saves. The measured saving lies inside its error bound at every point on CUDA and MLX-LM and at 36 of 48 points on Metal. The crossover is the first pass size at which deduplication is faster. The prediction places it within one pass size in 10 of 12 configurations of engine, model and depth. We computed these predictions after the measurements. On DeepSeek-V2-Lite, operation times measured before its speculative runs give the best draft length on CUDA within one at all 22 acceptance values.",
+    "abs": "http://arxiv.org/abs/2610.34440v1",
+    "pdf": "https://arxiv.org/pdf/2610.34440v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "论文针对 MoE 模型的投机解码，用「每步内核对专家字节数除以有效带宽加固定开销」的步时模型，推导投机何时快于普通解码，给出最优草稿长度随接受率变化的单调阶梯规律，并在多种推理引擎上实测验证专家去重的收益与预测误差界。",
+      "relevance_reason": "其以接受率刻画「额外计算是否划算」并给出最优长度阈值与误差界的思路，可能为 LVR 中 THINK/STOP 的收益–成本估计与推理预算分配提供类比框架；但全文不涉及视觉或 latent 状态生成，联系需较多核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-27T19:07:40.407296+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

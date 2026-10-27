@@ -1,0 +1,68 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.35053",
+  "input_sha256": "2eadbbe2da73bf1b08d3b9be756ccc9b378002261f85463cb79594cc6353721b",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-27T19:01:34.418573+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 2002,
+        "output_tokens": 758,
+        "total_tokens": 2760,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 519
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.35053",
+    "title": "LOCUS: Locate Once, Check Until Settled. Draft-and-Verify Visual Grounding with a Box Head and Coordinate-Token Verification",
+    "authors": [
+      "Muhammad Talha"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": "13 pages, 7 figures, 10 tables. Project page: https://muhammad-talha-ad.github.io/LOCUS/ Code: https://github.com/muhammad-talha-ad/LOCUS Models: https://huggingface.co/MTalha2001/LOCUS-2B and https://huggingface.co/MTalha2001/LOCUS-0.8B",
+    "summary": "Vision-language models (VLMs) ground a referring expression in one of two ways. They decode the box as coordinate tokens, which is precise but takes one sequential step per token, or they regress it from a hidden state with a small head, which takes one step but loses accuracy at high IoU. The two fail differently: a head usually finds the right object but places its edges loosely, while coordinate tokens place edges precisely. We therefore use the regression head as a speculative drafter for the model's own coordinate tokens. Locus writes the head's box as coordinate tokens and checks them with the same backbone by Jacobi iteration over a shared image prefix. The fixed point is the model's greedy coordinate-token answer, reached in about 5.60 sequential passes on average instead of 18.46 decoding steps; head and verifier are one set of weights, trained jointly. On the 8 RefCOCO, RefCOCO+ and RefCOCOg splits, verification raises Locus-2B's Acc@0.9 from 54.87 for its own head to 59.13, and the one-pass head is ahead at Acc@0.5 of every published model with at most 3B parameters except Florence-2-L. Against Jag, the strongest open regression-head model, at its own size and training budget, Locus ties at Acc@0.5 and, with typical acceptance, gains +4.52 points at Acc@0.9, with paired significance tests. Exact answers come 1.5x faster than vLLM greedy-decoding the same coordinate tokens with the same weights; a pure regression head remains faster still.",
+    "abs": "http://arxiv.org/abs/2610.35053v1",
+    "pdf": "https://arxiv.org/pdf/2610.35053v1",
+    "AI": {
+      "category": "MAIN",
+      "priority": "P1",
+      "brief_summary": "论文提出 LOCUS，把回归框头当作草稿器，将其输出写成坐标 token，再由同一套权重、共享图像前缀的骨干网络通过 Jacobi 迭代验证，收敛到模型自身的贪心坐标 token 答案，从而兼顾高 IoU 精度与并行解码速度，并在 RefCOCO/+/g 上报告了精度与 1.5 倍加速结果。",
+      "relevance_reason": "该文对「回归头定位正确但边界宽松」与「坐标 token 精确但逐 token 串行」两类失败模式及计算代价做了直接对比，其「草稿—迭代验证至不动点」流程可供核查 LVR 中并行状态更新、停止判据与精度—计算权衡的具体线索。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-27T19:01:34.418573+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

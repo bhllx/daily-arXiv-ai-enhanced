@@ -1,0 +1,71 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.34427",
+  "input_sha256": "97cac2b2d2f45aa8bc767b4fc56e9235eea13621e19e2e467f841208dd3bd473",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-27T19:07:45.246693+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 2049,
+        "output_tokens": 592,
+        "total_tokens": 2641,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 374
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.34427",
+    "title": "ScaleRLT: Exact Log-Probabilities and Fast Deferred Rollouts for Reinforcement Learning on Looped Transformers",
+    "authors": [
+      "Dezhen Lu",
+      "Zixiang Ni",
+      "Runguo Li"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.DC"
+    ],
+    "comment": null,
+    "summary": "Looped language models such as Ouro reuse one block of layers several times per token. A rollout engine can batch the deeper loops of several response positions and run them only when a deep readout is due. This deferred schedule is fast, but the learner of an on-policy RL algorithm recomputes the sampled tokens' log-probabilities with a dense pass, and the two computations differ in floating point: in FP32 at 4096 tokens about 18% of the sampled tokens miss a $10^{-5}$ same-weight gate, and with bf16 weights nearly every token does. We use a hybrid learner log-probability, $\\ell=\\ell_{\\mathrm{dense}}+\\mathrm{sg}(\\ell_{\\mathrm{sched}}-\\ell_{\\mathrm{dense}})$, where $\\mathrm{sg}$ denotes stop-gradient. Its value is a no-grad replay through the rollout's own schedule, and its gradient is the dense learner's. The replay reproduces the rollout bit for bit in all 167 FP32 and 28 bf16 real-weight cells we ran on three platforms, including rollouts whose batch shrinks at stop tokens, and the gradient has the same FP32 error as other dense implementations in all 102 pre-registered comparisons from 96 to 4096 tokens; the full GRPO loss of a training step matches a float64 reference to $3.1\\times10^{-4}$. On one GPU, deferral raises rollout throughput by $1.47$ to $1.56\\times$, and by $1.18$ to $1.54\\times$ once every step runs from CUDA graphs, bit for bit. In a two-node GRPO loop, one-wave KV admission and CUDA graphs shorten an update by $2.71\\times$ with the gate bitwise at every update, and four nodes keep the update time within 2% at the same per-GPU load. In 100-update runs held-out GSM8K accuracy rose from 23% to 82% with the mixed-depth readout that deferral relies on and from 34% to 90% with the native readout, which reached a higher accuracy in less time. For looped models beyond one node we analyse a ring mapping of layers to GPUs and measure its communication paths.",
+    "abs": "http://arxiv.org/abs/2610.34427v1",
+    "pdf": "https://arxiv.org/pdf/2610.34427v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "该文针对 looped Transformer 的 on-policy RL 训练，指出延迟执行深层 loop 的 rollout 调度与学习器稠密前向在浮点上不一致，提出「稠密值 + stop-gradient 修正」的混合 log-prob 使梯度来自稠密通路、数值对齐 rollout 调度，并给出吞吐与 GRPO 精度结果。",
+      "relevance_reason": "loop 作为推理状态生成方式与训练/执行调度一致性、混合深度读出（82% vs 原生 90%）可供核查 LVR 中轨迹训练与深度相关表示的影响，但其核心是训练系统工程而非 latent 内容，借鉴线索有限。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-27T19:07:45.246693+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

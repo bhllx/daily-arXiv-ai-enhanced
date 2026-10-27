@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.34639",
+  "input_sha256": "e28bbca215b5e89e07671c68660cbe5a765c061a7e94a58e3ff12557778e4598",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-27T19:06:03.048984+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1881,
+        "output_tokens": 571,
+        "total_tokens": 2452,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 343
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.34639",
+    "title": "Cross-Loop Query Handoff: How Later Loops Redirect Two-Hop Retrieval in the Ouro Looped Language Models",
+    "authors": [
+      "Ziyu Mu",
+      "Zehua Wang"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.CL"
+    ],
+    "comment": "Code and reproducibility: https://github.com/Muuzzziiy/cql-handoff 16 pages, 1 figure, 7 tables",
+    "summary": "How do later loops in a pretrained looped language model repair two-hop retrieval? We study Ouro-1.4B and Ouro-2.6B by transplanting attention queries between loops at the same layer, head and final prompt position. On synthetic in-context questions, injecting the layer-indexed collection of loop-3 queries throughout loop 1 rescues 90% and 97% of questions answered incorrectly at loop 1 and correctly at loop 3, versus 24% and 21% for shuffled donors. The rescue also holds under greedy generation in Ouro-2.6B; in Ouro-1.4B it is limited to four-candidate ranking. Crossed donor-recipient swaps favor retrieval through the donor's bridge entity over copying its answer, although a substantial positional component remains in Ouro-2.6B. Late keys and values rescue far fewer targets. Freezing queries at their loop-1 values also damages two-hop accuracy more than a matched question that supplies the bridge. On natural questions, rescue is smaller and replicates only in Ouro-2.6B, and crossed swaps do not establish bridge redirection. These results identify a transferable collection of late-loop queries that supports bridge-conditioned retrieval on synthetic scenes; they do not locate where the bridge is computed or establish a single-vector handoff.",
+    "abs": "http://arxiv.org/abs/2610.34639v1",
+    "pdf": "https://arxiv.org/pdf/2610.34639v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P1",
+      "brief_summary": "该文以 Ouro-1.4B/2.6B 循环语言模型为对象，在同层、同头、同末尾提示位置于不同 loop 间移植 attention query，考察后段循环如何修复合成情境下的两跳检索；发现把 loop-3 的 query 集合注入 loop 1 能挽救约九成错误样本，而晚期 key/value 效果明显更弱。",
+      "relevance_reason": "这是纯文本循环模型的机制干预研究，不直接涉及视觉输入，但其「哪一循环的 query 携带可迁移的检索重定向信息」可供核查 LVR 中 loop 式状态更新、跨迭代信息贡献分配与注意力结构的作用。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-27T19:06:03.048984+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

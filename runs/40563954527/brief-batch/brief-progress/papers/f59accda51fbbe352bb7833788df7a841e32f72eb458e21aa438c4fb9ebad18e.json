@@ -1,0 +1,68 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.34721",
+  "input_sha256": "841b5e1f10c10056c1a031eaae5bcdef424f001c37fdb58c91d211359d414e18",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-27T19:05:10.071337+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1982,
+        "output_tokens": 629,
+        "total_tokens": 2611,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 437
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.34721",
+    "title": "Prefetch-Steered Routing: Deterministic Cache-Aware Expert Selection for Offloaded Mixture-of-Experts Decoding",
+    "authors": [
+      "Siming Huang"
+    ],
+    "categories": [
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "When a Mixture-of-Experts (MoE) model does not fit in GPU memory, batch-1 decoding is dominated by copying expert weights from host memory. Cache-aware routing reduces these copies by biasing the router toward resident experts, but combined with asynchronous prefetching it makes the model's outputs depend on transfer timing, so a harness that does not simulate that timing no longer evaluates the deployed model. We propose prefetch-steered routing (PSR): routing conditions on a deterministic logical cache, into which at most n experts predicted by the next layer's router are inserted per layer and token; physical copies affect only latency. On OLMoE-1B-7B with 50% and 25% of experts resident on an RTX 4090, PSR decodes 2.2-2.3x faster than exact routing with LRU and 25-30% faster than the Cache-Prior operating point, with mean benchmark differences of +0.1 and +0.5 points (95% lower bounds -0.8 and -0.3). In greedy generation its lead over Cache-Prior depends on the workload and reverses on HumanEval at 50% residency. On Moonlight-16B-A3B, PSR is 1.9x faster than exact routing with LRU at 37.5% residency and, at the latency of Cache-Prior, significantly better on three of eight benchmarks. On Qwen3.6-35B-A3B, where copies are cheap relative to computation, PSR keeps its advantage over Cache-Prior on the likelihood benchmarks but not its speed. Distillation-trained gates did not help. Speculative decoding with block-level expert selection was slower than PSR with a 1B autoregressive drafter on OLMoE, but with a block drafter on Qwen3.6 it was 2.1-2.9x faster than any autoregressive configuration with at most its GPU memory on the 64 prompts we timed.",
+    "abs": "http://arxiv.org/abs/2610.34721v1",
+    "pdf": "https://arxiv.org/pdf/2610.34721v1",
+    "AI": {
+      "category": "EXCLUDE",
+      "priority": "NONE",
+      "brief_summary": "面向 MoE 模型显存不足时的专家权重卸载，提出以可预测的「逻辑缓存」约束路由的 PSR 方法，使输出不依赖实际传输时序，并在多个模型上测解码速度与基准差异。",
+      "relevance_reason": "研究的是专家权重拷贝与缓存调度这一系统层效率问题，其中的「cache」指专家驻留而非 latent/注意力状态，与视觉细节保留、推理状态生成、证据筛选或停止决策均无实质联系，也未见可迁移的具体方法线索。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-27T19:05:10.071337+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

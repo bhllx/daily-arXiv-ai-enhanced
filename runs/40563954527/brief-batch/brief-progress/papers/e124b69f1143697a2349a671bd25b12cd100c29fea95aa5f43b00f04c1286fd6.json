@@ -1,0 +1,72 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.35017",
+  "input_sha256": "6d04d996a08f755808e7e01e90067f414ae72ba3311a94c063939c251d033d11",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-27T19:02:00.666720+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1990,
+        "output_tokens": 894,
+        "total_tokens": 2884,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 705
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.35017",
+    "title": "When Pointing Becomes Profiling: Social Bias and Refusal in Text-Steerable Visual Encoders",
+    "authors": [
+      "Seyedarmin Azizi",
+      "Parsa Razmara",
+      "Sajjad Ghiasvand",
+      "Ardalan Aryashad",
+      "Tina Khezresmaeilzadeh"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": null,
+    "summary": "Text-steerable visual encoders condition a frozen Vision Transformer on a natural-language prompt and point at the matching image region, producing prompt-conditioned heatmaps and features. We audit the released SteerViT model and find that its steering interface turns language-driven pointing into demographic profiling. On counterfactual face mosaics and real multi-person photographs, \"the person\" selects a man more often than the base rate, crime words select Black people more often than occupation words do, \"the man\" among four women selects the Black woman 75.6% of the time on SocialCounterfactuals, and \"the monkey\" selects Black people. None of them is in the backbone's unsteered saliency, and the crime association is not in the frozen text encoder; the race effects grow with steering strength and enter through the last two cross-attention layers: giving the prompt to those layers alone reproduces them. Four other grounding models, CLIPSeg, Grounding-DINO, SAM 3, and Qwen2.5-VL, show no crime routing and weaker race routing. The model cannot refuse. Its patch softmax must place its mass somewhere, and its heatmap separates a groundable request (\"the police officer\") from one that is absent (\"the pizza\") or that would require a stereotyped demographic inference (\"the criminal\") only at chance (AUROC 0.52). We introduce SafeSteer, which adds a learned abstention output and counterfactual-invariance training on the same 23M steering parameters. SafeSteer separates should-point from should-abstain prompts at AUROC 0.997, generalizes to held-out sensitive and absent words (0.998; at a 0.5 threshold it refuses 99.8% of trained and 62% of held-out sensitive words) with no over-refusal of visible people on the benchmark, and removes most race routing while keeping localization and retrieval within 1 point of the released model. Code, benchmarks, and the curated mosaic sets will be released.",
+    "abs": "http://arxiv.org/abs/2610.35017v1",
+    "pdf": "https://arxiv.org/pdf/2610.35017v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P1",
+      "brief_summary": "论文审计文本可引导视觉编码器 SteerViT，发现其指向接口会把语言定位变成人口统计画像且无法拒答，并提出 SafeSteer，加入学习式弃答输出与反事实不变训练。",
+      "relevance_reason": "「应指向 vs 应弃答」的 abstention 头与反事实不变训练，可能为 LVR 的视觉证据筛选与 STOP 决策提供监督线索；偏差经最后两层 cross-attention 注入，也供核查证据进入内部状态的位置。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-27T19:02:00.666720+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

@@ -1,0 +1,73 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.35059",
+  "input_sha256": "b614c72284c790842711df75d9981c1e0d1f3d1f806268229fb0fed3cbb74caa",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-27T19:01:32.550782+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1905,
+        "output_tokens": 786,
+        "total_tokens": 2691,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 534
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.35059",
+    "title": "Reinforcement Learning Done Right for Explicit Confidence Targets",
+    "authors": [
+      "Zefeng He",
+      "Yichen He",
+      "Yuan Lin",
+      "Yang Yang",
+      "Yu Cheng"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.CL"
+    ],
+    "comment": "22 pages, 13 figures",
+    "summary": "Large language models (LLMs) can produce plausible but incorrect answers when they are uncertain, which can mislead users and undermine model reliability. Training models to abstain with reinforcement learning is a natural approach, but most existing methods use a fixed error penalty and therefore cannot adapt their behavior to different confidence requirements at inference time. We study \\emph{explicit confidence targets}, where a user specifies a target \\(p\\) in the prompt and the model directly chooses whether to answer or abstain, with the goal of achieving an accuracy of at least \\(p\\) among answered questions. However, learning to respond to different confidence targets with a single model has proven difficult, and prior attempts have failed to distinguish different targets. We show that this failure comes from two problems: the reward signal that distinguishes different values of $p$ is often lost during optimization, while the original error penalty grows without bound as $p$ approaches one. We propose RLEC (\\textbf{R}einforcement \\textbf{L}earning with \\textbf{E}xplicit \\textbf{C}onfidence Targets), which preserves the learning signal needed to distinguish confidence targets, introduces a stable reward family that keeps the desired answer condition unchanged, and uses reward scheduling to balance effective learning and training stability. Together, these designs enable the first successful training of a single LLM for explicit confidence target control. Extensive experiments across diverse benchmarks and model scales show that RLEC largely preserves general capabilities and achieves competitive calibration performance. RLEC also supports fine-grained target control without an external decision system or threshold calibration after training. By making explicit confidence targets part of the trained policy, RLEC opens a new and more direct path toward behavioral calibration.",
+    "abs": "http://arxiv.org/abs/2610.35059v1",
+    "pdf": "https://arxiv.org/pdf/2610.35059v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P1",
+      "brief_summary": "论文研究「显式置信目标」设置：用户在 prompt 中给定目标 p，模型自行决定作答或弃答，使已答题目的准确率不低于 p；作者指出单一模型难以区分不同 p 的原因在于区分 p 的奖励信号在优化中丢失、且错误惩罚在 p 趋于 1 时无界增长，据此提出 RLEC，用保持作答条件不变的稳定奖励族与奖励调度完成单模型训练。",
+      "relevance_reason": "其「按目标置信度决定作答或弃答」的策略训练与奖励整形，可供核查 LVR 中 STOP 决策如何受目标条件驱动、以及停止阈值难以随目标变化的失败模式是否同源；但该方法目前针对纯文本单步弃答，迁移到多步视觉证据获取与 latent 状态需另行判断。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-27T19:01:32.550782+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

@@ -1,0 +1,76 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.34901",
+  "input_sha256": "a0403ec6cebdf2b744b968323e43da173a4306092551edaac1e8d7d77f63c0a3",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-27T19:03:03.422378+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1914,
+        "output_tokens": 651,
+        "total_tokens": 2565,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 431
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.34901",
+    "title": "LE-GDA: Layer Ensemble Gaussian Discriminant Analysis for Training-Free Few-Shot CLIP Adaptation",
+    "authors": [
+      "Pavodi Maniamfu",
+      "Vogel Kiketa",
+      "Zezina Kuzulu Kuetu",
+      "Jakin Mukendi Kabongo",
+      "David Mayoya Kutangila",
+      "Pescie Honore Kinkani Mampuya",
+      "L'Or Wolo Sieka"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.AI",
+      "cs.LG"
+    ],
+    "comment": "Accepted at WACV 2027. 23 pages, 5 figures, including supplementary material",
+    "summary": "Training-free few-shot adaptation of vision-language models typically constructs a classifier from CLIP's final projected image representation, leaving intermediate representations unused. Combining them is not straightforward. Class scores from different representations differ in spread by orders of magnitude for the same query. Direct averaging allocates influence by numerical scale rather than predictive information. We propose Layer-Ensemble Gaussian Discriminant Analysis (LE-GDA), a method that fits regularized shared-covariance discriminants independently to intermediate and final representations extracted in one frozen encoder pass. LE-GDA standardizes each discriminant's class scores per query, selects a small representation multiset on labeled validation data, and combines it with the zero-shot classifier without gradient-based optimization. Across 11 datasets, four CLIP backbones, five shot counts, and three independently sampled K-shot training sets, LE-GDA achieves the highest mean accuracy of all evaluated methods on every backbone, raising the 16-shot mean from 78.01% to 79.54% over a matched GDA-CLIP (final-feature) baseline and improving that baseline for every backbone-shot combination. At one shot, LE-GDA retains a 1.20-point mean gain over the baseline even though covariance estimation is unavailable and per-query standardization is neutral. A control with richer per-class structure inside a single representation does not reproduce the gain, indicating that the benefit comes from combining representations. These results show that intermediate CLIP representations carry information beyond the final embedding and can improve training-free few-shot adaptation. Code and evaluation resources are available at https://github.com/pavodi-NM/le-gda.",
+    "abs": "http://arxiv.org/abs/2610.34901v1",
+    "pdf": "https://arxiv.org/pdf/2610.34901v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "提出 LE-GDA：在冻结 CLIP 的单次前向中为中间层与最终层表示分别拟合正则化共享协方差高斯判别器，逐查询标准化类分数并挑选表示子集，免训练地与零样本分类器组合，在 11 个数据集、4 种骨干上提升 few-shot 准确率。",
+      "relevance_reason": "该文指出中间层表示含最终嵌入之外的信息、且各层分数尺度差异会主导简单平均，可供核查「LVR 中视觉证据应从哪层内部状态读取、多层状态如何组合而不被尺度支配」，但本身不涉及推理期状态生成。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-27T19:03:03.422378+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

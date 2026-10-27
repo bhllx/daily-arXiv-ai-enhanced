@@ -1,0 +1,74 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.35090",
+  "input_sha256": "d1533237a88441f835118bf748c8cb96e593ea8e914df5ac29fe37fb73493256",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-27T19:01:00.876674+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1916,
+        "output_tokens": 600,
+        "total_tokens": 2516,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 375
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.35090",
+    "title": "Test-Time Prompt-Agnostic Decomposition",
+    "authors": [
+      "Junze Wang",
+      "Lei Fan",
+      "Dezheng Zhang",
+      "Donglin Di",
+      "Yang Song",
+      "Sidong Liu",
+      "Cong Cong"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": "Accepted by NeurIPS 2026",
+    "summary": "Test-Time Prompt Tuning (TPT) adapts large pretrained models to unseen target distribution shifts by updating only lightweight prompt tokens. Existing TPT methods are effective, but they mainly optimize each prompt update locally. Across test-time steps, prompts updated at the current step are reused for the corresponding predictions and updates, so noisy or biased unlabeled objectives can accumulate and destabilize the prompt-update trajectory. We identify two failure modes: magnitude expansion, where updates move the prompt too far, and directional drift, where consecutive updates point in inconsistent directions. To analyze and control these failures, we propose Test-Time Prompt-Agnostic Decomposition ($\\mathtt{TPD}$), which characterizes observed prompt-update trajectories from a dynamical-systems view and decomposes base prompt updates into magnitude and direction. $\\mathtt{TPD}$ computes a spectral radius to measure update expansion and decomposes update directions into persistent, oscillatory, and residual components. Building on this decomposition, Adaptive Koopman Control ($\\mathtt{AKC}$) regulates update magnitude by shrinking updates under expansive recent dynamics, while Hankel Update Router ($\\mathtt{HUR}$) refines update direction by preserving persistent components and suppressing oscillatory and residual components. Together, $\\mathtt{AKC}$ and $\\mathtt{HUR}$ produce a stabilized prompt update. As a prompt-agnostic framework, $\\mathtt{TPD}$ can be plugged into visual and text TPT methods without modifying the backbone, prompt architecture, or adaptation loss. Experiments on 15 datasets show that $\\mathtt{TPD}$ consistently improves 10 baselines, with accuracy gains of $3$--$8\\%$ for visual prompts and over $2\\%$ for text prompts.",
+    "abs": "http://arxiv.org/abs/2610.35090v1",
+    "pdf": "https://arxiv.org/pdf/2610.35090v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文从动力系统视角把测试时 prompt 调优的更新轨迹分解为幅度与方向，用谱半径度量更新扩张、把方向拆成持续、振荡与残差分量，并提出 AKC 与 HUR 收缩过大更新、保留稳定方向以抑制漂移，在 15 个数据集上稳定并提升 10 个 TPT 基线。",
+      "relevance_reason": "其把多步更新轨迹分解为持续/振荡分量并据此分别调控幅度与方向的做法，可能可供核查用于循环式 latent 推理状态的逐步更新稳定与轨迹监督；但原文面向测试时 prompt 适配，未涉及 VLM 推理或 latent 内容的使用。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-27T19:01:00.876674+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

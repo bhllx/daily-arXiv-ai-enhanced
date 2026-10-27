@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.33379",
+  "input_sha256": "fd350a59150fe5c8ab6347a645d950c2ca17eadd435e2381304b34518b1301cb",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-27T19:17:17.262553+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1839,
+        "output_tokens": 737,
+        "total_tokens": 2576,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 503
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.33379",
+    "title": "One Call Ahead: Packed Self-Speculative Decoding with Diffusion Drafting",
+    "authors": [
+      "Yuxiao Chen",
+      "Changxiao Cai"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Autoregressive (AR) language models generate tokens sequentially, so generating long outputs is costly. Speculative decoding mitigates this by using a lightweight drafter to propose multiple tokens for the target AR model to verify in parallel, while a diffusion-based drafter can produce an entire draft block in one forward pass. In models with AR and diffusion modes, one network both drafts and verifies, but drafting still waits for verification, so the standard schedule needs two sequential model calls per iteration. Existing one-call schedules avoid the wait but incur input size quadratic in the speculative width. Motivated by this efficiency bottleneck, we introduce Packed-SS, a self-speculative decoding schedule that verifies and drafts in a single model call with input size linear in the speculative width, while preserving the target model's distribution. The key idea is to let the diffusion drafter run one call ahead: while verifying the current draft, the model simultaneously constructs the next draft from an older verified prefix and keeps its unresolved suffix for the next iteration. Under a mild monotonicity assumption on the drafter, we further show that Packed-SS requires no more model calls than the standard two-call decoding in the greedy setting. Experiments on Nemotron 3B/8B and SetDLM 1.7B show higher throughput and lower mean wall time than both baselines under greedy decoding.",
+    "abs": "http://arxiv.org/abs/2610.33379v1",
+    "pdf": "https://arxiv.org/pdf/2610.33379v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文针对同时具备 AR 与 diffusion 模式的模型提出 Packed-SS 推测解码调度：让扩散草稿器「提前一次调用」运行，在验证当前草稿的同一次前向中基于较早的已验证前缀构造下一份草稿并保留未解析后缀，使输入规模随推测宽度线性增长，并在贪心解码下证明调用次数不多于标准两调用方案。",
+      "relevance_reason": "其「单次调用内并行完成生成与验证、跨迭代携带未解析后缀」的流水线式状态更新，可能为 LVR 中潜在推理状态的增量生成、草稿—验证交替与动态停止调度提供方法线索，但线性打包是否能适用于视觉或 latent token 需核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-27T19:17:17.262553+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

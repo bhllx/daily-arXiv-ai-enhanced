@@ -1,0 +1,71 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.32951",
+  "input_sha256": "fa9d0a6efabd7b973b8057292dd64a33fdae6fe5ae7d9ce563759193783084ea",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-27T19:20:40.450593+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1747,
+        "output_tokens": 633,
+        "total_tokens": 2380,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 382
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.32951",
+    "title": "Where Rounding Happens Matters: Rounding-Location Alignment Stabilizes LLM Reinforcement Learning",
+    "authors": [
+      "Yijing Ke",
+      "Tianle Cai",
+      "Ruosong Wang"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "Reinforcement learning for large language models often uses separate systems for inference and training. Even with identical weights and BF16 tensors, implementation differences can make an intended on-policy update off-policy and destabilize training. Existing remedies align the entire inference and training stacks, change global precision, or modify the learning algorithm. We ask whether aligning selected parts of the execution stack can stabilize BF16 RL while other implementation differences remain. We align training-side rounding locations with inference in three regions---RoPE, SwiGLU, and residual RMSNorm---by retaining selected intermediates in FP32 until their BF16 outputs. Across four Qwen-family models, aligning all three regions prevents the collapse observed under the default BF16 baseline; RoPE-path alignment alone also suffices in the studied runs, despite remaining numerical discrepancies. The interventions keep the inference engine, matrix-multiplication and attention kernels, and learning objective unchanged.",
+    "abs": "http://arxiv.org/abs/2610.32951v1",
+    "pdf": "https://arxiv.org/pdf/2610.32951v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文研究 LLM 强化学习中推理栈与训练栈的 BF16 舍入位置不一致如何使本应在策略上的更新实际变成 off-policy 并导致训练崩溃；提出在 RoPE、SwiGLU 与残差 RMSNorm 三处保留 FP32 中间值直至其 BF16 输出，仅对齐这些局部舍入位置，在四个 Qwen 模型上即可避免默认 BF16 基线的崩溃。",
+      "relevance_reason": "该文给出的是训练-推理实现层数值一致性的局部对齐线索；LVR 若需跨引擎生成、缓存或复用 latent 推理状态与轨迹，可能遭遇类似精度错位引发的训练不稳定，可供核查「选择性对齐舍入位置」是否适用于 latent 状态路径，但文中不涉及视觉或多模态推理。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-27T19:20:40.450593+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

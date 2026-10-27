@@ -1,0 +1,72 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.35706",
+  "input_sha256": "e53216454ddfe7106143fcc1375f126a2bda548f13919be80e2089cb361ba152",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-27T18:55:46.587163+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1841,
+        "output_tokens": 733,
+        "total_tokens": 2574,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 513
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.35706",
+    "title": "Triage: Skip, Skim, or Refine Attention Tiles in Video Diffusion Transformers",
+    "authors": [
+      "Yeonjae Kim",
+      "Omin Kwon",
+      "Seong Hoon Seo",
+      "Jae W. Lee"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.CV"
+    ],
+    "comment": null,
+    "summary": "Attention over tens of thousands of visual tokens dominates the inference of video diffusion transformers (DiTs). Existing methods reduce this cost through sparsity, low precision, or both, but use a single precision for all kept tiles. We observe that the output error introduced by approximation varies widely across tiles. Many tiles can be skipped with little error, others must be computed but gain little beyond low precision, and a few retain substantial error even at low precision. We present Triage, a training-free attention method that assigns each tile one of three approximation tiers: skipping it by replacing it with its block means, skimming it in NVFP4, or refining it with NVFP4 residual correction. A lightweight router predicts each tile's error under each tier from block statistics and moves a tile to a more accurate tier only when the predicted error reduction justifies the extra compute, with a single price setting this trade-off. A fused kernel executes all three tiers in a single pass on the FP4 tensor cores of RTX Blackwell GPUs. Across Wan2.2, HunyuanVideo, and LTX-2.5, Triage accelerates end-to-end generation by up to 2.32x over dense FlashAttention, and in each of five settings it runs faster than every baseline while reaching 0.3-3.0 dB higher PSNR than the highest-PSNR baseline.",
+    "abs": "http://arxiv.org/abs/2610.35706v1",
+    "pdf": "https://arxiv.org/pdf/2610.35706v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "提出免训练的 Triage 注意力方法：用轻量 router 依据块统计预测每个 attention tile 在「跳过／NVFP4 近似／NVFP4 残差修正」三档下的输出误差，仅在误差收益抵得上额外算力时升级精度，并配 fused kernel 在 FP4 张量核上单次执行。",
+      "relevance_reason": "其「按 tile 预测误差、以算力价格为门控决定精度档位」的做法，可能为 LVR 中视觉证据筛选与动态算力分配提供 router 式线索，可供核查误差估计能否迁移到推理状态或 token 的选择与精化。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-27T18:55:46.587163+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

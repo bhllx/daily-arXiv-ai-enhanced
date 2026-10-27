@@ -1,0 +1,72 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.35566",
+  "input_sha256": "76daf8e1b48703a3e9891aade18b4a12fccc03c4a6708f5b4077c2db8af005fc",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-27T18:56:51.927354+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1910,
+        "output_tokens": 740,
+        "total_tokens": 2650,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 507
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.35566",
+    "title": "Copying As Defense: Protecting Images from Editing By Eliciting Model Copying",
+    "authors": [
+      "Salma Abdel Magid",
+      "Sanghyuk Chun",
+      "Eric Slyman",
+      "Kushal Kafle",
+      "Olga Russakovsky"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": null,
+    "summary": "Image editors built on diffusion transformers (DiTs), such as Flux Kontext, make it possible to turn a single photograph into a convincing manipulated image, including harmful and non-consensual edits. Proactive defenses aim to prevent such manipulations by adding an imperceptible perturbation before an image is shared. Existing defenses for DiT-based in-context editors make the output attend less to the protected reference image. But this leaves the model free to follow the edit instruction using the text and its own generated tokens, often producing a new, weakly grounded image rather than preventing the edit. We find that the opposite strategy is more effective: instead of leading the model to ignore the reference, we encourage it to copy it. Through controlled attention interventions, we show that concentrating target-token attention on the reference image in only a few early blocks is sufficient to collapse the editing behavior, causing the model to reproduce its input, often as a lossy copy, rather than execute the requested transformation. Based on this insight, we introduce Copying-as-Defense (CaD), which maximizes per-token target-to-reference attention mass in early transformer blocks. Since attention rows are normalized, increasing reference attention suppresses the attention allocated to the text and generated canvas. Restricting the objective to early blocks also lets us truncate the backpropagation path, keeping optimization cheap. Across editors and benchmarks, CaD reduces average edit success from 81.4% on unprotected images to 24.0%, a 70.6% relative reduction, and by a further 44.3% relative to DeContext, the strongest baseline (43.0%). CaD is also roughly 1.8-2.0x faster per optimization step than comparable methods.",
+    "abs": "http://arxiv.org/abs/2610.35566v1",
+    "pdf": "https://arxiv.org/pdf/2610.35566v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "论文研究针对 DiT 图像编辑器（如 Flux Kontext）的主动防护：通过受控注意力干预发现，仅让早期 block 中目标 token 对参考图的注意力高度集中，就足以使编辑行为崩溃、模型转而复制输入，据此提出 CaD 优化扰动，把平均编辑成功率从 81.4% 降至 24.0%。",
+      "relevance_reason": "其「早期 block 视觉注意力质量决定模型复制还是改写视觉输入」的干预与分析，可能可供核查 LVR 中视觉证据是否被真正使用、注意力分配造成视觉旁路或信息坍缩的诊断线索，但研究场景是图像编辑防护，与多模态推理无直接联系。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-27T18:56:51.927354+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

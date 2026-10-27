@@ -1,0 +1,68 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.35607",
+  "input_sha256": "80c8c20c55e0b646086a0ef415ba41259a311597a90d84c2f25d8733e5030cb9",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-27T18:56:26.224965+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1903,
+        "output_tokens": 767,
+        "total_tokens": 2670,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 523
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.35607",
+    "title": "VaLoP: Value Gradient Lookahead and Pullback for Reward-Guided Diffusion",
+    "authors": [
+      "Kwanyoung Kim"
+    ],
+    "categories": [
+      "cs.AI"
+    ],
+    "comment": "35 pages. Project page: https://real-lab-gist.github.io/valop",
+    "summary": "Reward guidance steers a pretrained diffusion or flow model toward images or actions that a reward model prefers, at sampling time and without retraining the model for each reward. It follows the gradient of a value function, the expected reward given the noisy state. The two common estimates of this gradient, gradients through a one-step denoised estimate and learned value models, are least accurate at high noise, where the coarse structure of the sample is decided. Interestingly, we find that both errors are posterior covariances, which grow with the uncertainty about the clean sample, and hence at higher noise. To reduce them, we evaluate the value at a less noisy state, one sampler step ahead, where this uncertainty is smaller, and pull its gradient back to the current state. This lookahead places both estimators at the two ends of one family and reveals that an intermediate lookahead requires one additional term, a correction through the generator. We therefore propose Value Gradient Lookahead and Pullback (VaLoP), which computes this correction with one vector-Jacobian product, and VaLoP-Fast, which amortizes it with a small head that, for text-to-image models, is trained with a single reward and reused for the others. Across various models, rewards, and benchmark datasets, both robustly outperform existing value-gradient guidance on the target reward, VaLoP-Fast at about the cost of learned-value guidance. Both extend to critic-guided robot policies, where VaLoP-Fast attains the highest success rates on LIBERO and RoboCasa.",
+    "abs": "http://arxiv.org/abs/2610.35607v1",
+    "pdf": "https://arxiv.org/pdf/2610.35607v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文研究扩散/流模型的采样期奖励引导：指出「一步去噪估计梯度」与「学习值模型」两类值梯度估计在高噪声时最不准确，误差来自随不确定度增长的后验协方差；据此在噪声更少的下一采样步处求值并把梯度回拉到当前状态，提出需经生成器修正项的 VaLoP（一次 VJP 实现）及用小头摊销的 VaLoP-Fast。",
+      "relevance_reason": "「高不确定时值梯度不可靠、用 lookahead 加回拉修正」这一机制，可能为奖励/价值引导下的 latent 推理状态更新与中间状态验证提供可核查线索；但原文面向图像与机器人策略采样，与 VLM 推理的联系需自行判断。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-27T18:56:26.224965+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}
