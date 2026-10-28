@@ -1,0 +1,71 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.36355",
+  "input_sha256": "c2ed21b34ede22c70f485b4b758fa9d624c429e2f407de578fd99a70283a868a",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-28T19:17:26.707080+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1817,
+        "output_tokens": 906,
+        "total_tokens": 2723,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 689
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.36355",
+    "title": "WAKMan: Workload Aware KVCache Manager",
+    "authors": [
+      "Suhas Kumar Morisetty",
+      "Vaibhavi Lokegaonkar",
+      "Sachin Mathew Varghese",
+      "Wesley Harris"
+    ],
+    "categories": [
+      "cs.AI"
+    ],
+    "comment": "Work done during internship at Capital One",
+    "summary": "Prefix caching enables a Large Language Model (LLM) servers to reuse the Key-Value (KV) states and accelerate prefill computation stage for requests that share a prefix with earlier prompts, thus reducing latency and serving cost. With limited memory resource, the KV cache eviction policy becomes a decisive factor in determining the overall benefits of prefix caching. Production traffic may have single-turn, multi-turn, agentic, or a mixture of any combination of these request types. Our findings indicate that agentic steps return within seconds and favor recency, while popular prompts and long conversations return after many other requests and favor frequency. Across 20 mixes, no single policy is always best: vLLM's default strategy LRU provides 12% higher cache hits as compared to the frequency-oriented S3FIFO on agentic-heavy mixes but trails it by up to 22% elsewhere, and even a single workload parameter can flip the winner even for any particular mix. We present WAKMan, a workload-aware KV cache manager that picks its eviction policy from live traffic without knowing request types or reading prompts. It improves hit rate over LRU by 5 percentage points on average, with the lowest mean and worst-case optimality gap of all policies.",
+    "abs": "http://arxiv.org/abs/2610.36355v1",
+    "pdf": "https://arxiv.org/pdf/2610.36355v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文提出 WAKMan，一个面向 LLM 前缀缓存的 workload-aware KV cache 管理器：它不依赖请求类型标签或读取 prompt，而是根据实时流量在线选择淘汰策略，在多种请求混合下取得比 LRU 更高的缓存命中率与更小的最优性差距。",
+      "relevance_reason": "其要点是不同访问模式（agentic 短间隔偏好 recency、热门/长会话偏好 frequency）需要不同保留策略并需在线切换，这一线索可供核查 LVR 多轮或 agent 推理中视觉与 latent 状态缓存哪些、保留多久的决策；但与 latent 推理状态生成无直接关系。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-28T19:17:26.707080+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

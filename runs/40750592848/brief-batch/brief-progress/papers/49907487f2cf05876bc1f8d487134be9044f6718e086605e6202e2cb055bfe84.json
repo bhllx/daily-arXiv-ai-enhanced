@@ -1,0 +1,68 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.37226",
+  "input_sha256": "f11f99b9a664ec35c7a8422af1972139fb4a230c928a844663fbe7e80cd590c1",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-28T19:07:17.766331+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1920,
+        "output_tokens": 699,
+        "total_tokens": 2619,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 484
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.37226",
+    "title": "Subspace Clifford Networks",
+    "authors": [
+      "Zhongping Ji"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": "12 pages",
+    "summary": "In this work, we propose Subspace Clifford Networks, a reformulation that replaces global cyclic rolling with grouped subspace interactions. Instead of sampling sparse cyclic diagonals across the entire $D$-dimensional channel space, we project the features into an aligned space $\\R^{\\tilde{D}} = \\bigoplus_{g=1}^{G} V_g$ partitioned into $G$ low-dimensional groups $V_g \\cong \\R^k$ with $k \\in \\{2, 3, 4\\}$. Within each $k$-dimensional group, we compute all $\\binom{k}{2}$ wedge coordinates and concatenate them with $\\operatorname{SiLU}$-activated coordinate-wise products, while sandwiching the grouped interaction between learnable $1\\times 1$ linear projections to enable cross-group channel mixing. This design reduces intermediate feature expansion from $2|\\mathcal{S}|D$ (typically $10D$ for 5 shifts) down to $1.5\\tilde{D}$ ($k=2$), $2.0\\tilde{D}$ ($k=3$), or $2.5\\tilde{D}$ ($k=4$). Furthermore, exploiting the small, fixed group size $k \\in \\{2, 3, 4\\}$, we implement a fused CUDA kernel that evaluates the forward interaction and a recomputation-based analytical backward pass using thread-local variables without allocating global-memory buffers for elementwise intermediates. Finally, we extend the backbone from an isotropic columnar layout to a multi-resolution Hierarchical Clifford Network with configurable per-stage subspace dimensions. Experiments on CIFAR-100 show that the proposed models substantially reduce parameter count and training time across both regimes, while the hierarchical variants also improve classification accuracy over the evaluated shift-based hierarchical baselines.",
+    "abs": "http://arxiv.org/abs/2610.37226v1",
+    "pdf": "https://arxiv.org/pdf/2610.37226v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "提出 Subspace Clifford Networks：用分组低维子空间上的楔积坐标加坐标乘积替代全局循环位移式交互，并配以融合 CUDA 核和分层多分辨率骨干；在 CIFAR-100 上主要降低参数量与训练时间，分层变体兼顾一定精度提升。",
+      "relevance_reason": "楔积坐标以紧凑形式编码特征间的几何与成对关系，可能为 LVR 内部状态如何保留实体关系/几何信息及其低成本计算提供可供核查的线索；但该文是图像分类骨干，未涉及推理状态生成或证据使用，迁移尚属推测。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-28T19:07:17.766331+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

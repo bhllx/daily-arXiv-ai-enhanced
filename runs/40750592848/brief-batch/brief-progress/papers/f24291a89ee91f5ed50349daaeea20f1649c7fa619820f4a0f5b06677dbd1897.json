@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.37000",
+  "input_sha256": "01f9cd56bee90d48e52905d91c42db76e1da42416e68e48c350347b02f4fd243",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-28T19:09:31.106545+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1820,
+        "output_tokens": 1024,
+        "total_tokens": 2844,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 602
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.37000",
+    "title": "GPA-VGGT: Geometry-Preserving Acceleration of VGGT",
+    "authors": [
+      "Muyeol Sung",
+      "Jangwon Kim",
+      "Jongwoo Lim"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": "Accepted to WACV 2027. Project page: https://noheat61.github.io/GPA-VGGT/",
+    "summary": "Feed-forward geometry models such as VGGT recover camera parameters, depth maps, and point maps from one to hundreds of views in a single forward pass, making them powerful backbones for multi-view 3D perception. However, VGGT's global attention is quadratic in the number of frames and dominates end-to-end runtime on long sequences, which has motivated a range of training-free efficiency methods such as token merging. These methods, however, come with a drop in accuracy that makes them hard to use in place of VGGT. We propose GPA-VGGT, a training-free acceleration method that replaces global attention in early blocks with frame attention augmented by a shared cross-frame K/V set. In the remaining blocks, we merge only keys and values while preserving all queries, restore the attention mass of the tokens each merged key represents, and randomly project the matching metric to 128 dimensions to reduce matching cost. Across diverse multi-view geometry tasks, GPA-VGGT provides training-free acceleration at speedups comparable to prior work while preserving the information required for precise geometric estimation, retaining over 99% of VGGT's pose accuracy under AUC@3.",
+    "abs": "http://arxiv.org/abs/2610.37000v1",
+    "pdf": "https://arxiv.org/pdf/2610.37000v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "提出免训练加速方法 GPA-VGGT：在前段用帧内注意力加共享跨帧 K/V 替代 VGGT 的全局注意力，在后段只合并 key/value 而保留全部 query，并恢复被合并 token 的注意力质量、将匹配度量随机投影到 128 维以降低开销，从而在保持几何与位姿精度的同时加速多视图重建。",
+      "relevance_reason": "其「保留全部 query、仅合并 K/V 并补偿注意力质量」的方案，可能为 LVR 中压缩视觉证据或 latent token 而不导致信息坍缩提供可供核查的线索；但论文任务是三维几何重建加速，与推理期状态生成无直接联系。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-28T19:09:31.106545+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

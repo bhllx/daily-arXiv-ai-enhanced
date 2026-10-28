@@ -1,0 +1,72 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.37110",
+  "input_sha256": "f785293b6f7fb69387c1a7ba287ac8446f6db0355bb0f05f861792082826af2c",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-28T19:08:33.672526+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1913,
+        "output_tokens": 815,
+        "total_tokens": 2728,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 577
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.37110",
+    "title": "A First-Step Bias Restores Lost Diversity in Diffusion Model Distillation",
+    "authors": [
+      "Wenwu Tang",
+      "Dong Wang",
+      "Yun Cheng",
+      "Olga Saukh"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "Distribution-matching distillation enables high-quality image generation in only a few denoising steps. However, distilled student models often map different initial noise samples to similar outputs under the same prompt. To locate where diversity is lost, we compare the teacher and student along the sampling trajectory. The largest measured reduction in the response to different initial noises occurs during the first, high-noise step. When we replace the first step with the teacher's corresponding trajectory and leave the final three student steps unchanged, most of the output diversity returns. This suggests that the first step is a key point for restoring diversity. Motivated by this finding, we introduce \\emph{ReSeed}, a post-distillation method that adds a seed-response bias adapter only to the first student step and aligns its velocity with the teacher's first-interval secant velocity. All student weights and later denoising steps remain unchanged. We evaluate ReSeed on three text-to-image models (SD3-Medium, SD3.5-Medium, and FLUX.1-dev) and one text-to-video model (Wan2.1-T2V-1.3B). For a distilled 4-step FLUX.1-dev model, \\emph{ReSeed} requires only $0.00196\\%$ additional trainable parameters relative to the base model and is trained on 8,000 prompt--noise pairs, while keeping the distilled student fully frozen and requiring no target images, perceptual losses, or adversarial losses. It improves DINO diversity by $48.3\\%$ while maintaining competitive visual quality. These results show that substantial diversity can be recovered through a lightweight, data-efficient tuning of only the first denoising step, without finetuning the full student model.",
+    "abs": "http://arxiv.org/abs/2610.37110v1",
+    "pdf": "https://arxiv.org/pdf/2610.37110v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文沿采样轨迹对比教师与蒸馏学生模型，发现对不同初始噪声的响应多样性主要丢失在第一个高噪声去噪步，据此提出 ReSeed：仅在第一步加入 seed-response bias adapter，并使其速度对齐教师首段割线速度，其余学生权重与后续步骤全部冻结，在 SD3、FLUX 及 Wan 视频模型上以极少参数和训练样本恢复多样性。",
+      "relevance_reason": "沿轨迹逐步比对师生差异以定位信息坍缩发生的那一步、并只对该步状态更新做轻量对齐监督，可能为 LVR 中「视觉细节在哪一步被丢弃」的诊断与单步干预提供可核查的方法线索，但其目标是图像生成多样性，迁移到 latent 推理状态仍需自行判断。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-28T19:08:33.672526+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

@@ -1,0 +1,72 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.37390",
+  "input_sha256": "d2a6be31d9889f5550264cb6641ede4e6a5f4a518f101b8686c1a5457737e164",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-28T19:05:38.678022+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1883,
+        "output_tokens": 645,
+        "total_tokens": 2528,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 432
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.37390",
+    "title": "LinMix: Data Mixing as Linear Domain Attribution",
+    "authors": [
+      "Hubert Baniecki",
+      "Przemyslaw Biecek",
+      "Martin Pawelczyk"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.CL",
+      "stat.ML"
+    ],
+    "comment": "NeurIPS 2026 Workshop on Attributing Model Behavior at Scale",
+    "summary": "Language model performance depends strongly on the mixture of domains in the pretraining data corpus. Popular data mixing methods select these domain weights by training many small proxy models on random mixes and then fitting a regression model to predict performance from the mix. We recognize this practice as a domain attribution problem, where the regression measures each domain's contribution to the target metric. Through this lens, the standard Dirichlet sampling of proxy data mixes is a poor regression design that requires tuning and cannot support a linear fit for hundreds of domains. Building on classical optimal experimental design, we introduce LinMix, which samples mixes at the vertices of the capped simplex so that each domain is at its cap or absent. This hyperparameter-free vertex sampling decorrelates domain effects, enabling an interpretable linear model whose coefficients are the domain attributions. The optimal mix given by LinMix provably keeps only domains with positive attribution values and requires no search over candidate mixes. We further establish the optimality of vertex sampling, and prove that Dirichlet sampling inflates the attribution error when its mixes concentrate around the prior data mix. Pretraining experiments with 1B-parameter OLMo2 and 4B Qwen3.5 language models show that LinMix outperforms Dirichlet-based data mixing across reasoning, code, and math benchmarks, with relative gains of 46% on MBPP and 14% on GSM8K. At 288 fine-grained domains, only vertex sampling supports a linear fit, and LinMix improves benchmark accuracy by 11% on average over the best nonlinear baseline.",
+    "abs": "http://arxiv.org/abs/2610.37390v1",
+    "pdf": "https://arxiv.org/pdf/2610.37390v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "将预训练数据的域权重选择视为域归因问题，改用 capped simplex 顶点采样的代理混合，无超参地拟合线性模型，以系数作为各域归因并直接给出最优配比，在 1B/4B 模型上验证。",
+      "relevance_reason": "其用实验设计解耦相互关联的因素、再以回归系数做贡献分配的思路，可能为 LVR 中视觉旁路、latent 轨迹等组件的贡献归因及内容/深度/位置混杂的解耦提供核查线索；但原文对象是纯文本预训练数据配比，迁移需较多核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-28T19:05:38.678022+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

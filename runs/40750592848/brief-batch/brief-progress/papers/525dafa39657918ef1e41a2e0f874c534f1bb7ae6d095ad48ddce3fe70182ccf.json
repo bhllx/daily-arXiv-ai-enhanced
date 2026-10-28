@@ -1,0 +1,73 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.36617",
+  "input_sha256": "ea25de697805cbea53b3ed448cc21a70b8ea74fd37b7324bb136c2059b5d1168",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-28T19:14:03.511985+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1889,
+        "output_tokens": 405,
+        "total_tokens": 2294,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 222
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.36617",
+    "title": "Balanced State Subspaces for Mamba-2 State Compression",
+    "authors": [
+      "Shang Tingyu",
+      "Cao Wenfei"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.AI",
+      "cs.CL",
+      "stat.AP",
+      "stat.ME"
+    ],
+    "comment": "15 pages, 4 figures",
+    "summary": "Mamba-2 compresses all context into a fixed-size recurrent state that dominates decoding memory and bandwidth. Existing compressors quantize state values or prune state coordinates, scoring each channel independently in the native basis. We examine trained Mamba-2 states and find that energy is almost rank-one, but the output does not read the energetic directions: energy concentrates in a bias-like direction accumulated by the recurrence, while the content the output reads lives in a low-dimensional subspace that is not aligned with the state's coordinates. Even output-aware scores are computed coordinate by coordinate, so they miss the directions that determine the input--output map. Compression should therefore target the write--read subspace rather than individual coordinates. We propose \\method{}, a post-training transform that instantiates balanced truncation with full controllability and observability Gramians and applies the rotation exactly via Mamba-2's scalar-identity transition. Because the useful rank varies widely across layers, we further introduce HARP, which allocates ranks per layer from the Hankel spectrum and protects retrieval-sensitive layers, improving both perplexity and retrieval over uniform budgets. Calibration takes a single forward pass, an order of magnitude faster than GHOST's released protocol, with lower peak memory. With HARP, \\method{} halves the state dimension at an average WikiText-2 perplexity increase of $0.3$ points ($1.8\\%$) across 130M--2.7B, versus $1.6$ ($9.3\\%$) for GHOST, and the gap widens at 25\\% retention.",
+    "abs": "http://arxiv.org/abs/2610.36617v1",
+    "pdf": "https://arxiv.org/pdf/2610.36617v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "该论文分析 Mamba-2 训练后循环状态的能量与输出读取方向，提出基于可控/可观 Gramian 的平衡截断后训练变换，并按 Hankel 谱逐层分配状态秩。",
+      "relevance_reason": "其“压缩写入—读取子空间而非单个坐标”及逐层秩分配思路，可能为 LVR 中 latent 推理状态的缓存压缩与内容/深度敏感性分析提供方法线索，但需核查其向多模态状态的迁移。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-28T19:14:03.511985+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

@@ -1,0 +1,75 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.36321",
+  "input_sha256": "699027dad9423cc492550d103d2d358ab5a1374a03568ddd2c6763aeb4ebce3e",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-28T19:17:48.529168+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1867,
+        "output_tokens": 619,
+        "total_tokens": 2486,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 393
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.36321",
+    "title": "AHEAD: Adaptive Neural Acceleration for Large-Scale Linear Programming",
+    "authors": [
+      "Sihao Liu",
+      "Zhichao Hou",
+      "Huayue Gu",
+      "Raiyan Rahman",
+      "Liang Wu",
+      "Ruozhou Yu",
+      "Xiaorui Liu"
+    ],
+    "categories": [
+      "cs.LG",
+      "math.OC"
+    ],
+    "comment": null,
+    "summary": "Large-scale linear programs with millions of variables and constraints strain time and memory budgets. First-order methods such as the primal-dual hybrid gradient scale to this regime because they avoid matrix factorizations, but they require many iterations. Learned accelerators can reduce these iterations, yet fewer iterations do not guarantee a shorter solve. Learning inference also takes time, and running the accelerator longer trades solver time for inference time. Existing unrolled accelerators handle this trade-off poorly: each layer processes every variable and constraint, the predicted iterates still need solver refinement, and every instance runs the same layers. We therefore ask: What neural accelerator design achieves end-to-end speedups on large-scale linear programs across sizes and target accuracies? We introduce AHEAD, an accelerator that predicts step sizes for first-order linear programming solvers while keeping their update rules. Its weight-shared predictor reads compact solver statistics and rescales the primal and dual step sizes, so each warm-start iteration stays inexpensive and a short warm-start phase hands the solver a warm start. A learned handoff policy sets the number of warm-start iterations for each instance and target accuracy, after which the solver finishes under its own termination criterion. On packing linear programs with up to $10^7$ variables, AHEAD achieves $6.5$--$11.6\\times$ end-to-end speedups over Gurobi's first-order solver from a cold start, including on instances of unseen sizes and distributions. The gains extend to PageRank linear programs and hold across difficulty levels and target accuracies.",
+    "abs": "http://arxiv.org/abs/2610.36321v1",
+    "pdf": "https://arxiv.org/pdf/2610.36321v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "提出 AHEAD，为大规模线性规划的一阶求解器学习步长预测器，并用可学习的 handoff 策略按实例与目标精度决定 warm-start 迭代数，在变量规模达 10^7 的 packing LP 上取得 6.5–11.6 倍端到端加速。",
+      "relevance_reason": "论文强调「迭代更少不等于求解更短」，并按实例学习何时交回求解器继续，这种面向端到端成本的自适应计算与停止策略，可能为 LVR 中 THINK/LOOK/STOP 的预算分配与评价方式提供可核查的启发；但任务领域与视觉推理无关。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-28T19:17:48.529168+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

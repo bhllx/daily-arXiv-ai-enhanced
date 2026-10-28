@@ -1,0 +1,73 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.36536",
+  "input_sha256": "08ae046dff61966a5d02fff359d3d6a730d5c1af0d58304c97eaed43b6cb0707",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-28T19:15:20.741057+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1951,
+        "output_tokens": 607,
+        "total_tokens": 2558,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 385
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.36536",
+    "title": "ATEMPO: Amortized Transfer Entropy Model Per-lag Over-Time",
+    "authors": [
+      "Emma Andrews",
+      "Konstantinos Kontras",
+      "Keane Ong",
+      "Maarten De Vos",
+      "Gianmarco Mengaldo"
+    ],
+    "categories": [
+      "cs.AI",
+      "cs.IT"
+    ],
+    "comment": null,
+    "summary": "When one time series informs another, the delay at which that information arrives determines if models can utilize this relationship effectively. A source may be strongly predictive at one delay but uninformative at neighboring lags. Therefore, fixed input windows may obscure this structure by bundling informative and irrelevant history together. Transfer entropy (TE) can recover these delays by measuring how much a source's past tells us about a target beyond the target's own history. However, existing TE estimators require separate fits across source and conditioning depths, with further estimation on local windows to track delays over time. We introduce ATEMPO, a diffusion-based transfer entropy estimator amortized over lags and time. ATEMPO samples source and conditioning depths during training and conditions explicitly on temporal position, allowing a single score network to estimate the full TE surface without refitting. Differencing this surface recovers when information arrives. Across synthetic datasets with ground-truth TE, ATEMPO achieves the lowest mean relative error among baselines, and on datasets with known lags, ATEMPO achieves $0.98\\pm0.04$ lag-detection accuracy. ATEMPO requires a single fit across source depths $K=6$ and target depths $L=3$, whereas existing estimators require 18 separate fits to evaluate the same $K \\times L$ grid. On three systems with time-varying lag, ATEMPO is the only estimator to maintain perfect lag-detection accuracy across all evaluated window lengths. These recovered delays improve downstream forecasting: ATEMPO-selected inputs reduce MSE on WEATHER-5K by 7.25%, while 120 selected inputs outperform the benchmark's 240-feature default by 4.6%. Across three brain-computer interface tasks, using ATEMPO-selected lags achieves the highest or equal-best $R^2$, improving mean $R^2$ by 4.1% relative to the strongest competing baseline.",
+    "abs": "http://arxiv.org/abs/2610.36536v1",
+    "pdf": "https://arxiv.org/pdf/2610.36536v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "提出 ATEMPO，一个基于 diffusion 的迁移熵（TE）估计器：训练时采样源深度与条件深度并显式条件于时间位置，用单一 score network 摊销地估计完整 TE 曲面，再通过差分定位信息到达的延迟，并在合成数据、下游预测和脑机接口任务上评估。",
+      "relevance_reason": "其「按时间位置条件、在条件深度上摊销、单次拟合覆盖整个深度网格」的做法，可能为 latent 推理中跨推理深度/长度的泛化，以及按信息贡献筛选历史证据提供可核查线索；但研究对象是时序迁移熵，与 VLM 推理无直接联系。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-28T19:15:20.741057+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}
