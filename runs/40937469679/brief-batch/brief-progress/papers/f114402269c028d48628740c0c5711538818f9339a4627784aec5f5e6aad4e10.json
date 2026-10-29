@@ -1,0 +1,73 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.36585",
+  "input_sha256": "32f28b290e19589a0ddd4e92a9a99157eef3a4924e49f040129feb138c32b3cd",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-29T19:21:31.178562+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1902,
+        "output_tokens": 735,
+        "total_tokens": 2637,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 506
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.36585",
+    "title": "Recall or Relearn? A Mixture of In-Context Experts for Recurring Concept Drift",
+    "authors": [
+      "Zhangkai Wu",
+      "Xu Zhang",
+      "Zhihong Cui",
+      "Yiqi Wang",
+      "Yi Zhang"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.IR"
+    ],
+    "comment": null,
+    "summary": "Tabular foundation models (TFMs) are being applied to Web data streams such as network intrusion detection, where they adapt by updating the labelled rows of their context without retraining. When a past concept returns after leaving the context, a TFM faces a recall-or-relearn decision between restoring stored rows of the concept and relearning it from new labels. We propose MICE (Mixture of In-Context Experts), a training-free learner that cuts the stream into segments at detected changes. It merges a closed segment into a stored context when the TFM's estimated additional error on the segment is within a tolerance, under a capacity limit on stored contexts. A fast level weights the stored contexts and first-in-first-out (FIFO) windows by the log-loss of their predictions on the last labelled batch. We show that, with pure stored contexts and a margin condition, this fast level gains over relearning, in expected accuracy, the normalised positive area between the stored context's accuracy and the TFM's learning curve, up to a first-batch term. A slow level mixes the fast level's prediction with that of the FIFO window of the last labelled rows and bounds the discounted half-Brier regret of MICE against this window at every time. Learning curves measured beforehand predict the ordering of the observed recall gains. MICE outperforms reset, which empties the context at detected drifts, on grid streams with random boundary phases. Merging keeps fewer experts than pools that store every segment, and with fixed segmentation a time-matched snapshot pool matches MICE on the shifted grid. On real streams, MICE has the highest mean accuracy of all policies we compare.",
+    "abs": "http://arxiv.org/abs/2610.36585v1",
+    "pdf": "https://arxiv.org/pdf/2610.36585v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "提出免训练的 MICE：把表格数据流按检测到的变化切段，依据模型在该段上的额外误差是否在容限内决定是否将旧概念存入容量受限的上下文库；快速层按最近批次 log-loss 加权存储上下文与 FIFO 窗口，慢速层再与之混合，并给出相对重学习的准确率增益与 Brier 后悔界。",
+      "relevance_reason": "其「复用存档状态还是重新学习」的决策与按近期预测损失加权混合多份上下文的机制，可能为 LVR 中缓存推理状态/视觉证据的复用与选择、以及停止是否重算提供可供核查的线索；但研究对象是表格流，非视觉推理。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-29T19:21:31.178562+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

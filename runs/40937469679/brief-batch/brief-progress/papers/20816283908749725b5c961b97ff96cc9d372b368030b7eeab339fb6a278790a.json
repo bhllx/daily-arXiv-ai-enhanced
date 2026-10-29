@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.36520",
+  "input_sha256": "1846c66d53cf57400f8d3b2c5b2daff8bdc88917f2654a24ddb9bdffba0ce1cf",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-29T19:22:08.395006+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1886,
+        "output_tokens": 502,
+        "total_tokens": 2388,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 238
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.36520",
+    "title": "Folding Attention Biases into Keys Makes Compacted KV Caches Run on Standard Kernels",
+    "authors": [
+      "Utkarsh Kanwat"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.CL"
+    ],
+    "comment": "30 pages, 2 figures, 18 tables",
+    "summary": "Attention Matching (AM) compacts a KV cache by keeping some keys per head, refitting their values and adding a bias to each kept key's logit. FlashAttention and vLLM's paged caches have no input for it. We fold the bias into the keys along one closed-form direction per head, fitted on context queries, giving a plain cache with AM's size and head dimension and the model's own query path; the output error is bounded by how far each query's projection on that direction is from 1. With equal per-head budgets, unmodified vLLM serves folded caches through a KV connector, matching Hugging Face's answers on all 51 Qwen3-4B questions and its greedy output on 180 of 200 Qwen3-14B LongBench samples. With equal budgets on QuALITY (Qwen3-1.7B, 4B, 8B, Llama-3.1-8B) and LongHealth (three Qwen3 models), the fold is within noise of AM's accuracy in 13 of 14 settings, with lower KL to the full cache than dropping the bias in all 12 where both ran. Under the published per-head budgets, on Qwen3-4B, its Instruct-2507 variant and Llama-3.1-8B, it is within noise of AM in 9 of 10, no longer beats dropping the bias in KL, and the two each win once in accuracy.",
+    "abs": "http://arxiv.org/abs/2610.36520v1",
+    "pdf": "https://arxiv.org/pdf/2610.36520v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "该文研究如何把 Attention Matching 压缩 KV cache 时加入的注意力偏置，沿每个头的一个闭式方向折叠进 key 本身，从而得到可由 FlashAttention 和 vLLM 标准 kernel 直接服务的紧凑缓存，并给出输出误差随查询在该方向投影偏离 1 的程度而受限的界；在 Qwen3 与 Llama-3.1 的多项长文本基准上，其精度与 AM 相当或接近。",
+      "relevance_reason": "KV cache 压缩直接决定长上下文 VLM 推理时内部状态还保留多少视觉证据，其对「缓存与注意力结构如何影响 latent 相似度、细节是否被旁路」的问题可供核查；但该文只处理文本长上下文服务效率，与 LVR 推理机制无直接联系，需先核查压缩误差界能否用于测量视觉信息损失。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-29T19:22:08.395006+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

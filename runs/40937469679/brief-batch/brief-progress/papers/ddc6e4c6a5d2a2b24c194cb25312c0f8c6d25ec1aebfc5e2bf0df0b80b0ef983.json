@@ -1,0 +1,73 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.36628",
+  "input_sha256": "4b466abfe633b1b664348ef28803e128dd7991cbf77c51ed26a6b203c1eeb3ca",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-29T19:20:56.409578+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1871,
+        "output_tokens": 773,
+        "total_tokens": 2644,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 572
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.36628",
+    "title": "The Batch Size Can Be One: Test-Time Adaptation from Classifier Geometry",
+    "authors": [
+      "Jaeho Hwang",
+      "Yujin Oh",
+      "Juhyeon Shin",
+      "Juhye Lee",
+      "Sungroh Yoon",
+      "Uiwon Hwang"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Test-time adaptation updates a deployed model on an unlabeled test stream. In practice this stream often arrives one sample at a time, with the classes in no particular order. A single sample then provides limited information for estimating distribution-level statistics, and selecting samples by confidence can admit predictions that are wrong yet confident. A corruption, however, shifts the features while leaving the decision regions of the frozen classifier unchanged. We therefore propose Origin-recentered Test-Time Adaptation (OriTTA), which constructs fixed geometric targets from the source model and adapts selected features toward them. Seen from the origin of the feature space, the classes lean toward a common direction. We choose a new origin to bring class scores closer together while keeping it near the mean feature of one synthetic prototype per class. From this origin, prototype directions spread more evenly, and each class obtains an axis and an ideal point before any test data arrives. During adaptation, OriTTA aligns selected features with their predicted class axis and penalizes excessive radius, keeps one input per predicted class in memory to limit feature changes for classes absent from the stream, and resets the model when re-classifying this memory reveals collapse. Without tuning for each setting, OriTTA achieves the highest mean accuracy at batch size 1 on CIFAR-10-C, CIFAR-100-C and ImageNet-C in all sixteen combinations of four backbones, two protocols and two stream orders. On ImageNet-C fog, recent methods collapse in up to two thirds of one hundred runs, while OriTTA never does.",
+    "abs": "http://arxiv.org/abs/2610.36628v1",
+    "pdf": "https://arxiv.org/pdf/2610.36628v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "提出 OriTTA：在 batch size 为 1 的测试时适应中，从冻结源模型构造固定几何目标，重选特征空间原点使类轴更均匀展开，并将测试特征对齐预测类轴、惩罚过大半径，还以每类一条记忆检测崩溃并重置模型。",
+      "relevance_reason": "其「源模型几何目标＋记忆检测表示崩溃」可为 LVR 中 latent 状态稳定性、信息坍缩监测与视觉证据筛选提供可核查的方法线索，但不直接涉及推理轨迹生成或答案对 latent 内容的使用。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-29T19:20:56.409578+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

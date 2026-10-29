@@ -1,0 +1,73 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.36751",
+  "input_sha256": "b5fa93ad74ce0c17c7d0c0c5cd633181e3f69a2d1ae19f5a6de0367e8e871e1a",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-29T19:19:47.809179+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1867,
+        "output_tokens": 635,
+        "total_tokens": 2502,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 429
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.36751",
+    "title": "Generative Refinement Learning for Temporal Interpolation in Scientific Machine Learning",
+    "authors": [
+      "Pu Ren",
+      "Michael W. Mahoney",
+      "N. Benjamin Erichson"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.AI",
+      "math-ph",
+      "stat.ML"
+    ],
+    "comment": "Accepted by Transactions on Machine Learning Research",
+    "summary": "Computationally expensive simulations and real-world observations often provide data at a lower temporal resolution than downstream tasks require. Averaging observations at fixed grid points can introduce errors, and motion estimates alone do not determine how the physical field values change. In this work, we study whether learning to correct a simple numerical interpolation improves the reconstruction of intermediate scientific fields. Our model, interpolative FLow EXpert (iFLEX), first estimates the missing field by taking a weighted average of the two observations at each grid point, giving more weight to the observation closer to the requested time. During training, subtracting this estimate from an observed intermediate field gives the residual that a conditional diffusion model learns to generate. Both observations condition the model, together with the target time, the interval between observations, and available physical parameters. To reconstruct an unobserved intermediate field, the generated residual is added to the weighted average. We evaluate iFLEX on Navier-Stokes Kraichnan turbulence, Shanghai radar precipitation, and sea surface temperature. Across these datasets, iFLEX achieves lower reconstruction error than the evaluated baselines, including optical-flow and diffusion models developed for video frame interpolation in computer vision. In a controlled turbulence comparison at a Reynolds number of 36,000, learning the residual reduces relative Frobenius norm error from about 13.7 for direct field generation to 10.5, with the diffusion backbone and training setup held fixed. Code is available at https://github.com/paulpuren/iflex.",
+    "abs": "http://arxiv.org/abs/2610.36751v1",
+    "pdf": "https://arxiv.org/pdf/2610.36751v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文研究科学机器学习中的时间插值，提出 iFLEX：先以加权平均给出中间时刻的粗略估计，再用条件扩散模型学习该估计与真实中间场之间的残差，并在湍流、雷达降水与海表温度数据上降低重建误差。",
+      "relevance_reason": "「简单插值骨架 + 生成残差来修正中间状态」的范式可能为 LVR 的 latent 状态更新与轨迹监督提供线索，例如在已有先验状态上学习增量而非直接生成；但其对象是物理场重建、无语言答案使用，迁移性需核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-29T19:19:47.809179+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

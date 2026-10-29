@@ -1,0 +1,75 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.36801",
+  "input_sha256": "64242db3812ca44f09e2ca94e124177ce7a7e9bf1df5fe565eed99cce7f0f2bd",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-29T19:19:11.760125+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1826,
+        "output_tokens": 596,
+        "total_tokens": 2422,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 383
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.36801",
+    "title": "API-TAIL: Detecting Model Substitution in LLM APIs through Temperature-Aligned Likelihood Tails",
+    "authors": [
+      "Haocheng Mei",
+      "Yuchuan Tian",
+      "Ye Yuan",
+      "Chao Xu",
+      "Allen Chen",
+      "Kai Han",
+      "Yunhe Wang"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.CL"
+    ],
+    "comment": "Project page: https://github.com/TokenRhythm/API-TAIL",
+    "summary": "Commercial language model APIs return only text, allowing a provider to cut costs by quietly routing a fraction of user requests to a cheaper substitute model while billing for the advertised one. Detecting such partial substitution is challenging because honest providers also alter the output distribution through undocumented decoding and serving choices, such as temperature scaling, sampling truncation, repetition and presence penalties, and default system prompts, forcing an audit to test against a composite null of legitimate configurations rather than a single reference. Our key insight is that these legitimate variations primarily shift response typicality across the entire batch, whereas partial substitution injects individual responses that remain anomalous under the claimed model. Building on this, we introduce API-TAIL, a typicality audit that first absorbs batch-level shifts by aligning a single effective temperature to center standardized surprisal scores across the audited batch, and then flags the endpoint if the number of remaining tail responses exceeds a threshold calibrated across legitimate configurations. Evaluated on real-world commercial APIs, API-TAIL reliably controls false alarms across diverse honest providers while detecting even low-rate partial substitution with a small query budget, substantially outperforming existing rank- and MMD-based audits that lose detection power under the same composite calibration.",
+    "abs": "http://arxiv.org/abs/2610.36801v1",
+    "pdf": "https://arxiv.org/pdf/2610.36801v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "论文提出 API-TAIL，一种面向商业 LLM API 的审计方法：先用单一有效温度对齐整批标准化 surprisal，吸收合法解码与服务配置带来的整体分布偏移，再依据剩余尾部响应数量判断是否存在部分请求被替换为廉价模型。",
+      "relevance_reason": "其「整批典型性对齐 + 尾部响应异常计数」的复合零假设检验思路，可能可供迁移到 LVR 中核查回答是否真的由所声称的视觉条件支持（如证据被忽略或旁路时响应呈现分布异常），但与原研究主线无直接交集，需较多核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-29T19:19:11.760125+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

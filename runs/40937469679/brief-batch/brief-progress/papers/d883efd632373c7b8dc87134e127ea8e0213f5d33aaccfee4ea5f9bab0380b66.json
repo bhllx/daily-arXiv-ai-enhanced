@@ -1,0 +1,84 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.36383",
+  "input_sha256": "1c1d63dea02b77de1dc9bd9aab5fec8c1f88d380c27d853adbe738ed352b191a",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-10-29T19:23:56.333596+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1822,
+        "output_tokens": 651,
+        "total_tokens": 2473,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 421
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.36383",
+    "title": "From Generation to Scoring: Scaling LLM-Based Semantic Labeling at LinkedIn",
+    "authors": [
+      "Jian Sheng",
+      "Sriram Vasudevan",
+      "Sundara Raman Ramachandran",
+      "Yang Hu",
+      "Junyu Zhou",
+      "Xiaojing Ma",
+      "Haolan Qin",
+      "Tiffany Zhou",
+      "Vedant Vipul Jhaveri",
+      "Ashwini Bhingare",
+      "Chinmay Kini",
+      "Qing Lan",
+      "Xiaoqing Wang",
+      "Suleyman Cetintas",
+      "Fedor Borisyuk"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.DC",
+      "cs.IR"
+    ],
+    "comment": null,
+    "summary": "For efficiency, industrial large language model (LLM) labelers often pack many candidate labels into one prompt and generate a YES/NO answer for each, even when each decision depends only on the entity and one candidate. Generating these independent decisions as one answer list couples them, spends decoding on the list, and relies on the list being well-formed. In this paper, we present an end-to-end recipe that reformulates the labeler as semantic scoring, fine-tuning it on single-candidate prompts to return each decision as one answer-token score from a prefill-only pass. We also adapt Multiple-Item Scoring (MIS) to score hundreds of candidates in one sequence with attention masked between them. Deployed for profile qualification labeling at LinkedIn, semantic scoring changes at most 0.01% of decisions when candidates are reordered and matches the agreement with reference labels that packed generation reaches only with about 4.7x as many training pairs. The MIS-based stack raises throughput over the deployed stack by 1.24x offline and 1.9x in model serving under a one-second p99 latency target. For offline batch inference, we implement MIS-based scoring as a reusable, model-agnostic Ray Data API proposed for upstream adoption. Model serving uses MIS support contributed to SGLang.",
+    "abs": "http://arxiv.org/abs/2610.36383v1",
+    "pdf": "https://arxiv.org/pdf/2610.36383v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文把 LinkedIn 的工业级 LLM 标注器从「打包生成 YES/NO 列表」改为语义打分：在单候选提示上微调，用仅 prefill 的一次前向取答案 token 分数作为判定，并将 Multiple-Item Scoring 改造为在单序列内对数百个候选打分且候选间加注意力掩码，报告顺序稳定性、与参考标签一致性及吞吐提升。",
+      "relevance_reason": "「单候选打分 + 候选间注意力隔离的批量独立评分」可能为 LVR 中并行评估多个 latent 假设或证据候选、抑制候选间串扰并省去解码成本提供可核查的实现线索，但原文不涉及视觉或多模态推理。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-10-29T19:23:56.333596+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}
