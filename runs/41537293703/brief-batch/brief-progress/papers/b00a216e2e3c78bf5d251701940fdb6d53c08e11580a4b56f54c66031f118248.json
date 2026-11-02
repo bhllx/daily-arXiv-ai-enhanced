@@ -1,0 +1,76 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.41264",
+  "input_sha256": "c663b7646294cfcd2a71c29413c69d08dfe171e31cfd78e0562e5818df11b176",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-02T22:34:15.282527+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1994,
+        "output_tokens": 808,
+        "total_tokens": 2802,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 586
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.41264",
+    "title": "Rome Wasn't Built in One Turn: Replay-Grounded Reward Signals for Long-Horizon Freeciv Agents",
+    "authors": [
+      "Yanchen Liu",
+      "Xinyu Che",
+      "Brihi Joshi",
+      "Renzo Fukuda",
+      "Junhua Liu",
+      "Ruifeng Li",
+      "Yunfei Ge",
+      "Hang Yan",
+      "Xiang Ren"
+    ],
+    "categories": [
+      "cs.AI"
+    ],
+    "comment": "22 pages, 3 figures, 12 tables. Code: https://github.com/jamesnulliu/CivMarshmallow ; Checkpoints: https://huggingface.co/collections/CivMarshmallow/civmarshmallow",
+    "summary": "Training language-model agents to play long-horizon strategy games is hard because deterministic feedback is sparse and often arrives only at the end of a game. In-game scores can offer dense signals, but they do not reliably predict future outcomes: in 8-68% of position pairs across eight strategy games, the higher-scoring position leads to the worse outcome. We term this phenomenon scoreboard traps. In Freeciv, an open-source turn-based empire-building game where several players manage units, cities, and diplomacy over hundreds of turns, we look into better reward signals for gameplay agents. To facilitate this, we build CivHarness, an open system that saves current game states, branches on different decisions, and replays the game to future turns to provide measurable long-horizon feedback from saved positions. We use CivHarness to train CivTelescope, an LLM Judge that predicts which one of two game positions will yield the better outcome. On scoreboard-trap pairs, CivTelescope is 1.3-2.0 times more accurate than off-the-shelf language models, and it generalizes to new game starts, later turns, and unseen rules. We then train a Freeciv gameplay agent with CivTelescope as a dense reward, and call this recipe CivMarshmallow. When used in the middle stage of the game where scoreboard traps are common, CivMarshmallow reaches an average training phase gain of 8.94 points, 77% more than the best baseline, the end-of-game reward. Over the full 120-turn game, CivMarshmallow uses a hybrid reward that starts from the scoreboard or the end-of-game reward and shifts to CivTelescope as the game advances; this hybrid reward scores highest among the rewards we compare.",
+    "abs": "http://arxiv.org/abs/2610.41264v1",
+    "pdf": "https://arxiv.org/pdf/2610.41264v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文针对 Freeciv 长时程策略游戏中奖励稀疏、局内分数不可靠（「scoreboard traps」）的问题，构建可保存状态、分支决策并向前重放以取得长时程反馈的 CivHarness，并训练 LLM Judge（CivTelescope）判断两个局面的后续优劣，将其作为稠密奖励训练游戏 agent。",
+      "relevance_reason": "「保存状态—分支重放—学习判断器」的流程可能可供核查 LVR 中过程监督与贡献分配的线索，即以反事实后续结果衡量中间状态价值；但对象为纯文本游戏状态，与视觉证据和 latent 表示无直接联系。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-02T22:34:15.282527+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

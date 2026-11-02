@@ -1,0 +1,71 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2610.41149",
+  "input_sha256": "260455709e26915a2e16934ff47d4486fc6188cdda2256bdae18535caceba658",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-02T22:35:24.372731+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1913,
+        "output_tokens": 454,
+        "total_tokens": 2367,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 251
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2610.41149",
+    "title": "Counterfactual Pairwise Augmentation Improves Small Pointwise LLM Judges",
+    "authors": [
+      "Mohammad Zangooei",
+      "Peyvand Teymoori",
+      "Mohammad Robati Shirzad",
+      "Soroosh Shahtalebi"
+    ],
+    "categories": [
+      "cs.AI"
+    ],
+    "comment": "Accepted at Neurips'26 workshop of small language models for agentic systems",
+    "summary": "Agentic systems increasingly gate individual steps with a pointwise judge that scores a response against a criterion. Small language models are attractive for this role because they can be served and specialized efficiently. Such a judge must locate the criterion's decision boundary, but pointwise labels under-determine that boundary in fine-tuning: labeled responses to different queries differ along many dimensions at once, so they do not reveal which features decide the label. We introduce CPA (Counterfactual Pairwise Augmentation), which makes the deciding difference explicit in training. For each pointwise item, CPA synthesizes and audits a counterfactual response to the same query intended to carry the opposite label. It frames the accepted pair as a pairwise task asking which of the two responses satisfies the criterion. The judge is fine-tuned jointly on both pointwise and pairwise datasets and deployed in pointwise mode only. A second-order analysis shows when this should outperform the prevailing strategy of merging separately trained pointwise and pairwise experts: merging moves every parameter direction toward the pairwise expert by the same fraction, whereas joint training can hold the pointwise optimum wherever the pairwise loss is flat and absorb its curvature where it is sharp. This is the regime that CPA's same-source, counterfactually minimal pairwise view is designed to produce. On separate Qwen3-8B LoRA adapters for six binary criteria, CPA improves criterion-averaged pointwise macro-F1 by 2.5 points over pointwise-only training and outperforms model merging on all six criteria at every tested merge weight. It also surpasses the strongest zero-shot frontier judge we evaluate, Gemini 3.6 Flash, by 11.8 points.",
+    "abs": "http://arxiv.org/abs/2610.41149v1",
+    "pdf": "https://arxiv.org/pdf/2610.41149v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文提出 CPA：为每个 pointwise 评分样本合成并审核一个同源、反事实最小的对立标签回答，构成 pairwise 任务，与 pointwise 数据联合微调小型评审模型，但仅以 pointwise 方式部署；并用二阶分析说明其优于分别训练后合并专家。",
+      "relevance_reason": "其「构造反事实最小对以显式暴露决定标签的特征」可供核查如何设计对比监督来定位 LVR 中的关键视觉证据与贡献分配，但对象为纯文本判官、无 latent 状态，迁移性尚待判断。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-02T22:35:24.372731+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}
