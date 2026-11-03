@@ -1,0 +1,72 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.02003",
+  "input_sha256": "f70d328b0ee4500e53682d73cfe1e19db536ed9e9bb57de0616b602f86e383bc",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-03T20:34:22.344551+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1858,
+        "output_tokens": 411,
+        "total_tokens": 2269,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 212
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.02003",
+    "title": "MIRA: Mutual Information guided calibration for Reliable Test-Time Adaptation",
+    "authors": [
+      "Hyeongyu Kim",
+      "Mingyeong Jang",
+      "Youngjun Song",
+      "GeonHui Han",
+      "Dosik Hwang"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": "Accepted at NeurIPS 2026",
+    "summary": "Test-time adaptation (TTA) updates a deployed model using only unlabeled target data, but standard entropy-based methods often rely on deterministic confidence and can reinforce overconfident errors under distribution shift. We propose MIRA, Mutual Information guided calibration for Reliable Test-Time Adaptation, a source-free online adaptation method that uses lightweight last-layer Gaussian perturbations to probe prediction reliability. For each target batch, MIRA reuses a single feature extraction pass and samples perturbed classifiers around the source classifier, forming an efficient local predictive distribution. Rather than fitting a Bayesian posterior, MIRA treats the perturbation scale as a local probing radius and selects a batch-specific scale using mutual information (MI) and prediction agreement. The resulting perturbation-sensitivity signal identifies predictions that are confident and locally stable under classifier perturbations, while suppressing brittle predictions with high stochastic disagreement. MIRA then performs adaptation with an MI-confidence weighted entropy loss, which down-weights perturbation-sensitive or low-confidence samples before they drive entropy minimization. This weighted loss reduces the influence of brittle predictions that can otherwise cause harmful adaptation under distribution shift. The method requires no source data, retraining, model ensembles, or offline posterior fitting, and can be applied as a plug-and-play modification to entropy-minimization TTA. Experiments on distribution-shift benchmarks show improvements in accuracy, calibration, and negative log-likelihood, suggesting that mutual-information-guided perturbation probing and weighted adaptation yield more robust online TTA than deterministic confidence.",
+    "abs": "http://arxiv.org/abs/2611.02003v1",
+    "pdf": "https://arxiv.org/pdf/2611.02003v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "提出 MIRA：一种无源数据的在线测试时自适应方法，复用单次特征提取，在源分类器附近采样高斯扰动分类器形成局部预测分布，用互信息与预测一致性选择批次级扰动尺度，并以 MI 置信度加权熵损失抑制脆弱样本对自适应的驱动。",
+      "relevance_reason": "其「扰动敏感性即可靠性」信号可供核查是否能迁移为 LVR 中判断 latent 推理状态是否可信、是否继续或停止的依据；但原文仅涉及图像分类 TTA，与视觉推理内部状态无直接关系。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-03T20:34:22.344551+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

@@ -1,0 +1,71 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.02096",
+  "input_sha256": "34969170d1b19675b97506a58f0fc04308b15a8f28799fd7c6b8f61a2996a80a",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-03T20:33:03.395435+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 2055,
+        "output_tokens": 793,
+        "total_tokens": 2848,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 570
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.02096",
+    "title": "EarthJev: Calibrated, Non-Generative Answers to Natural-Language Questions about Sentinel-2 Land Cover",
+    "authors": [
+      "Domenico Benfenati",
+      "Antonio Maria Rinaldi",
+      "Cristian Tommasino"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.AI"
+    ],
+    "comment": "16 pages, 1 figure, 5 tables. Code and model: https://github.com/CosmoIknosLab/EarthJev",
+    "summary": "Vision-language models for remote sensing answer questions about satellite images by generating text: every answer costs a decoding loop, has to be parsed back to an option, and comes without a usable probability. We present EarthJev, a 0.8B-parameter model that answers typed questions about multispectral Sentinel-2 patches without generating any token. All 12 bands enter the vision encoder of Qwen3.5-0.8B through a widened input layer initialised from the RGB kernels, and, following the open OneJev recipe, the answer is read from the logits of the option letters at a single position and trained with cross-entropy plus Brier score. Under a pre-specified analysis plan, we compare it with the same backbone fine-tuned to generate the answer and with three multimodal language models fine-tuned with LoRA, all trained on the same 70,890 questions from 5% of BigEarthNet v2.0 and timed in one job on the same GPU; VQA models that classify over a fixed answer vocabulary are reported as a reference for the cost of answering only the questions seen in training. EarthJev answers a question in 19.9 ms, 4.3 to 8.7 times faster than the multimodal language models and 6.8 times faster than its own backbone used generatively; when all the questions about an image are asked together, it answers them in 42.8 ms, 3.7 to 10.1 times faster than the batched generative models. On 36,028 test questions it reaches 86.0% accuracy (three seeds), 0.6 and 1.2 points below the two 2B multimodal models and 3.5 points below the remote-sensing EarthDial-4B, with answers that are valid by construction and calibrated probabilities (ECE 0.006). Replacing the nine non-RGB bands with their mean costs 4.5 points, so the model uses the multispectral input, and in an ablation training the whole vision encoder raises accuracy to 88.4% at the same cost. Code and model: https://github.com/CosmoIknosLab/EarthJev",
+    "abs": "http://arxiv.org/abs/2611.02096v1",
+    "pdf": "https://arxiv.org/pdf/2611.02096v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "提出 EarthJev：一个 0.8B 模型回答 Sentinel-2 多光谱图块的固定选项问题，不生成任何 token，而是在单一位置读取选项字母的 logits，用交叉熵加 Brier 分数训练，并与生成式微调的同骨干模型及三个多模态模型在延迟、精度和校准上做同一作业内比较。",
+      "relevance_reason": "非生成式的单点读出加 Brier 校准，可能为 LVR 中从内部状态直接读答案、以及用置信度驱动停止决策提供参照；其去掉非 RGB 波段掉 4.5 分的消融可供核查视觉信息是否真被使用。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-03T20:33:03.395435+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

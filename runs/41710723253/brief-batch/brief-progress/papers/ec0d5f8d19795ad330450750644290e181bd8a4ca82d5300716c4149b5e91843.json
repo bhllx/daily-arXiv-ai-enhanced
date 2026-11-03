@@ -1,0 +1,72 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.00593",
+  "input_sha256": "be2754641088268fc17d17583041587b9da9895068dcabf57ccf91802ddbfbe9",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-03T20:48:46.541330+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1937,
+        "output_tokens": 678,
+        "total_tokens": 2615,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 437
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.00593",
+    "title": "Do Orthogonality Constraints Help Language-Model Training Beyond Sphere Optimization?",
+    "authors": [
+      "Kai Hu",
+      "Li Zhang",
+      "Weichen Yu",
+      "Matt Fredrikson",
+      "Haoqi Hu"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "A growing body of work reports benefits from orthogonality constraints in fine-tuning large language models (LLMs). These results raise an open question: do orthogonality constraints also help LLM pre-training? We conduct a systematic empirical study of decoder-only LLM pre-training with models ranging from 360M to 3.1B parameters, trained on nearly 200B tokens. We examine fourteen variants of orthogonality training: some constrain the weight matrix itself, while others use orthogonal factors to reparameterize it. Because a strictly orthogonal square matrix loses half of its degrees of freedom, we also study block-wise orthogonality, where every $d$ rows form a row-orthonormal (Stiefel) matrix and the block size $d$ is a hyperparameter. Among block sizes ranging from 1 to the shorter side of the matrix, no $d>1$ used throughout the network reliably outperforms $d=1$, and large blocks are clearly worse; the one placement that helps, symmetric positive-definite factors on the query and key projections, loses its small gain as models grow. At $d=1$, the constraint reduces to sphere optimization, with each row direction on its own unit sphere, which by itself already improves on tuned Muon. The same two findings hold for a diffusion transformer trained on ImageNet, and after fine-tuning, downstream accuracy does not separate the parameterizations. Our conclusion is that, across the realizations we tried, orthogonality between rows does not help language-model pre-training beyond sphere optimization. Since this appears to conflict with several prior results, we re-examine five prior methods in pre-training and fine-tuning that report orthogonality improvements. In each case the reported gain is attributable to numerical precision, training horizon, optimizer realization, or per-row norm control rather than to the orthogonality the methods impose.",
+    "abs": "http://arxiv.org/abs/2611.00593v1",
+    "pdf": "https://arxiv.org/pdf/2611.00593v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文系统考察 decoder-only LLM 预训练（360M–3.1B 参数、近 200B token）中十四种正交性训练变体，包括直接约束权重、正交因子重参数化与分块 Stiefel 约束，发现除退化为球面优化（d=1）外，正交性未带来稳定收益，并复核五项前人工作，将增益归因于数值精度、训练时长、优化器实现或逐行范数控制。",
+      "relevance_reason": "其正交/Stiefel 重参数化与逐行范数控制的训练线索，可能为 latent 推理状态的表示几何约束提供可核查借鉴，但论文未涉及多模态推理或推理期状态生成，联系需人工判断。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-03T20:48:46.541330+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

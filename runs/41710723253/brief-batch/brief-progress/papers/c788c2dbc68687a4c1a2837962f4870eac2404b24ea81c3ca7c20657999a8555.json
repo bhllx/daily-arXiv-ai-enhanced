@@ -1,0 +1,80 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.03577",
+  "input_sha256": "2670907b7e22f405996a0f30b9d1dfd93b695b8b1773fe4aa6c4e7f18442de9b",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-03T20:17:15.069071+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1847,
+        "output_tokens": 218,
+        "total_tokens": 2065,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 0
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.03577",
+    "title": "Sonar-MoE: In-Backward Expert Updates for Memory-Efficient Mixture-of-Experts Training",
+    "authors": [
+      "Avni Mittal",
+      "Avinash Anand",
+      "Ashutosh Kumar",
+      "Dikshant Kukreja",
+      "Kritarth Prasad",
+      "Chaitanya Lakhchaura",
+      "Rishitej Reddy Vyalla",
+      "Erik Cambria",
+      "Zhengkui Wang",
+      "Rajiv Ratn Shah"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.AI",
+      "cs.CL",
+      "cs.PF"
+    ],
+    "comment": null,
+    "summary": "Most parameters of a Mixture-of-Experts (MoE) model belong to its experts, and standard training keeps every expert gradient in GPU memory until the optimizer step. This memory grows with the number and size of the experts, so it rises as MoE models scale. We introduce Sonar-MoE, which updates each expert tensor during the backward pass and frees its gradient right away. It brings optimizer-in-backward from dense models to batched MoE expert tensors, so the GPU never holds more than one layer of expert gradients. When we fine-tune OLMoE-1B-7B and Granite-3.1-3B-A800M in bf16 with two expert-kernel backends, Sonar-MoE lowers peak memory by 19% to 22%. Its updates are bitwise identical to standard training without expert gradient clipping, and held-out loss stays within 0.003 of all baselines. Each step also takes 17% to 23% less time than standard training with global-norm clipping. Updating whole batched tensors rather than individual experts is what keeps Sonar-MoE fast, as it avoids a 20% to 72% slowdown while using the same memory. Sonar-MoE matches optimizer-in-backward over all parameters in memory and speed while still clipping the dense parameters.",
+    "abs": "http://arxiv.org/abs/2611.03577v1",
+    "pdf": "https://arxiv.org/pdf/2611.03577v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "提出 Sonar-MoE，在反向传播过程中就地更新 MoE 专家张量并立即释放对应梯度，把 dense 模型的 optimizer-in-backward 扩展到批量专家张量，从而将峰值显存降低约 19%–22%，并保持与标准训练一致的更新结果。",
+      "relevance_reason": "该工作在训练显存与计算调度层面优化 MoE，与 LVR 的推理状态生成无直接关系；但其按层释放中间状态、降低计算与内存成本的做法，可能为 latent 轨迹训练或多步推理的显存/计算预算权衡提供工程线索，需核查是否可移植。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-03T20:17:15.069071+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

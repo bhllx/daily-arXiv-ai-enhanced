@@ -1,0 +1,73 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.02200",
+  "input_sha256": "92f887055416de903edf90e1a6b14ae623adaa64c71f454f6fa788647ae2b2a4",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-03T20:32:09.573736+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1883,
+        "output_tokens": 665,
+        "total_tokens": 2548,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 433
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.02200",
+    "title": "ZeroGraph: Compositional Blockwise Training via Materialized Boundary Supervision",
+    "authors": [
+      "Omar Ramadan",
+      "Sam Siavoshian",
+      "Amir Kashif Saeed",
+      "Benjamin A. Johnson",
+      "Amin M. E. -A. Diab",
+      "Benjamin M. Rodriguez"
+    ],
+    "categories": [
+      "cs.AI"
+    ],
+    "comment": "15 pages, 5 figures. Code available at https://github.com/oramada/ZeroGraph",
+    "summary": "Blockwise learning can remove online gradient dependencies across depth, but independently optimized blocks need not compose into a useful model. We present ZeroGraph, a systems transformation for pretrained-model conversion and distillation that materializes a frozen teacher's coherent boundary trajectory as a versioned dataset. Each partition then trains with disjoint parameters, optimizer state, random state, and checkpoints, replacing live cross-depth dependencies with persistent supervision. Experiments separate learning quality from systems behavior. On GPT-2 Large, an unanchored objective reduces denoising error by 99.44%, yet assembled held-out cross-entropy worsens from 3.63 to 10.48 and context use becomes negative. A six-arm TinyLlama study identifies clean teacher-boundary regression as the successful interface; the tested noisy objective fails with cached or online targets. The clean recipe passes quality and context-use gates across three Qwen2.5-1.5B seeds and on a 3.086B Qwen2.5 model. In an objective-matched comparison, cached and online targets are bitwise identical. Cached jobs are faster after materialization, but a 618.31 s cache-build cost prevents wall-time break-even through 16 measured reuses. Boundary-shift tests show tolerance to intermediate representation mismatch, and an interrupted block resumes to a bitwise-identical final state without rerunning unaffected blocks. In the tested pretrained-model conversion and distillation setting, cross-depth semantic dependence can move from online optimization into persistent data.",
+    "abs": "http://arxiv.org/abs/2611.02200v1",
+    "pdf": "https://arxiv.org/pdf/2611.02200v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文提出 ZeroGraph，把冻结教师的连贯边界轨迹物化为版本化数据集，使各分块以互不共享的参数、优化器与随机状态独立训练，用持久监督替代跨深度的在线梯度依赖，并区分学习质量与系统行为；实验显示无锚定目标虽降低去噪误差，但组装后困惑度反而恶化，干净的教师边界回归才是成功接口。",
+      "relevance_reason": "其分块边界监督、缓存目标与在线目标的逐位一致、以及对中间表示失配的容忍度，可供核查 LVR 中 latent 轨迹的分段监督、贡献分配与状态缓存复用是否会破坏组装后推理的一致性；该方法属纯文本训练系统层面，迁移需自行验证。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-03T20:32:09.573736+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

@@ -1,0 +1,76 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.00518",
+  "input_sha256": "04c2e291ee598d6a609b78b56b3d16239788228ffe5d58d34f1790d160ec31cb",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-03T20:49:48.658364+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1943,
+        "output_tokens": 614,
+        "total_tokens": 2557,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 422
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.00518",
+    "title": "Agentic Context Management for Multi-Turn Human-AI Conversations",
+    "authors": [
+      "Matthew Ho",
+      "Chenglong Wang",
+      "Baolin Peng",
+      "Nebojsa Jojic",
+      "Philippe Laban",
+      "Michel Galley",
+      "Jianfeng Gao",
+      "Lianhui Qin"
+    ],
+    "categories": [
+      "cs.AI",
+      "cs.CL"
+    ],
+    "comment": null,
+    "summary": "LLMs degrade in multi-turn conversation partly because of context pollution: the model's own earlier outputs stay in context and anchor later turns, so an early misreading of the user's intent can persist after the user corrects it. Assistant omission (AO), dropping every assistant message, removes this pollution but fails when interaction is referential: later turns refer back to drafts, decisions, and tool-call results that exist only in assistant turns. We propose Agentic Conversation Context Curation (AC3), a training-free method in which a separate analyzer (1) consolidates the task specification from the user's messages alone, (2) audits the assistant's prior outputs against it, and (3) edits the context, either appending the analysis or discarding the assistant side and rebuilding the context from the specification. A second finding: pollution is contagious. An analyzer that sees the assistant's reasoning while extracting the specification can do worse than no intervention, and instructing it to ignore them did not close the gap, so we exclude assistant turns structurally. On Lost in Conversation (replaying difficulty-selected instances), where AO is an oracle by construction, AC3 closes 55-84% of the gap between full context and AO on three of four tasks and exceeds AO on the fourth, and an LLM that faithfully summarizes the history does not reproduce the gain even with more compute. On real WildChat conversations, a GPT-5-mini judge prefers AC3's next turn over both full context and AO in every configuration of our main table, though this preference depends on the judge; on CollabLLM results are mixed. In stateful tool use (tau2-bench), AO collapses to 0% on every model; AC3 does not collapse, though it falls slightly behind full context. Detector studies show that Reset removes injected pollution but is not span-selective: the gain comes from rebuilding the specification.",
+    "abs": "http://arxiv.org/abs/2611.00518v1",
+    "pdf": "https://arxiv.org/pdf/2611.00518v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P1",
+      "brief_summary": "论文针对多轮对话中的上下文污染问题，提出免训练的 AC3：由独立分析器仅从用户消息重建任务规范，审计助手先前输出，并据此追加分析或丢弃助手侧、按规范重建上下文。",
+      "relevance_reason": "「模型自身输出留在状态中形成锚定」「分析器看到助手推理反而更差」与 latent/循环推理中自生成轨迹污染、证据筛选与状态重建问题可能同源，其结构性排除自生成内容可供核查 LVR 的状态维护与贡献分配。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-03T20:49:48.658364+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

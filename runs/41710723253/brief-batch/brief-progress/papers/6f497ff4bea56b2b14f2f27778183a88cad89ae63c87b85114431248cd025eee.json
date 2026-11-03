@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.02508",
+  "input_sha256": "190b43233d24972d14a50b847d0c96fe476e0564549eaf3575a29ac66a188ba7",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-03T20:28:51.191257+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1830,
+        "output_tokens": 861,
+        "total_tokens": 2691,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 662
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.02508",
+    "title": "AttentionIndex: Accelerating Learned Sparse Attention with a Causal Inverted-File Index",
+    "authors": [
+      "Jeongmin Brian Park",
+      "Wen-mei Hwu"
+    ],
+    "categories": [
+      "cs.AI",
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Learned sparse attention, used in production models such as DeepSeek-V4 and GLM-5, lets each query attend to only k keys chosen by a lightweight indexer, but the indexer still scores every key in the prefix. At one million tokens, this selection takes more than half of prefill time. Two-stage selection over contiguous blocks, as in HiSA, reduces this cost, but its recall declines as context grows at a fixed candidate budget. We present AttentionIndex, which routes each query over an inverted-file index that groups indexer keys by similarity and refines the candidates with the native indexer score. AttentionIndex builds the index during prefill, making new keys searchable immediately, reusing previous clustering to keep maintenance cheap, and exposing each query only to clusters built from its own prefix. On GLM-5.3 and DeepSeek-V4-Flash at one million tokens, AttentionIndex delivers 1.3-1.8 times the prefill throughput of exhaustive selection, and at throughput within 5% of HiSA, it recovers 17.0 and 10.0 percentage points more of the exhaustive top-k, respectively. AttentionIndex also improves accuracy on long-context benchmarks by up to 18.4 percentage points over HiSA at the same candidate budget.",
+    "abs": "http://arxiv.org/abs/2611.02508v1",
+    "pdf": "https://arxiv.org/pdf/2611.02508v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "提出 AttentionIndex，用按相似度聚类的倒排文件索引为每个 query 路由候选、再用原生 indexer 分数精排，并在 prefill 中增量构建与复用聚类，以加速 learned sparse attention 的 top-k 选择。",
+      "relevance_reason": "其「相似度聚类＋仅暴露因果前缀内候选」的路由方式及固定候选预算下的召回权衡，可能为 LVR 长上下文中的视觉证据筛选与 latent 检索效率提供方法线索，但原文聚焦注意力加速，未涉及推理状态生成，需核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-03T20:28:51.191257+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

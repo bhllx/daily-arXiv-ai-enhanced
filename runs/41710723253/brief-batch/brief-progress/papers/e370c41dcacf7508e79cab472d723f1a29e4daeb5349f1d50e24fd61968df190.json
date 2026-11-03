@@ -1,0 +1,74 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.00092",
+  "input_sha256": "aa5434c8976b9730027a2c5c2c92228f60e833fb5df92695572f5e0f69fa7121",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-03T20:53:59.839662+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1899,
+        "output_tokens": 552,
+        "total_tokens": 2451,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 348
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.00092",
+    "title": "OCRia-1 Technical Report",
+    "authors": [
+      "Aman Rangapur",
+      "Antonio Jimeno Yepes",
+      "Daniel Bustamante",
+      "Nutchapol Dendumrongsup",
+      "Sebastián G. Acosta",
+      "Pierre-Loïc Doulcet",
+      "Simon Suo"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": null,
+    "summary": "We introduce OCRia-1, a 4B vision-language model (VLM) for document parsing that excels at preserving table structure, extracting chart data and retaining text formatting. OCRia-1 handles content that has traditionally been challenging in document parsing: merged cells and spanning headers, tables with thousands of cells, chart data, and meaningful text formatting such as bold, italics, subscripts and superscripts, preserving details needed for business-critical document analysis. At the time of this report, it achieves the highest scores on tables, charts and text formatting among the systems evaluated, including a 35B model and Mistral OCR 4.1. Its mean ParseBench score over the four dimensions we evaluate is 0.87, against 0.75 for the next-best system.\n  We emphasize data quality and reward design in training OCRia-1. Synthetic pages provide exact ground truth for long tables and rich formatting, while real pages are transcribed using a pipeline grounded in the PDF text layer. We attribute OCRia-1's performance primarily to careful data curation that prioritizes quality and diversity over quantity. Dimension-specific rewards evaluate table reconstruction, chart-data extraction and text-formatting fidelity. We train the model on the curated data using supervised fine-tuning (SFT), then refine it through reinforcement learning with verifiable rewards (RLVR).\n  To our knowledge, OCRia-1 is the fastest published document-parsing VLM in its class, decoding at about 4,700 tokens per second with a single request on one B200 GPU, about nine times faster than the base model on stock vLLM. This is achieved through a block-diffusion speculator, quantization and custom kernels.",
+    "abs": "http://arxiv.org/abs/2611.00092v1",
+    "pdf": "https://arxiv.org/pdf/2611.00092v1",
+    "AI": {
+      "category": "EXCLUDE",
+      "priority": "NONE",
+      "brief_summary": "OCRia-1 是一个 4B 文档解析 VLM 技术报告，通过高质量合成与真实数据、维度特定的可验证奖励（表格重建、图表数据提取、格式保真）经 SFT 与 RLVR 训练，并用 block-diffusion 投机解码、量化和定制 kernel 实现高速解码。",
+      "relevance_reason": "工作目标是文档解析精度与吞吐，没有内部推理状态、证据获取或停止决策的研究，奖励设计仅服务于结构化输出保真，diffusion 仅作解码加速，与 LVR 主线缺少实质联系。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-03T20:53:59.839662+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

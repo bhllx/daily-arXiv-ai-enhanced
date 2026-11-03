@@ -1,0 +1,71 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.03146",
+  "input_sha256": "2a3cb2b8f764b22e8262bcb4f5f2fbf51849bdbdc2571df85ea1962ec951976b",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-03T20:21:22.381291+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1936,
+        "output_tokens": 499,
+        "total_tokens": 2435,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 260
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.03146",
+    "title": "Controlling Sharpening in LLM Post-Training",
+    "authors": [
+      "Simon Matrenok",
+      "Nicolas Menet",
+      "Nicolas Flammarion",
+      "Andreas Krause"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "LLM post-training via reinforcement learning has shown consistent improvements in accuracy at the cost of reducing behavioral coverage - a phenomenon known as sharpening that can stall progress on difficult tasks. Repeated sampling objectives such as $\\mathrm{pass@k}$ and $\\mathrm{max@k}$ are known to mitigate sharpening, but the mechanism behind it remains poorly understood. Moreover, existing approaches for $\\mathrm{@k}$ optimization use dedicated algorithms, and no general framework exists for adapting established policy optimization methods from $\\mathrm{@}1$ to $\\mathrm{@k}$. We derive the optimal policies for KL-regularized $\\mathrm{pass@k}$ and $\\mathrm{max@k}$ objectives in closed form. Our explicit solutions reveal that $\\mathrm{@k}$ optimization naturally redistributes learning pressure based on prompt difficulty, directing it toward harder problems. Crucially, we show that standard $\\mathrm{@}1$ objectives achieve these exact same optimal policies through prompt-adaptive regularization or reward transformation. Ultimately, this yields an optimizer-independent explanation for why $\\mathrm{@k}$ objectives reduce sharpening on easy tasks while prioritizing success on harder ones. Building on these insights, we introduce $\\mathrm{@k}$ Adaptive Pressure for Policy Optimization (KAPPO). Following a one-time reference calibration, KAPPO seamlessly adapts existing $\\mathrm{@}1$ methods to $\\mathrm{@k}$ via prompt-adaptive regularization or reward transformation, without otherwise altering their training procedures. Experiments with several RL methods on mathematical reasoning and code generation demonstrate that KAPPO provides direct control over sharpening. Crucially, we demonstrate that $\\mathrm{@k}$ pressure can be fully realized with single completion training, matching the performance of multi-completion $\\mathrm{@k}$ optimizers at a fraction of the cost.",
+    "abs": "http://arxiv.org/abs/2611.03146v1",
+    "pdf": "https://arxiv.org/pdf/2611.03146v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文从 KL 正则化的 pass@k 与 max@k 目标出发，推导其闭式最优策略，说明 @k 优化会按题目难度重新分配学习压力；据此提出 KAPPO，通过提示自适应正则或奖励变换把现有 @1 策略优化方法改造成 @k 优化，并在数学推理与代码生成上验证其能直接控制 sharpening，且单次采样训练即可达到多采样 @k 优化器的效果。",
+      "relevance_reason": "该文属纯文本 RL 后训练，但「按难度重分配监督压力、以奖励变换维持行为覆盖度」的机制，可能可供核查如何避免 latent 推理轨迹过早坍缩到单一假设、并在难样本上保留多样探索。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-03T20:21:22.381291+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

@@ -1,0 +1,72 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.00428",
+  "input_sha256": "7ae148664618c7d1da83f889ba75a3cbf5b58dad4f283cce09d6f57648ccd594",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-03T20:51:08.229479+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1971,
+        "output_tokens": 611,
+        "total_tokens": 2582,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 360
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.00428",
+    "title": "Do Multimodal Models Decide Consistently on Equivalent Optical Spectra?",
+    "authors": [
+      "Ziyuan Wang",
+      "Genliang Zhu",
+      "Xiaobo Chen"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.CL",
+      "physics.optics"
+    ],
+    "comment": "20 pages, 4 figures, 11 tables. Code and data: https://github.com/zwang-devv/spectra-decision-audit",
+    "summary": "A spectrum can be given to a model as a table in nanometers or as a plot in photon energy, and the decision should not depend on which one it sees. When the data needed for an answer are missing, the model should say so. We test representation invariance and abstention on measured optical spectra of silicon metasurfaces (MOCLIP) and gold nanoparticles, with labels computed from the data. Each spectrum is shown as four tables (nm, $μ$m, scientific notation, eV) and two plots (nm, eV), and partial spectra remove data inside or outside the queried range. We evaluate the decision models d3-nano and Jev 1.13, three GPT-6 Luna configurations and the Qwen3.5-2B base model. Changing only the representation moves accuracy by up to 41 percentage points within one model, mostly on photon-energy tables and plots. With the same evidence, asking in photon energy instead of wavelength helps some model-view pairs by 16-50 points and hurts others by up to 25. When the relevant extremum is removed, unadapted models rarely answer \"undetermined\". LoRA fine-tuning of d3-nano improves comparisons on the trained table formats, but much of its gain on unanswerable questions comes from a shortcut: it abstains whenever the input is truncated. Training with answerable truncations avoids the shortcut in all six seeds, with a 90-100 point gap between abstention after inside and outside cuts on held-out structures; with the same amount of extra original-task data, five of six seeds keep the shortcut. On gold spectra the two training sets perform similarly. Multimodal language models used for scientific decisions should be tested on equivalent representations and on missing evidence, not only on average accuracy. We release the tasks, per-response results and analysis code.",
+    "abs": "http://arxiv.org/abs/2611.00428v1",
+    "pdf": "https://arxiv.org/pdf/2611.00428v1",
+    "AI": {
+      "category": "MAIN",
+      "priority": "P1",
+      "brief_summary": "论文构建光学光谱决策审计任务：同一光谱以四种表格（nm、μm、科学计数、eV）与两种图呈现，并删除查询范围内的关键数据制造缺证据情形，测试 d3-nano、Jev 1.13、三种 GPT-6 Luna 配置与 Qwen3.5-2B 的决策一致性与弃答，再用 LoRA 微调检验弃答是否依赖「输入被截断」这一捷径。",
+      "relevance_reason": "直接涉及多模态模型能否稳定使用视觉与表格证据、以及证据缺失时是否停止回答（对应 LOOK/STOP），其「仅改表征即偏移精度最多 41 点」和截断捷径诊断，可供核查 LVR 中视觉细节保留与弃答决策的基准与失败模式。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-03T20:51:08.229479+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

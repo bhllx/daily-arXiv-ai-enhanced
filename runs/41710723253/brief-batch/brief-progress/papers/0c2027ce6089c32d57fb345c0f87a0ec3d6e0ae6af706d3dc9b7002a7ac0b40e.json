@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.00374",
+  "input_sha256": "737a68e220cf04002d441bd3bf268ee00eda994aee14b94d8a67a1e4ef552bb5",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-03T20:51:48.053674+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1803,
+        "output_tokens": 641,
+        "total_tokens": 2444,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 425
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.00374",
+    "title": "Unlearning by Extrapolating a Shrink-and-Heal Lookahead",
+    "authors": [
+      "Hoang-Chau Luong",
+      "Lingwei Chen"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.CL"
+    ],
+    "comment": null,
+    "summary": "Unlearning aims to make a large language model behave like one retrained without its forget set. Prevailing likelihood-suppression objectives, however, lack an explicit forgetting target: they continually reward lower forget-set likelihood, making forgetting sensitive to the optimization budget. We address this limitation by estimating the direction toward the oracle without training it. Our key idea is to shrink the fine-tuned model toward its pre-fine-tuning weights and briefly re-learn the retain set, thereby removing the forget-specific contribution; in the linearized regime, this shrink-and-heal lookahead moves the model a fixed fraction of the way to the retrained model, its unique fixed point. Our method, SHIFT, extrapolates the lookahead's per-token changes into distillation targets and iteratively refines them. Evaluated against eleven baselines under a unified OpenUnlearning protocol, SHIFT achieves the highest aggregate score across all TOFU settings and the closest oracle alignment, 3.7x closer on average than the next-best method; on MUSE, it preserves the most retain knowledge. Under larger optimization budgets, baselines overshoot the oracle, while SHIFT remains near it, even under relearning attacks.",
+    "abs": "http://arxiv.org/abs/2611.00374v1",
+    "pdf": "https://arxiv.org/pdf/2611.00374v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "论文研究 LLM 遗忘学习，提出 SHIFT：将微调模型向微调前权重收缩并短暂重学保留集，在线性化假设下把这一 lookahead 的逐 token 变化外推为蒸馏目标并迭代精炼，使模型稳定逼近“重训练 oracle”。",
+      "relevance_reason": "其“无需训练 oracle、用短程 lookahead 外推生成并迭代精炼目标”的做法，可能为 latent 推理轨迹的目标构造与贡献分配提供参照，但与视觉推理主线距离较远，需核查其与 LVR 状态监督的实际可迁移性。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-03T20:51:48.053674+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

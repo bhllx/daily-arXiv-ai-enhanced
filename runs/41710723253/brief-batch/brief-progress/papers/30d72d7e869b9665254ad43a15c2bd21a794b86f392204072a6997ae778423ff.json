@@ -1,0 +1,71 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.00486",
+  "input_sha256": "6ee609bda6a02b3ef01c6726600e5960a842c2b99dae376e27779cf8c0f9495e",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-03T20:50:13.456928+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 2137,
+        "output_tokens": 231,
+        "total_tokens": 2368,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 84
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.00486",
+    "title": "Integer-Exact Microscaling: Running MXFP4 Language Models on INT8 Matrix Units",
+    "authors": [
+      "Shinyoung Kang",
+      "Junhyung Ahn",
+      "Yujun Kim",
+      "Jungho Park"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": "22 pages, 3 figures, 13 tables. Code: https://github.com/shinyoungkang1/mxfp4-int8-m5",
+    "summary": "On hardware whose fastest matrix datapath is INT8$\\times$INT8, such as the Neural Accelerators of Apple's M5 GPUs, 4-bit weights must become INT8 operands. Existing MXFP4 kernels already map FP4 (E2M1) values to integers by doubling them, but apply every 32-element block scale inside the reduction. We show when no per-block work is needed: a row of MXFP4 weights is exactly one INT8 vector times one power-of-two scale if its block exponents span at most three, so a linear layer becomes a single INT8 GEMM with one rescale per output. Enforcing the condition adds at most 1/16 of a row's largest rounding error to the blocks it changes, and real weights already satisfy it: 97.9-99.97% of rows across seven models, including 99.93% of the 95M rows of a 125B-parameter mixture-of-experts (MoE) model, Qwen3.8-Flash-Next. The resulting spread-constrained MXFP4 files stay standard MXFP4. With integer instead of power-of-two block multipliers, an integer-exact format (16-wide blocks, multipliers 1..10, 4.26 bits) runs as one exact INT8 GEMM and is more accurate than NVFP4 (4.5 bits) with its standard scale rule on five small models, within 0.06 perplexity of NVFP4 with scale search. On Qwen3.8-Flash-Next's routed experts with INT8 activations it is as close to the FP8 model as NVFP4 with scale search (KL divergence 0.0557 vs. 0.0553) and closer than MLX's MXFP4 and affine INT4; with every matrix quantized it solves 94.8% of GSM8K vs. 91.0% for MLX's MXFP4. Quantizing only the 74k routed expert matrices (96% of the parameters) to either of our formats with INT8 activations costs at most 0.2% perplexity. A complete W4A8 system on the M5 produces outputs bit-identical to the quantized reference; prefill is 1.34-1.74x faster than MLX on a dense model, 1.10-1.57x on two MoE models up to 35B parameters and 1.22-1.29x on Qwen3.8-Flash-Next, where shared non-GEMM work bounds the gain.",
+    "abs": "http://arxiv.org/abs/2611.00486v1",
+    "pdf": "https://arxiv.org/pdf/2611.00486v1",
+    "AI": {
+      "category": "EXCLUDE",
+      "priority": "NONE",
+      "brief_summary": null,
+      "relevance_reason": "该文研究 MXFP4 权重的整数量化与 INT8 矩阵单元内核实现、精度与速度权衡，属推理系统与数值格式优化，不涉及视觉或多模态推理状态、证据获取或停止决策，与 LVR 主线无具体联系。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-03T20:50:13.456928+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

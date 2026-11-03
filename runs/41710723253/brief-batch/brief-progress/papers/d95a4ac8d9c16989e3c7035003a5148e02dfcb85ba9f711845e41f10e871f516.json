@@ -1,0 +1,73 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.00783",
+  "input_sha256": "7528790e14c6c8a18c06c7ef8692483829be5dd466fc7f259722c1774947b2e6",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-03T20:46:31.811814+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1898,
+        "output_tokens": 587,
+        "total_tokens": 2485,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 374
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.00783",
+    "title": "A Tool in the Forward Pass: Frozen Tape Modules as Layers of a Small Language Model",
+    "authors": [
+      "Michael Granitzer",
+      "Saber Zerhoudi",
+      "Mohammad Al-Maamari",
+      "Hai Dang Dang",
+      "Kanishka Ghosh Dastidar"
+    ],
+    "categories": [
+      "cs.AI",
+      "cs.NE"
+    ],
+    "comment": "12 pages, 1 figure, 9 tables. Code, configurations, results and frozen modules: https://doi.org/10.5281/zenodo.23831494",
+    "summary": "Calling a tool through generated text adds decoding steps, even when the computation itself is short. We study an alternative: a small neural module that runs inside a language model's forward pass. A learned writer turns hidden states into a symbolic tape, a short sequence of discrete symbols that encodes the computation. The module, trained separately and then frozen, reduces the tape to a result, and a learned reader returns that result to the model. We evaluate arithmetic and object tracking in gemma-3-1b-it. With a writer trained on labelled tapes, the layer answers all 750 items of BIG-Bench Hard's tracking shuffled objects correctly. At seven people it needs about 1/10 of the GPU kernel time of a text-tool baseline that uses the same host model and exact code, with accuracy 1.00 against 0.99. The writer can also be learned from answers alone, guided by a hand-written copying prior, but less reliably: 5 of 6 runs succeed in the 1B host and 2 of 4 in the 4B host. Two independently trained layers keep their task accuracy when attached to one model, and a learned gate keeps them silent on the tested general-text and look-alike prompts. The results support a narrow use case: a bounded computation that returns one symbol can avoid the decoding cost of a textual tool call. Extracting the right input reliably, and deciding when to act, remain the main open problems.",
+    "abs": "http://arxiv.org/abs/2611.00783v1",
+    "pdf": "https://arxiv.org/pdf/2611.00783v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P1",
+      "brief_summary": "论文研究在小语言模型前向过程中嵌入独立训练后冻结的「磁带」模块：由 writer 将隐藏状态写成离散符号序列，模块计算后经 reader 把结果送回模型，并在算术和物体追踪任务上评估准确率、计算成本、多模块组合与门控行为。",
+      "relevance_reason": "其前向内部计算、离散状态接口、冻结模块组合及「何时发言」的门控，为 LVR 中 latent 内容是否被使用、贡献分配和停止/调用决策提供了可核查的方法线索；但工作纯文本且模块为符号计算，迁移到视觉推理仍需判断。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-03T20:46:31.811814+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

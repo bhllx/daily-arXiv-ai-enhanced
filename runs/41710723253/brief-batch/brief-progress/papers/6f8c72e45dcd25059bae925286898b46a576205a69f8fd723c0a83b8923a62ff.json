@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.02230",
+  "input_sha256": "2dade2963afb093b0621341991c3b19c9ecdceb5b14550675edc14d009a61443",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-03T20:31:51.893038+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1958,
+        "output_tokens": 609,
+        "total_tokens": 2567,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 390
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.02230",
+    "title": "Who Should Score the Cache? Mid-Depth Layers Are the Best Judges of KV-Cache Eviction",
+    "authors": [
+      "Ekaterina Seregina"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.CL"
+    ],
+    "comment": "19 pages, 3 figures",
+    "summary": "Key-value (KV) cache eviction methods rank tokens by attention scores, and each layer scores its own cache. To our knowledge, no eviction method asks which layer should score. We find, across twenty-one models, that the depth of the scoring layer governs eviction quality. On the eighteen models with per-layer caches, spanning 0.5B to 109B, long-context retrieval accuracy collapses at shallow layers, peaks between 0.4 and 0.75 of depth, and degrades at the last layer. The curve arises because a layer judges tokens well only once it has used the question to find the answer, which takes several layers. Modeling eviction as a top-$k$ cut, we compute answer survival probability from prefill attention and reproduce the measured curves. This approach selects the scoring layer using calibration prompts with known answers, and the selected layer is the best layer measured on most models and never significantly below it. It improves on the own-layer default on sixteen of the eighteen models, with significant gains on seven, all at 14B or below, while on larger models the default is already close to the best mid-depth layer. Scoring every cache from the selected layer while keeping one set of tokens for all heads also beats per-head SnapKV by 18 to 43 points on five models up to 14B under tight budgets. This gain carries over to financial filings at 32K context, all at the same memory budget, with no extra forward pass. The same curve explains a penalty in shared-cache models, where several layers read one cache and the layer that writes it scores by default. On Gemma-4-E2B the writer is shallow and loses 28 points to a mid-depth reader at a 10% budget. We also find that in open-book question answering (LongBench) no mid-depth layer beats the own-layer default.",
+    "abs": "http://arxiv.org/abs/2611.02230v1",
+    "pdf": "https://arxiv.org/pdf/2611.02230v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P1",
+      "brief_summary": "论文研究 KV-cache 驱逐该由哪一层注意力来打分，在21个模型上发现中层（约0.4–0.75深度）打分效果最好，并用 top-k 截断模型加已知答案的校准提示自动选出打分层，在长上下文检索上多数模型优于逐层自带打分的默认做法。",
+      "relevance_reason": "其「层次深度决定哪些 token 被保留」的结论可供核查 LVR 中哪一层内部状态/注意力最能携带任务必要证据，以及缓存与注意力结构如何影响 latent 相似度；但设定为纯文本 KV 驱逐，对视觉推理的迁移仍属推测。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-03T20:31:51.893038+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

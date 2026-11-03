@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.01648",
+  "input_sha256": "e0fd3310d3978b2e1cf6e7a8aa9abdb47a2eda8c05eb012a267e6e0625096790",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-03T20:38:28.443579+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1881,
+        "output_tokens": 489,
+        "total_tokens": 2370,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 277
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.01648",
+    "title": "dKV Forcing: Separating Generation and Memory Representations through a Differentiable KV Cache",
+    "authors": [
+      "Zhiqi Li",
+      "Bo Zhu"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "A causal video generator produces two key--value (KV) states for every segment: the KV it uses while denoising that segment, and the KV it writes into the cache for later segments to read. In a pretrained generator the two already differ substantially, later segments attend to them differently, and replacing the written KV with the generation KV degrades the continuation. We propose dKV Forcing (dKV denotes differentiable KV) to learn a dedicated memory representation from its future use: a writer-specific low-rank residual on the shared backbone separates memory writing from generation and is trained through the future reads of what it writes. Learning a write from its future use needs gradients through the cache, which the mutable cache in common use cannot provide. dKV Forcing replaces the training-time cache by persistent differentiable pages with local rematerialization and, in one temporal traversal, computes exactly the gradient that a two-pass reconstruction of the same objective computes. One traversal computes the full memory gradient at $7\\%$ generator-update overhead over detached-write training, with $28\\%$ less resident memory and $20.8\\%$ shorter training cycles than the two-pass reconstruction. Over Self Gradient Forcing (SGF), the same objective trained with the same traversal, writer adaptation raises VBench-Long aesthetic quality by $6.6$ points at 60\\,s and $8.5$ points at 240\\,s with the highest subject and background consistency, and rollout dropout of the residual keeps most of this gain while restoring the motion of training without write gradients.",
+    "abs": "http://arxiv.org/abs/2611.01648v1",
+    "pdf": "https://arxiv.org/pdf/2611.01648v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文针对因果视频生成器，指出去噪所用的 KV 与写入缓存供后续片段读取的 KV 应视为不同表示，提出 dKV Forcing：用写入者专属低秩残差分离记忆写入与生成，并通过可微的持久化缓存页在单次时序遍历中取得「由未来读取定义写入」的精确梯度。",
+      "relevance_reason": "虽属视频生成而非 VLM 推理，但其「区分生成用状态与记忆用状态、并按后续使用反传训练写入」的做法，可能为 LVR 中 latent 状态的贡献分配与跨步监督提供可核查线索。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-03T20:38:28.443579+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

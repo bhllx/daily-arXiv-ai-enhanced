@@ -1,0 +1,76 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.01252",
+  "input_sha256": "400bfd13338024625f724b41dd960839924c5e418fcd261d98ba674e09ca2eae",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-03T20:42:40.246458+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1807,
+        "output_tokens": 634,
+        "total_tokens": 2441,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 391
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.01252",
+    "title": "Context-Shielded Backdoor Attack against Large Vision-Language Models",
+    "authors": [
+      "Zhifang Zhang",
+      "Qiang Huang",
+      "Chenpeng Wang",
+      "Weitong Chen",
+      "Olaf Maennel",
+      "Wei Emma Zhang",
+      "Lei Feng",
+      "Lei Zhang",
+      "Miao Xu"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": null,
+    "summary": "Large vision-language models (LVLMs) routinely use inference-time visual-token compression to prune hundreds of patch tokens down to a compact budget. Existing LVLM backdoors fire whenever a triggered image appears, whereas prior deployment-triggered attacks activate only when model weights are quantized or pruned. However, conventional LVLM backdoors exhibit nearly 100% attack success rate (ASR) under full-token inference, immediately exposing compromised checkpoints during pre-deployment auditing. We reveal context stripping: surrounding clean visual tokens suppress an embedded trigger at full length, whereas token pruning strips this context away and activates the backdoor. Motivated by this finding, we propose StripWake, a projector-only backdoor that remains dormant under full-token auditing yet activates across unseen compressors. Specifically, StripWake pairs clean-supervised full-token views with target-supervised randomized compressed views, and aligns early visual attention with a frozen benign teacher to preserve clean utility. On LLaVA-1.5-7B across nine unseen compressors, StripWake stays dormant at 0.4% full-token ASR yet achieves 94.0%-99.7% compressed ASR across five primary compressors without CIDEr loss.",
+    "abs": "http://arxiv.org/abs/2611.01252v1",
+    "pdf": "https://arxiv.org/pdf/2611.01252v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文揭示「上下文剥离」现象：全长度视觉 token 中的干净上下文会压制植入的触发器，而推理期视觉 token 压缩会剥离该上下文并激活后门；据此提出只在 projector 上注入、在全 token 审计下休眠而在多种未见压缩器下激活的后门 StripWake，并用全 token 干净监督视图与随机压缩目标视图配对、向冻结良性教师对齐早期视觉注意力来保持干净性能。",
+      "relevance_reason": "该工作表明视觉 token 预算的改变会实质改变内部视觉信息是否被使用，这一线索可供核查 LVR 中「模型是否真正依赖被压缩保留的视觉证据」以及 token 压缩作为评估混淆因素的问题，其双视图配对与注意力对齐也可作为跨 token 预算监督的参考。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-03T20:42:40.246458+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

@@ -1,0 +1,74 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.00421",
+  "input_sha256": "8f63de8861302ac223217366c8b6e0cd8441ab3557f0ec145ee3ebc84c2db774",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-03T20:51:18.611157+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1809,
+        "output_tokens": 410,
+        "total_tokens": 2219,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 263
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.00421",
+    "title": "RankLane: Efficient MoE Prefill on Accelerators with Ranked Expert Capacities",
+    "authors": [
+      "Wentao Ni",
+      "Chihao Yu",
+      "Hong Cai",
+      "Mingu Lee",
+      "Hejia Zhang",
+      "Fatih Porikli",
+      "Jishen Zhao"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Mixture-of-experts (MoE) models expand model capacity by activating only a subset of experts for each token. On accelerators with static execution plans, expert capacities and placement are fixed before routing reveals each expert's load. Uniform worst-case capacities waste work on padding; smaller capacities tied to expert identities can overflow. We present RankLane, which ranks each device's experts by current load and assigns them to fixed-capacity lanes. Runtime indices select experts and token rows while tier populations, shapes and device placement remain fixed. An aggregation graph preserves device ownership and reduces each token's local contributions on one core. Routing calibration and measured execution costs guide tier selection; overflowing chunks rerun at full capacity. We evaluate full-model prefill of Qwen3-30B-A3B and Gemma 4 26B-A4B with MXFP6 weights on four Cloud AI 100 Ultra SoCs, using 128-2048-token chunks and including overflow detection and in-program recovery support. Against a dense baseline, RankLane achieves end-to-end prefill speedups of 1.27-4.18x on Qwen3 and 1.93-3.46x on Gemma.",
+    "abs": "http://arxiv.org/abs/2611.00421v1",
+    "pdf": "https://arxiv.org/pdf/2611.00421v1",
+    "AI": {
+      "category": "EXCLUDE",
+      "priority": "NONE",
+      "brief_summary": null,
+      "relevance_reason": "该文解决 MoE prefill 在静态执行计划加速器上的专家容量与放置问题，属系统吞吐优化；虽涉及路由与动态负载，但与 LVR 的内部表示、证据筛选或停止决策无具体联系，也无可供核查的迁移线索。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-03T20:51:18.611157+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

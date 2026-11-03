@@ -1,0 +1,80 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.03200",
+  "input_sha256": "cda861bb6a5654432e2784d099f8128af6d6e9dddb150ef0e94837018f7111e3",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-03T20:20:56.645527+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1968,
+        "output_tokens": 674,
+        "total_tokens": 2642,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 466
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.03200",
+    "title": "CISA: Retrofitting Dense Attention Models with Chunk-Indexed Sparse Attention",
+    "authors": [
+      "Mohammed Dabbah",
+      "Izhak Golan",
+      "Oren Tropp",
+      "Daniel Afrimi",
+      "Vladimir Anisimov",
+      "Tomer Asida",
+      "Nave Assaf",
+      "Ran El-Yaniv",
+      "Ido Galil",
+      "Yonatan Geifman",
+      "Omri Puny",
+      "Ido Shahaf",
+      "Akhiad Bercovich"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Long-context LLM inference is costly because attention repeatedly reads a growing key-value (KV) history. We introduce Chunk-Indexed Sparse Attention (CISA), which retrofits pretrained dense attention models without gradient updates. CISA selects fixed-size KV chunks using compact summaries of existing keys, avoiding token-level indexing and a separate full-length index cache. It uses one indexing query per KV group and shares selected chunks across queries in that group. During prefill, QShare reuses selections across adjacent queries to reduce indexing cost and improve KV reuse and GPU utilization. We evaluate CISA on NVIDIA Nemotron 3 Nano and Ultra, and Inkling-Small. In one-layer BF16 benchmarks at batch size 32 using Ultra's per-device attention dimensions, core attention is 11.7x faster for prefill queries near the end of a 1M-token prompt and 13.0x faster during decode. Including chunk scoring, selection, and all other measured GPU work, speedups are 8.6x and 3.0x. On Ultra NVFP4 with a 4,096-chunk budget, aggregate scores stay within 1.5 percentage points of dense attention on MRCR, LongBench v2, and GraphWalks. RULER sweeps on Nano and Ultra BF16 up to one million tokens show scores within 2.05 percentage points of dense attention with 8-16x fewer KV reads. Serving million-token prompts with 32 concurrent requests and 4K output tokens per request, CISA achieves 2.29x the end-to-end throughput of dense attention using Nemotron 3 Ultra NVFP4 on four NVIDIA B300 GPUs. Selecting fewer chunks increases throughput to 2.61x; in separate GraphWalks evaluations, the smaller budget widens the aggregate score gap from 1.49 to 3.59 percentage points. These results expose a practical quality-speed tradeoff without sparse training.",
+    "abs": "http://arxiv.org/abs/2611.03200v1",
+    "pdf": "https://arxiv.org/pdf/2611.03200v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "提出 CISA：一种无需梯度更新的分块稀疏注意力改造方法，用已有 key 的紧凑摘要选取固定大小 KV 块，并在 KV 组内共享选择、prefill 时相邻查询复用选择，以降低长上下文推理的 KV 读取与索引开销。",
+      "relevance_reason": "其「块级摘要选取 + 注意力结构与缓存复用」线索可能为长上下文 VLM 推理中的视觉证据筛选与 KV 读取成本控制提供借鉴，但论文只做纯文本效率验证，未涉及 latent 推理状态或答案对视觉内容的利用，需核查迁移可行性。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-03T20:20:56.645527+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.03027",
+  "input_sha256": "658b53502be5acd4866dd4736079b6fe3c395390c94e58103dddbca33a6605f8",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-03T20:22:42.933543+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1922,
+        "output_tokens": 650,
+        "total_tokens": 2572,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 449
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.03027",
+    "title": "VLM-as-a-Judge for Person Re-Identification",
+    "authors": [
+      "Bessie Dominguez-Dager",
+      "Miguel Cazorla",
+      "Vincent Lepetit"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": "Accepted at the NeurIPS 2026 Workshop on Grounded and Faithful Vision-Language Models for Real-World Deployment (VLM4RWD)",
+    "summary": "Cloth-changing person re-identification (CC-ReID) is still very challenging, and no method clearly dominates: methods that lead on one benchmark collapse on the others, because they rest on different identity cues. We show that a general-purpose vision-language model (VLM), used zero-shot as a judge for reranking a short candidate list, beats the expert retrieval models it reranks by a wide and consistent margin. On the four scenarios of CHIRLA, a long-term CC-ReID benchmark that no publicly released Re-ID model is trained on, reranking the candidates of two frozen experts raises rank-1 on every scenario, by 12.9 points on average over the best expert and 9.4 over the best naive ensemble of the two, with no component fine-tuned on the target data. Merging both experts' shortlists matches or beats reranking the stronger expert's shortlist alone, at lower cost. Introducing a VLM does, however, come at a cost: almost all of the pipeline's FLOPs are spent on it. We therefore borrow a criterion from ensembling and invoke the VLM judge only where the two experts disagree at rank 1. This threshold-free gate removes 40% of the calls, and a comparable share of total compute, with no significant drop in rank-1, trading 1.8 to 3.8 points of mAP. Judging remains the dominant cost, but on a benchmark where dedicated experts stall, we find a frozen general-purpose model to be the strongest judge of identity. The code is available at https://github.com/bdager/JudgeReID.",
+    "abs": "http://arxiv.org/abs/2611.03027v1",
+    "pdf": "https://arxiv.org/pdf/2611.03027v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文把通用 VLM 零样本用作身份判断器，对两个冻结行人重识别专家给出的短候选列表做重排序，并以两专家 rank-1 不一致为无阈值门控，减少约 40% 的 VLM 调用。",
+      "relevance_reason": "VLM-as-judge 的候选验证式重排序与「分歧才调用」的成本门控，可能为 LVR 中的证据核验、验证器使用及计算分配（何时调用高成本视觉判断）提供线索，其判断是否依赖细粒度视觉证据可供核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-03T20:22:42.933543+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

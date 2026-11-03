@@ -1,0 +1,74 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.03496",
+  "input_sha256": "3d1cbf9260cf0acbe11e7710902417c02b455da7254751ee171563c5b191e5d6",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-03T20:17:54.508690+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1864,
+        "output_tokens": 623,
+        "total_tokens": 2487,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 427
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.03496",
+    "title": "Online Label-Free Gradient Matching for Continual Language Model Training",
+    "authors": [
+      "Sajjad Pakdamansavoji",
+      "Mohammad Reza Rezaei",
+      "Ilija Subasic",
+      "Pedro Garzon",
+      "Radu Paradovschi",
+      "Zhao Chen"
+    ],
+    "categories": [
+      "cs.AI",
+      "cs.CL"
+    ],
+    "comment": "18 pages, 5 figures, 12 tables",
+    "summary": "Language models in customer-facing products must be continually updated, since the data they serve shifts over time. As retraining on the full accumulated data is impractical, each update should instead run on a small set of examples carrying the training signal of all data seen so far. The strongest current methods build this set by gradient matching, which synthesizes examples whose training gradients match those of the full data. However, they require ground-truth labels, run once on a fixed snapshot rather than on a growing stream, and are slow on large data. We introduce \\textbf{OLGA}, which lifts these limitations. It distills unlabeled data by drawing the gradient matching targets from the model's own next-token predictions. Across five text classification benchmarks with phi-1.5, it improves accuracy by 10 percentage points over the strongest selection baseline using as few as five examples. OLGA also distills online data streams by keeping a running rehearsal memory of synthetic examples, which is re-distilled together with each new batch as it arrives. In the online setting, it outperforms the strongest selection-based continual baseline by 6.6 stream-AUC percentage points. Finally, our method scales to large data by pairing distillation with selection in a hybrid pipeline, letting selection handle the mild stage of compression and distillation the extreme one. It cuts runtime by 30\\% versus distillation alone at similar accuracy, and beats the best selection-only pipeline by up to 12.6 percentage points.",
+    "abs": "http://arxiv.org/abs/2611.03496v1",
+    "pdf": "https://arxiv.org/pdf/2611.03496v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "提出 OLGA，用模型自身的下一 token 预测取代真实标签来生成梯度匹配目标，从而在无标签条件下蒸馏数据；并用持续更新的合成样本回放记忆支持在线数据流，再以蒸馏加选择的混合流程降低大数据的运行开销。",
+      "relevance_reason": "其以模型自预测构造无标签训练目标、并用回放记忆滚动压缩历史样本的做法，可能为 LVR 中缺少标注的中间推理状态如何构造监督信号与保留经验提供线索，值得核查梯度匹配目标能否用于多步推理轨迹。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-03T20:17:54.508690+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

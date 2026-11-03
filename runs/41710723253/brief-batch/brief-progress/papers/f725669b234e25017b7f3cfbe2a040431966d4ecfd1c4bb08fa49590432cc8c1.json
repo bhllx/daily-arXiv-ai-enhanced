@@ -1,0 +1,71 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.00120",
+  "input_sha256": "c5f0ddbcd38150ca145e29e2718e3493be55aff61f5447dd0a4149b55d15226d",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-03T20:53:38.388227+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1982,
+        "output_tokens": 540,
+        "total_tokens": 2522,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 323
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.00120",
+    "title": "DTP-OPSD: Reinforcement Learning with Distractor-Aware Temporal-Privilege On-Policy Self-Distillation for Temporal Video Grounding",
+    "authors": [
+      "Zhaoyu Chen",
+      "Yongwei Nie"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.AI",
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Temporal Video Grounding (TVG) aims to localize the start and end times of an event described by a language query in a video. The task becomes particularly challenging when the same video contains multiple repeated, similar, or opposite events. On these hard examples, all responses sampled by Group Relative Policy Optimization (GRPO) may miss the target and receive zero temporal Intersection-over-Union (tIoU). Their group-relative advantages are then all zero, leaving no useful policy gradient signal. To address this, we propose DTP-OPSD, a reinforcement learning framework with distractor-aware temporal-privilege on-policy self-distillation. The student observes the clean video and generates responses on-policy, while a shared-weight teacher observes a privileged video in which the target window is marked by red full-frame borders and same-video distractor windows by blue full-frame borders. For the distillation loss, the teacher evaluates student-generated prefixes and provides dense token-level Jensen-Shannon divergence supervision. This supervision remains informative even when GRPO provides no policy gradient signal. We suppress distillation when the teacher does not outperform the student and strengthen it for groups where the teacher performs better but all student rollouts receive zero tIoU. We also construct a compact hard-interference training set through VLM screening and human verification. With only 300 additional post-training examples, DTP-OPSD achieves the highest mIoU among the compared open-source 8B models on Charades-TimeLens, ActivityNet-TimeLens, and QVHighlights-TimeLens, reaching 55.93, 54.77, and 66.71, respectively. Compared with Pure GRPO trained on the same data, DTP-OPSD improves all 12 reported metrics, with R1@0.7 gains of 1.28, 1.62, and 1.78 points on the three benchmarks. Code will be released at https://github.com/nian1125/DTP-OPSD",
+    "abs": "http://arxiv.org/abs/2611.00120v1",
+    "pdf": "https://arxiv.org/pdf/2611.00120v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "针对时序视频定位中同视频内重复或相似事件导致 GRPO 全组零 tIoU、优势为零而无梯度的问题，提出用共享权重的“特权教师”观看标注了目标与干扰窗口的视频，对学生在线生成的前缀做 token 级 JSD 稠密蒸馏，并按教师相对表现调节蒸馏强度。",
+      "relevance_reason": "特权视频中的红/蓝框标注近似显式视觉旁路，而「全零奖励时改用稠密 token 级监督」可供核查 LVR 中的视觉捷径与贡献分配、稀疏奖励下监督信号设计问题，但任务本身是定位而非 latent 推理。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-03T20:53:38.388227+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

@@ -1,0 +1,78 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.00041",
+  "input_sha256": "6b985dc6b096ddf69d58c15dadb68e7ef6541b0866339053ccce77b73d14ddc9",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-03T20:55:32.485299+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1982,
+        "output_tokens": 649,
+        "total_tokens": 2631,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 413
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.00041",
+    "title": "Think Before You Locate: Clinical Chain-of-Though Supervision for Sequential Medical Image Grounding",
+    "authors": [
+      "Adinath Madhavrao Dukre",
+      "Govinda Kolli",
+      "Yifan Lu",
+      "Ziyun Zou",
+      "Azmine Toushik Wasi",
+      "Sara Atito",
+      "Behzad Bozorgtabar",
+      "Dwarikanath Mahapatra",
+      "Muhammad Awais",
+      "Imran Razzak"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "Clinicians rarely localize a finding from one image alone. They compare current and prior scans, follow structures across slices, and match regions across views or modalities. Yet vision-language models for sequential medical grounding usually learn only from bounding boxes. Boxes show where the target is, but they do not explain why that region in that image answers the question. We study whether explicit, image-grounded reasoning can improve localization, and which tasks benefit from it. We introduce method, whose core is MedChain, a corpus of 182,573 filtered rationales spanning eight sequential grounding tasks and ten imaging modalities. A medical VLM (FlemingVL-38B) first drafts a caption-like rationale, and a multimodal refiner (Qwen3.5-397B-A17B) then re-examines the images, question and annotated box to write a box-conditioned explanation with explicit cross-image reasoning. We fine-tune Qwen3.5 on these rationales with deliberative chain-of-thought supervision (dCoT-SFT). Across 4B, 9B, and 27B models, dCoT-SFT sets a new state of the art on MedSG-Bench. The 27B model reaches 77.24 mIoU and 85.20 Acc@0.5, improving over the strongest prior model by 4.69 and 5.49 points. In a paired comparison using fixed 4B checkpoints, dCoT-SFT improves over answer-only SFT by 3.56 mIoU (95% CI 3.13--4.00). The gains mainly come from change detection and object tracking, while performance drops on three appearance-matching tasks. Replacing a model's own rationale with a rationale from another task reduces mIoU by 12.2 points, showing that localization depends strongly on the reasoning context. Finally, adding GRPO with an IoU reward after dCoT-SFT gives only small and task-dependent gains, which we analyze through controlled multi-seed development experiments.",
+    "abs": "http://arxiv.org/abs/2611.00041v1",
+    "pdf": "https://arxiv.org/pdf/2611.00041v1",
+    "AI": {
+      "category": "MAIN",
+      "priority": "P1",
+      "brief_summary": "论文构建 MedChain（约18万条跨八类序贯定位任务的框条件医学 rationale），以 dCoT-SFT 微调 Qwen3.5 的 4B/9B/27B 模型，在 MedSG-Bench 上提升定位指标，并分析各任务收益差异及 GRPO 追加训练的有限效果。",
+      "relevance_reason": "其「替换为其他任务的 rationale 后 mIoU 下降 12.2 点」与变化检测/跟踪增益、外观匹配任务的退化，可供核查显式推理内容是否真被定位使用，以及收益对任务类型的依赖；但监督与推理均为文本 CoT，非 latent 状态，可作对照而非同类方法。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-03T20:55:32.485299+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

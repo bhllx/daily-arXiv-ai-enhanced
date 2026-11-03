@@ -1,0 +1,71 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.01429",
+  "input_sha256": "c5fd82695374695420b4cb7a92216d67651fb9b65811ac84da4a9d38bb342114",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-03T20:40:48.807535+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1831,
+        "output_tokens": 532,
+        "total_tokens": 2363,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 308
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.01429",
+    "title": "When Should an Agent Refresh? Adaptive Index Reuse for Efficient Long-Horizon Reasoning",
+    "authors": [
+      "Guangyuan Wang",
+      "Yifan Zhang",
+      "Shilong Liu"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.CL"
+    ],
+    "comment": null,
+    "summary": "Language agents read code, tool output, and dialogue in contexts that grow at every step. Dynamic sparse attention lets a small indexer choose the earlier tokens each query attends to, but the indexer still scores the whole prefix at every layer. Cross-layer reuse methods such as IndexCache rerun the indexer at only some layers, with one fixed pattern for every input. In an agent, the relevant evidence can change abruptly when a traceback or test result arrives, so fresh selections matter more at some steps than at others. We propose Adaptive Index Reuse (AIR), which keeps IndexCache's execution and learns, for each segment of an agent episode, how many layers refresh their selection. A small controller reads signals from completed computation and the latest tool event, chooses a pattern from a nested library, and learns from terminal task reward under an expected compute budget. On Qwen3-4B-Instruct-2507 with a 128K context, AIR improves success over the strongest static schedule at matched cost on SWE-bench Verified (27.0% to 32.4%), Terminal-Bench 2.0, and three $τ^2$-bench domains, and it lowers time per successful task on all five. Across 50 backbone, context, and benchmark settings, it matches or exceeds that schedule in 44.",
+    "abs": "http://arxiv.org/abs/2611.01429v1",
+    "pdf": "https://arxiv.org/pdf/2611.01429v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "该论文提出 AIR：针对长程语言 agent 的动态稀疏注意力，用一个读取已完成计算与最新工具事件的小型控制器，按 episode 片段学习刷新索引的层数，在给定算力预算下以最终任务奖励训练，从而在匹配成本时提升 SWE-bench Verified 等任务成功率并降低单任务耗时。",
+      "relevance_reason": "其「何时重新刷新证据选择、刷新多少」的预算约束学习控制器，可能与 LVR 中 LOOK/STOP 式证据再获取与动态算力分配问题相通，可供核查；但该工作只处理文本 agent 的注意力索引效率，未涉及视觉状态或 latent 推理表示。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-03T20:40:48.807535+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

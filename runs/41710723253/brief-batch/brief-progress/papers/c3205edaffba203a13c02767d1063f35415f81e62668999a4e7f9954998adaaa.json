@@ -1,0 +1,71 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.00351",
+  "input_sha256": "ebec8ac9f5dde20beb5e23eaa2937b777611ae6405aa67265a419087ced0b14d",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-03T20:51:52.462675+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1883,
+        "output_tokens": 525,
+        "total_tokens": 2408,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 323
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.00351",
+    "title": "SIEVE: Preserving Cross-Image Evidence via Depth-Aware Token Compression",
+    "authors": [
+      "Nitish Shukla",
+      "Surgan Jandial",
+      "Nhat-Tan Bui",
+      "Arun Ross"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": "19 pages, including supplementary material. Code: https://github.com/nitishshukla86/SIEVE",
+    "summary": "Multi-image vision-language models (VLMs) incur substantial computation when processing long visual sequences. Compressing these sequences must preserve complementary evidence across images and keep tokens from different images separate. Global selection can underrepresent question-relevant images, and pruning in early decoder layers risks removing relevant content before sufficient multimodal processing, yet existing methods spend most of the budget on these early layers. We propose SIEVE, a training-free, single-pass framework that jointly allocates visual tokens across images and decoder depth. SIEVE first pools each image into a compact spatial grid to reduce early processing cost. It then progressively selects representatives using prompt attention under equal per-image quotas and aggregates unselected tokens into similar representatives from the same image. These operations keep every image represented and its tokens separate from other images, while refining the retained representations. A closed-form schedule sets retention counts to target a prescribed average token budget across decoder layers. Across four VLM backbones, SIEVE achieves the highest average at a 6.25% budget on five multi-image benchmarks and four single-image benchmarks, and the highest mean on two video benchmarks. On LLaVA-OneVision-7B, it outperforms the strongest baseline by 9.96 and 9.03 points at 6.25% and 12.5% budgets, and at 12.5% it exceeds the uncompressed model by 2.01 points with 6.6x fewer prefill FLOPs.",
+    "abs": "http://arxiv.org/abs/2611.00351v1",
+    "pdf": "https://arxiv.org/pdf/2611.00351v1",
+    "AI": {
+      "category": "MAIN",
+      "priority": "P1",
+      "brief_summary": "提出免训练的单次视觉 token 压缩框架 SIEVE，按每图配额结合 prompt 注意力逐层选取代表 token，并把未选 token 聚合到同图代表上，用闭式调度在给定平均预算下跨图像与解码深度分配保留量。",
+      "relevance_reason": "其“每图独立保留＋按深度分配预算”直接关涉多图互补视觉证据能否留在内部状态，可作为核查视觉旁路、信息坍缩与深度/位置对表示影响的压缩侧对照组，但该工作不涉及 latent 推理状态生成。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-03T20:51:52.462675+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

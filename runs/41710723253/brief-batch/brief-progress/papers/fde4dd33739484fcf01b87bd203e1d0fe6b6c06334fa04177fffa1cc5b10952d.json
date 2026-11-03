@@ -1,0 +1,74 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.03330",
+  "input_sha256": "8fa1e30f7d6f81a03ddf3f06a50948debc48c1763e7278cc1e22bf85b93e4081",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-03T20:19:40.517281+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1988,
+        "output_tokens": 842,
+        "total_tokens": 2830,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 591
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.03330",
+    "title": "The SIMPLE Law for Energy Cost of LLM Inference",
+    "authors": [
+      "Hiari Pizzini Cavagna",
+      "Andrea Proia",
+      "Daniele Cesarini",
+      "Zeynep Kiziltan",
+      "Andrea Bartolini"
+    ],
+    "categories": [
+      "cs.AI",
+      "cs.LG",
+      "cs.PF"
+    ],
+    "comment": "Submitted to Future Generation Computer Systems",
+    "summary": "Generative AI is billed per token, yet tokens are not equally expensive. Each token enters the KV-cache and raises the cost of those that follow, so energy grows non-linearly along a sequence whose tokens look identical. No analytical model states what a token costs, and the most accurate SOTA model is a fit, not a law: it absorbs architecture into fitted coefficients, requiring per-LLM fitting. We derive closed-form expressions of the computational and memory-access complexity of LLM inference in terms of architectural hyperparameters, covering MHA and GQA, and compare a family of analytical models of increasing granularity. From these, we obtain the SIMPLE Inference Model to Predict LLMs Energy (SIMPLE), a four-parameter law that separates prefill from decode, and decode into KV-cache cost and next-token computation. Over traces of 13 dense LLMs from six families on NVIDIA H100 GPUs, it attains R2 = 0.969 and 11.97% MAPE, 3.1-3.5x below the SOTA, without per-LLM calibration. The SIMPLE law explains as well as predicts: prefill energy grows quadratically with the hidden dimension, so larger LLMs suffer most from long inputs; and more aggressive GQA KV grouping reduces the per-token energy by up to 3x relative to standard MHA. Increasing the reasoning token budget pushes output length beyond the analytically derived energy minimum, driving super-linear energy growth; although accuracy grows with the budget, energy grows faster, so Intelligence per Joule peaks at an intermediate budget and falls by up to 3.14x across a 4.0x reasoning-budget range. Agentic serving raises energy per request by 13.0x relative to non-agentic ones, driven by the growth of both the prefill and the KV-cache terms with input length; while prefix caching removes most of the prefill cost (-93%), the KV-cache term is unaffected, so even a cached agentic request costs 4.8x more.",
+    "abs": "http://arxiv.org/abs/2611.03330v1",
+    "pdf": "https://arxiv.org/pdf/2611.03330v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P1",
+      "brief_summary": "论文从架构超参数推导 LLM 推理的计算与访存复杂度闭式表达（含 MHA/GQA），提出四参数 SIMPLE 律，把 prefill 与 decode（再分为 KV-cache 与下一 token 计算）拆开建模，在 H100 上跨 13 个密集 LLM 免逐模型校准达到 R²=0.969，并据此分析推理预算与能耗、准确率的权衡。",
+      "relevance_reason": "提供以 token 与 KV-cache 为单位的解析能耗成本项和「预算—收益」曲线，可供核查 THINK/STOP 停止决策与动态计算的成本收益；但它是纯文本、单次前向能耗规律，能否覆盖视觉 token 与 latent 状态的开销尚需核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-03T20:19:40.517281+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

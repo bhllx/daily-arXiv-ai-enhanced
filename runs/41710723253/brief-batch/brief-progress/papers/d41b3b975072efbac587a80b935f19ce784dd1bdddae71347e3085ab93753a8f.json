@@ -1,0 +1,68 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.02052",
+  "input_sha256": "a0ed18a3768a1e75d6499061e960b771c93f81b053ad39b67986533c7d23fbd0",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-03T20:33:42.891741+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1968,
+        "output_tokens": 755,
+        "total_tokens": 2723,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 506
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.02052",
+    "title": "Same Function, Different Gradients: Evaluating Gradient Reliability under Reparameterization",
+    "authors": [
+      "Bum Jun Kim"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": "47 pages, 7 figures",
+    "summary": "Gradients are no longer used only to train models: Gradient magnitudes are now measurement instruments, used to rank attention heads for pruning, to decide per-example clipping in private training, to allocate adapter rank budgets, and to debug models. Across these workflows, larger gradient magnitudes are taken to mean greater importance. Even for a fixed input--output function, these gradients are computed in one of many possible parameter coordinate systems. For example, attention scores depend on the query and key projections only through the paired product $W_QW_K^\\top$. Scaling a head's query projection by $c$ and the corresponding key projection by $1/c$ therefore leaves every output logit unchanged. This change in parameter coordinates rescales the corresponding query and key gradient norms by $1/c$ and $c$, respectively. To test whether gradient-based decisions remain unchanged under these coordinate changes, we introduce Gradient Reliability under Reparameterization (GRR). GRR rewrites a trained model in new parameter coordinates that compute exactly the same function, verifies that predictions are unchanged, and then tests whether the decisions derived from the gradients are unchanged too. Our audits span GLUE classifiers, a ViT on CIFAR-10, GPT-2-medium and GPT-2-large, a 1.1B-parameter Llama-style model on WikiText-2, and six trained LoRA adapters. Empirically, predictions are preserved throughout, but both the gradients and the gradient-based decisions change. Across 66 GLUE attention audits, the median top-3 overlap of raw head-gradient rankings is only $1/3$, and rankings and pruning masks change even under the mildest rescalings we test. In the largest of 14 global-pruning audits, the shifted ranking selects head masks that differ in four of 22 pruned heads and reach $50.92\\%$ and $94.84\\%$ validation accuracy on one ELECTRA SST-2 model.",
+    "abs": "http://arxiv.org/abs/2611.02052v1",
+    "pdf": "https://arxiv.org/pdf/2611.02052v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P1",
+      "brief_summary": "论文提出 GRR 审计框架：将已训练模型改写到保持函数完全不变的等价参数坐标（如对注意力 query/key 投影做互为倒数的缩放），验证预测不变后，再检验梯度幅值及由梯度导出的决策（注意力头排序与剪枝掩码、裁剪阈值、LoRA 秩分配等）是否同样不变；在 GLUE 分类器、ViT、GPT-2、1.1B Llama 和多个 LoRA 适配器上发现预测保持而梯度与决策显著改变。",
+      "relevance_reason": "LVR 研究常用梯度幅值对 latent 推理步骤、注意力头或视觉证据做重要性排序与贡献分配，该文提示这类排序可能只是参数坐标的产物，可供核查此类归因结论的稳健性。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-03T20:33:42.891741+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

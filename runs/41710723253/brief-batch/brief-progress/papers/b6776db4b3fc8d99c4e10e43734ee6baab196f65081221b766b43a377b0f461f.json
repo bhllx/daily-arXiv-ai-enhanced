@@ -1,0 +1,74 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.02449",
+  "input_sha256": "6162b2705951abc103a4b840dc5409d8d8ab41e88bdb4116da716e0367c00221",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-03T20:29:45.649653+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1849,
+        "output_tokens": 506,
+        "total_tokens": 2355,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 275
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.02449",
+    "title": "Turbo-GMM: FlashAttention-Inspired GPU-Accelerated Gaussian Mixture Model",
+    "authors": [
+      "Momin Abbas",
+      "Sadia Asif",
+      "Asad Ul Haq",
+      "Kaoutar El Maghraoui"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.AI",
+      "cs.AR",
+      "cs.DC"
+    ],
+    "comment": null,
+    "summary": "Expectation-maximization (EM) for Gaussian mixture models (GMMs) requires scoring $N$ data points against $K$ mixture components. Prior fused GPU implementations, notably Flash-GMM, eliminate materialization of the $N \\times K$ responsibility matrix but traverse the component dimension twice to compute normalization terms and accumulate sufficient statistics. We introduce Turbo-GMM, a single-sweep fused EM kernel that completes responsibility normalization and sufficient-statistic accumulation within one traversal of the component dimension. By retaining the complete component axis on chip, Turbo-GMM avoids the second score computation required by the released two-sweep Flash-GMM implementation. Its applicability is limited by register pressure, occupancy, and the component and feature dimensions, making it particularly suitable for large datasets with relatively small numbers of components. For larger configurations, Turbo-GMM employs a two-pass fallback following the established fused design. We establish algebraic equivalence to standard EM in real arithmetic and evaluate sixteen configurations on an NVIDIA A100. Under the reported benchmarking protocol, Turbo-GMM achieves a median $2.15\\times$ speedup over the evaluated Flash-GMM implementation and up to $5.3\\times$ and $9.9\\times$ over PyTorch and \\texttt{scikit-learn}, respectively. The results demonstrate the potential of single-sweep component traversal while identifying on-chip resource constraints as the principal limitation of this approach.",
+    "abs": "http://arxiv.org/abs/2611.02449v1",
+    "pdf": "https://arxiv.org/pdf/2611.02449v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "该文提出 Turbo-GMM，一种单遍扫描的融合 EM 核，把责任度归一化与充分统计量累积合并为对分量维度的一次遍历，避免 Flash-GMM 两遍扫描的重复打分，并在 A100 上报出相对 Flash-GMM 中位 2.15 倍加速。",
+      "relevance_reason": "其“不物化 N×K 责任度矩阵、将整条分量轴常驻片上、单遍完成混合后验累积”的核设计，可能与 latent 推理中以混合或粒子形式维护多假设信念状态、降低中间 latent 张量显存与重算开销的问题构成类比线索，需人工核查迁移可行性。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-03T20:29:45.649653+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

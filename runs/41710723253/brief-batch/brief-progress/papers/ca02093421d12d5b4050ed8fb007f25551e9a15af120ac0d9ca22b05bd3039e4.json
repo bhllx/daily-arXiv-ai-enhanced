@@ -1,0 +1,76 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.00044",
+  "input_sha256": "5cdd0ecce838430ca3c564cf0263c72aa7a77d6043afcaf88bebcc3616e5d205",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-03T20:55:27.156832+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1837,
+        "output_tokens": 815,
+        "total_tokens": 2652,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 590
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.00044",
+    "title": "SparseWAM: Driving World-Action Models are Worth 16 Register Tokens",
+    "authors": [
+      "Yixiang Yang",
+      "Lizhong Zhang",
+      "Xingyu Zhang",
+      "Zhiwen Chen",
+      "Jie Ling",
+      "Qiankun Yu",
+      "Xingliang Liu",
+      "Yang Lei",
+      "Zhipeng Zhang"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": null,
+    "summary": "World Action Models (WAMs) transfer scene-dynamics priors to planning by jointly forecasting future scenes and ego trajectories. However, WAMs built on video generators must generate dense future videos at inference, incurring prohibitive latency, while efficient variants discard the world branch at deployment and thus forgo test-time imagination. Even when dense video latents are replaced with patch-level DINO or JEPA features, these representations still involve long token sequences and encode decision-irrelevant information. We therefore propose SparseWAM, which forecasts in a sparse register space of only 16 tokens per frame, compressed from frozen DINOv2 features and shaped by joint planning-and-scoring pretraining to concentrate decision-relevant information. Within this space, SparseWAM employs a modality-decoupled Mixture-of-Transformers with a causal attention mask that lets action tokens condition on imagined future registers, retaining explicit imagine-then-act reasoning at deployment. Its compactness further enables low-cost multimodal sampling. As a result, our SparseWAM achieves 92.6 PDMS on NAVSIM v1, 90.1 EPDMS on NAVSIM v2, and 39.6 on NavHard at only 164 ms latency, roughly 1/5 that of DriveVA, demonstrating the efficiency of the sparse register space. Code will be released upon acceptance.",
+    "abs": "http://arxiv.org/abs/2611.00044v1",
+    "pdf": "https://arxiv.org/pdf/2611.00044v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P1",
+      "brief_summary": "论文提出 SparseWAM：把冻结 DINOv2 特征压缩为每帧仅 16 个 register token 的稀疏隐空间，并在该空间用解耦模态、带因果掩码的 Mixture-of-Transformers 让动作 token 条件于想象出的未来 register，从而在部署时保留「先想象后行动」的推理并大幅降低时延。",
+      "relevance_reason": "其用联合规划-打分的预训练把决策相关信息集中到极短隐状态、并在该状态上做测试时想象的做法，可能为 LVR 的视觉信息保留、隐状态压缩与动作条件推理提供可核查的训练目标与注意力结构线索。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-03T20:55:27.156832+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

@@ -1,0 +1,73 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.01835",
+  "input_sha256": "f79fb81d907cc9079626dcb0245cab3b3685764f828a75f2902e11334ae33619",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-03T20:36:31.317561+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1862,
+        "output_tokens": 653,
+        "total_tokens": 2515,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 435
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.01835",
+    "title": "ReFrame: Silence-Aware Compute Reclamation for Full-Duplex Speech Models",
+    "authors": [
+      "Zheng Zhou",
+      "Guanyi Chen",
+      "Jing Wei",
+      "Haoyuan Liang",
+      "Jian Zhang",
+      "Haohuan Fu"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Full-duplex speech models execute dense model inference for every audio frame throughout a live interaction. This uniform framewise schedule creates sustained GPU load across dialogue states whose computation has strong, reusable temporal structure. ReFrame formulates full-duplex inference as a silence-aware computation problem. Mutual Silence Speculation (MSS) operates when both participants are silent: it evaluates multi-frame Temporal continuations, verifies text and hidden-state stability, and applies batched Mimi audio-token correction. Listening Frame Folding (LFF) operates while the user speaks and the agent listens: it processes already-arrived user frames through parallel Temporal execution and frame-batched audio-token generation while accepting only the verified prefix. Frame-Budget Reinvestment (FBR) assigns the released frame intervals to resumable external retrieval and language-model workers, then injects timely references through Moshi's conditioning interface. We instantiate ReFrame on five full-duplex models spanning Moshi-family, phase-structured, and flattened autoregressive generation. Across the complete 1,225-conversation FDBench, ReFrame reduces measured GPU execution time by 18.80-31.01% and retains 96.92-100% non-PAD text agreement on five different models. On HaluEval tests, FBR increases the number of correct generated spoken answers from 86 to 205 under the same auxiliary-service budget. ReFrame turns recurring dialogue structure into lower inference cost and higher end-to-end service capability.",
+    "abs": "http://arxiv.org/abs/2611.01835v1",
+    "pdf": "https://arxiv.org/pdf/2611.01835v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文提出 ReFrame，把全双工语音模型的逐帧密集推理重新表述为静音感知的计算问题：在双方静音时做多帧连续推测并校验文本与隐藏状态稳定性，在用户说话时并行处理已到达帧且只接受已验证前缀，并把释放的帧预算转投外部检索与语言模型工作。",
+      "relevance_reason": "其「多帧推测＋隐藏状态稳定性校验＋仅接受已验证前缀」的机制，可供核查作为 latent 推理轨迹的验证、提前停止与计算回收线索；但该工作是语音对话推理加速，未涉及视觉证据或 LVR 状态生成，迁移性属推测。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-03T20:36:31.317561+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

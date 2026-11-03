@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.00782",
+  "input_sha256": "c8d9ae3a47e67cb2ecde26a44dac173afc79232c0d114b61652aeafe459035e9",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-03T20:46:35.591978+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1912,
+        "output_tokens": 418,
+        "total_tokens": 2330,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 208
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.00782",
+    "title": "One Offset, Two Directions: Baseline Adjustment via Subgroup Offsets",
+    "authors": [
+      "Jiaying Zhou",
+      "Jiachen Liu",
+      "Qingchao Chen"
+    ],
+    "categories": [
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "Group Relative Policy Optimization (GRPO) estimates advantages against the within-prompt mean reward, a baseline shared across the group. In practice, rollouts within a prompt are not always homogeneous, differing in their solution strategies and reasoning trajectories, along which they may group into subgroups. We further find that these heterogeneous subgroups may exhibit distinct reward distributions. The global baseline, however, collapses them onto a single credit axis, where the credit reflects neither a rollout's standing within its subgroup nor the subgroup's standing relative to the rest. We therefore study how to adjust the baseline when the rollouts of a prompt fall into heterogeneous subgroups. We define the \\emph{subgroup offset} as the deviation of a subgroup mean from the global mean, and shift the baseline along it by a single signed coefficient $λ$. The sign of $λ$ yields two opposing directions: \\emph{Alignment} ($λ{>}0$) adds the offset to the baseline, drawing credit toward a rollout's relative position within its subgroup; \\emph{Contrast} ($λ{<}0$) subtracts it, drawing a rollout's credit toward the relative quality of the subgroup it belongs to. The adjustment acts on the baseline alone, leaving the reward signal and the optimization objective unchanged. In this work, we induce subgroups from strategies, grouping rollouts that share a strategy into the same subgroup. We evaluate both directions on Qwen3-8B-Base and Olmo3-7B-Base across four competition-level math benchmarks, against a $λ{=}0$ anchor that shares the same strategy-conditioned sampling and differs only in the baseline. Against this anchor each direction yields modest but consistent gains in multi-sample coverage, with Contrast the stronger of the two.",
+    "abs": "http://arxiv.org/abs/2611.00782v1",
+    "pdf": "https://arxiv.org/pdf/2611.00782v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文研究 GRPO 中同一 prompt 内轨迹按策略聚成异质子群、奖励分布不同时如何调整基线：定义子群偏移，用单一带符号系数 λ 沿偏移平移基线，得到「Alignment」与「Contrast」两个相反方向，并在数学基准上比较。",
+      "relevance_reason": "该文只改基线的优势估计以区分「群内相对位置」与「子群相对优劣」，其按策略分群、重分配信用分配的思路或可为 LVR 中同一问题下多条 latent 推理轨迹的贡献分配与监督信号设计提供可核查线索。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-03T20:46:35.591978+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

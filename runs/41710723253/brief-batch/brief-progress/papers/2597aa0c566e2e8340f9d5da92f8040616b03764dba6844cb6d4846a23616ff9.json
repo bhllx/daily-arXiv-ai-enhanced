@@ -1,0 +1,73 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.00027",
+  "input_sha256": "5314a968f839633c289982049cdbc8ef1941676b2251382e8d9dbe4bd8f050ed",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-03T20:56:08.929502+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1892,
+        "output_tokens": 528,
+        "total_tokens": 2420,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 298
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.00027",
+    "title": "SFA: A Statistical Physics-Inspired Diffusion Transformer for Efficient and High-Quality Image Generation",
+    "authors": [
+      "Zixuan Huang",
+      "Tianhao You",
+      "Guozhang Chen"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.AI",
+      "cs.GR",
+      "eess.IV"
+    ],
+    "comment": "47 pages, 14 figures",
+    "summary": "Diffusion transformers have achieved remarkable success in image generation, but accelerating attention while preserving generation quality remains a major challenge at high resolutions. Inspired by statistical physics and the widespread occurrence of scale-free laws in nature, we introduce Scale-Free Attention (SFA), which preserves fine local interactions while summarizing distant regions at progressively coarser scales. For $N$ tokens, mean pooling, token-count correction, and a shared softmax over a scale-free spatial hierarchy give SFA $O(N\\log N)$ complexity in both forward and backward passes. Our Triton implementation achieves $357.3\\times$ forward and $265.6\\times$ backward attention speedups over FlashAttention at 262,144 tokens. After 40 epochs of PixelFlow training from scratch on ImageNet at $256\\times256$ resolution, SFA achieves the best generation quality among five attention mechanisms, including full attention. Fréchet inception distance evaluated on 50,000 generated samples (FID-50k) improves from 13.25 for full attention to 12.51, and the advantage over full attention persists through 80 epochs. SFA also achieves the best generation quality among the compared efficient-attention methods on Flickr-Faces-HQ (FFHQ). Beyond training from scratch, Stable Diffusion 3.5 Medium with attention replaced by SFA retains the generation quality of its full-attention counterpart under matched fine-tuning budgets. We obtain similar results when fine-tuning pretrained PixelFlow on ImageNet. SFA establishes scale-free structure as an effective design principle for efficient, high-quality diffusion transformers.",
+    "abs": "http://arxiv.org/abs/2611.00027v1",
+    "pdf": "https://arxiv.org/pdf/2611.00027v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文提出 Scale-Free Attention（SFA）：在无标度空间层级上对远距离 token 做均值池化、token 数校正与共享 softmax，保留细粒度局部交互的同时逐级粗化远处区域，使扩散 Transformer 注意力在前后向均达 O(N log N)；在 ImageNet、FFHQ 与 SD3.5 微调上验证了生成质量与加速效果。",
+      "relevance_reason": "其「局部保细节 + 远处逐级粗化」的多尺度池化注意力，可能为 VLM 内部视觉状态如何在保留视觉细节的同时压缩全局证据提供可核查的结构线索，但原文仅面向图像生成，尚无推理状态或答案使用证据。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-03T20:56:08.929502+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

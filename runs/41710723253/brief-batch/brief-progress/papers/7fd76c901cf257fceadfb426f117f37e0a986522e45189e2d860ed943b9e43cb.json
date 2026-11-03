@@ -1,0 +1,75 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.01765",
+  "input_sha256": "1381cfc89068acc59aeb4982d5dba4c6f63f0c2817a979b714951186cdcb6fbf",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-03T20:37:01.449085+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1849,
+        "output_tokens": 817,
+        "total_tokens": 2666,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 612
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.01765",
+    "title": "FinishStrong: Learning to End Well after Imperfect Start in Video Temporal Grounding",
+    "authors": [
+      "Yuda Zou",
+      "Boxiang Zhou",
+      "Xin Zhou",
+      "Yibo Chen",
+      "Dejia Song",
+      "Xu Tang",
+      "Yao Hu",
+      "Yongchao Xu"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": null,
+    "summary": "A poor start lowers the ceiling, but does not negate the value of finishing well. In autoregressive video temporal grounding, models systematically exhibit an endpoint performance asymmetry, predicting ends significantly worse than starts. A committed flawed start acts as an immutable physical constraint, irreversibly capping the attainable overlap as a sunk loss. While models should minimize the remaining conditional regret, standard post-training paradigms fail to teach this adaptation. Specifically, teacher-forced SFT suffers from strict prefix exposure bias, and holistic trajectory evaluation in standard GRPO inadvertently penalizes conditionally optimal ends if they follow a poor start. To address this, we introduce FinishStrong, a novel two-stage post-training framework explicitly designed to teach optimal continuations. First, Online-start SFT exposes the end prediction to the model's own generated contexts. Second, Conditional-tree GRPO restructures the sampling topology, centering end rewards exclusively within the same-start branch to mathematically isolate the conditional end quality from the inherited start penalty. FinishStrong-9B achieves a state-of-the-art 61.7\\% overall IoU on TimeLens-Bench, remarkably outperforming flagship closed-source models like Gemini-3.8-Flash and Qwen3.8-Max. Crucially, when forced to continue from imperfect starts, it reduces the subsequent end prediction error by 36.5\\%, proving its exceptional ability to end well after flawed starts. Code will be open.",
+    "abs": "http://arxiv.org/abs/2611.01765v1",
+    "pdf": "https://arxiv.org/pdf/2611.01765v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文针对自回归视频时序定位中「结尾预测显著差于起点」的不对称现象，提出两阶段后训练框架 FinishStrong：用 Online-start SFT 让结尾预测接触模型自生成上下文，并用 Conditional-tree GRPO 将结尾奖励限制在同一起点分支内，以隔离起点造成的惩罚。",
+      "relevance_reason": "「坏起点不可更改下最小化条件遗憾」及同分支奖励隔离，可供核查 LVR 中轨迹训练的信用分配与不良中间状态下的停止决策，但研究对象是可读的时间戳输出而非内部 latent 状态，联系需进一步确认。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-03T20:37:01.449085+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

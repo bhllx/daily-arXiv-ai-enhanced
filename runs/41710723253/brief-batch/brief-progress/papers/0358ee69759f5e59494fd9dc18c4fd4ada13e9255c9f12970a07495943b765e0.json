@@ -1,0 +1,72 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.03244",
+  "input_sha256": "2b471312249ceb8d03fba3c8e9c44610523b9921cf6a1de8b7ee557f67125f59",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-03T20:20:31.355177+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1968,
+        "output_tokens": 788,
+        "total_tokens": 2756,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 555
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.03244",
+    "title": "Forecasting How RLHF Responds to Reward-Model Edits Before Training",
+    "authors": [
+      "Zixiao Wang",
+      "Duzhen Zhang",
+      "Xingbo Du",
+      "Dongxia Wu",
+      "Le Song"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": "22 pages, 7 figures",
+    "summary": "Responses with headers, lists and greater length receive high scores from reward models (RMs), and RLHF policies learn to produce these features even when true quality does not improve. Practitioners therefore edit their RMs, but they learn whether an edit works only after an RL run. We show that the response of a policy to an RM edit can be forecast before training, from samples of the current policy and the scores of the old and new RM. If we read the RM as a set of prices, the first-order theory of KL-regularized RL implies that each feature moves in proportion to its within-prompt covariance with the change in reward. We implant controlled price changes into retrained RMs under a 2^(4-1) fractional factorial design with a self-distilled placebo, run 54 RL runs from six parent policies, and fix every forecast before the runs. With the covariance predictor, we predict the direction of all 20 changes in supply whose forecast has the same sign at every parent and explain 82% of the standardized change. With counterfactual prices, the classical alternative, we explain 50%. The forecast also holds under GRPO and for real RM upgrades, where we explain 66% out of sample with a coefficient frozen from the factorial runs. For rent, the gap between the proxy reward and a gold reward from stronger judges, we rank RM edits correctly with the same covariance over the first 30 steps (Spearman 0.94). This measures the horizon of the forecast: by step 200, the ranking of the factorial edits reverses under both RLOO and GRPO, while the real upgrades keep their order. When we vary the KL coefficient beta, the initial response does not depend on beta, and the response saturates below the KL equilibrium. In one experiment, the long-run response to a price rise is consistent with an additional implicit regularizer beta_0 of about 0.003 to 0.007.",
+    "abs": "http://arxiv.org/abs/2611.03244v1",
+    "pdf": "https://arxiv.org/pdf/2611.03244v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "论文研究能否在 RL 训练前预测策略对奖励模型（RM）编辑的响应：把 RM 视为一组「价格」，由 KL 正则 RL 的一阶理论得出各特征的变化正比于其特征与奖励变化在 prompt 内的协方差，并通过受控植入价格改动、分数因子设计和 54 次 RL 运行做预先固定的验证。",
+      "relevance_reason": "与视觉 latent 推理无直接关联，但其「仅用当前策略样本与目标信号变化的一阶协方差，即可事先预测训练后行为/特征变化」的思路，可能可供核查用于预估监督或奖励改动如何改变 VLM 对特定 latent 特征的依赖，以及与贡献分配相关的分析框架。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-03T20:20:31.355177+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

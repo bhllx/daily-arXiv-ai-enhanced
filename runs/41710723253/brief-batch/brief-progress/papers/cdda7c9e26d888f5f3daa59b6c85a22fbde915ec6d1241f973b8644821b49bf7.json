@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.01909",
+  "input_sha256": "9da3a056bf86ec3c3c484e753ad2d85f5eb7107791fc2a37de1e1f15c0f534ab",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-03T20:35:38.563913+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1870,
+        "output_tokens": 1024,
+        "total_tokens": 2894,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 819
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.01909",
+    "title": "Who Asks, Who Answers: Linear Attention Builds the Query in Hybrid Language Models",
+    "authors": [
+      "Wenqi Zeng",
+      "Chen Feng",
+      "YuAng Chen"
+    ],
+    "categories": [
+      "cs.AI"
+    ],
+    "comment": "10 pages, 4 figures",
+    "summary": "Hybrid language models interleave linear-attention layers with a small number of softmax-attention layers. Prior work largely attributes in-context retrieval to softmax attention, treating linear attention primarily as a mechanism for compressing past context. We revisit this division of labor and show that linear attention plays a direct role in retrieval by constructing the query used by softmax attention. Studying Qwen3.5 (Gated DeltaNet) and Granite4.0 (Mamba-2), we identify an Encode--Address circuit. An early Encode block preserves token identity, while an Address block constructs the final-position representation from which a softmax \\emph{reader} forms its attention query. Transplanting this representation between prompts with different queried keys redirects retrieval in 0.97--0.99 of cases. The Address block's recurrent state carries the retrieval target, and its computation transfers across architectures: replacing Granite's Address block with Qwen's restores retrieval accuracy to 0.92--0.94 without updating either model's weights. Across six Qwen3.5 models, Address computation becomes distributed at larger scales over a chain of blocks, each guiding a successive reader, as the query no longer passes from one reader to the next through attention. These findings reveal a division of labor in hybrid retrieval: linear attention constructs the query, while softmax attention performs the lookup. Code is available at https://github.com/yuang-chen/LinearQuery",
+    "abs": "http://arxiv.org/abs/2611.01909v1",
+    "pdf": "https://arxiv.org/pdf/2611.01909v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P1",
+      "brief_summary": "研究 Qwen3.5（Gated DeltaNet）与 Granite4.0（Mamba-2）等混合模型中线性注意力与 softmax 注意力的分工，通过表征移植干预识别出「Encode–Address」回路：线性注意力构建检索查询，softmax 层仅执行查表。",
+      "relevance_reason": "其「循环状态携带检索目标、由独立 reader 形成查询」的因果移植范式，可供核查 LVR 中 latent 状态如何指定待取视觉证据、多跳 LOOK 的查询如何逐层构造，但需从纯文本迁移。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-03T20:35:38.563913+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

@@ -1,0 +1,77 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.00408",
+  "input_sha256": "7f21b893c27459a05130c8f89377913956909e5de1b15bf1418576f1dc971a61",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-03T20:51:22.224498+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1834,
+        "output_tokens": 352,
+        "total_tokens": 2186,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 155
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.00408",
+    "title": "TileWeave: Heterogeneous Tiling for Sparse Prefill on Mobile SoCs",
+    "authors": [
+      "Wentao Ni",
+      "Hong Cai",
+      "Mingu Lee",
+      "Chihao Yu",
+      "Zhongming Yu",
+      "Hejia Zhang",
+      "Kangqi Zhang",
+      "Fatih Porikli",
+      "Zhijian Liu",
+      "Jishen Zhao"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Smartphone applications increasingly require large language models to process long contexts, whereas high prefill latency and memory demands constrain local inference. Block-sparse attention reduces computation and memory traffic, but its irregular selections conflict with mobile NPUs' preference for large, regular tiles. Efficient execution must exploit cross-query reuse while avoiding redundant computation and preserving selections needed for accuracy. In this paper, we present TileWeave, which partitions sparse attention by this cross-query reuse: highly shared key blocks run in coarse NPU tiles, while low-reuse blocks run on the GPU only for the query blocks that selected them. In addition, we design an NPU-native pooled-key selector that keeps selection inexpensive, and a runtime that publishes GPU partials in the order the NPU consumes them and merges them in its existing output store. On RULER, HeteroSparse matches XAttention's accuracy with Qwen3-1.7B and improves it with Llama-3.2-3B-Instruct; its mean LongBench scores match XAttention as well. On Snapdragon SM8750 and SM8850 phones, it achieves 1.35--3.23$\\times$ faster full-model prefill than XAttention over 1k--16k tokens and up to 1.58$\\times$ faster than dense attention.",
+    "abs": "http://arxiv.org/abs/2611.00408v1",
+    "pdf": "https://arxiv.org/pdf/2611.00408v1",
+    "AI": {
+      "category": "EXCLUDE",
+      "priority": "NONE",
+      "brief_summary": "TileWeave 针对手机 SoC 上的长上下文 prefill，按跨 query 的 key block 复用程度把块稀疏注意力拆分到 NPU 粗粒度 tile 与 GPU 细粒度执行，并配套 NPU 端 pooled-key 选择器与运行时结果合并。",
+      "relevance_reason": "属于移动端稀疏注意力算子调度与系统优化，目标仅为降低 prefill 延迟和内存开销，未涉及视觉/多模态推理状态、latent 内容使用或证据筛选机制，缺乏可核查的主线联系。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-03T20:51:22.224498+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

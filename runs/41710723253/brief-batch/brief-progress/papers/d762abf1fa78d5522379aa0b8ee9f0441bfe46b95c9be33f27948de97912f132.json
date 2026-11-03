@@ -1,0 +1,72 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.03513",
+  "input_sha256": "b00e6c3d2ca1c74aea124218407789ab1b9e20c66a5e9092dfa323440f84c722",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-03T20:17:47.184347+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1876,
+        "output_tokens": 627,
+        "total_tokens": 2503,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 410
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.03513",
+    "title": "RASP: Read-All, Sparse-Plasticity Continual Learning in a Stationary-Size LoRA",
+    "authors": [
+      "Wen-Hsuan Liu",
+      "Amara Okonkwo",
+      "Tom Saliencro",
+      "Rohan Desai",
+      "Maya Lindqvist"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Parameter-efficient continual learning on pre-trained Vision Transformers largely relies on a costly premise: preventing catastrophic forgetting requires either spawning a dedicated LoRA branch per session---causing adapter parameters to scale linearly with task horizon---or applying sparse Mixture-of-Experts gating symmetrically to both forward and backward passes, which sacrifices representational rank at test time. We argue that reading consolidated knowledge and writing new task credit are fundamentally asymmetric operations. Because visual features in a shared low-rank space distribute across rank-1 atoms rather than localizing in disjoint task silos, forward inference should read all atoms at full rank capacity, whereas backward optimization should restrict plasticity to a sparse subset of input-aligned channels. We introduce RASP (Read-All, Sparse-Plasticity LoRA), which adapts a single stationary-size adapter across sequential tasks. At each step, a scene-modulated cosine router selects the top-$q$ unlocked atoms to receive gradients, blocks updates on the remaining $r-q$ channels, and penalizes Frobenius Gram coherence between active and non-updated output directions. Across sessions, the router's empirical activation trace and each atom's exact spectral norm form a zero-overhead geometric consolidation index $ω_j = \\sqrt{\\tilde{c}_j \\tildeσ_j}$ that drives Cauchy step attenuation and boundary anchor locking. Across CIFAR-100, CUB-200, ImageNet-R, and ImageNet-A, RASP matches or surpasses branch-expanding LoRA learners under a strictly constant parameter footprint.",
+    "abs": "http://arxiv.org/abs/2611.03513v1",
+    "pdf": "https://arxiv.org/pdf/2611.03513v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "RASP 提出一种参数规模恒定的 LoRA 持续学习方法：前向以全秩读取全部 rank-1 atom，反向仅对 scene-modulated router 选出的稀疏通道回传梯度，并用激活迹与谱范数构成的几何整合指标控制更新步长与锚定，在多个 ViT 基准上匹配或超过分支扩张式方法。",
+      "relevance_reason": "其「前向全读、反向稀疏写」的非对称梯度路由与不变参数容量设计，可能可供核查 LVR 训练期的贡献分配、容量受限下的稳定更新与干扰抑制问题，但论文本身不涉及视觉 latent 推理状态。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-03T20:17:47.184347+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

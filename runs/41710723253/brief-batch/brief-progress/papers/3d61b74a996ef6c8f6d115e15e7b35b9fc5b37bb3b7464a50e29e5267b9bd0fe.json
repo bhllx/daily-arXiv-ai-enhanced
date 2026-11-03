@@ -1,0 +1,74 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.01704",
+  "input_sha256": "8b9120e8432925de393ab284a8cdd54aa4e8d27d468448975ed7db3135764302",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-03T20:37:37.153485+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1937,
+        "output_tokens": 669,
+        "total_tokens": 2606,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 525
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.01704",
+    "title": "MatMoE: Matryoshka Mixture-of-Experts with Dynamic Mixed-Precision Quantization for Efficient Inference",
+    "authors": [
+      "Renjie Wei",
+      "Haochen Huang",
+      "Chuyu Qiu",
+      "Jinqi Wen",
+      "Dehao Xu",
+      "Meng Li"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.AI"
+    ],
+    "comment": "Accepeted by ICCAD 2026",
+    "summary": "Mixture-of-Experts (MoE) architecture has been widely adopted in large language models (LLMs) since it reduces the computational cost through sparse expert activation. However, the massive parameter scale of MoE models hinders their deployment on resource-constrained edge devices. Although existing mixed-precision quantization reduces the model size, they are inherently static, fixing the bit-width of each expert across decoding steps. Such static schemes yield suboptimal performance as they overlook the dynamic variation in expert importance during decoding. Furthermore, they fail to adapt to the dynamic latency constraint driven by the fluctuating system utilization. To address these challenges, we propose MatMoE, a dynamic mixed-precision quantization framework for efficient MoE inference. MatMoE features: (1) a Matryoshka MoE PTQ algorithm that enables experts to operate flexibly at multiple precisions within a stringent memory budget; (2) a floor-and-compensation quantization method that eliminates redundant memory accesses in the Matryoshka representation; and (3) a dynamic bit-width allocation strategy that determines the precision for each expert based on their routing scores to satisfy the dynamic latency requirement. We implement our MatMoE system atop llama.cpp for both CPU and GPU platforms. Extensive evaluations across three modern MoE models and challenging benchmarks demonstrate that MatMoE achieves $4.0\\% \\sim 18.3\\%$ higher accuracy than state-of-the-art static mixed-precision method. Compared to llama.cpp, MatMoE delivers $1.3\\times \\sim 3.7\\times$ speedup on Raspberry Pi 5, and $1.2\\times \\sim 1.3\\times$ speedup on NVIDIA RTX 4090 and Jetson AGX Orin.",
+    "abs": "http://arxiv.org/abs/2611.01704v1",
+    "pdf": "https://arxiv.org/pdf/2611.01704v1",
+    "AI": {
+      "category": "EXCLUDE",
+      "priority": "NONE",
+      "brief_summary": null,
+      "relevance_reason": "该文是 MoE 混合精度量化与系统加速工作，虽按路由分数动态分配 bit-width，但只服务于显存与延迟预算，不涉及推理状态、视觉证据或停止决策，与 LVR 仅表面相似，故排除。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-03T20:37:37.153485+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

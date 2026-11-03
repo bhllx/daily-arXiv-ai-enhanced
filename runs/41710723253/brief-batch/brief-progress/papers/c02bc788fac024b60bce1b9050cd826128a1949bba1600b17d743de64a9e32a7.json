@@ -1,0 +1,73 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.00937",
+  "input_sha256": "379ed1768351e5960ed94ba1ce78154ede2e1796806120a4303e844351263e6c",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-03T20:45:06.817712+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1872,
+        "output_tokens": 601,
+        "total_tokens": 2473,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 381
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.00937",
+    "title": "What Helps Denoising Can Hurt Memory: Rethinking History in Long Video Generation",
+    "authors": [
+      "Yubin Jing",
+      "Ziyang Zhang",
+      "Meng Chen",
+      "Yuyao Li",
+      "Haofan Wang",
+      "Yichen Gong"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": "41 pages, 9 figures, 56 tables",
+    "summary": "Autoregressive video generators produce long videos block by block, using historical context to maintain temporal consistency. After denoising, a committing pass encodes each clean block into keys and values (KV) that later blocks read, and the same clean block can be encoded into different KV depending on the history it reads. We therefore study historical context not only as a condition for denoising but also as an input to committing. Older historical context that supports denoising can harm subsequent generation when read during committing. At fixed context size and temporal positions, older historical context lowers mean clip-to-clip Subject Consistency. Across 5 generator configurations supporting longer contexts, consistency rises, plateaus, and then declines as committing context expands. Motivated by these findings, we propose Commit Forcing, a training-free rule that organizes committing into a chain. During committing, each block reads only the preceding block's stored KV, so older historical context reaches new entries only through the chain. We apply this rule to 6 pretrained generators. On 60-second VBench, Commit Forcing improves Quality and Total on all 6 generators, by up to 1.27 Quality points and 1.10 Total points. Long-range consistency gains extend to 240-second videos. In a blinded comparison on 120-second LongLive videos, Commit Forcing achieves win rates of 83.5% for subject and scene consistency and 82.9% for overall preference against the base generator, excluding ties.",
+    "abs": "http://arxiv.org/abs/2611.00937v1",
+    "pdf": "https://arxiv.org/pdf/2611.00937v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文区分自回归长视频生成中历史上下文的两种作用（去噪条件与 committing 时的写入输入），发现旧上下文在 committing 中被读取会损害一致性，并提出免训练的 Commit Forcing：每个块只读前一块的 KV 形成链式记忆，在 6 个预训练生成器上提升质量与长程一致性。",
+      "relevance_reason": "其「同一内容因读取的历史不同而写入不同 KV」与链式写入规则，可能为 LVR 中 latent 状态更新、长程 KV 缓存筛选及信息坍缩提供可供核查的线索，但研究对象为视频生成，与视觉推理无直接联系。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-03T20:45:06.817712+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

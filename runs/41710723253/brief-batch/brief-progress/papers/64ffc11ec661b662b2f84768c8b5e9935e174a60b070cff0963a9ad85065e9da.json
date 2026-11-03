@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.01116",
+  "input_sha256": "d90d360da7cfeb85a4b7af6a40b4c52c2b88c2de2027293560a8ef27abe71683",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-03T20:43:47.154590+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1899,
+        "output_tokens": 850,
+        "total_tokens": 2749,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 652
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.01116",
+    "title": "Zero-Gated Cross-Attention",
+    "authors": [
+      "Basavaraj R M",
+      "Manav Verma"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": "7 pages, 3 figures, 4 tables. Technical report",
+    "summary": "Injecting non-text modalities into frozen language models often introduces early optimization instability, making it difficult to separate architectural gains from transient training dynamics. We introduce Inductively Gated Cross-Attention (IGCA), a zero-initialized cross-attention bridge that preserves pretrained model behavior at initialization while enabling gradual multimodal conditioning. Integrated across six decoder layers of frozen Falcon-40B, open_llama_30b, and Bloom-7b1 backbones (with 40,404,961,288 trainable adapter parameters used during training), IGCA acts as an exact algebraic no-op at initialization with a maximum output discrepancy of 0.00e+00. Over 59,500 training steps on Falcon-40B, the training loss decreases from 3.9403 to 0.0007 (with final ten step losses of [0.0001, 0.0003, 0.0005, 0.0002, 0.0005, 0.0011, 0.0005, 0.0006, 0.0005, 0.0007]). On held-out evaluation, the best gate-on checkpoint achieves a loss of 2.2201 compared to 4.3469 for the gate-off baseline -- a 48.9% reduction (2.1268 nats) -- while average held-out loss improves from 4.3423 to 2.2498 (1.9075 nats) with a mean gate magnitude of $\\vert{}\\tanh(α)\\vert{} = 0.0713$.",
+    "abs": "http://arxiv.org/abs/2611.01116v1",
+    "pdf": "https://arxiv.org/pdf/2611.01116v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "提出零初始化的门控交叉注意力桥接模块 IGCA，在冻结的语言模型多个解码层中注入非文本模态，声称初始化时严格等价于无操作，并报告训练与留出集损失大幅下降。",
+      "relevance_reason": "零初始化加门控的渐进式模态注入可为 LVR 中视觉证据接入冻结模型时的训练稳定性提供线索；门幅值 |tanh α| 仅约 0.07 可供核查视觉旁路是否被真正使用，但论文未涉及推理任务与 latent 状态生成。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-03T20:43:47.154590+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

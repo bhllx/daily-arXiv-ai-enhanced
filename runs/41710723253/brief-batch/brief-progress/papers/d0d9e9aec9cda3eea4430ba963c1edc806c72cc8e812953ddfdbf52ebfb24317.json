@@ -1,0 +1,72 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.01283",
+  "input_sha256": "b9b29eac2208bac99cf92a79ece859fe67e40af8f2c353898f59558bee767457",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-03T20:42:22.689880+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1859,
+        "output_tokens": 284,
+        "total_tokens": 2143,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 76
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.01283",
+    "title": "DriftingPlanner: Drifting Generative Models for One-Step Trajectory Planning in End-to-End Autonomous Driving",
+    "authors": [
+      "Ziming Liu",
+      "Yizhan Qu",
+      "Leichen Wang",
+      "Hao Sun"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.RO"
+    ],
+    "comment": null,
+    "summary": "End-to-end planners decode the ego trajectory either by coordinate regression, which is fast but blends plausible maneuvers into one trajectory that may follow none of them, or by diffusion and flow matching, which model the trajectory distribution but need several inference steps. Drifting models move this iteration into training: a one-step generator learns to follow an attraction--repulsion field between generated and ground-truth samples. Drifting was developed for class-conditional image generation, where every class supplies many positive samples. In planning, every scene is its own condition. Pooling scenes would attract the generated trajectories of one scene to the ground truth of unrelated scenes, whereas computing the field per scene leaves a single positive, the expert trajectory. Mutual repulsion then holds the generated trajectories on a shell around it, so any single generated trajectory deviates from the ground truth. We present DriftingPlanner, a trajectory planner trained with the drifting loss alone, without any coordinate regression term. It computes the field per scene and removes the shell at inference: it decodes every noise vector together with its negation in one batched pass, and averaging each antithetic pair cancels the linear part of the displacement from the shell center. On NAVSIM navtest, DriftingPlanner reaches a state-of-the-art 93.75 PDMS, and with single-step inference its drifting decoder comes within 0.13 PDMS of the best diffusion or flow matching setting, which needs ten inference steps.",
+    "abs": "http://arxiv.org/abs/2611.01283v1",
+    "pdf": "https://arxiv.org/pdf/2611.01283v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "面向端到端自动驾驶轨迹规划，把原本需多步迭代的扩散/流匹配生成改为训练期学习吸引—排斥场的 drifting 模型，实现单步生成轨迹，并用「噪声向量与其相反数成对解码后平均」消除壳层偏差，在 NAVSIM 上取得 93.75 PDMS。",
+      "relevance_reason": "论文不涉及视觉推理，但其把迭代采样压入训练、以一对反极样本平均抵消位移的单步生成思路，可能为 LVR 中并行或一步生成 latent 推理状态、以及采样误差抑制提供可供核查的方法线索。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-03T20:42:22.689880+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

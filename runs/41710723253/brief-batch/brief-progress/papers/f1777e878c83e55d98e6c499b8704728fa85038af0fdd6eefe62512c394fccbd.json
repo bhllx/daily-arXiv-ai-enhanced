@@ -1,0 +1,76 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.00333",
+  "input_sha256": "d4f1ffe6c76e66a7e29eaf07867a0478f666cc0260449686df13665666505826",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-03T20:52:07.042650+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1823,
+        "output_tokens": 516,
+        "total_tokens": 2339,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 262
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.00333",
+    "title": "C3: Speech-Guided KV Retrieval for Long-Context SpeechLLM Inference",
+    "authors": [
+      "Dancheng Liu",
+      "Markus Müller",
+      "Rupak Vignesh Swaminathan",
+      "Jing Liu",
+      "Srikanth Ronanki",
+      "Aram Galstyan"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.AI",
+      "cs.SD",
+      "eess.AS"
+    ],
+    "comment": "accepted to NeurIPS 2026 AXIOM workshop",
+    "summary": "Speech language models encode audio at a much higher rate than text, causing the KV cache to dominate the memory, bandwidth, and decoding cost of long-form generation. KV retrieval can reduce per-step access by attending to only a query-dependent subset of the cache, but existing methods are designed primarily for text and do not account for the structure of audio attention. We first show that retrieval errors may compound autoregressively into generation drift. We then analyze full audio attention during long-form generation and identify three properties relevant to retrieval: unequal attention concentration across query heads, non-contiguous audio support, and temporal continuity across decoding steps. Guided by these observations, we propose $C^3$(Cluster-Compete-Compete), which organizes audio KVs in a hierarchical key-space index, lets query heads sharing a KV head compete for a common retrieval budget, and adaptively reallocates retrieval resolution through paired split-merge updates. Across long-form speech recognition, translation, and summarization on four SpeechLLMs, $C^3$ achieves the strongest overall performance among retrieval methods under comparable final-KV access budgets, with particularly large gains in the tight-budget regime, while improving long-context decoding efficiency and accelerator-memory scaling.",
+    "abs": "http://arxiv.org/abs/2611.00333v1",
+    "pdf": "https://arxiv.org/pdf/2611.00333v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "该论文分析长语音生成中音频注意力的三个特性——查询头间注意力集中度不均、音频支撑非连续、跨解码步时间连续——并提出 C3（Cluster-Compete-Compete）：用层次化 key 空间索引组织音频 KV，让共享 KV 头的查询头竞争同一检索预算，并通过成对 split-merge 自适应调整检索分辨率；在四个 SpeechLLM 的长语音识别、翻译与摘要任务上验证。",
+      "relevance_reason": "其对「检索错误自回归累积导致生成漂移」的论断及头级注意力集中度、非连续证据支撑的分析，可供核查 LVR 中视觉证据筛选与 KV/缓存选择是否真正被推理使用；但对象是语音 KV 检索效率，与 latent 推理状态生成无直接关系，迁移需自行判断。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-03T20:52:07.042650+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

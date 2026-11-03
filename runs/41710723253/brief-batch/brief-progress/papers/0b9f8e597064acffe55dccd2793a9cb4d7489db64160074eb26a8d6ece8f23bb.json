@@ -1,0 +1,82 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.02846",
+  "input_sha256": "e36719cb5a02f4eef6692e86742cb9733cb004bc903f00a7884aaba48952f5ca",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-03T20:24:27.613138+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1910,
+        "output_tokens": 519,
+        "total_tokens": 2429,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 303
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.02846",
+    "title": "SpecOPD: Branch-Parallel On-Policy Distillation for Speculative Decoding",
+    "authors": [
+      "Tianyu Liu",
+      "Jun Zhang",
+      "Wenjie Huang",
+      "Yuhao Shen",
+      "Tianqi Xu",
+      "Xinyue Hao",
+      "Hongyaoxing Gu",
+      "Xuyang Liu",
+      "Baolin Zhang",
+      "Yating Zhu",
+      "Shuang Ge",
+      "Jun Dai",
+      "Lei Chen",
+      "Yue Li",
+      "Mingchen Wan"
+    ],
+    "categories": [
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "Speculative decoding (SD) accelerates large language model inference by reducing the sequential cost of token-by-token generation. Advanced SD methods reduce proposal cost with parallel drafters that predict entire blocks in one forward pass, but overall speedup still depends on acceptance length. On-policy distillation (OPD) can push well-trained drafters beyond acceptance-length plateaus, yet conventional pipelines collect supervision through sequential draft-and-verify rollouts. Our key insight is that on-policy supervision need not inherit these dependencies: a draft block can be supervised using only its reference prefix and draft-sampled history. We propose SpecOPD, a branch-parallel OPD framework that parallelizes draft sampling and target supervision across independent branches drawn from the evolving drafter policy at reference anchors. We pack these branches into proposal trees to share target-prefix computation, using tree masks for full attention, branch-consistent indexer groups for sparse attention, and indexed state replay for linear attention to preserve each branch's history. We train the drafter with an E2E-TV surrogate that directly targets acceptance length. Our study spans 8B full-attention (GQA), 27B full-linear (GQA--GDN), and 125B sparse-linear (QSA--GDN) targets, three parallel draft architectures (DFlash, DSpark, and DFlash V2), and four task domains (dialogue, coding, mathematics, and agentic). SpecOPD achieves up to 41.45% higher mean acceptance length, $16.09\\times$ supervised-token throughput over sequential-rollout OPD under native configurations, and up to $3.56\\times$ generation speedup over autoregressive decoding.",
+    "abs": "http://arxiv.org/abs/2611.02846v1",
+    "pdf": "https://arxiv.org/pdf/2611.02846v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "提出 SpecOPD 分支并行 on-policy 蒸馏框架：在参考锚点处从演化中的 drafter 策略并行采样多个分支并施加目标模型监督，用树形打包、树掩码、稀疏注意力分支索引组与线性注意力状态重放保留各分支历史，并以直接面向接受长度的 E2E-TV 代理损失训练 drafter。",
+      "relevance_reason": "分支并行 rollout、分支一致的状态重放以及以「接受长度」为训练目标的监督方式，可能为 LVR 的多轨迹训练、状态一致性维护与贡献分配提供方法线索，可供核查其是否迁移到 latent 推理状态训练。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-03T20:24:27.613138+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

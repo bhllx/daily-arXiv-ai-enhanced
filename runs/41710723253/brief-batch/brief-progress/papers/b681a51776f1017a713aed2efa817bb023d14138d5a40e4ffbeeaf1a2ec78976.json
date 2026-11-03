@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.02498",
+  "input_sha256": "56196132abbfedf2996f205e648bfbfec467eaee57a94bfce8a4b8eb35e172a1",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-03T20:29:11.064745+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1849,
+        "output_tokens": 666,
+        "total_tokens": 2515,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 441
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.02498",
+    "title": "Semantic Caches for LLM Web Services Leave Their Error Budget Unspent",
+    "authors": [
+      "Hanshuai Cui",
+      "Qianli Ma",
+      "Zhiqing Tang"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Web services built on large language models (LLMs) receive many paraphrases of earlier queries, which a semantic cache answers from stored responses. A reused answer can be wrong, so wrong answers must stay below a share $δ$ of the queries. Existing caches reuse above a fixed similarity threshold or, like vCache, learn a per-entry rule that bounds each query's error by $δ$. However, fixed thresholds break the budget on new streams, and per-entry rules need labels on every entry before reusing it. We find an unspent error budget, as vCache realizes only 12-55% of $δ$ on three public query streams. Surplus spends this budget where reuse is most likely correct. It ranks queries by a risk score shared across paraphrase clusters and opens risk bins as far as an audited error estimate allows. Free labels from every LLM call and a ledger of realized errors keep this threshold safe under drift. On five streams, including ORCAS search queries, Surplus holds $δ$ in every test cell, which no baseline does. On the shuffled streams it serves 40% more hits than vCache, and its pooled hit rate beats the best baseline holding $δ$ in each cell by 4.10 points. In a vLLM testbed it cuts the mean latency by 31.59% at the highest load, against 23.67% for vCache.",
+    "abs": "http://arxiv.org/abs/2611.02498v1",
+    "pdf": "https://arxiv.org/pdf/2611.02498v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文针对 LLM 网络服务中的语义缓存提出 Surplus：用跨改写簇共享的风险分数对查询排序，并在审计误差估计允许的范围内逐步放开风险分箱，配合每次 LLM 调用获得的免费标签与实现误差账本在分布漂移下维持误差预算 δ，在五个查询流上提升命中率并降低时延。",
+      "relevance_reason": "其按相似度与风险分数决定「是否复用已有答案」并做误差预算校准的做法，可能与 LVR 中基于 latent 相似度的状态复用及 STOP 决策阈值标定有关，可作为可供核查的方法线索；但论文本身面向文本服务缓存，与视觉推理无直接联系。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-03T20:29:11.064745+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

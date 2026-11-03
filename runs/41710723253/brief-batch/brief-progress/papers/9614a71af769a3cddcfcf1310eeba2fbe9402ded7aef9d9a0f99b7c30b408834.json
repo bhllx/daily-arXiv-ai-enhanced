@@ -1,0 +1,76 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.01639",
+  "input_sha256": "dd27ae1f5032707d0a6c4faff91adf9611698acecdf79848e9185462379ecc11",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-03T20:38:37.913831+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1847,
+        "output_tokens": 632,
+        "total_tokens": 2479,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 424
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.01639",
+    "title": "Local or Escalate? Post-Training Expert Routing for Real-Time Duplex Speech Models",
+    "authors": [
+      "Ruoyu He",
+      "Jisen Li",
+      "Anthony Ji",
+      "Changyi Yang",
+      "Zetian Li",
+      "Runduo Ma",
+      "Zhen Zhang",
+      "Zhongzhu Zhou"
+    ],
+    "categories": [
+      "cs.AI",
+      "eess.AS"
+    ],
+    "comment": null,
+    "summary": "A full-duplex model should answer easy questions immediately, but hard questions often need stronger reasoning, which may require waiting. The challenge is to choose between these paths at the moment the model begins to speak. Recent systems learn related mode decisions through special-token generation inside the dialogue model, coupling routing to turn-taking and temporally annotated full-duplex training. We study a post-training alternative. We freeze MiniCPM-o 4.5, using only its speech input and output, and fit a logistic failure readout on hidden states already available at its native listen-to-speak transition. The resulting gate requires no additional model generation and exposes thresholds that can be retuned without changing the duplex policy. A probe fitted on text-input states also reads the states of spoken questions, including unseen human recordings. On the internal benchmark, selective handoff improves answer accuracy by 27.1 points. Compared with always using the expert, it reduces mean server time to first answer audio by 31.5 percent. It also outperforms matched random routing across external speech question-answering pools, as well as a zero-shot GPT-5.4 mini router that rates the transcribed question. The training recipe also transfers to a second duplex model family. These results show that an existing duplex model can be equipped to answer easy turns immediately and wait for stronger reasoning or fresher knowledge on the turns that need it, without further duplex training.",
+    "abs": "http://arxiv.org/abs/2611.01639v1",
+    "pdf": "https://arxiv.org/pdf/2611.01639v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文冻结 MiniCPM-o 4.5 全双工语音模型，在其「听转说」时刻的已有隐状态上拟合 logistic 失败读出，用于决定即时作答还是转交更强的专家推理，并在内部基准与外部语音问答集上验证该后训练门控的效果。",
+      "relevance_reason": "从冻结模型内部状态轻量读出「是否需要更多推理」的门控思路，可能为 LVR 中 THINK/STOP 与计算升级决策提供可核查线索；但对象是全双工语音而非视觉，跨模态与跨任务可迁移性待判断。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-03T20:38:37.913831+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

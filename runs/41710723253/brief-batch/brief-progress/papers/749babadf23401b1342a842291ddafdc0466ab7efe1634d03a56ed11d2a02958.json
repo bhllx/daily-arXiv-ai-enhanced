@@ -1,0 +1,73 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.00427",
+  "input_sha256": "898a7f85f051e5bbdc0f27984e176e55d5b1f3bb2a21f87991e28b8713870ce2",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-03T20:51:09.864330+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1964,
+        "output_tokens": 640,
+        "total_tokens": 2604,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 403
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.00427",
+    "title": "Spoofing the Latent State: Imperceptible Goal-Image Attacks Derail Planning in LeWorldModel",
+    "authors": [
+      "Kunal Bhosikar",
+      "Nicole Meng",
+      "Charu Sharma",
+      "Yingjie Lao"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.CR",
+      "cs.LG"
+    ],
+    "comment": "14 pages, 5 figures, 13 tables",
+    "summary": "Joint-embedding predictive architectures (JEPAs) have recently emerged as general-purpose visual world models for control. A prominent example is LeWorldModel (LeWM), which trains end-to-end from pixels using an isotropic Gaussian anti-collapse regularizer (SIGReg) and plans by minimizing the squared Euclidean distance between predicted and goal embeddings. In this work, we investigate the test-time robustness of this latent planning interface. Analyzing the learned metric on Push-T, we first find that task-relevant object state heavily dominates latent distance: shifting the block by a single pixel displaces the embedding $3\\times$ further than an equivalent agent shift, and swapping the block pose alone accounts for $99\\%$ of the distance between scene pairs. However, because this pose information is distributed across a curved, high-dimensional manifold rather than a fixed linear subspace, the encoder cannot be trivially edited post-hoc to isolate or redirect it. We next demonstrate that this geometry is highly vulnerable at test time. A white-box $\\ell_\\infty$ perturbation of just $ε{=}4/255$ applied to a single input frame causes the encoder to register the block at an arbitrary, attacker-chosen pose in $73$--$95\\%$ of scenes without disturbing the encoded agent state. Perturbing either the goal image or the live camera observation drops Push-T planning success from $87\\%$ to $32\\%$, whereas uniform random noise at twice the magnitude has negligible impact. This vulnerability persists across all four standard LeWM benchmarks (Push-T, Two-Room, Reacher, and OGBench-Cube). At $ε{=}8/255$, the attack bridges $82$--$97\\%$ of the squared latent distance to the target embedding in every environment, inducing planning degradation proportional to each task's reliance on the spoofed entity.",
+    "abs": "http://arxiv.org/abs/2611.00427v1",
+    "pdf": "https://arxiv.org/pdf/2611.00427v1",
+    "AI": {
+      "category": "MAIN",
+      "priority": "P1",
+      "brief_summary": "论文研究 LeWorldModel（JEPA 类视觉世界模型）latent 规划接口的测试期鲁棒性：先在 Push-T 上分析 latent 距离由哪些因素主导，再证明仅对单帧图像施加 ε=4/255 的白盒 ℓ∞ 扰动即可让编码器把物体登记为攻击者指定的位姿，并在四个基准上显著降低规划成功率。",
+      "relevance_reason": "对 latent 距离的构成分析（物体位姿主导、分布于弯曲高维流形而无法线性编辑）以及「伪造 latent 即可改变目标匹配结果」的失败诊断，可供核查 LVR 中 latent 相似度作为目标或证据接口时实际编码的内容与视觉证据被误导的风险。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-03T20:51:09.864330+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.01059",
+  "input_sha256": "c43e794cb2933dd4669628738a8e0ea00ef8da9da9101a2e07e6bdf6a9e71bc2",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-03T20:44:20.671974+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1822,
+        "output_tokens": 624,
+        "total_tokens": 2446,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 423
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.01059",
+    "title": "Temperature, Not Knowledge: What Recursive Self-Training and Its Remedies Do to a Language Model's Confidence",
+    "authors": [
+      "Dipto Sumit",
+      "Syeda Fabiayee Jahan",
+      "Farig Sadeque"
+    ],
+    "categories": [
+      "cs.AI"
+    ],
+    "comment": "11 pages, 3 figures, 4 tables",
+    "summary": "Recursive self-training can collapse language models, and many proposed remedies target overconfidence, yet their effects on confidence are rarely measured. We study a five-round self-training loop on Qwen3-1.7B, using three seeds per compared method, and distinguish confidence temperature (drift from a calibrated starting point) from discrimination (ranking correct answers above incorrect ones). Accuracy and overall discrimination remain nearly unchanged, but confidence sharpens and the most confident answers become less reliable. Matching predictive entropy to the calibrated starting model each round recalibrates nearly as well as label-based temperature fitting, at both 1.7B and 8B. Sharpening is not inherent to self-training: exact samples from a model's distribution have zero expected gradient. Instead, most drift comes from fitting each generated answer twice, with top-p truncation contributing the rest; removing both keeps entropy on generated outputs flat. Remedies affect the two properties differently: truncated cross-entropy, an entropy bonus, and single-pass training preserve temperature without improving discrimination, while focal loss and multi-sample targets improve discrimination but cause underconfidence. Reference-data mixing also overshoots. Pairing a ranking-improving loss with label-free recalibration achieves both.",
+    "abs": "http://arxiv.org/abs/2611.01059v1",
+    "pdf": "https://arxiv.org/pdf/2611.01059v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "研究 Qwen3-1.7B/8B 五轮递归自训练中置信温度与判别力的分离变化，并比较熵匹配、focal loss、参考数据混合等缓解手段的效果。",
+      "relevance_reason": "其将「置信锐化」与「答案判别力」分开度量、并用无标签熵匹配校准的思路，可能为 LVR 中基于置信的停止决策及 latent 状态信息含量评估提供核查线索；但论文为纯文本训练动力学研究，与视觉推理和 latent 表示联系较远。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-03T20:44:20.671974+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

@@ -1,0 +1,71 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.00497",
+  "input_sha256": "f612e365fa1c52e05797bb332c65f80507da7c0a95d2d62c7b3a53f72c4ba9b0",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-03T20:50:09.885146+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1988,
+        "output_tokens": 818,
+        "total_tokens": 2806,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 605
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.00497",
+    "title": "Where Does EEG Help Wearable Freezing of Gait Detection?",
+    "authors": [
+      "Chuntian Chi",
+      "Lifang He",
+      "Huajie Shao",
+      "Gang Zhou"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Freezing of gait (FoG) detectors built on inertial measurement units (IMUs) are accurate while the legs move, but they become unreliable when the legs are nearly still, which is exactly when akinetic freezing, voluntary stopping, and standing must be told apart. Electroencephalography (EEG) captures motor-planning activity that leg sensors cannot, but EEG is impractical for daily use. We ask where EEG helps: as an input at inference time, or only during pretraining, so that the deployed detector still needs only IMUs. We assemble a pretraining corpus of synchronized EEG and IMU recordings (5 datasets, 184 people, 94 hours) and compare six settings that differ only in the modalities used for pretraining and as model input, each with tuned hyperparameters and five independent pretraining runs. On the BXHC FoG dataset (leave-one-patient-out, 10 patients with FoG), adding EEG as input raises FoG F1 from 0.663 to 0.740 (9 of 10 patients improve), and the gain in ranking performance is confined to the quartile of windows with the least leg movement (AUROC +0.063). Pretraining the IMU encoder jointly with EEG improves an IMU-only detector both within the cohort (FoG F1 0.663 to 0.705) and when it is trained on a small cohort and tested on another (FoG F1 +0.083, all 10 test patients improve). Repeating the study with PD-only and healthy-only pretraining corpora, each with its own hyperparameter search, shows that IMU-based detection is robust to the corpus, whereas the benefit of aligning EEG with IMU requires both. Cross-cohort analysis further shows that detectors trained without annotated voluntary stops classify nearly all stops as freezing. Finally, on PD versus non-PD classification in three external datasets, joint EEG+IMU pretraining improves PD detection from walking EEG over EEG-only pretraining (AUROC 0.750 vs. 0.683), while IMU-based detection does not depend on the pretraining.",
+    "abs": "http://arxiv.org/abs/2611.00497v1",
+    "pdf": "https://arxiv.org/pdf/2611.00497v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "论文构建同步 EEG-IMU 预训练语料（5 个数据集、184 人、94 小时），在六个仅模态使用方式不同的设置下比较 EEG 作为推理输入还是仅用于预训练，使部署检测器只需 IMU，并检验跨队列泛化与 PD 分类。",
+      "relevance_reason": "「昂贵模态只在训练期对齐、部署时可去掉」与增益集中于腿部运动最少窗口的分层评估，可能为 LVR 中训练期辅助监督与推理期输入的贡献分离、以及视觉证据何时真正被使用提供评价思路线索，尚需核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-03T20:50:09.885146+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

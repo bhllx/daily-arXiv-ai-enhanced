@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.00482",
+  "input_sha256": "2d228e78e255b6cb5271bd2d22c654483090d7bde755b637472d1fb5e649f7f8",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-03T20:50:21.636938+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 2010,
+        "output_tokens": 674,
+        "total_tokens": 2684,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 463
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.00482",
+    "title": "A Straight Line Is Not a Camera Pose: Auditing Short-Clip Pose Benchmarks",
+    "authors": [
+      "Xinyi Shi"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.RO"
+    ],
+    "comment": "34 pages (8-page main text and appendix), 7 figures, 21 tables",
+    "summary": "The absolute trajectory error (ATE) is the standard measure of camera-motion accuracy, from SLAM to feed-forward 3D reconstruction. On the common Sintel protocol, a constant-velocity straight line using no images has a lower mean ATE than 10 of 11 recent models re-run with official code. Two properties of ATE's alignment explain this. First, it maps any constant-velocity prediction onto the best-fitting line through the true path, so the line scores the path's regression residual. A residual signal-to-noise ratio (SNR) criterion predicts when moving a prediction towards its constant-velocity fit lowers ATE. It gives the outcome for 95% of 1056 model-clip pairs, 98% of 792 held-out pairs and 97% of 1034 ScanNet pairs, and it separates Sintel (median SNR 0.86) from TUM, ScanNet and full-length Bonn and Wild-SLAM (2.7 to 27), where straightening raises every model's mean ATE. Second, position-only alignment ignores where cameras look: rotating a trajectory by 30 degrees against its orientations leaves ATE unchanged, yet worsens the reprojection of static points for every model on Sintel, TUM and ScanNet in the main setting, and the line, second by mean ATE on Sintel, places them worst by geometric mean: a lower ATE need not mean better geometry. Fitting the alignment's rotation to the predicted orientations gives pose-anchored ATE, a one-function change in ATE's units costing 0.17 ms per clip (ATE: 0.11 ms). It ranks every image-free reference below every model on Sintel, tracks the reprojection error under rotation and straightening, where ATE does not (Spearman 0.61 vs. 0.32), largely preserves the models' order, and ties 10-frame translational relative pose error (RPE) and the discernible trajectory error (DTE) on our rotation and reference tests. Code, predictions and results will be released.",
+    "abs": "http://arxiv.org/abs/2611.00482v1",
+    "pdf": "https://arxiv.org/pdf/2611.00482v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "该文审计短片段相机位姿基准，指出 ATE 的对齐方式使「不使用任何图像的匀速直线」在 Sintel 上优于 11 个近期模型中的 10 个，且位置对齐忽略朝向，并据此提出按预测朝向对齐的 pose-anchored ATE。",
+      "relevance_reason": "与 LVR 主线无直接交集，但其「无视觉输入基线即可击败多数模型」「指标对朝向信息不敏感」的审计思路，可能可供核查 LVR/VLM 推理评测是否真能区分模型是否使用了视觉证据，需较多迁移判断。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-03T20:50:21.636938+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}
