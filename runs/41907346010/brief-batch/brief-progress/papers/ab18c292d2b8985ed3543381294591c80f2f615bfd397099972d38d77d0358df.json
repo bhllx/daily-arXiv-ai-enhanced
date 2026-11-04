@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.04987",
+  "input_sha256": "6cf5223f7d3e86dcbef0eba9611df1eb6bcefdd0086f71c973d412b59d391dad",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-04T20:36:46.675725+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1788,
+        "output_tokens": 669,
+        "total_tokens": 2457,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 460
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.04987",
+    "title": "ZEMA: confidence-calibrated signed descent with only one state",
+    "authors": [
+      "Ali Dadsetan",
+      "Domenic Rosati",
+      "Frank Rudzicz"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": "OPT @ NeurIPS 2026",
+    "summary": "Recent work characterizes the Adam optimizer as sign descent modulated by gradient uncertainty: the update is the sign of the batch gradient, scaled by how strongly the batch supports that sign. We apply this view directly and introduce ZEMA (Z-score Evidence Momentum Adaptation), which measures that support with a per-coordinate $z$-score computed from the per-example gradients in the current batch, converts it into a sign probability, and smooths the resulting update with a single exponential moving average. Because the probability is formed before smoothing rather than after, ZEMA keeps one state per parameter instead of Adam's two, at a $4.6$ increase in per-step time; the per-example variance it requires can also be estimated from a small fraction of the batch. In fine-tuning and pretraining experiments, ZEMA is competitive with Adam, reduces the variability of the validation loss, and in some settings recovers the sign of the full-dataset gradient more consistently. We close with two directions this opens: extending confidence adaptation beyond the sign geometry, to methods such as Muon, and to differentially private training.",
+    "abs": "http://arxiv.org/abs/2611.04987v1",
+    "pdf": "https://arxiv.org/pdf/2611.04987v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "ZEMA 将 Adam 视为由梯度不确定性调制的符号下降：用当前 batch 内逐样本梯度的 z-score 计算符号概率，先校准置信度再做单状态 EMA 平滑，从而只保留一个状态；在微调与预训练中与 Adam 相当，并降低验证损失波动。",
+      "relevance_reason": "其「用少量样本估计方差、把支持度转成概率、并以单状态平滑维护」的做法，可能为 LVR 中的停止/置信判据与轻量 latent 状态更新提供概念线索，是否可迁移尚需核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-04T20:36:46.675725+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

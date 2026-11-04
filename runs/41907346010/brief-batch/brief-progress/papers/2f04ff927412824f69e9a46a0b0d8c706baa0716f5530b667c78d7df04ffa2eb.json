@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.04434",
+  "input_sha256": "02ed13715b7cca658eb69e7b7a515856cef50b2ebe02a3e819a180a0229899e0",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-04T20:43:18.574625+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1996,
+        "output_tokens": 785,
+        "total_tokens": 2781,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 543
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.04434",
+    "title": "Sketchpad: certified exact arithmetic with a small vision-language model",
+    "authors": [
+      "Mostafa 'Neo' Mohsenvand"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.CL",
+      "cs.LO"
+    ],
+    "comment": "25 pages, 7 figures (6 + 1 Extended Data), 6 Extended Data tables. Demo: https://neovand.github.io/sketchpad/demo ; code (Apache 2.0): https://github.com/NeoVand/sketchpad ; model: https://huggingface.co/mohsenvand/sketchpad-0.8b-preview",
+    "summary": "Language models are accurate on most long-arithmetic problems, but their accuracy is estimated on samples and carries no guarantee for an unseen input; tool use is exact but moves the computation outside the network. We show that exactness at all input lengths becomes a finite, checkable property of a network when each of its steps reads only a bounded view of an external working memory. In Sketchpad, Qwen3.5-0.8B with a low-rank adapter executes arithmetic procedures on a rendered sheet. Each forward pass reads a three-cell view and emits one step: a digit, a carry or borrow, and the next operation. A fixed runtime moves the view and writes no digit of a result. We prove in Lean that the model is then exact on all inputs of any length if and only if it is exact on the finite set of views the runtime presents, that no finite test suffices when steps also read earlier steps, and that the guarantee tolerates bounded numerical perturbation and extends to compositions of procedures. All 2,446 views pass on the deployment device, a laptop GPU running the model in a web browser. The certified model performs signed addition and subtraction, long multiplication and division, square roots and greatest common divisors at arbitrary length. It solved 200 of 200 pre-registered problems in the browser, and 220 of 220 sums of up to 1,000 digits and products of up to 20 digits, of which GPT-6.1 Sol, the strongest of ten other models, solved 217. A symbolic runtime built on these procedures solves, expands and factors polynomials with every number computed by the model, and a multiplicative gate on the adapter recovers the base model exactly when the sheet is not in use.",
+    "abs": "http://arxiv.org/abs/2611.04434v1",
+    "pdf": "https://arxiv.org/pdf/2611.04434v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文让 Qwen3.5-0.8B 加低秩适配器在渲染的「sheet」上逐步执行算术，每次前向只读三格视图并输出一位数字、进位或借位与下一步操作；并用 Lean 证明：只要模型在运行时呈现的有限视图集上正确，就对任意长度输入精确，而若步骤还读取先前步骤则有限测试不足。",
+      "relevance_reason": "有限视图使推理状态空间可穷举核验，「读取历史即失去保证」以及乘法门控能精确恢复基座模型这两点，可能为 LVR 的轨迹监督、贡献分配与视觉通道消融检查提供线索；但任务是外部工作表式的精确算术，并非 latent 状态推理，借鉴需较多核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-04T20:43:18.574625+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

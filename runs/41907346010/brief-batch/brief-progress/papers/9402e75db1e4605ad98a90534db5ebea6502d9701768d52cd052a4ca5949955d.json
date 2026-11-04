@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.05191",
+  "input_sha256": "bc0b17aba7a32243fa7a8f365270e4fc8244d640cfd1cc601463dbd1245d2969",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-04T20:34:27.589481+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1869,
+        "output_tokens": 273,
+        "total_tokens": 2142,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 71
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.05191",
+    "title": "Stepsize modulation for cross entropy from local quadratic optimization",
+    "authors": [
+      "Bruno Bauwens",
+      "Viacheslav Krivodub",
+      "Bingyu Zhang"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Two methods are presented that perturb a given learning rate schedule in stochastic gradient descent with cross entropy loss.\n  Both methods use an extra forward pass to estimate various derivatives of the minibatch loss.\n  The first method selects a value $η$ by linearising the softmax values and minimizing the squared error $\\tfrac 1 2 ||y - q - ηq'||_F^2$, where $q$ is the matrix representing the softmax values of the minibatch and $y$ is the matrix with one-hot encodings of the labels. The second method considers a quadratic Taylor approximation of the minibatch loss under the outer approximation of the Hessian. Thus, it minimizes $L(0) + ηL'(0) + \\tfrac 1 2 η^2 L''(0)$. Here, the derivatives $L'$ and $L''$ are computed from the derivatives of the logits (using the outer approximation of the Hessian of the loss).\n  We observe that both methods give very similar values of $η$.\n  Finally, these estimated $η$ are used to slightly increase or decrease the learning rate of an existing schedule. The method is evaluated on Cifar10 and Cifar100 datasets for training Resnets, where they decrease the loss faster than the schedule that is perturbed and increase monotonicity. For Cifar10 it also leads to a small improvement of test accuracy, but in Cifar100 test accuracy remains the same.",
+    "abs": "http://arxiv.org/abs/2611.05191v1",
+    "pdf": "https://arxiv.org/pdf/2611.05191v1",
+    "AI": {
+      "category": "EXCLUDE",
+      "priority": "NONE",
+      "brief_summary": "该论文提出两种在交叉熵损失下调整 SGD 学习率的方法：借助额外前向传播估计 minibatch 损失的导数，分别通过线性化 softmax 最小化平方误差、以及对损失做二次 Taylor 近似来确定步长 η，并在 Cifar10/100 上训练 Resnet 验证收敛与测试精度影响。",
+      "relevance_reason": "这是通用优化中的步长调优工作，不涉及视觉状态表示、latent 推理轨迹或多模态证据决策，也未提供可对应 LVR 问题的具体方法线索，故排除。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-04T20:34:27.589481+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

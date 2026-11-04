@@ -1,0 +1,75 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.04943",
+  "input_sha256": "6face8711361ca21b11212bd52882399fd3b18dc7c4652f8e4691046efd842f8",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-04T20:37:18.132686+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1894,
+        "output_tokens": 362,
+        "total_tokens": 2256,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 152
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.04943",
+    "title": "Learning Where to Look: Observation Policy Optimization for Thinking with Images",
+    "authors": [
+      "Junfeng Wang",
+      "Jiawei Liu",
+      "Yongchao Xu",
+      "Tao Jiang",
+      "Jiangbo Ai",
+      "Jin Zhang",
+      "Chong Wang",
+      "Qixing Zhang"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": "Accepted at NeurIPS 2026. Project page: https://github.com/Yann0122/Observation-Policy-Optimization",
+    "summary": "Complex visual question answering often requires vision-language models to think with images, i.e., actively acquire local visual evidence by zooming into informative regions of high-resolution images. Our error analysis shows that many failures in this setting originate from incorrect observation actions, where the model fails to localize key regions or obtain crops that contain sufficient evidence for answering. We further observe that bounding-box tokens exhibit substantially higher generation entropy than ordinary language tokens, indicating high uncertainty when the model decides where to look. However, existing reinforcement learning methods based on final-answer rewards provide only trajectory-level feedback, making it difficult to assign precise credit to the observation actions. We propose Observation Policy Optimization (OPO), an RL algorithm for optimizing observation actions in tool-augmented thinking with images. OPO consists of two core modules. First, Uncertainty-Guided Observation Branching (UOB) treats each image zoom-in tool call as an observation event and selectively branches at high-uncertainty, low-redundancy events during rollout, enabling efficient exploration of alternative cropping decisions and their resulting visual evidence. Second, Evidence-Localized Advantage Attribution (ELAA) compares sibling branches using local evidence-sufficiency rewards and assigns credit only to the corresponding observation-action tokens. By decoupling observation-action optimization from trajectory-level outcome supervision, OPO improves visual evidence acquisition and further enhances visual reasoning performance. Experiments show that OPO consistently improves Qwen3-VL models across scales and achieves competitive performance against larger models and tool-augmented baselines. Code is publicly available.",
+    "abs": "http://arxiv.org/abs/2611.04943v1",
+    "pdf": "https://arxiv.org/pdf/2611.04943v1",
+    "AI": {
+      "category": "MAIN",
+      "priority": "P0",
+      "brief_summary": "该工作针对「thinking with images」中 VLM 主动放大局部区域获取视觉证据的观察动作，发现失败多源于定位错误或裁剪证据不足、且边界框 token 生成熵偏高，提出 OPO：以不确定性引导在高熵观察事件处分叉探索替代裁剪，并用局部证据充分性奖励对同源分支做优势归因，把信用只分配给观察动作 token。",
+      "relevance_reason": "直接对应 LOOK 动作的收益与信用分配问题，其熵观察定位与证据充分性子奖励可供核查停止决策、视觉证据筛选及轨迹级监督信息坍缩的关系。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-04T20:37:18.132686+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

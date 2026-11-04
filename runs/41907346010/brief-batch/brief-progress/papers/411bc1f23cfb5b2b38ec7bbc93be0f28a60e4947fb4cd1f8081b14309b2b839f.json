@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.04548",
+  "input_sha256": "e55930fce8adc394c3ac91a489dc3abad2a3981dc7bd290cab46c306c7ad7bb2",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-04T20:41:25.414273+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1899,
+        "output_tokens": 453,
+        "total_tokens": 2352,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 232
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.04548",
+    "title": "Predicting Void Points in Self-Occluding Forest Volumes",
+    "authors": [
+      "Benjamin Bachmayr",
+      "Mohamed Youssef",
+      "Oliver Bimber"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": null,
+    "summary": "Synthetic Aperture Imaging (SAI) enables drones to observe forest canopies by warping and averaging multiple displaced views at a common depth. However, occlusion is suppressed rather than eliminated, causing poorly observed regions to appear occupied and leading to systematic biomass overestimation. The Deep Forest project cannot distinguish reconstruction artifacts from real vegetation because its training data relies on measured reflectance points, excluding empty space and preventing the network from learning explicit occupancy boundaries.\n  This thesis addresses the problem by modifying training labels rather than the imaging process. Each simulated scene is rendered twice: as a 9x9 grid of top-down captures for focal-stack generation and as 550 depth-clipped slabs derived from scene geometry to provide occupancy labels, explicitly representing void space as a negative class. A Gazebo pipeline generates procedural forest stands containing 80-200 trees across three species. A pretrained Pix2Pix model translates rendered RGB images into a synthetic near-infrared band, and Light Field Rendering produces aligned focal stacks of 550 planes across three channels.\n  Four architectures were evaluated on a held-out scene. The plain 2D U-Net achieved an IoU of 0.6290, outperforming the volumetric 3D U-Net (0.5707). Established reconstruction methods performed substantially worse: COLMAP achieved 0.3446 and DepthAnything3 0.2959, both after their respective optimal dilation sweeps. An RGB-input variant of the volumetric architecture achieved the highest IoU of 0.6514 without dilation or per-scene calibration. These results highlight the limitations of conventional reconstruction methods, which recover visible surfaces but struggle to infer occupancy within closed canopies.",
+    "abs": "http://arxiv.org/abs/2611.04548v1",
+    "pdf": "https://arxiv.org/pdf/2611.04548v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "该论文研究无人机合成孔径成像下森林冠层的占据预测，通过从场景几何生成 550 层深度切片作为标签、把空洞空间显式标为负类，并在程序化森林场景上比较 2D/3D U-Net 与 COLMAP、DepthAnything3 等重建方法。",
+      "relevance_reason": "其「把未被观测的空洞作为显式负类监督」的思路，可能为 LVR 中视觉旁路导致的「观测不足区域被误当有内容」及证据筛选与不确定区域标注提供类比线索，但领域相隔较远，需核查其标签构造可迁移性。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-04T20:41:25.414273+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

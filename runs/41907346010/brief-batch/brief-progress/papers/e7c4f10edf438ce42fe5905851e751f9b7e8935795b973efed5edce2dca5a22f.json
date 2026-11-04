@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.04399",
+  "input_sha256": "fbc81779fb794935d8d83edb566a4e4f464318ea7845b9139b82c6fe5e5d3d58",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-04T20:43:42.699470+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1933,
+        "output_tokens": 551,
+        "total_tokens": 2484,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 292
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.04399",
+    "title": "Silent Instrument Errors Reorder Agent Leaderboards",
+    "authors": [
+      "Yangze Liu"
+    ],
+    "categories": [
+      "cs.AI",
+      "cs.SE"
+    ],
+    "comment": "12 pages, 1 figure, 2 tables. Code and reproduction scripts: https://github.com/YangzeLiu/eval-instrument-disclosure",
+    "summary": "On a public agent leaderboard, a general-purpose agent trails a scaffold built for an airline customer-service benchmark by 13 points on the tasks that touch its database, and a reader could conclude that generality costs accuracy. The gap comes from the grader. The general agent often ends its conversations in a way that never triggers grading, so only about half of its episodes were scored and the rest were stored as failures. Grading the ungraded half under the benchmark's own rule closes the pooled gap, without rerunning any agent. We audit two carefully maintained public leaderboards, HAL and tau2-bench, from their published artifacts alone and find three more instrument errors. A cost column counts nested model calls twice, unevenly across rows. Archived trajectories record grader-written actions as agent actions. Re-grading saved trajectories under a newer evaluator is itself a new measurement: a correct and announced fix reorders a leaderboard, and a mode check that misreads four files collapses their scores by 59 to 82 points while printing no error. Each produced a plausible number, and the HAL maintainers confirmed their three within five weeks. Together the cases show that the infrastructure of agent evaluation, meaning the code that grades, logs, replays and versions an evaluation, is part of the measurement and fails silently, so scores and orderings can move with no visible sign. These failure modes follow from how agent evaluation pipelines are built, and those pipelines change as fast as the agents they measure, so we expect more of them elsewhere. We propose cheap checks that expose the instrument: report the graded fraction, aggregate cost from root spans, tag the provenance of every recorded action, and pin evaluator versions with a published re-grade diff.",
+    "abs": "http://arxiv.org/abs/2611.04399v1",
+    "pdf": "https://arxiv.org/pdf/2611.04399v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "论文仅凭已发布的榜单产物审计 HAL 与 tau2-bench 两个公开 agent 评测，发现未触发评分而被记为失败、嵌套调用成本重复计入、把评分器动作记为 agent 动作、再评分与模式检查静默改变分数等四类「仪器误差」，并提出报出已评分比例、按 root span 聚合成本、标注动作来源、固定评测器版本并公布再评分差异等低成本检查。",
+      "relevance_reason": "不涉及视觉或 latent 推理本身，但其「评测基础设施即测量」的视角可能可供核查 LVR 评测：动态计算成本如何归集、推理轨迹中动作与状态的来源归属、以及未完成或未触发评分的 episode 是否被计入，均与 THINK/LOOK/STOP 的收益成本核算和贡献分配评价相关。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-04T20:43:42.699470+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

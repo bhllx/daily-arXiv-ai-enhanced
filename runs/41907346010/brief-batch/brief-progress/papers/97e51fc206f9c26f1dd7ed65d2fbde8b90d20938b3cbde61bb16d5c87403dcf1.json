@@ -1,0 +1,68 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.04611",
+  "input_sha256": "904e0d2ae8556a69cd105a607aab2145f0a05d3ddde5423d248051a1bfcffe97",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-04T20:40:51.053852+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1838,
+        "output_tokens": 458,
+        "total_tokens": 2296,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 237
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.04611",
+    "title": "CAPSkip: Cancellation-Aware Prefix Skipping for Selective Backpropagation",
+    "authors": [
+      "Heejin Choi"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": "14 pages",
+    "summary": "Per-step selective back-propagation forwards every example of a mini-batch but back-propagates only some of them. Most rules rank examples by loss or gradient magnitude, but such scalar scores ignore cancellation between per-example gradients: the gradient removed by a set can be much smaller than its individual magnitudes suggest. We introduce CAPSkip (Cancellation-Aware Prefix Skipping). Among the examples the model already classifies correctly, CAPSkip skips the longest prefix, in increasing order of last-layer gradient norm, whose vector sum stays within a relative budget $b$ of the batch's last-layer gradient. In exact arithmetic this bounds the change of the raw final-layer gradient, using rank-one contributions already available from the forward pass; the bound does not extend to deeper layers, optimizer updates, or the training trajectory. Because the cumulative distortion is not monotone in the prefix length, CAPSkip scans all prefixes; a factorised Gram matrix makes the scan cheap and keeps it on the device. With activation reuse and selected-row backward, CAPSkip fine-tunes DeiT-S on CIFAR-100 for 103 epochs in 0.576x the time of 103-epoch dense training, and is +0.25 pp [+0.08, +0.42] above an approximately time-matched 59-epoch dense run (n=3).",
+    "abs": "http://arxiv.org/abs/2611.04611v1",
+    "pdf": "https://arxiv.org/pdf/2611.04611v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "提出 CAPSkip：在已正确分类的样本中，按末层梯度范数升序跳过多达最长的前缀，使被删梯度的向量和仍在批次末层梯度的相对预算 b 内，并用因子化 Gram 矩阵低成本扫描所有前缀，在 DeiT-S/CIFAR-100 上以约 0.58 倍时间完成等量 epoch 微调。",
+      "relevance_reason": "其「不看标量幅度、而按向量和约束做子集选择」的思路，可能为 LVR 中视觉证据/贡献分配的筛选提供核查线索：如何挑出聚合效应可忽略的单元而非幅度最小的单元。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-04T20:40:51.053852+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

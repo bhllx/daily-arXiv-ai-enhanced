@@ -1,0 +1,82 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.04032",
+  "input_sha256": "1ba392ba364dd6e20df5434b89f85422ea7c0323e98e5b35ba9cd6c8059c143f",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-04T20:49:21.872848+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1907,
+        "output_tokens": 627,
+        "total_tokens": 2534,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 417
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.04032",
+    "title": "ROCm InferaSim: Cut LLM Serving Trial Costs and Deploy the Best Configuration",
+    "authors": [
+      "Anshu Raina",
+      "Yao Fu",
+      "Zhang Jiejing",
+      "Peyman Razaghi",
+      "Shiksha Patel",
+      "Ravi Gupta",
+      "Deval Shah",
+      "Adeem Jassani",
+      "Subhajit Dutta Chowdhury",
+      "Lorri Rao",
+      "Kailash Gogineni",
+      "Zhenyu Gu",
+      "Onil Gunawardana",
+      "Emad Barsoum"
+    ],
+    "categories": [
+      "cs.AI",
+      "cs.DC"
+    ],
+    "comment": "37 pages, 11 figures",
+    "summary": "Serving an LLM efficiently depends on the engine, how the model is split across GPUs, precision, scheduler settings, speculative decoding, KV-cache management, and prefill-decode disaggregation. The best configuration depends on the model, hardware, workload, and objective. Operators usually find it by trial and error. Exhaustively measuring the candidates in our study would take about 25,000 GPU-hours. ROCm InferaSim predicts serving performance from a few short measurements. Choices such as batch size, prompt length, and GPU count change the amount of work per GPU without changing the kernels. ROCm InferaSim benchmarks each distinct set of kernels once, on at most one node. We call this measurement an anchor. Analytical laws carry that anchor to other deployments that run the same kernels. For multi-node deployments, ROCm InferaSim reduces the configuration to a single-node equivalent, measures it, and scales the result analytically. A simulator replays multi-turn traffic, and a tuning agent searches configurations using the predictions. On AMD Instinct MI355X GPUs with vLLM, SGLang, and ATOM, 11 anchors took 9.1 GPU-hours, against 204 GPU-hours to measure the 226 fixed-length configurations they cover. On 172 configurations, time per output token has 8.1% median error. On a multi-turn coding workload, throughput is within 8%. For 159 disaggregated deployments, none used as an anchor, throughput is within 5.5%. A five-candidate short list contains a deployment within 12% of the best feasible pairing of model and latency target.",
+    "abs": "http://arxiv.org/abs/2611.04032v1",
+    "pdf": "https://arxiv.org/pdf/2611.04032v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "提出 ROCm InferaSim：用少量「anchor」测量结合解析律、多轮流量模拟器和调优 agent，在不做大规模实测的前提下预测 LLM 服务性能并搜索最优部署配置，在多卡、非聚合部署与多轮负载上报告了误差。",
+      "relevance_reason": "该工作用少量测量外推推理延迟与吞吐的成本建模思路，可能可供核查 LVR 中额外 latent 计算（如 THINK/LOOK/STOP 预算）在真实部署下的延迟与成本评价；但原文不涉及推理机制或视觉证据，迁移属推测。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-04T20:49:21.872848+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}
