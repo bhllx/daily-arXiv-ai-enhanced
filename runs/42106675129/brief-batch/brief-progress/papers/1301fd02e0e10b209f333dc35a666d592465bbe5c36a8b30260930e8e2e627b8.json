@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.06688",
+  "input_sha256": "71026b3e234c634ad0ceb0076f4ca5d2d5c5408280d4eeddc69076f33c4fb1cb",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-05T20:51:02.881317+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1916,
+        "output_tokens": 763,
+        "total_tokens": 2679,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 527
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.06688",
+    "title": "Don't Replace, Complement: A Detector-Agnostic Subspace Signal for Near-OOD Detection",
+    "authors": [
+      "Wonseok Shin",
+      "Songkuk Kim"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "Post-hoc out-of-distribution (OOD) detection is mature on far-OOD yet remains weak on near-OOD. These two settings differ in their use of class-characteristic feature directions: far-OOD inputs largely fail to activate those of their predicted class, whereas near-OOD inputs activate them much as in-distribution samples do. Because the axis separating far-OOD leaves near-OOD almost indistinguishable from ID, a score optimized for one setting is misaligned with the other; where a detector already saturates far-OOD, added near-OOD sensitivity is bought partly against it. This divergence motivates a targeted near-OOD signal designed to complement existing scores. We propose PLUS (Per-class Low-dimensional sUbspace Signal). For each class, PLUS selects the $m$ most class-active neurons from a sparse autoencoder, orthonormalizes the corresponding decoder directions to form a low-dimensional subspace, and scores an input by its per-class whitened squared Mahalanobis distance $z$ within the subspace of its predicted class. Designed as a dedicated complement rather than a standalone detector, the signal $z$ is fused additively with any calibrated base score at a single, fixed weight. This weight is a single global constant: no value is adjusted per backbone, per OOD dataset, or per deployment, and all calibration statistics are estimated from ID validation data alone. When applied to 18 existing detectors spanning diverse method families, $z$ consistently improves near-OOD AUROC in all 126 detector--backbone combinations. Far-OOD performance is broadly maintained or improved, with only marginal declines where the base score is near-optimal, making $z$ a robust, detector-agnostic complement across backbones.",
+    "abs": "http://arxiv.org/abs/2611.06688v1",
+    "pdf": "https://arxiv.org/pdf/2611.06688v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文提出 PLUS：对每个类别，从稀疏自编码器（SAE）中选出最活跃的 m 个神经元，将其解码方向正交化构成低维子空间，用该子空间内白化平方马氏距离作为近 OOD 打分，并与任意已校准的基检测器以固定权重相加，在多种骨干与 18 个检测器上稳定提升近 OOD AUROC。",
+      "relevance_reason": "其「按类选取内部特征方向并构造低维子空间后度量距离」可作为一种表征探针，供核查 LVR 的 latent 状态是否保留任务必要方向、以及能否据此类子空间得分做证据充分性或停止判断，但迁移可行性需读原文确认。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-05T20:51:02.881317+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

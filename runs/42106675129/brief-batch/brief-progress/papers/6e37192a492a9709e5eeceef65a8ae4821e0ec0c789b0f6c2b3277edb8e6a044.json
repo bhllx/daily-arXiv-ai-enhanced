@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.05693",
+  "input_sha256": "461a8e179813fd967c9032112a8d3aaa4158f0131833b623473632acf460303a",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-05T21:01:34.521470+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1932,
+        "output_tokens": 585,
+        "total_tokens": 2517,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 363
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.05693",
+    "title": "Anchored Slice Propagation with Boundary Transport for 3D CT Segmentation from Three Orthogonal Annotated Slices",
+    "authors": [
+      "Tushar Kataria",
+      "Md Rakibul Haque",
+      "Shireen Y. Elhabian"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": null,
+    "summary": "Sli2Vol propagates a binary mask through affinities between adjacent slices, but an error can persist because each prediction becomes the input to the next step. Three orthogonal annotations reduce dependence on any one chain, yet they offer more than three starting masks: where a chain crosses another annotated plane, the correct label is already known. Those labels could correct drift during propagation and indicate how much to trust each chain at fusion. Between annotated planes, the information carried by the chain may matter as well. A binary mask records foreground membership but discards distance to the boundary, a cue that could help follow gradual shape changes between slices.We address these two sources of error with a fixed pretrained affinity backbone. We anchor each chain by correcting its prediction where it crosses another annotated plane, then use its agreement with those labels to weight fusion. We compare this anchored mask with two ways of transporting boundary geometry: a truncated signed-distance field (SDF) propagated by dense affinity averaging, and a contour whose vertices follow motion cues from the same affinity. The contour tracker starts from a hand-crafted rule and learns a motion correction from supervoxel pseudo-objects in 506 CT volumes, without manual organ labels. On 2,091 held-out structure instances from approximately 403 CT scans spanning 17 abdominal structures, anchoring raises mean Dice from 0.737 with orthogonal mask propagation to 0.769 and improves every structure. Beyond the anchored mask, learned contour tracking improves Dice by 5.7\\% for the esophagus and 5.9\\% for the postcava, while SDF transport improves right-adrenal Dice by 2.8\\%. The anchored methods have similar mean Dice (0.769--0.772); contour tracking performs worse on the kidneys, stomach, and hepatic vessel tree.",
+    "abs": "http://arxiv.org/abs/2611.05693v1",
+    "pdf": "https://arxiv.org/pdf/2611.05693v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文面向仅有三个正交切面标注的3D CT分割，用固定预训练亲和力骨干做切片间掩码传播：在传播链与另一标注平面相交处用已知标签校正预测（anchoring），并据其与这些标签的一致性加权融合多条链，同时比较SDF与轮廓两种边界几何传输方式。",
+      "relevance_reason": "其「传播链漂移校正、按与已知标注的一致性为多链分配可信度、以及用边界距离弥补二值掩码的信息丢失」可能为LVR的多条latent推理轨迹纠错、融合加权与几何细节保留提供可供核查的线索，但与VLM推理无直接关系。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-05T21:01:34.521470+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

@@ -1,0 +1,68 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.06476",
+  "input_sha256": "5913d9cd6d6ab931b6c9c6d61857d191ba15ed1667ec4750de81fc9a96fbfdc4",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-05T20:53:10.369406+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 2027,
+        "output_tokens": 639,
+        "total_tokens": 2666,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 418
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.06476",
+    "title": "The Alignment Tax Is Graded: Task-Selective Capability Loss Under Length-Normalized DPO with SFT Retention",
+    "authors": [
+      "Ye Yuan"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": "25 pages, 3 figures, 23 tables. Code: https://github.com/yuan-phd/delta-filing",
+    "summary": "Setting. This is an empirical characterization study; we propose no new method and run no comparisons against alternative objectives. We fine-tune Qwen3.5-4B with sparse LoRA and length-normalized DPO plus an SFT retention term (the RPO objective) on structured financial-filing tasks, and track downstream capability as the implicit reward margin grows to $\\sim 7$ $β$-scaled units (nf4 training; $\\sim 3$ under fp16 measurement on the unquantized base). Question. Does margin growth degrade capability uniformly across tasks, or selectively? Findings. In a pre-registered study (8 seeds, 6 unseen at freeze) with artifact-aware scoring and TOST equivalence testing, the alignment tax is graded and task-selective: extraction is preserved ($Δ= -0.55$ pts, equivalent at $\\pm5$ pts), json loses little ($Δ= -3.52$ pts, equivalence fails on a clustered item-level interval), and router degrades severely ($Δ= -30$ pts). Router's loss concentrates in a margin 1-3 damage window containing a transient format-break spike. The margin is accounted for almost entirely ($\\geq 96\\%$) by suppression of rejected completions, with chosen reward approximately flat, consistent with the retention term anchoring it; we do not attribute the behavioral damage to any single gradient channel. Gold-logp deflation is task-selective (extraction $-0.15$, json $-1.04$, router $-1.47$ nats/token under fp16), with gold selectively protected relative to incorrect controls on extraction (8/8 seeds). QLoRA reward margins differ up to $3.4\\times$ between nf4 training and unquantized fp16 measurement, with an axis-dependent gap. Scope. Length-normalized rewards with SFT retention, sparse LoRA on 8/32 layers, one 4B model, easily-separable synthetic preferences, three structured tasks. A no-retention control and a measured format-alignment metric are left to future work.",
+    "abs": "http://arxiv.org/abs/2611.06476v1",
+    "pdf": "https://arxiv.org/pdf/2611.06476v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "一项纯文本的经验刻画研究：在金融申报结构化任务上用稀疏 LoRA 与长度归一化 DPO 加 SFT 保留项微调 Qwen3.5-4B，追踪 reward margin 增大时下游能力的变化，发现「对齐税」是分级的、任务选择性的（抽取基本保持、json 小降、router 严重退化）。",
+      "relevance_reason": "虽无视觉输入与 latent 状态，其「margin 增长—任务选择性退化」的诊断口径（等价检验、退化窗口定位、chosen/rejected 奖励分解）可供核查是否可迁移到评估 LVR 训练是否损伤对视觉证据的使用。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-05T20:53:10.369406+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

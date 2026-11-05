@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.05599",
+  "input_sha256": "fca827acb160dc791918b6cfcb61122cd416c631d5b21cbc6ccdd1908e154472",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-05T21:02:46.478224+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1892,
+        "output_tokens": 563,
+        "total_tokens": 2455,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 335
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.05599",
+    "title": "CAPTOR: text-encoder-free grounding by counting caption co-occurrence over the visual words of a frozen encoder",
+    "authors": [
+      "Elad Yoshai",
+      "Natan T. Shaked"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": null,
+    "summary": "Grounding a text query in an image needs a matrix scoring every term against every patch. Vision-language models compute it with an aligned text encoder, which many image encoders, such as histopathology-related models trained on slides alone, lack. The Caption-Anchored Patch-Term Occurrence Representation (CAPTOR) estimates the matrix without a text encoder. It clusters a frozen image encoder's patch tokens into visual words and describes each captioned image by its share of patches in each word. A term signature is the standardized difference of those shares between images whose captions mention the term and the rest. The matrix factorizes into a term-by-word table and a query-independent image factor, so an image is encoded once and a new term adds one table row. Against every training-free baseline, CAPTOR leads on Common Objects in Context (COCO), Pascal Visual Object Classes (VOC) and Cityscapes. On COCO, scored on the cells one object owns, it reaches 0.565 mean intersection over union (mIoU) against 0.502. On all three, it is also level with a text alignment trained on the same backbone, which needs gradients, a text encoder and several times the captions. On held-out breast-cancer slides, it exceeds the strongest baseline scoring patches with a pathology text encoder by 0.160 mIoU. Read through CAPTOR, UNI, an encoder trained on slides alone, exceeds such baselines by 0.132 on a common grid. Counting can therefore give a text interface to any image encoder trained without language, wherever captioned images exist.",
+    "abs": "http://arxiv.org/abs/2611.05599v1",
+    "pdf": "https://arxiv.org/pdf/2611.05599v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "CAPTOR 将冻结图像编码器的 patch token 聚类为 visual words，用带 caption 图像中各词的 patch 占比统计词—词表签名，从而在无文本编码器的情况下得到可用于 grounding 的 term-by-patch 打分矩阵，并在 COCO、VOC、Cityscapes 与病理切片上超过免训练基线。",
+      "relevance_reason": "其「词—visual word 表 × 与查询无关的图像因子」提供了一个免训练的 patch 级证据打分图，可能可供核查 LVR 中按术语筛选视觉证据或做空间归因的线索，尤其适用于缺少语言对齐的领域编码器；但论文本身不涉及 latent 推理状态或停止决策。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-05T21:02:46.478224+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

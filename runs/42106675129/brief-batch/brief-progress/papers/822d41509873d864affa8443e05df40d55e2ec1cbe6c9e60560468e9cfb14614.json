@@ -1,0 +1,75 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.06425",
+  "input_sha256": "2b20c0419ff96c6282e81d0e7d73414f1da3b30b1b0315b1c8f104e138cc9977",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-05T20:53:42.179533+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1830,
+        "output_tokens": 380,
+        "total_tokens": 2210,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 167
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.06425",
+    "title": "D3D: Decoupled Diffusion Drafting for Asynchronous Speculative Decoding",
+    "authors": [
+      "Baoyou Chen",
+      "Ruiqiao Mei",
+      "Guancong Lin",
+      "Tao Song",
+      "Weihao Yuan",
+      "Qun Liu",
+      "Siyu Zhu"
+    ],
+    "categories": [
+      "cs.AI",
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Target-conditioned diffusion drafters predict candidate tokens in parallel, yet each new block must wait for updated target-model hidden states. This forces drafting and verification to run sequentially, limiting speedup even though each block is generated in one pass. We introduce D3D, a standalone diffusion drafter that removes this inter-round dependency. D3D combines blockwise denoising with auxiliary autoregressive supervision to achieve long accepted prefixes without target hidden states. This independence lets D3D draft successor blocks during verification in one packed pass, enabling asynchronous speculative decoding. We progressively prune layers according to their effect on acceptance length to reduce the cost of packed drafting. Removing five of 36 layers retains over 99\\% of mean acceptance length across three benchmarks with Qwen3-8B as the target. Across seven benchmarks, D3D averages 5.00$\\times$ and 5.71$\\times$ decoding speedup with Qwen3-8B and Qwen3-32B targets, compared with 4.03$\\times$ and 3.67$\\times$ for DFlash. On GSM8K with Qwen3-32B, speedup reaches 7.48$\\times$. Code is publicly available at https://github.com/fudan-generative-vision/D3D.",
+    "abs": "http://arxiv.org/abs/2611.06425v1",
+    "pdf": "https://arxiv.org/pdf/2611.06425v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "提出 D3D：一个独立的扩散式草稿模型，用块级去噪加辅助自回归监督，在不依赖目标模型隐状态的条件下并行生成候选 token 块，从而让草稿与验证异步并行，并按对接受长度的影响剪枝层以降低开销，在多个基准上取得约 5 倍解码加速。",
+      "relevance_reason": "与视觉推理无直接关系，但其「解除轮次间隐状态依赖、并行生成整块」及按下游接受度剪枝的线索，可供核查 LVR 中 parallel 推理状态更新与视觉/目标信息旁路依赖的取舍。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-05T20:53:42.179533+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

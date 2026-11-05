@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.06158",
+  "input_sha256": "607c3cc224bca5072251bd75e837fedc151a6eff4f7551edd4ee8a2fd40cb684",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-05T20:56:18.364036+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1886,
+        "output_tokens": 507,
+        "total_tokens": 2393,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 317
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.06158",
+    "title": "Selective Prediction Intervals: Jointly Learning to Predict, Bound, and Abstain",
+    "authors": [
+      "Lidor Rubi",
+      "Gilad Katz"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Many high-stakes regression decisions ask three things of a model at once: a point estimate to act on, an interval that bounds the risk of acting, and the option to abstain when neither can be trusted. Deep learning provides these in isolation: prediction-interval methods return an interval, and at best a value estimate inside it, for every input, while selective-prediction methods learn when to abstain, but only for point predictions and with no statement of how far the truth may lie from the estimate. We introduce SelPI, which trains interval, value and abstention heads jointly under a single loss with an explicit acceptance-rate budget. A natural objection is that interval width already tells us when to abstain. We show that it does not: across 18 tabular benchmarks, width predicts large point errors well (AUROC 0.72) but is anti-correlated with interval misses (AUROC 0.38), so abstaining on wide intervals discards precisely the inputs the interval got right. SelPI therefore selects with two gates, one trained on the interval loss and one on the value loss, coupled by a Fr'echet penalty that ties their separate budgets to the joint acceptance rate they deliver. With the base predictor held fixed, the learned gate beats width thresholding on a proper interval score on all 18 tabular datasets, closing a median 87% of the gap to an oracle selector, and it also beats selection by deep-ensemble disagreement on every dataset. The advantage grows with the heteroscedasticity of the task, and we report the settings in which it disappears.",
+    "abs": "http://arxiv.org/abs/2611.06158v1",
+    "pdf": "https://arxiv.org/pdf/2611.06158v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "提出 SelPI，在回归任务中联合训练区间、点估计与弃权三个头，用两个分别基于区间损失和点值损失的 gate 加 Fréchet 惩罚，在给定接受率预算下决定是否弃权。",
+      "relevance_reason": "其「区间宽度与区间未命中反相关」的发现提示不确定度信号不可跨目标通用，双门控加预算约束的形式可供核查是否迁移为 LVR 中 LOOK/STOP 的独立门控与停止判据。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-05T20:56:18.364036+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

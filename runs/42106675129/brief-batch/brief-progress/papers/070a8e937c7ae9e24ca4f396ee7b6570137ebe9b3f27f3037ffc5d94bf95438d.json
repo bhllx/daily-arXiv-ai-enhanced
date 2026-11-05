@@ -1,0 +1,72 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2606.02628",
+  "input_sha256": "65f55eaf8e83ff4ba766d1a47c58b41e4f07a111a5067267723fb776e562c844",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-05T21:05:29.598572+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1925,
+        "output_tokens": 581,
+        "total_tokens": 2506,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 331
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2606.02628",
+    "title": "Hallucination Is Linearly Decodable from Mid-Layer Hidden States in Quantized LLMs",
+    "authors": [
+      "Aizierjiang Aiersilan"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.AI",
+      "cs.CL",
+      "cs.ET",
+      "cs.NE"
+    ],
+    "comment": null,
+    "summary": "We investigate whether open-source LLMs encode a linearly separable truthfulness signal in their hidden states, and at which network depth this signal is strongest. Across three $7$B--$8$B instruction-tuned models (Llama-3.1-8B, Mistral-7B, Qwen2.5-7B) loaded in $4$-bit NF4 quantization, we extract per-layer hidden states on four hallucination benchmarks (TruthfulQA, HaluEval-QA, FEVER, and a controlled synthetic set) and compare four detection approaches: linear and MLP probes, INSIDE EigenScore, self-consistency, and attention entropy. A linear probe on a single mid-network layer achieves $0.904$--$1.000$ AUROC on held-out splits, while sampling-based detectors do not exceed $0.541$ AUROC under the same protocol. The truthfulness signal is approximately linear: MLP probes rarely surpass linear probes by more than $0.01$ AUROC. Peak probing layers fall in a consistent band across model families on natural-language benchmarks -- blocks~$13$--$18$ of~$32$ for Llama and Mistral, and blocks~$19$--$25$ of~$28$ for Qwen. First-block attention entropy provides a complementary signal in knowledge-grounded settings ($0.866$--$0.941$ AUROC on HaluEval-QA) at no additional inference cost. The low discriminability of sampling methods under this protocol reflects a structural mismatch between paired-label evaluation and the information these methods access, rather than an inherent limitation of those methods. Code and data are released for full reproducibility on a single $8$\\,GB GPU.",
+    "abs": "http://arxiv.org/abs/2606.02628v1",
+    "pdf": "https://arxiv.org/pdf/2606.02628v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "该论文考察 4-bit 量化的 7–8B 指令微调 LLM 隐藏状态中真实性信号是否线性可分、在哪一层最强：在四个幻觉基准上逐层提取隐藏状态，比较线性/MLP 探针、EigenScore、自一致性与注意力熵，发现单个中层线性探针 AUROC 达 0.904–1.000，采样类方法不超过 0.541，且峰值层在模型族间落在一致的中层区间。",
+      "relevance_reason": "其逐层线性探针与「中层深度带」分析范式可供核查量化压缩下 latent 视觉/任务必要信息是否仍线性可解码、以及深度位置与注意力熵是否反映证据使用；但研究对象是纯文本真实性而非视觉推理，联系需较多迁移。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-05T21:05:29.598572+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.06828",
+  "input_sha256": "d7b90eb80524b51a2b30e3ea0889ef494314bc8142acfed908efe8a89621f064",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-05T20:49:50.056624+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1892,
+        "output_tokens": 636,
+        "total_tokens": 2528,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 421
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.06828",
+    "title": "Systolic Linear Attention: Co-Designing Tile-Grouped Gated Delta Attention for TPUs",
+    "authors": [
+      "Gagik Amirkhanyan",
+      "Nuojin Cheng"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Gated-delta linear attention layers such as Gated DeltaNet (GDN), Kimi Delta Attention (KDA), and GDN-2 are tuned for GPUs, where small tensor-core tiles and fast vector registers make per-channel decay rescaling and sequential in-block solves cheap. On Google TPUs, which concentrate compute in wide $256 \\times 256$ systolic matrix units backed by a slower vector unit, porting these layers directly leaves half of each matrix tile empty and bottlenecks on vector operations. We present \\textbf{Systolic Linear Attention (SLA)}, which reshapes gated delta attention around the matrix unit by widening keys to $256$ with grouped value heads, grouping decay gates into four $64$-channel tiles, and computing the chunk solve entirely with block matrix products in a single fused kernel. On TPU v7x, a full \\texttt{SLA-R4} layer runs $1.6\\times$--$2.5\\times$ faster than the open-source Tokamax KDA kernel ($1.4\\times$--$2.4\\times$ with exact chunk inversion), driven primarily by head sharing and kernel fusion. Across a $2{,}048$-chip TPU v7x pre-training study of sparse Mixture-of-Experts (MoE) models from $6.5\\text{B}$ to $63.1\\text{B}$ parameters, SLA trains $11\\%$--$24\\%$ faster than KDA at similar perplexity, and reaches slightly lower perplexity than KDA in smaller matched-seed runs.",
+    "abs": "http://arxiv.org/abs/2611.06828v1",
+    "pdf": "https://arxiv.org/pdf/2611.06828v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "该文面向 Google TPU 提出 Systolic Linear Attention（SLA），把 gated delta 线性注意力的键维度加宽到 256、将衰减门分为四个 64 通道分组，并用块矩阵乘在单个融合 kernel 内完成 chunk 求解，从而提升训练速度与困惑度表现。",
+      "relevance_reason": "其分块、门控分组的循环状态更新实现，可能为 LVR 中逐 token 更新 latent 状态的实际成本与 kernel 组织提供工程参考，但该文完全是语言模型硬件协同优化，未涉及视觉证据或推理状态内容，需核查可迁移性。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-05T20:49:50.056624+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

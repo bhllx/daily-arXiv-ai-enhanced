@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.06455",
+  "input_sha256": "70a21204cc2652fa137d79da0345bf4b617c5788dc13748f0dfb0ab621304b8c",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-05T20:53:17.627514+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1881,
+        "output_tokens": 724,
+        "total_tokens": 2605,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 538
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.06455",
+    "title": "CoDecide: Content-Adaptive Video Decoding for High-Throughput Video Analytics",
+    "authors": [
+      "Shristy Shah",
+      "Thomas B. Moeslund",
+      "Kamal Nasrollahi"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": "Accepted at WACV 2027. 12 pages including supplementary material",
+    "summary": "Analytics on video archives are bottlenecked by decoding. In a dense pipeline that runs a detector on every frame, decoding is a small fraction of the runtime, but once the detector is restricted to selected frames, decoding takes over as the main cost. We introduce CoDecide, a retrospective analytics system that only decodes the frames where new content appears, using signals from the compressed bitstream to find them. Motion tells us something is moving, but not whether it is new to the scene or has been there the whole time. To make that distinction, we supervise a lightweight compressed-domain student on a label-free novelty signal from a frozen DINOv2 teacher, which fires on semantically new regions rather than on any motion. Consequently, the student model generalizes to new camera deployments without requiring per-camera retraining. At inference, it decides which frames to decode and which regions to reconstruct. Detections from the decoded frames are propagated to the skipped frames using motion vectors. We evaluate CoDecide with a leave-one-dataset-out protocol on VIRAT, MEVA, and ShanghaiTech. Against a dense per-frame detector, CoDecide recovers more moving-object detections than prior compressed-domain selectors at an equivalent decoding budget, outperforming even a competitor trained directly on the target camera. CoDecide runs 15 to 24x faster than a pipeline that decodes and detects every frame. Code is available at https://github.com/shristy51/CoDecide.",
+    "abs": "http://arxiv.org/abs/2611.06455v1",
+    "pdf": "https://arxiv.org/pdf/2611.06455v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "提出 CoDecide：用压缩码流信号驱动轻量学生模型判断哪些帧包含「语义上新」的内容，只解码这些帧及其区域，并把已解码帧的检测结果借助运动矢量传播到被跳过的帧。",
+      "relevance_reason": "其「按需获取视觉证据」与跳过帧状态传播，可能启发 LVR 中 LOOK 决策与在有限解码预算下的证据筛选，以及未观测部分如何用传播状态补齐，可供核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-05T20:53:17.627514+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

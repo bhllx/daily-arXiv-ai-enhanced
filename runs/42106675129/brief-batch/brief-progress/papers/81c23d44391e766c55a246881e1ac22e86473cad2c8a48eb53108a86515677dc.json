@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.05565",
+  "input_sha256": "dc25955048db4d13983c3ba14fd6b30fb10c770bdb55db7bcc35da6875d61ffd",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-05T21:03:32.464025+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1884,
+        "output_tokens": 622,
+        "total_tokens": 2506,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 389
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.05565",
+    "title": "Discarded or Unreachable? Diagnosing and Repairing Spatial Relation Failure in Vision--Language Similarity",
+    "authors": [
+      "Mahdi Mostajabdaveh",
+      "Zirui Zhou"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.AI"
+    ],
+    "comment": "Code, stimulus generators, and all result files: https://github.com/mahdims/vl-spatial-moment",
+    "summary": "Contrastive vision-language models score left/right relations near chance, but the symptom has two causes that call for opposite repairs: the relation may survive in the pooled embedding yet be unreachable by native image-text similarity, or pooling may discard it while the dense features retain it. On clean two object photographs, across ten encoders, the lateral polarity is linearly decodable from the flip odd component of the pooled vector at 0.77-0.99, yet a search over a million captions leaves nine of the ten at chance under native scoring: an access failure. On controlled C4 orbits, where the relation is the only thing that varies, pooling keeps the arrangement axis at 0.998-1.000 and loses its polarity, which the patch grid retains: a pooling failure. Both sit downstream of the dense features, so one readout covers both. Our zero parameter, query conditioned spatial moment recomputes the geometry from the patch grid and stores it as a vector beside the native embedding. On a 118,287 image index it raises left/right pairwise accuracy against reversed geometry negatives from 0.51-0.53 to 0.81-0.96 and conditional R@1 among 21 category matched candidates from 0.05 to 0.37-0.75, at under a millisecond per batched query, while reproducing the native ranking exactly for queries that name no relation.",
+    "abs": "http://arxiv.org/abs/2611.05565v1",
+    "pdf": "https://arxiv.org/pdf/2611.05565v1",
+    "AI": {
+      "category": "MAIN",
+      "priority": "P1",
+      "brief_summary": "论文诊断对比式视觉语言模型左右关系近随机水平的两种成因——池化丢弃几何信息，或原生图文相似度无法访问仍存在的信息——用线性探针与百万标题搜索在十种编码器上区分二者，并提出零参数的查询条件空间矩读出，从 patch 网格重算几何、作为向量与原生嵌入并列用于检索。",
+      "relevance_reason": "直接对应「几何与实体关系是否保留在内部状态」「池化造成的信息坍缩」与「读出能否访问视觉证据」三条主线，其「诊断丢弃还是不可达 + 旁路读出」框架可供核查 LVR 中视觉细节是否被真正使用，但需注意其不涉及 latent 推理状态的生成。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-05T21:03:32.464025+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

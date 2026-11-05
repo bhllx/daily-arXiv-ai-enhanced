@@ -1,0 +1,68 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.05616",
+  "input_sha256": "93f9bd50e1508929bd27da91ae7ee002c56595d22842b0547322c1669edf8c8b",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-05T21:02:35.115757+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1947,
+        "output_tokens": 634,
+        "total_tokens": 2581,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 407
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.05616",
+    "title": "LACS: Distribution-Sensitive Label-Agnostic Confidence Selection for Dynamic Data Pruning",
+    "authors": [
+      "Heejin Choi"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": "40 pages",
+    "summary": "Training on large datasets motivates selecting which examples receive expensive training computation. Fixed quotas determine the amount of pruning in advance, while absolute confidence cutoffs depend on the score scale. We study a population-relative alternative that adapts the threshold and retained count together. We introduce LACS (Label-Agnostic Confidence Selector), a training-time rule based on maximum predictive confidence, requiring neither labels at selection time nor per-example gradients. LACS removes examples at or above a log-mean-exp reference plus a margin. We characterize its sensitivity to score gaps and mass, and derive an exact no-pruning condition. For $0<ρ<1$, the removed fraction is at most $ρ$ and at least one example remains. The unsigned score permits both confidently correct and confidently wrong examples to be removed. Seven evaluation settings include neural training, language modeling, and boosting. Neural execution studies reduce backward-active rows by 10-35%; on CIFAR-10, 29% fewer backward rows accompany accuracy means of 89.77% versus 89.82% for full CE. At a matched backward budget and number of optimizer updates, LACS is 1.0 pp above small-batch training and 1.2 pp above random selection over five seeds. Across 14 tabular datasets, quadratic boosting reduces mean test error from 23.36% to 22.96%. Its full training replays use about 30% fewer fitting rows; these counters span a different horizon from validation-selected accuracy. In one RBF-SVM case study, elapsed time falls by 37% with slightly lower error. These findings separate selective-work reduction from realized acceleration: the current exact-current-score neural implementation uses an additional scoring forward, so its backward sparsity does not yet translate into wall-clock acceleration. This overhead is an execution choice rather than a requirement of the selection rule.",
+    "abs": "http://arxiv.org/abs/2611.05616v1",
+    "pdf": "https://arxiv.org/pdf/2611.05616v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "LACS 提出一种训练期动态数据剪枝规则：以最大预测置信度的分布相对阈值（log-mean-exp 参考加 margin）同时自适应调整阈值与保留比例，无需标签和逐样本梯度，并分析其分数敏感性、无剪枝条件，在神经网络、语言建模与 boosting 等七个设定上评估计算节省。",
+      "relevance_reason": "其按分数分布自适应确定保留量、无需标签的选择规则，可供核查是否用于 LVR 训练轨迹或中间推理步的筛选与计算分配；论文强调置信度高既可能是对也可能是自信错误，这一点也与「用置信度做证据筛选或停止决策是否可靠」相关，但直接联系较远。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-05T21:02:35.115757+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

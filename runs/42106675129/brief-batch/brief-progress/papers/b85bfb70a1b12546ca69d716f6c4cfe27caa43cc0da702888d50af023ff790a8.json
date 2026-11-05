@@ -1,0 +1,72 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.06486",
+  "input_sha256": "ab8e06819ee12f54e6179a65d6fb9714b12f25d3221f21369fafa1280fd8dc09",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-05T20:53:05.073099+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1841,
+        "output_tokens": 907,
+        "total_tokens": 2748,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 685
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.06486",
+    "title": "Model Merging Does Not Require Uniform LoRA Ranks",
+    "authors": [
+      "Zirong Xie",
+      "Zainab Afolabi",
+      "Nikita Kozodoi",
+      "Jack Butler"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "Model merging combines separately fine-tuned experts into a single model without retraining. Standard practice trains every expert at the same LoRA rank, which couples the rank choice across experts even though each domain has its own best rank. We show this coupling is a property of the merge method, not of merging. We train 36 experts on three domains (mathematics, instruction following, multilingual) at four ranks and three model scales, then merge with six methods at uniform ranks and at each domain's own best rank. Giving experts different ranks costs averaging and utility-based selection nothing, and gains them up to 1.8 pp of multi-domain accuracy, while the conflict-resolution methods are inconsistent and can lose up to 4 pp. The split has a simple cause. Merging keeps only a fixed share of the pooled spectral components, and methods that choose them by size discard many that would have reduced loss. They also tend to discard the same expert: the instruction adapter has the smallest singular values, so it is dropped almost entirely and IFEval falls by 16 to 25 pp. Choosing components by their effect on loss instead keeps all three experts, and leaves accuracy nearly flat across an 8$\\times$ rank range (0.7 pp, against 6.7 pp for TIES at 4B scale). Rank can therefore be chosen per expert whenever the merge operator does not select by magnitude.",
+    "abs": "http://arxiv.org/abs/2611.06486v1",
+    "pdf": "https://arxiv.org/pdf/2611.06486v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "研究不同 LoRA rank 的专家能否直接合并：在三个领域、四个 rank、三种模型规模上训练 36 个专家，用六种合并方法比较统一 rank 与各领域最优 rank，发现异构 rank 对平均与效用型选择无害甚至有益，并指出按奇异值大小筛选谱组件会系统性丢弃低幅度专家。",
+      "relevance_reason": "其「按对 loss 的实际影响而非参数幅度选择/保留组件」的思路，可能为 latent 模块与多分支专家间的贡献分配、以及判断 latent 内容是否真正被使用提供类比线索，可核查其是否可迁移到推理期状态评估。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-05T20:53:05.073099+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

@@ -1,0 +1,76 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.05380",
+  "input_sha256": "3a33de5207df7bb1fe1529ebc64e94fe3ed452fa3c16fce766302c3c58d833a1",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-05T21:05:26.948616+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1838,
+        "output_tokens": 875,
+        "total_tokens": 2713,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 654
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.05380",
+    "title": "VAR-Q: Tuning-free KV Cache Quantization for Visual Autoregressive Image and Video Generation",
+    "authors": [
+      "Boxun Xu",
+      "Jiaji Lu",
+      "Yuxuan Yin",
+      "Zihu Wang",
+      "Ziyue Liu",
+      "Yu Wang",
+      "Zirui Liu",
+      "Peng Li"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.PF"
+    ],
+    "comment": "A preliminary version of this work was presented at the ICCV 2025 BiVision Workshop",
+    "summary": "Visual autoregressive generation spans two dominant paradigms: next-scale prediction for images and video, and next-frame prediction for video. Both decode block-by-block rather than token-by-token, yielding KV caches whose statistics diverge from those of language models. At scale, KV memory exceeds the weights and limits large-scale deployment caused by a large amount of visual tokens. Our analysis of these caches reveals three findings. First, a small set of massive-value channels carries the functional load: ablating these outlier channels collapses generation, whereas ablating a matched set of inlier channels leaves quality intact. Second, the outliers organize along two axes, feature and block, with magnitudes persistent within each cell and shifting across cells. Third, this structure arises from two independent mechanisms: projection bias and RoPE-induced scattering. Guided by these findings, we propose VAR-Q, a tuning-free KV-cache quantization framework that groups along the same two axes. The generation loop provides block boundaries for free, removing the need for outlier detection or calibration. Paired with bit-packing kernels for runtime memory reduction, VAR-Q delivers low-bit quantization across nine models spanning both paradigms, cutting KV memory by up to 78.5% with negligible quality degradation and enabling 6x larger inference batches.",
+    "abs": "http://arxiv.org/abs/2611.05380v1",
+    "pdf": "https://arxiv.org/pdf/2611.05380v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "分析视觉自回归生成（next-scale 与 next-frame 两种范式）的 KV cache 结构：少数超大值通道承载主要功能、离群值沿特征与块两个轴组织、并源于投影偏置与 RoPE 散射；据此提出免调优的分块分组低比特量化框架 VAR-Q，在九个模型上将 KV 显存最多降低 78.5%。",
+      "relevance_reason": "与 LVR 推理机制无直接关联，但其对视觉 token 的 KV cache 离群通道与块级结构的刻画，可供核查多模态推理中缓存与注意力结构如何影响内部视觉状态的保真度与长上下文成本。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-05T21:05:26.948616+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

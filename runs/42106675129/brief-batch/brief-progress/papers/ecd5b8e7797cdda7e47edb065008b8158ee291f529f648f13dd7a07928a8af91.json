@@ -1,0 +1,74 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.06282",
+  "input_sha256": "2b6cdf11bc7a5ca592d38d11a4e9dcb274d010118a49d155341270eff618bc54",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-05T20:55:05.319954+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1847,
+        "output_tokens": 561,
+        "total_tokens": 2408,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 338
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.06282",
+    "title": "MonoLaDN: Language-Guided DeNoising for Monocular 3D Object Detection",
+    "authors": [
+      "Kiet Dang Vu",
+      "Cao Le Minh Khoa",
+      "Nguyen Viet Tri Pham",
+      "An Nguyen Gia",
+      "Tam Le Thuc Ho",
+      "Duc Dung Nguyen"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.AI"
+    ],
+    "comment": "Accepted at ACCV 2026",
+    "summary": "Monocular 3D object detection offers a low-cost route to 3D perception, but it remains fundamentally ill-posed, since depth must be inferred from a single view. Recent transformer-based detectors learn geometry purely from image features and 3D box annotations, lacking the high-level semantic priors that vision-language models (VLMs) acquire from large-scale pretraining. VLMs offer such priors, but deploying one directly as a detector is impractical due to its heavy inference cost. We propose MonoLaDN, a language-guided denoising framework that transfers the geometric reasoning of a VLM into a monocular 3D detector while keeping the deployed model purely vision-based. During training, a frozen VLM produces structured reasoning about each object's occlusion, depth, dimension, and angle from the image and its ground-truth boxes. We encode this reasoning into queries, perturb them with noise, and train the detector to reconstruct the clean reasoning. Reconstructing the corrupted reasoning forces the detector's depth-guided features to internalize the VLM's geometric priors, so this knowledge remains available even after the reasoning path is discarded at inference, adding no latency or parameters to the deployed model. Experiments on KITTI 3D and nuScenes show that MonoLaDN consistently outperforms state-of-the-art detectors and generalizes well to new domains.",
+    "abs": "http://arxiv.org/abs/2611.06282v1",
+    "pdf": "https://arxiv.org/pdf/2611.06282v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "提出 MonoLaDN，在训练期用冻结 VLM 对每个目标的遮挡、深度、尺寸与角度生成结构化推理，将其编码为 query 并加噪，让单目 3D 检测器学习重建干净推理；推理时丢弃该路径，部署模型仍为纯视觉。",
+      "relevance_reason": "其「把外部推理写入 query、再以去噪重建监督使其内化」的训练机制，可供核查 LVR 中推理轨迹的监督方式与丢弃推理路径后 latent 是否真被使用、是否发生信息坍缩；但任务属单目 3D 检测，与 VLM 推理期状态生成无直接关系。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-05T20:55:05.319954+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

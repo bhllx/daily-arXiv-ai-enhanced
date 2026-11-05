@@ -1,0 +1,73 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.06377",
+  "input_sha256": "05b88a355545d45c5709e96a6e772f2aca715254c8e2ecd93f1b6936472355ac",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-05T20:54:13.898923+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1883,
+        "output_tokens": 519,
+        "total_tokens": 2402,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 287
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.06377",
+    "title": "NanoKV: High-Ratio KV Cache Compression for Autoregressive Video Generation",
+    "authors": [
+      "Jiacheng Lu",
+      "Haoyi Zhu",
+      "Sipei Yi",
+      "Enze Xie",
+      "Cheng Zhuo",
+      "Yu Li"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": "25 pages, 13 figures. Project page: https://jiacheng-lu03.github.io/NanoKV/ . Code: https://github.com/jiacheng-lu03/NanoKV",
+    "summary": "Autoregressive video models rely on historical key-value (KV) caches to preserve scene consistency over extended rollouts, making KV storage and repeated attention over history a growing memory and computational bottleneck. Aggressive compression can degrade generation quality, while reconstructing full-dimensional KV leaves attention computation largely unchanged. We introduce NanoKV, a frozen-backbone framework for generation-aware high-ratio KV compression. NanoKV exploits redundancy across tokens and attention heads by storing shared content in cluster centers and encoding joint head-channel residuals into low-bit coefficients. Crucially, NanoKV uses different fitting objectives for Keys and Values according to their distinct roles in attention: Key decoders are optimized to preserve downstream block outputs, whereas Value encoders and decoders are fitted for faithful reconstruction through the deployed quantization path. Building on the same compressed representation, the optional NanoKV-Fast variant reuses the stored coefficients for mixed-dimensional attention, reducing computation without modifying the video backbone. Across three autoregressive video backbones, NanoKV consistently improves the quality-storage trade-off. On HY-WorldPlay, NanoKV achieves $26.09\\times$ effective KV compression, nearly twice that of KVTC, while improving PSNR by 1.0 dB. NanoKV-Fast retains $20.53\\times$ effective compression and achieves an approximately $1.15\\times$ end-to-end speedup over KVTC.",
+    "abs": "http://arxiv.org/abs/2611.06377v1",
+    "pdf": "https://arxiv.org/pdf/2611.06377v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "NanoKV 提出一种冻结主干的高倍率 KV cache 压缩框架：将跨 token 与注意力头的共享内容存入聚类中心，把联合头—通道残差编码为低位系数，并针对 Key 与 Value 在注意力中的不同角色分别设计拟合目标；另提供复用这些系数做混合维度注意力以降低计算的 NanoKV-Fast 变体。",
+      "relevance_reason": "该文面向视频生成而非 VLM 推理，但其「为 Key 保留下游块输出、为 Value 保真重建」的差异化拟合目标与混合维度注意力，可能为 LVR 中历史 latent 状态的缓存压缩、按贡献分配监督及计算量动态削减提供可供核查的线索。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-05T20:54:13.898923+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

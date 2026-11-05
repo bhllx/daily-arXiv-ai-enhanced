@@ -1,0 +1,71 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.06512",
+  "input_sha256": "a4637add9cd99ced1fdf301cb504998727200483482448f864f61ed404275dea",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-05T20:52:52.083707+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1891,
+        "output_tokens": 845,
+        "total_tokens": 2736,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 614
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.06512",
+    "title": "Nowcasting Future Performance for Population Pruning in Survival-of-the-Fittest Training",
+    "authors": [
+      "Rico Städeli",
+      "Léo Meynent",
+      "Boris Knyazev",
+      "Damian Borth"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": "Accepted at: 40th Conference on Neural Information Processing Systems (NeurIPS 2026). Workshop: Neural Network Artifacts as a New Data Modality",
+    "summary": "Training high-performing neural networks often involves evaluating populations of candidate models with varying hyperparameters, architectures, or random seeds. Training every candidate to completion is computationally expensive, yet stopping seemingly weaker runs early risks discarding models that would ultimately perform better, as learning curves can cross. To address this challenge, we investigate whether intermediate training checkpoints can predict future model accuracy and enable more informed pruning decisions. Our nowcasters predict test accuracy five epochs ahead or at the end of training. They are trained with accuracy and loss histories, weight statistics, and SANE representations as inputs. SANE is a transformer autoencoder that encodes a checkpoint as a sequence of latent tokens. We then use the nowcasters in Survival-of-the-Fittest (SOTF) training. SOTF repeatedly ranks runs during training by predicted accuracy and stops the lowest-ranked ones. Our results show that weight statistics work best for five-epoch forecasts, and SANE representations work best for final accuracy prediction. For evaluation, we compare SOTF with pruning the population by current accuracy. In homogeneous model zoos such as the CNN zoos, pruning by current accuracy already retains a final model only slightly worse than the best. Model zoos with a larger spread in performance, such as the ResNet-18 and ViT zoos, are more difficult to prune by current accuracy alone. In these zoos, SOTF with nowcasted final accuracy almost closes the gap to the best model.",
+    "abs": "http://arxiv.org/abs/2611.06512v1",
+    "pdf": "https://arxiv.org/pdf/2611.06512v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文研究能否用中间训练检查点预测未来的测试精度，以支撑候选模型种群的提前剪枝；nowcaster 以准确率与损失历史、权重统计以及 SANE 表示（将检查点编码为 latent token 序列的 transformer 自编码器）为输入，预测五个 epoch 后或训练结束时的精度，并在 Survival-of-Fittest 训练中据此排序、停止靠后的候选。",
+      "relevance_reason": "其「用 latent token 编码模型状态并预测后续表现」的做法可供核查是否能迁移到 LVR 的推理状态表示与停止决策（预判继续计算是否值得），但研究对象是训练期种群剪枝，与视觉或多模态推理本身无直接联系。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-05T20:52:52.083707+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

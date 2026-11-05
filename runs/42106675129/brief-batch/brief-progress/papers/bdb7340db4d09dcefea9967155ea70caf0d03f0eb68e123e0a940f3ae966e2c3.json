@@ -1,0 +1,76 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.05724",
+  "input_sha256": "293c5d2bb767ae8147be74208131a91b971ed30331e853e5dcc6ae9291000116",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-05T21:01:20.757694+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1753,
+        "output_tokens": 533,
+        "total_tokens": 2286,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 323
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.05724",
+    "title": "Give the Drafter a Second Chance to Guess: Parallel Reconsideration for Speculative Decoding",
+    "authors": [
+      "Hoang Anh Duy Le",
+      "Huibing Dong",
+      "Alireza Khadem",
+      "Ziteng Sun",
+      "Xiang Song",
+      "Yizheng Huang",
+      "Soroush Radpour",
+      "Anshumali Shrivastava",
+      "Ye He"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Speculative decoding accelerates large language model inference with a small drafter, whose per-guess acceptance rate determines the achievable speedup. Feature-level drafters share a design choice: every token, easy or hard, is drafted under a single forward pass. Many of the tokens the target rejects are ones the drafter is itself unsure about yet the target answers decisively. To address this, we introduce Parallel Reconsideration: guided by its own uncertainty, the drafter reconsiders its hesitant guesses with extra passes that run in parallel with the one-pass draft, adding negligible latency. A co-designed training recipe and serving-time drafting algorithm append these reconsidered guesses to the original draft tree as refined candidates. Across models and benchmarks, on average, Parallel Reconsideration improves over the baselines by 5.3% to 10.2% on acceptance length and by 3.5% to 9.2% on speedup.",
+    "abs": "http://arxiv.org/abs/2611.05724v1",
+    "pdf": "https://arxiv.org/pdf/2611.05724v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "针对投机解码中 drafter 单次前向对所有 token 一律给出草稿的问题，该方法依据 drafter 自身不确定性，用与草稿并行运行的额外前向重新猜测其犹豫的 token，并以配套训练配方与服务期算法把重猜结果并入候选树，提升接受长度与加速比。",
+      "relevance_reason": "纯文本推理加速工作，不涉及视觉或多模态 latent 状态；但其「不确定性触发的并行额外计算＋候选树合并＋接受验证」机制，可供核查是否能迁移为 LVR 中按不确定度分配计算、并对候选推理轨迹做投机验证的思路。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-05T21:01:20.757694+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

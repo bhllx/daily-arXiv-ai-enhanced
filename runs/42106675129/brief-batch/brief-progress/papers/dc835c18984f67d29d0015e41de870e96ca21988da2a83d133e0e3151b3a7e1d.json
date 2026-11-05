@@ -1,0 +1,81 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.05542",
+  "input_sha256": "3cdced491d98e44c5decc62b0fdd46d7c1a775e7fac2bb3bb5456f0b8b006daa",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-05T21:04:03.524117+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1867,
+        "output_tokens": 681,
+        "total_tokens": 2548,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 464
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.05542",
+    "title": "Towards Efficient Whole Page Ranking with One-Pass Inference",
+    "authors": [
+      "Qi Xu",
+      "Zhigang Hua",
+      "Zijie Lei",
+      "Yan Xie",
+      "Jizhe Zhang",
+      "Lynn Lu",
+      "Delun Du",
+      "Sha Hua",
+      "Ren Mao",
+      "Ke Pan",
+      "Haomin Yu",
+      "Sandeep Pandey",
+      "Luke Simon"
+    ],
+    "categories": [
+      "cs.AI",
+      "stat.ML"
+    ],
+    "comment": "12 pages, 2 figures, 5 tables",
+    "summary": "Whole-page ranking jointly optimizes advertisements and organic content to balance business outcomes and user engagement under complex layout and business constraints. Existing non-autoregressive (NAR) approaches enable efficient page generation but typically score candidate items independently of previously selected items, limiting their ability to capture order-dependent interactions. Autoregressive (AR) methods address this limitation through sequential conditioning, but incur substantial inference overhead that challenges large-scale deployment. Bridging this quality-efficiency gap remains a challenge in industrial whole-page ranking.\n  We propose Multi-Item Scoring (MIS), a prefix-aware NAR-style framework that incorporates sequential context into efficient multi-item scoring. MIS integrates global candidate interactions, localized prefix conditioning, and position-aware scoring within a shared representation architecture. By computing reusable representations once per request and performing lightweight prefix-conditioned scoring during constrained beam search, MIS captures important sequential dependencies without repeated full-model inference.\n  Experiments on KuaiRand-1K and RL4RS demonstrate that MIS approaches the generation quality of an autoregressive CGA baseline while achieving 4.07x and 3.54x faster CPU decoding, respectively. In a randomized evaluation on a large-scale social-video platform, MIS improves the realization metric by 0.104% and watch time by 0.058%, while reducing ranking-service CPU consumption by 9.73%. These results demonstrate that prefix-aware multi-item scoring can narrow the quality gap between NAR and AR generation while retaining the efficiency required for industrial scalability.",
+    "abs": "http://arxiv.org/abs/2611.05542v1",
+    "pdf": "https://arxiv.org/pdf/2611.05542v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "提出前缀感知的非自回归整页排序框架 MIS：每次请求一次性计算可复用表示，再在受限 beam search 中用轻量前缀条件打分，以兼得 AR 的顺序依赖与 NAR 的推理效率；在 KuaiRand-1K、RL4RS 及线上社交视频平台降低 CPU 开销并接近 AR 基线质量。",
+      "relevance_reason": "非视觉推理工作，但「一次性编码 + 前缀条件轻量打分」避免逐步全模型推理的思路，可供核查能否迁移到 LVR 中 AR 与并行状态生成的效率–质量折衷及表示复用，属推测性借鉴线索。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-05T21:04:03.524117+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

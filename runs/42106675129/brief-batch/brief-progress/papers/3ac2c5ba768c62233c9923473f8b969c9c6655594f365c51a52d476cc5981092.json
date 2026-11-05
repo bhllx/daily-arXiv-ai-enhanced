@@ -1,0 +1,72 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.05926",
+  "input_sha256": "3582d057c746d03f6e5305772cf3fa590302a2e4df32bc907287a07b79f4d45e",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-05T20:59:12.949037+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1821,
+        "output_tokens": 585,
+        "total_tokens": 2406,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 371
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.05926",
+    "title": "Split-KV: Efficient Context Parallelism for Training Diffusion Drafters",
+    "authors": [
+      "Geng Zhang",
+      "Fangzhao Zhang",
+      "Cong Xie",
+      "Tiantian Fan",
+      "Yang You"
+    ],
+    "categories": [
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "Diffusion drafters accelerate speculative decoding by denoising multiple draft tokens in parallel. Their training uses anchor sampling to construct compact draft queries and performs cross-attention with a block-sparse mask over a much longer context. We empirically show that acceptance length remains stable as context scales with a fixed query budget, while increasing the query budget yields diminishing quality gains, jointly establishing a practical regime with queries far shorter than the context. No existing context parallelism (CP) method jointly exploits this query--context asymmetry and meets the nonlinear, sample-dependent load-balancing requirement created by anchor sampling. We present Split-KV, an exact CP method that keeps key/value shards local and limits per-layer attention communication to query-sized tensors, making this communication independent of context length. Its global query view further enables a cost-aware longest-processing-time-first (LPT) strategy that balances context key/value chunks by their realized attention cost. At a CP size of 64, Split-KV retains 85--91\\% weak-scaling efficiency and achieves up to $3.67\\times$ speedup over the fastest available CP baseline. LPT achieves $<$1\\% imbalance and plans three orders of magnitude faster than the best load-balancing baseline. Code is available at https://github.com/zxgx/verl.",
+    "abs": "http://arxiv.org/abs/2611.05926v1",
+    "pdf": "https://arxiv.org/pdf/2611.05926v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文针对 diffusion drafter 训练中「query 短、上下文长」的非对称性，提出 Split-KV 上下文并行方法：KV 分片本地保存，每层注意力通信只涉及 query 规模张量、与上下文长度无关，并用按实际注意力代价的 LPT 策略均衡 KV 分块。",
+      "relevance_reason": "其 block-sparse 跨注意力中少量 query 读取长 KV 的通信压缩与负载划分线索，可能可供核查 LVR 里少量 latent 查询长视觉证据时的缓存与并行设计；但该工作属文本投机解码训练系统，非视觉推理研究。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-05T20:59:12.949037+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}
