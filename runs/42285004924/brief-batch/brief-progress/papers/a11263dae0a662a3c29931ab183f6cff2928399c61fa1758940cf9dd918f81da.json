@@ -1,0 +1,73 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.07226",
+  "input_sha256": "8c4634c095e1b63513309f2d2ab6b567c2ff2d255d9073d1b6edc213ddf540d4",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-06T20:18:15.739709+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1858,
+        "output_tokens": 682,
+        "total_tokens": 2540,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 445
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.07226",
+    "title": "Loopback Transformer: Towards a Unified View of Residual Looped Transformers",
+    "authors": [
+      "Xuan Ouyang",
+      "Zefan Cai",
+      "Chenlong Zhang",
+      "Cheng Luo",
+      "Ke Wan",
+      "Junjie Hu"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": "31 pages, 9 figures. Code: https://github.com/yancyou/Loopback ; Project page: https://yancyou.github.io/Loopback_page/",
+    "summary": "Looped Transformers reduce parameter count by repeatedly applying shared blocks, but parameter sharing alone does not determine how the results of repeated computation are reused. We take the depth-memory view of residual connections and analyze which representation is stored after each block application and how later reads weight it. A full block output contains both its input and its new update, so weighting that output also reweights the history already carried by the input. Reading individual updates instead, with the shared stack's input kept on a separate path, gives separate controls over input strength, total update weight, and allocation across updates. The Loopback Transformer implements these controls: geometric decay sets the total update weight and supplies a recency prior, and attention learns how to allocate that weight. On ClimbMix, Loopback reaches lower validation loss than standard Transformer baselines with 40-75% of their Transformer parameters (excluding token embeddings and the output head) at reference scales from 191M to 3B, with training tokens and executed depth matched. It also has higher mean accuracy over thirteen downstream tasks at 1.4B and 3B. At 191M, 374M, and 778M, it has the lowest validation loss and the highest thirteen-task mean among the standard Transformer and seven looped residual designs.",
+    "abs": "http://arxiv.org/abs/2611.07226v1",
+    "pdf": "https://arxiv.org/pdf/2611.07226v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "提出 Loopback Transformer，从残差连接的「深度-记忆」视角分析每层存储何种表示、后续读取如何加权，并把共享堆栈的输入与逐层更新分成两条路径，用几何衰减设定总更新权重并提供近因先验、由注意力学习更新分配，在 191M–3B 规模上与标准 Transformer 及七种循环残差设计比较验证损失和下游任务表现。",
+      "relevance_reason": "其把循环计算中的历史状态与新增更新显式分离、并分别控制输入强度与更新权重分配的做法，可能为 LVR 中循环推理状态如何累积、读取与衰减提供可核查的结构线索，但论文为纯文本语言建模、未涉及视觉证据或推理轨迹。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-06T20:18:15.739709+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

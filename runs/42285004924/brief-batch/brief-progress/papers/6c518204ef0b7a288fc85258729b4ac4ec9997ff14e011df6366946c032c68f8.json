@@ -1,0 +1,73 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.07646",
+  "input_sha256": "29d3caebc909b5d26ed3f416d4d1e5613692fcdaaf3946480aefb6ebd3a680dc",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-06T20:14:10.672874+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1850,
+        "output_tokens": 782,
+        "total_tokens": 2632,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 584
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.07646",
+    "title": "WaSP: Wasserstein Data Synthesis Pipeline for Solver-Free Operator Learning",
+    "authors": [
+      "Ryan Liu",
+      "Chuwei Wang",
+      "Ricardo Baptista",
+      "Andrew Stuart",
+      "Anima Anandkumar"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "Neural operators offer fast surrogates for solving PDEs, but training them typically requires expensive input-solution pairs. Two solver-free alternatives include physics-informed learning and training on manufactured data. Physics-informed learning approximates solutions by minimizing PDE residuals. While the residual norm must be strong enough to control solution error, stronger norms increase mini-batch variance and hinder optimization. Manufactured data constructs input-solution pairs for learning by applying the PDE operator to artificial solutions. However, the resulting training distribution can be mutually singular with the target distribution, yielding poor accuracy on the target distribution. We introduce the Wasserstein Data Synthesis Pipeline (WaSP), which trains on manufactured input-solution pairs while gradually mitigating the distribution shift. WaSP synthesizes new pairs by applying the learned operator to a path of intermediate distributions converging to the target input distribution. Training proceeds in stages along this path. At each stage, the previous surrogate generates solutions, and the exact PDE operator derives corresponding inputs, yielding training pairs for the next surrogate. Theoretically, we prove a stepwise error-propagation bound for the distribution shift introduced during synthesis. Empirically, WaSP reduces solution error by $3.9\\times$ to $9.5\\times$ compared to existing solver-free methods on PDEs such as Allen-Cahn, Kuramoto-Sivashinsky, and Ginzburg-Landau, and better reproduces the two chaotic systems' statistical observables.",
+    "abs": "http://arxiv.org/abs/2611.07646v1",
+    "pdf": "https://arxiv.org/pdf/2611.07646v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "提出 WaSP 数据合成流程：不依赖数值求解器，而在逐步逼近目标输入分布的中间分布路径上分阶段训练神经算子，每阶段用上一代理生成解、由精确 PDE 算子反推输入，并给出分布偏移的逐步误差传播界。",
+      "relevance_reason": "其「沿中间分布路径分阶段自举、抑制合成数据与目标分布偏移并界定误差累积」的思路，可能为 LVR 中模型自生成推理轨迹的训练监督与分布漂移问题提供类比线索，可供核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-06T20:14:10.672874+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

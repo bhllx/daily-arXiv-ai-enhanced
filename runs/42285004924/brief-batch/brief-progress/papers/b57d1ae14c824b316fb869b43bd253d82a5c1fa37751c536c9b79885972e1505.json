@@ -1,0 +1,87 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.07542",
+  "input_sha256": "9e7f35631425e5c60835859c3c49eaad4f4e18a127b245bf4bbe4ebe22edd95e",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-06T20:15:22.728685+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1904,
+        "output_tokens": 342,
+        "total_tokens": 2246,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 138
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.07542",
+    "title": "FlashOffloading: Low-Latency KV Cache Offloading for Long-Context LLM Serving",
+    "authors": [
+      "Xuan Wang",
+      "Zhuanhao Wu",
+      "Tingzhu Fang",
+      "Xushi Li",
+      "Sicheng Zhang",
+      "Zhenyu Yang",
+      "Feng Liu",
+      "Zhaohui Fan",
+      "Qiang Xie",
+      "Huayi Zou",
+      "Yuncong Liu",
+      "Zeyu Song",
+      "Ke Zhu",
+      "Yanjia Zeng",
+      "Jingchun Gao",
+      "Yan Shi",
+      "Kui Luo",
+      "Gezi Li",
+      "Liangjun Feng",
+      "Cheng Li"
+    ],
+    "categories": [
+      "cs.AI"
+    ],
+    "comment": "13 pages including references,13 figures",
+    "summary": "In large language model (LLM) serving systems, the key-value (KV) cache grows linearly with sequence length and concurrency, so long-context inference easily hits the high-bandwidth memory (HBM) capacity wall and results in low concurrency. Offloading the KV cache to host dynamic random-access memory (DRAM) frees HBM space and raises concurrency, but the additional cache management and host-to-device (H2D) load overhead inflates inference latency, higher concurrency fails to translate into effective throughput. We present FlashOffloading, a host-DRAM-centric inference architecture that fully offloads the KV cache in both the prefill and decode phases. FlashOffloading builds rolling HBM cache for prefill, a hot cache for decode, a reverse sparse index with zero extra miss-lookup overhead, and a compute--load overlapped kernel, optimizing KV offloading latency across the entire pipeline and delivering throughput gains under a time-per-output-token (TPOT) service-level objective (SLO). In experiments deploying GLM-5.2 with multi-token prediction (MTP3) speculative decoding on an Ascend910C prefill--decode (PD)-disaggregated platform, FlashOffloading improves prefill throughput by up to 1.38\\(\\times\\) and decode throughput by up to 1.91\\(\\times\\) under a 30 ms TPOT constraint. FlashOffloading is integrated into an open-source serving framework: https://github.com/vllm-project/vllm-ascend/tree/releases/v0.30.0.",
+    "abs": "http://arxiv.org/abs/2611.07542v1",
+    "pdf": "https://arxiv.org/pdf/2611.07542v1",
+    "AI": {
+      "category": "EXCLUDE",
+      "priority": "NONE",
+      "brief_summary": "该文提出 FlashOffloading，一套把 KV cache 全量卸载到主机 DRAM 的推理架构，通过滚动 HBM 缓存、热缓存、反向稀疏索引与计算–加载重叠内核，在 TPOT 约束下提升长上下文服务的 prefill/decode 吞吐。",
+      "relevance_reason": "这是一项面向显存容量与传输延迟的系统层工程优化，其「cache」指硬件存储层级而非模型内部的 latent 推理状态，未涉及视觉证据、latent 内容的使用或推理停止决策，与 LVR 主线缺少可迁移线索。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-06T20:15:22.728685+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

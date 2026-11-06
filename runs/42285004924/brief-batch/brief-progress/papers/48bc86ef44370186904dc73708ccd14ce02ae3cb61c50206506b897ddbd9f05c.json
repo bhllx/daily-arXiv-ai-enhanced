@@ -1,0 +1,83 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.07593",
+  "input_sha256": "b14823fb8a5d019e2cae8fb6a5ef6976f057d146278824f83006cc8abe24ed23",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-06T20:14:50.061667+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1899,
+        "output_tokens": 815,
+        "total_tokens": 2714,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 597
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.07593",
+    "title": "TACT-KV: Tri-Axis Cosine Transform for Compressing Volumetric KV Caches in Medical VLMs",
+    "authors": [
+      "Chongyu Qu",
+      "Ritchie Zhao",
+      "Yufan He",
+      "Dong Yang",
+      "Zhengyi Lu",
+      "Junchao Zhu",
+      "Tianyuan Yao",
+      "Juming Xiong",
+      "Junlin Guo",
+      "Yanfan Zhu",
+      "Yuechen Yang",
+      "Daguang Xu",
+      "Bennett Allan Landman",
+      "Yucheng Tang",
+      "Yuankai Huo"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.LG"
+    ],
+    "comment": "Accepted at NeurIPS 2026",
+    "summary": "Vision-language models (VLMs) applied to 3D medical scans face a structural memory wall. A single CT or MRI volume produces tens of thousands of vision tokens, and the resulting key-value (KV) cache scales linearly with both batch and context. Existing KV compression methods operate on the cache's feature or token statistics, or apply 1D and 2D transforms, leaving the three-axis spatial structure in the cache unexploited. We propose TACT-KV (Tri-Axis Cosine Transform), a calibration-free KV compression method that exploits strong spatial correlations in visual KV states along all three anatomical axes of 3D scans. This correlation concentrates the KV cache energy under a frequency-domain transform. TACT-KV applies a separable 3D discrete cosine transform to the KV cache, allocates a per-layer bit budget across frequency bins via reverse water-filling (more bits to high-energy components), and quantizes each bin with a fixed scalar codebook. We derive a close-form relation: the distortion reduction from adaptive bit allocation is dominated by the spectral concentration of the transformed cache. Across six medical VLMs and two 3D CT benchmarks, TACT-KV achieves the lowest 1-bit prediction-flip rate on eleven of twelve model and dataset pairs in our main comparison. The same advantage reproduces on four general-purpose VLMs evaluated on video tasks, indicating that the benefit of exploiting three-axis structure generalizes beyond medical imaging. At equal high-bandwidth memory (HBM), TACT-KV scales the decoding batch size on a single GPU by up to $8\\times$.",
+    "abs": "http://arxiv.org/abs/2611.07593v1",
+    "pdf": "https://arxiv.org/pdf/2611.07593v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "针对 3D 医学影像 VLM 的 KV 缓存显存瓶颈，提出 TACT-KV：沿三个解剖轴做可分离 3D 离散余弦变换，按频谱能量分配每层比特并用固定码本量化，在医学与通用 VLM 上降低 1-bit 预测翻转率。",
+      "relevance_reason": "其频域能量集中与按能量分配比特的思路可能可供核查：视觉 KV 被压缩时哪些证据成分被保留、哪些坍塌，可为 LVR 中视觉细节保留与信息坍缩提供度量线索；但论文不涉及 latent 推理状态或答案对 latent 内容的依赖。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-06T20:14:50.061667+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

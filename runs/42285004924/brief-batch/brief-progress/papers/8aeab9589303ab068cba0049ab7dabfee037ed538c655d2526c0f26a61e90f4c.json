@@ -1,0 +1,78 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.07778",
+  "input_sha256": "5a3fdf912c19b383206bb3754282c9adedbc939129b778bb4eda02fbe23c49b9",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-06T20:12:01.055942+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1917,
+        "output_tokens": 552,
+        "total_tokens": 2469,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 343
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.07778",
+    "title": "The Intrusion Pathway: How Non-Evidential Context Degrades Language Model Performance",
+    "authors": [
+      "Dikshant Kukreja",
+      "Gautam Gupta",
+      "Avni Mittal",
+      "Avinash Anand",
+      "Kritarth Prasad",
+      "Zhengkui Wang",
+      "Timothy Liu",
+      "Rajiv Ratn Shah",
+      "Aik Beng Ng",
+      "Simon See",
+      "Erik Cambria"
+    ],
+    "categories": [
+      "cs.AI"
+    ],
+    "comment": "32 pages, 25 figures, 29 tables. Dikshant Kukreja and Gautam Gupta contributed equally. Website: https://dk4248.github.io/the-intrusion-pathway/ Code: https://github.com/dk4248/the-intrusion-pathway",
+    "summary": "Language models lose accuracy when a prompt contains non-evidential context: irrelevant statements from unrelated domains, or random off-distribution tokens, with no competing answer and no semantic overlap with the query. Such noise pervades retrieval-augmented, tool-using, and long-context deployments, yet the failure has lacked a mechanistic account. We trace the corruption to the Intrusion Pathway, which starts with MLPs enriching both query-subject and irrelevant-token representations, parroting heads carry prefix-token content to the prediction position, and relational readers largely avoid unrelated sources. Nevertheless, preserved subject enrichment and selective reading do not prevent intrusion in the broader computation. We then localize part of this interference to a sparse set of attention heads, which we call intrusion heads. Their prefix-derived writes promote distractor-related content, while their reduced support for the correct answer arises primarily from weaker non-prefix contributions rather than direct suppression by the prefix. The same heads transfer across tasks and distractor types and are largely weight-disjoint from the heads that integrate relevant contextual evidence, enabling a class-conditional intervention. Replacing the corrupted last-token residual with its clean counterpart, an oracle probe that requires a matched clean forward pass, recovers 97.6% on average of the distractor-induced drop across four downstream tasks. A deployable mask level knockout of about ten heads, roughly 1% of the model's attention heads, recovers 57% at bounded cost to helpful context.",
+    "abs": "http://arxiv.org/abs/2611.07778v1",
+    "pdf": "https://arxiv.org/pdf/2611.07778v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P1",
+      "brief_summary": "论文追踪语言模型在提示含无关非证据上下文时准确率下降的机制：MLP 富化查询主体与无关 token、parroting heads 搬运前缀内容，并把干扰部分定位到稀疏的「intrusion heads」，用约十个头的掩码 knockout 与干净末位残差替换进行干预。",
+      "relevance_reason": "其注意力头级定位、类别条件干预和与证据整合头的权重可分性分析，可能为 VLM 中视觉干扰与证据筛选的机制诊断提供可核查线索，例如无关视觉 token 是否经类似通路污染末位 latent 状态。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-06T20:12:01.055942+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}
