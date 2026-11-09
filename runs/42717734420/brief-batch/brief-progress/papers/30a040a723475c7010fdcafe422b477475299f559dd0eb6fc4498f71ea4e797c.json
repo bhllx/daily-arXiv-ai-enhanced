@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.09189",
+  "input_sha256": "2624e19ee4e3cba31720fcd17bc2619cd9c5f84e2bc8cb98121634144cd04283",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-09T23:16:46.963930+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1963,
+        "output_tokens": 702,
+        "total_tokens": 2665,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 478
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.09189",
+    "title": "RoleWalk: training-free structural embeddings for directed graphs that transfer across graphs",
+    "authors": [
+      "Maixent Chenebaux"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.SI"
+    ],
+    "comment": "14 pages, 3 figures. Complete technical report (20 pages) as an ancillary file. Code: https://github.com/kerighan/rolewalk (pip install rolewalk)",
+    "summary": "Structural role embeddings describe a node by its position in a graph - hub, bridge, periphery, member of a dense core - rather than by who its neighbours are. Existing methods either learn coordinates specific to one graph (struc2vec, Role2Vec, RESD) or read scales and normalisations from the whole graph (GraphWave, Digraphwave), so the same neighbourhood can receive different coordinates in two graphs; few read edge directions. We present RoleWalk, a training-free embedding that follows a short lazy random walk from each node and records, at each step, two distributions: that of the transition probabilities, through its characteristic function at a fixed grid of frequencies, and that of the walker's distance to its starting node. On directed graphs, walks that go forward then backward add who shares a node's targets or sources. The embedding depends only on a node's neighbourhood within a fixed radius, so its coordinates mean the same thing in every graph. We show that, without curvature, it is the kernel mean embedding of the walk's footprint, that it separates graphs that the Weisfeiler-Leman test cannot, and that pruning small probabilities comes with a per-node error certificate. Empirically, RoleWalk is competitive with the best role embeddings on five classification benchmarks at a fraction of their cost, has the highest scores on real directed roles in Wikipedia adminship, exceeds the published accuracy of Digraphwave at every noise level of its own Enron network-alignment benchmark, transfers centrality predictors to graphs four times larger better than existing inductive embeddings, hand-made features and a trained GIN, and embeds a million nodes in 20 s to 3 min on one CPU core. The code is open source (BSD license): https://github.com/kerighan/rolewalk",
+    "abs": "http://arxiv.org/abs/2611.09189v1",
+    "pdf": "https://arxiv.org/pdf/2611.09189v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "RoleWalk 提出一种免训练的有向图结构角色嵌入：从每个节点出发做短惰性随机游走，用转移概率的特征函数与游走到起点距离的分布在固定频点上的取值刻画邻域，使坐标只依赖固定半径内的邻域、因而可跨图迁移，并在分类基准、有向角色与中心性迁移任务上验证。",
+      "relevance_reason": "该文与 LVR 主线无直接交集，但其「局部足迹分布的核均值嵌入」以及按节点给出剪枝误差凭证的做法，可能为 latent 状态如何稳定编码位置/结构信息、以及稀疏化带来的可控误差提供可供核查的线索。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-09T23:16:46.963930+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

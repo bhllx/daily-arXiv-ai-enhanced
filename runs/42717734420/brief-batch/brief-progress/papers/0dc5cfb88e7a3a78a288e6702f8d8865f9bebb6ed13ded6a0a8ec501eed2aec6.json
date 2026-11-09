@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.08551",
+  "input_sha256": "f36943a0363990452cc9524a2a2f27da7fc855d49a645644536e4258550f5818",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-09T23:24:23.429882+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 2012,
+        "output_tokens": 518,
+        "total_tokens": 2530,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 310
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.08551",
+    "title": "How Small Can We Go? Calibrating Activation-Cache Compression for SAE Training",
+    "authors": [
+      "Abraham Yeung"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.CL"
+    ],
+    "comment": "Accepted at the NeurIPS 2026 Workshop on Interpretability as a Science (InterpScience), non-archival. 27 pages, 5 figures, 30 tables",
+    "summary": "To train a sparse autoencoder (SAE), you need a massive cache of model activations. We look into the effects that compression has on an SAE in two ways: we keep the original fp32-trained SAE and pass the compressed cache into the same SAE to see how many feature activations stay the same (the frozen-SAE test), and we retrain an SAE on the compressed cache and see how many of the original features still exist (the retraining test). We found that in the retraining test, there is no clear scale for retained features. On a GPT-2 cache, rounding everything to fp16 keeps 60.6% of features, but changing one value in a million by the smallest step fp32 allows (a change eight orders of magnitude smaller) keeps only 70.5%. Meanwhile, changing the random seed keeps 23.0%. For the frozen-SAE test, the frozen SAE's correlation with the original increases in order of how precise the codecs are, but plain $L_2$ distance gives nearly the same ordering. We also see the same frozen reading correspond to different percentages retained at different sites. This leaves the question of the right measurement. We build one by calibrating: retraining on identical bytes sets the ceiling, and a reseed sets the floor. We then measure the effect of each compressed codec against its own site's floor. With TopK SAEs on GPT-2 small and Pythia-1.4B at research-scale budgets, naïve per-token int4 loses more features than a reseed everywhere we tested, as do PCA and random projection on GPT-2. Standardizing each channel before quantizing brings int4 back above the floor in terms of retained features, at the same raw file size. At our smallest budget, a bf16 forward pass, which some pipelines use to save memory, loses slightly more features than rotated 8-bit storage. Calibrating a site costs four training runs and two evaluation passes.",
+    "abs": "http://arxiv.org/abs/2611.08551v1",
+    "pdf": "https://arxiv.org/pdf/2611.08551v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文考察激活缓存压缩（fp16、int4、PCA、随机投影等）对 SAE 特征保留的影响，用「冻结 SAE」与「重训 SAE」两种测试衡量，并以同字节重训为上限、换随机种子为重下界来校准各站点的比较基准。",
+      "relevance_reason": "其「上限/下界校准」思路与缓存精度对内部特征保真度的影响，或可供核查 LVR 中 latent 状态是否保留任务必要信息时的度量选择与种子/精度混杂；但论文不含视觉推理任务，迁移需自行验证。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-09T23:24:23.429882+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

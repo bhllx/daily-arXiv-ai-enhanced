@@ -1,0 +1,72 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.09225",
+  "input_sha256": "f1bc9a0b7fbde3d8d4e501bdfd4618a5168f1765947074f6a67ccdd8649debe4",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-09T23:16:16.169388+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1871,
+        "output_tokens": 255,
+        "total_tokens": 2126,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 72
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.09225",
+    "title": "Fused-Softmax for efficient quantized attention",
+    "authors": [
+      "Tianxing Wu",
+      "Juuso Korhonen",
+      "Jesus Carabano Bravo"
+    ],
+    "categories": [
+      "cs.AI",
+      "cs.LG",
+      "cs.PF"
+    ],
+    "comment": null,
+    "summary": "Low-precision matrix throughput on modern GPUs is growing far faster than vector-arithmetic throughput. Attention therefore cannot realize the available GEMM performance because softmax has become the pipeline bottleneck. We introduce Fused-Softmax Attention, a training-free algorithm that reformulates and approximates softmax to fold its dominant operations into the attention GEMMs, moving work from vector units to matrix cores. Implemented for the AMD CDNA 4 architecture, our MXFP8, MXFP6 and MXFP4 kernels reach approximately 3.0, 4.0 and 4.6 PFLOP/s on an AMD Instinct MI355X GPU, yielding speedups of $2.1\\times$, $2.8\\times$ and $3.2\\times$ over the BF16 attention. Importantly, the additional error introduced by Fused-Softmax remains below the error floor set by quantizing the GEMM operands. On Wan2.2-T2V-A14B, a hybrid MXFP6/4 schedule delivers up to $2.05\\times$ end-to-end speedup while preserving the visual quality of the outputs. The kernels ship in AMD's open-source AITER library, and they powered AMD's MLPerf Inference v6.1 Wan2.2 submission, which ran $1.7\\times$ faster than AMD's previous-round result on the same hardware. Our results show that redesigning softmax to utilize the matrix pipeline enables attention to capitalize on continued growth in low-precision matrix throughput.",
+    "abs": "http://arxiv.org/abs/2611.09225v1",
+    "pdf": "https://arxiv.org/pdf/2611.09225v1",
+    "AI": {
+      "category": "EXCLUDE",
+      "priority": "NONE",
+      "brief_summary": "提出 Fused-Softmax Attention，一种免训练方法，将 softmax 的主要运算折叠进 attention 的 GEMM 中，在 AMD CDNA 4 上实现 MXFP8/6/4 低精度注意力内核的显著加速。",
+      "relevance_reason": "该工作属于低精度 attention 内核与吞吐优化，未涉及视觉细节保留、latent 状态生成、证据筛选或停止决策等主线问题，也未提供可核查的具体借鉴线索。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-09T23:16:16.169388+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

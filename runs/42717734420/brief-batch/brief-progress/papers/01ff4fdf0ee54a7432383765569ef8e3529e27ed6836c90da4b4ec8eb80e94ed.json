@@ -1,0 +1,74 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.09377",
+  "input_sha256": "e34978ac213e9c7f0e413c25443a5c4d7b180a6e7245aa2c697dccea3081897e",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-09T23:13:56.668182+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1828,
+        "output_tokens": 500,
+        "total_tokens": 2328,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 283
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.09377",
+    "title": "KineCouple: Substrate-conditioned residual readout for enzyme kinetic prediction",
+    "authors": [
+      "Chun Kang",
+      "Yunbo Zhang",
+      "Fanhu Zeng",
+      "Jian Liu",
+      "Siwei Deng",
+      "Lei Sha"
+    ],
+    "categories": [
+      "cs.AI",
+      "q-bio.QM"
+    ],
+    "comment": null,
+    "summary": "Accurate prediction of enzyme kinetic parameters can support enzyme engineering and metabolic modeling by complementing experimental characterization. Existing prediction methods often pool residue-level protein features before combining them with substrate features. Such substrate-independent pooling cannot adapt residue weighting to the substrate during aggregation, potentially diluting information relevant to a specific enzyme-substrate pair. Since the contributions of individual residues to catalysis can depend on the substrate, substrate-conditioned aggregation offers a way to emphasize residue features relevant to the prediction. We introduce KineCouple, which uses substrate queries and residue-level keys and values in cross-attention, allowing the substrate to guide residue selection before aggregation. The model preserves the global protein representation and adds a gated correction defined as the difference between the conditioned readout and a uniform readout. ProtT5 and MolT5 remain frozen, and separate models predict kcat and Km on a logarithmic scale. In pooled out-of-fold predictions on the CataPro benchmarks, KineCouple reduces kcat RMSE from 1.333 to 1.330 and increases PCC from 0.492 to 0.496 relative to reproduced CataPro. For Km, RMSE decreases from 0.998 to 0.997 and PCC increases from 0.633 to 0.634. Spearman correlation also improves for both tasks.",
+    "abs": "http://arxiv.org/abs/2611.09377v1",
+    "pdf": "https://arxiv.org/pdf/2611.09377v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "该论文面向酶动力学参数预测，用底物作 query、残基特征作 key/value 做交叉注意力，实现底物条件下（而非均匀）的读出，并以门控残差在保留全局蛋白表示的同时加入条件读出与均匀读出之差；在 CataPro 基准上相对复现的 CataPro 仅有极小提升。",
+      "relevance_reason": "「query 条件下聚合 + 门控残差保留全局表示」可能为 LVR 中按问题筛选视觉证据、避免条件化读出造成信息坍缩提供一个可核查的读出模块线索，但领域相距较远且收益微小，借鉴价值有限。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-09T23:13:56.668182+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

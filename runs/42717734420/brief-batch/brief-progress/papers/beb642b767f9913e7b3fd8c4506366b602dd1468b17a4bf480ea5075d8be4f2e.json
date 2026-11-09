@@ -1,0 +1,74 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.08669",
+  "input_sha256": "bb150784e1d081ce883955a00351ac1021501df20d9108a32e9f3dedb3b1a8fb",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-09T23:23:11.340787+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1808,
+        "output_tokens": 515,
+        "total_tokens": 2323,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 282
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.08669",
+    "title": "ChainFlow: Few-Step Latent Flow Matching for Speculative Decoding",
+    "authors": [
+      "Selim Aktas",
+      "Yusuf Erdem Erdem",
+      "Ahmed Zeer",
+      "Himmet Toprak Kesgin",
+      "Muzaffer Kaan Yuce",
+      "Mehmet Fatih Amasyali"
+    ],
+    "categories": [
+      "cs.AI",
+      "cs.CL"
+    ],
+    "comment": null,
+    "summary": "Speculative decoding has become a standard way to accelerate LLM inference: a lightweight drafter proposes tokens that the target verifies in one parallel pass. Existing drafters face trade-offs that limits their speedups: autoregressive drafters generate tokens one at a time, so drafting cost grows with draft length, while diffusion drafters generate tokens in parallel but predict each position independently, ignoring inter-token dependencies. We introduce ChainFlow, a new speculative decoding paradigm and the first flow-matching drafter conditioned on the target's hidden states. ChainFlow treats drafting as a short transport over hidden states, needing one or two flow steps instead of the many denoising steps of generation from noise. A variational autoencoder compresses these states so drafting cost barely grows with target size, lightweight feedback heads restore inter-token dependencies, and tree drafting raises acceptance. On Qwen3.5 models, at matched drafter size and training data, ChainFlow outperforms EAGLE-3 and DFlash in vLLM by 39% and 11%, respectively. These gains further widen as drafters are adapted to new languages sequentially. Our ablations cover drafter design and concurrent serving, and we open-source our code and drafter models.",
+    "abs": "http://arxiv.org/abs/2611.08669v1",
+    "pdf": "https://arxiv.org/pdf/2611.08669v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "ChainFlow 将 speculative decoding 的草稿生成视为隐状态空间上的短程 flow matching 传输，仅用一到两步即可从目标模型隐状态产生候选 token，并用 VAE 压缩隐状态、轻量反馈头恢复 token 间依赖，配合树式草稿提升接受率。",
+      "relevance_reason": "该文以少步 flow 在隐状态上做并行状态更新并用反馈头补回序列依赖，可为 LVR 中「如何并行生成或更新 latent 推理状态、并以少步传输替代多步去噪」提供方法线索，但其研究对象是纯文本 LLM 的草稿加速、无视觉证据筛选，需核查隐状态传输是否保留任务必要信息。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-09T23:23:11.340787+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

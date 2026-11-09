@@ -1,0 +1,71 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.08631",
+  "input_sha256": "dbeb3a1d35f076d98474ebe009d415fab6f3d6d9afa8808390d4879ed7ca0756",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-09T23:23:53.308870+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1883,
+        "output_tokens": 595,
+        "total_tokens": 2478,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 375
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.08631",
+    "title": "BEVCast: Path-Adaptive BEV for Efficient End-to-End Autonomous Driving",
+    "authors": [
+      "Qiren Wang",
+      "Mingyu Guo",
+      "Zixuan Wang",
+      "Weisong Shi"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": null,
+    "summary": "Camera-based driving models build a dense bird's-eye-view (BEV) grid and spend the same computation on every cell of it, although the vehicle crosses only a few of those cells within the planning horizon. We present BEVCast, a two-stage BEV whose resolution adapts to the predicted driving path. A coarse pass encodes the whole scene on a grid of 4.096 m cells. A heat head trained on the recorded path assigns a heat to every coarse cell and the cells with the highest heat are refined into 1.024 m cells under a fixed budget. The remaining cells keep their coarse resolution, so the trajectory head reads a mixed-resolution BEV that still covers the entire scene and needs neither an HD map nor a navigation command. Against a full grid of 1.024 m cells with the same architecture and training recipe, BEVCast at a 10% refinement budget encodes 28% of the BEV queries and needs 66% of the BEV encoder time at batch size 1. On nuScenes its mean displacement error is 1.078 m against 1.149 m and its drivable area violation rate is 1.46% against 2.29%. On NAVSIM navtest its mean displacement error is 0.577 m against 0.598 m and its extended predictive driver model score is 82.51 against 81.28. Next to published planners BEVCast reaches a comparable error on both benchmarks without a navigation command. The resolution of a driving BEV can therefore follow the task instead of the grid.",
+    "abs": "http://arxiv.org/abs/2611.08631v1",
+    "pdf": "https://arxiv.org/pdf/2611.08631v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "提出 BEVCast 两阶段 BEV 表示：先用 4.096 m 粗网格编码全场景，再由按记录轨迹训练的 heat head 在固定预算下挑出高热度单元细化为 1.024 m，轨迹头读取混合分辨率 BEV，从而在减少 BEV query 与编码时间的同时保持或改善规划误差。",
+      "relevance_reason": "其「任务头打分＋固定预算」决定哪些区域获得高分辨率计算，与 LVR 中按任务必要性筛选视觉证据、动态分配计算量的思路可能相通，可供核查该选择机制能否迁移到 latent 视觉状态的分辨率或 token 预算分配。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-09T23:23:53.308870+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

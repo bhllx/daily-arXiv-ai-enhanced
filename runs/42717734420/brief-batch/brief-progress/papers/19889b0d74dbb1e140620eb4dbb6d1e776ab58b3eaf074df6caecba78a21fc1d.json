@@ -1,0 +1,72 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.09798",
+  "input_sha256": "85c0ab1436ce90d41fdf472de108f4d96d9d07254669b296ecf0a193c31542b2",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-09T23:09:12.991790+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1836,
+        "output_tokens": 441,
+        "total_tokens": 2277,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 228
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.09798",
+    "title": "Test-Time Compute Scales Better with Parallel Agent Teams",
+    "authors": [
+      "Junlin Wang",
+      "Haozhe Chen",
+      "Ang Li",
+      "Rahul Chalamala",
+      "Zhuang Liu"
+    ],
+    "categories": [
+      "cs.AI"
+    ],
+    "comment": "29 pages, 18 figures, 4 tables. Code: https://github.com/modal-projects/parallel-agent-teams-scaling",
+    "summary": "Test-time scaling improves the performance of a fixed model by spending more computation at inference. There are two common ways to spend it on agents when a verifier can score every attempt. Best-of-N sampling runs many independent agents and keeps the best result but saturates quickly. One large team of collaborating agents can score higher but stops improving as it grows. Can we get the best of both? Our method, parallel agent teams, does so by sampling many small teams in parallel and keeping the best team's result. We test it on 12 long-horizon tasks from GPU kernels and formal proofs to exploit development. With a 27B model and a budget of 100 agents, parallel teams of ten beat parallel agents on 10 of 12 tasks and beat one team of 100 on all four tasks where we ran such large teams. At equal dollar cost the same parallel teams beat a frontier model on half the tasks. A simple statistical model shows that individual agents lose because their many samples have a low mean and that one large team loses because a single sample gets no gain from variance. Sampling many small teams in parallel balances a high mean with the gain from variance. Parallel agent teams thus offer a more effective way to scale test-time compute.",
+    "abs": "http://arxiv.org/abs/2611.09798v1",
+    "pdf": "https://arxiv.org/pdf/2611.09798v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "该论文提出 parallel agent teams：在给定验证器可对每次尝试打分的条件下，并行采样多个小型协作团队并保留最佳团队结果，在 12 个长程任务（GPU kernel、形式化证明、漏洞利用开发）上对比 Best-of-N 与单个大团队，并用统计模型解释均值与方差收益的权衡。",
+      "relevance_reason": "虽为纯文本长程 agent 任务，但其「多个小规模采样单元并行 + 验证器筛选 + 均值与方差权衡」的思路可供核查是否适用于 LVR 中多条 latent 推理轨迹的采样、验证与计算预算分配。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-09T23:09:12.991790+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

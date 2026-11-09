@@ -1,0 +1,76 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.09291",
+  "input_sha256": "27a35f062467b12338c0ffc3b428968c4d908c2db18565afdf2e8babfac3cc46",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-09T23:15:11.829681+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1914,
+        "output_tokens": 566,
+        "total_tokens": 2480,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 372
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.09291",
+    "title": "AutoRefine: Auto-Calibrating Code Judges from Workflow Outcomes",
+    "authors": [
+      "Shervin Shahidi",
+      "James Poon",
+      "Hang Xie",
+      "Kenneth O. Xu",
+      "Robin Håkanson",
+      "Vikram Nair",
+      "Jens Pillgram-Larsen",
+      "Nachiappan Nagappan"
+    ],
+    "categories": [
+      "cs.AI",
+      "cs.SE"
+    ],
+    "comment": "5 pages, 3 figures, prepared for submission to CAIN 2027 industrial track",
+    "summary": "LLM judges increasingly serve as quality gates for code changes that have no test oracle, but a judge prompt must be calibrated for its task and recalibrated as the system it judges evolves, while hand labels for the calibration are resource intensive and go stale. Development workflows emit outcome labels for free (tests pass or fail, changes land or are abandoned), but these labels are noisy. We present AutoRefine, a loop that rewrites a deployable judge's prompt to reproduce outcome labels, with an informed teacher that sees the judge's input plus the outcome, explains each label it keeps, and abstains when the outcome cannot be explained from what the judge sees. On a held-out dataset with an execution oracle, calibration raised chance-corrected agreement (Scott's $π$) from 0.36 to 0.60. On a deployed agent's outcome labels, with 25\\% flipped at random to introduce noise, the teacher set aside flipped \\textsc{fail} labels at more than twice the rate of genuine ones, cutting overall label noise from 25\\% to 20\\%. Recalibrating that agent's judge using AutoRefine raised its agreement with merge/abandon outcomes on 17 independently held-out diffs from the current workflow ($π$ 0.16 to 0.51); on 16 diffs from older workflows, the previous judge stayed ahead, illustrating the need for recalibration as the agent evolves. By abstaining, the teacher not only removes noisy labels but also flags changes whose outcome the judge's input cannot explain, telling a team when a judge needs better inputs rather than a better prompt.",
+    "abs": "http://arxiv.org/abs/2611.09291v1",
+    "pdf": "https://arxiv.org/pdf/2611.09291v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "提出 AutoRefine：用一个同时看到判官输入与工作流结果标签的教师模型改写可部署判官的 prompt，并在结果无法由判官可见输入解释时弃权，从而用免费但嘈杂的结果标签自动校准代码判官。",
+      "relevance_reason": "其「用下游结果信号做监督、并对输入无法解释的样本弃权」的做法，可能为 LVR 中轨迹训练的结果式监督与判别内部状态是否含必要证据提供可供核查的线索，但任务本身与视觉多模态推理无关。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-09T23:15:11.829681+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

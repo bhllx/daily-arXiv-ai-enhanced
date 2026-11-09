@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.09028",
+  "input_sha256": "904d8a4d3126edec14d6116f3541d3f128b215653aebeee3800ae21eb0e1fb89",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-09T23:18:54.002398+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1914,
+        "output_tokens": 542,
+        "total_tokens": 2456,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 349
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.09028",
+    "title": "Scout Before You Route: Predicting Task Success and Token Count from a Small LLM Prefill",
+    "authors": [
+      "Aristides Milios",
+      "Christopher Pal"
+    ],
+    "categories": [
+      "cs.AI",
+      "cs.LG"
+    ],
+    "comment": "27 pages, 4 figures, 17 tables",
+    "summary": "Routers typically choose a model per query by trading predicted correctness against cost. Most price each model at a fixed cost, as if every query used the same number of output tokens, but the output length of reasoning models varies by an order of magnitude across queries. When is per-query cost worth predicting? What factors drive cost? How cheaply can predictions be made? We predict both the success probability and the output length of candidate models from the prefill activations of a single small frozen LLM, the scout. With reasoning candidates, perfect per-query cost knowledge would save 29-61% of spending on eight of nine datasets, and much less with non-reasoning candidates on the same problems. On those eight datasets, our predicted costs save 9-33% at matched accuracy relative to median-length pricing, up to 69% of what perfect knowledge would save. They are significantly cheaper than each estimator we reimplemented or adapted from published work, including ZeroRouter and a MixLLM-style predictor, on a majority of datasets. Output length depends mostly on the problem. On most math and code datasets, harder problems are longer, so predicted success alone prices cost nearly as well. On knowledge and mixed-format datasets they are not, and predicted success falls well behind a probe trained on length. The probe keeps most of its saving with 20 labelled problems and transfers without labels to four of seven new benchmarks. On a mixture of all nine benchmarks, it saves 22% beyond pricing each benchmark at its own median length. Savings stop growing at about a 2B scout, so above 4B a larger scout costs more than it adds.",
+    "abs": "http://arxiv.org/abs/2611.09028v1",
+    "pdf": "https://arxiv.org/pdf/2611.09028v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文提出用单个小型冻结 LLM 的 prefill 激活作「scout」，同时预测各候选模型的成功概率与输出长度，以便按查询而非固定成本为模型路由定价，并比较不同探测器与训练样本量下的节省效果。",
+      "relevance_reason": "从冻结模型内部状态预判生成长度与成功率，可能为 LVR 中 STOP 决策和思考预算估计提供线索；但任务是文本路由、无视觉证据，需核查该探针能否用于视觉推理状态及其长度泛化。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-09T23:18:54.002398+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

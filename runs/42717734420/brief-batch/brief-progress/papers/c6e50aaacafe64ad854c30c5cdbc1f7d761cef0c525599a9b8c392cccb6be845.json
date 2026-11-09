@@ -1,0 +1,74 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.09233",
+  "input_sha256": "6c27944b8190abd6498208cc15f5d9795b8cc385a7b5f138334c7d42c3834fe8",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-09T23:16:12.761974+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1899,
+        "output_tokens": 687,
+        "total_tokens": 2586,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 451
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.09233",
+    "title": "Cross-Layer TopK: Dynamically Allocating Sparsity Across Layers in Transcoders",
+    "authors": [
+      "Anyuan Zhuo",
+      "Shaohua Zhang",
+      "Tianle Li",
+      "Yuan Lin",
+      "Diandian Gu",
+      "Jun Wang",
+      "Pinyan Lu"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Cross-Layer Transcoders (CLTs) decompose the activations of large language models into human-interpretable features and trace how these features interact across layers to form circuits, making them a key tool for mechanistic interpretability. However, training CLTs effectively and efficiently is hard. Beyond the usual trade-off between sparsity and reconstruction quality, a CLT has to model all layers at once, which adds a further challenge. The common JumpReLU recipe controls sparsity only indirectly through a penalty, while the direct extension of TopK selects a fixed number of latents in every layer. Yet reconstruction difficulty differs widely across layers, and intermediate layers are much harder than others, so giving every layer the same budget is suboptimal. We propose Cross-Layer TopK, which sets a single L0 budget for the whole model and dynamically allocates it across layers during training. In a comparison with JumpReLU and other TopK variants on Qwen3-8B-Base, this gives lower FVU while using 20% fewer active latents than JumpReLU. The better reconstruction carries over to circuit tracing, yielding more complete circuits with higher replacement and completeness scores. The fixed per-token budget of Cross-Layer TopK also makes it easy to pair with sparse decoding, which cuts both computation and communication and gives a 2.9x speedup per training step. We further show that Cross-Layer TopK follows scaling laws in both latent size and sparsity. We have open-sourced the weights of our CLT at https://huggingface.co/ByteDance-Seed/Cross-Layer-TopK-CLT.",
+    "abs": "http://arxiv.org/abs/2611.09233v1",
+    "pdf": "https://arxiv.org/pdf/2611.09233v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文提出 Cross-Layer TopK：为整个模型设定单一 L0 预算并在训练中跨层动态分配，以训练 Cross-Layer Transcoders 分解 LLM 激活、追踪跨层电路；在 Qwen3-8B-Base 上以更少激活 latent 获得更低 FVU 与更完整电路，固定 per-token 预算还便于稀疏解码加速。",
+      "relevance_reason": "跨层动态分配稀疏预算、固定每 token 开销以换取计算节省的思路，可能可供核查作为 LVR 中跨层或跨步骤 latent 容量与计算分配的借鉴；但该工作为纯文本可解释性工具，未涉及视觉或多模态推理状态，迁移性需人工判断。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-09T23:16:12.761974+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

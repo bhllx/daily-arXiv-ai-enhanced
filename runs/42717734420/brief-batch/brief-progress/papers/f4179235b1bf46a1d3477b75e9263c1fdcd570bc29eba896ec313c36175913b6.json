@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.09067",
+  "input_sha256": "3de5a04fbe645a72cea296dbed51f9d12b42fe710702c2cd7ba57a8d7e912deb",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-09T23:18:21.999410+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1969,
+        "output_tokens": 643,
+        "total_tokens": 2612,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 429
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.09067",
+    "title": "WearableBridge: Task-Guided Latent Transport for Free-Living Activity Recognition",
+    "authors": [
+      "Jingjing Zou",
+      "Yixin Wang"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": "26 pages, 5 figures, 11 tables. Code and interactive demo: https://github.com/jingjingz/WearableBridge",
+    "summary": "Wrist-worn accelerometers make activity monitoring feasible at scale, but incidental arm motion, device orientation, and shifting context blur the signal that separates activities. Calibration studies supply higher-quality references such as concurrent thigh recordings or supervised laboratory wrist sessions, but they are expensive, cover few participants, and are rarely available at deployment. How can limited reference data improve recognition for participants who wear only a wrist device? We propose WearableBridge, which holds the reference encoder and classifier fixed and learns a task-guided transport map, the bridge, that carries each wrist feature into the region the classifier associates with its activity. Reference features or the classifier's predictions indicate the destination, and a classification loss penalizes wrist features that land in the region of another activity. We instantiate WearableBridge with three bridges: Mapper regresses onto reference features, Distillation matches the classifier's class probabilities, and MeanFlow learns a one-step flow from wrist toward reference features. On 40 held-out free-living PAAWS participants, all three bridges improve macro-F1 in every training run, and the strongest, MeanFlow, raises mean macro-F1 from 35.1% to 56.0% with concurrent thigh references (Thigh2Wrist), and from 54.0% to 63.5% with group-matched laboratory wrist references (Lab2Freeliving). Fitted only on PAAWS, MeanFlow also raises macro-F1 on the CAPTURE-24 cohort from 42.8% to 54.7%. The gains replicate on selfBACK, hold across four reference encoders, and grow with temporal context. A study can therefore collect reference recordings for a calibration subset and improve wrist-only recognition for every other participant, training only a bridge of 0.13 to 2.44 million parameters while the reference encoder and classifier stay unchanged.",
+    "abs": "http://arxiv.org/abs/2611.09067v1",
+    "pdf": "https://arxiv.org/pdf/2611.09067v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文提出 WearableBridge：冻结参考编码器与分类器，仅训练一个任务引导的传输映射（Mapper 回归参考特征、Distillation 匹配类别概率、MeanFlow 单步流），把腕部加速度特征搬到分类器认定的活动区域，以少量参考数据提升自由生活活动识别。",
+      "relevance_reason": "“冻结读取端＋任务损失引导的 latent 传输＋特权参考模态蒸馏”可供核查 LVR 中如何把视觉/参考证据对齐进内部状态、以及仅靠分类损失搬运特征带来的旁路与表征坍缩风险，但与 VLM 多步推理相距较远。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-09T23:18:21.999410+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

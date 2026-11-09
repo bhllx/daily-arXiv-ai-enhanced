@@ -1,0 +1,71 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.08610",
+  "input_sha256": "44f6206368add9543c14d2e16645525269734c9b8e2305f0e20525c29e6e303b",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-09T23:23:57.785886+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1960,
+        "output_tokens": 434,
+        "total_tokens": 2394,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 253
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.08610",
+    "title": "InstaGen: Group-Shared Importance Sampling for Fast Video Generation",
+    "authors": [
+      "Kislay Aditya Oj",
+      "Kumar Krishna Agrawal",
+      "Sri Surya Varma Datla",
+      "Aditya Desai"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": "13 pages, 6 figures, 2 tables",
+    "summary": "Diffusion Transformers (DiTs) are the dominant architecture for video generation, but their quadratic attention complexity results in substantial computational cost and latency. Permuted block-sparse attention (PBSA) offers a promising approach to reducing this cost by selectively computing blocks of a semantically permuted attention matrix. However, existing approaches typically select only the top few key blocks for each query block, following a top-$p$ paradigm. We find that top-$p$ selection can be highly sample inefficient in high-entropy attention regimes, which are common in video generation. In these regimes, we show that sampling can provide substantially better approximations under the same computational budget. More generally, we cast block selection as importance sampling, where the top-scoring keys form an exact set that is computed in full and the remaining keys are represented by a sample drawn in proportion to their estimated attention and reweighted by inverse sampling probability. Building on this formulation, we present InstaGen, which can be parameterized by any PBSA method: it replaces the method's block selection with an exact set plus a weighted sample. Each query cluster draws one sample shared by all its queries, so the sampled keys form blocks amenable to efficient GPU execution. In this paper, we take the SVG family of PBSA methods and show that, on Wan2.1-T2V-1.3B and Wan2.1-T2V-14B, InstaGen parameterized by SVG2 improves PSNR over SVG2 by 3.4 dB and 2 dB, respectively, at matched attention density, and by 1.6 dB and 2.2 dB at matched wall-clock time. On Wan2.1-T2V-14B, InstaGen also beats SVG-EAR by 1.1 dB PSNR at nearly the same density while running faster (1.65x against 1.48x over dense).",
+    "abs": "http://arxiv.org/abs/2611.08610v1",
+    "pdf": "https://arxiv.org/pdf/2611.08610v1",
+    "AI": {
+      "category": "EXCLUDE",
+      "priority": "NONE",
+      "brief_summary": "该工作将视频扩散 Transformer 的 permuted block-sparse attention 中块选择重新表述为重要性采样，用「精确 top 集合加按概率加权的采样块」替换 top-p 选择，以在同等算力下更准确。",
+      "relevance_reason": "其目标是降低视频生成的注意力计算成本，加权采样作用于注意力块近似而非推理状态、视觉证据筛选或停止决策，缺少与 LVR 主线可核查的具体联系，故排除。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-09T23:23:57.785886+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

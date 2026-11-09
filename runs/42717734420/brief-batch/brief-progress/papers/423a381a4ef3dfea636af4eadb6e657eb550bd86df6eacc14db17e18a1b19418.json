@@ -1,0 +1,71 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.09424",
+  "input_sha256": "5f1432e3182d132194c1a740090255a3e123978d0de4899f10a174f5b086c0f8",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-09T23:13:09.156168+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1893,
+        "output_tokens": 472,
+        "total_tokens": 2365,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 275
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.09424",
+    "title": "MINE: Entropy-coded Memory-efficient Inference for Large Language Models",
+    "authors": [
+      "Emil Schätzle",
+      "Markus Püschel"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.DC",
+      "cs.PF"
+    ],
+    "comment": "Submitted to the 15th International Conference on Learning Representations (ICLR), 2027. Artifact: https://doi.org/10.5281/zenodo.23885927",
+    "summary": "We present MINE (Memory-efficient INference Engine), a lossless entropy coding approach that accelerates single-stream inference of Large Language Models (LLMs), where existing lossless compression methods yield speedups only for specific data types such as \\texttt{BF16} and under additional assumptions. Single-stream decoding is strongly memory-bound, since every weight must be streamed from memory once per generated token and requests cannot be batched in local or low-latency deployments. At the core of MINE is dtANS-LLM, a GPU entropy coding scheme adapted from the prior dtANS to the needs of LLM inference. It exploits the non-uniform distribution of weights, which persists even after quantization, and exposes hyper-parameters that trade compression ratio against decoding cost. We auto-tune these parameters for each tensor and GPU to obtain the Pareto front between model size and decoding latency. MINE integrates into vLLM as a plugin and selects the best kernel configuration for a given memory budget. On Llama~3.1~8B~Instruct with a 2.1-bit EntQuant checkpoint, MINE achieves speedups of 2.52$\\times$ and 1.48$\\times$ over the fastest baseline on an RTX~4060~Ti and an RTX~5090, at effective bitrates of 2.24 and 3.43~bits per weight. MINE is available as open source.",
+    "abs": "http://arxiv.org/abs/2611.09424v1",
+    "pdf": "https://arxiv.org/pdf/2611.09424v1",
+    "AI": {
+      "category": "EXCLUDE",
+      "priority": "NONE",
+      "brief_summary": "该论文提出 MINE，一种基于 dtANS 熵编码的无损权重量化压缩与 GPU 解码方案，按张量和 GPU 自动调参，并在 vLLM 中按内存预算选择内核配置以加速 LLM 单流推理。",
+      "relevance_reason": "工作对象是静态权重的存储与流式解码开销，属于通用推理工程优化，不涉及视觉或多模态推理中的内部状态、证据使用、停止决策或训练监督，也未提供与 latent 推理状态表示或计算分配相关的具体借鉴线索。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-09T23:13:09.156168+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

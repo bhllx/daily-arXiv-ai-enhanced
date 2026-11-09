@@ -1,0 +1,71 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.08494",
+  "input_sha256": "d427cf9f58b7eca1f321bf52b6b1bfc36e12637e571b7c9a1ddbbb0bbbfc2d04",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-09T23:25:01.940070+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1908,
+        "output_tokens": 573,
+        "total_tokens": 2481,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 360
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.08494",
+    "title": "Embedding Consistent Recurrent Neural Networks in Finite Element Simulations for Path-Dependent Damage Prediction",
+    "authors": [
+      "Muhammed Adil Yatkın",
+      "Mihkel Kõrgesaar",
+      "Hasan Kurban"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.CE"
+    ],
+    "comment": "Journal paper. 22 pages, 16 figures",
+    "summary": "Capturing sheet-metal localisation physics with a trained surrogate inside a finite element (FEM) solver requires the surrogate to deliver consistent predictions irrespective of the solver's strain-increment count, which is difficult to control in non-linear explicit codes. We address this by re-implementing a trained recurrent neural network (RNN) damage criterion in Fortran and embed it as a live, increment-by-increment fracture criterion inside an Abaqus/Explicit user material subroutine (VUMAT), advancing the network state alongside the solver. Two architectures are compared: a SimpleRNN and the proposed Consistent RNN (ConsRNN), whose transition function is designed so that predictions converge as the strain path is refined rather than drifting with the increment count. Both are trained on bilinear strain paths and evaluated under varying temporal discretisations and nonlinear histories. SimpleRNN predictions drift as the increment count increases, which disqualifies it for embedding; ConsRNN converges under refinement, at a substantial fixed-resolution accuracy cost relative to SimpleRNN on multilinear paths. Deployed at structural scale, the embedded ConsRNN surrogate governs element deletion in a clamped steel plate and reaches the same peak force and peak displacement as an established two-parameter fracture criterion. This pre-peak agreement is expected by construction, since no element is deleted before the peak and the two runs therefore share an identical constitutive path; the responses diverge only on the post-peak softening branch. The results establish discretisation consistency as the decisive property for embedding recurrent surrogates in explicit FEM solvers, and report the first embedding of a customised, non-standard-transition recurrent cell at structural scale.",
+    "abs": "http://arxiv.org/abs/2611.08494v1",
+    "pdf": "https://arxiv.org/pdf/2611.08494v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文将训练好的 RNN 损伤准则用 Fortran 重写并嵌入 Abaqus/Explicit 的 VUMAT，作为逐步更新的断裂准则运行，比较 SimpleRNN 与所提 ConsRNN；后者通过改造状态转移函数使预测随应变增量细分而收敛，但固定分辨率精度明显下降。",
+      "relevance_reason": "ConsRNN 对增量步数细化的收敛性设计可为 latent 循环推理在循环次数、计算步长变化下的状态稳定性和长度泛化提供核查线索，但其对象是有限元材料本构而非视觉多模态推理，迁移性需判断。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-09T23:25:01.940070+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

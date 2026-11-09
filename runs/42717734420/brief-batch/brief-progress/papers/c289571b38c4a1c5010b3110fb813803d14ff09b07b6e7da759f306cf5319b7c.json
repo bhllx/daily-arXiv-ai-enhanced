@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.08684",
+  "input_sha256": "ad40a4ba1b959619051f9ef0d6f1d6e4242cf85a64ea82dafad0630a6daa7945",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-09T23:23:05.477548+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1846,
+        "output_tokens": 548,
+        "total_tokens": 2394,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 373
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.08684",
+    "title": "Cancellation Is Not Enough: What Retries Leave Behind in an Overloaded LLM Engine",
+    "authors": [
+      "Xindan Zhang",
+      "Fei Wang"
+    ],
+    "categories": [
+      "cs.AI"
+    ],
+    "comment": "13 pages, 6 figures, 3 tables",
+    "summary": "Clients and proxies in front of an LLM engine retry calls that time out. After a transient overload, these retries can keep the engine from recovering even when calls arrive below its capacity. Since the engine may keep computing for clients that have left, propagating cancellation looks like the natural remedy. In this paper, we test it on vLLM with overload experiments on three open models, and with scheduler traces of one that follow each client attempt to the execution it creates in the engine. We find that with retries on, cancellation alone did not restore service in any run, and only 12-38% of the calls that arrived after the overload were delivered. The traces suggest why: retries that vLLM ran typically started prefill less than half a second before they timed out. Executions that vLLM later aborted took 79-85% of the prompt tokens it computed, and vLLM's prompt-token counter missed a third to half of all computed prompt tokens. A retry budget restored service by shedding retries but left many of the overload's calls undelivered. Request coalescing delivered every call from the overload onward, some late, unless cancellation had already aborted the running execution. Overload controls should thus be judged by the executions that retries add and the calls that clients receive.",
+    "abs": "http://arxiv.org/abs/2611.08684v1",
+    "pdf": "https://arxiv.org/pdf/2611.08684v1",
+    "AI": {
+      "category": "EXCLUDE",
+      "priority": "NONE",
+      "brief_summary": "在 vLLM 上做过载实验与调度器踪迹分析，考察客户端重试与取消传播为何无法让引擎恢复，并比较重试预算与请求合并。",
+      "relevance_reason": "该文属 LLM 服务系统工程层面的重试、取消与过载控制问题，未涉及推理内部状态、视觉证据或生成机制，其计算浪费统计也不构成可供核查的 LVR 停步或贡献分配线索。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-09T23:23:05.477548+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

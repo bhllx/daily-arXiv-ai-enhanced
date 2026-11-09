@@ -1,0 +1,73 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.09454",
+  "input_sha256": "01f0b6f8fe5c5ab2042e35f66851f38e0690bc3431ea37a245d5b71a624139cd",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-09T23:12:59.110880+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1930,
+        "output_tokens": 432,
+        "total_tokens": 2362,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 214
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.09454",
+    "title": "From LoRA to Language: Recovering Skill Documents from Adapters",
+    "authors": [
+      "Saranya Dintakurthy Swadha",
+      "Pavan C Shekar",
+      "Arpit Jain",
+      "Aswanth Krishnan"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.AI",
+      "cs.CL"
+    ],
+    "comment": "29 pages, 5 figures, 18 tables",
+    "summary": "Agent skills are short documents that teach a language model how to handle a class of tasks. To save context, these documents are increasingly compiled into low-rank adapters (LoRA), which keep the behaviour but lose the text: an adapter is hard to read, edit, audit or move to another model. We ask whether the skill document can be written back from the adapter and its frozen base model, and we score each recovered document by the share of the original's key instructions it states and by the tasks it solves. Reading the weights alone recovered little with the methods we tried; a learned map from weights to text passed on about one bit of the document. Running the adapter worked much better. The Executing Writer, a small writer trained on top of the adapted model, recovers 39-44% of the key instructions of held-out skills, against 1.3-1.5% with another skill's adapter, and on adapters fitted to 41 external skills its documents restore 85-91% of the original's task gain. These strongest results are on adapters whose training stored the document; adapters trained on behaviour alone are much harder for trained writers (1-2% of instructions). For these adapters we test an agent that runs the base and adapted models and writes a skill from where they differ. On ALFWorld its skills recover 58-71% of a LoRA's gain and carry over to models that cannot load the LoRA, lifting Llama-3.1-8B from 5% to 55%. Whether such a skill comes from the adapter depends on what the adapter learned: when its behaviour cannot be guessed, the adapter is the source; when it can, a reward loop without the adapter does as well.",
+    "abs": "http://arxiv.org/abs/2611.09454v1",
+    "pdf": "https://arxiv.org/pdf/2611.09454v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文研究能否从 LoRA 适配器及其冻结基座模型中反写回原始「技能文档」，比较了直接读权重、权重到文本的学习映射、以及在适配模型上训练小 writer，并用关键指令覆盖率与任务成功率评分；对仅学到行为的适配器，则用基座与适配模型的行为差异来生成技能。",
+      "relevance_reason": "其「行为差分探测适配器隐含内容」与「权重到文本的可解码性」线索，可供核查 LVR 中 latent 状态是否保留任务必要信息、以及从生成行为反推内部表示内容的可行性，但纯文本设定且不涉及视觉推理，联系较弱。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-09T23:12:59.110880+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

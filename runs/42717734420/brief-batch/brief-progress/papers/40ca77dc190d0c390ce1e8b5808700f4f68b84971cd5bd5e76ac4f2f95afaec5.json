@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.09252",
+  "input_sha256": "76d437e1402e51888ccba5f0a0683e558330279b18daf55db1d82eeed7c2b75b",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-09T23:15:57.863669+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1902,
+        "output_tokens": 994,
+        "total_tokens": 2896,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 793
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.09252",
+    "title": "Rethinking MoE Load Balancing as Feedback Control",
+    "authors": [
+      "Yikun Hou",
+      "Alp Yurtsever"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Mixture-of-Experts (MoE) training is often not stationary: the data mixture changes at curriculum boundaries, when a model is continually pretrained into a new domain, or when the corpus is refreshed. Routing is learned against the current mixture, so each such change disrupts the per-expert load the router had converged to, and existing balancing methods have only been evaluated on stationary data. We rethink load balancing as a feedback control problem, in which the deviation of each expert's load from its fair share is the control error and the per-expert routing bias is the control input, and define a family of controllers, the PID-Balancer, from the proportional, integral, and derivative terms of classical PID control. Two widely used methods belong to this family: the auxiliary balancing loss behaves like a proportional controller, and the loss-free bias update is an integral controller acting on the sign of the error. Reading the router as a static map with a one-step delay, we show that the integral term is the only one that both removes persistent imbalance and averages out the step-to-step fluctuation of the measured load, whereas the proportional and derivative terms pass or amplify that fluctuation into the routing bias. We therefore adopt PID (I), the pure-integral member of the family with a single gain. Two settings are evaluated: (i) training an OLMoE backbone from scratch with 16 to 64 experts per layer, through a mid-run mixture switch, and (ii) continual pretraining of the released OLMoE-1B-7B on a new corpus. PID (I) holds balance before the shift and restores it more tightly afterwards than either the auxiliary loss or loss-free balancing, at comparable perplexity.",
+    "abs": "http://arxiv.org/abs/2611.09252v1",
+    "pdf": "https://arxiv.org/pdf/2611.09252v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "把 MoE 训练的专家负载均衡重构为反馈控制问题：以各专家负载偏离公平份额为控制误差、路由偏置为控制输入，提出 PID-Balancer 家族，并论证纯积分项在数据混合切换与持续预训练下最能消除持续失衡。",
+      "relevance_reason": "其控制论表述或可启发 LVR 中动态计算分配与停止决策的建模——把内部标量按误差反馈更新以应对分布漂移，但与视觉细节表示和推理状态生成无直接联系，仅供核查类比思路。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-09T23:15:57.863669+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

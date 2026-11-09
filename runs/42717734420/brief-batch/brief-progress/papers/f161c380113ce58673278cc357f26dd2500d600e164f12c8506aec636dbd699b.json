@@ -1,0 +1,72 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.08788",
+  "input_sha256": "6b53bcc674a8e9bd1583594fcfa69ab4d30842bbd6fd4604ef18c5b05c6e1ef3",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-09T23:21:53.710880+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1874,
+        "output_tokens": 671,
+        "total_tokens": 2545,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 489
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.08788",
+    "title": "Not All Latents Are Equal: Importance-Weighted Latent Graph Generation",
+    "authors": [
+      "Biraaj Rout",
+      "Jay Revolinsky",
+      "Han Liu",
+      "Harry Shomer"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "Graph generation has shown tremendous effectiveness in modeling complex scientific tasks ranging from molecule generation to optimized circuit design. Most recent advancements have developed models that learn to denoise noisy graphs using either discrete diffusion or flow matching. However, discrete graph diffusion scales quadratically with the number of nodes, making it difficult to use such models on larger graphs. On the other hand, latent graph generation instead seeks to denoise noisy graph latents, which scale better to more nodes due to their lower dimension. However, in practice, latent graph generation models lag behind their discrete counterparts in performance. We study this problem, finding that it is caused by the unequal distribution of that different latent dimensions have on graph reconstruction. the impact. We observe that the vast majority of impact is contained in only a smaller number of latent dimensions. Since equal emphasis is placed on reconstructing the entire latent in the loss function, existing models are optimized to reconstruct information irrelevant to the downstream task. To tackle this problem, we propose Latent Importance Reweighting ({\\bf LIR)} which weights each latent dimensions via it's importance to final graph reconstruction. Importance is calculated as the relative influence of a single latent unit on graph reconstruction, which is represented via the Jacobian of the decoder relative to the latent. Our method is model-agnostic and requires no additional model parameters or hyperparameters. Experiments show that LIR can boost performance and lead to faster training convergence when applied to two different autoencoders on various benchmark datasets. Code: https://github.com/biraaj/GraphGenLatentReweight",
+    "abs": "http://arxiv.org/abs/2611.08788v1",
+    "pdf": "https://arxiv.org/pdf/2611.08788v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文针对潜空间图生成性能落后于离散扩散的问题，发现少数潜维度主导图重建，提出以 decoder Jacobian 衡量的维度重要性对训练损失加权（LIR），方法模型无关且不增加参数或超参数。",
+      "relevance_reason": "其用 Jacobian 相对影响度量并加权各 latent 单元的监督，可能为 LVR 中判断哪些 latent 状态真正承载任务必要信息、如何分配贡献与监督提供可供核查的度量线索。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-09T23:21:53.710880+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}
