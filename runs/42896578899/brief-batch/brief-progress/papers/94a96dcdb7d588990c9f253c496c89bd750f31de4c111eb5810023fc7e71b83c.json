@@ -1,0 +1,71 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.11201",
+  "input_sha256": "1e2543cbf8200a8abdde11c6030bf84b6555749937904abfa2f585ec0cce2851",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-10T20:53:28.543714+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 2012,
+        "output_tokens": 612,
+        "total_tokens": 2624,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 405
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.11201",
+    "title": "When Self-Consistency Hurts: The Hidden Cost of Majority Voting in Small Language Models",
+    "authors": [
+      "Wanrong Yang",
+      "Lingfang Li",
+      "Jun Zhang",
+      "Dominik Wojtczak"
+    ],
+    "categories": [
+      "cs.AI"
+    ],
+    "comment": "15 pages, 3 figures, 2 tables. Accepted by the 33rd International Conference on Neural Information Processing (ICONIP 2026)",
+    "summary": "We study prompted chain-of-thought (CoT) with self-consistency (SC), i.e. sampling N traces and plurality-voting, on small language models, a regime where per-query compute budgets are tight yet SC is commonly applied with a fixed sample budget inherited from large-model practice, regardless of instance difficulty. Across two model families (Qwen-2.5-0.5B, Gemma-3-1B) at FP16 and MLX-Q4 (4-bit quantisation in Apple's MLX framework), on GSM8K and MATH-500, we run 8 per-task and 4 task-pooled experiments at n=200-400 with 1,000x paired-bootstrap confidence intervals (CIs). Our first result is an upper bound: an oracle gate deciding per prompt whether to invoke SC reaches 109-174% of always-SC's accuracy at 23-30% of its compute in all 12/12 cases, so at N=5 always-SC is dominated everywhere on our grid. That margin is exactly the rate at which SC flips correct greedy answers to wrong, here 3-10.5% of prompts, which on Qwen-Q4 x MATH-500 exceeds the wrong-to-right rate and leaves always-SC 3 pt worse than always-greedy. Our second result is a deployable approximation: a gate over greedy-pass signals skips 45-99% of SC calls, with bootstrap CI half-widths under 5 pt, removing 36-79% of always-SC compute. Accuracy retention at those operating points has point estimates of 98.1-98.8%, which we report as point estimates because their CIs are wide (lower bounds 76-86%) over an SC accuracy of only 15-36%. The evidence covers N=5 on two <=1B families and two math benchmarks, which is the scope we claim. Code is available at https://github.com/heywanrong/SiftSC.",
+    "abs": "http://arxiv.org/abs/2611.11201v1",
+    "pdf": "https://arxiv.org/pdf/2611.11201v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P1",
+      "brief_summary": "论文在 ≤1B 小模型上考察带自洽性（采样多条 CoT 并多数投票）的提示推理，用 oracle 门控给出上界，并提出基于贪心解信号的近似门控，从而跳过大部分采样调用、节省算力。",
+      "relevance_reason": "多数投票会把原本正确的贪心答案翻成错误的诊断，以及「是否值得再花算力采样、如何聚合多假设」的门控思路，可供核查 LVR 中多 latent 采样聚合与 STOP 决策的收益成本；但对象是纯文本数学任务，迁移属推测。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-10T20:53:28.543714+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

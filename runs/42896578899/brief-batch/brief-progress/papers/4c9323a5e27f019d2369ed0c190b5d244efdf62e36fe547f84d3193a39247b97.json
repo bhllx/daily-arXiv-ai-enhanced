@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.10307",
+  "input_sha256": "8c40ffc9cf3cd6605dabf4f9577b916a73c1247a7e46d2e5832563baa5f38fa9",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-10T21:06:09.429388+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1894,
+        "output_tokens": 584,
+        "total_tokens": 2478,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 375
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.10307",
+    "title": "How Much Is Left Matters: False Positives and False Negatives in Partial-Prompt Contamination Tests",
+    "authors": [
+      "Abhishek Anand"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.CL"
+    ],
+    "comment": "10 pages, 2 figures, 3 tables",
+    "summary": "Partial-prompt completion, where a model receives the first part of a benchmark problem and is checked for whether it reproduces the rest, is a widely used test for benchmark contamination. We audit this test on seven open-weight models using MATH-500 and recent AIME 2025/2026 problems, which serve as true negatives. Memorization flags depend strongly on how much text remains: for every model, problems with at most 8 leftover words are flagged several times more often than problems with at least 25 (31.5% vs. 5.5% for Qwen2.5-7B-Instruct), and half to three-quarters of all ROUGE-based flags come from short leftovers. On true negatives, a ROUGE-L >= 0.75 threshold flags up to 6.7% of problems at a 60% prefix, and at an 80% prefix even exact match flags 8.6% (pooled over models; 6.2% on AIME 2026, which postdates every model), against 0% at 40-60%. The test also misses contamination upstream: models distilled from Qwen2.5-Math, whose base is heavily flagged in prior work, show almost no model-specific recall. Calibrating each model against models from other families removes most flags while isolating a consistent Qwen2.5-specific signal at every prefix length. We recommend length-stratified reporting, prefixes of at most 60%, style-matched post-cutoff controls, and cross-family calibration.",
+    "abs": "http://arxiv.org/abs/2611.10307v1",
+    "pdf": "https://arxiv.org/pdf/2611.10307v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "该文审计「部分提示补全」这一基准污染检测方法，在七个开源模型和 MATH-500、AIME 2025/2026 上发现检测标记强烈依赖剩余文本长度，存在真阴性误报，且会漏掉蒸馏带来的上游污染，并给出分层报告与跨家族校准等建议。",
+      "relevance_reason": "其污染诊断设计可能为 LVR 的贡献分配提供参照：当 latent 推理带来提升时，可借用分层前缀与后截止对照来核查收益是否来自基准记忆而非真实推理，具体适用性尚待核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-10T21:06:09.429388+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

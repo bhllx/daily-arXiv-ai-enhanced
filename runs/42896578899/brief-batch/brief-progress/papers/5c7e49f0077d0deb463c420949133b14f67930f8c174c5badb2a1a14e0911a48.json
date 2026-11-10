@@ -1,0 +1,73 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.10991",
+  "input_sha256": "fd3632957ee01279fec787f796c3a3eac6d8fcf1ed66fbd7763147926c2e905e",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-10T20:56:16.364431+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1952,
+        "output_tokens": 946,
+        "total_tokens": 2898,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 717
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.10991",
+    "title": "Sensitivity-Gated Accumulator Caching for On-Device Learning of Low-Bit Hand Networks",
+    "authors": [
+      "Soroor Ghandali",
+      "Kanika Mamgain",
+      "Manjot Kaur",
+      "Akanksha Shukla",
+      "Shashira Guntuka"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.LG"
+    ],
+    "comment": "28 pages, 7 figures, 15 tables",
+    "summary": "Small hand-tracking networks are deployed as 4- and 8-bit codes, and they should keep adapting to a user's camera after deployment, on the device and within roughly the memory of the model itself. Quantization-aware training cannot do this cheaply, because it keeps a 32-bit master copy of every weight together with its optimizer state, about 96 bits per weight. Training the codes directly with stochastic rounding needs no copy but injects rounding noise at every step, and the methods that remove this noise keep a residual buffer for every weight. We introduce sensitivity-gated accumulator caching (SGAC), which keeps residual state for only a small and changing set of weight groups. A set-associative cache of 8-bit accumulators collects the sub-step updates of the groups with the largest Fisher-weighted squared code step and writes them into the codes as whole steps; an evicted line is flushed by stochastic rounding, and a group without a line does not move until it is admitted. We prove that the write-back is unbiased and show, under a local quadratic model, that rounding a sub-step update costs loss of the same order as the update's own gain, so that rounding pays only where the expected gradient is large relative to the curvature. On a 383k-parameter hand-keypoint network, SGAC trains with 8.1 bits of state per weight. Scored on the 4/8-bit network that the device runs after adaptation, it has the highest mean accuracy of nine deployed low-bit networks on two simulated cameras. On twelve ImageNet-C corruptions it has the highest average of corrupted and clean accuracy of seven deployed methods, ahead of the PEQA-style, ECO-style and direct low-bit baselines with confidence intervals that exclude zero, and it matches an 8-bit accumulator kept for every weight with 56% of that state.",
+    "abs": "http://arxiv.org/abs/2611.10991v1",
+    "pdf": "https://arxiv.org/pdf/2611.10991v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "提出 SGAC：在设备端直接训练 4/8-bit 手部关键点网络的量化码，只对 Fisher 加权码步长最大的一小部分权重组保留 8-bit 残差累加器（组相联缓存），行被驱逐时以随机舍入整步写回，从而以约 8.1 bit/权重 的状态完成部署后适配。",
+      "relevance_reason": "与视觉推理主线无直接关联，但其「在固定内存预算下按敏感度决定哪些状态值得保留、何时淘汰写回」的思路，可能为多步 latent 推理中状态/缓存的选择性保留与淘汰策略提供概念类比，可供核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-10T20:56:16.364431+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

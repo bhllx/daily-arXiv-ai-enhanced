@@ -1,0 +1,73 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.11914",
+  "input_sha256": "bb7345e74bb85be9a33ffe9b1499e060d2b2e57e532e94d5ca96689c2ca38a2a",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-10T20:45:16.368893+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1938,
+        "output_tokens": 825,
+        "total_tokens": 2763,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 565
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.11914",
+    "title": "CRAFT-GBM: Selecting Best Features for Gradient-Boosted Machine Learning",
+    "authors": [
+      "Basil Kuok",
+      "Yi Zhou",
+      "Yao Xuan",
+      "Shuping Li",
+      "Ke-Wei Huang"
+    ],
+    "categories": [
+      "cs.LG",
+      "math.ST"
+    ],
+    "comment": null,
+    "summary": "Feature subsampling is used to accelerate gradient-boosted trees, yet standard approaches fix the feature count in advance and largely ignore the split-gain evidence accumulated during training. We introduce CRAFT-GBM (Confidence-Ranked Adaptive Feature Tracking), a native LightGBM extension that uses this evidence to adapt which---and, by default, how many---features are searched each boosting round. CRAFT-GBM transforms root-split gains into bounded observations and constructs joint time-uniform bounds valid under adaptive, non-stationary training histories. In its default endogenous mode, after initialization, CRAFT-GBM retains exactly the features that cannot yet be ruled out as best, letting the selected feature-set size $K_t$ emerge from training history rather than a pre-specified fraction. With probability at least $1-δ$, every feature with the largest expected gain is retained jointly across all rounds after initialization. When a feature fraction $f$ is specified instead, CRAFT-GBM ranks features by their interval point estimates and provides an approximate top-$K$ guarantee for feature budget $K_f$. We implement CRAFT-GBM within LightGBM while preserving its native feature-bundling representation, and evaluate it across 14 public and synthetic dataset families and four noise-augmented settings. In the fully endogenous setting, CRAFT-GBM reduces per-fit training time by 39.74\\% with 1.04\\% lower test loss in the geometric mean across all 18 RQ1 experiments. Under pre-specified feature fraction $f$, Exogenous CRAFT-GBM also yields aggregate training-time reductions up to 13.52 percentage points larger than random feature subsampling, with no increase in aggregate test loss relative to full-feature LightGBM. Accumulated training evidence can thus support adaptive feature search with statistical guarantees while retaining the practical advantages of native gradient boosting.",
+    "abs": "http://arxiv.org/abs/2611.11914v1",
+    "pdf": "https://arxiv.org/pdf/2611.11914v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "面向梯度提升树的特征子采样问题，提出 CRAFT-GBM：把根节点分裂增益转成有界观测并构造自适应训练历史下仍成立的时间一致置信界，据此保留\"尚不能排除为最优\"的特征，使每轮搜索的特征数量由训练证据自然决定（也支持指定比例 f 的近似 top-K 版本），并在 LightGBM 中实现与评估。",
+      "relevance_reason": "该工作不涉及视觉或多模态推理，但其\"用置信界逐步剪除尚不能排除的候选、让候选集规模与计算预算从证据累积中涌现\"的机制，可能与 LVR 中多 latent 假设的筛选、证据获取的取舍与停止/计算分配决策形成概念类比，可供核查这种带时间一致保证的剪枝思路能否迁移到推理期假设集维护。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-10T20:45:16.368893+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

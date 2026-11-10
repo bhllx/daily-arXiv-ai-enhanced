@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.11034",
+  "input_sha256": "e653783b8c2e50f73a46c464fd0eec0b5a2b1ddf25356e852312b7092dd51823",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-10T20:55:24.728607+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1799,
+        "output_tokens": 904,
+        "total_tokens": 2703,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 692
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.11034",
+    "title": "Prune to Probe: Causal Decision-Stability Probes for Efficient Reasoning",
+    "authors": [
+      "Yufei Qi",
+      "Chonghe Jiang"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Reasoning models often continue generating after producing an answer, yet stopping prematurely may interrupt useful verification or revision. In this work, we investigate whether targeted interventions in a model's internal computation can provide a reliable signal for when to stop reasoning. We introduce Prune-to-Probe, an inference-time controller that uses causal activation interventions to probe the stability of a model's current answer. Specifically, we identify late-MLP coordinates that contribute to post-answer continuation while excluding those important for answer completion. Once an answer is stated, Prune-to-Probe temporarily suppresses the selected coordinates and measures the resulting stopping response relative to matched random interventions. Crucially, these interventions serve only as probes: the model either returns its existing answer or resumes generation from an untouched cache. On MATH, Prune-to-Probe reduces reasoning-token forwards by 2.60%, preserving all naturally correct trajectories while repairing six errors. On MMLU-Pro, it achieves 1.145% pooled savings with no observed harm. Further analysis shows that the intervention captures decision stability rather than correctness (AUROC 0.502). These results demonstrate the potential of causal activation probes for efficient inference-time control without permanent model modification.",
+    "abs": "http://arxiv.org/abs/2611.11034v1",
+    "pdf": "https://arxiv.org/pdf/2611.11034v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P1",
+      "brief_summary": "提出 Prune-to-Probe：在答案生成后定位对答后继续生成有贡献的 late-MLP 坐标并临时抑制，以相对随机干预的停止响应探测决策稳定性；干预仅作探针，模型返回原答案或从未改动缓存续写，在 MATH/MMLU-Pro 上节省少量 token。",
+      "relevance_reason": "为 STOP 判据提供可核查线索：用因果激活干预而非输出置信度决定是否继续推理；但属纯文本设定，且 AUROC 0.502 表明该信号反映决策稳定性而非正确性，迁至 VLM 推理需核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-10T20:55:24.728607+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

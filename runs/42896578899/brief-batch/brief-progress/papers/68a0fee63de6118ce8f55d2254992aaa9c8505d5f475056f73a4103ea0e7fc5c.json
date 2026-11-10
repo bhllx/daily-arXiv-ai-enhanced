@@ -1,0 +1,72 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.10418",
+  "input_sha256": "7b43ab0cfa996847d6f35756f1a911aace8b88250ca52a42ab0550e600c56cce",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-10T21:04:10.926863+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1812,
+        "output_tokens": 671,
+        "total_tokens": 2483,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 425
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.10418",
+    "title": "Beyond Query Similarity: Safety-Conditioned Cache Routing for LLM Response Reuse",
+    "authors": [
+      "Shilong Pan",
+      "Zhiliang Tian",
+      "Weiguo Chen",
+      "Zihan Chen",
+      "DongSheng Li"
+    ],
+    "categories": [
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "Semantic response caching reuses a cached response for a semantically similar query to improve LLM inference efficiency. However, query similarity alone can lead to unsafe reuse when safety conditions change. Existing approaches improve cache safety through stricter similarity checks, context-aware validation, or response verification, yet they may still miss safety conflicts between the cached response and the new request or introduce unnecessary verification overhead. We argue that safe and efficient semantic caching requires a reuse policy that makes the cached response's safety conditions explicit and uses them to guide the reuse decision with a balance between safety and utility. In this paper, we propose SafeCache, a safety-aware framework that separates candidate retrieval from safety approval and formulates semantic response reuse as a safety-conditioned routing problem. SafeCache matches each cached-response condition against the new request and aggregates the per-condition mismatches into an overall risk score. A separate contradiction guard prevents explicit conflicts from being diluted by strong matches. It further estimates matching uncertainty and calibrates the routing policy under a required unsafe-reuse target and a verifier-call budget to choose among direct reuse, selective verification, or regeneration. Experiments show that SafeCache achieves the better safety-utility trade-off among the evaluated baselines, enabling safer response reuse at comparable cache utility.",
+    "abs": "http://arxiv.org/abs/2611.10418v1",
+    "pdf": "https://arxiv.org/pdf/2611.10418v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "提出 SafeCache 框架，将语义缓存中的响应复用重构为「安全条件路由」问题：把候选检索与安全批准分离，逐条件匹配缓存响应的安全前提并聚合为风险分数，用独立的矛盾守卫避免显式冲突被高相似度稀释，再在不安全复用目标与验证器调用预算下校准策略，选择直接复用、选择性验证或重新生成。",
+      "relevance_reason": "其以「条件匹配」而非查询相似度作复用判据，并在预算约束下路由到复用、验证或重生成，可能为 latent 推理状态或缓存状态何时可安全复用、何时需重算或补充证据的停止与验证策略提供概念借鉴；但对象是文本响应缓存而非内部推理状态，联系需自行核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-10T21:04:10.926863+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

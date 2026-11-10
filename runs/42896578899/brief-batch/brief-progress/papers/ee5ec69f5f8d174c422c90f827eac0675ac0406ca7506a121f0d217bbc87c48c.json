@@ -1,0 +1,77 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.10234",
+  "input_sha256": "49aadd6e526be15af7a6b77d498ba759520e987ebbb2642e16d350326e2d1d96",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-10T21:07:15.307724+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1975,
+        "output_tokens": 541,
+        "total_tokens": 2516,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 304
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.10234",
+    "title": "ScreenProof: Where Is This Screen Wrong? Finding UI Faults Without a Reference",
+    "authors": [
+      "Huiming Sun",
+      "Yue Li",
+      "Kangning Yang",
+      "Ruineng Li",
+      "Jie Cai",
+      "Lan Fu",
+      "Yunwan Fu",
+      "Jinlong Li",
+      "Jinglin Shen"
+    ],
+    "categories": [
+      "cs.AI",
+      "cs.SE"
+    ],
+    "comment": null,
+    "summary": "A phone screen can be wrong in ways that need no reference: a label that runs off the screen, letters that touch, a line that breaks one character before its end, one button with sharp corners among round ones. We ask whether a model can box every such fault on a screenshot, given no target design and no reference image. Such a critic could serve as a cheap first pass over generated pages before a designer reviews them, but only if it stays silent on clean pages. ScreenProof poses this target-free critique over three families of faults: general faults, local style faults (one element breaks the style its page sets) and text layout faults (letter spacing, line height, line breaks). A data engine makes each fault in page code and records the changed element's box, and hard negatives change every sibling alike. No frontier judge is reliable: frontier models flag 18-62% of clean real screenshots and 18-82% of clean generated pages, find 47-72% of text layout faults, and rarely find a foreign icon (5-19%). Our small critic ProofJudge (Qwen3.5-9B with LoRA), trained on code-made pages with one to four faults each and keeping a finding only when it is confident, reaches F1 0.48, the highest of all judges (Gemini 4 Argon 0.37; open models at most 0.15; 0.46 even without the confidence cut), and is the only fault-finding judge within 15% false alarms on clean pages (2% real, 9% generated), the property such a first pass needs, at about a hundredth of Argon's cost. It finds the most general faults (59%) but fewer local style faults than Argon (25% against 41%) and fewer text layout faults than the API judges (43%; Gemini 4 Argon 47%). Against a named brand the task is harder still: models know a design language about as well as its public documentation states it.",
+    "abs": "http://arxiv.org/abs/2611.10234v1",
+    "pdf": "https://arxiv.org/pdf/2611.10234v1",
+    "AI": {
+      "category": "MAIN",
+      "priority": "P1",
+      "brief_summary": "论文提出免参考图的截图 UI 缺陷检测任务与基准 ScreenProof：用页面代码注入三类缺陷并记录被改元素框，配合同质 sibling 的硬负样本，评测前沿模型逐框指出缺陷的能力，并训练小型评审模型 ProofJudge（Qwen3.5-9B + LoRA，仅在高置信时报告）。",
+      "relevance_reason": "直接诊断 VLM 对细粒度视觉异常（字距、行高、断行、局部风格破例）的感知、定位与是否报告的判断，其置信度截断与 clean-page 误报指标可供核查 LVR 中视觉证据筛选和弃权／停止决策的联系，但未涉及 latent 推理状态的生成与使用。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-10T21:07:15.307724+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

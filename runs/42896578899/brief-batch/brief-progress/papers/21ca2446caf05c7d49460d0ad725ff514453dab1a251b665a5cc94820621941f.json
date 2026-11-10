@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.10672",
+  "input_sha256": "ff23df90e264c43f00888f795b27d6e94725dfafa9399cf34e11a1b63e852703",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-10T21:00:32.924666+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1919,
+        "output_tokens": 888,
+        "total_tokens": 2807,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 649
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.10672",
+    "title": "Heterogeneous Asymmetric Contrastive Distillation",
+    "authors": [
+      "Qi Wang",
+      "Jinjia Zhou"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": "13pages, 7 figures",
+    "summary": "Knowledge distillation (KD) between architectural families, e.g., from a Transformer teacher to a CNN student, is difficult because the two networks learn different representations. Logits share a label space, but heterogeneous teachers differ in logit offset, scale, and sharpness, and their non-target classes are less semantically organized. Conventional logit distillation matches these values sample by sample, asking the student to imitate how another architecture expresses its predictions. We argue that a heterogeneous teacher should pass on the relational structure of its predictions, i.e., how it arranges samples relative to one another, and propose Heterogeneous Asymmetric Contrastive Distillation (HACD) to transfer this structure. HACD maps teacher and student logits to centered, temperature-softened probability directions on a shared unit hypersphere, which removes architecture-dependent offsets and lets the temperature control how sharply peaked outputs enter the representation while keeping informative non-target classes. Each student output must then identify its own teacher target within the batch. Because every teacher target also acts as a negative for the others, HACD computes the targets on a moderately augmented view and contrasts both a moderate and a strong student view against them. HACD adds no learnable parameters and needs one teacher pass per sample. It achieves the best or second-best accuracy on 11 of 12 heterogeneous pairs on CIFAR-100, without ground-truth labels, and on 14 of 15 pairs on ImageNet-1K, improving over the reported vanilla KD results by 8.82 and 1.33 percentage points on average. Checkpoints are available at https://github.com/BTAEYANG/HACD-Heterogeneous-Asymmetric-Contrastive-Distillation; the code will be released upon publication.",
+    "abs": "http://arxiv.org/abs/2611.10672v1",
+    "pdf": "https://arxiv.org/pdf/2611.10672v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文提出 Heterogeneous Asymmetric Contrastive Distillation（HACD），把异构教师与学生的 logits 映射为去中心、温度软化的概率方向并置于共享单位超球面，以批内对比的方式让学生识别自己的教师目标，从而迁移预测的关系结构而非逐样本数值，并在 CIFAR-100 与 ImageNet-1K 的 Transformer→CNN 等异构对上评测。",
+      "relevance_reason": "其「迁移样本间关系结构而非点对点数值匹配」的监督思路，可能可供核查用于异质模型间 latent 推理状态的对齐与训练监督；但原文只在分类 logits 上操作，未涉及视觉证据、latent 状态生成或推理期计算，联系需较多核实。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-10T21:00:32.924666+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

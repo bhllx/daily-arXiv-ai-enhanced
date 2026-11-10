@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.11926",
+  "input_sha256": "df748ef05d5d0a525dcd2d5b4d759166b3609c1ddb02fbfae23bdf190224d3d4",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-10T20:45:03.974209+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1815,
+        "output_tokens": 763,
+        "total_tokens": 2578,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 498
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.11926",
+    "title": "Text Alone Predicts Which Classes a Segmentation Readout Keeps",
+    "authors": [
+      "David Yan"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "An open-vocabulary segmentation readout silently loses a class deployed beyond its training categories. It still emits masks with high confidence, but the class never wins a single pixel. The training loss falls anyway, and mIoU can even rise while classes die. We show that which classes collapse is written in the class-name list alone. Before any image is seen, we rank each class's collapse risk from its text similarity to the training vocabulary alone. The ranking holds at AUROC 0.69-0.96 across nine model families, twelve backbones and eight pretraining recipes. Two further families, measured only after the predictions were written down, land in the same band. What the list writes, it can rewrite. With identical images and a class's counterpart moved in or out of the training list, retraining flips that class's gain over the frozen baseline by 21 IoU points; swapping in unrelated names changes nothing. We find a vocabulary-distance mechanism behind the collapse. Collapsed classes lose every vote to near-name neighbors, but in the frozen features they survive. Turning down the readout's amplitude, or stopping training early, brings them back, up to +16 points, without retraining; trained with its amplitude held down, the readout never collapses.",
+    "abs": "http://arxiv.org/abs/2611.11926v1",
+    "pdf": "https://arxiv.org/pdf/2611.11926v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P1",
+      "brief_summary": "论文指出开放词表分割的 readout 会静默丢弃某些类别：仍输出高置信掩码，但该类拿不到任何像素，训练损失却照常下降。作者仅凭类名与训练词表的文本相似度，在未见图像前排序各类崩塌风险（AUROC 0.69–0.96，跨九个模型族），并通过增删近名类别复训翻转该类的增益，归结为词表距离机制；同时发现崩塌类别在冻结特征中仍可分辨，调低 readout 幅度或早停即可恢复。",
+      "relevance_reason": "该文的「信息仍在特征中、却被下游 readout 压制」现象与干预手段（幅度调节、早停、仅凭文本预判风险），可供核查 LVR 中答案是否真正使用 latent 内容、以及如何区分信息坍缩与读出头失效。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-10T20:45:03.974209+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

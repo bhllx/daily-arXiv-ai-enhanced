@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.11752",
+  "input_sha256": "a3cf2b4a888807e7d0da370f9301e45ac10f861ec2ead0111871a78434b6679b",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-10T20:47:37.494018+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1953,
+        "output_tokens": 543,
+        "total_tokens": 2496,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 336
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.11752",
+    "title": "Spectral Rank and Step-Direction Dynamics in Language-Model Post-Training",
+    "authors": [
+      "Khurram Khalil",
+      "Khaza Anuarul Hoque"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.AI"
+    ],
+    "comment": "Published in Transactions on Machine Learning Research (TMLR). Details: https://openreview.net/forum?id=UGIcayxHMI",
+    "summary": "Language-model post-training modifies weights through cumulative updates and successive displacements, yet existing studies report seemingly conflicting spectral properties: nearly full-rank updates and low stable-rank changes. We show these observations are compatible and characterize update directions during training. For singular values following $σ_i \\propto i^{-α}$ with $0 < α\\leq 1/2$, we prove that stable rank becomes negligible relative to fixed-energy rank as dimension increases. Full singular value decompositions of selected OLMo-2-7B updates confirm this separation: three proximal policy optimization (PPO) attention updates have stable ranks of 9.6-18.3 but require 532-1,222 singular components to capture 80% of their energy. We next compute consecutive checkpoint-displacement cosines from full-model inner products. Across nine publicly released reinforcement learning from verifiable rewards (RLVR) stages, all 131 adjacent pairs have negative cosines on their native checkpoint grids, including PPO and Group Relative Policy Optimization (GRPO) trajectories. Supervised fine-tuning comparisons across four model families show configuration-dependent alignment, including negative late-training cosines for Mistral and FP32 Llama. Finally, a controlled OLMo-2-1B study with three paired seeds and a 2,048-token response cap compares group-relative advantages against a learned critic with generalized advantage estimation (GAE). At matched 60-rollout windows, late-training mean cosines are +0.259 and +0.012, respectively; the paired critic-minus-group difference is -0.247 (seed-level 95% interval [-0.358, -0.137]). These findings distinguish spectral concentration, energy coverage, and trajectory direction, and demonstrate that the advantage system influences directional alignment under matched training conditions.",
+    "abs": "http://arxiv.org/abs/2611.11752v1",
+    "pdf": "https://arxiv.org/pdf/2611.11752v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文刻画语言模型后训练中的权重更新谱性质与步方向，证明稳定秩与固定能量秩在大维度下分离，并用完整 SVD、相邻 checkpoint 位移余弦及组相对优势与 learned critic+GAE 的对照实验说明更新方向的负余弦现象。",
+      "relevance_reason": "其「训练信号如何塑造更新方向对齐」的测量方式（位移余弦、能量覆盖度、GRPO 与 critic 优势对照）可作为核查 LVR 轨迹训练中监督与贡献分配设计的分析线索，但对象是权重而非推理期 latent 状态，迁移需自行判断。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-10T20:47:37.494018+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

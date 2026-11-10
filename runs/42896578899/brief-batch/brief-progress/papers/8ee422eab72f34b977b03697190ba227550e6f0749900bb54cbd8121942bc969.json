@@ -1,0 +1,74 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.10873",
+  "input_sha256": "d797880c9dfde4cd4b78c5c64b6d0bdf31e9b143f5553d0904f31e951447657f",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-10T20:57:13.313896+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1829,
+        "output_tokens": 724,
+        "total_tokens": 2553,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 522
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.10873",
+    "title": "BRAT: Bounded Residual-Aligned Training for Stable Multi-Pass LLM Post-Training",
+    "authors": [
+      "Xunlan Zhou",
+      "Yuzhe Zhao",
+      "Xuhong Huang",
+      "Feng Chen",
+      "Xuanlin Chen",
+      "Lang Feng",
+      "Bo An"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Reinforcement learning for large language model post-training often reuses each batch of sampled rollouts for several gradient passes to amortize the cost of generation. Under such multi-pass reuse, existing objectives fail in different ways: unclipped updates collapse as the policy drifts away from the sampling policy, adding a negative baseline avoids collapse but reinforces every sampled response, and PPO-style ratio clipping cuts off gradients abruptly. We first ask why reuse is fragile. Measuring how well an update estimated from a small rollout group aligns with the KL-regularized target on held-out rollouts of the same prompts, we find that this alignment drops by nearly an order of magnitude from in-sample to held-out rollouts across three base models, suggesting that repeated passes largely overfit the sampled group. Motivated by this finding, we propose Bounded Residual-Aligned Training (BRAT), motivated by a proximal update toward a bounded reweighting of the sampling policy. BRAT assigns each token a gradient weight that decreases linearly with its probability ratio and vanishes at a trust-region boundary, and normalizes group-centered rewards by their maximum magnitude, keeping advantages zero-mean and bounded without extra hyperparameters. With four reuse passes, BRAT avoids training collapse, limits policy drift, and achieves higher average accuracy with lower seed variance on most benchmarks.",
+    "abs": "http://arxiv.org/abs/2611.10873v1",
+    "pdf": "https://arxiv.org/pdf/2611.10873v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文研究 LLM 强化学习后训练中同一批 rollout 多次梯度复用导致的失稳，提出 BRAT：用随概率比线性衰减、在信赖域边界归零的 token 级梯度权重，并对组中心奖励按最大幅值归一化以保持优势有界。",
+      "relevance_reason": "不涉及视觉或多模态推理；但其「重复使用同批轨迹会过拟合采样组」的诊断与信赖域内有界重加权，可能为 latent 推理轨迹训练的贡献分配与稳定性提供借鉴，可供核查其在长链稀疏奖励下的适用性。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-10T20:57:13.313896+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

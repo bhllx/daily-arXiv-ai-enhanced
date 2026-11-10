@@ -1,0 +1,71 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.11220",
+  "input_sha256": "8fc67ef44b868e5318788131ba6788570197cdb0ffb78ac8cc7e9bce66677785",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-10T20:53:10.523423+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1851,
+        "output_tokens": 774,
+        "total_tokens": 2625,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 497
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.11220",
+    "title": "EbbFlow: PINN-Inspired Progressive Curriculum for MeanFlow Training",
+    "authors": [
+      "Mengfan Yuan",
+      "Xunheng Kuang",
+      "Jianbin Chen",
+      "Lei He"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": "20 pages, 6 figures",
+    "summary": "MeanFlow learns interval-average velocity for few-step generation, but its fixed temporal sampler mixes diagonal and interior supervision throughout training. We interpret temporal coordinates as collocation points: diagonal samples provide a stochastic boundary target, whereas finite intervals supply a differential-consistency target. The diagonal fraction controls how often the consistency component appears, while interval length enters its gradient through an explicit factor. Motivated by this distinction, EbbFlow uses Temporal Supervision Allocation (TSA) to schedule the diagonal fraction and interval geometry. It starts with diagonal supervision, then admits interior samples and expands their maximum interval; a left-anchored interval law preserves coverage across time. The per-sample loss, target, backbone, and inference procedure remain unchanged. In matched class-conditional ImageNet $256\\times 256$ runs without classifier-free guidance (DiT-B/2, one training seed per method, 400k updates), EbbFlow achieves 50k-sample FID of 39.65 at one network evaluation and 36.02 at two-evaluation ODE sampling, versus 44.82 and 39.86 for MeanFlow. Gradient probes show a mid-training difference in component geometry. Ablations support allocation scheduling and left-anchored intervals, although a fixed full-horizon variant performs better at one evaluation. These results suggest that temporal sampling is a useful training control whose benefits depend on the inference protocol.",
+    "abs": "http://arxiv.org/abs/2611.11220v1",
+    "pdf": "https://arxiv.org/pdf/2611.11220v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文把 MeanFlow 的时间坐标解释为配点，区分对角线采样的边界目标与有限区间的微分一致性目标，提出 Temporal Supervision Allocation 课程——先只用对角线监督，再引入内点并逐步扩大区间长度，并采用左锚定区间律保持覆盖；损失、目标、骨干与推理流程均不变，在 ImageNet 256 类条件 DiT-B/2 上对比一步与两步采样 FID。",
+      "relevance_reason": "该文属少步图像生成，与 LVR 主线无直接关系；但其按训练阶段安排「端点目标 vs 区间一致性目标」的监督分配，可能为 latent 推理轨迹中中间状态监督与最终答案监督的配比与课程设计提供可核查线索。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-10T20:53:10.523423+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

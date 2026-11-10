@@ -1,0 +1,72 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.10223",
+  "input_sha256": "b77068889f820a51f2a8653b39115226c5e2a77dc83ac5558e577aebfd76b062",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-10T21:07:21.940101+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1932,
+        "output_tokens": 394,
+        "total_tokens": 2326,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 190
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.10223",
+    "title": "Lower-Level Agnostic Bilevel Optimization",
+    "authors": [
+      "Peiwen Qiu",
+      "Prashant Khanduri",
+      "Jia Liu"
+    ],
+    "categories": [
+      "cs.LG",
+      "math.OC",
+      "stat.ML"
+    ],
+    "comment": null,
+    "summary": "Bilevel optimization is a fundamental framework for machine learning problems, where an upper-level (UL) objective depends on the solution of a nested lower-level (LL) problem. Existing bilevel algorithms typically assume that the LL objective is available for evaluation, differentiation, or unrolling. However, this assumption can fail when the LL response is produced by a black-box solver, simulator, adversary, or learned predictor. In this paper, we study LL agnostic bilevel optimization, where the UL learner has access only to an approximate LL solution $\\bar{\\mathbf{y}}(\\mathbf{x})$ and cannot query the LL objective, its gradients, Hessian/Jacobian information, or the procedure that generates the LL response. We propose LeGo-BiO, a coordinate-wise pseudo-hypergradient method that estimates the missing Jacobian $\\nabla _{\\mathbf{x}}\\bar{\\mathbf{y}}(\\mathbf{x})$ using finite differences of $\\bar{\\mathbf{y}}(\\cdot)$. For each UL coordinate, LeGo-BiO constructs a decision vector subject to 1-sparse updates, thereby isolating the corresponding Jacobian column needed in the UL gradient computation. This avoids the directional-projection limitation of full-parameter response differences and, unlike derivative-free/zeroth-order approximations of the entire UL gradient, preserves the available first-order gradient information with respect to the UL variables for more accurate UL gradient evaluation. We establish convergence guarantees for LeGo-BiO in both deterministic and stochastic settings under an LL error-bound/Polyak-Lojasiewicz-type condition, without requiring LL strong convexity. Our bounds yield an $O(T^{-1})$ rate in the deterministic setting and an $O(T^{-1/2})$ rate in the stochastic setting when the LL approximation error decreases geometrically. Experiments demonstrate competitive performance of LeGo-BiO despite being agnostic to the LL objective.",
+    "abs": "http://arxiv.org/abs/2611.10223v1",
+    "pdf": "https://arxiv.org/pdf/2611.10223v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "研究「下层不可知」的双层优化：上层只能调用近似下层解 ȳ(x)，无法访问下层目标、梯度或生成过程，提出 LeGo-BiO 用坐标式有限差分估计缺失的 Jacobian 列并构造伪超梯度，给出确定性与随机情形的收敛率。",
+      "relevance_reason": "当 latent 推理状态由不透明生成器产生时，可借鉴其「只观测近似响应」并用有限差分估计状态对参数敏感度的思路，供核查其在轨迹训练与贡献分配中的可用性；与视觉推理本身的关联需进一步判断。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-10T21:07:21.940101+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

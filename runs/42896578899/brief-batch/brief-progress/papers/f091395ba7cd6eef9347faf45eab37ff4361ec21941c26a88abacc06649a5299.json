@@ -1,0 +1,71 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.10448",
+  "input_sha256": "bf0f55c1a1627439ab652f255ba2644b76a4bfb2ae6fce56d458c71a3d25851c",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-10T21:03:51.455311+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1846,
+        "output_tokens": 612,
+        "total_tokens": 2458,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 397
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.10448",
+    "title": "ESTRA: Enabling Extreme Attention Sparsity for Training-Free Video Diffusion Acceleration",
+    "authors": [
+      "Enhuai Liu",
+      "Yunke Wang",
+      "Yutong Wang",
+      "Changming Sun"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": null,
+    "summary": "Video diffusion transformers generate high-quality videos, but attention over long spatiotemporal sequences makes inference computationally expensive. Sparse attention reduces this cost by computing only a subset of query-key interactions exactly, and recent training-free methods further approximate the remaining interactions. These methods, however, degrade quickly at high sparsity, which limits the achievable speedup. We present ESTRA (Extreme Sparsity Through Refined Attention), a training-free acceleration method that preserves generation quality even at extreme sparsity. ESTRA concentrates exact attention computation on a small set of important key-value tokens and approximates the remaining contributions with cluster representatives. To identify these tokens efficiently, it groups similar queries and uses their representatives to score individual keys. A variance-based correction further refines the attention weights of the cluster representatives, improving the accuracy of the approximation. Experiments on Wan2.1-14B and HunyuanVideo-13B show that ESTRA establishes a new quality-efficiency frontier for training-free sparse attention, achieving $3.26\\times$ and $4.71\\times$ end-to-end speedups at 5% attention density while surpassing Sol-Attn and SVG-EAR in fidelity to dense generation and on most VBench dimensions. Even at 1% density, ESTRA remains more faithful to dense generation than Sol-Attn at 12.5%, while reaching up to $5.39\\times$ speedup.",
+    "abs": "http://arxiv.org/abs/2611.10448v1",
+    "pdf": "https://arxiv.org/pdf/2611.10448v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "提出 ESTRA，一种免训练的视频扩散加速方法：将精确注意力集中在少量重要 key-value 上，用查询分组代表对 key 打分、再用聚类代表近似其余贡献，并加入基于方差的权重修正，在 5% 甚至 1% 密度下保持接近稠密生成的保真度。",
+      "relevance_reason": "该文对长序列注意力做重要性筛选与近似修正的做法，可能为 LVR 中长上下文注意力稀疏化、KV 缓存筛选以及注意力结构对 latent 相似度影响的核查提供线索，但属视频生成加速，需核查其近似误差是否影响推理状态内容。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-10T21:03:51.455311+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

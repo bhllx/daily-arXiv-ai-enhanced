@@ -1,0 +1,74 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.11898",
+  "input_sha256": "62286f182bcf10c6b385b1660fdfb3438461b4dd1d208945ea1f44575775403a",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-10T20:45:38.954168+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1902,
+        "output_tokens": 711,
+        "total_tokens": 2613,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 513
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.11898",
+    "title": "Disagreement-Aware Distribution Matching Distillation for Few-Step Diffusion Models",
+    "authors": [
+      "Zikai Zhou",
+      "Zhengpeng Xie",
+      "Shitong Shao",
+      "Lichen Bai",
+      "Tianhao Zhang",
+      "Bojun Cheng",
+      "Zeke Xie"
+    ],
+    "categories": [
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "Distribution Matching Distillation~(DMD) enables strong few-step diffusion generation by matching the student distribution to a pretrained teacher. Existing improvements to DMD often augment its supervision or modify its optimization machinery. We ask a complementary question: \\emph{can DMD diagnose its own updates using signals already produced during training?} DMD inherently computes the discrepancy between a pretrained teacher and a fake model tracking the student distribution, but conventionally uses it primarily to determine the distribution matching direction. We find that the magnitude of this teacher--fake disagreement provides additional diagnostic information. Across extensive experiments, large disagreement in the high-noise regime consistently coincides with substantially higher-energy DMD updates. This reveals a dual role of disagreement: it determines not only \\emph{where} the student should move, but also provides an intrinsic signal of \\emph{how aggressively} the update should be applied. Based on this observation, we introduce Disagreement-Aware Distribution Matching Distillation (DA-DMD), which activates only in the high-noise regime and continuously modulates the update strength according to teacher--fake disagreement. DA-DMD reuses quantities already available during DMD training and requires no additional model, evaluator, or inference-time modification. We show that it exactly recovers vanilla DMD outside the selected region, reduces update energy only through selected samples, and exhibits redescending influence under extreme disagreement. Across multiple diffusion backbones, DA-DMD consistently improves few-step generation at the same inference cost. On SD3.5-L, DA-DMD improves HPSv2 from $28.23$ to $30.93$, while achieving a $64.4\\%$ average win rate over DMD2.",
+    "abs": "http://arxiv.org/abs/2611.11898v1",
+    "pdf": "https://arxiv.org/pdf/2611.11898v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文提出 DA-DMD：在 few-step 扩散蒸馏训练中复用教师模型与 fake 模型之间已算出的分布不一致量，仅在高噪声区间按其大小调节更新强度，从而在不增加模型、评估器或推理开销的前提下改善少步生成。",
+      "relevance_reason": "其「用训练中已有的教师—学生分歧作为内在信号来缩放更新强度、并在极端分歧下衰减影响」的思路，可能可供核查 LVR 中 latent 状态更新的自适应加权与监督贡献分配，但属图像生成领域，需较多迁移验证。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-10T20:45:38.954168+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

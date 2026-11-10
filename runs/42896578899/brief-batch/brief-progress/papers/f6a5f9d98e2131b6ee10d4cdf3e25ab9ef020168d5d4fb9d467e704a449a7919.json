@@ -1,0 +1,72 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.11398",
+  "input_sha256": "f60c418fe6d21b560f8ac286fa60593026e79a47d073dd84098142960573640d",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-10T20:51:16.533525+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1946,
+        "output_tokens": 755,
+        "total_tokens": 2701,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 506
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.11398",
+    "title": "Decomposing Earth Embeddings with Sparse Autoencoders",
+    "authors": [
+      "Vitus Benson",
+      "Fanny Yang",
+      "Markus Reichstein"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.CV",
+      "physics.geo-ph"
+    ],
+    "comment": "Accepted at NeurIPS 2026. Code: https://github.com/EarthyScience/geosae",
+    "summary": "Earth observation foundation models produce global metre-resolution embeddings that underpin work across agriculture, ecology, hydrology, and beyond. Yet these embeddings are opaque: each dimension entangles unrelated physical concepts, which makes them difficult to interpret and their robustness hard to assess. Here, we propose sparse autoencoders (SAEs) as a principled way to decompose Earth embeddings into sparse, approximately monosemantic features over an overcomplete dictionary. Because LLM judges of interpretations do not transfer to satellite pixels, and spatial autocorrelation matters, we introduce a tailored evaluation protocol. It scores any SAE on reconstruction at matched sparsity, alignment with reference concepts, and spatial scale, each against baselines that include an SAE whose decoder is a frozen random dictionary. On this protocol, SAEs reconstruct AlphaEarth and Tessera embeddings better than every baseline at matched sparsity. Their features align with far fewer reference concepts than raw embedding dimensions (on AlphaEarth, 88% align with at most one of 20 concept groups, most with none, against a median of 12 per raw dimension). They also carry more of their variance at fine spatial scales (23 to 32% within a 640 m patch for BatchTopK and Matryoshka, against 9%). An SAE with a frozen random decoder shares both properties, which therefore follow from sparsity, whereas only a learned dictionary reconstructs the embedding accurately: on AlphaEarth, trained SAEs leave eight times less variance unexplained. We test the sparse code on two applications, discovering land-cover sub-concepts and detecting out-of-distribution pixels by area-of-applicability estimation. Both indicate how sparse features could be used, but neither is yet reliable enough for practical use. Together, these results are a step toward Earth observation models whose features can be inspected.",
+    "abs": "http://arxiv.org/abs/2611.11398v1",
+    "pdf": "https://arxiv.org/pdf/2611.11398v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文用稀疏自编码器把地球观测基础模型的稠密嵌入分解为过完备字典中稀疏、近似单义的特征，并设计针对卫星像素与空间自相关的评估协议（匹配稀疏度下的重建、与参考概念对齐、空间尺度），在 AlphaEarth 与 Tessera 嵌入上对比基线，并将稀疏码试用于土地覆盖子概念发现与 OOD 像素检测。",
+      "relevance_reason": "SAE 分解与概念对齐协议或可作为核查 VLM 内部状态是否保留视觉细节、实体与几何特征的探针；其「冻结随机字典同样呈现单义性与细尺度方差」的对照，可供核查 latent 相似度分析中稀疏化与学习字典各自的贡献，但遥感嵌入与推理期 latent 状态差异较大，迁移可行性需人工判断。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-10T20:51:16.533525+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

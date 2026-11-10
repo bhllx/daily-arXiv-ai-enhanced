@@ -1,0 +1,71 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.11005",
+  "input_sha256": "84f94b4843efc06a6a9e5998e704dade57a1758b765e9b70037d09a1a47ca738",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-10T20:55:57.230235+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1919,
+        "output_tokens": 684,
+        "total_tokens": 2603,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 415
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.11005",
+    "title": "GradReason: LLMs as Meta-Learners that Replace Training Epochs with Training-Data-Free Weight Updates",
+    "authors": [
+      "Ali Mohammadi Ruzbahani",
+      "Abbas Yazdinejad",
+      "Hadis Karimipour"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "Standard training recipes make a fixed number of passes over the training data, even when an epoch mostly adds mini-batch noise. We study whether a large language model (LLM) that reads the weight and gradient history of a run can replace some of these epochs with updates that compute no gradient and read no training image. In GradReason, an LLM agent is called every ten epochs. In a restricted sandbox, it analyses recent weight snapshots, epoch-mean gradients, and validation metrics, then submits a Python program that computes new weights and a plan marking each of the next ten epochs as data or virtual. A virtual epoch is kept only if it passes a forward-only check on 5,000 held-out validation images. In 120 runs on CIFAR-10 and CIFAR-100 with three architectures, Claude Opus 5.5 used 32.8% fewer data epochs than the 80-epoch recipe at 0.31 percentage points lower test accuracy (95% CI -0.72 to +0.09; 0.94 points on ResNet-18), on the recipe's own frontier of data against accuracy. Unprompted, Opus averaged recent weight snapshots in every run. This choice produced the savings: a fixed rule with the same acceptance check but extrapolations from prior work saved 5.4% of the data epochs, and the same rule with averaging added saved 25.0%. The LLM's contribution is to find a working update within a single run; once found, a fixed rule implements it equally well. An Opus run cost 0.68 USD, but at this scale the agent's latency exceeded the GPU time it saved.",
+    "abs": "http://arxiv.org/abs/2611.11005v1",
+    "pdf": "https://arxiv.org/pdf/2611.11005v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "提出 GradReason：每十个 epoch 调用一次 LLM，读取权重快照、epoch 平均梯度与验证指标，输出一段 Python 程序生成新权重并规划后续 epoch 为真实或「虚拟」，虚拟 epoch 需通过 5000 张留出图像的仅前向校验；在 CIFAR-10/100 上三种架构 120 次运行中减少约 33% 数据 epoch，但收益主要来自 LLM 自发采用的权重平均，固定规则同样能做到。",
+      "relevance_reason": "与 VLM 推理主线不直接相关，可供核查的线索是「让 LLM 读取历史状态并生成状态更新与执行计划」这一机制，可能类比 LVR 中的 latent 状态更新与训练监督设计；其「找到规则后固定规则等效」的结论也提示此类 LLM 元决策的贡献分配需谨慎解读。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-10T20:55:57.230235+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

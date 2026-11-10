@@ -1,0 +1,76 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.11169",
+  "input_sha256": "202262bbad0978c52cd6939dc2e4cb5af468e28dc3a52a44231b837fcaf28dd3",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-10T20:53:43.946368+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1913,
+        "output_tokens": 556,
+        "total_tokens": 2469,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 339
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.11169",
+    "title": "Map2SLAM: From Streaming Map Prediction to Real-Time SLAM",
+    "authors": [
+      "Jian Gao",
+      "Lin-Zhuo Chen",
+      "Yihang Chen",
+      "Jiagang Chen",
+      "Jiacheng Dong",
+      "Xun Cao",
+      "Nan Xue",
+      "Yinghao Xu",
+      "Yao Yao"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": "17 pages, 10 figures. Project page: https://robbyant-research.github.io/Map2SLAM/",
+    "summary": "Streaming 3D foundation models (3DFMs) estimate camera poses and dense geometry online, but they fall short of SLAM: their predictions are fixed once emitted, so loop closures cannot correct accumulated drift. With such models already providing strong geometric capability, a central question for SLAM becomes how to schedule their inference and how to keep its results as revisable state. We present Map2SLAM, which keeps LingBot-Map frozen, trains only a lightweight retrieval head, and builds SLAM on the model's inference interface, turning its predictions into observations of an external persistent SLAM state. The front-end tracks every incoming frame with the model's causal streaming inference and decides which frames are written to the persistent state as keyframes. The back-end asynchronously decides when and which past frames to re-observe, re-running the model's joint inference over them with fresh context; verified loop observations correct the trajectory online, and segment observations refine dense geometry after the sequence. All invocations share a single frame encoder pass per image, whose cached features also drive loop retrieval, so frequent re-invocation incurs no additional encoding cost. Map2SLAM achieves state-of-the-art performance on KITTI, VBR, and Oxford Spires, reducing mean ATE by over 40% compared with the best uncalibrated baselines, while maintaining real-time tracking at over 28 FPS at a resolution of $518\\times154$ on an NVIDIA RTX 5090D GPU. Please visit our project page at https://robbyant-research.github.io/Map2SLAM/.",
+    "abs": "http://arxiv.org/abs/2611.11169v1",
+    "pdf": "https://arxiv.org/pdf/2611.11169v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "Map2SLAM 将冻结的流式 3D 基础模型输出的位姿与稠密几何预测当作外部持久 SLAM 状态的观测，仅训练轻量检索头，并设计关键帧写入与异步回访重推理机制，在多个数据集上降低轨迹误差并保持实时。",
+      "relevance_reason": "其「预测可被修订的持久状态」与「何时、对哪些旧帧重新观测」的调度，可能为 LVR 的动态计算、证据回访与停止决策提供类比；共享缓存特征驱动回访检索，也或可供核查 latent 相似度与缓存结构的影响。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-10T20:53:43.946368+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

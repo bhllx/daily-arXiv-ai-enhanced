@@ -1,0 +1,75 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.10509",
+  "input_sha256": "e4eb9f78668265cca4d9e1108e9127e7153f7f462eb4a1f1facb39f1772736aa",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-10T21:03:00.935245+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1864,
+        "output_tokens": 466,
+        "total_tokens": 2330,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 227
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.10509",
+    "title": "Scaling Optimization-Oriented Hypernetworks for Implicit Neural Representations",
+    "authors": [
+      "Lulu Cai",
+      "Hanxiang Ren",
+      "Siyan Dong",
+      "Li Sun",
+      "Jiefeng Wu",
+      "Youyi Zheng",
+      "Yi Ma",
+      "Yanchao Yang"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": "33 pages, including appendices. Code: https://github.com/lulucai435/hyper-inrs",
+    "summary": "We present a hypernetwork that generates the parameters of an implicit neural representation (INR) for a given signal in a single forward pass, without test-time optimization. Existing hypernetworks for this problem either ignore the chain-rule structure of the test-time optimization that produces an INR or, when they preserve it, instantiate the structure with MLPs whose parameter count grows quartically in target-network width. Our central contribution is to show that this parameter-count cost is structural to the MLP instantiation, not to the optimization-oriented principle of preserving chain-rule structure, and to resolve it by replacing the MLP body with attention. The resulting hypernetwork combines three design choices: an output-neuron-centric tokenization that aligns the token axis with each layer's output-neuron axis; an information-flow consistency rule that fixes the role of every cross-attention module from the representation its output should occupy; and a token-space iterative rollout that realizes the five quantities one optimization step on the target INR computes as five cross-attention modules with parameter count independent of target-network width. Across five 2D and 3D INR generation benchmarks, our method outperforms the state-of-the-art single-pass and optimization-oriented baselines; scales to target-network widths at which the MLP-based optimization-oriented paradigm exhausts GPU memory; and produces the highest result on NeRF generation without ground-truth INR weights supervision.",
+    "abs": "http://arxiv.org/abs/2611.10509v1",
+    "pdf": "https://arxiv.org/pdf/2611.10509v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "提出以注意力替代 MLP 的 hypernetwork，对给定信号一次前向生成 INR 参数，从而免去测试时优化；把目标 INR 单步优化的链式结构实现为五个参数不随目标网络宽度增长的交叉注意力模块，并用输出神经元为中心的 tokenization 与信息流一致性规则约束各模块角色，在 2D/3D INR 生成和 NeRF 上评测。",
+      "relevance_reason": "其「将一步优化展开为固定结构的注意力模块并做 token 空间迭代 rollout」可能为 LVR 中 latent 推理状态的更新与摊销式计算提供线索，信息流一致性规则对贡献分配也可供核查；但研究对象是 INR 参数生成，与视觉推理任务本身无直接联系。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-10T21:03:00.935245+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

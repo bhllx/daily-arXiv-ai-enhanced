@@ -1,0 +1,71 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.11892",
+  "input_sha256": "b0bf8b0b82781389b92913fa09d0804fde4a33790b3c856d73b8ac916ead8266",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-10T20:45:51.447191+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1978,
+        "output_tokens": 765,
+        "total_tokens": 2743,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 525
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.11892",
+    "title": "When Answer Decodability Is Not a Decision: Separating Final-Answer and Imminent-Emission Signals in Chain-of-Thought",
+    "authors": [
+      "Hyojung Han",
+      "Jongmin Kim",
+      "Seung-Hun Jeon"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.CL"
+    ],
+    "comment": "20 pages, 6 figures, 3 tables",
+    "summary": "Answer probes applied to chain-of-thought hidden states are often read as evidence that a language model has already decided its final response. This reading overlooks a competing signal, the candidate the model is about to mention. We introduce emission-controlled dual-target probing (ECDP), which fits the same low-rank reader family separately to the imminent mention and to the final answer at identical positions, with target-specific nulls and thresholds fixed before any fit. On correct DecisionDepth (DD) rollouts in which a distractor is mentioned before the final answer, Qwen3.5-4B decodes the next mention at .966 (null .234) but the final answer only at .221 (null .186), an emission gap of .696 [.648, .744]; Llama-3.1-8B gives .575 [.514, .632]. This pattern is not universal. In a pre-specified evaluation of Qwen3-8B with thinking enabled on held-out MMLU questions, using a full-prefix attention reader over every thinking position, both targets are decodable and the final answer is read far more strongly (mention-minus-answer lift -.398 [-.459, -.336] at layer 22 over 467 questions). Model, task, positions, and reader change together between these settings, and an attempted matched comparison on DD produced no valid statistics because the imminent-mention probe did not train reliably, so we do not identify what reverses the order. On DD, planted-signal controls show that the reader recovers an injected final-answer signal at one tenth of full dose. Answer-candidate decodability is therefore target-relative and protocol-dependent: a strong answer readout does not by itself establish when a model commits, and a probe that fails to train is not evidence that the information is absent. ECDP is a practical control for distinguishing imminent text emission from evidence of a settled decision.",
+    "abs": "http://arxiv.org/abs/2611.11892v1",
+    "pdf": "https://arxiv.org/pdf/2611.11892v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P1",
+      "brief_summary": "论文提出 emission-controlled dual-target probing（ECDP），在相同位置用同一低秩 reader 族分别探测「即将提及的候选」与「最终答案」，并配目标特定的 null 与预设阈值；在 DecisionDepth 上即将提及高度可解码而最终答案很弱，而在 Qwen3-8B thinking/MMLU 全前缀 reader 下顺序反转，据此主张答案可解码性是目标相对且依赖协议的。",
+      "relevance_reason": "该文关于「答案可解码不等于已决策」的探针协议与 null、阈值、位置和 reader 设定，可供核查 LVR 中「内部状态是否真正承载并决定答案」的证据强度；其文本 CoT 结论迁移到多模态 latent 需另行验证。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-10T20:45:51.447191+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}
