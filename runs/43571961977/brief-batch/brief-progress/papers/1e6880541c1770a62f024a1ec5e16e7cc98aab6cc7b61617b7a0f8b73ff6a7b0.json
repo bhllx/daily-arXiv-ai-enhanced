@@ -1,0 +1,73 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.16961",
+  "input_sha256": "8b769a92c5f3c47be35fa25dc463388fb9b33654d7a4ef4762d374787c79635b",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-14T07:41:26.731132+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1923,
+        "output_tokens": 461,
+        "total_tokens": 2384,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 227
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.16961",
+    "title": "The Value of Thinking: Learning When to Reason in Hybrid Decision Models",
+    "authors": [
+      "Zhengxu Yu",
+      "Ke Xu",
+      "Meng Fang",
+      "Haitham Ammar",
+      "Weilin Luo",
+      "Jun Wang"
+    ],
+    "categories": [
+      "cs.AI"
+    ],
+    "comment": "20 pages, 3 figures",
+    "summary": "Existing adaptive-reasoning methods shorten the explicit reasoning a model writes, or skip it by switching modes; either way the answer is still written out token by token. \\emph{Rather than deciding how much to think}, we explore a different paradigm, \\emph{zero-or-$T$ thinking}: a single model either answers from the implicit thinking inside one forward pass, generating no token, or performs full autoregressive reasoning at a cost of $T$ tokens when that is worth paying. We realise it in a \\emph{hybrid decision model} (HDM), where one frozen backbone serves both modes and a lightweight \\emph{self-routing block} chooses between them. The block estimates the \\emph{value of thinking}, the utility the slow mode is expected to add over the fast one, from what that implicit thinking has already produced, and the slow mode runs only where that value exceeds a price $λ$ set per request. Where no per-decision label exists, as in episodic agentic tasks, we introduce \\emph{Calibrated Decision Policy Optimisation} (CDPO), a reinforcement-learning recipe that trains the block from episode-level returns. We evaluate HDM on MMLU-Pro, AGIEval, GPQA-Diamond, JevBench, BANKING77 and MiniWoB. Specifically, on JevBench HDM-4B scores $0.857$ against Jev's $0.851$ ($+0.7\\%$) at a median $0.179$\\,s against $0.652$ ($-72.5\\%$). On the agentic venue MiniWoB HDM-27B cuts token cost by $80.1\\%$.",
+    "abs": "http://arxiv.org/abs/2611.16961v1",
+    "pdf": "https://arxiv.org/pdf/2611.16961v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P1",
+      "brief_summary": "论文提出「zero-or-T thinking」范式与 hybrid decision model：冻结骨干同时支持单次前向的隐式思考与完整自回归推理，由轻量 self-routing block 从隐式思考已产生的内容估计「thinking 的价值」，仅在超过按请求设定的价格 λ 时启动慢模式，并用 CDPO 从 episode 级回报训练该路由块。",
+      "relevance_reason": "其路由块以隐式推理状态为输入做成本-收益的 THINK/STOP 决策，与可变的推理预算和停止判据问题直接同构，可供核查能否迁移到 VLM 的视觉证据筛选与 latent 状态价值估计；但工作为纯文本，未涉及视觉表示。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-14T07:41:26.731132+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

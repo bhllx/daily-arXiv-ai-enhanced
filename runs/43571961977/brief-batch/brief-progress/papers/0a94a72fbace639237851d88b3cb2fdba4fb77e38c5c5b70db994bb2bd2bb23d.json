@@ -1,0 +1,74 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.15968",
+  "input_sha256": "0c01a4342b4cd2778bbf2605f7ccb77e13a4846c23e618de377f618d9a889976",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-14T07:48:57.694885+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1947,
+        "output_tokens": 981,
+        "total_tokens": 2928,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 760
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.15968",
+    "title": "DuoJEPA: Cross-Modal Translation Between Unaligned Self-Supervised Embedding Spaces",
+    "authors": [
+      "Mahmut S. Gokmen",
+      "Mitchell A. Klusty",
+      "Evan W. Damron",
+      "Caroline N. Leach",
+      "Samuel E. Armstrong",
+      "V. K. Cody Bumgardner"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "Learning from paired modalities is commonly equated with aligning them: two encoders are trained until the embeddings of a pair coincide in a shared space. We study whether cross-modal retrieval and classification can instead be obtained while the two encoders' own embedding spaces remain directly unaligned. DuoJEPA trains one encoder per modality with the self-supervised LeJEPA objective and appends to each encoder a single transformer layer that translates its embedding into the other encoder's space, supervised by a contrastive objective computed entirely within that target space. No loss term compares the two own spaces directly, although the encoders are optimised jointly through the translation objective. In our experiments, the translator's residual connections determine where the cross-modal pressure is absorbed: with a residual translator the two encoders become directly aligned, whereas with a skipless (residual-free) translator a paired-cosine test detects no alignment in the final models, and at most a weak one in the ablations, at comparable cross-modal performance. The learned class-token translation is well approximated by a single scaled rotation of the source space. We evaluate DuoJEPA on two modality pairs that differ in nearly every respect. On chest radiographs and reports from CheXpert Plus, it attains a zero-shot AUC of 86.6 and a cross-modal retrieval score of 78.5, compared with 60.0 and 64.2 for our reimplementation of LeVLJEPA with the same encoders and data. On Sentinel-2 optical and Sentinel-1 radar imagery, the frozen encoders fall within the range of published Sentinel foundation models under our reproduction of the Copernicus-Bench linear-probe protocol, the translator retrieves the paired image of the other sensor among 4,000 candidates in 77-79% of cases, and a patch-level extension transfers the within-image similarity structure of the scene.",
+    "abs": "http://arxiv.org/abs/2611.15968v1",
+    "pdf": "https://arxiv.org/pdf/2611.15968v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "DuoJEPA 为每种模态各训练一个 LeJEPA 自监督编码器，并附加单层 transformer 把本模态嵌入翻译到对方空间，只以目标空间内的对比损失监督，使两个嵌入空间保持不对齐；在胸片–报告与 Sentinel-1/2 上评估跨模态检索与零样本分类。",
+      "relevance_reason": "无残差翻译层可在跨模态性能不降的情况下避免嵌入空间对齐，这一现象可能为核查跨模态监督是否压缩视觉特有细节、以及视觉旁路与表示坍缩问题提供线索；但原文不涉及 latent 推理状态生成与停止决策，需较多核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-14T07:48:57.694885+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

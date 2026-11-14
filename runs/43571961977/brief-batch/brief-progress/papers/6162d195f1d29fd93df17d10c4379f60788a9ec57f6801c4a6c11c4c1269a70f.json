@@ -1,0 +1,72 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.15585",
+  "input_sha256": "c91c43ea733f7b5b5bc30cfaf63e5c5eef36f73768636de4afbe211e4442560f",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-14T07:51:45.270523+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1872,
+        "output_tokens": 718,
+        "total_tokens": 2590,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 498
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.15585",
+    "title": "Marginal-Preserving Coupled Diffusion Composition for Long-Horizon Planning",
+    "authors": [
+      "Hengrui Zhang",
+      "Qiyu Wang",
+      "Yuhu Cheng",
+      "Brooks Paige",
+      "Xuesong Wang"
+    ],
+    "categories": [
+      "cs.AI"
+    ],
+    "comment": "19 pages, 10 figures, 13 tables",
+    "summary": "Compositional diffusion planners extend short-horizon trajectory models to long-horizon goal-conditioned planning by generating and stitching multiple local trajectory chunks. However, in multimodal environments, local plausibility is not sufficient for global consistency: independently initialized chunks may denoise toward incompatible overlap modes, producing plans that are individually feasible but incoherent after stitching. Existing remedies typically add search, guidance, pruning, or graph-based structure at inference time, increasing computational cost or relying on task-specific machinery. We instead investigate graph-structured dependence among chunk-wise initial diffusion noises as a lightweight coordination mechanism for compositional trajectory planning. We propose \\textbf{M}arginal-Preserving \\textbf{C}oupled \\textbf{D}iffusion \\textbf{C}omposition (MCDC), a training-free inference method for pretrained compositional diffusion planners. Instead of sampling chunk noises independently, MCDC constructs coupled Gaussian initializations whose per-chunk marginals remain exactly standard Gaussian, as required by the pretrained denoiser, while neighboring chunks receive positively correlated noise components. This preserves the standard-Gaussian initialization marginal of each chunk while biasing adjacent chunks toward compatible overlap-mode choices. We prove exact marginal preservation and show, under a simple multimodal overlap model, that positive coupling increases the probability of compatible mode selection. On OGBench long-horizon stitch tasks, MCDC consistently improves over independent compositional diffusion sampling while retaining nearly the same inference time, and achieves a favorable success--cost trade-off compared with search-based composition methods.",
+    "abs": "http://arxiv.org/abs/2611.15585v1",
+    "pdf": "https://arxiv.org/pdf/2611.15585v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "提出免训练的 MCDC：不再独立采样组合式扩散规划器各轨迹块的初始噪声，而是构造正相关耦合高斯初值，使每块边际仍严格为标准高斯，从而在几乎不增加推理时间的情况下促使相邻块选择兼容的 overlap 模式；论文证明边际保持，并在简单多模态模型与 OGBench 长程拼接任务上验证。",
+      "relevance_reason": "「保持各分量边际不变、仅通过耦合初值协调多个并行生成过程」的做法，可能为并行 latent 推理片段之间的一致性协调提供免训练、低开销线索；待核查其收益是否依赖轨迹 overlap 结构与预训练去噪器假设。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-14T07:51:45.270523+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

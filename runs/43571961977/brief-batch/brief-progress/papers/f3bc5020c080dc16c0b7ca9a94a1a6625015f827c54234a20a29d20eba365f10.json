@@ -1,0 +1,72 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.16265",
+  "input_sha256": "4331568c99a0a8025b2774d1bfba8a66be491038cebed7fa877845a382b5045c",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-14T07:46:47.530145+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1815,
+        "output_tokens": 383,
+        "total_tokens": 2198,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 196
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.16265",
+    "title": "Rectified Looped Transformer",
+    "authors": [
+      "Musheng Li",
+      "Jiawei Zhang",
+      "Ziyuan Liu",
+      "Yuantao Gu"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "Looped Transformers increase effective depth by repeatedly applying a shared block, offering a parameter-efficient approach to language modeling. However, most existing works directly reuse each loop's output as the next's input, which can lead to hidden-state scale growth and perturbation amplification as recurrence deepens. We propose Rectified Looped Transformer (RLT), which redesigns feedback between loops using an interpolation schedule inspired by flow-based modeling. At each loop, RLT forms the next input by linearly interpolating between the current state and its prediction. Such interpolation distributes state changes across loops, encouraging a smoother trajectory from the initial input to the final output. Theoretical analysis proves that, under appropriate assumptions, RLT keeps state magnitudes uniformly bounded across loops and reduces the worst-case perturbation amplification. We evaluate RLT on language modeling corpora and downstream benchmarks. At matched training and inference depths, RLT consistently achieves lower perplexity than a standard looped Transformer, while exhibiting greater robustness to input perturbations and variance in inference depth. Consistent with the theoretical results, latent trajectory analysis shows that RLT maintains more stable hidden-state norms across loops, which also facilitates extrapolation-based decoding strategies. Notably, RLT achieves these gains without requiring additional trainable parameters or extra recurrent block evaluations, thus providing a simple yet more stable feedback mechanism for looped Transformers.",
+    "abs": "http://arxiv.org/abs/2611.16265v1",
+    "pdf": "https://arxiv.org/pdf/2611.16265v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P1",
+      "brief_summary": "提出 Rectified Looped Transformer，在循环块之间用受 flow 建模启发的线性插值更新下一次输入，以平滑隐状态轨迹并抑制规模增长与扰动放大，并在语言建模上分析其稳定性与深度外推。",
+      "relevance_reason": "其循环反馈中的插值式状态更新、隐状态范数稳定和推理深度外推，可为 LVR 中多轮 latent 状态更新与动态计算提供可核查的方法线索，但原文仅研究纯文本语言建模。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-14T07:46:47.530145+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

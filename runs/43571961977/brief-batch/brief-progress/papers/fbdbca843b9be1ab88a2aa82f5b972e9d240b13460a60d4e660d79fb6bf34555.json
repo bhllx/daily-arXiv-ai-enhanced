@@ -1,0 +1,71 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.15842",
+  "input_sha256": "526655c9b559561a9edcd9b9ccc7b3719b4f51db51c1cbf2c08dc23a826079e8",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-14T07:49:33.081248+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1856,
+        "output_tokens": 535,
+        "total_tokens": 2391,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 322
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.15842",
+    "title": "Fewer Expert Transfers Without Changing Routing: Expert Eviction for MoE Offloading",
+    "authors": [
+      "Pierre-Luc Bacon",
+      "Diego Calanzone",
+      "Jean-Maxime Larouche"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.DC"
+    ],
+    "comment": "AXIOM workshop (Foundations of Efficient Deep Learning) at NeurIPS 2026. 11 pages, 2 figures. Code and data: https://github.com/carbonforgeAI/moe-expert-eviction",
+    "summary": "A mixture-of-experts (MoE) language model uses only a few experts per token, so a server can keep most expert weights in CPU memory and copy an expert to the GPU when the router requests it. Recent methods train the router to keep the same experts for several tokens, and treat fewer routing switches as a proxy for fewer copies. We measure the trade-off directly, in a harness that performs and times real CPU-to-GPU copies for OLMoE-1B-7B. On an L40S GPU, every tested policy that holds an expert set fixed and decodes faster than the least-recently-used (LRU) cache increases next-token loss by at least 0.067 nats. A change that leaves every routing decision intact does better: when the cache must evict an expert, evict the one whose next use lies farthest in the future. This rule copies 2.1x fewer experts than LRU at no loss in quality and is within 3.5% of the fewest copies possible. It needs future requests; the next sixteen tokens of demand recover 96% of its reduction, whereas a rule based on counts of past requests recovers 27%.",
+    "abs": "http://arxiv.org/abs/2611.15842v1",
+    "pdf": "https://arxiv.org/pdf/2611.15842v1",
+    "AI": {
+      "category": "EXCLUDE",
+      "priority": "NONE",
+      "brief_summary": "在真实 CPU-to-GPU 拷贝的计时环境下，系统测量 OLMoE-1B-7B 的 MoE 专家缓存策略在拷贝次数与语言建模质量间的取舍，并提出按「最远未来使用」驱逐专家的规则以在不改路由的前提下减少拷贝。",
+      "relevance_reason": "该工作只优化 MoE 专家权重的显存换入换出与缓存驱逐，不涉及视觉或多模态推理状态、证据筛选与推理期决策；其中「预测未来请求」仅指显存预取需求，与 LVR 的推理状态或计算分配无可核查的具体迁移线索。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-14T07:49:33.081248+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

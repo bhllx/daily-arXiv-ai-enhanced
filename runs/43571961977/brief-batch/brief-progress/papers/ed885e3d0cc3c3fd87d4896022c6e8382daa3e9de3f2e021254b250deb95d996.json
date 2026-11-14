@@ -1,0 +1,74 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.17152",
+  "input_sha256": "b21662922b93f7a6b8a0d78f5f5bdc4e5d1e2093867412717cc6a5fe6fbb3a5d",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-14T07:40:13.395484+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 2023,
+        "output_tokens": 541,
+        "total_tokens": 2564,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 323
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.17152",
+    "title": "AeroZoo: A Benchmark of Well-Posed Flow Problems for Foundation Models of Aerodynamics",
+    "authors": [
+      "Peter Sharpe",
+      "Carmelo Gonzales",
+      "Corey Adams",
+      "Mehdi Ataei",
+      "Sanjay Choudhry"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.CE",
+      "physics.flu-dyn"
+    ],
+    "comment": "35 pages, 13 figures, 23 tables. Lead authors: Peter Sharpe and Carmelo Gonzales. Companion paper to \"ISLA: A Coordinate-Free, Measure-Weighted Transformer for Boundary-Driven PDEs\" (Sharpe, 2026). Dataset to be published shortly at https://huggingface.co/datasets/nvidia/AeroZoo",
+    "summary": "Neural surrogates for computational fluid dynamics (CFD) are trained and ranked on datasets that each vary one design family in one flow domain. Such datasets cannot test the least that an aerodynamic foundation model must do: predict CFD-quality incompressible flow in seconds for new shapes in new enclosures. On DrivAerML, larger models and longer training barely lower Transolver's error; doubling the training cases cuts it by about 12% up to 400 cases, exhausting the dataset. We introduce AeroZoo, a benchmark and training corpus of 3,815 time-mean solutions to the unsteady Reynolds-averaged Navier--Stokes (RANS) equations with a transition model, across seven geometry families, eight enclosure configurations and Reynolds numbers from $10^3$ to $10^8$. Each sample poses a well-posed PDE problem in the form a solver receives it: the boundary meshes grouped by condition type, the prescribed values and the fluid properties. The 2,816 samples with a stable time mean form the canonical benchmark: two tasks, engineering metrics and 22 frozen splits, disjoint in geometry, that hold out geometry families, enclosures, boundary-condition layouts and Reynolds ranges. On the random split, boundary-condition tokens cut GeoTransolver's median velocity error from 76.9% to 8.4% of the inlet speed in single-seed runs (uniform inlet flow: 11.0%). ISLA, a transformer for boundary-driven PDEs, reaches 5.3% over four seeds, about 4 times the change from a finer mesh. On the same test samples, a held-out geometry family barely changes ISLA's error relative to uniform flow, and a held-out enclosure or boundary-condition layout raises it 2.4 to 9.2 times. The data and the scoring code will be released.",
+    "abs": "http://arxiv.org/abs/2611.17152v1",
+    "pdf": "https://arxiv.org/pdf/2611.17152v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "该论文提出 AeroZoo，一个包含 2,816 个稳定时均 RANS 解、覆盖多几何族与边界条件配置的空气动力学基准，并提供按几何族、外罩、边界条件布局与雷诺数划分的 22 组冻结切分及评测代码。",
+      "relevance_reason": "其把边界条件作为显式 token 条件、并以留出几何族／边界布局的切分检验模型是否真正使用给定条件而非先验，可能与 LVR 中「视觉证据是否被内部状态实际使用」的因果归因与分布外评测思路相互借鉴，需进一步核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-14T07:40:13.395484+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

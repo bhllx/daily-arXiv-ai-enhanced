@@ -1,0 +1,72 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.15895",
+  "input_sha256": "7e54dd63a9509afdf398e9043a942c93b3f8e287aca5e9bd4bd00a365591afa9",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-14T07:49:20.132722+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1936,
+        "output_tokens": 806,
+        "total_tokens": 2742,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 574
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.15895",
+    "title": "Your Hypergradient is Skewed: Antithetic Neumann Estimation for Bilevel Optimization",
+    "authors": [
+      "Jason Bohne",
+      "Pawel Polak",
+      "Gary Kazantsev",
+      "David Rosenberg"
+    ],
+    "categories": [
+      "cs.LG",
+      "math.OC"
+    ],
+    "comment": "Accepted at NeurIPS 2026",
+    "summary": "Bilevel optimization is a core tool in practical machine learning workflows, including hyperparameter tuning, data reweighting, robust learning, reinforcement learning, and imbalanced classification. Hypergradient computation requires the inverse of the inner Hessian, typically estimated via a truncated Neumann series. While existing analyses focus on bias and variance, we show that the product structure of the Neumann series introduces a third source of error: skewness. We identify that, unlike ordinary gradients, whose asymmetry is suppressed by mini-batch averaging, the Neumann estimator amplifies skewness across factors, with the third-moment error growing, under weak contraction, with truncation depth, inner condition number, and per-factor noise asymmetry. This arises in many practical settings such as corrupted labels, outliers, heterogeneous or class-imbalanced datasets. To address this, we introduce the Antithetic Neumann Estimator (ANE), which pairs each Hessian sample with a mirrored counterpart around a reference Hessian and averages the resulting inverse-Hessian estimates. With an exact reference, the antithetic product retains only even-order noise, eliminating all odd-order perturbation terms; with an approximate reference, the residual odd-order contribution is bounded linearly in the reference error. ANE requires only a modification of the Hessian vector step and combines with existing stochastic or variance-reduced bilevel methods. We instantiate ANE-SGD and ANE-VR, the latter adding recursive variance reduction. Across robust regression, data cleaning, offline reinforcement learning, and imbalanced classification, ANE-based methods improve on stochastic and variance-reduced baselines on every task (20 seeds each), lowering loss by 4 to 25% relative to the best baseline; the largest gains, on robust regression, are a 25% lower test loss and a 54% higher test r-squared.",
+    "abs": "http://arxiv.org/abs/2611.15895v1",
+    "pdf": "https://arxiv.org/pdf/2611.15895v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "该论文研究双层优化中 hypergradient 的估计误差，指出截断 Neumann 级数的乘积结构会放大三阶噪声（skewness），并随截断深度、内层条件数与各因子噪声不对称性增长；据此提出 Antithetic Neumann Estimator，用围绕参考 Hessian 的镜像样本配对平均，只需改动 Hessian-vector 步，可嵌入随机与方差缩减方法。",
+      "relevance_reason": "其「截断迭代估计中噪声偏度随深度累积、可用镜像配对抵消奇阶项」的分析与做法，可能为循环式 latent 状态更新中的深度相关误差累积与稳定化提供可核查的借鉴线索；与视觉推理本身无直接关系。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-14T07:49:20.132722+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

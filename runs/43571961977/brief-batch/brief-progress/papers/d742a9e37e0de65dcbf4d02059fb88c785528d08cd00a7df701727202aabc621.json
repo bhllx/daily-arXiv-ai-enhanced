@@ -1,0 +1,76 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.15146",
+  "input_sha256": "e84c1e90731b864e2eee90119caedc0f48d34e2161066f09ff50be79e1f96860",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-14T07:55:39.258633+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1884,
+        "output_tokens": 572,
+        "total_tokens": 2456,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 331
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.15146",
+    "title": "Reframing Video Inverse Tone Mapping as Blind Posterior Inference via Latent Luminance Supervision",
+    "authors": [
+      "Hanwool Sul",
+      "Chang-Hoon Jeong",
+      "Kisung Shin",
+      "Bomseok Park",
+      "Donghoon Cha",
+      "Hansl von Kwon",
+      "DoHyung Ku",
+      "Byoung-Tak Zhang"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "High-dynamic-range (HDR) displays are now common, but most video content, such as archival footage, broadcast material, and the output of generative video models, exists only in standard dynamic range (SDR). The need is sharpest for generated video, which has no HDR master at all and is graded alongside live-action and visual-effects material finished in HDR. Converting SDR to HDR means undoing a tone-mapping operation that was never recorded, and clipping destroys the radiance wherever it acts, so HDR recovery is a blind inverse problem. Methods built on generative video priors fill clipped regions with plausible structure, but their reconstructions are systematically biased: in every public method we test, saturated content leans too bright or too dark, and the direction of the lean moves with the tone operator behind the input. We call this failure the luminance error, measure both its magnitude and its sign, and make it the focus of this work. Reframing ITM as posterior inference under an unknown operator locates the failure in two places and yields two corrections. A fixed affine functional of the video-diffusion latent reads log-luminance without decoding; on that coordinate an asymmetric loss selects an expectile of the posterior, applied only where clipping leaves luminance unconstrained. We also synthesize training SDR through an explicit family of tone operators, so the model marginalizes over what the observation cannot show. Trained this way, our luminance error stays flatter across operators and smaller on average than any public method, and the full system achieves the best perceptual quality on all three benchmarks.",
+    "abs": "http://arxiv.org/abs/2611.15146v1",
+    "pdf": "https://arxiv.org/pdf/2611.15146v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文把 SDR 视频逆色调映射重构为未知算子下的盲后验推断，指出已有生成先验方法存在「亮度误差」且方向随色调算子漂移，并用视频扩散 latent 上的固定仿射泛函直接读取 log 亮度，配合仅在裁剪区域生效的非对称 expectile 损失，以及显式色调算子族合成训练数据来校正。",
+      "relevance_reason": "不经解码从扩散 latent 的仿射坐标读出任务必要的亮度量、并以非对称损失表达后验不确定性，可能为 LVR 中「答案是否用到 latent 视觉内容」与欠定视觉证据下的监督提供可核查的探针式与损失设计线索，但需核实该读出是否真正约束内部状态而非仅作辅助正则。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-14T07:55:39.258633+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

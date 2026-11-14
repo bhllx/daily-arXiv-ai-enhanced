@@ -1,0 +1,84 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.16301",
+  "input_sha256": "e04ba32944d94db71d8eb4e64966354ff2129d4a50bc099ee21c231da6e78d8a",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-14T07:46:39.560692+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1920,
+        "output_tokens": 406,
+        "total_tokens": 2326,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 211
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.16301",
+    "title": "LoCoJAX: Host-Local Coordination for Small-Model RL on TPUs",
+    "authors": [
+      "Loki Chen",
+      "Gregory B. Rehm",
+      "Yang Song",
+      "Hongye Xie",
+      "Ming Lei",
+      "Chongyang Bai",
+      "Bob Kamma",
+      "Mingfu Liang",
+      "Kavosh Asadi",
+      "Yufei Li",
+      "Xi Liu",
+      "Jay Xu",
+      "Rui Liu",
+      "Maziar Sanjabi",
+      "Luke Simon",
+      "Hamed Firooz"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.DC"
+    ],
+    "comment": null,
+    "summary": "Reinforcement learning (RL) increasingly targets small language models, and executing these workloads efficiently across multiple accelerators requires effective coordination. On TPUs, Pathways-based RL uses a single controller to coordinate computation across hosts. This execution model is effective for large models, but its coordination computational costs are harder to amortize when small models repeatedly invoke short computations. To characterize these computational costs, we sweep dense models from 0.6B to 405B parameters on TPU v7x under a decode-heavy workload and measure how host and network computational overhead vary with model size. At 0.6B, host orchestration occupies 36% of step time and network communication 2%, whereas for large models, estimated network computational costs dominate the non-compute time. Motivated by these findings, we present Local Coordination JAX (LoCoJAX), which implements local rollout and reward processing on each TPU host with synchronous global training. In controlled comparisons against a tuned and optimized Pathways baseline on Qwen3-0.6B across three workloads and 8-64 TPU v7x chips, its colocated mode (LoCoJAX-CO) is 1.3-3.6x faster per step; on GSM8K, it completes a step faster on 8 chips than Pathways does on 64. Finally, a Ray-managed disaggregated mode (LoCoJAX-DA) overlaps rollout and training on separate hosts, and placement experiments establish when this overlap compensates for dividing devices and transferring weights: only when rollout dominates the step and receives most of the hosts. On NuminaMath-CoT at 256 chips, giving rollout 75% of hosts cuts step time by about 15% compared with LoCoJAX-CO.",
+    "abs": "http://arxiv.org/abs/2611.16301v1",
+    "pdf": "https://arxiv.org/pdf/2611.16301v1",
+    "AI": {
+      "category": "EXCLUDE",
+      "priority": "NONE",
+      "brief_summary": "该工作针对小模型 RL 在 TPU 上的执行效率，剖析 Pathways 单控制器协调在 0.6B–405B 规模下的主机编排与网络开销，并提出在每台 TPU 主机本地完成 rollout 与奖励处理的 LoCoJAX（共置与分离两种模式）。",
+      "relevance_reason": "内容属于分布式训练系统与吞吐优化，未涉及视觉证据、latent 状态生成或推理停止决策，与 LVR 的状态、证据与决策主线无具体可核查联系。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-14T07:46:39.560692+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

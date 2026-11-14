@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.16498",
+  "input_sha256": "7458402edfea09b24ca92fe716f72a2635f62104030f744290db1e3901af35f4",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-14T07:44:30.529754+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 2077,
+        "output_tokens": 530,
+        "total_tokens": 2607,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 328
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.16498",
+    "title": "How many LLM-labelled rows does a decision encoder need, and how wrong can the labels be?",
+    "authors": [
+      "Mohammed Nayeem Khan",
+      "Aliyas Ahmad Misri"
+    ],
+    "categories": [
+      "cs.AI"
+    ],
+    "comment": "24 pages, 20 figures, 15 tables",
+    "summary": "A decision encoder such as Laya reads a question with named options (for example, which department should handle a ticket) and a text, and picks an option. It reads both in one forward pass and returns a probability for every option, without writing any text. We ask how many LLM-written training rows such an encoder needs and how wrong those labels may be. We ran 19 fine-tunes of Laya (ModernBERT-large) on nested subsets of a 2,818-row pool and scored them on 1,065 held-out items from the same generator, so every test item is in-distribution and no out-of-family test was run. Accuracy rises from 69.4% before fine-tuning to 74.3% with 5% of the rows, 84.8% with 50% and 86.9% with all rows. The curve flattens, and a saturating fit with bootstrap intervals cannot pin down its plateau. Seed spread at 20% of the rows (s.d. 1.6 points) exceeds some of the steps between sizes. Giving small subsets as many updates as the full pool gains 1.9 points at 5% and 1.9 points at 20% of the rows (one seed; p=0.14 and 0.13), and at 20% that is below the 2.3-point difference between two ordinary seeds. A single run with 10% symmetric label noise shows no detectable change (-0.2 points, 95% interval -1.7 to +1.4); 20% costs 3.4 points and 40% costs 8.7 points. Confusable-pair noise at 20% costs 7.4 points, and under noise the model moves from over-confident to under-confident. An independent labeller disagrees with the gold labels on 3.5% of held-out items, and about half of its choice disagreements (16 of 33, leaving each item out of the partner map) name the partner option that the confusable-pair noise uses. Laya is +0.9 points ahead of a TF-IDF classifier trained on the same rows at full size (the interval includes zero) and +21.1 points ahead at 5% of the rows. Everything is synthetic, LLM-labelled and from one backbone, one trainer and mostly one seed.",
+    "abs": "http://arxiv.org/abs/2611.16498v1",
+    "pdf": "https://arxiv.org/pdf/2611.16498v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "该文用 19 次 Laya（ModernBERT-large）微调，在嵌套子集上考察「单次前向、无文本生成、对命名选项输出概率」的决策编码器需要多少 LLM 标注行，以及对称标签噪声与混淆对噪声对准确率的影响。",
+      "relevance_reason": "其标注规模与标签噪声下的性能曲线、噪声导致的过度自信转向欠自信，可供核查 LVR 训练中监督预算与标签质量对隐式状态学习的约束，但任务本身是固定选项分类，与主线无直接关系。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-14T07:44:30.529754+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

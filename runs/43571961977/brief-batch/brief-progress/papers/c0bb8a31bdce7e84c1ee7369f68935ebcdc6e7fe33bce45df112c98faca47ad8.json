@@ -1,0 +1,72 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.15216",
+  "input_sha256": "6c96a2302fb6c0f7a1d65d75890cc2389d0b1f6d677008cccbafb839f01b4942",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-14T07:54:50.593653+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1927,
+        "output_tokens": 559,
+        "total_tokens": 2486,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 321
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.15216",
+    "title": "Where is My Mug? Training-Free Framework for Personalized Image Segmentation",
+    "authors": [
+      "Quang Qui-Vinh Nguyen",
+      "Hung Nguyen",
+      "Rang Nguyen",
+      "Khoi Nguyen"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "\\textbf{Personalized Image Segmentation (PIS)} aims to segment the specific object in a target image that matches a user-provided reference. Unlike category-based segmentation or few-shot segmentation, PIS must discriminate between multiple visually similar instances, a requirement central to deployed applications such as augmented reality, personalized content editing, robotics manipulation, inventory tracking, and fine-grained visual retrieval. We show that the strong numbers reported by existing PIS methods are largely an artifact of single-instance benchmarks: when evaluated on realistic scenes with several same-category look-alikes, prior point-prompt methods collapse, because the correct instance is frequently never surfaced as a prompt. We trace this to a recall bottleneck rather than a mask-quality one, and address it with a training-free, modular system. The pipeline first generates high-recall object proposals using an off-the-shelf class-agnostic detector, then matches each proposal to the reference using foundation-model features (e.g., BLIP-2), and finally refines the selected box with SAM. For robust matching we propose \\textbf{top-$K$ Sinkhorn}, a patch-level distance that scores each candidate only on its most confidently matched patches; trimming the Sinkhorn dual potentials recovers the robustness of partial optimal transport at more than $100\\times$ lower cost, keeping it inside the per-proposal candidate loop. To evaluate this regime, we introduce \\textbf{\\datasetname}, a realistic multi-instance benchmark. Across \\datasetname, PerSeg, PerMIS, and DAVIS, our system surpasses PerSAM, $\\mathrm{P}^2\\mathrm{SAM}$, and PDM by up to $\\sim\\!48$ mIoU while matching their runtime and using fewer parameters, establishing a strong, deployable training-free baseline for real-world personalized segmentation.",
+    "abs": "http://arxiv.org/abs/2611.15216v1",
+    "pdf": "https://arxiv.org/pdf/2611.15216v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文研究个性化图像分割：指出以往方法在多实例相似场景下的高分源自单实例基准，真实失败源于「正确实例未被提为候选」的召回瓶颈，进而提出免训练流程（类别无关检测器生成高召回提案、BLIP-2 特征匹配、top-K Sinkhorn 打分、SAM 细化）并构建多实例基准。",
+      "relevance_reason": "其「先高召回生成候选、再用 patch 级 top-K Sinkhorn 与参考匹配筛选」的流程及召回而非掩码质量是瓶颈的诊断，可能为 LVR 的视觉证据筛选、候选未被暴露即失败及相似度中内容与位置因素提供核查线索，但论文本身不涉及 latent 推理状态或生成机制。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-14T07:54:50.593653+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

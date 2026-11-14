@@ -1,0 +1,68 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.15965",
+  "input_sha256": "0a6051e2a654cf376a2b1248416ce86dde5cd4b809538b79127f66e8041549ac",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-14T07:49:01.039274+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1959,
+        "output_tokens": 615,
+        "total_tokens": 2574,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 385
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.15965",
+    "title": "PhysICL: In-Context Learning of Physical Fields on Unstructured Meshes from Procedural Priors",
+    "authors": [
+      "Fabien Casenave"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Engineering design studies produce a few tens to a few hundred simulations of one problem, each on its own mesh, and their surrogates are retrained for every study. Tabular foundation models instead infer a new task from its examples in one forward pass, after pretraining on synthetic tasks. We demonstrate the feasibility of in-context learning for physical field prediction on unstructured meshes. A single model, PhysICL, pretrained solely on procedural tasks, predicts fields, with quantiles, directly on each query mesh from labeled simulations, without updating its weights. The same checkpoint accepts variable numbers of context examples, scalar inputs and input fields, and any number of output fields, while mesh size and connectivity can vary within a task. Its procedural prior draws generic laws and boundary-element physical models on morphed 2D and 3D template meshes, evaluated only at the points the model samples, fast enough that tasks generated on the fly by CPU workers keep the GPUs busy throughout pretraining. On five PLAID datasets never seen in pretraining, its field error decreases as the context grows and, from $K = 32$, is below that of the nearest context simulation on every dataset and context draw. It is on par with per-dataset reduced-order models on two of them, behind them where the fields are low-rank. On AhmedML surfaces with a median of 1.1 million nodes, twenty times the largest pretraining mesh, its fixed spatial budgets keep the peak GPU memory at $K = 64$ at 4.27 GiB, against 4.07 GiB on the 6,000-node meshes of 2D\\_MSHE. Finally, on 2D\\_MSHE, far from the prior, fine-tuning on procedural tasks that reproduce its geometry and loads, without any of its outputs, at a tenth of the pretraining cost, divides the stress error by 2.7.",
+    "abs": "http://arxiv.org/abs/2611.15965v1",
+    "pdf": "https://arxiv.org/pdf/2611.15965v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "PhysICL 提出在非结构网格上做物理场预测的单一模型：仅用程序化生成的任务预训练，推理时通过上下文中的少量带标签仿真，在单次前向中直接输出场及其分位数，不更新权重，并支持可变示例数量、网格规模与输入输出场数。",
+      "relevance_reason": "其「以少量示例在前向中条件化推断、并输出分位数」及变长网格下固定显存预算的做法，可能为 LVR 中视觉证据筛选、上下文条件状态更新与推理成本核算提供参照线索，但该文属科学计算代理模型，无视觉—语言推理机制，联系需较多核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-14T07:49:01.039274+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

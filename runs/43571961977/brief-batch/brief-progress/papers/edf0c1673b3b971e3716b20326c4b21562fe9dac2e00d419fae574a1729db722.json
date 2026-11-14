@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.15572",
+  "input_sha256": "40f6c8b1fb423130c7965ee26be471c47d389b41f44bb47fdd13500420062b52",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-14T07:51:58.651596+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 2053,
+        "output_tokens": 495,
+        "total_tokens": 2548,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 281
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.15572",
+    "title": "Learning a calibrated decision head from logged bandit feedback",
+    "authors": [
+      "Ye Yuan"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.CL"
+    ],
+    "comment": "40 pages, 6 figures. Code at https://github.com/yuan-phd/jevmark (tag v5-paper); adapters at https://huggingface.co/yuanphd/jevmark; logs and per-record results at https://huggingface.co/datasets/yuanphd/jevmark-runs",
+    "summary": "A decision head reads a state and a list of options and returns a probability per option in one forward pass. Once deployed, it usually observes only whether the option it chose was right: logged bandit feedback. We adapt such a head, LoRA on Qwen3-0.6B-Base and 1.7B-Base, from that feedback and report three results. First, the Brier or log score of the sampled action's own probability is not a usable REINFORCE reward: every wrong action earns at least gold's reward, with a mean baseline the lowest-probability wrong action gets the largest advantage, and at two options the signal is zero; in one run it cut accuracy on ordered-scale questions from .636 to .111. Scoring the probability as a loss by the pathwise gradient avoids the collapse, as do the REINFORCE rewards r and r minus p. Second, with full labels, none of four tested bandit arms beat cross-entropy plus one temperature on mean expected calibration error (ECE) over four unseen label schemas. Third, from logged feedback alone, Chosen-Action Proper Scoring (CAPS), the direct method with a proper score on the chosen action's probability, beats fine-tuning on confirmed answers only, which discards negatives: on Banking77 by 2.6 accuracy points, .053 lower ECE and lower selective risk (three seeds against one baseline seed), and by 21.7 points on one seed on emotion data with an often-wrong logger. At N 5000, CAPS stays 1.5 points below full-label training at 0.6B and .6 points at 1.7B against one full-label seed, and propensity weights add nothing on this log. Under feedback flipped at a known rate, one seed per rate, CAPS's confidence tracks the noisy channel on average, backward correction recovers most of the clean calibration, and early stopping on held-out logged outcomes prevented memorising noisy draws in all three runs. Code, adapters, logs and per-record results are public.",
+    "abs": "http://arxiv.org/abs/2611.15572v1",
+    "pdf": "https://arxiv.org/pdf/2611.15572v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文研究如何仅凭已记录的选择反馈（bandit 日志）校准一个读取状态与选项列表、单次前向输出各选项概率的决策头，在 Qwen3-0.6B/1.7B 上用 LoRA 比较多种 bandit 目标与「所选动作恰当评分」（CAPS）。",
+      "relevance_reason": "其「把恰当评分当作奖励会崩溃、而当作损失可避免」「仅有部分反馈时校准置信度」的结论，可能为 LVR 中 STOP/验证头的监督与奖励设计提供可核查线索，但论文本身不涉及视觉或多模态推理。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-14T07:51:58.651596+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

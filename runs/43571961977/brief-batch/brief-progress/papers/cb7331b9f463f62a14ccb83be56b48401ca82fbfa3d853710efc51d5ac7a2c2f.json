@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.16499",
+  "input_sha256": "9d9d1367fb2d972bea9e529e5985b7b3802473c322ddf421d790a6d3484a4093",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-14T07:44:25.477859+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 2045,
+        "output_tokens": 629,
+        "total_tokens": 2674,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 348
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.16499",
+    "title": "Recalibrating a Typed-Decision Model in an Afternoon: A Hands-On Recipe for Laya's Confidence Scores",
+    "authors": [
+      "Mohammed Nayeem Khan",
+      "Aliyas Ahmad Misri"
+    ],
+    "categories": [
+      "cs.AI",
+      "cs.SE"
+    ],
+    "comment": "25 pages, 21 figures, 16 tables",
+    "summary": "A typed-decision model such as Laya reads a text and a list of options that the caller defines, for example ticket categories, and returns a probability for each option. Code around it compares the top probability with a threshold to answer, abstain or escalate to a person. Earlier work reports, for a Turkish model, that temperature scaling can raise held-out calibration error (ECE). This tutorial gives a five-step recipe (measure, diagnose, fit, validate, deploy) in 130 lines of numpy with standard methods, none new. On 1,065 synthetic, LLM-labelled items the released Laya checkpoint has a pooled ECE of 0.073 but a bucket-macro ECE of 0.143 (0.127-0.184), the mean over buckets (questions grouped by type and option count): the 12-option bucket is over-confident by +0.22, the three-to-five-option bucket under-confident by 0.05, and they cancel. One global temperature makes pooled ECE worse (0.173); a cross-fitted temperature per bucket brings macro-ECE to 0.073 (0.078 over 10 fold assignments) and reaches 0.089 with 10 labelled items per bucket, but holding out one of seven evaluation sets gives 0.099. After the refit, a gate aimed at 10% error answers 46.3% of items (10.5% wrong) against 6.9% on the published confidences, but one cut-off per bucket on the published confidences answers 45.4%, so most of the gain comes from separating buckets. Confidence-only maps (Platt, histogram, isotonic) need 20 or more labelled items per bucket to approach the temperature; with 320 per bucket the lowest macro-ECE belongs to Platt. In these files the retrained checkpoints store no per-bucket table and the stored 12-option value 0.1006 is clamped to 0.5 at runtime; the refit helps 31 of 33 checkpoints on random folds and 21 with a set held out. Fit and test share one generator and LLM labels, so these are findings about these checkpoints and this data.",
+    "abs": "http://arxiv.org/abs/2611.16499v1",
+    "pdf": "https://arxiv.org/pdf/2611.16499v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文给出一份五步校准配方（测量、诊断、拟合、验证、部署），用约 130 行 numpy 在合成 LLM 标注数据上诊断 Laya 这类「文本＋候选选项」类型决策模型的置信度：汇总 ECE 为 0.073，但按「问题类型＋选项数」分桶的宏平均 ECE 达 0.143，全局温度反而使汇总 ECE 变差，分桶交叉拟合温度可将宏 ECE 降到 0.073 左右，并明显提高按 10% 错误率设门控时的作答比例。",
+      "relevance_reason": "分桶校准及由阈值触发的作答／弃答／转人工，可能为 LVR 中「STOP」决策的置信度校准与停止阈值设定提供可核查线索；但该工作为纯文本分类校准、无视觉或多模态推理状态，属方法借鉴而非直接竞争。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-14T07:44:25.477859+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

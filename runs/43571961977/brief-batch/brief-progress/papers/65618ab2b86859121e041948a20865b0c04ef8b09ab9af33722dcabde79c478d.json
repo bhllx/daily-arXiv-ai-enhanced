@@ -1,0 +1,71 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.16523",
+  "input_sha256": "c64946d2416812bf401bb6ec8d31fa8d60e72082399f7a6738d6683701302951",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-14T07:44:13.106613+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1846,
+        "output_tokens": 479,
+        "total_tokens": 2325,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 264
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.16523",
+    "title": "RESYNC: Residual Latent-State Synchronization for Deadline-Bound Streaming Inference",
+    "authors": [
+      "Eljas Linna",
+      "Hao Dong",
+      "Juho Kanniainen"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "Predicting every observation in a high-rate stream requires a model to finish before the next arrival. A large model may offer better predictions but miss that deadline. We propose RESYNC: the large model runs asynchronously, while a fast path updates its latest exact but stale latent state using the observations received since that state was computed and applies its unchanged prediction head. The updater learns from the frozen model's representations without task labels. Across one real and two synthetic streams and five architecture families, RESYNC beats the best compact or distilled alternative with a paired 95% interval above zero in all twelve dataset--architecture pairs with a material teacher advantage at anchor ages of 4--12 observations, and in eleven pairs at older tested ages up to 32. The share of the teacher's gain preserved remains complete on the real stream but is lower and generally declines with anchor age on the synthetic streams. In live replay with 1 ms arrivals, the synchronous large models cannot deliver any predictions on time while RESYNC serves at least 99.4% of arrivals within the interval, with 0.35--0.62 ms median latency on one CPU thread: around the same speed as or faster than the compact model, and 7.9--17.7$\\times$ faster than synchronous large-model inference. RESYNC targets settings with background compute available but a strict per-observation response deadline.",
+    "abs": "http://arxiv.org/abs/2611.16523v1",
+    "pdf": "https://arxiv.org/pdf/2611.16523v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "RESYNC 让大模型异步运行，用距上次计算后新到达的观测，通过一个无任务标签、仅学习冻结模型表示的小型更新器刷新其过时 latent state，再沿用原预测头，在流式数据截止时间内给出预测。",
+      "relevance_reason": "论文核心是「冻结大模型的 stale latent state 如何被廉价地增量同步以适配时延预算」，可能为 LVR 中新视觉证据到达时如何低成本更新推理状态、以及 THINK/LOOK 的计算成本权衡提供可核查线索，但论文并不涉及多模态推理或 latent 推理生成，迁移需自行判断。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-14T07:44:13.106613+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

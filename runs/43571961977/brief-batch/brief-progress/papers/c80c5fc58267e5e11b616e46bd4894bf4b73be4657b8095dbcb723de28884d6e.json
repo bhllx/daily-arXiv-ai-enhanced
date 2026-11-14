@@ -1,0 +1,68 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.15592",
+  "input_sha256": "e2942cca8b37b2526ab2e34803d16361a0b3f16d7ac04bff064992a350f099a6",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-14T07:51:43.975804+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1955,
+        "output_tokens": 600,
+        "total_tokens": 2555,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 360
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.15592",
+    "title": "Small Heads, Strong Decisions: A Controlled Study of Typed-Decision Models",
+    "authors": [
+      "Ritvik Rastogi"
+    ],
+    "categories": [
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "In September 2026, TypeSafe announced Jev as the first model in its System One category: unstructured state goes in, and typed, calibrated decisions that software can use directly come out. Jev's architecture and training data are unpublished, but many open typed-decision models have followed, including Nimble, the Decision 1.0--3.0 family and Clef. They answer structured questions about a piece of text, such as a yes/no check, a choice among labelled options or a graded score, by reading the text with a language model and scoring the options with a small readout. Each pairs a different readout with a different backbone, training mix and recipe, so it is unclear which design choices matter. We re-implement five readouts and train all of them under one protocol: the same backbone, the same 15 public English training sources, the same recipe with a per-head learning-rate sweep, and the same seed. Our experiments demonstrate that: The complexity of the head does not affect accuracy: on Qwen3-0.6B every readout reaches 81.3--82.0\\% in-domain accuracy, and a 0.5M-parameter cosine head, which scores each option by its cosine similarity to the question, matches the 27M-parameter joint schema head adapted from Clef in-domain at half its inference time. Reading all of a text's questions from one prompt also matches one prompt per question in accuracy, with 1.6 times faster inference and 2.1--2.5 times faster training on one H100. The backbone's size matters more than either choice: moving from Qwen3-0.6B to Qwen3-4B adds 4 points in-domain and 11 points on held-out sources, while the base, instruct and thinking checkpoints of the same model tie. We recommend spending effort on the backbone and keeping the head minimal.",
+    "abs": "http://arxiv.org/abs/2611.15592v1",
+    "pdf": "https://arxiv.org/pdf/2611.15592v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "该文在统一协议（同一 backbone、15 个英文训练源、同一 recipe 与 seed）下重新实现五种 typed-decision readout，比较读出头复杂度、把整段文本的多个问题放进同一 prompt、以及 backbone 规模对准确率和推理/训练耗时的影响，发现读出头复杂度基本不影响精度而 backbone 规模影响最大。",
+      "relevance_reason": "其「极小读出头即可从隐藏状态读出校准决策」的结论可能为判断 latent 状态是否保留任务必要信息、以及区分读出头容量与表示质量提供诊断线索；单 prompt 批量提问的设定也可供核查 latent 证据复用与缓存、注意力结构带来的成本差异。研究方法与视觉多模态推理无直接关系，故仅作方法线索。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-14T07:51:43.975804+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

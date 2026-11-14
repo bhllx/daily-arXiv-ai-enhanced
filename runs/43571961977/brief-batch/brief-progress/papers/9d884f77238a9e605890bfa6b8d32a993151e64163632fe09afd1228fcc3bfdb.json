@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.14659",
+  "input_sha256": "b19d9dc7dc15e1bcf215964bd6b6cdf3b07e48115b50f747e47f761c0b0c6ee2",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-14T07:59:27.055472+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1879,
+        "output_tokens": 651,
+        "total_tokens": 2530,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 416
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.14659",
+    "title": "Closing the Loop: Co-Evolving EM for Irregular Time Series Generation in Lifted Representations",
+    "authors": [
+      "Idan Arbiv",
+      "Gal Fadlon",
+      "Omri Azencot"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": "Accepted to NeurIPS 2026; The first two authors contributed equally and are co-leading authors",
+    "summary": "Regular time-series generation from irregular time series is typically reduced to one-shot imputation: complete each partial sequence once, freeze the completions, and train a generator on the resulting surrogate dataset. We show that this open-loop strategy is structurally flawed. Point imputers collapse ambiguous missing regions to conditional averages, while stochastic imputers become stale as the generator evolves; the binding constraint is therefore iteration, not imputer design. We introduce a co-evolving Monte Carlo EM framework that closes the imputer-generator loop. Each E-step samples missing values from the posterior of the current generator, and each M-step retrains the generator on these completions, preserving unconditional generator training. Since our diffusion prior operates in a lifted 2D representation while observations live in time-series space, we further introduce Posterior Sampling for Lifted Representations (PSLR), which enforces operator-consistent conditioning, uncertainty preservation, and manifold consistency during the E-step. Across ten datasets and four corruption regimes, our method achieves state-of-the-art performance, improving over the strongest baselines by 59% in discriminative score, 15% in predictive score, 73% in Context-FID, and 71% in feature-correlation error. Ablations show that our approach reduces average discriminative score by 73% over single-step baselines, closing most of the remaining gap to the clean-data oracle. Code is available at https://github.com/azencot-group/PSLR.",
+    "abs": "http://arxiv.org/abs/2611.14659v1",
+    "pdf": "https://arxiv.org/pdf/2611.14659v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文指出把不规则时间序列生成化为一次性插补的开环做法有结构性缺陷，提出协同演化的蒙特卡洛 EM 框架：E 步从当前生成器后验采样缺失值，M 步据此重训生成器；并设计 PSLR，在 lifted 二维表示中做满足算子一致性与流形一致性、保留不确定性的后验采样，在十个数据集上优于基线。",
+      "relevance_reason": "在潜在表示中做后验采样并约束流形一致性，可能为视觉证据注入 latent 状态、避免退化为条件均值式坍缩提供方法线索；「插补器随生成器演化而陈旧」的观察也提示 latent 轨迹训练中目标陈旧的问题，可供核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-14T07:59:27.055472+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

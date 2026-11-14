@@ -1,0 +1,71 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.15091",
+  "input_sha256": "be69564697c1a7c93707317c9b6cf18b23518c3f45b98e9204533ab85aee5267",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-14T07:56:09.883450+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1877,
+        "output_tokens": 738,
+        "total_tokens": 2615,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 531
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.15091",
+    "title": "Advancing Weighted Partial MaxSAT Solving via Differentiable GPU Guidance",
+    "authors": [
+      "Mingju Liu",
+      "Curie Kim",
+      "Steve Dai",
+      "Cunxi Yu"
+    ],
+    "categories": [
+      "cs.AI"
+    ],
+    "comment": "13 pages, 6 figures",
+    "summary": "We present a GPU-CPU hybrid framework for Weighted Partial MaxSAT (WPMAX-SAT) that complements state-of-the-art CPU solvers with differentiable GPU optimization. The GPU stage directly optimizes instance-specific categorical decision parameters without a training dataset or a pretrained predictive model. The central challenge in extending differentiable optimization to WPMAX-SAT is the hard/soft clause asymmetry: hard clauses represent inviolable feasibility constraints while soft clauses carry weights. We introduce a hierarchical differentiable loss that prioritizes hard clause satisfaction before optimizing the weighted soft objective, ensuring that GPU gradient descent leans towards the constraint structure of WPMAX-SAT. Our framework transforms the GPU-optimized variable logits to high-confidence assignments and transfers them to CPU solvers via two complementary modes: partial guidance, which injects the most confident perturbed partial variable assignments as soft clauses into $N$ parallel solver instances, and phase initialization, which guides the CDCL solver's internal branching polarity with the full GPU assignment as a warm start to preserve the problem's originality. We evaluate on all 229 instances of the MSE 2024 (most recent due to cancellation in 2025) anytime weighted benchmark with the top 2 winners as baselines; our hybrid framework improves the average solution score by up to 4.9% over tt-open-wbo-inc-Glucose and 4.8% over SPB-MaxSAT-c-FPS at a 300-second time limit, with the potential to obtain better solutions surpassing the best known solution recorded in the competition evaluation.",
+    "abs": "http://arxiv.org/abs/2611.15091v1",
+    "pdf": "https://arxiv.org/pdf/2611.15091v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "提出 GPU-CPU 混合框架求解加权部分 MaxSAT：在 GPU 上以分层可微损失直接优化实例级类别决策参数（先硬约束后加权软目标），再把高置信 logits 转为赋值，经「部分引导」与相位初始化交给 CPU 求解器。",
+      "relevance_reason": "领域较远，但「软硬约束分层损失下的可微状态优化→高置信离散赋值/部分承诺」可能与 latent 推理中连续状态解码为离散决策、证据筛选及 anytime 计算分配存在概念联系，可供核查其可迁移性。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-14T07:56:09.883450+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

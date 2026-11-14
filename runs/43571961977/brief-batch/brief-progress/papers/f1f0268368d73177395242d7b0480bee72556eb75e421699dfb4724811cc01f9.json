@@ -1,0 +1,76 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.16803",
+  "input_sha256": "1a165abbe3c28353548c9226c62e9d623c4fe92f314ed8df537a3e280d5c791f",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-14T07:42:10.000540+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1909,
+        "output_tokens": 570,
+        "total_tokens": 2479,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 339
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.16803",
+    "title": "Detection Is Not Early Warning: Evaluating Token-Level Alarms on Language Model Failures",
+    "authors": [
+      "Marco De Negri",
+      "Luca Sartori",
+      "Lorenzo Baggi",
+      "Moritz Reihs",
+      "Eduard Frank Ďurech",
+      "Mennatallah El-Assady",
+      "Valentina Pyatkin",
+      "Anna Hedström"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.CL"
+    ],
+    "comment": "Accepted at the NeurIPS 2026 Workshop on Interpretability as a Science. 30 pages (10 main text), 6 figures, 16 tables. Code: https://github.com/swiss-ai/degeneration-probe",
+    "summary": "Many failures of language models begin at a specific token, the onset. A monitor that reads the model during generation can classify the finished response, detect the failure once it is under way, or warn before it begins, and only a warning leaves time to stop or steer the generation. Monitors are usually evaluated with response-level metrics such as AUROC, which ignore when the monitor fires. We introduce PREWARN, an evaluation protocol for any failure with an annotated onset. It calibrates each monitor's threshold on validation data to an error rate chosen for the application, runs the monitor, and scores its alarms relative to the onset on all three tasks. As a case study we apply it to repetitive degeneration in three open language models, with early warning as the main task, using linear probes on activations and six untrained baselines. Response-level metrics saturate on this failure, and a rule that reads only the response length scores almost perfectly, while probes that AUROC ranks as equal warn very differently under PREWARN. Probes warn before the onset on most degenerate responses of two of the three models, low-rank adapters below the probe more than double the share of tokens just before the onset that it flags, largely by flagging degenerate responses long before the onset, and no untrained baseline warns much more often than random alarms. We release the probes with calibrated thresholds at https://huggingface.co/collections/marcodene/prewarn-degeneration-probes",
+    "abs": "http://arxiv.org/abs/2611.16803v1",
+    "pdf": "https://arxiv.org/pdf/2611.16803v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P1",
+      "brief_summary": "论文提出 PREWARN 评估协议：针对带有 onset 标注的失败，按应用选定的错误率校准监测器阈值，并区分「对完成响应分类」「检测进行中的失败」「在失败开始前预警」三类任务分别打分；以三个开放语言模型的重复退化为例，比较激活上的线性探针（含低秩适配器变体）与六个无训练基线。",
+      "relevance_reason": "token 级激活探针相对 onset 的预警评分，可能为 LVR 中「何时停止/何时干预」的决策时机与内部状态是否携带可用证据提供评估与阈值校准线索，但其无视觉输入、失败类型单一，迁移到多模态推理停止决策仍需核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-14T07:42:10.000540+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

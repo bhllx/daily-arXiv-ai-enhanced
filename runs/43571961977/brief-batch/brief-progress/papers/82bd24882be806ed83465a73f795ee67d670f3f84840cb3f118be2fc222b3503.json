@@ -1,0 +1,71 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.16072",
+  "input_sha256": "2f266bda3695c6038e7eee2db13fab40df461a54c8edab0c436aac1b292885cf",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-14T07:47:51.626733+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1798,
+        "output_tokens": 528,
+        "total_tokens": 2326,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 306
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.16072",
+    "title": "KVPath: Connecting Key-Value Representations Across Transformer Layers",
+    "authors": [
+      "Xuan Luo",
+      "Zhiyuan Wang",
+      "Hanzhong Cao",
+      "Xifeng Yan"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Transformers typically cache an independent key-value (KV) representation for each token at every layer. Recent work reveals that a token's KV representations across neighboring layers are correlated and contain shared information. We hypothesize that this correlation implies incremental inter-layer changes, which can be effectively captured by low-dimensional deltas. Motivated by this, we propose KVPath, a new KV representation paradigm that connects KV representations across the network depth into a path. The path establishes a full-dimensional base KV at the first layer, while subsequent layers generate low-dimensional delta KVs to update the preceding KV, thereby constructing their own KV states. By caching the base KV once alongside these compact delta KVs, KVPath preserves distinct layer-specific representations without storing full KV states at every layer. We develop two variants of KVPath: KVPath-Residual, which updates vector values via residual addition, and KVPath-Rolling, which progressively updates feature dimensions in a rolling manner. Under matched parameter counts, KVPath reduces KV-cache storage by up to 68\\% for Grouped-Query Attention (GQA) and 55\\% for Multi-Head Latent Attention (MLA), while maintaining or even improving model performance.",
+    "abs": "http://arxiv.org/abs/2611.16072v1",
+    "pdf": "https://arxiv.org/pdf/2611.16072v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文提出 KVPath，把各层 KV 表示串成一条路径：首层存全维 base KV，后续层只生成低维 delta 增量更新前一层状态，并给出残差加法与滚动维度更新两个变体，在 GQA 与 MLA 下显著压缩 KV-cache。",
+      "relevance_reason": "「低维增量承载跨层状态变化」的机制可能为 LVR 中跨深度或跨推理步的 latent 状态压缩与增量更新提供借鉴，也与 KV 缓存和注意力结构影响 latent 相似度的关注点相关；但原文面向推理效率，未涉及视觉证据或多模态推理，迁移可行性需核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-14T07:47:51.626733+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

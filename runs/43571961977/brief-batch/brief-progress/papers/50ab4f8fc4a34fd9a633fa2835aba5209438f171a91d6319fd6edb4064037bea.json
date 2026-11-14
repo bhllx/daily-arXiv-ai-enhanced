@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.17103",
+  "input_sha256": "0fca63e280f7f5e98985dfcca3f5802502a3ff72676cf90f8733962bd5d18020",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-14T07:40:51.785264+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1936,
+        "output_tokens": 401,
+        "total_tokens": 2337,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 173
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.17103",
+    "title": "Joint Null-Space Projection for Data-Free Model Merging",
+    "authors": [
+      "Tian Xia"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Merging independently fine-tuned checkpoints into a single multi-task model requires no data, no labels, and no gradient steps. In practice the task vectors of different tasks interfere, and the standard remedies--averaging, magnitude pruning, sign election--operate entry by entry, ignoring that each delta induces a low-dimensional update on the hidden features it acts upon. We recast merging as a subspace interference problem. For every two-dimensional weight tensor we take the top-r right-singular subspace of each task's delta--the input directions along which that task moves the representation most--and remove from each task vector the component lying in the union of the other tasks' subspaces. The resulting Joint Null-Space Projection (JNSP) is closed-form and order-independent, needs no forward pass, and is defined entirely by the checkpoint set. On eight CLIP image-classification tasks JNSP merges ViT-B/16 experts to 89.45% average accuracy without using a single image, 11.88 points above the strongest parameter-wise training-free baseline (TIES-Merging, 77.57%), 14.22 above Task Arithmetic, and 0.98 above WUDI's data-free consensus merge (88.47%). The gain holds across three backbones on the independently trained TALL release (+10.8, +12.6, +9.1 over TIES for ViT-B/16, ViT-B/32, ViT-L/14) and replicates there at 89.20%; controls confirm the source--a single shared subspace instead of per-task ones loses 2.9 points, and a sequential variant collapses to 69.6%. On RoBERTa-large the same projection underperforms plain task arithmetic, which we report rather than hide. Code is available at https://github.com.",
+    "abs": "http://arxiv.org/abs/2611.17103v1",
+    "pdf": "https://arxiv.org/pdf/2611.17103v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "该文把无数据模型合并视为子空间干扰问题：对每个任务向量的权重增量取前 r 个右奇异子空间，从中剔除落在其他任务子空间并集内的分量，提出闭式、与顺序无关的 Joint Null-Space Projection，并在 CLIP 多任务与 RoBERTa 上检验。",
+      "relevance_reason": "其“低维子空间刻画权重更新、投影去除任务间干扰”的思路，可能为 LVR 中合并 THINK/LOOK/STOP 等专门化专家、或分析多任务增量在内部表示上的子空间冲突提供可核查线索；但该文不涉及推理期 latent 生成或视觉证据使用。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-14T07:40:51.785264+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

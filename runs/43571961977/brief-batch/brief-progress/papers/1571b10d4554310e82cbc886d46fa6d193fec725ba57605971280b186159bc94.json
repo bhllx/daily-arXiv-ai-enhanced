@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.15671",
+  "input_sha256": "8fbeefacb858246ec5fbe2a989693637be15917add81f04456c43b4427c9d085",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-14T07:50:53.281511+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 2133,
+        "output_tokens": 548,
+        "total_tokens": 2681,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 336
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.15671",
+    "title": "The Noise Floor of a Quantization Comparison: Engine, restart, batch and kernel drift, measured against 8-bit and 4-bit effects in two decision models",
+    "authors": [
+      "Aleks Blagojevich",
+      "Trevor Sunderland"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": "21 pages, 1 figure. Code and data: https://github.com/Level5Tech/clef-quant-bench",
+    "summary": "A quantized model is usually judged by comparing it with its BF16 original, but that comparison changes more than the weights. It often changes the serving engine, it always runs on a different server instance, it may change how requests are batched, and on some stacks the library selects a different kernel depending only on which packages import. We measure each of these sources on the same 2,400 public decisions for two of Cloudflare's decision models, Clef-flash (9B) and Clef (27B), on an NVIDIA GB10, and state every quantization effect as the excess over them. Sources that are not quantization move between 0 and 0.92% of decisions. llama.cpp restarts are bit-identical on every record for both models. vLLM restarts flip 0, 5 and 20 decisions at BF16, FP8 and NVFP4 on Clef-flash and 4, 0 and 22 on Clef; a third instance of Clef's quantized builds (exploratory) leaves FP8 at 0 and puts NVFP4 at 4 to 22, depending on which two instances are compared. An engine change at BF16 flips 6 to 16, a batch-size change 8 to 15, and the Gated DeltaNet kernel transformers selects unasked 10 to 14. Quantization inside one engine moves more: for Clef-flash and Clef, 0.88% and 1.04% at Q8_0, 2.12% and 1.62% at FP8, 5.79% and 3.50% at Q4_K_M, and 5.79% and 5.67% at NVFP4. On both models, every 4-bit interval excludes every non-quantization source. Two of our five pre-registered predictions failed, and the same two fail when the tests are rerun on the 27B: FP8 is not inside restart noise, and changing engine moves fewer decisions than 8-bit quantization does. Accuracy hides most of this. Over the full 31,275 public questions, Clef's Q4_K_M build moves accuracy by a net six questions (-0.02 points [-0.20, +0.16]) while 436 of its decisions get worse (exploratory), and NVFP4 costs Clef-flash 0.95 points and Clef 0.65. We release the code, quantization recipes, per-record outputs and the pre-registration.",
+    "abs": "http://arxiv.org/abs/2611.15671v1",
+    "pdf": "https://arxiv.org/pdf/2611.15671v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "论文在两个决策模型上逐一测量推理引擎切换、服务实例重启、batch 大小和 kernel 选择等非量化来源造成的逐条决策翻转，以此为噪声地板衡量 8-bit 与 4-bit 量化的超额影响，并指出聚合准确率掩盖了大部分决策层面的变化。",
+      "relevance_reason": "其「逐条翻转计数 + 先立噪声地板再报效应」的对照框架，可能可供核查 LVR 中 latent 相似度比较时由 kernel、缓存、实例和服务栈引入的漂移，避免把非目标因素误读为表示或方法效应。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-14T07:50:53.281511+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.17031",
+  "input_sha256": "def1540c494732198d9979cab03a563a13b54133dc1014693b75d8ec54b1763c",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-14T07:41:07.627321+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1920,
+        "output_tokens": 544,
+        "total_tokens": 2464,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 314
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.17031",
+    "title": "Your Vision Foundation Model Is Secretly an EEG Foundation Model",
+    "authors": [
+      "Guoan Wang",
+      "Feng Liu"
+    ],
+    "categories": [
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "Electroencephalography (EEG) foundation models are pretrained on thousands of hours of recordings, yet their frozen features transfer poorly to downstream tasks, and this transfer does not consistently improve with larger models or more pretraining data. We show that a vision foundation model that has never seen EEG is a stronger frozen EEG encoder than these specialized models, once the signals are rendered as images that a vision transformer can read. Our method, SeeEEG, keeps the vision backbone frozen and learns only how EEG is displayed to it. Each channel occupies a dedicated row of patches and is drawn either as a waveform at a fixed gain or as a scalogram whose frequency range spans the patch height, so that task-relevant patterns fall within individual tokens. The montage, filtering, and contrast parameters of this display are initialized from a standard clinical montage and optimized with the task loss through the frozen backbone, which amounts to at most 1,113 trainable parameters per view. We compare SeeEEG with seven EEG foundation models on eight clinical, sleep, affective, and brain-computer interface datasets, with every encoder frozen and paired with identical readout heads. With a frozen DINOv3 ViT-B, SeeEEG outperforms every EEG foundation model in balanced accuracy on all eight datasets and reaches a mean rank of 1.3 in Cohen kappa or AUROC, compared with 2.9 for the strongest baseline, REVE. The learned displays transfer without further optimization to the video encoder V-JEPA 2.1, which outperforms every EEG foundation model on both metrics on six of the eight datasets. Replacing DINOv3 with a randomly initialized ViT-B lowers the score by 15.2 points on average, so the ability to read rendered EEG comes from visual pretraining.",
+    "abs": "http://arxiv.org/abs/2611.17031v1",
+    "pdf": "https://arxiv.org/pdf/2611.17031v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文提出 SeeEEG：把 EEG 通道渲染成图像（波形或尺度图，每通道占独立 patch 行），仅用任务损失优化显示参数（导联、滤波、对比度，约千级可训练参数），保持 DINOv3 等视觉骨干冻结，在八个临床、睡眠、情感与 BCI 数据集上以线性读出超过七个 EEG 基础模型。",
+      "relevance_reason": "其核心是「冻结骨干、只学习信号如何呈现给模型」，使任务相关模式落入单个 token，可供核查 LVR 中视觉证据的序列化与 token 粒度设计；但论文不涉及推理状态生成或 latent 推理，与主线仅有间接方法线索。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-14T07:41:07.627321+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

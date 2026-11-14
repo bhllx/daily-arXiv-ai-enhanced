@@ -1,0 +1,71 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.15187",
+  "input_sha256": "8343562965e9d54a4e8293a35a2db933f76a0f688208c8a2bffd294df6bbd5b3",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-14T07:55:12.566534+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1915,
+        "output_tokens": 976,
+        "total_tokens": 2891,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 755
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.15187",
+    "title": "OT-BLS: Optimal-Transport-based Backbone Layer Selection for Frozen DINOv3 in Cross-Domain Few-Shot Segmentation",
+    "authors": [
+      "Natsuo Okamoto",
+      "Kazuki Kobayashi",
+      "Yoshio Kato",
+      "Shuhei Tarashima"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": "Accepted for publication at the 2026 IEEE International Conference on Visual Communications and Image Processing (VCIP 2026)",
+    "summary": "Cross-domain few-shot segmentation (CD-FSS) aims to segment a target class in images from a previously unseen domain using only a few annotated support examples. Training-free CD-FSS methods, which typically leverage vision foundation models such as DINOv3, achieve competitive performance without parameter updates. However, the optimal DINOv3 layer for mask prediction varies across support--query episodes. Although several layer-selection criteria have been proposed, they do not explicitly evaluate whether the predicted query foreground and background labels agree with the corresponding support labels. To address this limitation, we propose a novel layer-selection criterion, Optimal-Transport-Based Backbone Layer Selection (OT-BLS). Our key insight is that an effective layer-selection criterion can be derived from the optimal-transport correspondence between query and support patch-token features. Based on this insight, we first estimate the transport plan using a well-established optimal transport algorithm and then compute a layer-selection score by aggregating the transported mass according to the foreground--background partition defined by each candidate query mask. The resulting score reflects how well the predicted foreground and background of the query correspond to those of the support. Experiments on eight benchmark datasets demonstrate the effectiveness of OT-BLS. It outperforms the conventional last-layer baseline in 12 of 16 dataset/shot settings. Furthermore, OT-BLS improves the average mIoU from 55.72 to 57.62 and achieves a 2.99-point improvement over the best-performing existing layer-selection criterion while running 3.7--14.6$\\times$ faster.",
+    "abs": "http://arxiv.org/abs/2611.15187v1",
+    "pdf": "https://arxiv.org/pdf/2611.15187v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "该论文针对免训练跨域少样本分割，提出 OT-BLS：用最优传输估计 query 与 support 的 patch-token 对应关系，并按候选 mask 的前景/背景划分聚合传输质量以给各 DINOv3 层打分，从而为每个 episode 选择用于掩码预测的骨干层。",
+      "relevance_reason": "其按「预测划分与 support 标签是否一致」来评判不同深度特征的做法，可能与 LVR 中判断哪一层内部状态仍保留任务必要视觉证据、以及用传输对应度作为无监督验证信号有关，但需核查该准则能否脱离分割任务迁移到 latent 状态评估。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-14T07:55:12.566534+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

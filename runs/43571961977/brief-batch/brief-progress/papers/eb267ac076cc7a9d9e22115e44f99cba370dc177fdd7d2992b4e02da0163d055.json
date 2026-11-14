@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.14856",
+  "input_sha256": "6c0fc2df77cf92465043c4b96bb6f0cdd948cbafc50738e9523c521d422ba16e",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-14T07:58:08.591280+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 2004,
+        "output_tokens": 637,
+        "total_tokens": 2641,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 434
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.14856",
+    "title": "Honest Fusion Evaluation for Cross-Domain Deepfake Detection: Leakage Audits and Tail Robustness",
+    "authors": [
+      "Luke Collins",
+      "Chang-Tsun Li",
+      "Duc Thanh Nguyen"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": "Accepted at WACV 2027. 19 pages including supplementary material; 6 figures, 10 tables. Code: https://github.com/lukegcollins/WACV27-HFEFCDD",
+    "summary": "Cross-domain video deepfake detection increasingly uses frozen foundation-model experts, combined by calibrated score averaging, a per-video router picking one expert, or a learned head over concatenated features. Expressive routing and feature fusion are often reported to beat plain averaging. Across a 22-dataset frozen-expert testbed, we find those gains are largely evaluation artifacts. A corner theorem locates the gap routing aims to close: because AUC depends only on score ordering, the best any score-space router can do is an oracle reading the test label to pick each video's expert, a ceiling no realisable, label-blind router reaches. The theorem does not order real routers against a calibrated global average; the case against routing is empirical, and no router we test beats that average. Feature fusion reads raw features, falls outside the theorem, and is audited empirically. Reported gains trace to leakage: holding out one dataset leaks siblings sharing identities and reals (over-crediting routing), while holding out one manipulation keeps that dataset's reals in training (over-crediting feature fusion). A $2\\times 2$ over fold and evaluation granularity pins the $+2.6$pp feature-fusion \"win\" to the fold alone: 12/12 significant under leaky folds vs. 0/12 under honest family-held-out folds, where both gains vanish. Fusion still pays off in the tail of hard videos and families: as experts are added, videos every expert misclassifies drop from 15.2% to 2.3%, and global calibrated fusion (InvB) beats the best single expert on worst-family AUC, selective risk (AURC), and low-false-positive recall, stably across protocols. Practitioners should calibrate and combine globally, hold out whole dataset families, and measure tail performance. For score-space routing under ranking metrics, honest evaluation and expert diversity matter more than combiner complexity.",
+    "abs": "http://arxiv.org/abs/2611.14856v1",
+    "pdf": "https://arxiv.org/pdf/2611.14856v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "在22个数据集的冻结专家测试床上审计跨域深伪检测中路由与特征融合的收益，指出其增益多源于数据泄漏（兄弟数据集共享身份/真实样本）与评估粒度，并主张按数据集家族整体留出、全局校准融合并测量尾部表现。",
+      "relevance_reason": "其泄漏审计、按族留出折叠与尾部指标（最差家族AUC、AURC、低误报召回）可供核查LVR中多专家或视觉证据融合、贡献分配的增益是否也是评估假象，以及困难样本上的筛选收益。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-14T07:58:08.591280+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}
