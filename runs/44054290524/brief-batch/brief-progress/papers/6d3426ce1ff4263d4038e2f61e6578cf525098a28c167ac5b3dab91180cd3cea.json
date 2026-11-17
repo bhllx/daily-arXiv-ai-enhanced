@@ -1,0 +1,79 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.18769",
+  "input_sha256": "cfe942c3abc78fc2bdc57701844fd215e1757e5f28167ff9b724927cbe64610f",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-17T09:47:32.496817+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1801,
+        "output_tokens": 396,
+        "total_tokens": 2197,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 200
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.18769",
+    "title": "Gradient-Guided Hardware-Native MIXFP4",
+    "authors": [
+      "Jian-Jia Chen",
+      "Brian J. Chan",
+      "Wen-Hung Lee",
+      "Yi-Ting Li",
+      "Po-Shen Chen",
+      "Kuan-Te Kuo",
+      "Hsien-Cheng Huang",
+      "Cody Hao Yu",
+      "Chi-Chih Chang",
+      "Mohamed S. Abdelfattah",
+      "Kai-Chiang Wu"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "Blackwell tensor cores support native inference with 4-bit weights and activations (W4A4), but NVFP4 leaves a perplexity (PPL) gap to BF16. Choosing a format for each 16-element block can improve accuracy, but current matrix multiply instructions cannot execute choices this fine. Applying these rules at hardware-compatible tiles loses most of their benefit. We introduce FlipQuant, which selects E2M1 or E0M3 for each MMA weight tile. It keeps both quantized weight candidates fixed and learns a binary format map from end-to-end gradients of a bucketed KL loss to a BF16 teacher, re-evaluating them after each update. Native kernels execute 16 x 64 tiles on SM120 and 256 x 64 tiles on SM100 with median GEMM overheads of 1.9% and 1.7%, respectively. Across six language models and two corpora, FlipQuant at 16 x 64 closes 42.5% of NVFP4's PPL gap to BF16 on average, compared with 13.3% for FourOverSix. Code is available at https://github.com/brian030128/flipquant.",
+    "abs": "http://arxiv.org/abs/2611.18769v1",
+    "pdf": "https://arxiv.org/pdf/2611.18769v1",
+    "AI": {
+      "category": "EXCLUDE",
+      "priority": "NONE",
+      "brief_summary": "该工作提出 FlipQuant，在 Blackwell 张量核可执行的 MMA 权重 tile 粒度上，用端到端梯度学习二值格式映射，为每个 tile 选择 E2M1 或 E0M3，以缩小 NVFP4 相对 BF16 的困惑度差距。",
+      "relevance_reason": "内容属于纯量化与硬件格式选择，讨论的是权重格式与 GEMM 开销，不涉及多模态推理状态、视觉证据使用或推理期计算分配，缺少可供 LVR 借鉴的具体线索。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-17T09:47:32.496817+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

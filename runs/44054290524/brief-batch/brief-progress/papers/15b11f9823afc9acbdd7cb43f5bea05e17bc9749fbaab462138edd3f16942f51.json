@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.18699",
+  "input_sha256": "0fbf15ba62eb0ad65cebc0b2f8d9efc8cd99ed2a9b94ddd72d8ffb57a19772c7",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-17T09:48:59.566482+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1955,
+        "output_tokens": 866,
+        "total_tokens": 2821,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 681
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.18699",
+    "title": "Where Does an On-Device Prescription Reader Lose Medications? A Frozen-Replay Study, from a 270M Language Model to a 2B Vision-Language Model",
+    "authors": [
+      "Ilan Sezhiyan Jayaraman"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.CL"
+    ],
+    "comment": null,
+    "summary": "On-device models let a phone read a prescription without sending the photograph anywhere, but small models fail in ways that are hard to attribute: to the camera, the OCR, the model, or the rules around it. We study a phone-based pipeline that reads a prescription photograph with PaddleOCR, extracts medications with a 270M-parameter language model, and filters the result with a deterministic backstop before showing suggestions. Replaying identical frozen inputs through each configuration, with deterministic generation verified, we compare configurations with paired document-level intervals on 49 captures of 15 synthetic prescriptions (6 typed, 9 handwritten by one writer). Production recall is 8%, and 0 of 45 on handwriting. The backstop removes no correct medication and cuts unsafe outputs from 45 to 1. On handwriting nearly all medications never reach the model in readable form; on typed sheets the model mostly picks the wrong text. We trace much of the handwriting floor to a defect in our own crop step, then replace the pipeline: rotated-box crops, a 2B-parameter vision-language model that re-reads prescription lines and extracts the medications, and per-line numeric grounding. On the same captures recall rises from 8% to 67% (paired +59 points, 95% CI +40 to +78): typed 19% to 100%, handwritten 0 to 20 of 45, with no unsafe output. Rotated crops account for most of the reading gain and the model for most of the recall gain, and the OCR confidence gate is now the main limit. The cost is 61 s per photograph against about 12 s, and about 1.9 GB of memory. An earlier claim that better OCR lowered recall does not survive the controlled comparison, and we withdraw it. All results are in-sample, from one writer and one device.",
+    "abs": "http://arxiv.org/abs/2611.18699v1",
+    "pdf": "https://arxiv.org/pdf/2611.18699v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文用冻结输入回放逐级比较手机处方读取流程，从 PaddleOCR 加 270M 语言模型改为旋转裁剪加 2B 视觉语言模型，定位识别与抽取损失并报告召回变化。",
+      "relevance_reason": "其逐级冻结回放与配对区间可为定位视觉证据在感知、latent 状态和答案生成间的损失提供方法线索；但论文是文档抽取应用，未研究 latent reasoning，需核查该归因设计能否迁移。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-17T09:48:59.566482+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.21432",
+  "input_sha256": "582d8c553e814acf5af0113451fcbe9ed9c8808b89568f3f70ca216d803209b5",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-17T09:21:28.067465+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1890,
+        "output_tokens": 683,
+        "total_tokens": 2573,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 436
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.21432",
+    "title": "Just sort it! A note on the LP behind rank-one anti-loop edits",
+    "authors": [
+      "Matteo Fischetti"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.CL",
+      "math.OC"
+    ],
+    "comment": "4 pages, 3 tables. Data, code and protocols: https://doi.org/10.5281/zenodo.24286137",
+    "summary": "Weight-space programming removes the thinking loops of a small reasoning model by a rank-one edit W' = W + u v^T of an MLP output matrix, where u is a loop direction and v is the solution of a sparse Linear Program (LP) over the neuron activations. We investigate whether the LP is needed. We replace it by a sort: we take the 8 neurons whose activation has the smallest coefficient of variation, and give them equal shares of the push that the LP solution realizes. On Qwen3.5-0.8B the sorted edit scores 67.0% on 1000 problems (MATH-500 and GSM8K) against 67.4% for the LP edit and 9.5% for the unedited model; the paired difference is -0.4 points, with 95% confidence interval [-2.9, +2.1], inside a non-inferiority margin of 5 points declared before the runs. On three further sampling seeds the difference is -0.6 points, interval [-2.0, +0.8], and -0.8 points, interval [-2.3, +0.6], when the dose is set without the LP. The sort does not solve the LP, but the neurons it shares with the LP solution carry most of its mean push. The outcome is that, on this model, the edit acts as a nearly constant bias along u.",
+    "abs": "http://arxiv.org/abs/2611.21432v1",
+    "pdf": "https://arxiv.org/pdf/2611.21432v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文考察秩一权重编辑去除小型推理模型「思考循环」时是否需要求解稀疏 LP：改为按激活变异系数挑出 8 个神经元并均分推力，在 Qwen3.5-0.8B 上取得 67.0%，与 LP 版 67.4% 的非劣检验通过，并据此认为该编辑近似为沿循环方向的常数偏置。",
+      "relevance_reason": "纯文本、无视觉成分，但「循环方向 + 秩一编辑」以及按激活统计挑神经元的做法，可能为 LVR 中循环计算状态的定位与抑制提供可核查的干预线索；其「近似常数偏置」结论也提示 loop 收益可能与偏置项混淆，需在 latent 贡献分配上另行核验。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-17T09:21:28.067465+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

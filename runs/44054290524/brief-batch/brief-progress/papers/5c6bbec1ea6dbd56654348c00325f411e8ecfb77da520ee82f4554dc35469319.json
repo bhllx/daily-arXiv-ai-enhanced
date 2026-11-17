@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.18727",
+  "input_sha256": "993c6e86def8ffb98b0a07b59625ab779ef09c3e4d1b4a1722285d1a2b004e6e",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-17T09:48:19.727374+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 2002,
+        "output_tokens": 671,
+        "total_tokens": 2673,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 466
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.18727",
+    "title": "Latent Fusion: Channel Stacking for Structure-Preserving Image Editing",
+    "authors": [
+      "Mohit Dulani"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.AI"
+    ],
+    "comment": "12 pages, 5 figures, 4 tables. Code: https://github.com/complete-dope/LatentFusion",
+    "summary": "Instruction-based image editing models must condition on the source image, either by sequence concatenation, which appends source tokens to the target sequence (FLUX.1 Kontext), or by channel-wise concatenation, which stacks the source latent onto the noisy latent and widens the input projection (InstructPix2Pix, FLUX.1 Fill). The FLUX.1 Kontext report found channel-wise concatenation worse in initial experiments at 1K resolution with a 12B model and a large corpus. We explore channel-wise concatenation as the lower-cost option for a common production regime: structure-preserving edits that change appearance (sky, exposure, foliage, cleanup) but not layout, about 1,400 training pairs, a 4B non-distilled backbone, and 2K frames. It keeps the sequence at its original length, where sequence concatenation doubles it and roughly quadruples attention cost, and needs only single-scale classifier-free guidance (two forward passes per step instead of three). Starting from FLUX.2 Klein 4B base, we widen only the input projection and train both schemes with the same trainer, data, and hyperparameters. Channel-wise concatenation keeps the output pixel-aligned with the source; in our runs sequence concatenation, which must learn the correspondence between 10,880 target and 10,880 source tokens from fewer than 1,500 pairs, displaced structure, an observation we report without claiming a general ranking. On 29 held-out images the editor reaches 20.3 dB PSNR and 0.198 LPIPS against the human edit (unedited source: 15.0 dB), and counterfactual conditioning tests show it largely learned a global grade of the source rather than a selective edit, which we report as the open problem of this recipe. We also compare against an SD3.5-Medium editor trained with the same surgery and report the full training recipe, including failure modes. Code: https://github.com/complete-dope/LatentFusion",
+    "abs": "http://arxiv.org/abs/2611.18727v1",
+    "pdf": "https://arxiv.org/pdf/2611.18727v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "在 4B 非蒸馏骨干、约 1400 训练对与 2K 分辨率的生产式设定下，比较通道堆叠与序列拼接两种源图条件注入方式用于结构保持型外观编辑，报告精度指标、训练配方和失败模式。",
+      "relevance_reason": "其反事实条件测试发现模型只学到源图全局色调而非选择性编辑，这一诊断思路可能可供核查 VLM 推理是否真正使用视觉证据；通道拼接压缩序列长度、降低注意力成本的做法也可供核查视觉注入效率时借鉴，但是否可迁移仍需阅读原文判断。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-17T09:48:19.727374+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

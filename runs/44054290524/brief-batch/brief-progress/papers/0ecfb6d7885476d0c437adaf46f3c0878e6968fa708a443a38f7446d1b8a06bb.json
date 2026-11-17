@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.20321",
+  "input_sha256": "f0fc321b6629a40686467e42f6c7318eba56fa9afc049f4a8536418575ead86a",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-17T09:33:11.458321+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 2042,
+        "output_tokens": 675,
+        "total_tokens": 2717,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 453
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.20321",
+    "title": "Unreasonable Confidence from Simulator Misspecification: Directional Robustness on the SPEED+ Sim-to-Real Benchmark",
+    "authors": [
+      "Nikolay Dolgov"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.AI",
+      "cs.LG"
+    ],
+    "comment": "22 pages, 5 figures, 20 tables. Extended version of a paper at the Sim2Science workshop, NeurIPS 2026. Code, per-image predictions and pre-registration record: https://github.com/lokindoo/spacecraft-pose-estimation",
+    "summary": "Vision-based navigation systems for orbit must be trained almost entirely on synthetic imagery, because real labelled images of a given spacecraft in flight rarely exist. Benchmarks like SPEED+ are built for that situation: the training set comes from a simulator, and the test sets are real images of a satellite mockup under two kinds of lighting. That simulator approximates how light reflects off mylar and aluminium, and like every scientific simulator it is misspecified. Its error is radiometric, since it misses the specular highlights, hard shadows and sensor saturation common in real images. We probe the resulting synthetic-to-real gap, the central risk for such systems, with a deliberately simple monocular pose estimator. In a 2x2 study of backbone adaptation and photometric augmentation, trained on synthetic images and tested on both real hardware-in-the-loop domains, we find three things. (1) The model does not know it is failing: regions conformally calibrated to 90% on synthetic data cover only 9-15% of rotation errors on sunlamp and 21-38% on lightbox, so a wrong pose carries the confidence of a correct one. (2) Transfer is asymmetric: scaling data and features improved synthetic rotation error from 1.65 to 1.03 rad but moved the harshly lit sunlamp domain by only 0.05 rad, under twice its seed s.d., whereas adapting the backbone's last stage carried 63-83% of its extra synthetic gain to both real domains. (3) Once the backbone adapts, augmentation helps only in the direction it models: our photometric stack improved the diffusely lit lightbox domain from 1.17 to 0.99 rad on every seed but moved sunlamp no more than seed-to-seed variation, while with the backbone frozen it helped sunlamp more. Every post-review experiment was pre-registered, and the code, per-image predictions and pre-registration record are at https://github.com/lokindoo/spacecraft-pose-estimation.",
+    "abs": "http://arxiv.org/abs/2611.20321v1",
+    "pdf": "https://arxiv.org/pdf/2611.20321v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "该文用刻意简单的单目位姿估计器在 SPEED+ 上做 backbone 适配与光度增强的 2x2 研究，发现合成数据上 90% 保形校准区间在真实域只覆盖 9–38% 的旋转误差，迁移收益呈方向不对称，且增强只在它建模的方向上有效。",
+      "relevance_reason": "「错误位姿带着正确位姿的置信度」与域偏移下的方向性退化，可能为 LVR 中判断视觉证据是否充分、何时停止或弃权以及置信度校准提供可供核查的线索，但任务与推理状态机制相距较远。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-17T09:33:11.458321+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

@@ -1,0 +1,72 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.19649",
+  "input_sha256": "1e7b254595634b9a110e8a00f7709dd64dd54463f7b12ccf99a75d7dcabaaba6",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-17T09:39:03.366746+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1826,
+        "output_tokens": 560,
+        "total_tokens": 2386,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 316
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.19649",
+    "title": "LoopFill: Pipelined Multi-Token Speculative Decoding for Looped Transformers",
+    "authors": [
+      "Siqi Zhu",
+      "Suozhi Huang",
+      "Yi Zhao",
+      "Jiaxuan You"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "Looped Transformers improve parameter efficiency by repeatedly applying the same Transformer layers. During autoregressive decoding, however, generating each token requires several sequential passes through these layers, leading to high decoding latency. Pipelined self-speculative methods use shallow-loop predictions to process tokens at different loops in the same batch, but each token must reach the drafting depth before the next can enter the pipeline. We introduce LoopFill, a training-free speculative decoding algorithm for looped LLM that combines multi-token suffix drafts with shallow-loop predictions in a single draft tree. Both drafters contribute to one tree, so a suffix lookup can immediately extend a shallow prediction and several future tokens can enter the pipeline together. The shared block computes the highest-scoring draft candidates at different loop depths in one batch, and full-depth verification preserves the model's autoregressive output distribution. Across seven benchmarks, LoopFill's average speedup over greedy autoregressive decoding is $5.85\\times$ on Ouro-2.6B and $5.13\\times$ on Huginn-3.5B. The speedups exceed those of LoopAhead, the strongest baseline, by \\(40\\%\\) on Ouro-2.6B and \\(25\\%\\) on Huginn-3.5B.",
+    "abs": "http://arxiv.org/abs/2611.19649v1",
+    "pdf": "https://arxiv.org/pdf/2611.19649v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "提出 LoopFill，一种免训练的推测解码算法：把多 token 后缀草稿与浅层循环预测合并进同一棵草稿树，让多个未来 token 并行进入流水线，再由共享块在不同循环深度批量打分、全深度验证以保持原自回归分布，在 Ouro-2.6B 与 Huginn-3.5B 上取得约 5 倍解码加速。",
+      "relevance_reason": "其「不同 loop 深度批量打分 + 全深度验证」的草稿—验证结构，可能为 LVR 中循环深度与计算预算的取舍、以及基于浅层预测的提前停止决策提供可供核查的线索；但该工作只做文本解码加速，未涉及视觉证据或 latent 内容的使用。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-17T09:39:03.366746+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

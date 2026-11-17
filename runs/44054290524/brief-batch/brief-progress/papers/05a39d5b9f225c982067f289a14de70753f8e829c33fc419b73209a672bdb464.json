@@ -1,0 +1,73 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.21600",
+  "input_sha256": "868902d6dd5454e172f0132fddfb57451a863ab36f9076619581264e014a54ef",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-17T09:19:52.145240+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1871,
+        "output_tokens": 473,
+        "total_tokens": 2344,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 241
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.21600",
+    "title": "How VLMs Plan What's Next",
+    "authors": [
+      "Rohit Gandikota",
+      "Arnab Sen Sharma",
+      "Adam Belfki",
+      "David Bau"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.CL",
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "When a vision-language model describes an image, it names one object at a time and it rarely repeats itself, yet how the model plans this order is far from obvious. We characterize the mechanism a VLM uses to decide where to look before it looks. The mechanism has four main parts. First, binding heads match the relevant text tokens against the image and resolve them into pointers to the matched image region. Second, the same binding heads bind each written answer to the region it came from, and the model turns it into a progress signal: a cursor, the position in the image up to which the list has been written. Third, a select step chooses the nearest unwritten region after the cursor, or stops. Finally, gaze heads execute the chosen pointer and return a concept of what is drawn there, which language heads and the late MLPs turn into a word in the language of the question. We validate each part of this mechanism through causal patching in Qwen3-VL models on a synthetic visual retrieval task, and test our mechanisms against alternative hypotheses. We further show that the mechanism holds across input formats, natural photographs, and languages, and that its binding, relay, and gaze heads appear at every model size from 2B to 32B. This work allows us to investigate how a VLM turns a question and an image into a sequence of answers, layer by layer and token by token. More broadly, it opens a way to study how models plan over complex multi-step tasks with long rollouts. Our project is available at https://plan.baulab.info/",
+    "abs": "http://arxiv.org/abs/2611.21600v1",
+    "pdf": "https://arxiv.org/pdf/2611.21600v1",
+    "AI": {
+      "category": "MAIN",
+      "priority": "P0",
+      "brief_summary": "论文在 Qwen3-VL（2B–32B）上用因果 patching 刻画 VLM 逐词描述图像时如何规划下一步看哪里：binding heads 把文本 token 解析为图像区域指针并为已写答案标注来源，形成「已写到何处」的 cursor 进度信号，再由 select 选取最近未写区域或停止，最后由 gaze heads 执行指向并取回该处概念转成词。",
+      "relevance_reason": "直接涉及视觉证据筛选、区域—实体绑定、内部进度状态与停止决策，其「看哪里/何时停」的分解和替代假设检验可供核查，用于对照 LVR 中 latent 状态如何携带视觉内容并决定终止。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-17T09:19:52.145240+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

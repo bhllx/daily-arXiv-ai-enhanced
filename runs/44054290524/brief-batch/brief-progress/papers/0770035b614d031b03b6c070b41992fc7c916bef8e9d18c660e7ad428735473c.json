@@ -1,0 +1,79 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.18743",
+  "input_sha256": "2e098659ea89af3be9574847b75b2db4c2d000441a615ca7de9703111c4068cc",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-17T09:47:55.472419+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1873,
+        "output_tokens": 425,
+        "total_tokens": 2298,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 198
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.18743",
+    "title": "Recognizing Events Is Not Enough: Why Streaming VLMs Struggle in Compositional Instruction Triggering",
+    "authors": [
+      "Yehua Huang",
+      "Penglei Sun",
+      "Xiang Li",
+      "Jinhao Zhou",
+      "Jiawen Wen",
+      "Qingqing Xiao",
+      "Zihan Yang",
+      "Wenqi Wang",
+      "Haolan Chen",
+      "Yu Xu",
+      "Xiaowen Chu"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "Recognizing individual events does not guarantee correct execution of compositional instructions in streaming video. For example, given the request \"Notify me when the pot boils after someone turns on the stove and leaves the kitchen\", existing models may recognize the individual events yet notify too early or miss the intended moment, failing to track how their temporal conditions are satisfied over time. To evaluate this gap, we introduce CoTriggerBench, which composes annotated video events into temporally constrained instructions and verifies notification timing and silence through executable event plans and source-event replay. To address this challenge, we propose a real-time VLM agent, TEMPI. TEMPI decomposes instructions into atomic event queries and temporal constraints, and uses Scenario Memory to continuously maintain task progress as event evidence arrives, allowing earlier observations to support subsequent decisions beyond the detector's visual window. Even when no notification is required, relevant events continue to update the scenario state. On CoTriggerBench, TEMPI achieves 44.4% instruction-level success, outperforming the strongest closed-source and fine-tuned open-source VLM baselines by 15.6 (Qwen3.8-Omni-Flash-Realtime) and 18.1 (MOSS-VL-Realtime) percentage points, respectively. To support efficient on-device streaming inference, we further optimize the streaming inference pipeline by overlapping partial visual encoding and LLM prefix prefill with frame arrival. On an 8 GB RTX 5060, our optimized detector implementation achieves a 4.90$\\times$ speedup.",
+    "abs": "http://arxiv.org/abs/2611.18743v1",
+    "pdf": "https://arxiv.org/pdf/2611.18743v1",
+    "AI": {
+      "category": "MAIN",
+      "priority": "P1",
+      "brief_summary": "论文指出现有流式 VLM 能识别单个事件却难以满足组合指令的时间约束，提出 CoTriggerBench 基准并用可执行事件计划检验通知时机与静默，同时给出实时 agent TEMPI：把指令拆成原子事件查询与时间约束，用 Scenario Memory 随证据到达持续维护任务进度。",
+      "relevance_reason": "其「证据到达即更新场景状态、跨越检测器视觉窗口保留信息」的机制，与 LVR 关注的视觉证据筛选、内部状态维护和 STOP/触发决策直接相关，可供核查跨时间证据累积是否真正因果地决定通知时刻；同时含流式推理流水线重叠优化，可为成本评估提供参考。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-17T09:47:55.472419+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.19896",
+  "input_sha256": "7cc91a2de5cb46b4244f5e0168c1dc386dcb40dd09b2a583498f3148c800701e",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-17T09:36:18.434049+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1834,
+        "output_tokens": 643,
+        "total_tokens": 2477,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 422
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.19896",
+    "title": "LoopSkim: Lossless Multi-Depth Speculative Decoding for Looped Language Models",
+    "authors": [
+      "Muhan Xiao",
+      "Shijian Li"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.CL"
+    ],
+    "comment": "23 pages, 3 figures, 16 tables",
+    "summary": "Looped language models such as Ouro and Raven apply one weight-shared block several times per token, so autoregressive decoding (AR) runs every loop of every token in sequence. Pipelined self-speculative decoders overlap these loops by drafting tokens from shallow readouts and verifying them at full depth. Yet every loop of a looped LM ends in a readout of the next token, and draft tokens pass through every depth anyway, so each depth can check them without an extra pass. We introduce LoopSkim, in which the depth of the pipeline is the verifier. Draft tokens copied from the context, as in prompt lookup decoding, enter after the first loops, any later readout that contradicts one replaces it at that depth, and only full-depth readouts commit tokens. LoopSkim fixes the random draws of every position in advance, so each check compares two tokens and decoding stays lossless in exact arithmetic under sampling for any number of checks and draft chains. Without training, its speedup over AR averages 1.73x that of LoopSpec across greedy decoding and sampling, and its checks between the first loops and full depth speed it up on every model. An optional draft head adds a second chain and raises this average to 1.99x.",
+    "abs": "http://arxiv.org/abs/2611.19896v1",
+    "pdf": "https://arxiv.org/pdf/2611.19896v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文针对 Ouro、Raven 等循环语言模型提出 LoopSkim：以每个 loop 的浅层读出充当投机草稿、后续深度逐层校验并替换矛盾 token，仅全深度读出提交，从而在采样下保持无损，无需训练即获约 1.73 倍于 LoopSpec 的加速。",
+      "relevance_reason": "将不同循环深度的读出视为可被检验和替换的候选、并用全深度提交的机制，可能为 LVR 的多深度 latent 假设筛选、深度作为验证器以及停止决策提供可核查线索；但对象为纯文本生成且无视觉证据，与主线联系偏弱。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-17T09:36:18.434049+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

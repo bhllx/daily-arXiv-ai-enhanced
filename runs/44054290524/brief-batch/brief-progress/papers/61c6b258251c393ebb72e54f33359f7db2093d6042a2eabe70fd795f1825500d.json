@@ -1,0 +1,68 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.18680",
+  "input_sha256": "a109d31e756ed28ac3c2ca017575b33818058a7ad6ced06939173581d1b00247",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-17T09:49:20.607980+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1895,
+        "output_tokens": 725,
+        "total_tokens": 2620,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 504
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.18680",
+    "title": "Spread Too Thin: How Higher Resolution Dilutes a Vision Transformer's Attention, and a Training-Free Rescaling",
+    "authors": [
+      "Neil D. B. Bruce"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": "10 pages, 3 figures, 11 additional appendix pages",
+    "summary": "A vision transformer read at a higher resolution than it was trained at spreads each attention row over many more patches, yet every row must still hand out exactly one unit of weight. A law of softmax attention predicts that a growing crowd of bounded scores dilutes the attention on any patch or register whose score stays fixed. The same law gives a remedy that needs no training: multiply every score, the sink's included, by the ratio of the logarithms of the test and training token counts. Given sufficient margins at the training resolution, this keeps the attention on a match when one is present, and on a sink such as a register when none is, though trained models need not meet those margins. We test these predictions in public vision transformers and in controlled models read far above their training token count. Attention spreads as predicted. Registers lose their share, though production models compensate in part, and the rescaling holds the share of DINOv2's registers nearly level. Applied at test time without training, the rescaling recovers part of the lost accuracy in nearly every model, with absolute or rotary positions and with registers, and on images with native detail. The calibrated multiplier rises with the logarithmic ratio on average and varies across models. Its rise is steeper than the square-root rule used in image generators; in controlled models the log ratio is also more accurate, while in the public models the two rules' accuracy difference remains unresolved. The rescaling does not restore the attention a model learned, and why it helps, beyond countering the dilution, remains open.",
+    "abs": "http://arxiv.org/abs/2611.18680v1",
+    "pdf": "https://arxiv.org/pdf/2611.18680v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文分析 ViT 在高于训练分辨率下注意力行被大量 patch 摊薄的规律，据此提出一种无需训练的 logit 重标定（按测试与训练 token 数对数之比缩放所有分数），并在 DINOv2 等公开模型与受控模型中检验 register/sink 份额与准确率的部分恢复。",
+      "relevance_reason": "其对「token 增多稀释注意力、固定分数通道（含 register/sink）份额下降」的刻画与测试时无训练重标定，可供核查 LVR 中视觉细节保留与证据筛选是否随视觉 token 规模被稀释，以及注意力结构对 latent 相似度分析的影响。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-17T09:49:20.607980+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

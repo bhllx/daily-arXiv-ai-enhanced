@@ -1,0 +1,77 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.19800",
+  "input_sha256": "e906cbe0934aaecdfe48a64b9fe3414be4e5447a3deaaa5d8855bd6c75c35751",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-17T09:37:20.877028+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1928,
+        "output_tokens": 448,
+        "total_tokens": 2376,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 251
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.19800",
+    "title": "Multi-Branch Transformer",
+    "authors": [
+      "Gaotang Li",
+      "Lingjie Chen",
+      "Chunyuan Deng",
+      "Zhiwei Xu",
+      "Hongzheng Chen",
+      "Christopher De Sa",
+      "Jingrui He",
+      "Yingheng Wang",
+      "Hanghang Tong"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.CL"
+    ],
+    "comment": "Project: https://gaotangli.github.io/project_page/Multi-Branch-Transformer/",
+    "summary": "Transformer language models are commonly scaled by making their blocks wider or stacking them deeper. In this work, we explore a complementary path: branching, the parallel composition of full Transformer blocks. We introduce the Multi-Branch Transformer (MBT), which processes the input through shared initial layers, executes independently parameterized branches of sequential blocks in parallel, and fuses their outputs before shared final layers. At comparable training compute, we study three MBT variants: Wide-Shallow preserves block width, Narrow-Deep preserves sequential depth, and Balanced interpolates between them. In controlled pretraining experiments at four mixture-of-experts scales (0.8B to 2.1B total parameters), 2-branch Wide-Shallow MBTs consistently outperform sequential Transformers under matched parameter and training-compute budgets. Balanced MBTs improve further and retain comparable quality as the number of branches increases. To improve inference efficiency at long contexts, we introduce Joint-KV, which constructs a shared KV cache from branch representations at each depth. Our final recipe combines Balanced MBTs with Joint-KV, supported by an inference engine that exploits branch grouping and shared-cache reuse. Fitted scaling curves indicate that standard Transformers require up to 1.26x as much training body compute to match our final models' validation loss. These models reduce full-model KV-cache storage by up to 34% and deliver up to 51.4% higher decoding throughput on a single H200 GPU. Ablation studies show that branching yields gains beyond changes in width and depth, enables an effective KV-sharing strategy (Joint-KV), remains robust across fusion functions, and performs best in the middle layers. These findings show that branching offers a practical path for scaling language models toward both better modeling quality and faster inference.",
+    "abs": "http://arxiv.org/abs/2611.19800v1",
+    "pdf": "https://arxiv.org/pdf/2611.19800v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "提出多分支 Transformer（MBT）：共享初始层后，并行运行多个参数独立的全 Transformer 块分支，在共享末端层前融合输出，并用 Joint-KV 在每一深度由分支表示构建共享 KV 缓存以提升长上下文推理效率。",
+      "relevance_reason": "分支并行、逐深度融合与共享 KV 缓存可能为并行 latent 推理路径的状态聚合，以及缓存与注意力结构如何影响 latent 相似度比较和状态复用提供可核查线索，但论文本身只做纯文本语言建模的架构效率研究。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-17T09:37:20.877028+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

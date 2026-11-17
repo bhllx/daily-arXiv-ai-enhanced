@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.20981",
+  "input_sha256": "420015bb1c508b000ad502716fcdadbd0bba6c0bf77f3cbe0ba594682f3f0da4",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-17T09:26:04.199633+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1767,
+        "output_tokens": 461,
+        "total_tokens": 2228,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 257
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.20981",
+    "title": "Breaking feature collapse in self-supervised time series encoders",
+    "authors": [
+      "Özgün Turgut",
+      "Daniel Rueckert"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "General-purpose time series encoders promise a single backbone that generalises across tasks and domains; however, they currently do not scale. We trace this down to a critical point of failure: under the predominant masked data modelling supervision, the encoder's output tokens partially collapse. This is the natural consequence of supervising encoders only in the input space, which leaves no constraint against redundant token dimensions in the feature space. We introduce OTISv2, which suppresses the collapse by complementing the reconstruction objective in input space with two objectives in the feature space: a self-distillation loss against an exponential-moving-average teacher, and a KoLeo regulariser. Under matched training, the resulting encoder reduces the cosine similarity and lifts the effective rank of its output tokens relative to its predecessor, and it scales monotonically from 7.1 M to 116 M parameters where its predecessor declines. It matches or surpasses existing general-purpose time series encoders across 143 uni- and multi-variate datasets. To foster further research, we release our code and pre-trained weights.",
+    "abs": "http://arxiv.org/abs/2611.20981v1",
+    "pdf": "https://arxiv.org/pdf/2611.20981v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文诊断掩码数据建模下时序编码器输出 token 出现部分特征坍缩，提出 OTISv2，在输入空间重构目标之外加入对 EMA 教师的自蒸馏损失和 KoLeo 正则，以降低 token 余弦相似度、提升有效秩并在更大参数规模下保持可扩展。",
+      "relevance_reason": "其「仅监督输入空间、特征空间冗余维度缺乏约束」的诊断与特征空间正则手段，可供核查 LVR 中 latent 状态信息坍缩与表示退化问题；但属非视觉时序任务，迁移线索尚需人工判断。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-17T09:26:04.199633+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

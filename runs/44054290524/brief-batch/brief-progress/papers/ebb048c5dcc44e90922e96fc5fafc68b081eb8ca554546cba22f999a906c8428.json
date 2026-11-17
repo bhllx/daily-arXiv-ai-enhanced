@@ -1,0 +1,77 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.20006",
+  "input_sha256": "f9be26635758559caf514c58148c5abefa8eafb7217e3b7773d2d7e222d949c3",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-17T09:35:16.627786+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1878,
+        "output_tokens": 489,
+        "total_tokens": 2367,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 273
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.20006",
+    "title": "Glance, then Select: Evidence-Tempered Visual Token Selection for Extremely Compressed Multimodal LLMs",
+    "authors": [
+      "Yuxuan Wang",
+      "Guangxiang Zhao",
+      "Yuxuan Tian",
+      "Yahui Han",
+      "Xinyu Tan",
+      "Feiyu Wang",
+      "Zongwei Lv",
+      "Xiangzheng Zhang",
+      "Lin Sun",
+      "Tong Yang"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": null,
+    "summary": "Multimodal large language models (MLLMs) encode a high-resolution image into thousands of visual tokens, which dominate the cost of the prefill stage. Visual token reduction removes most of these tokens, but two problems remain at extreme budgets. The vision encoder still processes every patch of the image, and the few surviving tokens often miss the small regions that hold the answer. In this paper, we propose Glance-ETD, a two-stage token reduction framework guided by a lightweight question-conditioned scorer. In the first stage, a glance encoder views the image at low resolution and re-encodes only the question-relevant regions at native resolution. In the second stage, Evidence-Tempered Diversity (ETD) selects the final tokens by combining diversity with the evidence predicted by the scorer, so that the kept tokens cover the scene and retain the answer. A single-rollout self-distillation recipe trains the MLLM with the glance encoder. With only 5% of the visual tokens, Glance-ETD retains 91.6% of the full-token performance of Qwen3.5-4B across fourteen benchmarks and outperforms the strongest prior method, LT-OPD, by 17.3 points and the same training recipe with DivPrune by 6.0. It also speeds up the time to first token on 4K images by 3.1x and generalizes to three other MLLMs and to high-resolution document benchmarks, with the largest gains on text-rich tasks.",
+    "abs": "http://arxiv.org/abs/2611.20006v1",
+    "pdf": "https://arxiv.org/pdf/2611.20006v1",
+    "AI": {
+      "category": "MAIN",
+      "priority": "P1",
+      "brief_summary": "提出 Glance-ETD 两阶段视觉 token 缩减框架：先用低分辨率 glance 编码器仅重编码与问题相关的区域，再由问题条件打分器以多样性加证据的准则（ETD）选出最终 token，并配以单轨迹自蒸馏训练，宣称在 5% token 预算下保留约 91.6% 性能。",
+      "relevance_reason": "直接涉及视觉证据筛选与任务必要信息在压缩后的保留，可作为「哪些视觉细节必须留在内部状态」的对照基准；其问题条件证据打分是否真正被下游推理使用、而非仅作 token 选择依据，值得核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-17T09:35:16.627786+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

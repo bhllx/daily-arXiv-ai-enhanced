@@ -1,0 +1,68 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.21132",
+  "input_sha256": "859876afb2850d6cc315edda71b1e06d9f15a6682480f7fb468aa5d41e217c97",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-17T09:24:22.137249+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1843,
+        "output_tokens": 628,
+        "total_tokens": 2471,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 418
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.21132",
+    "title": "Region-VAD: Video Anomaly Localization and Detection via Region Selection",
+    "authors": [
+      "Giacomo D'Amicantonio"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": "This paper has been accepted in the RWS workshop at WACV 2027",
+    "summary": "Anomalies are local events, yet weakly supervised video anomaly detection scores them globally. Most methods pool an entire frame into a single vector, rank frames by that vector, and derive a location afterwards as a saliency map of the score. Full-frame pooling mixes the anomaly with its background, so a detector can reach competitive benchmark scores from scene context without being able to show where in the scene the anomaly occurs. We introduce Region-VAD, which first selects a region and then detects the anomaly from that region alone. Region-VAD selects an explicit rectangle over the tokens of a frozen foundation model and scores anomalousness only from the tokens inside the box, through attention pooling followed by a standard temporal head. The rectangle is not learned, it is the box in which the frozen tokens change most between consecutive segments, in all four feature projections of the encoder, and it is found by exhaustive search over the rectangles of the token grid. Only the pooling and the temporal head are trained, from video-level labels without boxes, masks or frame-level annotations, and no trained component reads a token outside the selected region. Experiments on five datasets, with one localizer configuration shared by all datasets and backbones, show that Region-VAD achieves state-of-the-art anomaly localization on UCF-Crime and MSAD at competitive detection performance.",
+    "abs": "http://arxiv.org/abs/2611.21132v1",
+    "pdf": "https://arxiv.org/pdf/2611.21132v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "提出 Region-VAD：先在冻结基础模型的 token 网格上按跨段时间特征的投影变化穷举搜索出显式矩形区域，再仅用框内 token 经注意力池化和时间头打分异常，仅训练池化与时间头，在五个数据集上取得更强的异常定位。",
+      "relevance_reason": "「先选区域、且训练组件不读取选区外 token」的设计，可为 LVR 中视觉证据筛选、抑制背景捷径与信息坍缩提供可核查线索；但该文是视频异常检测而非多模态推理，选区准则能否对应推理期状态更新仍需读原文确认。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-17T09:24:22.137249+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.20715",
+  "input_sha256": "ed5244406947442d6f21e959ddf2e1fc5bfa39e0faf1c37c619fbc72ce84090a",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-17T09:28:38.883182+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1982,
+        "output_tokens": 654,
+        "total_tokens": 2636,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 440
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.20715",
+    "title": "Calibrate Once, Grow the Vocabulary: Candidate-Independent Scores for Conformal Risk Control in Open-Vocabulary Segmentation",
+    "authors": [
+      "Md Tanveer Hossain Munim",
+      "Bijoy Ahmed Saiem",
+      "Muhammad Abdullah Adnan"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": "44 pages: 8 pages main text, 4 pages references, 32 pages supplementary material. 8 figures, 52 tables. Code: https://github.com/munim110/open-vocab-crc",
+    "summary": "Open-vocabulary segmenters accept class names at inference. Conformal risk control can bound how often their prediction sets miss the true label, but we show that this bound breaks when names are added after calibration. On ADE20K, a threshold calibrated for 10% risk at 150 names reaches up to 15.4% risk at 845 names in released CAT-Seg models. The risk exceeds the target on every calibration split, yet the prediction sets grow far less than the target requires. In SED they instead grow larger than needed. The cause is that pruning, cross-label attention and vocabulary normalisation make each label's score depend on the other requested labels. Scores can move either way, so a threshold recalibrated at a larger vocabulary need not hold at smaller ones. We remove this dependence without training by scoring each label against a fixed reference bank of names. A label's score then stays the same when names are added, so one calibration keeps its guarantee as the vocabulary grows. The guarantee holds whatever names are added, even ones chosen per image after seeing it. On three benchmarks and five segmenters, the converted models meet the target at every vocabulary size we evaluate. For CAT-Seg and SED at alpha=10%, they use at most one more label per pixel than the released models recalibrated at the grown vocabulary. Treating names instead of images as calibration samples also bounds the miss rate of added names. If the annotated names are a random sample of the names in the calibration images, an added name's expected miss rate on those images is at most the target. For harder added names, the excess is at most their gap in mean miss rate. Applied to Grounding DINO, which splits large vocabularies into chunks, the conversion also makes inference about six times faster.",
+    "abs": "http://arxiv.org/abs/2611.20715v1",
+    "pdf": "https://arxiv.org/pdf/2611.20715v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文指出开放词表分割中，共形风险控制的保证在标定后扩充类别名时会失效，原因是剪枝、跨标签注意力和词表归一化使每个标签得分依赖其余候选；作者不改训练，改为对固定参考名称库打分，使单标签得分与词表无关，从而一次标定即可跨词表规模保持风险上界。",
+      "relevance_reason": "「候选无关打分 + 分布无关风险控制」这一线索可供核查：能否让 LVR 中对候选答案或证据的评分不随候选集合变化，从而为 STOP 决策与答案集给出可迁移的校准保证。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-17T09:28:38.883182+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

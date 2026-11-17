@@ -1,0 +1,74 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.20767",
+  "input_sha256": "6b52b6400a9aee44e10700f87ef22961d701ad4599b2b3c0af5f50ba8ff6ecb6",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-17T09:28:21.674866+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1958,
+        "output_tokens": 731,
+        "total_tokens": 2689,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 479
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.20767",
+    "title": "UNITE: Consolidating Embodied VLM Specialists via Shared-Anchor One-Bit Factorization",
+    "authors": [
+      "Tao Tao",
+      "Anke Tang",
+      "Enneng Yang",
+      "Zhi Hou",
+      "Xiaogang Wang",
+      "Dacheng Tao"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.CV"
+    ],
+    "comment": null,
+    "summary": "Embodied capabilities such as visual grounding, spatial reasoning, navigation, and driving understanding are often developed in separate vision-language specialists fine-tuned from a common pretrained model.Deploying the specialists separately multiplies storage, whereas merging them into one dense model forces conflicting task updates to share parameters and loses part of each specialist's expertise.We introduce UNITE, a framework that consolidates such specialists into a compact shared-backbone mixture of experts. UNITE keeps the feed-forward block of each specialist as a routable expert and represents the expert bank through a shared-anchor one-bit factorization: a shared floating-point anchor plus expert-specific, row-scaled binary deviations.The anchor is optimized jointly with the scales and signs through closed-form alternating updates, using only source weights and no calibration data.Router adaptation then adjusts token-level expert selection with the backbone and experts frozen, updating fewer than $0.6$M parameters ($<0.01\\%$ of the $8.8$B active parameters). Built from four Qwen3-VL-8B specialists, the complete UNITE model occupies $20.3$ GB, $1.16\\times$ the storage of one dense specialist and $59.6\\%$ below the uncompressed MoE. Across $22$ benchmarks and R2R Val-Unseen, UNITE matches six static merging methods in mean retention of best-specialist performance, leads all of them on Scan2Cap, ScanQA, and all four navigation metrics, and surpasses every source specialist on all five 3D scene understanding benchmarks (up to $+19.1$ on Scan2Cap) and on R2R navigation. Relative to the uncompressed MoE, factorization is nearly lossless on $21$ of $22$ benchmarks; the exception is VSI-Bench, where frame-count experiments suggest impaired use of cross-frame evidence.UNITE thus consolidates complementary embodied capabilities near single-model storage.",
+    "abs": "http://arxiv.org/abs/2611.20767v1",
+    "pdf": "https://arxiv.org/pdf/2611.20767v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "UNITE 将四个具身 VLM 专家的 FFN 块保留为可路由专家，用「共享浮点锚点＋专家专属行缩放二值偏差」做单比特分解，免校准数据、闭式交替优化，再冻结主干与专家仅训练轻量 router，把多专家整合为约 20.3 GB 的共享骨干 MoE，并在 22 个基准与导航任务上评估最佳专家能力保留度。",
+      "relevance_reason": "该工作本身是权重合并与低比特存储压缩，不是 LVR 推理状态生成；但「互补专家＋token 级路由」可供核查多假设 latent 内容的保留与路由选择，且其 VSI-Bench 上跨帧证据使用退化的现象，可能与视觉证据筛选和信息坍缩诊断相关。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-17T09:28:21.674866+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

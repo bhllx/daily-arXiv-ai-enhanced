@@ -1,0 +1,81 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.18963",
+  "input_sha256": "22b7e772f886388c364f14be6592c42660e6b7bb9751096b6e5e63f40ef06922",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-17T09:45:42.360724+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1907,
+        "output_tokens": 604,
+        "total_tokens": 2511,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 383
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.18963",
+    "title": "SpecRelay: Amortize or Avoid the Round Trip in Edge-Cloud Speculative Decoding",
+    "authors": [
+      "Jai Jain",
+      "Chihyo Ahn",
+      "Yong Liu",
+      "Charles Chen",
+      "Duc N. M Hoang",
+      "Ajay Kumar Jaiswal",
+      "Fatih Ilhan",
+      "Han-Byul Kim",
+      "Lauren Hannah",
+      "Richa Dixit",
+      "Minsik Cho",
+      "Yingyan Celine Lin",
+      "Hyesoon Kim"
+    ],
+    "categories": [
+      "cs.AI",
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Edge-cloud speculative decoding moves autoregressive drafting to an edge device while a larger cloud model verifies draft tokens in parallel, so that edge drafting and cloud verification overlap under a synchronous draft-verify schedule. Beyond low-latency local networks, however, the next verification request of that schedule can be sent only after the previous reply arrives, so every round still waits out a full round trip, and throughput falls as the network RTT grows. To recover this loss, we present SpecRelay, an edge-cloud LLM inference system that addresses this cost at two levels: it amortizes round trips when cloud verification is necessary and avoids them when local reasoning suffices. For cloud-bound queries, an asynchronous verification pipeline keeps fixed-budget draft trees in flight while earlier replies are still outstanding, and the cloud rejects stale requests before the target-model forward pass (the asynchronous schedule). At the query level, an RTT-conditioned router (the Latency-Aware Router) estimates quality and completion latency for three on-device modes (direct generation, Chain-of-Draft, and full reasoning) and cloud speculative decoding, selecting among them under a configurable accuracy-latency objective without adding latency during inference, since the router runs concurrently with the draft-model prefill. The asynchronous schedule alone improves decoding throughput by up to 50% over a reproduced synchronous baseline across multiple benchmarks. At matched target-model accuracy and 250 ms of added round-trip latency, the full system with the router delivers 1.95x and 1.55x the throughput of the same baseline on SPROUT and OlympiadBench, respectively, while sending only 47% and 39% of the queries to the cloud.",
+    "abs": "http://arxiv.org/abs/2611.18963v1",
+    "pdf": "https://arxiv.org/pdf/2611.18963v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "提出边缘-云 LLM 推理系统 SpecRelay：用异步验证流水线在等待回复期间持续发出投机解码草稿树以摊薄 RTT，并用延迟感知路由器在三种端侧推理模式与云端投机解码间按精度-延迟目标选择。",
+      "relevance_reason": "其「本地推理是否足够、何时仍需云端验证」的延迟条件化模式路由与陈旧请求拒绝，为 LVR 中 THINK/LOOK/STOP 的计算分配与获取证据收益-成本权衡提供问题表述层面的类比，可供核查；但材料未涉及视觉证据或 latent 状态，联系仅停留在决策与成本层面。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-17T09:45:42.360724+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

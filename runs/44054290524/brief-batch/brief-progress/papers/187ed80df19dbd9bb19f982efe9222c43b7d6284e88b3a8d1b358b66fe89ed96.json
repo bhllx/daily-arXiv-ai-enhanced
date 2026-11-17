@@ -1,0 +1,75 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.20351",
+  "input_sha256": "7d22e800e2b7964eec8e9f65eae9110bd22a84ca6f79c5b376fb8a51b7f918bc",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-17T09:33:00.072393+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1946,
+        "output_tokens": 198,
+        "total_tokens": 2144,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 0
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.20351",
+    "title": "BlockAlign: Preference Optimization for Trajectory-Distilled Video Generation",
+    "authors": [
+      "Jingyuan Zhu",
+      "Biaolong Chen",
+      "Yangyang Qin",
+      "Shengyang Shen",
+      "Yaohua Wang",
+      "Weiming Bai",
+      "Miao Lu",
+      "Aixi Zhang"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": null,
+    "summary": "Directly aligning trajectory-distilled video generators slashes rollout costs and optimizes the deployed few-step model without teacher fine-tuning or re-distillation. However, conventional flow-matching preference objectives assume single-head local velocity supervision, mismatching the finite-interval, block-average transition interface of trajectory-distilled generators such as Parallel Decoding Distillation (PDD) and Parametric Trajectory Distillation (PTD). Naively supervising only the primary initial-subinterval velocity sub-head rather than the fused block-average velocity at block starts (DirectAlign) induces a severe training--inference mismatch that degrades quality below the unaligned baseline. We introduce BlockAlign, an interface-consistent preference optimization framework that constructs states at valid block boundaries, queries the fused block-level velocity predictor, and supervises span-normalized transition residuals-seamlessly supporting DPO-, NFT-, and rollout-style objectives while preserving the native few-step sampler. We further build a unified post-training pipeline integrating offline pairs, reward-free semi-online continuations, and online rollouts with hierarchical preference selection and objective-aware block scheduling. Experiments on multi-reference video generation across MiniMax-H3 Ref2VA and an in-house model RefVid-V4 show that BlockAlign consistently outperforms unaligned distilled models and DirectAlign in structural plausibility, reference consistency, and visual quality. Notably, our approach unlocks PDD's 5x few-step rollout speedup for 3x faster end-to-end online training, achieving statistically significant human preference gains over PDD baselines (54.0% vs. 33.3% wins/losses, or 61.8% non-tie win rate on RefVid-V4; 51.3% vs. 34.7%, or 59.7% non-tie win rate on MiniMax-H3) and up to an 82.7% win rate against DirectAlign.",
+    "abs": "http://arxiv.org/abs/2611.20351v1",
+    "pdf": "https://arxiv.org/pdf/2611.20351v1",
+    "AI": {
+      "category": "EXCLUDE",
+      "priority": "NONE",
+      "brief_summary": "该论文提出 BlockAlign，一种与轨迹蒸馏视频生成器「块级平均速度」接口一致的人类偏好优化框架，避免仅监督首个子区间速度头造成的训练—推理不匹配，并整合离线对、半在线延续与在线 rollout 的后训练流程。",
+      "relevance_reason": "主题为视频生成模型的偏好对齐与少步采样加速，虽涉及块边界状态与轨迹监督，但目标是生成质量而非 VLM 推理中的 latent 状态生成、证据筛选或停止决策，缺少可核查的具体借鉴线索，故排除。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-17T09:33:00.072393+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

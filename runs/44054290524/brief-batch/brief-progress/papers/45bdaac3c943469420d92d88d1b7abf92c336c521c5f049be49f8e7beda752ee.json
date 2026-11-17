@@ -1,0 +1,71 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.19477",
+  "input_sha256": "01b893a86c1f31f0fdce8b8d4048d52682bb762b091b63d73534b31b9a678989",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-17T09:40:47.876883+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1934,
+        "output_tokens": 654,
+        "total_tokens": 2588,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 438
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.19477",
+    "title": "Grokking Can Be Steered: Selecting Desirable Solutions By Choice Of Learning Rule",
+    "authors": [
+      "Pascal Sager",
+      "Benjamin Grewe",
+      "Pau Vilimelis Aceituno",
+      "Thilo Stadelmann"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": "40 pages, 6 figures",
+    "summary": "During grokking, a network transitions from memorization to generalization, yet what shapes the neural implementation (circuit) of the generalizing solution and specifically the number of participating neurons (its size) remains unclear. We find that the learning rule, the combination of credit assignment algorithm and optimizer, controls this: On modular addition, every learning rule we study that groks recovers the same Fourier-based algorithm, yet implemented by circuits that differ in size. Why? A neuron stays in use when its credit is large relative to the non-gradient term of its own update, and this single condition unifies three routes to unused neurons: the coupled weight decay, Adam's $ε$ and the decay of a trainable per-neuron gain. Equalizing the magnitude of credit assigned to each neuron, or scaling each neuron's weight decay by its credit, expands the effective circuit size, measured from the outgoing weights, from 60% to 99% of the layer's neurons at similar training and test accuracy. We vary which neurons share one equalization factor, from the whole layer to individual neurons, and find that the circuit stays concentrated for groups of eight or more and fully distributes only when every neuron has its own factor. Credit magnitudes are usually set by the normalization of standard optimizers: Nero, which normalizes per neuron, distributes the computation, whereas Adam and seven others, including RMSProp, Muon, and Shampoo, use other normalization schemes and retain small, concentrated circuits. Distributed circuits tolerate neuron deletion better, while concentrated circuits can be pruned further and transfer about twice as fast to a task that recombines the same features, largely by recruiting their unused neurons. Learning rule choice thus steers circuit size, trading robustness against compressibility and transfer speed without changing the learned algorithm.",
+    "abs": "http://arxiv.org/abs/2611.19477v1",
+    "pdf": "https://arxiv.org/pdf/2611.19477v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文在模加任务上追问泛化电路大小由什么决定，发现学习规则（credit assignment 与优化器组合）是关键：神经元是否被使用取决于其 credit 相对自身更新中非梯度项的大小，据此可通过均衡各神经元 credit 或按 credit 缩放 weight decay 把有效电路从 60% 扩到 99%，并改变抗删除、可剪枝性与迁移速度。",
+      "relevance_reason": "其中的 credit 分配与逐神经元归一化线索可供核查是否能用于调节 VLM 潜在推理中承载计算的状态单元分布，并与贡献分配、信息坍缩及集中/分布式表示的取舍问题相关。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-17T09:40:47.876883+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

@@ -1,0 +1,73 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.20569",
+  "input_sha256": "66d6e752c485da020d0e5a48dcc793dcadb1234772808a50f46b1414d6fd523c",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-17T09:30:21.302967+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1939,
+        "output_tokens": 623,
+        "total_tokens": 2562,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 397
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.20569",
+    "title": "ToolGraph as a Q-Function for Test-Time Scaling of Tool-Use Agents",
+    "authors": [
+      "Ke Shen",
+      "Ankita Bhaumik",
+      "Li Dong",
+      "Shengjie Liu",
+      "Shuzhen Li",
+      "Naveed Ahmed Janvekar"
+    ],
+    "categories": [
+      "cs.AI"
+    ],
+    "comment": "40th Conference on Neural Information Processing Systems (NeurIPS 2026). Workshop: From Pretrained Representations to Acting Agents (PTA)",
+    "summary": "Tool-use agents must chain interdependent calls, yet which outputs satisfy which later inputs in a deployed catalog is not something a general-purpose language model reliably infers from tool descriptions alone. We compile that structure once into a reusable external representation. ToolGraph is a directed, weighted dependency graph over a tool catalog: parameter matching and interventional probes, which execute a candidate chain with and without its proposed predecessor, propose edges whose evidence is combined into an edge confidence. Prior work uses such graphs to retrieve tools, search for tool paths, or score the next call. We ask instead whether the same structure can supply a \\emph{multi-step} value by composing graph paths into a goal-conditioned action value \\(Q(s,a,g)\\). We study three estimators (dynamic programming over entity sets, a GraphSAGE estimator distilled from it, and an LLM scorer conditioned on graph evidence) plus a verbalizer that returns action--goal feedback to the agent, which keeps final action selection. Across two tool-use benchmarks and three backbones, we compare value ranking against personalized-PageRank retrieval over the identical graph, and against direct and reflective agents. Composition pays off only when the estimator also reads the concrete state: the LLM estimator improves on PageRank in every benchmark--backbone setting, by \\(8.3\\) points on average, while the two purely structural estimators fall below it, because a value defined over tool types cannot separate a correct tool called with a wrong argument. Graph construction is a one-time cost; we report it separately rather than assume it amortized away (at our scale it is comparable to request-time cost) and sweep four knobs controlling how much graph evidence to expose against success and tokens.",
+    "abs": "http://arxiv.org/abs/2611.20569v1",
+    "pdf": "https://arxiv.org/pdf/2611.20569v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文把工具目录一次性编译成带权依赖图 ToolGraph，并将图中路径组合成目标条件下的多步动作价值 Q(s,a,g)，比较动态规划、GraphSAGE 蒸馏和读取图证据的 LLM 打分器三种估计器，并在两个工具使用基准和三个骨干模型上与 PageRank 检索及直接、反思式 agent 对照。",
+      "relevance_reason": "其「纯结构价值无法区分正确工具配错参数、必须同时读取具体状态」的观察，可能为 LVR 中 latent 状态是否保留参数级任务必要信息提供可供核查的对照线索，多步价值估计或可借鉴为 latent 推理路径的评估与停止信号。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-17T09:30:21.302967+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

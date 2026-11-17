@@ -1,0 +1,68 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.18686",
+  "input_sha256": "c37b7be9d728bd1f668d1dd3e00e350eb5153a084c41bfc603ca8012ea815744",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-17T09:49:11.067658+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1983,
+        "output_tokens": 765,
+        "total_tokens": 2748,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 532
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.18686",
+    "title": "3D Cell Morphology--Clinical Text Contrastive Learning with Voxel Swin Transformer and Finding Encoder Domain-Adaptation",
+    "authors": [
+      "Takato Yasuno"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": "16 pages, 8 figures, 6 tables",
+    "summary": "Our prior work adapted a 2D CLIP dual encoder with LoRA to a multi-source cell-microscopy corpus, reaching anomaly-scoring ROC-AUC up to 0.985. This paper advances the same contrastive-learning domain-adaptation methodology from 2D microscope images to 3D microscope volumes, pairing a 3D Swin Transformer voxel encoder (MONAI's SwinUNETR backbone) with ClinicalBERT as the finding-text encoder. We train on 3,000 single-cell 3D confocal fluorescence volumes (4 tagged organelle structures) from the Allen Institute's public hiPSC single-cell image dataset, paired with template-generated finding text, with mitotic (dividing) cells oversampled as an abnormal-like proxy class validated by ROC-AUC. Naively reusing work's freeze backbone, LoRA the attention projections recipe for the Voxel Encoder collapses voxel embeddings to near-input-invariance, since LoRA's low-rank delta cannot compensate for an otherwise-frozen, randomly initialized (not pretrained) 3D Swin backbone, even as InfoNCE loss decreases healthily. Switching the Voxel Encoder to full fine-tuning resolves this: 4-way zero-shot structure accuracy rises from 25.0% (chance) to 48.6%, and voxel anomaly-scoring ROC-AUC improves from 0.486 to a peak of 0.628 (still below the 0.70 sanity threshold), while bidirectional retrieval recall stays low (R@10 $\\le$3.8%). We further introduce a nearest-neighbor diagnosis-reason retrieval evaluation, reaching 29.8% hit-rate@{1,5} at its best scale while scoring 0.0% elsewhere. The central finding of this MVP is architectural: LoRA's parameter-efficiency assumption presumes a pretrained backbone worth preserving, and breaks down when the backbone is randomly initialized.",
+    "abs": "http://arxiv.org/abs/2611.18686v1",
+    "pdf": "https://arxiv.org/pdf/2611.18686v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文把 2D CLIP 式细胞显微图像—文本对比学习迁移到 3D 共聚焦体，用 SwinUNETR 体素编码器配 ClinicalBERT，在 3000 个单细胞 3D 体与模板生成文本上训练；发现 LoRA 冻结随机初始化主干会使体素嵌入近乎输入不变，改为全量微调后指标仅小幅回升。",
+      "relevance_reason": "其「InfoNCE 正常下降但嵌入坍缩」的诊断以及 LoRA 依赖预训练主干的前提，可能为 LVR 中的 latent 信息坍缩、训练损失与表示可用性脱钩提供可核查线索，但领域与推理任务距离较远。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-17T09:49:11.067658+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

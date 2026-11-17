@@ -1,0 +1,68 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.19784",
+  "input_sha256": "ee580876db29ac35e0c254631c2065459f2406de798cca9e7d6319bacd293b25",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-17T09:37:38.195929+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1895,
+        "output_tokens": 831,
+        "total_tokens": 2726,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 566
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.19784",
+    "title": "How Should Parallel Langevin Chains Share Noise?",
+    "authors": [
+      "Ryan Farell"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": "48 pages, 6 figures, 36 tables. NeurIPS 2026 (poster). Code: https://github.com/rfarell/parallel-langevin-chains",
+    "summary": "Parallel Langevin sampling usually draws an array of independent Gaussian vectors, one row per chain. The average row drives the ensemble mean, with variance $1/K$ per coordinate for $K$ chains. Yet the unadjusted Langevin algorithm (ULA) specifies only each row's distribution. Subtracting the column means and rescaling, as in classical antithetic sampling, makes that variance zero. Each chain keeps its ordinary ULA path law for any finite run. For quadratic targets we derive the joint covariance of linear estimates computed from the ensemble mean, including coefficient estimates, time averages and predictions. The identity separates contributions from initial states and Gaussian draws. The coupling changes the second through one scalar, which is zero whenever the draws sum to zero across chains. For nonquadratic targets we bound the remaining variance. Centering has a price: for a quadratic form in the mean-subtracted Gaussian state, the ensemble average has variance $1/(K-1)$ relative to one chain, compared with $1/K$ under independent draws. On three tempered logistic posteriors, eight centered chains reduced the variance of the posterior-mean estimate, summed over coordinates, by two to three orders of magnitude compared with eight independent chains. They also beat 128 independent chains on variance and on variance times sampling time. Under Metropolis correction the reduction shrank to about three- to eightfold: rejected draws no longer balance accepted ones. The measured variance ratios were consistent with a leading-order prediction from rejection frequency and noise energy.",
+    "abs": "http://arxiv.org/abs/2611.19784v1",
+    "pdf": "https://arxiv.org/pdf/2611.19784v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "研究并行 Langevin 链之间如何共享噪声：采用类似 antithetic 的去列均值耦合，使各链仍保持单链 ULA 边缘分布，推导二次目标下集合均值线性估计的联合协方差并分离初态与噪声贡献，对非二次目标给出方差界，并在带 tempering 的 logistic 后验上比较方差与「方差×采样时间」，还考察 Metropolis 校正下收益的收缩。",
+      "relevance_reason": "该文对并行随机链共享噪声后集合均值方差的量化（1/K 与 1/(K-1) 的差别、校正步骤使收益衰减），可能为 LVR 中多条并行随机 latent 假设的采样与聚合、以及增加并行样本数相对收益的估计提供分析视角，可供核查其耦合方式能否对应 latent 假设间的噪声相关性建模。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-17T09:37:38.195929+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

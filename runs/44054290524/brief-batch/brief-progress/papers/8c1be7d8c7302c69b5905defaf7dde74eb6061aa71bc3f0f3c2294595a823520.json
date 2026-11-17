@@ -1,0 +1,72 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.21085",
+  "input_sha256": "c10323e368ec1ad9dea94a31184de4d81d55d895706b4ea821a5512cf0793236",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-17T09:24:59.472978+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1900,
+        "output_tokens": 653,
+        "total_tokens": 2553,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 431
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.21085",
+    "title": "State-Message Interaction Adapter for Cross-Domain Few-Shot Segmentation",
+    "authors": [
+      "Hang Xing",
+      "Yan Xia",
+      "Yongjiang Liu",
+      "Siqi Zhang",
+      "Xueming Ding"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": "17 pages, 9 figures, 7 tables, including the appendix",
+    "summary": "Cross-domain few-shot segmentation adapts natural-image pretrained encoders to medical or industrial domains from a few pixel-annotated support masks. Within frozen DINOv3, intermediate per-head attention messages already carry target-background distinctions that baseline final-layer similarities and predictions do not consistently reflect. We propose the State-Message Interaction Adapter (SMIA) to learn how per-head messages should update each receiving token representation while keeping pretrained attention and FFN parameters frozen. Inserted right after per-head aggregation, SMIA conditions the transformation of each head's aggregated output (message) on each patch's pre-attention feature (state), allowing similar contextual messages to produce distinct or opposing updates depending on the receiving position. Because scarce support masks cover only limited state-message combinations, a shared low-rank bilinear map confines the learned interactions to low-dimensional state, message, and output subspaces. Added before each adapted block's frozen FFN, these updates yield adapted features that are refined by frozen FFNs and deeper blocks for linear readout. With only 0.51M trainable parameters and single-pass, support-free inference, SMIA achieves six-dataset mean mIoUs of 77.40% at 5 shots and 80.99% at 10 shots across 20 medical and industrial tasks, surpassing the strongest prior methods by +3.61 and +3.93 percentage points. In controlled 10-shot comparisons across three benchmarks on the same DINOv3 backbone, SMIA also outperforms parameter-matched AdaptFormer, LoRA, and ParaX with a better precision-recall balance.",
+    "abs": "http://arxiv.org/abs/2611.21085v1",
+    "pdf": "https://arxiv.org/pdf/2611.21085v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "提出 State-Message Interaction Adapter（SMIA），在冻结的 DINOv3 中于逐头聚合之后，用共享低秩双线性映射让每个 head 的聚合消息依据接收 patch 的注意力前状态产生位置相关的更新，用于跨域小样本医学与工业分割。",
+      "relevance_reason": "其「中间层逐头注意力消息已含目标-背景区分、但末层相似度未反映」的观察与「消息条件于状态再做低秩更新」的结构，可供核查 LVR 中视觉证据在内部状态里的定位与位置相关状态更新；但论文任务是判别式分割适配，并非推理期 latent 生成。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-17T09:24:59.472978+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

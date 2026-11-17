@@ -1,0 +1,68 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.20993",
+  "input_sha256": "342ef26d02f1e7c8a221a2786a15348ad689c923e2682df52ad6b8c6a75db9c9",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-17T09:25:48.557766+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1951,
+        "output_tokens": 412,
+        "total_tokens": 2363,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 191
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.20993",
+    "title": "Digits in Notation Are Not Numbers: A Scoring Pitfall in PDF-to-Markdown Conversion of Japanese Technical Documents (Preliminary Evaluation)",
+    "authors": [
+      "Mitsumasa Wada"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": "Preliminary evaluation. 26 pages",
+    "summary": "Converting PDFs to Markdown is now routine preprocessing for search and language models, yet scoring the numbers in the output is easy to get wrong. We evaluate MinerU, a plain-text OCR baseline (NDLOCR-Lite), and a deterministic post-processing pipeline (anchor insertion, footnote reordering, fixes of look-alike characters in fixed contexts, gated formula repair using two independent OCR partners, and heading reconstruction) on 48 public Japanese pages (three documents), text-layer and rasterized. Our pre-specified number-and-unit F1 favored the OCR baseline (0.575 vs 0.397), and a disagreement check between the two engines seemed to flag about half of the converter's number errors (54.6%). Both were artifacts. The scorer counted digits in the converter's notation (image-link paths, HTML attributes), which plain text lacks. With the notation removed (a post-hoc check), the F1 scores tie (0.575 vs 0.594), and the check flags only 13% of number errors, because most errors are misses that both engines share. What remains: the OCR baseline has a lower body character error rate (0.012 vs 0.053 rasterized). The pipeline raises extra-number recall at page level (+0.145; the document-level interval touches 0), mostly by restoring page numbers, but lowers heading-level agreement (0.133 to 0.061) and leaves spurious formulas unchanged; its formula repair never fires. A pre-specified precision gate for its flags (0.80, human-judged) is met at 0.929, yet the post-processing hypothesis fails on its improvement items. We recommend scoring numbers after removing notation and checking critical figures against the source. By the pre-specified criteria, the study stays a technical report.",
+    "abs": "http://arxiv.org/abs/2611.20993v1",
+    "pdf": "https://arxiv.org/pdf/2611.20993v1",
+    "AI": {
+      "category": "EXCLUDE",
+      "priority": "NONE",
+      "brief_summary": "论文在 48 页日文技术文档上比较 MinerU、纯文本 OCR 基线与确定性后处理流水线，发现按数字-单位 F1 评分时把转换器输出中的记法（图片链接路径、HTML 属性）中的数字算入，导致结论被伪影扭曲，并建议去除记法后再评分。",
+      "relevance_reason": "该文属 PDF 转 Markdown 的 OCR 与解析质量评测，既不涉及 VLM 推理期的 latent 状态，也不涉及证据筛选或停止决策，其「数字记法不等于数值」的评分教训与 LVR 的关注点没有具体可借用的联系。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-17T09:25:48.557766+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

@@ -1,0 +1,73 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.21216",
+  "input_sha256": "9efab5c295ffe1832f87087ffdaeb5872b82975769aa75234a21e2c87e0321e7",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-17T09:23:54.320611+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1840,
+        "output_tokens": 730,
+        "total_tokens": 2570,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 502
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.21216",
+    "title": "MiSTiQ: MicroScaling Trellis Quantization for Extreme KV Cache Compression",
+    "authors": [
+      "Ofir Gordon",
+      "Lior Dikstein",
+      "Paul Balanca",
+      "Idan Achituve",
+      "Douglas Orr",
+      "Hai Victor Habi"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": "26 Pages, 7 Figures, 7 Tables",
+    "summary": "Modern large language models (LLMs) increasingly support longer contexts and serve more concurrent requests, increasing both sequence lengths and batch sizes. Both trends increase KV-cache size and memory traffic during inference. KV-cache quantization reduces these costs, with recent approaches using codebook-based vector quantization to achieve extremely low bit widths. However, hardware constraints limit codebook size, and most methods reconstruct the cache in higher-precision floating-point formats for attention, limiting the computational benefits of quantization. To address these limitations, we introduce MiSTiQ, a drop-in replacement for codebook-based vector quantizers that combines trellis-coded storage with microscaling (MX) formats for low-precision computation. We combine trellis quantization with beam search to encode the KV cache over large reconstruction spaces without large codebooks. To support MX computation, we derive MX-Hash functions that generate reconstruction values directly in the target MX element format. These functions use the scale-conditioned marginal distribution of block-normalized Gaussian inputs. On Llama3 and Qwen3, MiSTiQ achieves lower WikiText perplexity and higher GSM8K accuracy than the evaluated baselines across several block-scale formats at approximately 1.25 effective bits per element. With NVFP4, it also achieves the highest LongBench average on both models.",
+    "abs": "http://arxiv.org/abs/2611.21216v1",
+    "pdf": "https://arxiv.org/pdf/2611.21216v1",
+    "AI": {
+      "category": "EXCLUDE",
+      "priority": "NONE",
+      "brief_summary": "提出 MiSTiQ，用 trellis 编码加 beam search 在有限码本下编码 KV cache，并推导 MX-Hash 使重建值直接落在 microscaling 低精度格式上，从而在约 1.25 比特/元素的极低码率下兼顾困惑度与下游准确率。",
+      "relevance_reason": "论文只处理纯文本 LLM 推理的 KV cache 压缩与低精度计算，未涉及视觉或多模态推理状态的内容保留、生成方式、监督或停止决策；虽然「压缩 latent 状态存储」与 LVR 的成本议题表面相关，但原文没有可核查的状态保真度或推理行为线索，故不入选。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-17T09:23:54.320611+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

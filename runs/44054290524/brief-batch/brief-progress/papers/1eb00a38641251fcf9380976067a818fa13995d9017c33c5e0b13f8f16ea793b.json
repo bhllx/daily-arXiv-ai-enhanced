@@ -1,0 +1,74 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.21440",
+  "input_sha256": "4f13114ffa6c01086a815299094dafb73be85bb65a5ec0e7f731709433d5b92d",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-17T09:21:17.668617+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1923,
+        "output_tokens": 576,
+        "total_tokens": 2499,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 373
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.21440",
+    "title": "[CLS] and [EOS] Tokens are not Enough for CLIP-based Class-Incremental Learning",
+    "authors": [
+      "Hao Sun",
+      "Tao Hu",
+      "Shixiong Kai",
+      "Siyuan Xu",
+      "Wenqian Zhao",
+      "Mingxuan Yuan",
+      "Da-Wei Zhou"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": "Accepted to TMM. Code is available at: https://github.com/LAMDA-CL/PACE",
+    "summary": "Class-Incremental Learning (CIL) aims to empower models to continuously acquire new knowledge while mitigating catastrophic forgetting. With the advent of vision-language models like CLIP, leveraging their cross-modal alignment capabilities to address CIL challenges has emerged as a dominant paradigm. Existing methods leverage CLIP's global representations (i.e., the visual [CLS] token and the textual [EOS] token) for cross-modal alignment. While achieving effective classification, they overlook the rich patch-level visual features and token-level textual semantics inherent in CLIP. For example, the [CLS] token aggregates local information to capture the general concept of \"cat\", while the patch-level details retain specific localized features essential for recognition, such as the tail, fur, and face. We propose PACE (PAtch-token Cross-modal Enhancement) to uncover the long-neglected local representations within CLIP. First, based on the global representations like [CLS] token and [EOS] token, we identify the top-k most crucial visual patches and textual tokens. Subsequently, to better utilize the extracted key local features, we design a cross-modal fusion module. This module leverages local textual semantics to refine visual representations, while augmenting textual semantics with local visual features. As the fusion module is shared across all tasks, directly fine-tuning it on new tasks would interfere with the knowledge learned from previous tasks, leading to catastrophic forgetting. To alleviate this, we employ a projection-based update strategy to effectively preserve the critical parameter space of previous tasks during the adaptation to new tasks. Extensive experiments demonstrate that PACE significantly outperforms state-of-the-art methods across multiple CIL benchmarks.",
+    "abs": "http://arxiv.org/abs/2611.21440v1",
+    "pdf": "https://arxiv.org/pdf/2611.21440v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "针对 CLIP 类增量学习，指出仅用 [CLS]/[EOS] 全局表示不足，提出 PACE：依据全局表示选出 top-k 关键视觉 patch 与文本 token，用跨模态融合模块互增强，并以投影式参数更新缓解遗忘。",
+      "relevance_reason": "其「全局 token 不足以承载局部细节」的判断与基于全局相似度筛选关键 patch/token 的做法，可能为 LVR 中视觉证据筛选与细节保留提供线索；但属分类式增量学习，无推理期状态生成，迁移可行性需核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-17T09:21:17.668617+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

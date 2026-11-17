@@ -1,0 +1,75 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.20575",
+  "input_sha256": "f9c12784cf1544329badeb043d66606a8f68a70d520c2b644a47dd0483c161e6",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-17T09:30:15.295675+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1897,
+        "output_tokens": 838,
+        "total_tokens": 2735,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 616
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.20575",
+    "title": "PerturbJEPA: Joint-Embedding Predictive Learning of Cellular Perturbation Responses",
+    "authors": [
+      "Jiangshuan Pang",
+      "Youzhe He",
+      "Yiting Deng",
+      "Wangyang Tang",
+      "Huinan Xu",
+      "Qi Lu",
+      "Shiping Liu",
+      "Zhenkun Zhuang"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": "23 pages, 6 figures, 14 tables. Code: https://github.com/BGI-Hangzhou-OmicsAI/PerturbJEPA",
+    "summary": "Identifying the drug and dose that produced a cellular response requires preserving treatment effects within each cellular background. A joint-embedding predictor can match its targets while ignoring the intervention if its encoder preserves differences across backgrounds but erases differences between treated and control populations within each one. We call this failure interventional contrast collapse. PerturbJEPA encodes the difference in mean gene expression between treated and control populations as an effect vector. It aligns the displacement between their latent centroids with this vector and regularizes the vectors to preserve variation across population pairs. We show that the measured displacements cannot all coincide within a batch when effect-vector variation exceeds the root-mean-square alignment error. Trained with separate drug and dose ranking objectives, the model predicts candidate responses from a common control population and matches them to the observed response without cell pairing or expression reconstruction. We evaluate 3,592 Tahoe-100M queries on held-out combinations of known interventions and cellular backgrounds, each with over 700 drug-dose candidates in a fixed, background-specific catalog. PerturbJEPA achieves 91.46% macro joint drug-dose Recall@1, exceeding STATE by 3.40 percentage points (95% drug-cluster bootstrap interval of 1.72 to 5.07 points). Controlled diagnostics show that treatment-control differences can shrink even when representations remain globally dispersed. With the drug ranking objective fixed, adding effect-vector regularization to alignment raises joint Recall@1 from 18.57% to 87.47%.",
+    "abs": "http://arxiv.org/abs/2611.20575v1",
+    "pdf": "https://arxiv.org/pdf/2611.20575v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "论文研究如何从细胞响应中识别药物与剂量，提出 PerturbJEPA：以处理组与对照组的平均表达差作为效应向量，对齐潜空间中两组质心的位移，并加正则保持不同群体对之间的效应差异，避免作者所称的「interventional contrast collapse」。",
+      "relevance_reason": "其「潜空间匹配成功却抹去干预差异」的失败刻画，与 LVR 中 latent 看似对齐答案却未保留视觉证据的担忧有概念对应，质心位移对齐与效应向量方差正则可供核查是否能约束 latent 中的任务相关差异；但领域为单细胞转录组，迁移性尚未验证。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-17T09:30:15.295675+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

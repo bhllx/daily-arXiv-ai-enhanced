@@ -1,0 +1,68 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.21159",
+  "input_sha256": "e1b1a4edea492b270c7f51fae9e4e6c5cc75b967373bfd7692f753b21387b8d6",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-17T09:24:13.493122+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 2000,
+        "output_tokens": 573,
+        "total_tokens": 2573,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 361
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.21159",
+    "title": "When Feature Representation Changes Local Explanations: A Controlled Comparison of SHAP and LIME under Numerical Discretization",
+    "authors": [
+      "Parv Patel"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": "20 pages, 7 figures, 6 tables. Code: https://github.com/Parvptl/shap-lime-representation-sensitivity",
+    "summary": "Local feature attributions are computed over a feature representation chosen by an upstream data-engineering step, yet they are read as statements about the underlying quantity. We ask how discretizing one continuous feature changes local KernelSHAP and LIME explanations when the classifier is held fixed, and whether the two explainers respond differently. A random forest is trained on UCI Adult and frozen; age is collapsed onto equi-width or quantile bin representatives (k in {3,5,10}) before the model receives it, and the same 120 held-out instances are explained in every condition across multiple seeds. We show analytically and numerically that for KernelSHAP this is exactly equivalent to explaining the unchanged model at the quantized instance against a quantized background, so the comparison is between two effective inputs rather than a pure explainer effect; for LIME no such equivalence holds. Each attribution change is compared with a seed-noise floor from re-running the explainer on the unchanged condition. KernelSHAP's age attribution exceeds its noise floor in all 6 pre-specified conditions (median ratios 2.4-59, all significant after Holm correction); on the raw scale LIME's exceeds its floor in only 2 of 6 and in the rest is no larger than its own run-to-run variation. SHAP's normalized change exceeds LIME's in every condition (rank-biserial 0.81-1.00), while LIME is 2.5-4.6x less consistent across repeats. Predicted classes change for only 0.8-5.8% of instances and held-out ROC-AUC never falls below 0.9097, yet 45-94% of instances show a large SHAP attribution change with no class flip. Feature-importance rankings barely move (median Spearman >= 0.979, top-3 overlap 1.00). The representation change and the change in effective input cannot be separated within a frozen-model design.",
+    "abs": "http://arxiv.org/abs/2611.21159v1",
+    "pdf": "https://arxiv.org/pdf/2611.21159v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "在一个冻结的随机森林（UCI Adult）上，将连续特征 age 做等宽或分位离散化，比较 KernelSHAP 与 LIME 的局部归因变化，并用重复运行的噪声下限与类别翻转率作对照，指出 KernelSHAP 的改变量在全部条件下超过噪声而 LIME 不稳定。",
+      "relevance_reason": "论文说明局部归因高度依赖输入表征而非仅解释器本身，这一线索可供核查：若用 SHAP/LIME 类方法给 latent 视觉状态或量化 token 分配贡献，需区分真实证据贡献与表征离散化带来的伪变化。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-17T09:24:13.493122+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

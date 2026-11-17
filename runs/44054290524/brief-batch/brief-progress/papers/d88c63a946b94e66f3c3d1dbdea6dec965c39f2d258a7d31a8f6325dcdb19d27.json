@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.19135",
+  "input_sha256": "8779633d086456c483275f29f0c2dee6ef7f195cc29e758f3ea83a170660309f",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-17T09:44:15.338250+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1883,
+        "output_tokens": 703,
+        "total_tokens": 2586,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 453
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.19135",
+    "title": "How Much Determinism Can Fine-Tuning Buy? Margin Regularisation Against Batch-Induced Token Flips",
+    "authors": [
+      "Charan Teja Nagisettygari",
+      "Siva Raja Sindiramutty"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "Greedy decoding at zero temperature is widely assumed to be deterministic, although the exact same prompt may yield different tokens depending on the number of other prompts sharing the batch for inference. The currently available solutions operate during inference, trading determinism for throughput. Can we train a model in such a way that fewer decoding steps would be susceptible? We characterize the perturbation empirically across six model families and three numerical precisions and observe two empirical facts about the measurement: the perturbation depends exactly on the representable precision (8.00x for bfloat16 vs float16, 8192.0x for float16 vs float32, in line with predictions based on mantissa bits) and the batch invariance happens accidentally at certain tensor shapes, allowing a practitioner to achieve zero nondeterminism merely by setting the sequence length. Then we apply hinge penalization of the model's top-1 / top-2 logit gap, scaled to twice the measured noise quantile. On GSM8K dataset it leads to a 35% reduction in token flips and divergence from 53.8% to 38.1%, at the cost of 1.3 - 2.9 accuracy points, increasing monotonically with the margin size. It does not affect the gap threshold sufficient for determinism: the logit gaps of surviving flips are unchanged (median 0.125 for all arms), as the hinge is a soft penalty and the largest hardware perturbation remains the same. We reject seven hypotheses, including a per-model viability diagnosis, holding on six models and falsified on the seventh.",
+    "abs": "http://arxiv.org/abs/2611.19135v1",
+    "pdf": "https://arxiv.org/pdf/2611.19135v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文研究零温度贪心解码在批内其他样本数不同时仍产生的 token 翻转，跨六个模型族与三种数值精度刻画该扰动，并对 top-1/top-2 logit 间隔施加按噪声分位缩放的 hinge 正则；在 GSM8K 上翻转减少 35%、发散率由 53.8% 降至 38.1%，代价是 1.3–2.9 个精度点。",
+      "relevance_reason": "其训练期 margin 正则与「翻转 token 的 logit 间隔阈值未变」这一发现，可供核查 LVR 中 latent 步与停止决策的数值稳定性及评测可复现性，但该方法是表层 logit 层面的，是否影响推理轨迹而非仅输出 token 仍需确认。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-17T09:44:15.338250+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

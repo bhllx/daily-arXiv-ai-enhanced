@@ -1,0 +1,68 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.20419",
+  "input_sha256": "247af2f1136d356ce4edbaf0c2a3ef56fa26dec0f13c0a532a77a499a021c4a0",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-17T09:32:07.527982+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1959,
+        "output_tokens": 643,
+        "total_tokens": 2602,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 419
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.20419",
+    "title": "Reasoning Again with a Quarter of the Experts: Retry First, Then Train",
+    "authors": [
+      "Anik Jha"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": "12 pages, 5 figures, 4 tables",
+    "summary": "Removing three quarters of the routed experts from a 122B-parameter reasoning mixture-of-experts model makes it fit in a 12 GiB file, and breaks it in a specific way: on LiveCodeBench it enters verbatim reasoning loops that run to the token limit on 44 of 120 development problems, where the unpruned model at the same 2-bit quantization loops on none. We study how much of that loss can be recovered without changing the kept experts' quantized bytes, in three steps of increasing cost. On development problems, a sampling penalty recovers part of it. Stopping a reply when it starts to loop and drawing again recovers more on top of it, with no weight change. Our method, B, adds rank-8 trained corrections to the kept experts, loaded as an adapter, and restores two experts per layer; it is fitted layer by layer to the unpruned model's expert block on the pruned model's own activations. In a pre-registered comparison on 130 easy and medium LiveCodeBench problems that no part of the study had touched, with both arms given the same sampling penalty and the same stop-and-redraw policy, B solves 116 problems against 104 (+9.2 pp, 95% CI [+3.1, +15.4]; 15 problems gained, 3 lost). A training-free weight edit aimed at the loops, tested the same way earlier, did not help. B removes more wrong answers than loops, and costs 1.7x the wall time. On two older benchmarks used as regression checks, B stays inside a pre-set 2 pp tolerance but shows no gain (HumanEval+ +0.6 pp, MBPP+ -1.9 pp). The evidence is one model, one quantization and one benchmark family; we state what it does and does not show.",
+    "abs": "http://arxiv.org/abs/2611.20419v1",
+    "pdf": "https://arxiv.org/pdf/2611.20419v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "在 122B MoE 推理模型上删除四分之三路由专家并做 2-bit 量化后，模型在 LiveCodeBench 上陷入逐字重复循环；论文比较采样惩罚、检测到循环即停止并重抽、以及逐层拟合 rank-8 适配器恢复部分专家三种补救方式，并用预注册对比检验其增益。",
+      "relevance_reason": "其「循环检测—停止—重抽」策略与压缩后逐层适配器修正在概念上可供核查 LVR 的停止决策与压缩/剪枝下任务必要信息保留问题，但材料为纯文本代码推理、无视觉或多模态状态分析，联系较弱。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-17T09:32:07.527982+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

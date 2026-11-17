@@ -1,0 +1,71 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.19768",
+  "input_sha256": "23d7c02328bc5fb6163465f8380331270383454f10e516d5c50d4fe5f0b89e06",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-17T09:37:52.183678+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1937,
+        "output_tokens": 496,
+        "total_tokens": 2433,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 289
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.19768",
+    "title": "PISG: Constraint-Aligned Signal Amplification for Diffusion-Based Combinatorial Optimization",
+    "authors": [
+      "Yuming Zhang",
+      "Xianchen Zhou",
+      "Hongxia Wang"
+    ],
+    "categories": [
+      "cs.LG",
+      "math.OC"
+    ],
+    "comment": "Accepted at NeurIPS 2026 (poster). 32 pages. Code: https://github.com/Ming-321/PISG",
+    "summary": "Diffusion-based solvers have become a prominent approach to neural combinatorial optimization. At inference time, they assign each decision variable a prediction score. A greedy decoder ranks candidates by these scores and checks hard constraints to ensure feasibility. Top-ranked candidates should be both promising and jointly feasible, making prediction-constraint alignment critical. When this alignment is weak, greedy decoding skips constraint-violating candidates and falls back to lower-ranked alternatives, degrading solution quality. Existing test-time methods improve search, sampling, or decoding, but do not directly strengthen this alignment before decoding. We observe that trained denoisers already carry constraint-aligned structural signals. Building on this observation, we propose Perturbed Instance-Structure Guidance (PISG), a training-free method that amplifies these signals at test time. At each denoising step, PISG constructs a structure-degraded prediction and extrapolates the unperturbed prediction away from it. The resulting guided prediction improves candidate rankings before constrained decoding. Signal analysis shows that this guidance concentrates on constraint-critical variables rather than uniformly rescaling scores. Under greedy decoding and without downstream refinement, PISG improves all 16 TSP solver-scale pairs across DIFUSCO, T2T, FastT2T, and StruDiCO, and all four MIS-ER solvers, with MIS-ER solved-cost gains up to +4.8%. The gains persist on most large-scale settings after 2-opt, and a preliminary study extends PISG to a Transformer-based solver. These results identify prediction-constraint alignment as an effective test-time enhancement direction for diffusion-based combinatorial optimization. Code is available at https://github.com/Ming-321/PISG.",
+    "abs": "http://arxiv.org/abs/2611.19768v1",
+    "pdf": "https://arxiv.org/pdf/2611.19768v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "提出 PISG，一种免训练的测试时引导方法：在扩散求解器每一步构造「结构退化」的预测，并把无扰动预测从其向外推，从而放大去噪器中已存在的约束对齐信号，改善约束贪心解码的候选排序，在 TSP 与 MIS 多类求解器上验证。",
+      "relevance_reason": "组合优化本身不属于视觉推理主线，但其「退化预测对比外推、在去噪轨迹中放大内部结构信号」的思路，可能为扩散式 latent 推理的状态更新与任务必要信息筛选提供可核查的启发。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-17T09:37:52.183678+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

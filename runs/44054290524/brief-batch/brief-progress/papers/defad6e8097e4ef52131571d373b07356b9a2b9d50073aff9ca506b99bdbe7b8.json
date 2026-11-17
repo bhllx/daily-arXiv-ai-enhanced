@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.18914",
+  "input_sha256": "56f50c95f0cd0d6ab2899725267ba2596216d921ebef61af3baa4c7510cc71b9",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-17T09:46:04.589384+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 2002,
+        "output_tokens": 716,
+        "total_tokens": 2718,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 474
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.18914",
+    "title": "How Much Do Foundation Models Add to Gradient Boosting on Financial Event Sequences?",
+    "authors": [
+      "Carlos Eduardo Martins Relvas",
+      "Gustavo di Giovanni Bernardo"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": "49 pages, 5 figures, 24 tables. Code, synthetic data generator and per-seed predictions available at https://github.com/datarisk-io/fm-vs-gbdt-eval",
+    "summary": "Foundation models pretrained on raw transaction sequences are proposed for credit, fraud and churn modeling, with reported gains over gradient boosting, but the data and baselines behind these gains are rarely public. We measure how much the pretraining and adaptation recipes of these models add to a baseline of point-in-time window aggregates and LightGBM, and we propose TBS (Temporal Boosting-Sequence ensemble), which averages the ranks of a boosting model enriched with label-free event-transition features and of a pretrained sequence network fine-tuned jointly with the aggregates. On a synthetic credit-card dataset, the public MBD-mini banking dataset and two proprietary datasets of trade credit and B2B churn, we compare 27 methods at three label budgets with five seeds and paired bootstrap intervals, using sequence models of about 0.4 million parameters pretrained per dataset. Frozen self-supervised embeddings rarely improve the baseline, and a fine-tuned sequence network alone clears it in 9 of 21 target-budget cells. TBS clears it in 19 of 21 cells (18 after FDR adjustment), with a median gain of +1.8 AUC points, and the controls suggest that combining boosting with the pretrained network is the main source of the observed gain. Gains shrink as labels grow and with rich tabular data: with both, the gain on the proprietary datasets is +0.7 and +0.8 points, the latter with an interval including zero. We also re-examine two benchmarks. On IBM TabFormer, the test follows a change in the fraud pattern and the published baseline has no history; with the training period the vendor states, our history-aware LightGBM and our own foundation model stay below the published scores of a commercial model. On IBM AML, a simulation artifact lets a date rule reach F1 0.482, and a point-in-time LightGBM reaches the F1 of graph neural networks whose test graph includes later transactions.",
+    "abs": "http://arxiv.org/abs/2611.18914v1",
+    "pdf": "https://arxiv.org/pdf/2611.18914v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "该论文在信用卡、银行交易、贸易信用与 B2B 流失等序列数据上，比较预训练序列基础模型与「时点窗口聚合 + LightGBM」强基线的增益，并提出 TBS（对增强梯度提升与微调序列网络的输出排名取平均）的融合方案，配合多标签预算、五随机种子与配对 bootstrap 区间，同时复查 TabFormer、AML 两个基准的评测伪影。",
+      "relevance_reason": "非视觉工作，但其「冻结自监督嵌入几乎不优于强基线、仅联合微调才有效」的对照设计，以及基准伪影与时点对齐基线的审查方式，可供核查 LVR 中 latent 内容是否真被使用、增益如何归因以及评测是否存在捷径。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-17T09:46:04.589384+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

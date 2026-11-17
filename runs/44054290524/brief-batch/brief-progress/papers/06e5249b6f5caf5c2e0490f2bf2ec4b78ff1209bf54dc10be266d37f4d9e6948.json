@@ -1,0 +1,68 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.20377",
+  "input_sha256": "d6423076bd65ddeacb58e7699bdf3306117bb0933c5f128b064fc5848b4413d6",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-17T09:32:41.624526+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1941,
+        "output_tokens": 890,
+        "total_tokens": 2831,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 614
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.20377",
+    "title": "Halting in Recurrent Sequence Models",
+    "authors": [
+      "Simon Dräger"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": "16 pages, 7 figures, 2 tables. Accepted at the NeurIPS 2026 Workshop on Interpretability as a Science",
+    "summary": "Recurrent sequence models, such as recurrent neural networks (RNNs) and state space models (SSMs), are often trained to emit an end-of-sequence (EOS) token when their output sequence is complete. During training, EOS is treated as another token without a special loss term or incentive. Although this training paradigm is widely used, it is not understood how models decide to output EOS. We study a minimal version of the EOS halting problem in which networks are trained to emit a given input sequence an instructed number of times, followed by EOS. We train tanh RNNs and linear SSMs on this task, finding that the RNNs encode the number of tokens left to copy in a linear subspace, of which two principal components capture most of the variation. Hidden states with the same remaining count converge to a shared representation regardless of their instructed repeat count. By modulating the hidden state using an affine transformation at the boundary between copied sequences, we shift the RNN's state to the representation shared by states with one fewer copy remaining. The unchanged network emits EOS one copy earlier while reproducing the shortened target sequence in 94.4% of new sequences, revealing that this representation causally determines the stopping time. In the SSMs, the difference between trajectories with different repeat counts is separated across two-dimensional rotation planes whose contributions to the EOS comparison cancel during copying and align near the stopping time. Rotating the planes independently removes most of the intended stopping while preserving the copied content, which shows that the stopping time depends on the planes' relative phases. These results identify two candidate primitives of EOS halting in recurrent models: a shared encoding of the number of remaining tokens in tanh RNNs and phase alignment across fixed rotations in linear SSMs.",
+    "abs": "http://arxiv.org/abs/2611.20377v1",
+    "pdf": "https://arxiv.org/pdf/2611.20377v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P1",
+      "brief_summary": "论文在「复制指定次数后输出 EOS」的最小任务上训练 tanh RNN 与线性 SSM，发现 RNN 在低维线性子空间（约两个主成分）中编码剩余 token 数，且剩余数相同的状态收敛为共享表示；在序列边界施加仿射变换把状态推移到「少一次」的表示，可使网络提前一轮停止并仍以 94.4% 复现目标序列，而 SSM 的停止则依赖二维旋转平面间相对相位的对齐。",
+      "relevance_reason": "该文以因果干预而非仅相关性证据，说明循环状态中「剩余步数」子空间如何决定停止时机，与 LVR 关注的 STOP 决策、预测性工作区及 latent 状态比较维度（深度、位置、结构）直接呼应，可核查其线性子空间与相位对齐两类假设能否迁移到多步视觉推理的停止判断。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-17T09:32:41.624526+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

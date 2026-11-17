@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.20016",
+  "input_sha256": "ecd98295313573f59d2528d12254d154893d69d88f0fdaf3568ab1280786b6ed",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-17T09:35:12.032137+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1946,
+        "output_tokens": 658,
+        "total_tokens": 2604,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 450
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.20016",
+    "title": "GEM-MM: Reducing VLM Hallucination with Entropy-Guided Preference Alignment",
+    "authors": [
+      "Yuanshan Chua",
+      "Xuejiao Zhao"
+    ],
+    "categories": [
+      "cs.AI",
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Vision-language models (VLMs) are routinely aligned with offline pairwise RLHF objectives, but multimodal preference data is scarce and treats every response token as equally informative. Under a small preference budget, pair construction becomes nearly irrelevant: standard DPO-style, image-conditional, and self-improvement objectives all perform within 1.1 points on MM-RLHF metrics and 0.5 points on hallucination rates, matching the SFT baseline. We call this entropy-blind preference optimization: the learning signal ignores policy uncertainty, which in chain-of-thought VLMs concentrates on specific fork tokens where visual claims are made. We introduce GEM-MM, extending entropy-guided preference modeling to VLMs. It samples on-policy candidates, rewards high-entropy reasoning forks, penalizes uncertain final answers, and updates the model via group-normalized policy gradients. On a 3000-prompt MM-RLHF budget with Qwen3-VL-4B-Instruct, GEM-MM achieves the best entropy-depth preference score (61.7% vs. 57.3-58.4% baselines) and implicit-reward accuracy (41.4%). Crucially, it reduces AMBER hallucination from 23.4-24.0 to 20.6 and CHAIR from 5.0-5.1 to 4.6 at matched caption coverage. It also ranks best on all three HallusionBench granularities, with a conservative operating point raising the near-chosen rate to 62.4%. An off-the-shelf multimodal reward model ranks GEM-MM first, and two such models independently confirm our main ablations (p < 0.001). We report confidence intervals, paired significance tests, metric-reward functional overlaps, and document a collapse mode when exceeding the fair budget. Code and evaluation harness: https://github.com/SNOWTEAM2023/GEM-MM",
+    "abs": "http://arxiv.org/abs/2611.20016v1",
+    "pdf": "https://arxiv.org/pdf/2611.20016v1",
+    "AI": {
+      "category": "MAIN",
+      "priority": "P1",
+      "brief_summary": "论文指出多模态偏好预算有限时 DPO 类目标对策略不确定性「熵盲」，提出 GEM-MM：采样 on-policy 候选，奖励高熵推理分叉、惩罚不确定终答，并以组归一化策略梯度更新，在 MM-RLHF 预算下降低 AMBER、CHAIR 幻觉。",
+      "relevance_reason": "直接对应推理轨迹的贡献分配与视觉证据使用：高熵分叉 token 正是视觉主张出现处，可供核查「THINK 是否有益」及幻觉成因，但其作用在显式 token 轨迹而非 latent 状态生成。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-17T09:35:12.032137+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

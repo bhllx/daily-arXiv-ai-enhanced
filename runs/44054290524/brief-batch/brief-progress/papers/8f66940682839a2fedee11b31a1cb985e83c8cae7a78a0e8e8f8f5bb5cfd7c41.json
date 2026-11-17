@@ -1,0 +1,71 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.21033",
+  "input_sha256": "3ce863fff7e7c0e77eabd08d99f292c5e872413ef4eddb10888c7d0d69f42463",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-17T09:25:34.596157+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1891,
+        "output_tokens": 781,
+        "total_tokens": 2672,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 523
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.21033",
+    "title": "POKE: Probe Offline, Keep Efficiently for Vision-Language-Action Models",
+    "authors": [
+      "Jaehyuk Lee",
+      "Yeajin Lee",
+      "Suhyun Bae",
+      "Donghun Lee"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": null,
+    "summary": "Visual token pruning reduces the inference cost of Vision-Language-Action (VLA) models, but attention-based scores do not directly measure a token's effect on the predicted action. We define action sensitivity as the magnitude of the first-order action change when a token is replaced by its camera's mean token and estimate it for all tokens with a single backward pass. Computing it online is costly: scoring on the full (unpruned) graph needs an extra forward pass at every control step. Scoring on the pruned forward pass is cheaper but causes scoring-graph lock-in: removed tokens lose their direct paths through later layers and tend to receive lower scores, making those locations less likely to return. On replayed observations, even with a random conditioning mask, pruned-graph scoring re-selects 59% of the mask's tokens, versus 6% expected by chance; attention histories show a similar bias. POKE (Probe Offline, Keep Efficiently) computes full-graph action sensitivities offline and distills them into a student with under 0.3M parameters. At inference, the student scores the current observation without backpropagation or previous masks, and score-guided diversity selection retains the tokens. Keeping 32 of 512 visual tokens on LIBERO, POKE achieves 95.2% success on OpenVLA-OFT and 90.8% on $π_{0.5}$ at $1.85\\times$ and $1.26\\times$ speedups, outperforming attention-, diversity-, and distillation-based pruners, with larger margins on LIBERO-Plus.",
+    "abs": "http://arxiv.org/abs/2611.21033v1",
+    "pdf": "https://arxiv.org/pdf/2611.21033v1",
+    "AI": {
+      "category": "MAIN",
+      "priority": "P1",
+      "brief_summary": "POKE 面向 VLA 模型的视觉 token 剪枝，提出以「换成该相机均值 token 时动作的一阶变化」定义 action sensitivity，指出在已剪枝计算图上打分会产生 scoring-graph lock-in（被删 token 后续失去直达路径、分数偏低而难以回归），改为在完整图上离线计算敏感度并蒸馏进不足 0.3M 参数的学生模型，推理时无需反传或历史掩码即可打分并做多样性选择。",
+      "relevance_reason": "其核心正是「哪些视觉 token 真正影响输出」的因果式贡献度量与证据筛选，且对剪枝后自评分导致的偏差做了诊断，可供核查是否能用于 LVR 中视觉证据保留与 latent 内容坍缩的判断；但任务为机器人动作预测，与多步推理状态的联系仍需验证。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-17T09:25:34.596157+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

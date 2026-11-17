@@ -1,0 +1,72 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.20955",
+  "input_sha256": "00dd4e1e8bf5ed18a60fa2418e27bae104baa5ea054db92cb4537867ac674713",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-17T09:26:17.790068+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1828,
+        "output_tokens": 849,
+        "total_tokens": 2677,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 607
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.20955",
+    "title": "Jev-as-a-Reward: Validating Probabilistic Safety Judges for Reinforcement Learning",
+    "authors": [
+      "Eunkyeong Lee",
+      "Junhyung Moon",
+      "Seunggwan Hong",
+      "Dongsuk Oh"
+    ],
+    "categories": [
+      "cs.AI",
+      "cs.CL"
+    ],
+    "comment": "15 pages, 2 figures",
+    "summary": "Probabilistic safety judges return the probability of a safety label and cheaply score reinforcement learning rollouts. A confidence gate sends only uncertain verdicts to a stronger LLM judge, which leaves confidently passed harm in a blind spot. Policies can exploit this blind spot, and commercial judges release new versions. We propose a protocol that validates such a judge before and during training, separates the share of confidently passed harm from its amount, and re-validates it after each judge change. We apply it to two versions of Jev, a commercial decision-only judge, and to an open guard classifier. Under the probability reward of Jev, passed harm shrinks in all 11 runs under the primary reference, mostly more slowly than caught harm, and concentrates in the blind spot. Binarizing this judge meets the escape criterion on Llama, and the open guard classifier shows an escape signal in one seed under a second reference. Guard classifiers share this blind spot, and even frontier LLM judges catch at most one of 10 human-labeled confident misses. Without a trained reward model, the probability reward with a helpfulness term lowers HarmBench attack success on Llama-3.1-8B from 0.287 to at most 0.033 at the final checkpoint.",
+    "abs": "http://arxiv.org/abs/2611.20955v1",
+    "pdf": "https://arxiv.org/pdf/2611.20955v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "论文提出一套判别器校验协议：在训练前与训练中检验概率式安全判别器，用置信度门控把不确定判定转交更强的 LLM 判别器，并将「高置信放过的危害」占比与其绝对量分开度量，判别器换版后重新校验；在 Jev 商用判别器和开源 guard 分类器上展示了策略对盲区的利用，并给出概率奖励加 helpfulness 项的 RL 结果。",
+      "relevance_reason": "其「置信度门控＋盲区利用」的评估器校验思路，可能可供核查 LVR 中奖励或判别信号是否真正反映 latent 内容、策略是否只是利用评估盲区；但与视觉 latent 推理无直接联系，迁移需较多判断。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-17T09:26:17.790068+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

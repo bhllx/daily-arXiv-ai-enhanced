@@ -1,0 +1,75 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.21315",
+  "input_sha256": "1d3e60253cfa322f7c3271dd95563f6f049273bfd7b1af8fdde4f689a4d3580c",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-17T09:22:44.781068+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1998,
+        "output_tokens": 811,
+        "total_tokens": 2809,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 590
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.21315",
+    "title": "Benchleaking Is Accelerating: Benchmark contamination has worsened sharply in the past month -- from post-training down to pre-training base models",
+    "authors": [
+      "Yiwei Qin",
+      "Muhang Xie",
+      "Xuefeng Li",
+      "Mohan Jiang",
+      "Dayuan Fu",
+      "Tiantian Mi",
+      "Qipeng Guo",
+      "Pengfei Liu"
+    ],
+    "categories": [
+      "cs.AI"
+    ],
+    "comment": "24 pages. Project: https://github.com/GAIR-NLP/Benchleaking",
+    "summary": "Benchmark contamination is not new, but recent model releases show it in a sharper form. We use the term benchleaking for the case in which a benchmark's own test examples enter training data, so that a score reflects recall rather than capability. This differs from benchmaxxing, which optimizes toward a benchmark without seeing its test set. We document two escalations over the past month. First, in post-training, the traces have become explicit: recent audits show an agent stating hidden test requirements it was never given in 23% of its attempts, where its predecessor did so in none, and continuing to follow them after the task is changed to contradict them (Schaeffer and Räuker, 2026; Lo and Lo, 2026). Second, the problem has reached pre-training. Using few-shot continuation on 20 benchmarks across four public base models, we find that some base models write out other test examples---complete questions, options, and answers---that appear nowhere in their input. For the recently released ERNIE-5.5-Flash-Base, 96% of HumanEval problems leak with their reference implementations and 85% of OpenBookQA questions leak with their answers, against 9% and none for DeepSeek-V4-Flash-Base. To quantify what a reported score owes to such examples, we define an Anti-Hack score: the benchmark score recomputed with every leaked example marked wrong and the number of examples unchanged. Averaged over the suite, it costs DeepSeek-V4-Flash-Base 1.5 points and Hy3-preview-Base 1.3, against 5.0 for MiMo-V2.5-Base and 16.6 for ERNIE-5.5-Flash-Base. Open base models are the foundation of much downstream research, so benchleaking now affects more than leaderboard rankings. We call for decontamination reports and contamination-adjusted scores to become standard practice.",
+    "abs": "http://arxiv.org/abs/2611.21315v1",
+    "pdf": "https://arxiv.org/pdf/2611.21315v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "论文区分「benchleaking」（测试样例进入训练数据、分数反映记忆而非能力）与「benchmaxxing」，通过审计与对四个公开基座在 20 个基准上的 few-shot 续写探测量化泄漏规模，并提出把泄漏样例一律判错的 Anti-Hack 分数。",
+      "relevance_reason": "与 LVR 的评价环节相通：若视觉推理基准中的样例被记忆，报告的小幅增益可能只是复述而非 latent 推理，其续写探测与污染校正评分可供核查 LVR 结论稳健性；但研究对象为文本代码与 QA 基准，迁移到多模态基准需自行验证。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-17T09:22:44.781068+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

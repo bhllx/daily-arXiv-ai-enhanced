@@ -1,0 +1,75 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.20000",
+  "input_sha256": "cd7747724c165ad75a76c30b30a450d1786d08e5747a8f8b93a360b6722f304f",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-17T09:35:19.509248+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1865,
+        "output_tokens": 654,
+        "total_tokens": 2519,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 442
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.20000",
+    "title": "What Matters for Cross-Modal Alignment",
+    "authors": [
+      "Yipeng Sun",
+      "Jiajun Wang",
+      "Siyuan Mei",
+      "Yan Xia",
+      "Siming Bayer",
+      "Vincent Christlein",
+      "Andreas Maier"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "The Platonic Representation Hypothesis posits that models trained on different modalities converge toward a shared representation. Related work aligns frozen image and text encoders on natural images without paired data. We test zero-pair alignment on five datasets across four modalities: natural images, environmental audio, chest radiographs, and 3D computed tomography (CT). It succeeds only on COCO and fails on the other four. We analyze the failures and find that alignment must first locate the subspace where the modalities co-vary and then orient the mapping within it. Consistent with previous studies, medical imaging is the hardest case: its shared subspace carries the smallest fraction of the variance. When this fraction is small, alignment needs image-text pairs, and random-matrix theory predicts how many pairs are needed. These findings motivate LightAlign: a few pairs let a ridge regression between two frozen encoders locate and orient the mapping simultaneously, and a classifier fitted only on report text then predicts findings from the mapped images. On 3D CT, LightAlign surpasses models trained end to end on image-report pairs without finding-level labels: with only 200 pairs, LightAlign outperforms CT-CLIP on CT-RATE (0.754 vs. 0.733 AUROC), and with only 100 CT-RATE pairs, it does so on RAD-ChestCT, an out-of-distribution dataset from a different hospital. On CheXpert, it reaches 0.862 mean AUROC with only about 5% as many pairs as models trained on MIMIC-CXR.",
+    "abs": "http://arxiv.org/abs/2611.20000v1",
+    "pdf": "https://arxiv.org/pdf/2611.20000v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文检验无配对跨模态对齐在自然图像、音频、X 光与 3D CT 上的可行性，发现对齐须先定位模态共变子空间再定向映射，且医疗影像该子空间方差占比最小；据此提出 LightAlign，用少量配对在冻结编码器间拟合 ridge regression 并仅以报告文本训练分类器。",
+      "relevance_reason": "「共享子空间方差占比」可作为量化诊断 latent 工作区中视觉细节保留与信息坍缩的线索，少量配对定位映射也可能用于视觉证据筛选，但论文不涉及推理期 latent 生成，迁移可行性需核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-17T09:35:19.509248+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

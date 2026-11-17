@@ -1,0 +1,72 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.18564",
+  "input_sha256": "ad8ca070835c151f4509d7cbc7c24413622bdfbb37161bc2695d30eaab9b9fba",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-17T09:50:59.989905+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1832,
+        "output_tokens": 705,
+        "total_tokens": 2537,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 490
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.18564",
+    "title": "Check Token: Real-Time Self-Verification and Precise Truncation in LLM Reasoning",
+    "authors": [
+      "Fei Ding",
+      "Yongkang Zhang",
+      "Yuhao Liao",
+      "Zijian Zeng",
+      "Huiming Yang"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "ECC memory embeds 8 parity bits for every 64 data bits and automatically detects and corrects errors on each read. The parity bits carry no data and only safeguard integrity, at ~12.5% overhead. Yet the reasoning chains of large language models lack such built-in self-verification: once an error occurs it propagates along the chain, and existing methods can only verify externally after generation completes. We propose the check token, establishing built-in self-verification for language model generation streams for the first time: a functional marker <CHECK> is added to the vocabulary, and the model triggers self-checking (analysis, localization, truncation, rewriting) by outputting it at any position. The check token carries no reasoning content (discarded after triggering) and only safeguards reasoning correctness, directly corresponding to the role of ECC parity bits, also at only ~13% overhead. Speculative forking further eliminates false-positive latency, and segmented reward makes trigger timing end-to-end learnable. Experiments (Qwen3-32B / Qwen3-Next) show that the check token achieves +10.8 pp improvement on HMMT25 at 1.13x overhead, with token efficiency 88x that of Best-of-8, and the precise truncation advantage monotonically increases with chain length.",
+    "abs": "http://arxiv.org/abs/2611.18564v1",
+    "pdf": "https://arxiv.org/pdf/2611.18564v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文提出 check token：在词表中加入功能性标记 <CHECK>，模型可在生成任意位置输出以触发自我检查（分析、定位、截断、重写），并借助 speculative forking 与分段奖励让触发时机端到端可学，以约 13% 开销提升推理正确率。",
+      "relevance_reason": "其「生成中途触发自检并精确截断」与 LVR 的停止决策、动态计算分配相关，可学习触发时机与截断机制或可供核查如何用于 latent 推理流的 STOP 策略，但该工作面向纯文本链式推理、不涉及视觉状态表示。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-17T09:50:59.989905+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

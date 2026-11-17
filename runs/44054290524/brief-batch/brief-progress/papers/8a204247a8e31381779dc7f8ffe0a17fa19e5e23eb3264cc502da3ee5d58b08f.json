@@ -1,0 +1,72 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.20983",
+  "input_sha256": "6803808182ad48694ec0ed8379e6232b85193b6a2f5cc07aab76d8c277c2198b",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-17T09:26:00.833398+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 2030,
+        "output_tokens": 612,
+        "total_tokens": 2642,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 372
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.20983",
+    "title": "GRACE: Parallel Best-of-N Multi-Agent Analysis of Closed-Form Questions over Dataframes with Guardrail Selection and Adaptive Retry",
+    "authors": [
+      "Fabio Picariello",
+      "Salvatore Cipolla",
+      "Susanna Bonura",
+      "Vito Morreale"
+    ],
+    "categories": [
+      "cs.AI",
+      "cs.LG"
+    ],
+    "comment": "Accepted at the 5th Italian Conference on Big Data and Data Science (ITADATA 2026). To appear in CEUR Workshop Proceedings",
+    "summary": "LLM agents answer closed-form questions over a tabular dataframe by writing and executing Python, almost always as a single rollout: one interpretation, one script, one result, accepted without comparison. The few pipelines that produce several candidates reconcile them by answer-agreement voting, which needs a single comparable scalar and always returns one, even when every candidate is wrong. We present GRACE (Generative, Ranked, Adaptive Code Ensemble), a production-oriented pipeline that instead runs parallel best-of-N selection specialised to dataframe code. N agents run concurrently under a strict, machine-checkable output contract, diversified by persona hints, per-retry rotation, and a two-regime temperature schedule. Rather than vote, GRACE judges the executed artefacts: a pairwise tournament pre-filters the pool and a domain-specialised guardrail either selects the best candidate or, when none is defensible, rejects the whole pool and abstains with a diagnosis (an option voting structurally lacks), which in turn drives an adaptive retry with per-agent feedback. On InfiAgent-DABench (DAEval, M = 246), using Qwen3.6-35B-A3B as the backbone, GRACE raises answer match from 39% for a single-rollout baseline to 71% (+32 pp, 1.8x), recovering 53% of previously wrong answers. On the same DAEval task, the smaller dense Qwen3.5-9B lifts answer match from 38% to 63% (+25 pp, 1.7x). A controlled 3 x 3 study that sweeps the number of parallel agents against the retry budget finds, on the 35B backbone, the two levers largely substitutable: once either one is generous, the other adds little, identifying a cheap operating point for deployment. The same directional pattern replicates on the independent DataBench benchmark, again on the Qwen3.6-35B-A3B backbone, where answer match rises by 15 percentage points (from 70% to 85%) across 400 sampled questions.",
+    "abs": "http://arxiv.org/abs/2611.20983v1",
+    "pdf": "https://arxiv.org/pdf/2611.20983v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文提出 GRACE，一个面向 dataframe 封闭式问题的并行 best-of-N 多智能体流水线：并行生成多个代码候选，用成对锦标赛预筛、领域护栏选出最优或整体弃权并给出诊断，进而触发带逐智能体反馈的自适应重试；在 DAEval 上把答案匹配率从约 39% 提到 71%。",
+      "relevance_reason": "「并行候选生成 + 判别式护栏筛选/弃权 + 自适应重试」这一组合与 LVR 中多假设推理状态的取舍、停止决策和计算分配问题可能相通，护栏判别可作为候选验证思路供核查；但论文处理的是表格代码与标量答案，不涉及视觉 latent 状态或视觉证据使用。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-17T09:26:00.833398+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

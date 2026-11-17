@@ -1,0 +1,72 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.20404",
+  "input_sha256": "14ce83702d486ff41a8e5b787df4be277ace8d17dda2759e9bb72c03af8a6981",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-17T09:32:17.767834+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1906,
+        "output_tokens": 993,
+        "total_tokens": 2899,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 792
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.20404",
+    "title": "Latent Feedback Is a Compute and Data Amplifier",
+    "authors": [
+      "Benhao Huang",
+      "Chaitanya Dwivedi",
+      "Xuezhe Ma",
+      "Alexander Moreno",
+      "Hector Liu"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": "23 pages. Code: https://github.com/ifm-ai/LoRM",
+    "summary": "When high-quality data runs out, a common practice is to train on it for several epochs, but each repeat is worth less than the last. Latent feedback, which feeds each token's top-layer state into the next token's input, is another way to spend that compute, yet it has not been tested against a vanilla Transformer that spends the same compute on more epochs. We run this test across a ladder of model sizes, unique data and epochs, tuning both models at every size and amount of unique data. Latent feedback makes every FLOP and every token count for more except when unique data is scarce relative to model size, a regime that today's models are far from. We find that latent feedback serves as an amplifier: with unique data fixed, it reaches a Transformer's loss with less compute; with epochs fixed, it reaches that loss with less unique data. Furthermore, both savings grow with unique data per parameter and with repetition, and downstream tasks agree. To go beyond our grid, we fit one scaling law to both models, in which latent feedback enters as a Transformer with more parameters; it predicts that both savings keep growing with unique data and repetition. Fitted on models from 60M to 271M parameters, the law predicts the losses at a held-out 778M size to within 0.3% and the gap between the two models to within 0.05%. At most, latent feedback saves 48% of the compute and 47% of the unique data. When data, not compute, is the limit, latent feedback is the better use of a FLOP for a model of a given size.",
+    "abs": "http://arxiv.org/abs/2611.20404v1",
+    "pdf": "https://arxiv.org/pdf/2611.20404v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P1",
+      "brief_summary": "论文在纯文本语言模型中比较 latent feedback（将每个 token 的顶层状态反馈到下一 token 输入）与在更多 epoch 上消耗同等算力的 vanilla Transformer，跨模型规模与数据重复次数拟合统一 scaling law，报告最多节省 48% 算力和 47% 唯一数据。",
+      "relevance_reason": "该文的 latent 状态递归与算力/数据放大分析，可能为 LVR 的循环状态更新及 THINK 成本核算提供线索；但对象是文本 LM，视觉多模态迁移与推理期收益仍需核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-17T09:32:17.767834+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

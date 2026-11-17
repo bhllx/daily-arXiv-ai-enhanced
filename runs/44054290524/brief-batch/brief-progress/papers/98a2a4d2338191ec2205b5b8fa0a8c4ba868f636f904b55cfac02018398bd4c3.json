@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.18678",
+  "input_sha256": "2ee651d13bfef69984e9a1b0b419d57ff5fe8cafb7ed81d8a62264d3afa95403",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-17T09:49:27.153103+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1839,
+        "output_tokens": 687,
+        "total_tokens": 2526,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 442
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.18678",
+    "title": "Not All Steps Matter: Temporally Adaptive Spectral Control for Concept Removal in Diffusion Models",
+    "authors": [
+      "Chanaka Thushitha Bandara",
+      "Lakmali Nadeesha Kumari",
+      "Sen-Ching Samson Cheung"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": null,
+    "summary": "As text-to-image diffusion models see widespread deployment, removing unsafe or undesirable concepts without retraining has become a pressing need. Spectral methods are attractive because they are training-free and reversible, yet current variants apply the same output-value (OV) circuit intervention at every denoising step, assuming concept information is temporally uniform. This wastes intervention where concept energy is low while degrading image quality, an inefficiency that compounds across concept types. Through timestep-resolved spectral analysis, concept-specific energy is found to follow a consistent temporal hierarchy: content concepts decay fastest, object concepts are intermediate, and style concepts persist longest. This paper proposes Timestep-Adaptive Spectral Nullification (TASN), which adapts suppression strength and spectral components to the concept energy profile. Cross-attention at each timestep is decomposed into concept-aligned and concept-orthogonal components, and it is proved that when the orthogonal component is approximately stable, the collateral-minimizing schedule sets suppression proportional to concept energy. TASN implements this with a timestep-adaptive spectral subset tracking only active concept directions, strictly generalizing uniform Spectral Nullification (SN). On five red-teaming benchmarks, TASN lowers attack success rate below uniform SN while recovering the majority of its quality loss; ablations confirm gains arise from temporal targeting rather than reduced suppression, generalizing across concept categories and architectures.",
+    "abs": "http://arxiv.org/abs/2611.18678v1",
+    "pdf": "https://arxiv.org/pdf/2611.18678v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "该论文做去噪逐步的光谱分析，发现概念能量随 timestep 呈「内容—物体—风格」的时间层级，并提出 TASN：按每步概念能量调整抑制强度与光谱子空间，在免训练概念移除中兼顾攻击成功率与图像质量。",
+      "relevance_reason": "其按步测量信号能量、并让干预强度与之成比例的自适应调度，可能为 LVR 中「每步 latent 内容贡献不均」的度量与 THINK/LOOK/STOP 的计算分配提供参照，交叉注意力分解为概念对齐与正交分量也或可供核查任务必要信息与旁路干扰的区分；但任务本身是图像生成中的概念移除，与 VLM 推理状态无直接关联，迁移性需自行判断。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-17T09:49:27.153103+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

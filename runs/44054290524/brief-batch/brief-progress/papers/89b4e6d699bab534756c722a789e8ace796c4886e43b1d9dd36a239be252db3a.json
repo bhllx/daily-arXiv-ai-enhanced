@@ -1,0 +1,72 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.21559",
+  "input_sha256": "31f1e9d7c8579565ebb987248fd7c7d95f992260afe6745d79c99100e3ed148d",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-17T09:20:11.883128+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1853,
+        "output_tokens": 361,
+        "total_tokens": 2214,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 153
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.21559",
+    "title": "Reference Forcing: Long Video Generation with Region-Guided Drift Correction",
+    "authors": [
+      "Sheng Zhao",
+      "Haitian Zheng",
+      "Weikai Lin",
+      "Junjie Zhao",
+      "Yuhao Zhu"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": "17 pages, 12 figures, 3 tables. Project page: https://zhaosheng-thu.github.io/reference-force/",
+    "summary": "Long video generation should keep the subject and background consistent while supporting rich, natural motion. However, autoregressive models are often distilled with distribution matching distillation (DMD) over short windows, which does not train them to keep this consistency over long ranges. As a result, the subject and background can drift over time. Methods that manage the key-value (KV) cache retain or retrieve history to reduce drift. Yet this history may itself have drifted. We propose Reference Forcing, which uses the initial frames as an appearance reference. We first build a teacher that uses attention masks to force each region of a new frame to attend to the same region in the initial frames. The teacher finds these regions with off-the-shelf segmentation models. We then distill this behavior into a separate attention path of the student, which needs no external models at inference. We further introduce value correction, which corrects drifted values in the KV cache toward the matching values of drift-free initial frames. Experiments show that Reference Forcing achieves state-of-the-art subject and background consistency among long-video methods on different base models, and its advantage grows with video length. Ablations show both components are needed to gain consistency without losing motion. More visualizations and code are available at https://zhaosheng-thu.github.io/reference-force/",
+    "abs": "http://arxiv.org/abs/2611.21559v1",
+    "pdf": "https://arxiv.org/pdf/2611.21559v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文研究长视频生成中的主体与背景漂移问题，提出 Reference Forcing：以首帧为外观参考，先用分割模型配合注意力掩码构造区域对齐的教师，再蒸馏到学生的额外注意力路径，并对 KV cache 中的漂移值做参考校正。",
+      "relevance_reason": "其「把漂移的 KV 缓存值拉回无漂移参考帧对应值」与区域级注意对齐，或可作为 LVR 中长程 latent 状态需定期锚定视觉证据、抑制状态漂移的机制线索，但属视频生成场景，迁移价值需核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-17T09:20:11.883128+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

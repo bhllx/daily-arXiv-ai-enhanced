@@ -1,0 +1,75 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.19413",
+  "input_sha256": "481a00e4bc8fe12f5a7e603948839e27f89b46d0e3608ce03b8853eb2fff00df",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-17T09:41:22.296613+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1880,
+        "output_tokens": 525,
+        "total_tokens": 2405,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 285
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.19413",
+    "title": "PMR: MoE Routing with Shared Prototypes and Congestion Pricing",
+    "authors": [
+      "Wending Wang",
+      "Binqi Huang",
+      "Ju'an Li",
+      "Yu Guo",
+      "Lei Duan",
+      "Yuqi Ouyang",
+      "Dengchun Li"
+    ],
+    "categories": [
+      "cs.AI",
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Conventional linear routers in sparse mixture-of-experts models select experts directly from token-expert matching scores, coupling input matching with expert allocation. We propose Prototype-Mediated Routing (PMR), a two-stage router with shared prototypes. PMR first computes each token's distribution over prototypes, then uses it to mix prototype-conditioned expert distributions according to the law of total probability. This formulation models input matching and expert allocation separately, explicitly represents many-to-many associations between prototypes and experts, and provides separate interfaces for context adaptation and load regulation. Within this framework, short-term states summarize preceding tokens to adapt the prototypes, while congestion prices updated from dispatch feedback achieve loss-free load balancing by adjusting the conditional expert distributions. We use a two-pass blockwise approximation to accelerate short-term state processing, achieving over 20 times the training throughput of the eager tokenwise PMR implementation while maintaining high agreement in routing decisions. Across three pretraining configurations with 0.43B, 1.18B, and 0.48B total parameters, PMR improves mean zero-shot accuracy on seven benchmarks over linear routing baselines with matched expert architectures by 1.54, 2.65, and 1.45 percentage points (pp), respectively. The corresponding gains on ARC-Easy are 6.71, 5.80, and 3.92 pp. In parameter-efficient fine-tuning of 7B-8B backbones, PMR's improvements over MixLoRA vary across backbones, with gains of up to 1.76 pp in mean accuracy across four tasks.",
+    "abs": "http://arxiv.org/abs/2611.19413v1",
+    "pdf": "https://arxiv.org/pdf/2611.19413v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "提出 PMR 两阶段 MoE 路由：先计算 token 在共享 prototype 上的分布，再按全概率公式混合 prototype 条件的专家分布，并用短期状态适配 prototype、用拥塞价格实现无损负载均衡；配合两遍分块近似提升吞吐，在 0.4B–1.2B 预训练与 7B–8B 微调上报告稳定增益。",
+      "relevance_reason": "将输入匹配与专家分配解耦、并以压缩的短期状态驱动路由，或可核查其对多模态 MoE 中专家分工与推理状态更新的借鉴价值；两遍分块近似也可能与 latent 状态处理的缓存与效率设计相关，但原文不涉及视觉推理，属远距离方法线索。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-17T09:41:22.296613+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

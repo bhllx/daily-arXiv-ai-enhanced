@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.19480",
+  "input_sha256": "450b76d752e48fb865dd3d747393295e9d95adf9362e04123e8974aabb501d07",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-17T09:40:46.875424+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1787,
+        "output_tokens": 750,
+        "total_tokens": 2537,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 523
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.19480",
+    "title": "Probing SAM Perturbations Through Statistical Replay",
+    "authors": [
+      "Ting Han",
+      "Jens Kleesiek",
+      "Michael Kamp"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": "Accepted at NeurIPS 2026 Workshop: AXIOM - Foundations of Efficient Deep Learning",
+    "summary": "Sharpness Aware Minimization (SAM) updates model parameters using gradients evaluated at adversarially perturbed weights, but it remains unclear which aspects of this procedure are sufficient to reproduce its generalization behavior. In our ResNet 18 experiments on CIFAR 10, simple curvature regularizers based on the Hessian trace and largest eigenvalue remain below SAM in validation accuracy, motivating a direct examination of its perturbations. We introduce statistical replay, a diagnostic that summarizes perturbations from reference SAM trajectories using elementwise means and standard deviations over local windows and constructs new perturbations during independent SGD training. Pure replay uses only these summaries, whereas mixed replay adds isotropic Gaussian noise. Pure replay does not reproduce SAM's validation behavior, while mixed replay and pure isotropic perturbations can approach its validation performance at selected scales without reproducing its training dynamics. An equal radius random direction within SAM performs similarly to SGD, and source, temporal, and layer interventions further suggest that replay behavior depends on perturbation construction. Together, these preliminary results weaken several simple explanations of SAM while leaving an important part of its mechanism unexplained.",
+    "abs": "http://arxiv.org/abs/2611.19480v1",
+    "pdf": "https://arxiv.org/pdf/2611.19480v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "论文在 CIFAR-10/ResNet-18 上提出「统计回放」诊断：将参考 SAM 轨迹中的扰动按局部窗口压缩为逐元素均值与标准差，在独立 SGD 训练中重建扰动，并结合纯各向同性噪声、等半径随机方向以及来源、时间、层级干预，检验哪些扰动成分足以复现 SAM 的验证表现。",
+      "relevance_reason": "该工作与视觉多模态推理无直接关联，但其「用轨迹统计摘要回放 + 分层干预」的因果式诊断思路，可能可供核查 LVR 中 latent 轨迹的贡献分配与状态更新是否必要，属于较远的类比线索。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-17T09:40:46.875424+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

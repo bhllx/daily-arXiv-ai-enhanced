@@ -1,0 +1,73 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.20307",
+  "input_sha256": "a93dd30203570eade83666d7fe2f6d0537e9befecad8f01627d8f84f88d10cab",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-17T09:33:16.573922+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1931,
+        "output_tokens": 625,
+        "total_tokens": 2556,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 433
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.20307",
+    "title": "PoCoAttn: Position-Content Collaborative Sparse Attention for Fast and High-Fidelity Video Generation",
+    "authors": [
+      "Jianwen Wu",
+      "Meiling Wang",
+      "Junkang Zhou",
+      "Yipeng Shen",
+      "Haoran You"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.LG"
+    ],
+    "comment": "21 pages, 15 figures, 13 tables. Project page: https://ecoai-group.github.io/pocoattn",
+    "summary": "Video diffusion transformers rely on 3D full attention over tens of thousands of spatiotemporal tokens, and its quadratic cost dominates inference latency. Sparse attention reduces this cost, but existing methods face a dilemma: static methods apply predefined masks and cannot capture input-dependent attention, whereas dynamic methods reconstruct the sparse mask repeatedly, paying online to rediscover positional structure that is largely stable across inputs. To this end, we propose PoCoAttn, a training-free sparse attention framework that separates input-stable from input-dependent attention and resolves the former offline and the latter online. PoCoAttn features: (1) A relative-offset analysis of 3D query-key pairs, which shows that video attention decomposes into an input-stable positional prior that carries most of the attention mass and a small content-dependent residual. (2) A position-content collaborative sparse attention mechanism, which retrieves positional keys from offline-calibrated tables, selects content keys online with a head-adaptive ratio between the two sources, and compensates for the discarded keys to approximate full attention. (3) A step-adaptive budget allocation algorithm, which models how early-step sparse attention errors are amplified along the denoising trajectory and derives the optimal sparsity budget per step. Extensive experiments across four video diffusion models and three tasks show that PoCoAttn consistently achieves a better speed-fidelity Pareto frontier than state-of-the-art (SOTA) methods, improving PSNR by 1.9 to 5.0 dB over baselines and delivering up to 4.1$\\times$ attention and 2.0$\\times$ denoising speedups over dense FlashAttention-3 attention.",
+    "abs": "http://arxiv.org/abs/2611.20307v1",
+    "pdf": "https://arxiv.org/pdf/2611.20307v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "提出免训练稀疏注意力框架 PoCoAttn，把视频扩散 Transformer 的 3D 注意力拆成离线校准的稳定位置先验与在线检索的内容相关部分，并按去噪步自适应分配稀疏预算。",
+      "relevance_reason": "其「位置先验与内容残差」分解可供核查 latent 相似度中位置与内容贡献的区分，按步分配预算也与 LVR 动态计算和停止决策有概念联系；但属视频生成加速工作，迁移需较多验证。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-17T09:33:16.573922+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

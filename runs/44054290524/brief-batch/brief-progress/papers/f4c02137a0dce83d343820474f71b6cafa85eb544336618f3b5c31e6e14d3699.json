@@ -1,0 +1,68 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.20953",
+  "input_sha256": "610eb8e0cdd897b8ed1218f1cafcfea6593891168143151868f015de7097a41d",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-17T09:26:17.288006+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 2034,
+        "output_tokens": 627,
+        "total_tokens": 2661,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 405
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.20953",
+    "title": "Same Fix, Different Weights: Replicating Weight-Space Programming with Claude",
+    "authors": [
+      "Subham Kundu"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Takehi et al. (2026) report that GPT-6 Astra, given the weights of small neural networks as text, can say what they were trained to do, repair them, and write new ones without training. I re-ran the core of that study with Claude Opus 5.5 in ten pre-registered experiments, with untrained-network and permutation controls and hand audits of every sandboxed code cell. Reading was mixed: Claude named 3 of 4 Atari games from policy weights and found the measured copying heads in 15/15 character-LM runs, but its answers about training data often followed priors. Unlike the original, it identified a sycophantic Gemma 3 270M finetune from weights alone in 6/6 runs. One-shot weight edits took a failing MountainCar policy from 0% to 100% success and a hovering LunarLander policy from 0% to 85.6%; zero-shot networks beat PPO at 100k steps on 4 of 5 environments, each implementing a textbook controller. With no training or forward passes, Claude wrote a 1.48M-parameter 9x9 Go network that won 85-94% of games against three PPO opponents. Given Qwen3.5-0.8B's weights and 10, 25 or 50 forward passes of 64 practice problems, Claude raised MATH-500 from 6.7% to 51.4%, 55.2% and 58.1% (+51.4 points at 50 passes, 95% CI [47.9, 55.0]; original 48.1%), GSM8K from 11.6% to 68.2% and IFEval from 22.2% to 54.2%. Unlike the original, which removed an internal loop direction, every edit acted at the output: it scaled the final norm, raising the effective sampling temperature, and lowered the logit of \"Wait\" while raising that of </think>. The norm scaling alone reaches only 20.9-22.1% on MATH-500. On Gemma 3 270M, which rarely loops, no edit helped (-0.8 points), as in the original.",
+    "abs": "http://arxiv.org/abs/2611.20953v1",
+    "pdf": "https://arxiv.org/pdf/2611.20953v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "该文用 Claude Opus 5.5 复现「权重作为文本」的 weight-space programming：十项预注册实验检验仅凭权重说出网络功能、一次性修复失败策略并零训练写出新网络，并配有未训练网络与置换对照及代码人工审查。",
+      "relevance_reason": "与视觉推理无直接关联，但其关键对照——修改并未触及内部循环方向、而是通过缩放 final norm 和压低「Wait」logit 在输出端生效——可能为 LVR 中区分「真正改变 latent 状态」与「仅改变读出/采样行为」的因果归因提供类比线索，可供核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-17T09:26:17.288006+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

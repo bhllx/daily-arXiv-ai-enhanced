@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.20087",
+  "input_sha256": "381a82aca9f4fc14bf3e93feb0fb80dbfda78ddafdae4cd24a8f56750889433f",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-17T09:34:34.350327+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1922,
+        "output_tokens": 895,
+        "total_tokens": 2817,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 660
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.20087",
+    "title": "Does Learning Order Explain Forgetting? The Lie Bracket as an Early-Warning Signal for Catastrophic Forgetting Without Old Data",
+    "authors": [
+      "Ephraim Kofi Ayi Kwapong"
+    ],
+    "categories": [
+      "cs.LG",
+      "stat.ML"
+    ],
+    "comment": "14 pages, 4 figures. Code and results: https://github.com/Hackme262/lie-bracket-forgetting",
+    "summary": "A network trained on task A and then task B ends at different weights than one trained on B and then A. To leading order this gap is set by the Lie bracket of the two tasks' gradient fields, and Dherin (2023) conjectured that a non-vanishing bracket may be linked to catastrophic forgetting. I test this conjecture empirically. Across Split MNIST, Split Fashion-MNIST and Split CIFAR-10, the forgetting of A is almost exactly the difference in A's loss between the two training orders (Spearman rho = 0.96-1.00). I then ask whether the bracket can predict that forgetting early in training on B and without any of A's data, using only a small summary stored when A finishes: its gradient and its top 20 Hessian eigenpairs. When the old task is well learned and forgetting is slow (task-incremental), this stored bracket ranks forgetting with rho = 0.70-0.81, against 0.33-0.58 for the penalty of Elastic Weight Consolidation, and matches or exceeds re-evaluating A on its own data. When forgetting is fast (domain-incremental), the stored summary goes stale and the EWC penalty is as good or better. The bracket fails outright when the old task is only half learned; I trace this to a residual gradient on A an order of magnitude larger, which makes first-order (slope) damage matter. The bracket is therefore a useful early-warning signal for the quiet kind of forgetting, under a clear condition.",
+    "abs": "http://arxiv.org/abs/2611.20087v1",
+    "pdf": "https://arxiv.org/pdf/2611.20087v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "论文实证检验「两任务梯度场的 Lie bracket 非零与灾难性遗忘相关」这一猜想，在多个 Split 图像分类基准上比较训练顺序导致的损失差与遗忘，并尝试仅用旧任务结束时存储的梯度及 top-20 Hessian 特征对，在训练新任务早期预测遗忘。",
+      "relevance_reason": "与 LVR 主线无直接关系，但「学习顺序—遗忘」及用旧任务低维摘要做无旧数据预警，可能为顺序训练 VLM 推理能力（如 THINK/LOOK 阶段）时的能力漂移监测提供概念线索；其依赖旧任务充分学习、任务增量等条件是否适用于 latent 推理状态仍待核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-17T09:34:34.350327+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

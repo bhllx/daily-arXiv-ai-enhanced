@@ -1,0 +1,82 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.19742",
+  "input_sha256": "6b013dd565fd0a7ef67ce99a5a1c49d0851841be84c6d83c648fd9c3ac3b0c72",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-17T09:38:24.692216+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1847,
+        "output_tokens": 490,
+        "total_tokens": 2337,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 255
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.19742",
+    "title": "Exploration of Reinforcement Learning in Generative Recommendation Models",
+    "authors": [
+      "Pengfei Zheng",
+      "Wuchao Li",
+      "Shiyao Wang",
+      "Honghui Bao",
+      "Hongyi Xie",
+      "Jiaxin Deng",
+      "Xingmei Wang",
+      "Jinghao Zhang",
+      "Yufei Ye",
+      "Ruiming Tang",
+      "Guorui Zhou",
+      "Han Li",
+      "Kun Gai",
+      "Defu Lian"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "Traditional cascaded recommender systems balance accuracy and efficiency over large item spaces, but misaligned stage-wise objectives hinder end-to-end optimization. Generative recommendation unifies these stages in an autoregressive framework, providing a natural interface for reinforcement learning (RL) to optimize the entire generation process. However, directly applying RL often leads to unstable optimization and degraded recommendation quality.\n  We revisit Group Relative Policy Optimization (GRPO) and other ratio-based objectives through a unified logit-gradient view. We identify three issues: (i) clipped surrogates create dead-gradient regions, under-utilizing samples; (ii) negative-advantage updates can become effectively unbounded as importance ratios grow, allowing a small subset of negatives to dominate optimization; and (iii) ratio-based control lacks sensitivity to absolute policy confidence, so updates on high-confidence cases may fail to vanish.\n  Motivated by this diagnosis, we propose \\emph{Gradient-Bounded Policy Optimization} (GBPO), a simple objective with stop-gradient normalization that is simultaneously (a) fully gradient-active, (b) sign-symmetrically bounded for both positive and negative updates, and (c) explicitly confidence-weighted under current policy probabilities. This ensures that updates gracefully vanish for $π\\!\\to\\!1$ positives and $π\\!\\to\\!0$ negatives. Across the evaluated settings, GBPO achieves competitive recommendation performance with more stable training than competing RL methods.",
+    "abs": "http://arxiv.org/abs/2611.19742v1",
+    "pdf": "https://arxiv.org/pdf/2611.19742v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文以统一的 logit 梯度视角重审 GRPO 等比率型策略目标在生成式推荐中的问题，指出裁剪造成死梯度、负优势更新随重要性比率无界增长、以及缺乏对策略绝对置信度的敏感性三点缺陷，据此提出带 stop-gradient 归一化的 GBPO，使更新全梯度活跃、正负对称有界并按当前策略概率加权，在推荐场景取得有竞争力的效果且训练更稳定。",
+      "relevance_reason": "非视觉推理工作，但其对优势更新有界性、死梯度与置信度加权的分析，可能为 LVR 的 RL 训练（如 latent 轨迹监督中的负样本主导、高置信样本更新不收敛）提供可核查的目标设计线索。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-17T09:38:24.692216+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

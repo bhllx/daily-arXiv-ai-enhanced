@@ -1,0 +1,71 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.20021",
+  "input_sha256": "910f2477e35804b96f07792f259ba7354c08a5227f7381f2f83bb9b8ce3eae40",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-17T09:35:01.556484+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1835,
+        "output_tokens": 659,
+        "total_tokens": 2494,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 422
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.20021",
+    "title": "FastGRN: Few-Step Generative Refinement Networks",
+    "authors": [
+      "Haoyang Hu",
+      "Masataka Seo",
+      "Liang Li",
+      "Yen-wei Chen"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": null,
+    "summary": "Generative Refinement Networks (GRN) generate an image by repeatedly re-predicting and refining every token of a discrete latent. They reach high fidelity, but need dozens of Markov steps. We therefore train few-step GRNs on the distribution of their own samples. We use its own uniform-state corruption to perform distribution matching on discrete tokens, which lets a discrete generator learn by backpropagation, and we pair noise with samples in the manner of rectified flow. We find that the steps of a few-step GRN do not carry the same amount of information or the same repair load. We therefore exploit its discrete refinement during training and build few-step GRNs in three parts. Oversampling samples the student with more steps than it was trained for and refines its judge on these samples. Non-uniform sampling trains only the last step and hands it most of the information at sampling time. Refinement confidence keeping holds on to the tokens the student is already sure of. We train a fast class-conditional generator on ImageNet 256 and, with the same method, a 2B text-to-image model. On ImageNet 256, the 3-step FastGRN beats the FID of GRN. On a 2B binary-token text-to-image GRN, a 4-step student also nearly matches the GenEval of GRN-T2I 2B.",
+    "abs": "http://arxiv.org/abs/2611.20021v1",
+    "pdf": "https://arxiv.org/pdf/2611.20021v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "对离散 latent 图像生成器 GRN 做少步蒸馏：借助其均匀态损坏在 token 上做分布匹配，按 rectified flow 方式配噪，并用过采样、非均匀步采样和「refinement confidence keeping」把信息与修复负载重新分配到少数步，3 步 FID 超过原 GRN。",
+      "relevance_reason": "该文发现各去噪步的信息量与修复负载并不相同，并以「只训练最后一步、把信息集中在采样末端」「保留已确定的 token」来压缩步数，这些机制可能为 latent 推理中的步间计算分配、状态更新与提前停止/冻结提供可核查线索；但研究对象是图像生成，与视觉推理的迁移需自行判断。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-17T09:35:01.556484+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.18974",
+  "input_sha256": "26002ca1b6f9a92750afddfebd3fd8d8a6051b4d6e57bb1bb0cd7d2836365f4e",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-17T09:45:36.065387+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1867,
+        "output_tokens": 589,
+        "total_tokens": 2456,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 357
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.18974",
+    "title": "Bilateral Log-Linear Attention",
+    "authors": [
+      "Kazi Ashik Islam",
+      "Guojing Cong"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Sequence models represent past context at different resolutions, using token-level keys and values, fixed-size recurrent states, or hierarchies of compressed summaries. Full attention supports strong associative recall but requires quadratic work during training and prefill and a linearly growing key-value cache during inference. Linear attention and state-space models reduce these costs through fixed-size recurrent memory, but this compression can limit recall. Log-linear attention offers a middle ground by maintaining logarithmically many state matrices. However, its hierarchy favors finer resolution near the current query while compressing earlier context into coarser summaries. To complement this allocation of resolution, we introduce bilateral log-linear attention, which pairs the existing hierarchy with a second hierarchy anchored at the sequence origin. By combining their reads, the two branches provide finer access to both early and recent context while remaining causal. We derive recurrent and chunkwise parallel formulations for the added branch, preserving log-linear training and prefill work, logarithmic decoding work per token, and logarithmic persistent state storage at fixed feature dimensions and chunk size. In multi-query associative recall, this design raises mean overall test accuracy from 76.37% to 96.12% over forward log-linear attention across multiple training seeds. For pretrained language models under approximate parameter matching, it raises the mean score on six selected RULER needle-in-a-haystack tasks from 26.97% to 50.03% at a context length of 6144 tokens. In the same setting, bilateral attention also outperforms forward log-linear attention on seven of eight downstream retrieval tasks, including question answering and information extraction.",
+    "abs": "http://arxiv.org/abs/2611.18974v1",
+    "pdf": "https://arxiv.org/pdf/2611.18974v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文提出 bilateral log-linear attention：在原有以近期查询为中心的对数级状态矩阵层次之外，再加一条以序列起点为锚的层次，合并两路读取，使早期与近期上下文都获得更细的访问分辨率，并给出递归与分块并行形式；在 MQAR 与长上下文 NIAH、检索任务上验证召回提升。",
+      "relevance_reason": "双层次状态与 KV 缓存压缩涉及长上下文证据的保留与读取，可供核查 LVR 中早期视觉证据如何以对数级状态保存、以及缓存与注意力结构如何影响 latent 相似度和证据检索；但该文为纯文本架构与语言建模实验，向多模态推理迁移仍属推测。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-17T09:45:36.065387+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

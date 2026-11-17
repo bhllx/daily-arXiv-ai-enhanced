@@ -1,0 +1,68 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.19663",
+  "input_sha256": "7b2884d47e11ff71f4b36dc8cc84494199a5928a00fb19c8266bc7ca30e8d1d6",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-17T09:38:53.189714+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1958,
+        "output_tokens": 757,
+        "total_tokens": 2715,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 501
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.19663",
+    "title": "When AI Agents Should Repair, Replan, or Abandon: A Threshold Theory of Plan Commitment",
+    "authors": [
+      "Gaurav Tewari"
+    ],
+    "categories": [
+      "cs.AI"
+    ],
+    "comment": "22 pages, 6 figures, 3 tables",
+    "summary": "AI agents often discover mid-execution that their plan is broken, for example when an action fails or a tool is withdrawn. Deployed systems use conventions such as retry loops or \"always replan,\" and a recent benchmark finds no fixed strategy dominates. This paper derives the optimal policy. In the model, a disruption destroys the causal support of part of a plan; repair is a partial reset that preserves the plan's structure, replanning is a full reset, and changing a plan is costly because others have conditioned on it. The optimal policy is a threshold in effective disruption depth: repair shallow damage, replan after deep damage, and abandon the goal when even a fresh plan is not worth its cost. Depth depends on plan structure. In expectation, a single broken action forces 1+R(G)/n actions to be revalidated, where R(G) counts the pairs of actions joined by a dependency path; to first order, a fully serial plan switches to replanning at raw damage about w times smaller than a plan of w parallel chains. A closed-form stability-price threshold determines when a worse repaired plan should be kept over a better fresh one. As language-model planners push replanning costs toward zero, the stability price becomes the only force sustaining plan commitment. Under repeated disruptions, revision frictions make commitment hysteresis optimal: the agent keeps executing a plan it would never choose fresh, and each repair adds patch debt until the debt outweighs repair's cost advantage and the agent rebuilds. A value-of-diagnosis result states when measuring damage is worth its compute and shows that \"always replan\" is optimal when damage is predictably deep and replanning is the better fallback. A separately implemented numerical checker tests each proposition (zero violations; 1.6 million static-model evaluations), and the model's regime map reproduces that benchmark's regime flips qualitatively.",
+    "abs": "http://arxiv.org/abs/2611.19663v1",
+    "pdf": "https://arxiv.org/pdf/2611.19663v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "该文从理论上推导智能体计划受损后的最优应对策略：以「有效损伤深度」为阈值，浅损伤局部修复、深损伤完全重规划、若新计划不值其成本则放弃目标；并给出稳定性价格阈值、反复损伤下的承诺滞后（patch debt）、以及「诊断价值」何时值得花算力测量损伤的结论，配合数值检查器验证各命题。",
+      "relevance_reason": "修复（保留结构的部分重置）与重规划（全量重置）的区分、以及诊断信息价值的阈值判断，可能为 LVR 中「何时刷新/重建 latent 推理状态、何时继续获取视觉证据、何时停止」的 THINK/LOOK/STOP 成本权衡提供形式化参照，但其成本模型基于计划依赖结构，能否迁移到多模态推理需核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-17T09:38:53.189714+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

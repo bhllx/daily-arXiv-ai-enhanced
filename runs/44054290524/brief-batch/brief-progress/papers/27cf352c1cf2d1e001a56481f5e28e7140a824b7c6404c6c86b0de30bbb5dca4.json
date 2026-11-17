@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.20565",
+  "input_sha256": "2757cdf4754860226196ef453c77aab28b0387a6c960f092c2ddba1b4354163b",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-17T09:30:32.502430+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1847,
+        "output_tokens": 810,
+        "total_tokens": 2657,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 568
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.20565",
+    "title": "Memory-Efficient Speculative Decoding with Quantized Draft KV Cache",
+    "authors": [
+      "Saksham Gupta",
+      "Michael Li"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.AI"
+    ],
+    "comment": "Accepted at the AXIOM Foundations of Efficient Deep Learning Workshop at NeurIPS 2026",
+    "summary": "Speculative decoding reduces generation cost, but it stores two KV caches: one for the target model and one for the draft model. We reduce this extra memory by quantizing the draft cache. The target cache and verifier remain in BF16, so that compression cannot change the target model's final correction rule. We first study how to divide precision between keys and values. A naive per-token quantizer makes keys appear much more sensitive: splitting a 12-bit budget, K8V4 beats K4V8 in acceptance by 10.87pp. However, with grouped per-channel keys, the gap becomes -0.25pp. A controlled Qwen test confirms that changing only the key quantizer can erase or reverse the preferred bit split. Hence, following KIVI, we propose K4V4 quantization with per-channel keys and per-token values. Across six model pairs, our method reduces draft cache memory by 66.20%, and combined memory across both caches by 23.95%. Mean acceptance drops from 57.93% to 57.14%, only 1.36% relative. Overall, quantized draft caches can make speculative decoding more memory efficient; as a predictive principle for efficient AI design, key and value precision must be co-designed with the quantizer layout.",
+    "abs": "http://arxiv.org/abs/2611.20565v1",
+    "pdf": "https://arxiv.org/pdf/2611.20565v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "研究推测解码中草稿模型 KV cache 的量化：先在 12-bit 预算下比较 K/V 精度分配，发现分组 per-channel key 量化会改变甚至反转 K8V4 与 K4V8 的偏好，最终采用 K4V4（per-channel keys、per-token values），使草稿缓存内存降 66.20%，平均接受率从 57.93% 降到 57.14%。",
+      "relevance_reason": "草稿-验证式解码加接受率诊断，可能可供核查压缩后状态保真度如何影响验证与纠正环节，以及量化布局与精度预算的耦合是否有类比的 latent 表示设计线索；但原文面向文本生成的内存效率，与视觉推理无直接联系。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-17T09:30:32.502430+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

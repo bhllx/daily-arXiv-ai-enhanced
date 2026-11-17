@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.20384",
+  "input_sha256": "6f2f289b55e0387300468abc57bf703bd322fc03e129f9747d9ab705e29c0bd6",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-17T09:32:27.886502+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1963,
+        "output_tokens": 283,
+        "total_tokens": 2246,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 113
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.20384",
+    "title": "JointQ: Joint Scale-and-Integer Quantization for Large Language Models",
+    "authors": [
+      "Keiji Kimura",
+      "Yuma Ichikawa"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.CL"
+    ],
+    "comment": "49 pages, 4 figures. Code: https://github.com/FujitsuResearch/OneCompression",
+    "summary": "GPTQ is the de facto standard solver for layer-wise post-training quantization (PTQ) of large language models, yet the solver itself has received less attention than weight preprocessing and cross-layer objectives. We target a bottleneck of GPTQ: its greedy procedure optimizes continuous group scales separately from the assignment of discrete integers. Evaluating each integer candidate with its closed-form optimal scale has been used for per-channel quantization; JointQ extends it to group-wise quantization, where a row's scales are coupled through the Hessian, and applies it to refine the GPTQ solution. Each local-search move changes one integer and recomputes its group's optimal scale in closed form, accounting for the other groups through the full Hessian; all scales are periodically re-solved jointly. The search starts from a row-wise selection among scale-refitted candidates including the GPTQ solution, so unregularized JointQ never has a larger layer-wise calibration error than GPTQ. JointQ preserves the GPTQ output format and is thus a drop-in replacement. Across four models and four settings, JointQ improves six-task average zero-shot accuracy over vanilla GPTQ in 14 of 16 comparisons and perplexity in 12 of 16. The mean accuracy gain increases from 0.0044 in W4G128 to 0.1559 in W3 per-channel, and JointQ also improves average accuracy over GPTQ with MSE-based scale search and activation ordering in all eight per-channel comparisons, though rarely in G128. An ablation shows that JointQ's diagonal Tikhonov regularization mitigates severe W3 per-channel perplexity degradation, so the largest gains are not due to the local search alone. Overall, JointQ's primary empirical benefit is downstream accuracy preservation in challenging low-bit and large-group regimes. Code is available in the OneComp library at https://github.com/FujitsuResearch/OneCompression.",
+    "abs": "http://arxiv.org/abs/2611.20384v1",
+    "pdf": "https://arxiv.org/pdf/2611.20384v1",
+    "AI": {
+      "category": "EXCLUDE",
+      "priority": "NONE",
+      "brief_summary": "该论文改进 GPTQ 的后训练量化求解器，将 group scale 与整数分配联合局部搜索并可周期性地联合重解，以保持低比特与大分组下的下游准确率。",
+      "relevance_reason": "属于纯 LLM 权重压缩的数值优化工作，不涉及视觉或多模态推理中的内部状态、证据获取或停止决策，也未提供可迁移到 LVR 的具体状态或训练线索。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-17T09:32:27.886502+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

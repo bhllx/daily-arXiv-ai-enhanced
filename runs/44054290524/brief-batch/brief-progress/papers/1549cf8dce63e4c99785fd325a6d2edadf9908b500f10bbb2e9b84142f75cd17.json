@@ -1,0 +1,73 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.20258",
+  "input_sha256": "91d56636d4a36f3aec9ab3b1c76d6f614f0ac32abf98c5bacf09064b34459f12",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-17T09:33:35.775203+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1792,
+        "output_tokens": 525,
+        "total_tokens": 2317,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 323
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.20258",
+    "title": "Microfitting: Continual Learning via Cached Test-Time Training",
+    "authors": [
+      "Nick Ryan",
+      "Peter A. Devine",
+      "Ben Sirb",
+      "Hannah Sansford",
+      "Alex Chiocchi"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "Continual learning is a promising approach to specialize language models to an organization's private data. However, current methods exhibit a number of drawbacks including catastrophic forgetting, where new training updates overwrite prior knowledge. We present microfitting, which trains and caches a small adapter for each document. Each adapter is trained once, offline, on synthetic questions targeted at demonstrated base-model shortcomings and reused whenever that document is queried. This method borrows from test-time learning literature and sidesteps the problem of continual learning through parameter isolation, allowing the system to specialize on new data without overwriting prior knowledge. The process that generates adapter training data also improves over time, revising its recipe from previous outcomes and fresh examples of the target workload. On DeepSeek V4 Flash, microfitting substantially improves accuracy over the base model. In Enterprise Document Operations (EDO), an open-book Q&A environment over real-world enterprise documents, our method achieves a 38.2% relative improvement over base-model performance. Microfitting makes continual specialization practical and cost-efficient: a frozen model can adapt to an evolving private corpus overnight on local hardware, without modifying the base model or previously cached adapters.",
+    "abs": "http://arxiv.org/abs/2611.20258v1",
+    "pdf": "https://arxiv.org/pdf/2611.20258v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "提出 microfitting：为每篇文档离线训练并缓存一个小型 adapter，由合成问题驱动，文档被查询时复用该 adapter，以参数隔离替代持续学习中的参数覆盖，并在企业文档问答上报告相对提升。",
+      "relevance_reason": "「按文档缓存专用参数、查询时调用」的思路或可类比 LVR 中把视觉证据状态外置缓存、避免污染推理轨迹，其生成配方依历史结果迭代也可供核查训练数据分配，但该文为纯文本持续学习，无推理期 latent 状态研究。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-17T09:33:35.775203+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

@@ -1,0 +1,73 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.20524",
+  "input_sha256": "99f6a548dbcf96abc2150afd5dab0c1bf35ca9a91a3e4ee2a0dfa232cb1c4003",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-17T09:30:48.893761+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1811,
+        "output_tokens": 728,
+        "total_tokens": 2539,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 498
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.20524",
+    "title": "GaugeRoPE: RoPE-Compatible Executable Latent Attention",
+    "authors": [
+      "Yuanhang Gao",
+      "Xiangrui Yang",
+      "Lingyuan Meng",
+      "Yuanfeng Chen",
+      "Dongsheng Li"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.CL"
+    ],
+    "comment": null,
+    "summary": "Latent KV cache compression reduces memory footprint by mapping historical keys and values into compact representations. However, generic compressed key states require reconstruction to native dimension before applying RoPE and computing attention scores, adding sequence-scaling overhead to the decode path. We characterize when a latent KV representation can serve directly as the execution state of pretrained RoPE. For RoPE-based transformers, exact static linear execution of the rotary key path requires the latent-to-native map to preserve the pretrained RoPE action through an intertwining relation, restricting exact mixing to coordinates that share the same RoPE frequency. Guided by this characterization, we build GaugeRoPE, a training-free executable latent KV representation. It combines a RoPE-compatible carrier that preserves the rotary action with an approximate position-independent residual key--value (RKV) correction for complementary key and value information, both evaluated without per-token dense historical K/V reconstruction. On Mistral-7B, GaugeRoPE achieves $5.85\\times$ KV compression while maintaining quality close to the full-cache baseline. Additional MHA results validate the construction beyond GQA. GaugeRoPE achieves up to $2.48\\times$ the decode throughput of the vanilla uncompressed baseline through direct latent execution.",
+    "abs": "http://arxiv.org/abs/2611.20524v1",
+    "pdf": "https://arxiv.org/pdf/2611.20524v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文刻画 latent KV 表示何时可直接充当预训练 RoPE 的执行状态（要求潜到原生映射以交错关系保持旋转作用），并据此提出免训练的 GaugeRoPE：用 RoPE 兼容载体加近似位置无关的 RKV 修正，在无需逐 token 重建历史 K/V 的情况下执行，Mistral-7B 上达 5.85× 压缩并提升解码吞吐。",
+      "relevance_reason": "其对压缩 latent 状态能否保留位置结构、并在不重建的情况下直接执行的刻画，可能可供核查 LVR 中 latent 推理状态的缓存与位置信息保持及效率成本分析；但该工作面向 KV 缓存效率，不研究视觉推理本身。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-17T09:30:48.893761+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

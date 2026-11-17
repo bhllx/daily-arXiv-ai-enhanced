@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.21038",
+  "input_sha256": "b5d0fee8777f4f6476714878a6474a8bb8f55d0b2e26a8a22d552e877043a73b",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-17T09:25:31.850653+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1823,
+        "output_tokens": 687,
+        "total_tokens": 2510,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 487
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.21038",
+    "title": "ScoutCache: Efficient Few-Step Autoregressive Video Diffusion via Conditional Readout and Selective Caching",
+    "authors": [
+      "Hao Tan",
+      "Jinghui Qin",
+      "Xuming Hu"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": null,
+    "summary": "Few-step autoregressive video diffusion enables efficient long video generation, but inference still incurs substantial computational costs from repeated denoising and KV cache operations. Existing acceleration methods reduce parts of this overhead, while historical KV reading and cache construction remain costly across video chunks. To address these challenges, we propose ScoutCache, a training-free framework that jointly optimizes denoising, historical KV reading, and cache construction. We observe that shallow feature changes provide useful information for estimating clean latent updates, while historical KV dependence varies across Transformer layers and attention heads but remains relatively stable across video chunks. Based on these observations, we develop Conditional Denoising Readout (CDR) to estimate intermediate denoising updates from shallow feature changes and known noise variations. We further introduce Output Risk Guided Historical KV Reading (ORHR) to allocate historical reading budgets based on attention output perturbations, and Content and Coverage Guided Sparse Cache Construction (CCSC) to reduce cache construction costs by selecting informative spatial tokens while maintaining spatial coverage. Extensive experiments on Self-Forcing and LongLive using VBench and MovieGen demonstrate that ScoutCache achieves up to 2.28$\\times$ and 1.86$\\times$ speedups, respectively, while consistently improving generation quality without modifying pretrained model parameters.",
+    "abs": "http://arxiv.org/abs/2611.21038v1",
+    "pdf": "https://arxiv.org/pdf/2611.21038v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "提出免训练的 ScoutCache 视频扩散加速框架：用浅层特征变化估计中间去噪更新，按注意力输出扰动为各层/头分配历史 KV 读取预算，并筛选高信息量且保持空间覆盖的稀疏缓存。",
+      "relevance_reason": "其「依赖随层与注意力头变化但跨片段稳定」的观察及按输出扰动分配历史读取预算的做法，可供核查是否适用于 LVR 中历史 latent 与视觉证据的保留及缓存结构分析；但论文本身面向视频生成加速，与推理机制无直接关联。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-17T09:25:31.850653+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}
