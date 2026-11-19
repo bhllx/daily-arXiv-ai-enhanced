@@ -1,0 +1,73 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.23769",
+  "input_sha256": "39b13004b9a3c0939d7d2524d4a57fe0096ea79802bcf358e7ae1d23c5aa0d8c",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-19T21:55:14.788560+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1884,
+        "output_tokens": 592,
+        "total_tokens": 2476,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 383
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.23769",
+    "title": "Keep the Reasoning, Read the Image: On-Demand Visual KV for Multi-Turn Reasoning VLMs",
+    "authors": [
+      "Ziyi Wang",
+      "Xiyue Zhang",
+      "Bing Hu",
+      "Guangmin Song",
+      "Chenyi Zhang",
+      "Li Wang"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": null,
+    "summary": "Reasoning vision-language models (VLMs) think for thousands of tokens before they answer, and retention policies keep the KV cache affordable by pruning it as the reasoning grows. We find that this pruning sacrifices the image in multi-turn conversations: the image and the reasoning share one budget, so the growing reasoning crowds the visual entries out. A chart question that loses 8 points to the full cache when asked first loses 24 points when asked after a round of reasoning. Protecting a small visual reserve from eviction recovers most of this loss, while adding the same slots to the shared budget recovers considerably less. The image therefore lacks protection, not capacity. Based on this finding, we propose ShelfKV, a training-free method that works on top of existing retention policies. It keeps every visual entry in CPU memory and, at each decoding step, swaps the visual entries that the current query scores highest into the attention slots of the text entries it scores lowest. The image is never evicted, yet it occupies attention slots only while it is read. We evaluate ShelfKV on four benchmarks, three of them conversational, with two retention policies and two reasoning VLMs. In conversations, it improves the strongest existing policy, DBTrimKV, by up to 20.3 points at matched GPU memory, and still leads by 8.7 points when DBTrimKV uses twice the memory. It also consistently outperforms a fixed visual reserve of matched GPU memory in these settings, without hurting accuracy on standalone questions. These results show that the image should be protected from the reasoning but read only on demand.",
+    "abs": "http://arxiv.org/abs/2611.23769v1",
+    "pdf": "https://arxiv.org/pdf/2611.23769v1",
+    "AI": {
+      "category": "MAIN",
+      "priority": "P1",
+      "brief_summary": "论文发现多轮推理 VLM 的 KV 保留策略让图像与推理共享预算，推理增长会把视觉条目挤出缓存；据此提出免训练的 ShelfKV，把视觉条目常驻 CPU，并在每个解码步按当前查询打分，将高分视觉条目换入低分文本条目的注意力槽位。",
+      "relevance_reason": "直接讨论推理过程中视觉证据被挤压与按需读取的问题，「图像缺的是保护而非容量」这一诊断及动态视觉取用机制可供核查，与 LOOK 的收益成本、视觉旁路和信息坍缩在 KV/上下文层面有具体联系。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-19T21:55:14.788560+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

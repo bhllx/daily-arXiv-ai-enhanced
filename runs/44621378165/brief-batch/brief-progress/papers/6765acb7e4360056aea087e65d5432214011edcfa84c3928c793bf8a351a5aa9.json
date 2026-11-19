@@ -1,0 +1,71 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.23581",
+  "input_sha256": "b0f387a638f8d5ba58ec88304c52c17a903ca4cc535c2eaf7ccbe69a549c6c53",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-19T21:57:24.020393+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1870,
+        "output_tokens": 430,
+        "total_tokens": 2300,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 229
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.23581",
+    "title": "ExiST: Existence-Aware Self-Training for Semi-Supervised Multi-Organ Segmentation",
+    "authors": [
+      "Maxx Richard Rahman",
+      "Prakhar Kumar",
+      "Wolfgang Maass"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "Semi-supervised multi-organ segmentation should learn more than a dozen organs from a handful of labeled scans, and the smallest organs occupy less than one percent of the foreground. We identify a failure mode of self-training that is specific to this regime. When a teacher misses a small organ in a scan, every voxel of that organ receives the confident pseudo-label background, and the student is trained toward the organ absence. Repeated over many scans, this loop extinguishes tail organs. In a pilot study, removing the gallbladder from the pseudo-labels reduced its Dice on AMOS from 36.5 to 1.0. We argue that a missing organ should be treated as unresolved rather than absent and propose Existence-aware Self-Training (ExiST). It builds pseudo-labels by leave-one-out consensus of independently trained networks, screens them with a quality gate on validation scans, and infers, per scan and per organ, whether the organ was found. For every unresolved organ, the background voxels of that scan receive the set-valued target, trained with a marginal cross-entropy that accepts either answer and a Dice term that skips uncertain voxels. We show that this loss never pushes a candidate organ toward absence and never favors one member of the set, which leaves the decision to labeled evidence. ExiST outperforms the current state-of-the-art methods and reaches 77.1 mean Dice on Synapse with 20% labeled scans and 75.9 on AMOS with 5% labeled scans.",
+    "abs": "http://arxiv.org/abs/2611.23581v1",
+    "pdf": "https://arxiv.org/pdf/2611.23581v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "论文针对半监督多器官分割中自训练把「教师漏检小器官」当成「该器官不存在」的失败模式，提出把缺失器官视为未决而非缺席，用留一共识伪标签、质量门控与集合值目标和相应损失来避免尾部器官被抹除。",
+      "relevance_reason": "其「未检出≠不存在」的表述与集合值监督，可能为 LVR 中视觉证据缺失时的信念状态表示、证据筛选与停止决策提供概念类比，可供核查但缺乏与视觉语言推理的直接联系。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-19T21:57:24.020393+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

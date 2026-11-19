@@ -1,0 +1,74 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.23616",
+  "input_sha256": "a70a1b2ad7972fd1a4e304479af75e671cbda78ef98b9387c966c92033050203",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-19T21:56:56.490259+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1896,
+        "output_tokens": 622,
+        "total_tokens": 2518,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 376
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.23616",
+    "title": "Isthmus: Bridging Supervision Islands Restores Uncertainty and Stability in One-Step Flows",
+    "authors": [
+      "Luming Yang",
+      "Siqing Li",
+      "Haoxian Liu",
+      "Zhenyu Bu",
+      "Jiazheng Zhu",
+      "Alper Yilmaz"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "One-step flow maps are increasingly used as posterior samplers, where the point of sampling is the uncertainty that the samples carry. We find that the one-step sampler loses this uncertainty and becomes less stable. Compared with multi-step samples of the same network, its samples lose variance and decorrelate. Supervising the one-step jump directly makes this worse; the samples collapse further toward the conditional mean and break down when training is extended. We trace both failures to the locations where training places its pairs of start and end times. Only pairs on the diagonal of the time triangle receive targets from data, and the pair used for one-step sampling is either left unsupervised or supervised on an island, a set of pairs that the self-consistency identity does not connect to the diagonal, where the objective neither determines the one-step map nor anchors its training. We bridge the island with an isthmus, which places 5% of the training pairs along the whole edge of the triangle that joins the one-step pair to the diagonal. The error of the one-step map is then bounded by the self-consistency residual along this edge. With the network, the loss and the inference code unchanged and at no added cost, the isthmus improves one-step sampling across several flow-map objectives, in MRI reconstruction, face inpainting, and unconditional generation on CIFAR-10 and ImageNet 32x32. On brain MRI, it restores one-step calibration to 0.96 and the correlation with multi-step samples to 0.93; both vary far less across seeds, and the agreement holds when training is extended to three times its length.",
+    "abs": "http://arxiv.org/abs/2611.23616v1",
+    "pdf": "https://arxiv.org/pdf/2611.23616v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "该文分析一步流映射作为后验采样器时丢失不确定性、样本相关性消失且训练延长后崩溃的原因，指出问题源于训练时间对落在自一致性恒等式无法连到对角线的「孤岛」上，提出让 5% 训练对沿时间三角形边缘分布的 isthmus 方法，在 MRI 重建、人脸修复与 CIFAR-10/ImageNet 无条件生成上改善了单步采样的校准与稳定性。",
+      "relevance_reason": "其用中间轨迹的自一致性残差为单步映射提供锚定、抑制样本向条件均值坍缩的思路，可能可供核查 LVR 中单步或少步 latent 推理状态的轨迹监督与不确定性保持，但任务属图像生成/重建，与 VLM 推理仅为方法层面联系。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-19T21:56:56.490259+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

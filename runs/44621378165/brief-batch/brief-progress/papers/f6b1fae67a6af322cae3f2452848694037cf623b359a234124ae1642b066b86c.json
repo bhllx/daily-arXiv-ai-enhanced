@@ -1,0 +1,77 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.24681",
+  "input_sha256": "cdb1d57380a0411dc869b5aba1cf873118c8481c7e96154610383c6f7299ab98",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-19T21:45:19.272443+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1816,
+        "output_tokens": 869,
+        "total_tokens": 2685,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 629
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.24681",
+    "title": "DrawScore: Evaluating Generated CAD Models against Engineering Drawings",
+    "authors": [
+      "Haorui Chen",
+      "Shiteng Lu",
+      "Zhanyu Guo",
+      "Zaixi Li",
+      "Yunhe Ni",
+      "Yaosong Du",
+      "Yichen Xiang",
+      "Xiande Huang",
+      "Rui Huang"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.SE"
+    ],
+    "comment": null,
+    "summary": "Automatic CAD generation is commonly evaluated with volumetric IoU, Chamfer Distance, and surface F-score, which barely penalize local errors that occupy only a small fraction of a part's volume or surface area, such as a misplaced hole or a slot on the wrong face, even though such errors are critical to manufacturing. We formalize these metrics in a unified integral form and show that the weight of a local error decays as the $(k+q)$-th power of its size, where $k$ is the dimension of the integration domain and $q$ is determined by the penalty function. Guided by this analysis, we propose DrawScore, which projects both models into three orthographic views with visible and hidden lines, as in engineering drawings, and applies a saturating penalty along the projected curves, so that the weight of a local error decays only linearly. Controlled experiments confirm the predicted decay orders, and on outputs of existing CAD generation agents, DrawScore exposes errors in outputs that IoU rates as nearly perfect. DrawScore further improves generation as a reinforcement learning reward and, for CAD generation from engineering drawings, serves as a test-time verifier without 3D ground truth or an additional reward model. Our code is available at https://github.com/UESTC-Simon/DrawScore.",
+    "abs": "http://arxiv.org/abs/2611.24681v1",
+    "pdf": "https://arxiv.org/pdf/2611.24681v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "论文分析 IoU、Chamfer Distance 等 CAD 评价指标对局部错误（如孔位偏移）的权重会随误差尺寸高次幂衰减，据此提出 DrawScore：把模型投影为含虚线与实线的三视图，沿投影曲线施加饱和惩罚，使局部错误权重仅线性衰减，并将其用作强化学习奖励与无 3D 真值的测试时验证器。",
+      "relevance_reason": "与 VLM 推理无直接关联，但其「按局部几何细节重新加权评价」与「无真值验证器」的思路，可能为检验 latent 状态是否保留细粒度几何与视觉证据的度量或停止/验证设计提供线索，投影表示与饱和惩罚能否迁移尚待核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-19T21:45:19.272443+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

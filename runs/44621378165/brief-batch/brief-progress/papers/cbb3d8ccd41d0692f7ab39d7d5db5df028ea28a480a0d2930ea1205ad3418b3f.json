@@ -1,0 +1,79 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.24016",
+  "input_sha256": "fb8b51f4b6f0f662e50244f970857d764c3fa9e987b2e3bd9fd0f3f8d8d3d9d4",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-19T21:51:58.806315+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1852,
+        "output_tokens": 518,
+        "total_tokens": 2370,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 298
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.24016",
+    "title": "Rethinking Contrastive Targets in Radiology Language-Image Pretraining",
+    "authors": [
+      "Yunhe Gao",
+      "Ashwin Kumar",
+      "Jiaming Liu",
+      "Chong Wang",
+      "Maya Varma",
+      "Fuying Wang",
+      "Stefania L. Moroianu",
+      "Louisa Fay",
+      "Sergios Gatidis",
+      "Akshay S. Chaudhari",
+      "Curtis Langlotz"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.LG"
+    ],
+    "comment": "NeurIPS 2026",
+    "summary": "CLIP-style contrastive image-text pretraining is widely used in radiology data, where each image is paired with one report and every other report in the batch is treated as a negative. Under this recipe, two failures appear, neither of which is systematically addressed by existing contrastive learning theory: zero-shot evaluation peaks then degrades while training loss keeps decreasing, and training fails to learn from large batches. We hypothesize the cause is structural rather than radiology-specific: many unpaired reports share clinical findings with a given image, so CLIP's paired-identity target is systematically biased, not merely noisy. To test this, we construct CLEVR-Radiology, a synthetic testbed that preserves only this overlapping-fact structure and reproduces both failures. With evidence that the structure is sufficient to reproduce the failures, we develop a target-misspecification theory that explains both failures from a single deterministic gradient bias amplified by batch size, and use it to motivate a minimal compatibility-based correction, CorLIP: text is treated as positive whenever its clinical assertions agree with the image, with no architecture changes. Beyond benchmark improvements, CorLIP largely removes the post-peak degradation, makes large-batch training succeed where it previously collapsed, substantially amplifies the gains from more data, and is the only configuration that remains stable up to B=2048. The correction transfers from chest X-ray to 3D CT modalities.",
+    "abs": "http://arxiv.org/abs/2611.24016v1",
+    "pdf": "https://arxiv.org/pdf/2611.24016v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "该论文指出放射科 CLIP 式图文对比预训练中，批次内未配对报告常与图像共享临床所见，使「配对身份」目标存在系统性偏差，并用合成测试台 CLEVR-Radiology 复现零样本先升后降、大 batch 训练失败两种现象，提出梯度偏差理论并给出基于临床断言一致性的修正方法 CorLIP。",
+      "relevance_reason": "论文不涉及 latent 推理，但其「多个合理目标被误当负例」的目标错配分析与修正，可能为 LVR 中多条有效 latent 轨迹或不同视觉证据下的监督分配与正例判定提供可借核查的思路。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-19T21:51:58.806315+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

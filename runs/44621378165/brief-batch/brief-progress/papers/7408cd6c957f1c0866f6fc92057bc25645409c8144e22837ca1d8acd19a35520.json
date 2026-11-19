@@ -1,0 +1,68 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.23822",
+  "input_sha256": "2c915fcf4976515228d42abf89c9f0b71f2ec5a133315faacf6be3b175e2a2f3",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-19T21:54:42.614081+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1919,
+        "output_tokens": 506,
+        "total_tokens": 2425,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 284
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.23822",
+    "title": "Mapping the Design Space of Feature Sampling for Optical Flow",
+    "authors": [
+      "Liping Zhang"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": null,
+    "summary": "The computation of correlation features is crucial for optical flow estimation. Existing methods (e.g., RAFT) perform fixed-radius lookups on a cost volume, yielding a set of correlation features for each position; alternatively, WAFT performs single-point feature indexing, yielding one correlation feature vector per position. None of them designs a suitable correlation feature sampling scheme for each position according to regional characteristics. Our insight is that not every position requires the same sampling scheme. Applying an identical sampling scheme to every position is either redundant or insufficient and ignores the specific characteristics of the corresponding region. This paper rethinks the design of feature sampling and investigates the following question: should the support of feature sampling---i.e., the extent and directions over which evidence is aggregated---be learned separately for each query position? To study this question, we propose SAGE (Sampling with Anisotropic Gaussian Expectation). This method replaces single-point sampling with a per-pixel anisotropic Gaussian expectation on a fixed candidate grid centered on the current optical flow estimate. A positive-definite precision matrix controls the scale, anisotropy, and orientation of the sampling support, with single-point sampling included as its limiting case. Consequently, the sampling support becomes an explicit and analyzable design variable and provides a principled way to analyze how directional feature aggregation affects correspondence learning. Extensive experiments show that SAGE, while adding only 1.5% multiply-accumulate operations (MACs), effectively improves zero-shot cross-dataset generalization. When trained only on FlyingChairs and FlyingThings, SAGE reduces the end-point error (EPE) by 24.2% and 16.4% on Sintel clean and final, and reduces KITTI F1-epe and F1-all by 7.2% and 11.6%.",
+    "abs": "http://arxiv.org/abs/2611.23822v1",
+    "pdf": "https://arxiv.org/pdf/2611.23822v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "论文针对光流相关特征采样，提出 SAGE：在以当前光流估计为中心的固定候选网格上，用逐像素各向异性高斯期望（正定精度矩阵控制尺度、各向异性与方向）替代单点采样，把采样支撑域变成可学习、可分析的显式设计变量，在仅增 1.5% MACs 下改善零样本跨数据集泛化。",
+      "relevance_reason": "「不同位置需要不同证据聚合范围」这一视角与 LVR 中的视觉证据筛选、LOOK 的粒度决策可能相通，可供核查其可学习采样支撑是否能类比 latent 状态获取的位置级粒度控制。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-19T21:54:42.614081+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

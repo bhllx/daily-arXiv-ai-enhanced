@@ -1,0 +1,76 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.24891",
+  "input_sha256": "779eca81b781490f18e024513db42c04f7ee610fe8ed0bcb8eebbf4f4ac1c67a",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-19T21:43:26.298174+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1908,
+        "output_tokens": 455,
+        "total_tokens": 2363,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 230
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.24891",
+    "title": "Cap-and-Track: Optimizing LLM Inference Request Dispatch Across Shifting Capacity",
+    "authors": [
+      "Benjamin Novotny",
+      "Doug Szeto",
+      "Chang Wang",
+      "Shicheng Chen",
+      "George Zhihua Yuan",
+      "Bob Kamma",
+      "Michael Ge",
+      "John Xin Zhou",
+      "Andrea Olgiati"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": "20 pages, 6 figures, 2 tables. Includes appendices",
+    "summary": "A fixed dispatch rate for LLM inference becomes stale as serving fleets resize and request sizes change. Generative output length is unknown at admission, and shared provider pools can lose capacity. We present Cap-and-Track, a design for asynchronous inference across provider capacity and internal GPUs. Meta's traffic shaper implements Cap-and-Track for post and live-video understanding. Refusals signal the backend's current admission ceiling. Durable priority queues hold excess work outside execution, including refused requests for retry. Cap is a fail-fast admission check at the saturated resource that refuses work before a long wait. Using only those refusals, the Track dispatcher probes upward and backs off. It follows the ceiling without output-length prediction or a fleet-level rate to retune. In a concurrent same-traffic production A/B, the shaper ran per-replica Cap plus Track. It served a classifier on 43% fewer H100s than its queued, fixed-rate precursor, though lower-priority work waited longer at backfill peaks. In steady-capacity real-engine replay, Track ran within 1% of the goodput of a fixed rate tuned above measured capacity, with about a quarter of that rate's refusal share. The shaper carries more than 300 million online requests and hundreds of terabytes of media a day. During a backfill, it handled 1.1 billion requests in its busiest 24 hours. Lessons include keeping queues inside inference engines just long enough to fill batches, steering dispatch by capacity refusals alone, keeping dispatch stateful, and sizing fleets by how long low-priority work can wait.",
+    "abs": "http://arxiv.org/abs/2611.24891v1",
+    "pdf": "https://arxiv.org/pdf/2611.24891v1",
+    "AI": {
+      "category": "EXCLUDE",
+      "priority": "NONE",
+      "brief_summary": "Cap-and-Track 是一套面向 LLM 推理服务系统的请求调度设计：在容量波动时用「拒绝即已达上限」的信号做快速准入判断，并由 Track 调度器通过试探与退避跟踪可用容量，配合持久优先级队列重试被拒请求，并在 Meta 生产流量上做了 A/B 与回放评估。",
+      "relevance_reason": "该工作关注的是服务集群层面的吞吐调度、准入控制与队列设计，其中的「拒绝」「停止」均指请求准入而非推理状态或证据获取，与 LVR 的表示、latent 生成、监督分配及推理期动态计算缺乏实质联系，未见可核查的借用线索。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-19T21:43:26.298174+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

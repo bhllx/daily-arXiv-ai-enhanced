@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.23929",
+  "input_sha256": "c220f643d79c26b4ed59db4a3a489225ceb17dc3f3999984d58fd99a5dd7ee26",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-19T21:53:16.591227+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1833,
+        "output_tokens": 487,
+        "total_tokens": 2320,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 277
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.23929",
+    "title": "ProxySearch: Decoupled Inference-Time Scaling for Diffusion Models via Asymmetric Noise-Rank Transfer",
+    "authors": [
+      "Seungwook Kim",
+      "Jongmin Lee"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": "Accepted to NeurIPS 2026. 26 pages, 7 figures",
+    "summary": "Noise search at inference time improves text-to-image diffusion but requires many multi-step teacher rollouts per query. Distilled few-step models are now routinely released, yet their potential as proxies inside noise search is uncharacterized. We measure proxy-teacher rank agreement across three distillation regimes and three backbones (DiT, MMDiT, UNet) and find a sharp asymmetry. On our main pool, closed-form image statistics transfer from the proxy to the teacher (Spearman $ρ$ up to 0.80), while learned semantic scorers do not ($ρ\\le$ 0.12). Paired null controls trace this rank to the first denoising step for coarse statistics and to distillation for finer ones. We use the asymmetry for noise search under a joint constraint: a semantic reward specifies content, and a numeric target specifies image statistics. In PROXYSEARCH, the proxy filters candidates by statistical match in 1 step, and the teacher returns the survivor with the highest semantic reward. No weight trades one objective against the other. On FLUX-1024, PROXYSEARCH tightens the statistical target by 21-23% at the same number of teacher trajectories, with no detected loss on the optimized reward.",
+    "abs": "http://arxiv.org/abs/2611.23929v1",
+    "pdf": "https://arxiv.org/pdf/2611.23929v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文考察少步蒸馏扩散模型作为「代理」在推理期噪声搜索中的排序一致性，发现代理到教师的可迁移性存在明显不对称：统计量可迁移而语义评分不可；据此设计 PROXYSEARCH，用代理一步筛选统计匹配候选、再由教师按语义奖励选优。",
+      "relevance_reason": "其「廉价代理先筛、昂贵教师后评」的不对称排序迁移可供核查：能否作为 LVR 中候选 latent 轨迹的轻量预筛与计算/停止分配线索，但该文属图像生成搜索，与 VLM 推理状态的对应关系尚不确定。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-19T21:53:16.591227+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

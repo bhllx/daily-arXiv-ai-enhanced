@@ -1,0 +1,74 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.23770",
+  "input_sha256": "326dfb9c3f41defbce5904b8745d048fbc82f4039d9851d2a0ac63e0fb6014fb",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-19T21:55:09.378266+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1927,
+        "output_tokens": 463,
+        "total_tokens": 2390,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 241
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.23770",
+    "title": "DetectViT: Test-time Backdoor Detection for Vision Transformers via Inter-Head Attention Discrepancy",
+    "authors": [
+      "Siquan Huang",
+      "Yijiang Li",
+      "Xingfu Yan",
+      "Ningzhi Gao",
+      "Leyu Shi",
+      "Ying Gao"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.CR"
+    ],
+    "comment": "Accepted to NeurIPS 2026",
+    "summary": "Vision Transformers (ViTs) now underpin the visual encoders of most multimodal models, but this success comes at a cost: relying on third-party pretrained checkpoints leaves these systems open to backdoor attacks. Existing test-time detection methods rely on either the predicted label or intermediate embeddings, limiting their applicability across diverse tasks and incurring substantial computational overhead. In this work, we study how backdoor triggers affect the multi-head attention mechanism of ViTs and identify two distinct anomalous patterns: $\\textit{complete attention hijacking}$, causing the attention to exhibit abnormally high inter-head spatial overlap, and $\\textit{partial attention hijacking}$, causing an abnormally large variance in the concentration of the attention distribution. Motivated by these findings, we propose $\\textbf{DetectViT}$, a test-time backdoor detection method that requires neither training data, model outputs, nor any prior knowledge of the trigger. DetectViT quantifies the two hijacking phenomena via an inter-head consistency score and an inter-head entropy variance score, with thresholds estimated from a small out-of-distribution (OOD) calibration set drawn from an arbitrary source. Across four representative attacks, diverse architectures (DeiT, CLIP, and LLaVA), and downstream tasks (image classification and captioning), DetectViT substantially outperforms all baselines with as few as 64--128 OOD calibration samples, achieving a true positive rate of $100\\%$ and a false positive rate of $0.17\\%$ on BadCLIP. Notably, it introduces negligible additional overhead by relying solely on attention weights already computed during inference. Code is available at: https://github.com/siquanhuang/DetectViT.",
+    "abs": "http://arxiv.org/abs/2611.23770v1",
+    "pdf": "https://arxiv.org/pdf/2611.23770v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "研究 ViT 后门触发器对多头注意力的影响，发现「完全注意力劫持」（head 间空间重叠异常高）与「部分注意力劫持」（注意力集中度方差异常大）两种模式，据此提出无需训练数据、模型输出或触发器先验的测试时检测方法 DetectViT，用 OOD 校准集估计阈值。",
+      "relevance_reason": "其免训练、仅依赖推理中已有注意力权重的跨 head 一致性与熵方差统计，可能为 LVR 中「视觉证据是否被真正注意、注意力结构是否异常」提供可核查的内部状态诊断线索，但本身不涉及推理轨迹或 latent 状态生成。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-19T21:55:09.378266+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

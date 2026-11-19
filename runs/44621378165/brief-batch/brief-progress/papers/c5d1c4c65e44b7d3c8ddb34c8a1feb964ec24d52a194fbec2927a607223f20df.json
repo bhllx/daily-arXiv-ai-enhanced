@@ -1,0 +1,74 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.23886",
+  "input_sha256": "90554181c5a472d3152aada975bc07b8c13799db705f910f268a65fb28e76f71",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-19T21:53:50.325578+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1906,
+        "output_tokens": 931,
+        "total_tokens": 2837,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 726
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.23886",
+    "title": "Risk-Controlled Correction for Frozen Multimodal Models under Missing Modalities",
+    "authors": [
+      "Hoang Pham Cong",
+      "Long D. Nguyen",
+      "Ho Viet Duc Luong",
+      "Nguyen Tran Minh Nhat",
+      "Binh P. Nguyen",
+      "Huynh Thi Thanh Binh"
+    ],
+    "categories": [
+      "cs.AI",
+      "stat.ML"
+    ],
+    "comment": "Code: https://github.com/kongwoang/GUARD",
+    "summary": "A deployed multimodal predictor may face missing modalities after its weights can no longer be changed. This raises a question that training-time repair does not answer: what part of the resulting error is still correctable from the information that remains? We show that this part is characterized by the Bayes gap, the difference between the model's prediction and the Bayes prediction given the observed modalities. For cross-entropy and squared error, excess risk measures this gap in the geometry of the loss; ambiguity in the observed modalities cannot be removed. Thus, a badly degraded prediction is not necessarily a correctable one. Estimating the Bayes prediction normally requires labels. However, when a model observing more modalities is conditionally correct, averaging its outputs conditional on the remaining modalities recovers this target without retrieval labels; with the same fixed blend and neighbors, it is no worse in expected cross-entropy or Brier risk than averaging hard labels. Some such assumption is unavoidable: otherwise the target is not identifiable from unlabeled data alone. GUARD (Gated Utility-Aware Recalibration for Deployment) leaves the deployed predictor unchanged. It estimates a candidate correction by retrieval, learns from deployment-matched labeled data when correction is likely to help, and calibrates a threshold on a held-out split by conformal risk control. Under exchangeability, the marginal probability that GUARD applies a correction whose loss increase exceeds a prescribed tolerance is bounded by a preset level, regardless of the learned score. In controlled experiments, correction gain follows headroom rather than raw error; across nine frozen model-dataset pairs spanning six domains, GUARD retains most of blanket correction's gain within harm budgets that blanket correction often exceeds.",
+    "abs": "http://arxiv.org/abs/2611.23886v1",
+    "pdf": "https://arxiv.org/pdf/2611.23886v1",
+    "AI": {
+      "category": "MAIN",
+      "priority": "P2",
+      "brief_summary": "论文研究冻结多模态模型在部署时缺失模态后，哪部分误差仍能从剩余模态中纠正：用 Bayes gap 刻画可纠正分量，并提出 GUARD，以检索估计贝叶斯预测、学习纠正在何时有益，再用 conformal risk control 校准阈值以限定伤害。",
+      "relevance_reason": "「可纠正量取决于剩余证据、严重退化未必可纠正」的分解，加上按风险预算门控是否施加纠正，可供核查 LVR 中视觉证据是否充足与何时停止/追加证据的判断；但方法不涉及 latent 推理状态本身。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-19T21:53:50.325578+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

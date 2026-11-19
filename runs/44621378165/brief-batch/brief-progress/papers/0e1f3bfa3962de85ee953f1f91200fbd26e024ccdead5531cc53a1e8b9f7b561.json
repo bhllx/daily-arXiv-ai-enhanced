@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.23446",
+  "input_sha256": "e563b270a2087aa97f351e3d63eb9f0f2c74d2feacb69b291c66551f757be5a0",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-19T21:58:27.980837+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1963,
+        "output_tokens": 533,
+        "total_tokens": 2496,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 303
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.23446",
+    "title": "Where Global Context and Weight Sharing Work in Compact Vision Backbones",
+    "authors": [
+      "Michael Schroeder"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.AI",
+      "cs.LG"
+    ],
+    "comment": "8 pages, 5 figures",
+    "summary": "Compact convolutional backbones such as EfficientNet achieve strong parameter efficiency through local depthwise separable convolutions, yet two structural questions remain central to hybrid design: where does global self-attention improve recognition over pure convolution, and can repeated blocks share weights without losing representational capacity? We investigate both questions on ImageNet-1k (50,000-image validation) using controlled EfficientNet-B0 experiments. First, we show that wrapping a classification backbone in multi-scale feature pyramids (BiFPN) fails to outperform a plain MBConv trunk (69.99% - 71.81% vs. 72.86% plain B0) until paired with stage attention (73.15%). In contrast, keeping the MBConv trunk intact and inserting lightweight zero-gated residual self-attention adapters at stages P3 (28x28 windowed), P4 (14x14 global), and P5 (7x7 global) reaches 74.02% standalone and outperforms a bit-for-bit matched plain-B0 control by +0.954 percentage points (73.88% vs. 72.92%) across an 88-epoch stateless replay schedule, with learned attention amplitude rising monotonically with semantic depth (27.2% at P3 -> 45.4% at P4 -> 66.3% at P5). Second, we evaluate recurrent weight sharing across repeated MBConv blocks with pass-specific BatchNorm statistics (+1,536 parameters per pass). While post-hoc kernel averaging degrades accuracy to 17.03% and single-template stage tying (-27.6% parameters) plateaus at 66.10%, alternating two shared block templates ([B1, A, B, A]) in Stage 6 cuts total model parameters by 10.9% (582K weights) and recovers by +10.82 points in a single epoch to 70.92% (-1.84 points vs. unshared control).",
+    "abs": "http://arxiv.org/abs/2611.23446v1",
+    "pdf": "https://arxiv.org/pdf/2611.23446v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文在 ImageNet-1k 上用受控 EfficientNet-B0 实验考察两件事：把 zero-gated 残差自注意力适配器插入 P3/P4/P5 阶段对识别精度的作用，以及重复 MBConv 块间共享权重（并为每个 pass 保留独立 BatchNorm 统计）对参数量与精度的取舍。",
+      "relevance_reason": "重复块共享权重加每 pass 独立 BN 统计、以及注意力门控幅度随语义深度单调上升，可能为 LVR 的循环式 latent 状态更新、按迭代深度保留状态和深度泛化提供可核查的设计线索，但该文属纯视觉骨干实验，迁移性需进一步判断。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-19T21:58:27.980837+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

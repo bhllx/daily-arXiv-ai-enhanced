@@ -1,0 +1,71 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.24410",
+  "input_sha256": "96ae6be2df193ed09d3f97b3a332c8a0d710ed728d60320747ad5904d697c4cf",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-19T21:47:25.400339+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1931,
+        "output_tokens": 918,
+        "total_tokens": 2849,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 666
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.24410",
+    "title": "Why Multi-Source Audio Fails to Compose: A Geometric Diagnosis and Its Remedy",
+    "authors": [
+      "Anurag Singh",
+      "Prajwal Singh",
+      "Shanmuganathan Raman"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.SD"
+    ],
+    "comment": "Accepted in BMVC 2026",
+    "summary": "Multi-source audio-to-image generation exhibits consistent compositional failures when audio tokens occupy geometrically displaced, semantically unanchored positions in the CLIP text-token space, where the diffusion U-Net lacks the prior to reliably attend to them or ground them in distinct spatial regions. We formalize this as the geometric displacement phenomenon and expose it through a two-level clustering analysis comparing BEATs and CLAP embeddings at the raw encoder and projected CLIP token levels. Three geometric properties emerge as important: intra-class compactness, angular alignment with the CLIP text manifold, and inter-token spatial separation. We show that CLAP, whose contrastive language-audio pretraining aligns embeddings with natural language semantics, substantially outperforms BEATs on all three properties, improving the silhouette score by more than 3x and the Audio-Image Content score as well. Building on this analysis, we introduce a multi-token extension that requires no diffusion-backbone retraining and assigns each audio source to a distinct placeholder token in the CLIP tokenizer, complemented by a mixed inference-time objective that combines Attend-and-Excite with an A* spatial separation loss to resolve residual cross-token interference. For evaluation, we construct multi-audio compositional benchmarks from VGGSound (VGG2, VGG3, and VGGN) and extend six standard audio-image metrics to the multi-source setting. Across five benchmarks and four strong baselines, our method achieves strong results on the metrics most directly tied to compositional faithfulness, with AIC improvements of up to 2.25x over the strongest baseline and FID reduced by nearly 2x on two-source generation. We propose geometric displacement as a diagnostic framework for cross-modal generation systems that project learned embeddings into a pretrained contrastive space.",
+    "abs": "http://arxiv.org/abs/2611.24410v1",
+    "pdf": "https://arxiv.org/pdf/2611.24410v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "研究多源音频到图像生成的组合性失败，把原因归为音频 token 在 CLIP 文本 token 空间中发生几何位移、缺乏语义锚定，用两级聚类比较 BEATs 与 CLAP 的类内紧致性、与 CLIP 流形角对齐和 token 间空间分离度，并提出免重训的多占位符 token 方案与推理时 Attend-and-Excite 加 A* 空间分离损失的混合目标。",
+      "relevance_reason": "其「token 几何位置→注意力能否可靠定位」的诊断框架与三项几何度量可供核查 latent 视觉 token 是否被真正注意并使用，推理时注意力干预也可能为视觉证据筛选与贡献分配提供线索，但论文不涉及 VLM 推理或 latent 状态生成，迁移需另行验证。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-19T21:47:25.400339+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

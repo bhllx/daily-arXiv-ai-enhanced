@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.23608",
+  "input_sha256": "e3014ac820dd7b9a9c31b07f0a7d66b13676a24e2b735dc3b7045a34804fb7d3",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-19T21:57:07.835178+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1941,
+        "output_tokens": 582,
+        "total_tokens": 2523,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 346
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.23608",
+    "title": "JEPA as a Transferable Optimizer: Learning and Understanding Black-Box Optimization from Reward-Agnostic Pretraining",
+    "authors": [
+      "Mayukh Debnath",
+      "Manan Roy Choudhury"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "Black-box optimization evaluates candidates through simulations, rollouts, or experiments, often without gradients. Learned optimizers are usually judged by whether they outperform existing methods. We ask a complementary question: what information does a learned optimizer use from its search history? We introduce JEPA-PS (JEPA Policy Search), based on a Joint-Embedding Predictive Architecture. It is pretrained on random rollouts using parameter vectors and scalar returns. Its latent-prediction objective predicts the next point in an optimization trajectory rather than its reward or gradient, allowing us to examine what was tried and how well it performed. At test time, JEPA-PS reads a short evaluation history and proposes a candidate in one forward pass, without task descriptions, reward shaping, or test-time gradients. We evaluate it on 15 control environments against 12 optimizers, including evolutionary methods, Bayesian optimization, CMA-ES, and an LLM optimizer. JEPA-PS is competitive with tuned classical baselines and outperforms the LLM optimizer by more than 2x on Swimmer at 71x lower per-step cost. It also transfers zero-shot to environments excluded from pretraining. Null-model comparisons and decoder-training ablations indicate that its latent representation carries information beyond simple history statistics; every trained decoder variant performs worse than the default frozen representation. Our main finding is that the history JEPA-PS uses depends on the task. On smooth landscapes it uses the full trajectory, whereas on rugged landscapes the best-seen point carries nearly all the signal. This memory requirement has a weak positive correlation with fitness-distance correlation (FDC; r=0.112, n=7), while an independent reward-ordering sensitivity probe does not corroborate the relationship (r=-0.024, n=7). Code: https://github.com/mdebnath22/jepa-props.",
+    "abs": "http://arxiv.org/abs/2611.23608v1",
+    "pdf": "https://arxiv.org/pdf/2611.23608v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P1",
+      "brief_summary": "提出 JEPA-PS：基于联合嵌入预测架构，在随机 rollout 上用参数向量与标量回报做奖励无关预训练，其 latent 目标预测优化轨迹的下一个候选点而非奖励或梯度；测试时读取简短评估历史，一次前向即给出候选，并在 15 个控制环境上与 12 种优化器比较，还用 null-model 和解码器消融探测 latent 所携带的信息。",
+      "relevance_reason": "其「奖励无关预训练 + latent 预测下一状态」以及用 null-model、解码器消融检验 latent 是否超出简单历史统计的做法，可能为 LVR 中 latent 状态承载多少任务信息、历史依赖与贡献分配的诊断提供可供核查的方法线索。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-19T21:57:07.835178+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}
