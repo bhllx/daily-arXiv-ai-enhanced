@@ -1,0 +1,20 @@
+name: Schedule Probe
+
+on:
+  schedule:
+    - cron: "7,22,37,52 * * * *"
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Show trigger and time
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+        run: |
+          echo "Triggered by: $EVENT_NAME"
+          date -u
