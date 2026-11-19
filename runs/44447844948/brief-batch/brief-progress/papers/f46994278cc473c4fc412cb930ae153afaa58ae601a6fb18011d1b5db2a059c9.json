@@ -1,0 +1,73 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.22564",
+  "input_sha256": "e9e2da8a78724285b6c7faec8d9b8a7c5f601d012449628da179848bde731213",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-19T03:05:33.672172+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1883,
+        "output_tokens": 759,
+        "total_tokens": 2642,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 547
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.22564",
+    "title": "Lost in Read-out: Locating the Image Quality Gap in Vision-Language Models with a Closed-Form Edit",
+    "authors": [
+      "Zhuangzi Li",
+      "Shilv Cai",
+      "Jian Jin",
+      "Zhiyi Pan",
+      "Haihong Xiao",
+      "Weisi Lin"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": null,
+    "summary": "Vision-language models (VLMs) are widely used as zero-shot image quality assessors, yet their good-vs-poor answers agree only moderately with human opinion. We ask whether these models fail to see quality or fail to say it. Layer-wise probes on five VLMs point to the second: quality is linearly decodable from the vision encoder and still from the last language layer, far better than the answer reveals, and about a hundred labels recover most of it. The loss lies mainly in the final read-out, which partly reads something else: relative to human opinion, it over-rewards colorfulness and under-rewards sharpness on all five models. We test this by intervention: if the read-out is at fault, a closed-form edit of a single last-layer neuron, fitted to many prompts at once, should close the gap and no more. Both hold. Under prompts never used for fitting, the edit recovers 86--100\\% of what a ridge head on the last-layer state, fitted under the same prompts, finds beyond the answer on KonIQ. Where that gap is small, it gains little, too little for our transfer criterion on the two largest models; where the head itself is below the answer, it lowers the score; and it works only when written from the middle of the language model on. Unlike unconstrained fine-tuning, the edit leaves perception question answering intact. It does not carry over to yes-or-no or rating questions, and it reverses the good--poor contrast after sentiment-laden sentences. Code will be made available.",
+    "abs": "http://arxiv.org/abs/2611.22564v1",
+    "pdf": "https://arxiv.org/pdf/2611.22564v1",
+    "AI": {
+      "category": "MAIN",
+      "priority": "P1",
+      "brief_summary": "论文在五个 VLM 上用逐层线性探针区分图像质量判断失败是「看不见」还是「说不出」，发现质量信息在视觉编码器与最后语言层都高度可解码，损失主要发生在最终 read-out，并用闭式编辑最后一层单个神经元做干预验证。",
+      "relevance_reason": "提供了「内部状态保留信息但答案未使用」的逐层诊断加因果干预范式，与 latent 内容是否被答案使用、read-out 瓶颈和信息坍缩直接相关；但任务是图像质量评分而非多步视觉推理，向 LVR 场景的可迁移性需阅读后自行判断。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-19T03:05:33.672172+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

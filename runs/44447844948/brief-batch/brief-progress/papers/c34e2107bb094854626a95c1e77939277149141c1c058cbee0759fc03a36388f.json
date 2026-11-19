@@ -1,0 +1,72 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.21882",
+  "input_sha256": "3997d11870d89b37fcbcf631e2062dd33093242781c6096a583d52b89d620118",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-19T03:14:37.727177+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1825,
+        "output_tokens": 487,
+        "total_tokens": 2312,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 280
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.21882",
+    "title": "WM-Quant: Rollout-Aware Post-Training Quantization for JEPA-Style World Models",
+    "authors": [
+      "William Hammer",
+      "Andrew Heuer",
+      "Nikhil Krishna",
+      "Matthew Grenier",
+      "Ramtin Zand"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": "11 pages, 5 figures, and 7 tables",
+    "summary": "We present WM-Quant, to our knowledge, the first post-training quantization (PTQ) framework designed specifically for JEPA-style world models. Although world models typically feature relatively few parameters, action planning algorithms often require thousands of inferences, which can quickly become computationally expensive. PTQ is a natural way to reduce this cost. However, we show that in world models using autoregressive model predictive control (MPC) rollouts, quantization error can compound with each predictor step, resulting in action rankings from the quantized model becoming near-random. WM-Quant addresses this with three components that build on existing PTQ methods: early-encoder precision, control-path preservation, and rollout-aware scaling. Early-encoder precision protects accurate latent state and goal information to mitigate long-term error propagation. Control-path preservation allows the world model predictor to distinguish between fine-grained actions, significantly improving action rankings and execution. Rollout-aware scaling jointly calibrates encoder and per-step predictor activation ranges with respect to an entire rollout rather than a single prediction, reducing the cumulative rollout error. Across multiple world models, environments, and PTQ methods, WM-Quant substantially improves planning success at low bit-widths, approaching full-precision performance at W4A4.",
+    "abs": "http://arxiv.org/abs/2611.21882v1",
+    "pdf": "https://arxiv.org/pdf/2611.21882v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "该论文提出 WM-Quant，面向 JEPA 风格世界模型的训练后量化框架，通过保留早期编码器精度、控制通路和按整段 rollout 校准激活范围，缓解量化误差在自回归 MPC 多步推理中的累积，使低比特下的动作排序与规划成功率显著回升。",
+      "relevance_reason": "其「量化误差随预测步累积、需保住 latent state 与细粒度控制信息」的分析，可供核查 LVR 中多步 latent 状态更新的信息保真与误差传播问题，但属控制导向的效率方法，与视觉推理机制联系间接。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-19T03:14:37.727177+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

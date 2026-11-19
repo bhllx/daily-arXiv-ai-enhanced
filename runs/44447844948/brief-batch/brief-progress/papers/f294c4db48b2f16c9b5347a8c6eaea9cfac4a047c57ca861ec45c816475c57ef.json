@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.22551",
+  "input_sha256": "33cb6dad33c007fe8b9f415b7cf9a34878f81b6f5827572dbaf10b51a216e76f",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-19T03:05:47.252708+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1892,
+        "output_tokens": 861,
+        "total_tokens": 2753,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 638
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.22551",
+    "title": "Fast Training-Free Low-Light Video Enhancement with a Frozen Image Diffusion Prior",
+    "authors": [
+      "Hon Ming Yam",
+      "Chun Pong Lau"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": "15 pages, 12 tables, 4 figures",
+    "summary": "Pretrained image diffusion models can enhance low-light video without low-light training data and without retraining for a new camera. ZVRD, the only published training-free method for low-light video, is too slow to use: our implementation needs over a minute per $256 \\times 256$ frame. We present a causal, training-free pipeline that adds two temporal components to a frozen MR. Illuminate image prior. Temporal input fusion recursively averages motion-compensated low-light frames before diffusion inversion. Late-start offset propagation runs the full sampling trajectory only on key frames. Each non-key frame inverts the low-noise part of its own trajectory and adds an enhancement offset warped from the latest key frame. At ZVRD's own resolution the pipeline is $261\\times$ faster than ZVRD and scores better on all five metrics we report. On 13 held-out SDSD clips at $1280 \\times 720$, it improves on framewise eight-step processing by 0.55 dB in PSNR and 0.034 in LPIPS and halves the warping error, in 10% less time. Measurements inside the model show why, and a linear-Gaussian model of inversion explains them. Fusion removes frame-to-frame noise before inversion amplifies it. A flow error perturbs the transported offset ten times less than it perturbs a transported state. The perceptual gain does not transfer to low resolution: at $346 \\times 260$, LPIPS is worse by 0.028. At 0.65 frames per second, the pipeline is an offline method.",
+    "abs": "http://arxiv.org/abs/2611.22551v1",
+    "pdf": "https://arxiv.org/pdf/2611.22551v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文研究无训练的低光照视频增强，在冻结图像扩散先验上加入时序输入融合与关键帧偏移传播（非关键帧只反演低噪声段并叠加经光流扭曲的增强偏移），较 ZVRD 提速 261 倍且多数指标更好，但低分辨率下 LPIPS 反而下降。",
+      "relevance_reason": "其「关键帧走完整采样轨迹、其余样本只做短程反演并搬运偏移」的 latent 复用与校正思路，可能为 LVR 中廉价复用推理期状态、减少扩散式 latent 更新成本提供核查线索，但该偏移能否跨问题迁移及误差累积尚不明确。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-19T03:05:47.252708+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

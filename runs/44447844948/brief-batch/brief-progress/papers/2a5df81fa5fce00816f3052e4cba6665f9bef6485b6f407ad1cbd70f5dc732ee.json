@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.21995",
+  "input_sha256": "7aa2475582f7406b7c79df190eaa39e8efc293ab63dc6b56d73470cb7d8af4a8",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-19T03:13:19.887209+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1896,
+        "output_tokens": 873,
+        "total_tokens": 2769,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 653
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.21995",
+    "title": "Deciding Without Pointing: A Case Study of Whether a Decision Model Localizes the Anomalies It Detects",
+    "authors": [
+      "Hsiang-Hung Lee"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.LG"
+    ],
+    "comment": "12 pages, 5 figures, 14 tables. Preprint of the technical part of an MSc thesis (Politecnico di Milano). Code and pre-registrations are held privately until venue submission",
+    "summary": "Decision models can answer a typed question about an image with a probability per option, without generating text. In our case study of Clef-flash (post-trained Qwen3.5-9B backbone) on industrial inspection benchmarks, we ask whether it localizes the anomalies it detects. We obtained uneven results with zero-shot detection: per-category image AUROC 0.924 on MVTec AD and 0.668 on MVTec AD 2. On the former, the decision head's routing attention produces 0.391 mean per-image pixel AUROC, and hiding the image tokens from it leaves detection unchanged. The multimodal LLM's backbone attention does point at the defect, however it falls below a center prior when we change question. It falls below chance if we remove textual context in the question, partly due to backbone attention leaving the object, while the head's map hardly changes. The backbone's states carry the location when probed with normal images, on the test-split images, however, the decision depends on the defect region. A larger model, Clef, that comes with a post-trained Qwen3.8-27B backbone, gives no useful map in the decision head either. We found that it's possible to recover anomaly location by asking question specifically on an image region, retraining the head or reading the backbone, but none matches dedicated few-shot localizers.",
+    "abs": "http://arxiv.org/abs/2611.21995v1",
+    "pdf": "https://arxiv.org/pdf/2611.21995v1",
+    "AI": {
+      "category": "MAIN",
+      "priority": "P1",
+      "brief_summary": "以 Clef 决策模型（Qwen 骨干加决策头，逐选项输出概率而不生成文本）在工业异常检测基准上做案例研究，检验其检测决策是否定位到所报异常，并通过隐藏图像 token、分析决策头路由注意力与骨干注意力、探测骨干状态来判断信息实际来源。",
+      "relevance_reason": "直接给出视觉旁路与视觉证据未被决策使用的诊断证据：隐藏图像 token 检测几乎不变、决策头 attention 图仅 0.391 像素 AUROC，且骨干注意力定位随问题文本变化，对「答案是否使用 latent 视觉内容」及状态探测、贡献分配方法可供核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-19T03:13:19.887209+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

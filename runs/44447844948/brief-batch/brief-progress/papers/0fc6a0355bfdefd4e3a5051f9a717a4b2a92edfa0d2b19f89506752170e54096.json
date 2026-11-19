@@ -1,0 +1,76 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.22592",
+  "input_sha256": "11be31919f0f20fdb043158e17d4dcd6b038cf83cb7f20d39a84eb91e82c6725",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-19T03:05:17.990594+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1891,
+        "output_tokens": 704,
+        "total_tokens": 2595,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 483
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.22592",
+    "title": "Distilling World Action Models for Efficient Bimanual Manipulation via Anchored Path Matching",
+    "authors": [
+      "Jialong Liu",
+      "Junjie He",
+      "Yandu Chen",
+      "Bin Zhou",
+      "Heng Su",
+      "Peijun Tang",
+      "Jianan Wang",
+      "Changhao Chen"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.RO"
+    ],
+    "comment": null,
+    "summary": "World Action Models (WAMs) jointly generate future video and robot actions through iterative denoising. Few-step distillation reduces the number of model evaluations, but its coarse updates can move the student away from the teacher's trajectory. We propose Anchored Path Matching (APM), which supervises endpoint and short-transition predictions from states reached by the student. From each state, we continue the teacher to zero noise and use its endpoint and first intermediate state as targets. Modality-routed adapters learn to match both targets from the same starting state. When the two gradients conflict, anchor-priority updates preserve the endpoint gradient and remove the opposing component of the local gradient within each modality. One checkpoint supports 1-, 2-, and 4-step joint generation. The sampling budget can be chosen at deployment without retraining or teacher queries. On RoboTwin 2.0, we train only on Clean demonstrations and evaluate directly on the domain-randomized Random setting. At one step, APM improves closed-loop success over continued base distillation at matched inference budgets by 2.0 percentage points on Clean and 1.4 on Random. Video peak signal-to-noise ratio (PSNR) rises from 30.169 to 32.317 dB, with gains in structural similarity (SSIM) and learned perceptual image patch similarity (LPIPS). On two real-robot tasks, APM improves success over the one-step teacher and reduces control-cycle latency by $21.3\\times$ relative to the eight-step teacher.Project page: https://jialonglong.github.io/Anchored-Path-Matching/.",
+    "abs": "http://arxiv.org/abs/2611.22592v1",
+    "pdf": "https://arxiv.org/pdf/2611.22592v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "提出 Anchored Path Matching，将迭代去噪的世界动作模型蒸馏为少步联合生成：从学生模型实际到达的状态出发，以教师零噪声终点与首个中间状态为双重目标，训练模态路由适配器，在梯度冲突时保留终点梯度；单一检查点支持 1/2/4 步采样。",
+      "relevance_reason": "其「终点＋短程转移」监督、按学生轨迹锚定目标及部署时选择步数预算的做法，可能可供核查 LVR 中多步 latent 推理压缩为少步生成与自适应计算的问题；但原文面向双臂操作与视频-动作生成，尚无视觉推理层面的直接联系。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-19T03:05:17.990594+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

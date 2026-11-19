@@ -1,0 +1,71 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.21914",
+  "input_sha256": "7d5464d103553cda86fdec7a990c0666845b8253bc83a9a10d2829026de80795",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-19T03:14:25.372172+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1941,
+        "output_tokens": 520,
+        "total_tokens": 2461,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 312
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.21914",
+    "title": "A Temporal Algebraic Framework for Data Stream Evaluation Under Delayed Labels and Distribution Shifts",
+    "authors": [
+      "Ronaldo C. Prati",
+      "Elaine Ribeiro de Faria"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.AI",
+      "cs.DB"
+    ],
+    "comment": "53 pages, 25 tables, 2 figures. Code: https://github.com/rcprati/data-stream-evaluation (experiments), https://github.com/rcprati/aggmetrics-datastream-lean (Lean 4 formalization), https://github.com/rcprati/aggmetrics (aggmetrics >= 0.4.0, subpackage aggmetrics.stream)",
+    "summary": "In data streams, labels often arrive late or only for some instances, class prevalence drifts, and rare classes vanish from short windows. Standard evaluation then confuses a degraded decision boundary with a change in prevalence, and is biased when labels are delayed or selected by the model. We extend an algebraic framework that obtains pooled (micro) and per-class (macro) measures from one confusion matrix to streams, weighting the counts in time by exponential fading or a sliding window; the update costs O(m^2) per step, whatever the stream length, and each pooled measure stays a weighted combination of the per-class ones. Delayed and selective feedback enter as an observation mask: until its label arrives, an instance is counted with the model's calibrated class probabilities, and the bias of this interim estimate is driven by their calibration error. Audited conventions report no value for a class without verified instances. We separate prior shift from concept drift by monitoring prior-free coordinates (recall and specificity) and attribute a change in a measure to the two sources with a first-order Jacobian decomposition. On synthetic streams and four real datasets, a detector on these coordinates with a memory per class raises no excess false alarms under label shift, unlike the Jacobian alarm and error-rate detectors. The correction for delayed labels recovers recall in some real settings and is only partial for precision, specificity and F1. Twenty-five statements are checked in Lean 4, and the code is in the aggmetrics package.",
+    "abs": "http://arxiv.org/abs/2611.21914v1",
+    "pdf": "https://arxiv.org/pdf/2611.21914v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "该论文把可获得 micro/macro 指标的代数混淆矩阵框架扩展到数据流场景，用指数衰减或滑窗加权计数，并以观测掩码处理延迟或选择性到达的标签，同时用无先验坐标和一阶 Jacobian 分解区分先验漂移与概念漂移。",
+      "relevance_reason": "其「标签未到先用校准概率计数」的掩码机制与漂移/性能退化的分解，可能可供核查 LVR 中证据或标注延迟、部分监督下的推理评价协议，以及把 latent 贡献下降与分布变化区分开的问题表述。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-19T03:14:25.372172+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

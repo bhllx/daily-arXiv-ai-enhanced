@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.21655",
+  "input_sha256": "9c61f8cdedd653603b3624e4aae4940c78f7af0089f53dc7465b93f5592640ea",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-19T03:16:09.342278+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1941,
+        "output_tokens": 486,
+        "total_tokens": 2427,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 287
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.21655",
+    "title": "Depth-Aware Activation Steering via Attention Residuals",
+    "authors": [
+      "Shilong Zhao"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "Activation steering is a simple, training-free way to modulate LLM behavior, yet existing methods typically inject vectors at a single layer and lack mechanisms for depth-aware propagation or internal verification. We combine two recent ideas - Attention Residuals (AttnRes) providing learnable cross-layer pathways, and Jacobian-lens (J-space) concept readout - into a lightweight depth-aware steering pipeline. On two small open models (Qwen3-0.6B and Qwen3.5-0.8B), distributing a persona vector according to AttnRes-style depth weights yields stronger internal alignment (deeper-layer concept cosine and rank, p<0.0001) and stronger behavioral shifts than single-layer injection. The effect is sign-specific: reverse vectors invert all six metrics, random directions degrade alignment (p<0.0001), and a short LoRA fine-tune erases the imprint. Injection rewires attention strictly downstream of the injection point (upstream JS = 0.00000). Three practical findings follow. First, a layer-wise geometric decomposition of cosine readouts: at the injection layer 123% of the increase is arithmetic, while 5-11 layers downstream 100% is dynamical. Second, an intensity window: effects are monotone over 0.3-0.7, then generation collapses (617 to 306 to 25 chars). Third, metric discipline: keyword-rule metrics fail LLM-judge validation (kappa <= 0.09), and two rule-based conclusions were retracted. Training the depth weights on a steering objective (200 steps, frozen backbone) raises final alignment 10x on held-out prompts. Cross-persona vectors retain 96-99% of the effect: specificity holds against random, not semantic, directions. We contribute a practical, low-overhead depth-aware steering method with a careful evaluation protocol. Code and data are released.",
+    "abs": "http://arxiv.org/abs/2611.21655v1",
+    "pdf": "https://arxiv.org/pdf/2611.21655v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "提出一种免训练的深度感知激活引导流程：用 Attention Residuals 的可学习跨层权重把 persona 向量按层分布注入，并以 Jacobian-lens 概念读出核验内部对齐与行为变化，附带强度窗口与指标可靠性等评测发现。",
+      "relevance_reason": "纯文本、非视觉，但其按深度权重分配注入强度、并用下游层概念余弦/秩作为「内部信息是否被使用」的诊断思路，可能为 LVR 的跨层 latent 状态传播与 latent 内容使用核验提供线索，可供核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-19T03:16:09.342278+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

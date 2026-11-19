@@ -1,0 +1,73 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.22576",
+  "input_sha256": "9154542cf0cc655e21cc802f74c9176dce466d9c161fb77201265629d6f964ca",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-19T03:05:27.223837+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1769,
+        "output_tokens": 510,
+        "total_tokens": 2279,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 290
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.22576",
+    "title": "ReMaRL: Learning to Unmask and Remask in Frozen Diffusion Language Models",
+    "authors": [
+      "Egor Shibaev",
+      "Danila Biktimirov",
+      "Ivan Klimov",
+      "Artem Makoian",
+      "Viacheslav Meshchaninov",
+      "Dmitry Vetrov"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Masked diffusion language models generate tokens in parallel, and the order in which tokens are unmasked affects final-answer accuracy. Several methods learn unmasking policies from task rewards, but these policies cannot remask earlier predictions. Remasking lets the model correct those predictions using newly generated context. Heuristic rules guide both unmasking and remasking, while supervised remaskers learn to detect token errors. Neither approach directly optimizes these decisions for final-answer correctness. To address this gap, we introduce ReMaRL (Remasking with Reinforcement Learning), a lightweight policy that learns which tokens to unmask, retain, or remask. We train this roughly 0.3M-parameter policy with Group Relative Policy Optimization (GRPO) from final-answer rewards while keeping the diffusion model frozen. With LLaDA-8B-Instruct, ReMaRL achieves the highest scores among the compared unmasking and remasking policies within the tested inference budgets of 4-32 model calls on math and 8-16 calls on code.",
+    "abs": "http://arxiv.org/abs/2611.22576v1",
+    "pdf": "https://arxiv.org/pdf/2611.22576v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "提出 ReMaRL：在冻结的掩码扩散语言模型上训练约 0.3M 参数的轻量策略，学习对每个 token 选择解掩、保留还是重掩，并用 GRPO 以最终答案奖励优化，在数学与代码任务上优于已有解掩／重掩策略。",
+      "relevance_reason": "纯文本扩散任务，但「冻结主干＋小策略决定继续生成、保留或修正已生成状态，并以结果奖励训练」与 LVR 中的计算预算分配、中间状态修订和贡献分配有结构上的相似性，可供核查其是否可迁移到视觉推理的 latent 状态更新与停止决策。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-19T03:05:27.223837+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

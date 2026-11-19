@@ -1,0 +1,78 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.21920",
+  "input_sha256": "324c51ebe1508f2897cc186328b833def910d0f482c33c8e0009e5e48d84e05b",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-19T03:14:20.007855+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1898,
+        "output_tokens": 608,
+        "total_tokens": 2506,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 374
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.21920",
+    "title": "KVUse: Reusable-KV User Memory for Efficient LLM Recommenders",
+    "authors": [
+      "Xin Guo",
+      "Qiang Zhang",
+      "Xiang Zhou",
+      "Arushi Rai",
+      "Siyu Lin",
+      "Yifan Wu",
+      "Xiang Shen",
+      "Lei Huang",
+      "Qunshu Zhang",
+      "Xiangjun Fan",
+      "Lizhu Zhang"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Memory-augmented recommenders built on large language models (LLMs) maintain a natural-language profile of each user. These profiles are updated by a user profile update path that revises the profile as new interactions arrive and are consumed by downstream task paths like ranking. Because these user profiles are stored as text in the user memory, every ranking LLM call that consumes them must splice them in the prompt and calculate the KV cache of them during the prefill phase. Given these ranking LLM calls are prefill heavy (long prompt but short decoded output) and repeatedly called, these repeated prefill of user profile text dominates the serving. Prefix caching cannot remove it, because these user profiles are preceded by different text in different calls. We present KVUse, which stores the user profiles as reusable key-value (KV) caches instead of text. KVUse trains lightweight LoRA writers by self-distillation, so that the user profile update call produces the reusable KV of the user profile while decoding it, and the LLM can read these reusable KV at new positions and behind new context without recomputation. KVUse also has a customized KV scheduler that uploads the stored reusable KV of the next batch while the current batch is computed, hiding the KV transfer from host memory behind GPU computation. On four InstructRec datasets with Llama-3.1-8B-Instruct, KVUse shows no statistically significant difference in ranking quality from full prefill over continuous memory update rounds. Under saturated load, KVUse raises the throughput of the downstream scoring path by 4.0x-4.5x and of the profile update path by 1.4x-1.9x.",
+    "abs": "http://arxiv.org/abs/2611.21920v1",
+    "pdf": "https://arxiv.org/pdf/2611.21920v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文提出 KVUse，把 LLM 推荐器中的用户画像从文本改为可复用的 KV cache 存储：用自蒸馏训练轻量 LoRA writer，在解码画像时直接产出可复用 KV，使模型能在新位置、新上下文中读取而无需重新 prefill，并配合 KV 调度器隐藏传输开销，在四个 InstructRec 数据集上保持排序质量并显著提升吞吐。",
+      "relevance_reason": "「由 writer 生成、可脱离原位置与上下文被读取的 KV」这一机制，可能为 LVR 中 latent 状态的持久化、缓存与位置无关复用提供线索，可供核查复用时状态内容是否失真；但论文本身不涉及视觉推理或推理状态生成。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-19T03:14:20.007855+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

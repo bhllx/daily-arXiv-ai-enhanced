@@ -1,0 +1,71 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.22124",
+  "input_sha256": "5f7b7f95a541c57afa76c7695887699333fd01dc84fe2496d158e9ad06264ffe",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-19T03:11:39.385573+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1979,
+        "output_tokens": 783,
+        "total_tokens": 2762,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 568
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.22124",
+    "title": "FrameSeg3D: Learned Local Frames for Segmenting Small Parts on High-Resolution 3D Scans",
+    "authors": [
+      "Xinwen Zhang",
+      "Tongyan Wang",
+      "Huawei Lin"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.GR"
+    ],
+    "comment": "31 pages, 6 figures, 16 tables",
+    "summary": "Segmenting small parts on high-resolution 3D scans, such as nails on hand scans and teeth on intraoral scans, poses three challenges: 1) each part covers a tiny fraction of the scan, 2) its boundary is only a subtle change of height and curvature, and 3) it faces its own direction. Existing methods fall into two groups, and both fall short. The first group processes the whole scan at once and sees each part too coarsely. Point and mesh networks must shrink the scan to fit in memory, so a small part keeps only a few of its points. Multi-view methods render images of the whole object, so each part fills only a few pixels and a tilted part is seen from the side. The second group first finds each part and then segments it up close. But these methods find the parts with knowledge about one kind of part, for example the shape of the dental arch for teeth. Such knowledge does not carry over to other kinds of parts. We find that accuracy is limited by how a part is seen, from which direction and at what scale, not by how many points land on it. We therefore present FrameSeg3D. It first predicts a local frame for every part, its center and the direction it faces, from a low-resolution view of the whole scan. It then segments the part in views around its frame normal at the scanner's resolution, so covering the whole scan no longer costs resolution. Because every part arrives centered, facing the camera, and at a fixed scale, one segmentation network can serve different kinds of parts and learn from few labeled masks. We test FrameSeg3D on two kinds of parts, nails and teeth. It outperforms state-of-the-art methods on hand scans (mean Dice 0.970 on nails) and on the Teeth3DS+ test fold (per-tooth IoU 96.5), with the most accurate tooth boundaries (boundary IoU 70.5).",
+    "abs": "http://arxiv.org/abs/2611.22124v1",
+    "pdf": "https://arxiv.org/pdf/2611.22124v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "针对高分辨率 3D 扫描上小部件（指甲、牙齿）分割，先从低分辨率整体扫描预测每个部件的局部坐标系（中心与朝向），再沿法向在原始分辨率下重新取景分割，使单一网络可跨部件类型工作且少标签可训。",
+      "relevance_reason": "其「精度受限于如何看（方向与尺度）而非点数」的主张及局部帧规范化加按需原分辨率重采样，可能为 LVR 中「LOOK」阶段证据的取景、尺度选择与局部几何保留提供启发，但领域距离较远，需核查可迁移性。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-19T03:11:39.385573+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

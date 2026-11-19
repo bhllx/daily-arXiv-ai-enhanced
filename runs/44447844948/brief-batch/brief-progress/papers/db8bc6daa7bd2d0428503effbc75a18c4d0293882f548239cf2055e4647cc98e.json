@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.22128",
+  "input_sha256": "f30cf7cb33308fc60b1346fde92d4e7897d5a1b64f969d44cd883bdc5c0a002d",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-19T03:11:32.127206+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1889,
+        "output_tokens": 861,
+        "total_tokens": 2750,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 638
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.22128",
+    "title": "TempQuant: Learning Adaptive Temperatures for Quantized Language Models",
+    "authors": [
+      "Mukund Athmaram",
+      "Liang Ma",
+      "Manoj Rao"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Large language models are increasingly deployed at low precision, yet quantization can degrade their performance. We study how quantization interacts with decoding settings such as the sampling temperature and top-p by examining how it distorts the model's next-token probabilities. Measuring entropy during generation across deployed temperatures, we find that quantization warms the model on average, and that temperature matters much more for the performance of a quantized model than for its full-precision counterpart. Because quantization and temperature both shape the next-token distribution, we investigate how much the sampling settings can undo what quantization changes, through our method TempQuant, which learns the quantized model's temperature and top-p to bring its next-token probabilities closer to the full-precision model's. We learn these settings at two granularities. The first is a single global setting per requested temperature, which finds nearly the same temperatures that tuning on labeled answers would, without any labels. Model cards typically recommend sampling a quantized model with the same settings as its full-precision counterpart, while we find that different settings can substantially improve its accuracy. On 3-bit Qwen3-4B, for example, global TempQuant raises MATH accuracy from 34% under the configuration recommended for Qwen's quantized releases to 51%. The second sets the temperature and top-p for every token, motivated by our finding that tokens whose rankings flip under quantization tend to need warming, while tokens whose rankings are preserved tend to need cooling. When quantization degrades accuracy substantially, TempQuant recovers much of it, and when degradation is lighter, it still brings the quantized model's behavior closer to the full-precision model's.",
+    "abs": "http://arxiv.org/abs/2611.22128v1",
+    "pdf": "https://arxiv.org/pdf/2611.22128v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文考察量化如何改变下一 token 概率分布，测得量化平均上提高生成熵（“变暖”）且温度设置对量化模型远比全精度模型敏感，进而提出 TempQuant：以无标签方式学习量化模型的温度与 top-p（全局按请求温度一组、以及逐 token 一组），使输出分布贴近全精度模型。",
+      "relevance_reason": "其逐 token 校准采样参数以对齐参考模型分布、并用熵与排序翻转定位需干预位置的做法，可能为 LVR 中受扰 latent 状态的逐位置自适应校正与分布漂移诊断提供方法线索，但需核查该机制只作用于输出端采样，尚未触及内部状态。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-19T03:11:32.127206+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

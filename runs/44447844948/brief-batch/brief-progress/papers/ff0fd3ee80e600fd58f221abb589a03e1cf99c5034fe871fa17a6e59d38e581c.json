@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.23025",
+  "input_sha256": "a9dccef163be2b7f33b350dea9870e8528f648689e8ab559b885cb095997ad6b",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-19T03:00:03.981335+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1848,
+        "output_tokens": 657,
+        "total_tokens": 2505,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 440
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.23025",
+    "title": "When a Larger Guidance Scale Repairs Text-to-Video Failures and When It Does Not",
+    "authors": [
+      "Taewon Kang",
+      "Matthias Zwicker"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": "29 pages, 15 figures",
+    "summary": "When a text-to-video diffusion model ignores part of a prompt, the usual first fix is to raise the classifier-free guidance scale. This paper is a measurement study of when that fix works. On Mochi, the same increase repairs failures on rare compositions (\"a snowy beach\") beyond what generating again does, does not repair negations (\"a highway with no vehicles\"), where it fixes fewer failures than generating again does, and changes nothing for events that must happen late in a clip (\"a sandcastle that a wave washes flat\"). Which of these happens can be known in advance, from the prompt and one inexpensive score. The score, which we call demand, measures how strongly the denoiser reacts to the part of the prompt that the failed video leaves out, and it is read from the first quarter of denoising, before any video exists. Our main finding is a condition: raising the scale is effective only when the prompt contains no negation and no event tied to a specific time, and when demand is sufficiently high, with recovery clearly higher above a fitted threshold than below it. Published corrections for the three failure types, used as fixed probes, behave as this account predicts. A short decision rule follows: before generating again, a user can tell whether the most common fix is worth trying, and what to use when it is not.",
+    "abs": "http://arxiv.org/abs/2611.23025v1",
+    "pdf": "https://arxiv.org/pdf/2611.23025v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "本文是测量研究：在 Mochi 文生视频模型上考察提高 classifier-free guidance scale 能否修复三类提示遵循失败（罕见组合、否定、晚期事件），并提出从去噪前四分之一读取的「demand」分数，在视频生成前预测该修复是否有效，进而给出决策规则。",
+      "relevance_reason": "用廉价的早期去噪内部响应预测「加大引导计算是否有收益」，并给出生成前选择干预方式的决策规则，可能可供核查其思路能否迁移到 LVR 中预测 THINK 收益与 STOP 决策；但研究对象为视频生成，联系需较多核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-19T03:00:03.981335+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

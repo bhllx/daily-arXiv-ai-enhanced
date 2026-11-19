@@ -1,0 +1,68 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.22106",
+  "input_sha256": "ffc5151c1e89d04060db5b61c9ae09ddeb6238fc6e6944ba1c10245178d03876",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-19T03:11:56.195684+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 2040,
+        "output_tokens": 881,
+        "total_tokens": 2921,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 663
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.22106",
+    "title": "Diagnosing and Correcting Skin-Tone Color Casts in Ultra-Lightweight Photo Retouching Networks",
+    "authors": [
+      "Choulhyouc Lee"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": "Accepted to ACCV 2026. 32 pages including supplementary material",
+    "summary": "Color casts are expected to come from the scene or camera, and a retouching model removes them. We report a case where the model leaves one: an ultra-lightweight retouching network renders human skin greener than the original because it under-restores the skin chroma that a degradation removes and, even on clean inputs, adds a small hue shift of its own. A common paired-data-free recipe, synthetic self-supervision (degrade high-quality images, learn to restore them), silently produces this cast while whole-frame PSNR/SSIM stay essentially unchanged. In a representative 6,825-parameter histogram-conditioned network, the cast appears in 52 of 70 portraits under a ground-truth-anchored, white-balance-free protocol. Both a histogram-conditioned and a CNN-conditioned network develop the cast under synthetic self-supervision, yet both are near-neutral in-domain when trained on MIT-Adobe FiveK expert pairs. Image-level objectives miss it: a global-mean green loss worsens the cast (52/70 to 57/70). With zero added parameters, our per-pixel, skin-masked, asymmetric green-excess loss reduces the cast to 1/70 across stratified skin tones (68.1% to 2.2% over the 70,000-image FFHQ corpus; 64.4% to 0.8% on held-out CelebA-HQ photos). In-domain FiveK PSNR/SSIM are unchanged (+0.13 dB, +0.004), at the cost of a small whole-frame CIEDE2000 increase (8.77 to 9.69) and a magenta over-correction where skin is nearly neutral (skin Delta a* -1.5 to +4.4 and CIEDE2000 5.6 to 6.4 on clean inputs): the loss targets the signed green-magenta axis, not total skin-color fidelity. The same loss suppresses the cast across three ultra-light architectures. A whole-frame green metric correlates with skin-region CIEDE2000 at the method level (Spearman rho = 0.89). The final network exports to a 35 KB TFLite model.",
+    "abs": "http://arxiv.org/abs/2611.22106v1",
+    "pdf": "https://arxiv.org/pdf/2611.22106v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "论文诊断超轻量照片修饰网络在肤色区域残留的绿色偏色，指出合成自监督会静默引入该偏色而全图 PSNR/SSIM 几乎无变化，并提出零参数的逐像素、肤色掩码、非对称绿色过量损失，将偏色人像从 52/70 降至 1/70。",
+      "relevance_reason": "其「全图指标掩盖局部区域系统性失效、需区域掩码监督」的观察，可能为 LVR 中整体答案指标掩盖局部视觉证据使用失败、以及区域化监督与诊断提供类比线索，可供核查是否可迁移。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-19T03:11:56.195684+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

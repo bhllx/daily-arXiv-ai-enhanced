@@ -1,0 +1,72 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.22404",
+  "input_sha256": "c3294b47768f424fc0af3ae11a0230d01815b3f6675a1fbee8048c0dfcb6fa34",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-19T03:07:35.148653+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 2001,
+        "output_tokens": 549,
+        "total_tokens": 2550,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 316
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.22404",
+    "title": "Symbolic Abstraction Refinement",
+    "authors": [
+      "Daniel Bryce",
+      "Robert P. Goldman",
+      "David J. Musliner",
+      "Jeremy Gottlieb",
+      "John Skovbekk"
+    ],
+    "categories": [
+      "cs.AI"
+    ],
+    "comment": "In Proceedings FMAS 2026, arXiv:2611.21375",
+    "summary": "Autonomous systems choose actions whose outcomes are uncertain and are subject to time constraints. Probabilistic timed automata (PTAs) model exactly this, and verifying one answers a question about the system's decision-making: the maximum probability of reaching a goal, or the minimum probability of reaching a hazard, that a controller can guarantee. Verification normally works over symbolic states, each pairing a discrete location with a region of clock values, and its difficulty is that the best behavior generally varies within such a region. The PRISM verifier's most capable PTA method responds by splitting regions until each is uniform, rebuilding the transitions that reach them and propagating the split backward through the state graph of a stochastic game, a cascade of graph reconstruction that partitions regions the property never depends on. We present SYMAR, which instead makes the value function symbolic: each symbolic state carries a function from sub-regions of its clock region to probability bounds, so refinement is the appearance of new sub-regions in that function, and previously generated states are never split nor their incoming transitions reconstructed. Both sources of PTA nondeterminism, the timing and the choice of actions, are captured implicitly by the preimage computation that produces those sub-regions. Heuristic forward search then bounds how much refinement is done at all, expanding an And-Or graph from the initial state along the most promising behaviors so that effort is confined to the property-relevant fragment, guided by bounds and preferred actions from a single unrefined run of the existing method; a partial-refinement backup keeps the otherwise combinatorial sub-region count lean, and every stored interval provably contains the true probability. On the PRISM PTA benchmarks, whose subproblems recur in autonomous systems (distributed agreement under contention, leader election, and self-configuration without central coordination), SYMAR is up to 108x faster, solves an instance on which the existing method exhausts the time limit, and is markedly less sensitive to the deadline constant, resolving one instance in a 37-node search graph, unchanged as the deadline triples, where the existing method needs 86,380 abstract states and 73 refinement rounds.",
+    "abs": "http://arxiv.org/abs/2611.22404v1",
+    "pdf": "https://arxiv.org/pdf/2611.22404v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "论文提出 SYMAR，把概率时间自动机验证中的符号状态改为携带「时钟子区域→概率界」的符号值函数，使精化表现为函数内新子区域的出现，避免分裂状态与重建转移，并用启发式前向搜索和部分精化备份把计算限制在与性质相关的片段上，在 PRISM 基准上显著加速。",
+      "relevance_reason": "其「按需细化抽象粒度、以界限引导只展开相关片段、保持区间可证包含真值」的思路，可能与 LVR 中动态分配推理计算、决定内部状态表示在何处细化的问题相通，可供核查；但研究对象是形式化验证而非视觉或多模态推理，迁移需自行判断。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-19T03:07:35.148653+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

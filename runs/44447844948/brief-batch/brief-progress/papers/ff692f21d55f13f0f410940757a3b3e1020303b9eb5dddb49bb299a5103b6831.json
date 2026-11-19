@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.22853",
+  "input_sha256": "3049415d0f7dbae33845c0204e17252787b4c28435b9c4c869808b525cde8e6a",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-19T03:02:18.505519+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1857,
+        "output_tokens": 717,
+        "total_tokens": 2574,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 506
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.22853",
+    "title": "Keeping Parts Honest: Isolated Part Graphs for Faithful Vision Transformer Explanations",
+    "authors": [
+      "Bernard Tomczyk",
+      "Gail Collyer-Hoar",
+      "Bryan Williams"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": "12 pages, 6 figures, 6 tables. Supplementary material will be added in a later version",
+    "summary": "Part and prototype-based explanations for Vision Transformers (ViTs) present a decision as evidence from individual image regions. However, self-attention mixes information across patches, so part-level features absorb context from the whole image and consequently fail to faithfully reflect the decision. We show that existing interpretable ViT classifiers depend heavily on this leakage: when each explained region is encoded in isolation, their accuracy collapses, and retraining them under isolation recovers only part of the lost accuracy. We propose a classifier that represents each image as a graph of isolated parts. Each part is encoded only from its own patches by a ViT whose last blocks are fine-tuned under isolation, preventing evidence leakage from elsewhere in the image. Parts are discovered without annotation and refined hierarchically through their sub-parts, making them more consistent and stable across images than those of competing methods. Each edge is computed from part pairs, and recovers evidence that attention previously shared across the object without affecting the parts. Matching the image graph to a learned prototype graph per class makes the prediction a direct combination of node and edge similarities, each computed only from the patches it is credited to, so every explanation is faithful by construction. Across 11 fine-grained and general-object benchmarks, our method exceeds the accuracy of existing explainable methods that rely on leakage, while providing explanations that reflect what the model actually uses.",
+    "abs": "http://arxiv.org/abs/2611.22853v1",
+    "pdf": "https://arxiv.org/pdf/2611.22853v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文指出可解释 ViT 分类器的部件级解释因自注意力跨 patch 混合而被全局上下文污染，提出将图像表示为「孤立部件图」，各部件仅由自身 patch 编码、边由部件对计算，并与每类学到的原型图匹配，使预测与解释由节点/边相似度直接构成。",
+      "relevance_reason": "其「孤立编码」消融显示模型准确率大幅依赖跨区域信息泄漏，可作为核查 LVR 中视觉旁路、证据泄漏与 latent 内容是否真被使用的诊断线索；但该工作面向解释保真度而非推理状态生成。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-19T03:02:18.505519+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

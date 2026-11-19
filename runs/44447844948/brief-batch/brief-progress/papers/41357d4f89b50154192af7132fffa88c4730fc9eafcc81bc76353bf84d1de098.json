@@ -1,0 +1,77 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.22472",
+  "input_sha256": "a1ebae35daa40bc2d1db849499f1743803b0c885f165fb7ac0c22bc37f9c502c",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-19T03:06:36.153125+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1907,
+        "output_tokens": 752,
+        "total_tokens": 2659,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 563
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.22472",
+    "title": "Disagree to Prune: Reallocating Visual Tokens Where a Small VLM Dissents",
+    "authors": [
+      "Yanchao Li",
+      "Jiaqing Xie",
+      "Ben Gao",
+      "Yusu Zhang",
+      "Beilun Wang",
+      "Yanbo Wang",
+      "Xiaohua Xu",
+      "Zhongyu Huang",
+      "Tianfan Fu",
+      "Nanqing Dong"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": "45 pages, 8 in the main text. Code and data: https://github.com/LiZaiyuan0619/PRUDENT",
+    "summary": "Visual token pruning speeds up large vision-language models (VLMs) by keeping only a part of their visual tokens. Most existing methods improve the ranking of the tokens and then answer every question once with the same budget. With strong rankings, pruning hurts only a few questions, and signals computed on the kept tokens see little of what it removed. We find that, on most of these questions, a small VLM given the full image disagrees with the pruned answer, since it still sees the missing evidence. We propose PRUDENT, which first answers with about half the budget and spends the saved tokens on re-answering the disagreeing questions at twice the budget. We show when such re-answering pays and why the small VLM should read the full image. On 18 benchmarks, PRUDENT outperforms eight existing pruning methods at the same average budget of visual tokens. Its lead widens as the budget tightens, and holds across five InternVL sizes. PRUDENT also has the highest average in two more model families. The disagreement of the small VLM flags most pruning failures of all eight methods, and re-answering on it also improves the two strongest with their own rankings. Other checkers give similar gains, and the extra tokens go where the first pass hurts the answer. These results suggest that identifying which pruned answers are trustworthy provides an additional lever for visual token pruning beyond the ranking of tokens. Code and data are available at https://github.com/LiZaiyuan0619/PRUDENT.",
+    "abs": "http://arxiv.org/abs/2611.22472v1",
+    "pdf": "https://arxiv.org/pdf/2611.22472v1",
+    "AI": {
+      "category": "MAIN",
+      "priority": "P1",
+      "brief_summary": "该论文研究视觉 token 剪枝后答案何时可信，提出 PRUDENT：先用约一半预算作答，再以小 VLM 在完整图像上的答案分歧识别可能丢失证据的问题，将节省的 token 用于双倍预算重答。",
+      "relevance_reason": "工作直接涉及按问题动态分配视觉证据与计算；其「小模型分歧」信号可供核查能否用于 LVR 的 LOOK/STOP 决策及视觉证据不足诊断，但并非 latent 状态生成方法。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-19T03:06:36.153125+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

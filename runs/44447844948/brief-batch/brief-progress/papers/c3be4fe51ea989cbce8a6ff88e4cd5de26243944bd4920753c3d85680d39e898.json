@@ -1,0 +1,68 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.22234",
+  "input_sha256": "7fbec45470f955e09c83825361dbbfb2c3e85ead769361595f766124f862d6c5",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-19T03:09:56.761469+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1916,
+        "output_tokens": 796,
+        "total_tokens": 2712,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 529
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.22234",
+    "title": "The Fragility of Reasoning-Importance Attribution for Pruning Language Models",
+    "authors": [
+      "Himanshu Mishra"
+    ],
+    "categories": [
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "Attribution-guided pruning scores components by their causal contribution and protects the important ones, and it is increasingly applied to compress reasoning language models without destroying their chain of thought. Its reliability rests on an unexamined assumption: that reasoning importance can be faithfully measured. Across four small reasoning models, we show this measurement is fragile in three ways, each of which changes pruning decisions. First, scoring final-answer tokens, the natural choice, saturates in every chain-of-thought model we test (answer-token negative log-likelihood, NLL, of $10^{-4}$--$10^{-3}$) because the model states its answer inside its own reasoning; guiding head pruning with this target costs 27.6 and 32.2 accuracy points relative to scoring reasoning tokens on the two models we power with five seeds, while perplexity barely moves and even reverses sign at 7B. Second, causal importance is not localizable to single units: single-neuron effects sit at the measurement floor, their cross-split ranking is noise, and they cancel: a group's ablation effect disagrees in sign with the summed effects of its members in 90\\% of groups. Reproducible importance emerges only at groups of $\\sim 100$ neurons. Third, contrastively isolated ``reasoning-specific'' importance is not separable from generic importance, and protecting it is worse than protecting raw importance. We additionally pre-registered the hypothesis that distillation-induced concentration of importance predicts the pruning cost; it is not supported, and since our grid confounds concentration with scale, we report it as unresolved rather than reversed. The result is a short set of measurement rules: score reasoning tokens, attribute at coarse granularity, and evaluate with accuracy rather than perplexity.",
+    "abs": "http://arxiv.org/abs/2611.22234v1",
+    "pdf": "https://arxiv.org/pdf/2611.22234v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P1",
+      "brief_summary": "论文在四个小型推理模型上检验「归因引导剪枝」所依赖的前提——推理重要性可被忠实测量——并指出该测量在三点上脆弱：以最终答案 token 打分会在 CoT 模型上饱和并使剪枝损失数十点准确率；单神经元因果效应处于噪声水平，需到约百个神经元的分组粒度才可复现；对比分离出的「推理专属」重要性无法与通用重要性分开。据此提出打分推理 token、粗粒度归因、以准确率而非困惑度评估的规则。",
+      "relevance_reason": "其关于因果贡献测量在目标 token 选择、归因粒度与评估指标上的脆弱性，可供核查 LVR 中对 latent 或内部组件做贡献分配与因果归因时是否同样不可靠；但研究对象是纯文本剪枝，与视觉证据保留和 latent 状态生成无直接对应。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-19T03:09:56.761469+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

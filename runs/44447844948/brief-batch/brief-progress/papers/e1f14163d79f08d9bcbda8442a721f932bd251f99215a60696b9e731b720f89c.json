@@ -1,0 +1,71 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.21940",
+  "input_sha256": "456ec4e528b0d4e3ac6ba65d81558c1f1b2ff553cbe3d2a6a15c1c9d2a60c2c8",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-19T03:14:01.239539+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1925,
+        "output_tokens": 565,
+        "total_tokens": 2490,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 326
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.21940",
+    "title": "Does the Model Use What It Cites? Counterfactual Tests of Grounded Reasoning Chains in Small Video-Language Models",
+    "authors": [
+      "Jugal Gajjar",
+      "Kamalasankari Subramaniakuppusamy"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.AI",
+      "cs.LG"
+    ],
+    "comment": "24 pages, 4 figures, 27 tables. Code: https://github.com/JugalGajjar/CausalSight",
+    "summary": "A grounded reasoning chain cites a frame span and a box for every step, so a reader can check where the model looked. Whether the answer depends on the cited region is a different question. We test it by intervention: the regions a model cited in its own chain are blacked out, and the share of correct answers that flip is compared with blacking out boxes of the same size elsewhere on the same frames. The paired difference, the cite gap, needs no annotation. We apply it to 2-3B video-language models trained on exact CLEVRER chains and on pseudo-labelled NExT-QA chains. With the same weights, the cite gap is 0.089 on CLEVRER and 0.003 on NExT-QA. Pooled over models, masking the cited boxes flips 2.2 times as many correct answers as the control on CLEVRER and 1.1 times as many on NExT-QA, also among the answers that depend on the video at all, while the boxes pass a grounding check on both. Masking the cited entity on every frame, instead of the cited box, flips 1.9 times as many answers as its control. The NExT-QA chains were supervised to cite two frames of entities that stay visible on most frames, so this outcome is what the supervision predicts; the point is that the usual check on grounded chains cannot see it. A citation can be verifiable and relevant without the answer depending on it, and a test of grounded reasoning should remove what a chain names, not only where it points.",
+    "abs": "http://arxiv.org/abs/2611.21940v1",
+    "pdf": "https://arxiv.org/pdf/2611.21940v1",
+    "AI": {
+      "category": "MAIN",
+      "priority": "P1",
+      "brief_summary": "论文提出无需标注的「cite gap」干预检验：遮蔽模型自有推理链引用的帧内 box，并与同帧同尺寸对照 box 的遮蔽作配对比较，统计正确答案翻转比例，用以判断答案是否真的依赖所引用区域；在 2–3B 视频语言模型上，CLEVRER 的 cite gap 为 0.089、NExT-QA 仅 0.003，说明引用可验证且相关却不一定被使用。",
+      "relevance_reason": "直接针对「答案是否真的使用视觉证据」，与 LVR 中的视觉旁路、证据筛选和贡献分配问题高度对应；其配对反事实遮蔽可作为核查 latent/显式引用的视觉证据因果作用的现成线索。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-19T03:14:01.239539+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

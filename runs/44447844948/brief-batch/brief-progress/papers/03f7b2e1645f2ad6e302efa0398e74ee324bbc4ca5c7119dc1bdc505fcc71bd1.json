@@ -1,0 +1,73 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.21846",
+  "input_sha256": "531890e154228fa93ea8f9bb7c87071bee610423bebda7285cea140d01189025",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-19T03:15:08.027748+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1930,
+        "output_tokens": 728,
+        "total_tokens": 2658,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 519
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.21846",
+    "title": "Can a World Model Predict a Deepfake Video? A Consistency Margin Prior for Deepfake Detection",
+    "authors": [
+      "Pradip Gupta",
+      "Shubham Mandloi",
+      "Ravi Kumar Satzoda",
+      "Sujeeth Bharadwaj",
+      "Yassine Benajiba",
+      "Dan Roth"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": "20 pages, 4 figures, 5 tables",
+    "summary": "Deepfake detectors often perform well on the dataset they are trained on, but their performance drops when tested on videos from different datasets. In this paper, we study whether a predictive video model can provide a signal that generalizes better across datasets. Instead of relying only on generator-specific artifacts, as many existing detectors do, we use a model trained to predict natural video and measure the difference between what it predicts and what it observes in a video. Using V-JEPA 2.1, we keep the encoder frozen and adapt the predictor using rank-16 LoRA. We define the difference between the predictor output and the frozen encoder target as the prediction residual. We hypothesize that manipulated clips produce, on average, larger prediction residuals than authentic clips, and use this as our consistency-margin prior. We process these residuals using a lightweight Latent Consistency Head (LCH), which separates residual magnitude from direction for training and classification. To test whether the direction of the consistency margin affects cross-dataset generalization, we compare standard and reversed margin objectives while keeping the remaining training setup fixed. We match the two settings on FF++ validation performance before evaluating them on unseen data. The reversed-margin setting exhibits a larger cross dataset generalization gap on average, providing evidence that the direction of the consistency margin affects cross-dataset transfer. Our complete model adds only 8.25M trainable parameters, which is 2.47% of the total 334M parameters. Trained only on FF++, it achieves an AUC of 90.5 on Celeb-DFv2 and performs well across several other cross-dataset benchmarks. Our ablations show that separating residual magnitude from direction, reducing dataset-specific variation, and using a low-rank projection improve cross-dataset generalization in our experiments.",
+    "abs": "http://arxiv.org/abs/2611.21846v1",
+    "pdf": "https://arxiv.org/pdf/2611.21846v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "该论文用冻结 V-JEPA 2.1 编码器加 rank-16 LoRA 适配的预测器，把预测输出与编码目标之差作为「预测残差」，再用轻量 Latent Consistency Head 分离残差幅度与方向，作为跨数据集 deepfake 检测的一致性边界先验。",
+      "relevance_reason": "其在 latent 空间用预测残差作一致性信号并拆分幅度与方向，可能为 LVR 中视觉证据可信度判定与 latent 相似度/一致性度量设计提供可供核查的线索，但研究问题限于伪造检测，未涉及推理状态生成。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-19T03:15:08.027748+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

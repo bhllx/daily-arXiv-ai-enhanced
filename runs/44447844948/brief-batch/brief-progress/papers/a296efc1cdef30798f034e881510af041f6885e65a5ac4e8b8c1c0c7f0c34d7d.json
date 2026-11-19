@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.21952",
+  "input_sha256": "50e3149bbfeac983ab2134f1107bdf703e3c3a5c40e750ffbad0119c63e99310",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-19T03:13:46.136517+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1931,
+        "output_tokens": 463,
+        "total_tokens": 2394,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 233
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.21952",
+    "title": "A Log-Timescale Perturbation Bound for Selective State Space Models at Every Sequence Length",
+    "authors": [
+      "Jack Humphries",
+      "Daniel Midgley"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": "22 pages, 3 figures, 1 table. Code and recorded runs: https://github.com/jackdoesjava/mamba-v-lob",
+    "summary": "Mamba models deployed on streaming data, such as limit order book updates, run far past the sequence lengths they were trained on. A guarantee on how much a small change of input can move the hidden state therefore has to hold at every length. The closest existing bound we know of measures the change of the timescale additively, and it grows linearly with the sequence length unless the timescale is bounded away from zero. In this paper, we measure the change on a log scale instead. The key observation is that the decay factor of each step then moves by at most a fixed fraction of that step's input weight, so the per-step errors cannot pile up. Using this, we prove that two runs of a selective-scan cell from a common start stay within a bound that holds at every length, shrinks to zero with the size of the change and needs no lower bound on the timescale. We give a construction showing that, for small changes, this bound is within a factor of about 2 of the best possible, and we extend it to the update used in Mamba's released code when the timescale is bounded above. We then evaluate block-level bounds built from the theorem on two small models trained on one day of order book data. With a bounded timescale, a bound built on the existing analysis is tighter than ours for at most the first 8 steps. With Mamba's softplus timescale, whose certified lower bound is as small as $10^{-21}$, it is looser at every length. Our bounds hold for every input to a block, but they remain more than five orders of magnitude above the changes that gradient attacks find.",
+    "abs": "http://arxiv.org/abs/2611.21952v1",
+    "pdf": "https://arxiv.org/pdf/2611.21952v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "本文为选择性状态空间模型（Mamba）的 selective-scan 单元推导了输入扰动对隐藏状态影响的界：改在对数尺度上度量时间尺度的变化，使逐步误差不随序列长度累积，从而得到对任意长度成立、且无需时间尺度下界的稳定性保证，并在订单簿数据的小模型上对比了两类块级界。",
+      "relevance_reason": "循环状态更新的扰动敏感性界可供核查 LVR 中 latent 状态在多步更新下的稳定性与长度泛化，但论文针对 SSM 架构、与视觉证据和答案使用无关，属方法线索而非主线工作，且其界比梯度攻击实际变化宽五个数量级，实用强度待核验。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-19T03:13:46.136517+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

@@ -1,0 +1,76 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.22426",
+  "input_sha256": "2a94622adbf73873c5ce7cf820bba7681d69407cc7ee8e73dbcbe127c3494860",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-19T03:07:19.098931+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1860,
+        "output_tokens": 393,
+        "total_tokens": 2253,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 184
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.22426",
+    "title": "InfuseLoop: Cross-Trajectory Latent Injection for Scalable Parallel Looped Transformers",
+    "authors": [
+      "Zhaofeng Sun",
+      "Lanxiang Hu",
+      "Yu-Yang Qian",
+      "Jiaqi Leng",
+      "Yuanbo Yang",
+      "Chi Zhang",
+      "Youyou Lu",
+      "Peng Zhao",
+      "Hao Zhang"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Parallel Looped Transformers (PLTs) use otherwise idle decoding compute by overlapping recurrent iterations. However, vanilla PLTs scale poorly with depth: they exhibit training-loss spikes, and their quality gains shrink as more loops are added. The benefit of additional loops depends on the information available to each iteration, so we examine whether the existing computational dependencies limit effective depth scaling. We find that only the preceding in-trajectory state is passed across loop boundaries, even though completed cross-trajectory representations are already available. Based on this finding, we propose InfuseLoop, a cross-trajectory latent injection mechanism. It aggregates causally available hidden states from later prediction trajectories through lightweight attention residuals. This design preserves token-parallel training and concurrent loop execution, and requires only $O(Rd)$ additional hidden-state storage. Experiments show that InfuseLoop eliminates training-loss spikes and improves validation-loss scaling up to eight loops. At eight loops, InfuseLoop reduces perplexity by 3.4--17.1% relative to vanilla PLTs and by 10.5--37.3% relative to the non-looped baseline. It also improves average downstream accuracy by 0.84 and 1.99 percentage points over these two baselines. InfuseLoop incurs only 0.3% decoding time over vanilla PLTs and 23.3% over the non-looped baseline, while keeping the same logical KV-cache footprint as vanilla PLTs.",
+    "abs": "http://arxiv.org/abs/2611.22426v1",
+    "pdf": "https://arxiv.org/pdf/2611.22426v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P1",
+      "brief_summary": "该论文分析并行循环 Transformer 随循环加深收益递减的原因，指出循环边界只传递同一轨迹的前一状态，进而提出 InfuseLoop：以轻量注意力残差聚合后续预测轨迹中因果可用的隐状态，在保持 token 并行训练与并发执行的前提下改善深度扩展，并用困惑度和下游准确率验证。",
+      "relevance_reason": "其「跨轨迹隐状态注入」提供了迭代式 latent 状态如何获得更丰富信息的机制线索，可供核查能否用于多分支/循环式 VLM 推理的状态交换，以及注入内容是否仍保留视觉证据而非仅语言先验。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-19T03:07:19.098931+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

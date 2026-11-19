@@ -1,0 +1,72 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.22724",
+  "input_sha256": "3c5752d28dc3bdd6c82db9fe949b6b8a27a07464ad3fb724139f97e97f973b32",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-19T03:03:32.783582+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1961,
+        "output_tokens": 644,
+        "total_tokens": 2605,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 436
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.22724",
+    "title": "ConserveEdit: Source-Anchored Transactions for Drift-Bounded Iterative Image Editing",
+    "authors": [
+      "Shuyang Jiang",
+      "Fucheng Deng",
+      "Yuchuan Luo",
+      "Zhenyu Wu"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.LG"
+    ],
+    "comment": "28 pages, 15 figures, 16 tables; includes supplementary material",
+    "summary": "Instruction-driven image editors produce convincing local edits in one pass, but inside an iterative refinement loop every accepted output becomes the next input, so unintended changes outside the requested region accumulate. We present ConserveEdit, an editor-agnostic controller that treats each refinement step as a transaction against a contract compiled once from the source image. The contract separates what may change (the authorized region of each target, with a bounded halo for shadows and reflections) from what must survive (protected content with explicit tolerances). Candidates from a frozen editor are composed through a source-anchored mask and committed only if target progress, drift on protected content, and image quality pass as separate tests; otherwise the step is rolled back and repaired. For any editor, this keeps every pixel outside the authorized region bit-exact and bounds drift independently of the number of iterations, whereas no fixed scalar trade-off reproduces the separate tests. On all 1053 MagicBrush test edits with a frozen Qwen-Image-Edit, masking is necessary but not sufficient. A direct call already alters the rest of the image (12.1 dB PSNR outside the mask); composed through the source-anchored mask, it stays bit-exact there and its DINO similarity to the ground truth rises from 0.67 to 0.85, matching ConserveEdit, so this gain comes from the mask. Next to automatic masks, however, masked direct editing changes a protected face or text on 48% of turns, and masked scalar selection avoids this mostly by abstaining (23% constrained success). Because its drift test names the violated entity, ConserveEdit shrinks the support instead (2% violations, 53% constrained success); in a simulator with known ground truth it raises constrained success from 55.0% to 61.8%. Automatic grounding remains the main bottleneck. Code and logs will be released.",
+    "abs": "http://arxiv.org/abs/2611.22724v1",
+    "pdf": "https://arxiv.org/pdf/2611.22724v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "提出 ConserveEdit：一种与具体编辑器无关的控制器，把每轮迭代精修视为针对「源图像契约」的一次事务，将可分区域与须保留内容分离，并以目标进展、漂移、质量三项独立检验决定提交还是回滚修复，从而把漂移与迭代次数解耦。",
+      "relevance_reason": "其用多项独立检验替代单一标量权衡、以回滚和收缩支持区域代替弃权的机制，可能为 LVR 多步精修的停止与提交决策、视觉证据筛选提供类比，但迁移适用性尚待核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-19T03:03:32.783582+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}
