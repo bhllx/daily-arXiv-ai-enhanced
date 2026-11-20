@@ -1,0 +1,80 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.25347",
+  "input_sha256": "4f5ec847973ab86dde6f755e5a3d4ab36695ebf4616069dcc5eba28491f45edf",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-20T21:39:54.118469+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1948,
+        "output_tokens": 673,
+        "total_tokens": 2621,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 435
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.25347",
+    "title": "Search or Scoring? Diagnosing Why Visual World-Model Planners Fail",
+    "authors": [
+      "Haoxuan Jia",
+      "Yang Liu",
+      "Shang Luo",
+      "Chenhao Wu",
+      "Zixiang Ni",
+      "Yingguang Yang",
+      "Feng Zhang",
+      "Chongyang Zhang",
+      "Hao Zheng",
+      "Kefu Xu",
+      "Congjing Ran",
+      "Jifeng Zhu",
+      "Bin Chong"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": "43 pages, 10 figures, 30 tables; supplementary material included",
+    "summary": "Visual world models such as DINO-WM and JEPA-WM plan with an optimizer that searches for actions whose predicted outcome has the lowest cost, its distance to a goal image. A plan can thus fail in two ways: the optimizer never tries a good action that the cost would prefer (a search failure), or the cost, computed on predictions, ranks a bad action first (a scoring failure). The two need different remedies, more search or a better model, but a planner does not record which one occurred. We tell them apart by executing the optimizer's candidates, scoring a known solution with the planner's own cost, and comparing costs on predicted and real outcomes. An error model explains when each arises and so how to use retrieved demonstration windows (DemoProp): start the search from them (a warm start) when prediction errors are small, and average them without the model when large errors make the optimizer pick overrated actions. Across four simulated environments and three world models, on short tasks whose goals the planner can represent, PushT and Wall fail mostly by search, while Metaworld and RoboCasa fail by scoring because the cost, sound on real outcomes (AUROC 0.94 on Metaworld), is at chance on predictions (0.54). The diagnosis tells which remedy pays off: a four times larger search lowers the real-outcome cost only where failures come from search (clearly for DINO-WM), and where they come from scoring, averaging the windows without the model solves 127 of 168 new Metaworld tasks, against at most 87 when the model chooses among them. Within PushT, degrading only the model flips which use is better, and our rule, frozen in advance, follows the flip and solves 678 of 960 new episodes, against 530 for the best fixed use.",
+    "abs": "http://arxiv.org/abs/2611.25347v1",
+    "pdf": "https://arxiv.org/pdf/2611.25347v1",
+    "AI": {
+      "category": "MAIN",
+      "priority": "P1",
+      "brief_summary": "论文区分视觉世界模型规划器的两类失败：优化器没采到代价本会偏好的动作（搜索失败）与预测上的代价把坏动作排第一（评分失败），通过执行候选、用规划器自身代价给已知解打分并比较预测与真实结果的代价来判别，再据误差模型（DemoProp）决定用演示窗口暖启动搜索还是绕过模型直接平均窗口。",
+      "relevance_reason": "其「预测代价排序是否可靠」的诊断（AUROC 在真实结果上高、在预测上接近随机）为核查 LVR 中 latent 内容是否被真正用于判断以及视觉证据检索的使用条件提供了可借鉴的评价思路，但对象是世界模型动作规划而非 VLM 推理，迁移需核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-20T21:39:54.118469+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

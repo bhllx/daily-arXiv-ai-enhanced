@@ -1,0 +1,73 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.26172",
+  "input_sha256": "db396e78cc4b7a2310db08826e3042835eb23f3ef3f506b5519d52de5c67c2e8",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-20T21:29:16.323019+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1941,
+        "output_tokens": 509,
+        "total_tokens": 2450,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 273
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.26172",
+    "title": "Budget Internalization: Fixed-Budget RLVR Trades Test-Time Scaling for In-Budget Accuracy",
+    "authors": [
+      "Ilia Zavidnyi",
+      "Alexander Kovrigin",
+      "Arina Puchkova",
+      "Kirill Gelvan",
+      "Sergey Titov"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.AI"
+    ],
+    "comment": "39 pages, 26 figures, 16 tables. Checkpoints: https://huggingface.co/collections/JetBrains-Research/budget-internalization",
+    "summary": "Reasoning models often become more accurate when they can generate longer answers at test time. This behavior is known as test-time scaling. However, RL with verifiable rewards (RLVR) usually trains them with a fixed rollout cap. We find that this cap changes model behavior, not only training cost. After training, models use few additional tokens beyond the training budget. They outperform the base models near that budget, but their accuracy stops improving and falls below the base model at larger budgets. The rollout cap thus becomes a learned constraint, that limits model's test-time scaling. We call this effect budget internalization. We observe it across Qwen3.5-4B, Gemma4-E2B, and Nemotron-3-Nano-4B and two reasoning training tasks: mathematical reasoning and diverse, procedurally generated problems. This effect also transfers from math training to science and coding tasks. Training-objective level ablations on Qwen3.5-4B show that most changes recover little test-time scaling. Stronger KL regularization and lower training-data truncation preserve more scaling, but stronger KL reduces in-budget accuracy. Forcing an answer on truncated training rollouts largely removes budget internalization, but also removes most of the in-budget gain. SFT on artificially truncated traces reproduces budget internalization, whereas SFT on naturally short traces does not, which shows that the effect is not specific to RL. This result links budget internalization to length-censored post-training rather than to an RL-specific objective term. Thus, a rollout cap does not only control training cost. It can trade low-budget gains for lower performance when additional inference compute is available.",
+    "abs": "http://arxiv.org/abs/2611.26172v1",
+    "pdf": "https://arxiv.org/pdf/2611.26172v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P1",
+      "brief_summary": "该论文发现 RLVR 训练时的固定 rollout 长度上限会被模型「内化」为学习到的约束：训练后模型几乎不超出该预算，在预算附近优于基座模型，但更大预算下准确率停滞甚至低于基座，作者称之为 budget internalization，并用多个模型、两类任务及 SFT 截断轨迹对照实验定位其源于长度截断式后训练而非 RL 特有目标项。",
+      "relevance_reason": "虽为纯文本工作，但其关于长度预算被内化为停止倾向、以及在 THINK/STOP 上以低预算收益换取测试时扩展能力的结论，可为 LVR 中停止决策、动态计算分配与长度泛化的收益-成本分析提供可核查线索。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-20T21:29:16.323019+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

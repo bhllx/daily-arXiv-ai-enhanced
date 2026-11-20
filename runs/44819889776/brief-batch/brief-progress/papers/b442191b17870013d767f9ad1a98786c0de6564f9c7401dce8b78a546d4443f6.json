@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.25938",
+  "input_sha256": "5473690d6e184388c88cb23ba3e08ae30dbc7867c7c2255402298245c4cc4926",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-20T21:31:45.959861+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1852,
+        "output_tokens": 827,
+        "total_tokens": 2679,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 605
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.25938",
+    "title": "DTS: Delta-Based Tile Scoring for Efficient Long-Context Sparse Attention",
+    "authors": [
+      "Emre Uğur",
+      "Jiawen Qi",
+      "Qinyu Chen"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": "7 pages, 4 figures. Accepted at DATE 2027. Emre Uğur and Jiawen Qi contributed equally",
+    "summary": "Large language models (LLMs) increasingly need to process long documents and codebases, making long-context attention a major prefill bottleneck. Block sparse attention reduces computation by skipping unimportant blocks of the attention matrix, but scoring blocks accurately can itself be expensive. We propose Delta-Based Tile Scoring (DTS), a training-free, content-adaptive tile scoring method for sparse block attention. DTS selects query and key anchors according to local vector changes, using fewer representatives in redundant regions while retaining more detail in heterogeneous regions. To accelerate anchor selection, parallel delta packing partitions the query and key sequences into tile-aligned chunks and performs bounded local scans over these chunks concurrently. The selected tiles are then computed using the original query, key, and value vectors. On LLaMA-3.1-8B-Instruct, DTS keeps average RULER and LongBench scores within 0.10 percentage points of full attention, with RULER evaluated up to 128K tokens. At 128K tokens, DTS reduces measured scoring-pipeline latency by 38% compared with XAttention. On four NVIDIA H100 GPUs, it achieves a 3.3$\\times$ prefill speedup over a PyTorch full-attention baseline using FlashAttention-2 at 512K tokens.",
+    "abs": "http://arxiv.org/abs/2611.25938v1",
+    "pdf": "https://arxiv.org/pdf/2611.25938v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "提出无需训练的稀疏块注意力打分方法 DTS：按局部向量变化选取 query/key 锚点，在冗余区域用更少代表、异质区域保留更多细节，并以并行 delta packing 加速锚点选取；在 LLaMA-3.1-8B 上保持接近全注意力的长上下文表现并取得加速。",
+      "relevance_reason": "其「依局部变化自适应决定打分粒度」的块筛选思路，可能为长视觉上下文中的证据块或 token 筛选、计算预算分配提供线索；但论文本身是纯文本 prefill 加速，不涉及推理状态或答案对 latent 内容的使用，需核查可迁移性。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-20T21:31:45.959861+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

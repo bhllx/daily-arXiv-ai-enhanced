@@ -1,0 +1,71 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.25780",
+  "input_sha256": "e82140867290cd29544148b6490513ff1805f6351e075b93d9291376da0c7a18",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-20T21:33:45.463559+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1922,
+        "output_tokens": 643,
+        "total_tokens": 2565,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 377
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.25780",
+    "title": "RouteVerify: Routing Interventions for Step-Level Verification in Mixture-of-Experts Models",
+    "authors": [
+      "Yucheng Du",
+      "Ryan A. Rossi",
+      "Xiyang Hu"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.CL"
+    ],
+    "comment": "38 pages, 5 figures. Code: https://github.com/yucheng-du/RouteVerify",
+    "summary": "Routing states in mixture-of-experts (MoE) models can distinguish correct from erroneous reasoning steps. If changing routing also changes a model's step-level verification judgment, it is tempting to conclude that the judgment follows what routing encodes. We test this inference with RouteVerify, a controlled intervention study that replaces selected internal activations from one solution trace with activations from another, while keeping the evaluated input unchanged. Across nine MoE checkpoints, we compare three intervention interfaces: router logits, MoE outputs, and post-MoE residual states. We vary the layers and token positions at which activations are replaced. We measure changes in a verification margin that quantifies the model's preference for INCORRECT over CORRECT. We also evaluate the same input with activations from correct versus erroneous steps to test whether the resulting judgment depends on the source step's correctness. We report four linked results. First, probes on router logits separate correct from erroneous steps in eight checkpoints (AUROC 0.80-0.88). Second, replacing router logits across all routed layers changes the judgment in all nine checkpoints, and by more than a norm-matched random replacement. Third, this change rarely depends on whether the source step is correct. At one layer, routing from erroneous steps and from correct steps produces indistinguishable margins in all nine checkpoints. Under all-layer routing, their difference is resolved and positive in only one. Fourth, the same difference is positive for local residual replacements in eight of nine checkpoints, so the measure does detect such dependence where it exists. Correctness is therefore readable from routing, and routing replacements move the judgment, but the movement rarely follows correctness.",
+    "abs": "http://arxiv.org/abs/2611.25780v1",
+    "pdf": "https://arxiv.org/pdf/2611.25780v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P1",
+      "brief_summary": "RouteVerify 在九个 MoE 检查点上做受控干预：把一条解法轨迹的 router logits、MoE 输出或 post-MoE 残差激活替换为另一条轨迹的对应激活，输入不变，测量步骤级验证 margin 的变化。结果显示 router logits 探针能区分正确与错误步骤，替换也确能改变判断，但判断移动很少随来源步骤的正确性而变，即「可读出」不等于「被使用」。",
+      "relevance_reason": "该文给出「内部信号可解码 ≠ 下游判断真正依赖它」的因果干预与 norm-matched 随机对照范式，可供核查 LVR 中 latent 内容是否真正参与答案生成、步骤验证与贡献分配，以及把可读性误当因果作用的陷阱；但研究对象为纯文本 MoE，迁移到多模态 latent 状态需人工判断。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-20T21:33:45.463559+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

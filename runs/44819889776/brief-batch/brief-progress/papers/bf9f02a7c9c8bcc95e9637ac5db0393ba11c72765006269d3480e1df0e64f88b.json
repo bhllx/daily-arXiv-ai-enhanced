@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.26413",
+  "input_sha256": "1000d539a3b3cc6330f0328efc72fe30fd5bcd6fc4f1f026f60a2723b9d32f57",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-20T21:26:40.739860+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1919,
+        "output_tokens": 810,
+        "total_tokens": 2729,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 580
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.26413",
+    "title": "Sequential Anytime Valid Tests for Efficient Inference-Time Alignment",
+    "authors": [
+      "Vishesh Kumar Singh",
+      "Sayak Ray Chowdhury"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Inference-time alignment methods, such as Best-of-N (BoN), improve language model outputs by generating multiple candidates per prompt and selecting among them using a reward model. Much of this cost is wasted: a fixed budget is applied to every prompt, although the computation required by prompts varies widely. Adaptive methods halt once sampled answers appear settled, but their thresholds are tuned heuristics with no statistical control over early-stopping errors. We instead seek an anytime-valid stopping rule that takes an error tolerance $α$ as input and halts only once an answer is certified to hold a majority ($θ_a > 1/2$) under the generator's distribution. We aggregate candidates by final answer with a reward-weighted self-consistency (RWSC) score and treat stopping as a sequential test over the resulting clusters. Applying Wald's sequential probability ratio test to these clusters yields SPRT-RWSC, which performs well empirically, but its guarantee fails because the leading answer shifts during sampling, and the run is continuously monitored. Our main contribution, e-RWSC, replaces Wald's test with a betting supermartingale (an e-process) for every answer the policy produces, bounding the probability of ever certifying a non-dominant answer by $α$, uniformly over time and across all answers. The RWSC scores drive the bets, so they affect only how quickly a dominant answer $a^\\star$ is certified, not validity; certification takes $O(\\log(1/α)/d_{\\mathrm{KL}}(θ_{a^\\star}\\|1/2))$ samples. Experiments across several language models, datasets, and reward models confirm the predicted $1/d_{\\mathrm{KL}}$ scaling of cost and show that accuracy improves over baselines at substantially lower token cost.",
+    "abs": "http://arxiv.org/abs/2611.26413v1",
+    "pdf": "https://arxiv.org/pdf/2611.26413v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "提出 e-RWSC：把 Best-of-N 候选按最终答案聚类，用奖励加权自一致性打分，并以 betting supermartingale（e-process）对每个答案做任意时间有效的序贯检验，在容错 α 下仅在认证某答案占多数时停止，给出 O(log(1/α)/d_KL) 的样本复杂度及多模型/数据集/奖励模型上的成本与精度实验。",
+      "relevance_reason": "研究对象是纯文本对齐的采样成本，与视觉或 latent 状态无关；但「带统计保证的 anytime-valid 停止规则」可能为 LVR 中 STOP 决策与证据累积何时终止提供可核查的阈值与错误控制思路。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-20T21:26:40.739860+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

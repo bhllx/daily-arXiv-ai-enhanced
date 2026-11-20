@@ -1,0 +1,72 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.25369",
+  "input_sha256": "be25924812e3b511a3450d3526483fcfb0f328c3b248ae9f59ff02a01781f24e",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-20T21:39:44.404601+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1818,
+        "output_tokens": 352,
+        "total_tokens": 2170,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 156
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.25369",
+    "title": "Fold the Loop: Decoding-Time KV Memory for Looped Vision-Language Models",
+    "authors": [
+      "Kun Zhou",
+      "Wenmian Yang",
+      "Zhensheng Wang",
+      "Yanzeng Li",
+      "Weijia Jia"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": null,
+    "summary": "Looped vision-language models (VLMs) deepen visual reasoning by repeatedly applying weight-tied modules. However, their decoding memory grows with recurrent depth and limits the image size and batch size that fit in a fixed memory budget. Each recurrent step produces its own key-value (KV) states, so the cache holds several copies of the same image. We find that, after an exact prefill, earlier steps still need access to visual information but can reuse the final visual KV within the same module. We propose FoldCache, which compresses visual KV along the recurrent axis while preserving the full prefill computation. FoldCache partitions recurrent steps within each module into groups and retains the final visual KV of each group for its members to share during decoding. Sharing stays within module boundaries, while question and answer KV remain separate for each step. The grouping granularity controls the degree of compression, and folding can be combined with token eviction and quantization to further reduce memory use. On LoopVL, FoldCache approximately halves prefix KV memory while matching full-cache accuracy on five open-ended benchmarks. These memory savings support batch sizes up to 1.7 times those of a full cache under the same GPU memory budget, and up to 2.6 times with the more aggressive FoldCache-Lite.",
+    "abs": "http://arxiv.org/abs/2611.25369v1",
+    "pdf": "https://arxiv.org/pdf/2611.25369v1",
+    "AI": {
+      "category": "MAIN",
+      "priority": "P1",
+      "brief_summary": "该论文针对 looped VLM 在解码时随循环深度线性增长的视觉 KV 缓存，提出 FoldCache：在模块内把循环步分组，让组内各步共享该组最后一个视觉 KV，从而在保留完整 prefill 的前提下压缩缓存，并可叠加 token 淘汰与量化。",
+      "relevance_reason": "直接触及循环生成中视觉证据的保留与计算成本权衡，可供核查各循环步复用末尾视觉 KV 是否损失任务必要视觉细节、以及分组粒度对长循环和图像尺寸泛化的影响。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-20T21:39:44.404601+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

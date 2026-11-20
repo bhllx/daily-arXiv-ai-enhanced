@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.25902",
+  "input_sha256": "b6ccd85398e1b851c60bb97825a23a55c7b5c8c83887e2b9b62b86ca3481448a",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-20T21:32:08.403682+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1928,
+        "output_tokens": 536,
+        "total_tokens": 2464,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 277
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.25902",
+    "title": "Does It Depend on the Split? Frozen Satellite Features vs. Fine-Tuned CNNs for Tree Species Mapping",
+    "authors": [
+      "Dharani Deivasihamani",
+      "Nandakishore Puttashamachar"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": null,
+    "summary": "Self-supervised foundation models are often said to need fewer labels than supervised training. We test this on a forestry task: classifying 20 tree species classes in 0.2 m aerial images from the TreeSatAI dataset. We compare a frozen DINOv3 model pretrained on 493 million satellite images, with only a linear classifier trained on top, against an ImageNet ResNet-50 that is fine-tuned end to end. On the official split, fine-tuning wins clearly (macro F1 0.764 vs. 0.685). However, 28.8% of the official test patches overlap a training or validation patch, and copying the label of the nearest such patch is correct for 83.6% of them. We therefore build a spatial split that holds out whole 2 km squares with a 200 m buffer. On this split the comparison becomes inconclusive (0.648 vs. 0.640, paired 95% CI of the difference [-0.054, 0.016]), and the learning curves of the two models overlap at every label budget from 343 to 33,126 training patches. On the five rarest classes, the frozen model achieves a higher mean F1 (0.566 vs. 0.445), although the confidence interval for this difference includes zero ([-0.05, 0.23]). Diagnostics show that the frozen features mainly miss differences between closely related species, such as the two native oaks. Choosing the input size and layer on validation data (224 px, block 16) raises the frozen model to 0.662 on the spatial split. A comparison that looks decisive on the official split is thus inconclusive under geographically separated evaluation. We release the spatial split and our code.",
+    "abs": "http://arxiv.org/abs/2611.25902v1",
+    "pdf": "https://arxiv.org/pdf/2611.25902v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文在 TreeSatAI 0.2 m 航拍影像的 20 类树种分类任务上，用线性探针比较冻结的 DINOv3 特征与端到端微调的 ResNet-50，并发现官方划分存在约 28.8% 的空间重叠；改用带缓冲的 2 km 方块空间划分后，两者差异变为不显著（0.648 vs. 0.640），冻结模型仅在稀有类上略优。",
+      "relevance_reason": "其「冻结特征＋线性探针 vs. 微调」的对照、对近似类间细粒度差异的失败诊断以及空间划分去泄漏的评价设计，可供核查 LVR 中视觉细节是否保留在内部状态、以及潜在表示诊断结论是否被数据重叠夸大的问题，但任务本身与多模态推理无关。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-20T21:32:08.403682+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

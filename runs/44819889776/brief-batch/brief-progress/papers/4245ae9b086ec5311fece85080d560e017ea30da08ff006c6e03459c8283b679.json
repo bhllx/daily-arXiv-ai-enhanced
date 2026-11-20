@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.26504",
+  "input_sha256": "95e29150e49399f73181766971f7dca53cb01ce8fe6071057e246c818f1e3e61",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-20T21:25:46.196789+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1873,
+        "output_tokens": 783,
+        "total_tokens": 2656,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 528
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.26504",
+    "title": "Grid Cells as Spectral Successor Features: A Reusable Basis for Continual Reinforcement Learning",
+    "authors": [
+      "Élodie Côté-Gauthier",
+      "Doina Precup",
+      "Isabeau Prémont-Schwarz"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": "15 pages, 3 figures. Accepted at the NeurReps and WiML workshops at NeurIPS 2026",
+    "summary": "Continual reinforcement learning requires agents to adapt when the task changes while reusing what they know about the environment. Successor features separate dynamics from task-specific reward, but their effectiveness depends on the choice of base features. Taking the identification of entorhinal grid cells with eigenvectors of the successor representation as a design principle, we build this basis from eigenvectors of the transition matrix of a fixed reference policy. With such a basis, the successor features at a state-action pair are a linear combination of the base features at that same pair, which is not true in general, and the coefficients are known in closed form: each successor feature is its base feature multiplied by $θ_i = 1/(1-γλ_i)$, where $λ_i$ is its eigenvalue. The long-term return is thus predicted from the same features as the immediate reward, no successor-feature network or replay buffer is needed, and adapting to a new task reduces to a linear regression on the reward. The agent acts greedily on the action values of the reference policy, which is one step of policy improvement over it and suffices to reach a single goal. In a two-goal gridworld, with the uniform random walk as reference policy, whose eigenvectors are the low-frequency Laplacian eigenvectors, agents built this way maintain near-maximal return across every change of goal, whereas SimpleSF and DQN lose most of their return at each change.",
+    "abs": "http://arxiv.org/abs/2611.26504v1",
+    "pdf": "https://arxiv.org/pdf/2611.26504v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "论文把内嗅皮层 grid cell 视为 successor representation 的特征向量，用固定参考策略转移矩阵的特征向量构造 successor features 基，使状态-动作的长期回报可由同一组基特征的闭式线性组合预测（系数为 1/(1-γλ_i)），新任务只需对奖励做线性回归；在双目标 gridworld 中，该方法在频繁换目标时仍维持接近最优回报，而 SimpleSF 与 DQN 明显退化。",
+      "relevance_reason": "固定谱基在任务变化下被复用、且无需学习预测网络的思路，可能为 LVR 中 latent 状态的表示几何、跨任务复用与预测工作区稳定性提供概念参考；但该工作是无视觉输入的线性表格域方法，与 VLM 推理的具体迁移价值尚待核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-20T21:25:46.196789+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

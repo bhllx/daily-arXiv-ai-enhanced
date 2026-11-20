@@ -1,0 +1,78 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.25069",
+  "input_sha256": "5ac5f1c6aceacade092b3f6579cb2023606db73381ea7609fe8910ebf9f0b176",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-20T21:42:44.434901+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1817,
+        "output_tokens": 439,
+        "total_tokens": 2256,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 216
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.25069",
+    "title": "VisAlloc: Allocating Visual Supervision for On-Policy Self-Distillation",
+    "authors": [
+      "Haoran Xu",
+      "Tian Chen",
+      "Yuhe Wu",
+      "Yanbo Zhao",
+      "Junchi Liao",
+      "Hongyu Wang",
+      "Jiaze Li",
+      "Wentao Wang",
+      "Yanfeng Li",
+      "Rui Qian"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "On-policy self-distillation (OPSD) offers a promising approach to improving visual reasoning in multimodal large language models (MLLMs). However, not all samples benefit equally from privileged visual guidance, and uniform token supervision can dilute visually grounded signals. We propose VisAlloc, a dual-level framework combining sample-level visual filtering with token-level counterfactual reweighting. A fixed paired-teacher filter retains samples answered correctly from an evidence-centered positive crop but incorrectly from a spatially displaced negative crop. At the token level, both EMA teachers score the same student-generated response, and their absolute log-probability differences measure view sensitivity. Additional supervision targets tokens admitted by sensitivity or teacher-distribution disagreement, with shared frozen-prior, template-bigram, and student--teacher divergence gates. Inverse-frequency redistribution preserves the total additional weight within each micro-batch, while the positive teacher remains the sole distillation target. Inference requires only the full-image student. Across eight benchmarks, our 4B and 9B models achieve macro-averages of 81.44 and 84.92, outperforming Vision-OPD reproductions by 0.97 and 0.52 points, respectively. Code on GitHub: https://github.com/Kaelyn01/VisAlloc",
+    "abs": "http://arxiv.org/abs/2611.25069v1",
+    "pdf": "https://arxiv.org/pdf/2611.25069v1",
+    "AI": {
+      "category": "MAIN",
+      "priority": "P1",
+      "brief_summary": "VisAlloc 提出一种双层视觉监督分配框架：在样本层用「证据中心裁剪 vs 空间错位裁剪」的成对教师筛选样本，在 token 层用两个 EMA 教师的 log-prob 差异度量视角敏感性，并对敏感 token 施加额外的蒸馏权重，仅在训练期使用、推理只需全图学生模型。",
+      "relevance_reason": "它把「视觉证据是否被真正使用」转化为可筛选的监督信号与 token 级贡献分配，与 LVR 关心的视觉旁路、信息坍缩和视觉证据筛选直接相关；可核查其视角敏感性门控能否作为诊断模型是否依赖视觉 latent 的代理指标。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-20T21:42:44.434901+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

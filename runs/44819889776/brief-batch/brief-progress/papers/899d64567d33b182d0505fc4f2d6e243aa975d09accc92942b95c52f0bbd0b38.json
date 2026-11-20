@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.26339",
+  "input_sha256": "60b78ed46515ef9979f53e9f86f142cce206b79b3bce80fcfe9cfd221cbf35f1",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-20T21:27:41.430773+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1937,
+        "output_tokens": 700,
+        "total_tokens": 2637,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 479
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.26339",
+    "title": "Sirius-Tiamat: How Small Can a One-Pass Decision Encoder Get Before Its Decisions Change?",
+    "authors": [
+      "Mohammed Nayeem Khan",
+      "Vrishank Tiwari"
+    ],
+    "categories": [
+      "cs.AI"
+    ],
+    "comment": "38 pages, 23 figures, 27 tables",
+    "summary": "A one-pass decision encoder reads a text, a question and several named options, and returns a probability for each option in a single forward pass. We ask how far Laya, a 421M-parameter encoder of this kind, can be compressed before its decisions change. We count decisions that differ from Laya's own full-precision (fp32) answer, and track calibration (how well confidence matches accuracy, measured by expected calibration error, ECE), on 1,221 synthetic items with the training schemas, 273 with an unseen schema, and 800 out-of-family questions from ARC, MMLU and HellaSwag. Layer pruning of a related model family is known; we add flips, calibration, held-out data and retraining. bf16 changes 0.2% of in-family decisions but 2.2% out of family; 6-bit grouped rounding 1.3% and 5.9%; deleting 6 layers 0.9% and 9.1%, while ECE rises from 5.9% to 39.2%. One fitted temperature, needing no labels, restores it to 3.6%. One scale per tensor fails below six bits, and CPU dynamic int8 changes 30% of decisions, nearly all through one layer. Total variation tracks flips for rounding but not for deletion, and an early exit saves layers over a static cut only if its confidence gate is first recalibrated. Distilling a 16-layer student cuts its in-family flips from 44% to 9% (45% out of family). At equal stored size, rounding flips fewer decisions than deletion. Data are synthetic and LLM-labelled, for one architecture.",
+    "abs": "http://arxiv.org/abs/2611.26339v1",
+    "pdf": "https://arxiv.org/pdf/2611.26339v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文考察 421M 参数的单次前向选择项决策编码器 Laya 在 bf16、低位分组量化、层剪枝与蒸馏下与原 fp32 决策不一致的比例，并跟踪 ECE 校准，同时检验温度重校准、张量级缩放和 early exit 置信门控的作用。",
+      "relevance_reason": "与视觉主线无直接关系，但其「减少层数或精度会改变决策」的度量，以及「early exit 需先重校准置信门才能省层」的发现，可能可供核查 LVR 中 STOP 门控与动态计算成本权衡，以及深度变化对内部状态可用性的影响。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-20T21:27:41.430773+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

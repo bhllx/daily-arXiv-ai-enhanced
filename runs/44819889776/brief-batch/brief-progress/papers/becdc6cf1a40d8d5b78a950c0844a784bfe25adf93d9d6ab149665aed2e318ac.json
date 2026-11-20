@@ -1,0 +1,74 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.25530",
+  "input_sha256": "d3ef0eafc908121b6aa17bd63a4f22a5f97453f99188b3021c4f5c56b0c352a5",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-20T21:37:29.332050+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1883,
+        "output_tokens": 806,
+        "total_tokens": 2689,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 562
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.25530",
+    "title": "Keystone: Judging Previews at Key Steps for Test-Time Search in Diffusion Models",
+    "authors": [
+      "Jiajun Fan",
+      "Chaoran Cheng",
+      "Ziwen Wang",
+      "Changyi Yang",
+      "Bangji Yang",
+      "Qinglong Zheng",
+      "Ge Liu"
+    ],
+    "categories": [
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "Text-to-image diffusion and flow models yield a preview, their clean-image estimate, at every denoising step. When they miscount, drop or misplace objects, test-time search is in a bind: its verifiers are reward models built for finished images, so judging early misreads blurry previews, and judging late, as best-of-N does, pays to fully denoise doomed candidates. We find that the image is not the problem: the outcome is settled as denoising starts, by the seed or by a stochastic sampler's first steps, and already shows in early previews; what fails on them is the judge, as reward models read them near chance on several kinds of prompts. We introduce Keystone, a training-free judge of previews that compiles a prompt into typed questions about its objects, counts, colours and positions and has an off-the-shelf multimodal decision model answer them. Asked this way, the judge reads counts and positions from early previews better than reward models read them from finished images. Searching at these key steps on GenEval with SD3.5-Medium, Keystone's adaptive search and pruning significantly outperform best-of-8 with every other verifier at under half its generator compute, and as a drop-in verifier there, the Keystone score significantly improves best-of-N, progressive seed pruning and FK steering; without retuning, both searches stay significantly above the strongest other verifier's best-of-N on average over four base models and three benchmarks. Keystone thus moves test-time judgment to the key steps where the outcome already shows.",
+    "abs": "http://arxiv.org/abs/2611.25530v1",
+    "pdf": "https://arxiv.org/pdf/2611.25530v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文提出 Keystone，一个无需训练的判定器：把 prompt 编译为关于物体、数量、颜色、位置的类型化问题，交由现成多模态决策模型在扩散早期若干「关键步」的 preview 上作答，并据此做自适应搜索与剪枝，在 GenEval 等基准上以不到一半的生成计算超过 best-of-N。",
+      "relevance_reason": "其核心线索是用结构化提问对未完成/含噪的中间状态做可靠验证，并据此决定继续、剪枝或停止，可供核查 LVR 中「对部分成形的 latent 状态判定、视觉证据筛选与 STOP 决策」的验证器设计；但研究对象是扩散图像生成的去噪轨迹，与 VLM 推理状态的联系尚属可能迁移。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-20T21:37:29.332050+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

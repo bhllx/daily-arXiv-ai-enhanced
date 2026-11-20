@@ -1,0 +1,73 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.26347",
+  "input_sha256": "b822f9c3719029c87d42b11d33f49d9b9008bd81afa4890232e9bd8de232495f",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-20T21:27:31.480096+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1999,
+        "output_tokens": 817,
+        "total_tokens": 2816,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 577
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.26347",
+    "title": "OffBeat: Multicoset Sampling for 4D Capture Beyond the Camera Frame Rate",
+    "authors": [
+      "Chi-Wei Lee",
+      "An-Kai Chen",
+      "Cheng-Han Chiang",
+      "Yi-Chun Chang",
+      "Po-Chih Kuo"
+    ],
+    "categories": [
+      "cs.CV",
+      "eess.IV"
+    ],
+    "comment": "Project page: https://arthur031221.github.io/offbeat/",
+    "summary": "For 4D reconstruction, a synchronized multi-camera rig records all views at the same timestamps and misses the motion between them. Staggered triggers spread the same frames over more timestamps. However, when the cameras along each row fire one after another, as in 4DSloMo's schedule on the N3DV rig, the row acts as one moving camera that confounds depth with motion. We introduce OffBeat, which models a staggered rig as a spatially distributed multicoset sampler: shifted copies of one sampling grid. From the calibration alone, OffBeat derives camera groups that fire together and their firing order. Since one group records each timestamp, a short-lived primitive can fit an error its cameras share, such as a color offset, and flicker in novel views. We show that a primitive's opacity over time weights all groups equally, for every number of groups, only if it lasts at least one camera frame interval. On Spacetime Gaussians, a minimum lifetime approximates this bound, and a closed-form smoothed box of that length satisfies it exactly, with less flicker than a Gaussian in its place at nearly equal PSNR. In simulated staggered capture on N3DV, OffBeat outperforms the full 4DSloMo pipeline with video diffusion on every test frame, by 3.04 dB in mean dynamic-region PSNR. Between the first and last synchronized frame, it outperforms the best synchronized method of each scene, with or without frame interpolation, by 1.98 dB in mean dynamic-region PSNR, while synchronized capture is better at its own frames. On PanopticSports, in this frame range, OffBeat is comparable in PSNR to synchronized capture with interpolation. On every N3DV scene, replacing 4DSloMo's schedule with ours raises the dynamic-region PSNR of Spacetime Gaussians, 4DSloMo without diffusion, and our reconstruction. Multi-camera rigs could follow faster motion at the same frame count by changing only when each camera fires.",
+    "abs": "http://arxiv.org/abs/2611.26347v1",
+    "pdf": "https://arxiv.org/pdf/2611.26347v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "论文将错峰触发（staggered）的多相机阵列建模为空间分布式 multicoset 采样器，仅凭标定推导出同步发射的相机分组及其发射顺序，并证明基元不透明度须覆盖至少一个相机帧间隔才能使各分组被等权加权，据此在 Spacetime Gaussians 上用最短生命周期与平滑 box 降低 flicker，在 N3DV、PanopticSports 上提升动态区域 PSNR。",
+      "relevance_reason": "与 VLM 或 latent 推理无直接联系，但「采样时刻表决定哪些状态量可辨识、并需满足最短时间跨度」这一思路，可能可供核查 LVR 中视觉证据采集调度与推理状态时间粒度的设计。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-20T21:27:31.480096+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

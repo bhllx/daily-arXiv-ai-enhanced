@@ -1,0 +1,73 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.26321",
+  "input_sha256": "dde3a1e98db235cd0d673803a643c9ea0007cf48098d0906a66fff04322f1677",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-20T21:27:58.702906+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1930,
+        "output_tokens": 656,
+        "total_tokens": 2586,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 419
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.26321",
+    "title": "FirstCross: Convex Single-Photon 3D Reconstruction from Sparse Views",
+    "authors": [
+      "Chi-Wei Lee",
+      "Cheng-Han Chiang",
+      "Yi-Chun Chang",
+      "An-Kai Chen",
+      "Po-Chih Kuo"
+    ],
+    "categories": [
+      "cs.CV",
+      "eess.IV"
+    ],
+    "comment": "Project page: https://arthur031221.github.io/firstcross/",
+    "summary": "Single-photon lidar records the arrival time of each returning photon, enabling 3D reconstruction from few views and scarce photons. However, leading neural methods such as Transientangelo require over an hour of non-convex per-scene optimization, and their accuracy degrades as photon flux decreases. We propose FirstCross, a network-free approach that instead solves a short sequence of convex problems on a voxel grid. For a solid object, the Poisson likelihood of a ray with given signal and background rates depends on the scene solely through its first crossing, the point where the ray first enters the object. Decomposing this likelihood yields two tractable terms. The first penalizes surfaces in front of detected photons and admits a tight convex closure, namely volume rendering with a running-maximum transmittance in place of NeRF's product transmittance. The second accounts for photons that no surface explains and admits a convex upper bound once the object is assumed to be thick behind each detected surface point. Compared with Transientangelo under its own real-data protocol, FirstCross achieves lower depth error across every test scene, view count, and flux level. With three views and 100 times fewer photons than at the protocol's lowest flux, our mean object depth error stays under half of Transientangelo's with all photons. Given our detected surface points, the best classical fusion has 1.3 to 1.8 times our three-view error across flux levels. On real room-scale captures with 1% of their photons, TransientNeRF has 2.8 to 7.7 times our error. FirstCross lets few-view single-photon scanners cut exposure to 1% and reconstruct an object in about a minute on one GPU.",
+    "abs": "http://arxiv.org/abs/2611.26321v1",
+    "pdf": "https://arxiv.org/pdf/2611.26321v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "FirstCross 面向稀疏视角单光子 lidar 的 3D 重建，放弃神经网络，提出按「光线首次进入物体」的 first-crossing 泊松似然分解，将问题化为体素网格上一小段凸优化，并用 running-maximum 透射率替代 NeRF 的乘积透射率，从而在少光子条件下快速得到低深度误差。",
+      "relevance_reason": "其「首次交点 + 遮挡感知透射率」的似然分解思路，可能为 LVR 中视觉证据的可见性/遮挡筛选与「哪些像素证据可进入内部状态」提供一种非学习式的形式化参考，但与该主线距离较远，需核查是否真有迁移价值。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-20T21:27:58.702906+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

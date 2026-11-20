@@ -1,0 +1,72 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.26355",
+  "input_sha256": "8306d0e318884b46cfd6d255c5a39386a7cbb170fed685f5cb904f7103edf546",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-20T21:27:24.779739+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1977,
+        "output_tokens": 894,
+        "total_tokens": 2871,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 681
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.26355",
+    "title": "Mamba Flow Matching Neural Processes: Linear-Time Inference for Irregularly Observed Spatial Fields",
+    "authors": [
+      "Cosmo Santoni",
+      "Giovanni Charles",
+      "Timothy James Hitge",
+      "Oliver Watson",
+      "Elizaveta Semenova"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": "Accepted at NeurIPS 2026. XX pages, X figures. Code: https://github.com/Cosmonaught/Mambaflownp",
+    "summary": "Interpolating a spatial field, such as daily maximum temperature, from sparse, irregularly located observations recurs across the environmental and health sciences. Standard Gaussian-process kriging refits hyperparameters and solves an $O(N^3)$ system for every new field. When many related fields are observed, such as daily maps from one sensor network, neural processes (NPs) instead learn the interpolation map from past fields and predict a new field in one forward pass. Joint-predictive variants, which sample whole fields rather than independent per-location values, typically use self-attention over context and query points, costing $O(K^2)$ in the combined point count $K$ and limiting practical use to a few thousand points. State-space models offer a linear-time alternative, but a direct state-space adaptation compresses the context into one hidden state before reading queries, reducing what the decoder sees. We propose MambaFlowNP, a linear-compute joint-predictive NP trained with conditional flow matching. A multi-directional Mamba-2 scan reads context and query tokens in one shared sequence, so each query's velocity is read from its own scan position rather than a compressed context summary, and because queries only read the scan state, predictions are consistent across query sets. MambaFlowNP is competitive with the strongest attention-based joint-predictive baselines on synthetic Matérn Gaussian-process benchmarks, and on regional to continental-scale NOAA temperature interpolation it attains the lowest RMSE and CRPS and near-nominal coverage on every tier, while running 114--784$\\times$ faster than the strongest joint-predictive baseline. A single forward pass scales to $10^6$ points on one NVIDIA L40S GPU in under a second. This makes joint prediction feasible for continental-scale, irregularly sampled sensor networks; predictive quality is evaluated up to $K=5{,}580$.",
+    "abs": "http://arxiv.org/abs/2611.26355v1",
+    "pdf": "https://arxiv.org/pdf/2611.26355v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文提出 MambaFlowNP：一种线性计算复杂度的联合预测神经过程，将上下文点与查询点置于同一序列做多方向 Mamba-2 扫描，并用条件 flow matching 训练，从而对稀疏不规则观测的空间场做快速概率插值。",
+      "relevance_reason": "其核心设计——不把上下文压成单一隐状态、让每个查询从自身扫描位置读取状态，并以 flow matching 直接生成整场——可能与 LVR 中视觉上下文压缩导致的信息坍缩、latent 读出的位置与深度效应以及 latent 轨迹生成可供核查，但迁移价值需读原文判断。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-20T21:27:24.779739+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

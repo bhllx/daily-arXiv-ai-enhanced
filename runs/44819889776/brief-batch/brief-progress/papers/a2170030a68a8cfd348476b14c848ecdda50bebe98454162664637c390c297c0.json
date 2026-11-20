@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.25296",
+  "input_sha256": "c1fa01b97579a4f364d0cd161d71e9c2131da71974a0baf7f7dd7580b4eb57e3",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-20T21:40:31.776237+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1851,
+        "output_tokens": 987,
+        "total_tokens": 2838,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 761
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.25296",
+    "title": "CalibCache: Cache-to-Full Feature Dynamics Calibration for Diffusion Transformers",
+    "authors": [
+      "Mingyu Liang",
+      "Dingkun Xu",
+      "Jingwei Xu"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": null,
+    "summary": "Diffusion Transformers generate high-quality images, but iterative sampling remains computationally expensive. Feature caching reduces the number of full network evaluations, yet its approximation error can become more severe under short sampling schedules, where fewer full-compute steps and a coarser sampling grid can make history-based extrapolation less reliable. In this paper, we propose CalibCache, a lightweight offline calibration method that corrects systematic discrepancies between cached and full-compute feature dynamics. Specifically, CalibCache calibrates feature acceleration, defined as the second-order finite difference across sampling steps. Using only a single pair of full-compute and naive-cache trajectories at each setting, CalibCache fits scalar acceleration maps offline by centered least squares. These maps are then applied during sampling without additional full-network evaluations or online optimization. Across FLUX.1-dev and Qwen-Image on DrawBench and DiT-XL/2 on ImageNet-256, CalibCache consistently improves fidelity or generation quality over TaylorSeer under 20-step sampling at cache intervals $N=3,4,5$. At $N=5$, it reduces FLUX.1-dev LPIPS from $0.563$ to $0.429$ while achieving a $2.86\\times$ denoising speedup over full-compute sampling, and lowers DiT-XL/2 FID from $16.39$ to $10.37$ relative to TaylorSeer.",
+    "abs": "http://arxiv.org/abs/2611.25296v1",
+    "pdf": "https://arxiv.org/pdf/2611.25296v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "提出 CalibCache：通过离线中心最小二乘拟合标量加速度校正图，修正缓存特征与完整计算特征在采样步间的二阶差分偏差，在 20 步采样下提升 FLUX.1-dev、Qwen-Image 与 DiT-XL/2 的生成质量并保持约 2.86 倍去噪加速。",
+      "relevance_reason": "其「缓存近似与完整计算之间的系统性偏差可离线标定」这一思路，可能供核查 LVR 中多步或循环 latent 状态更新时何时复用近似状态、如何补偿累积偏差；但论文本身针对图像生成加速，与视觉推理无直接关联。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-20T21:40:31.776237+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

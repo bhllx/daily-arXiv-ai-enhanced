@@ -1,0 +1,71 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.25382",
+  "input_sha256": "e942c9cd575017e8e6f903d2b2258e0ac409320a25a4aed28d67bacc6d78288a",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-20T21:39:34.352275+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1897,
+        "output_tokens": 532,
+        "total_tokens": 2429,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 313
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.25382",
+    "title": "Text Lives in the Guidance: Preventing Silent Text Rewriting in Cached Diffusion Transformers",
+    "authors": [
+      "Kun Zhou",
+      "Wenmian Yang",
+      "Zhensheng Wang",
+      "Weijia Jia"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": null,
+    "summary": "Diffusion transformers (DiTs) now render long, legible text in images, and feature caching is a standard way to accelerate them. Caches are judged by image-level metrics, which do not check whether the rendered text is still correct. We find that caching silently rewrites this text. On Z-Image, TaylorSeer at 2.9x fewer FLOPs lowers word accuracy from 62% to 46%, while ImageReward and CLIP Score barely change. Sampling with fewer steps at the same compute keeps almost all of this text, so the loss comes from how the cache predicts the skipped steps. Decomposing the cache error along classifier-free guidance (CFG), we trace this loss mainly to the guidance term, the difference between the conditional and unconditional predictions, which caches extrapolate worst on text. Correcting the guidance inside the text alone recovers most of the lost text. We therefore propose GuideCache, which recomputes both CFG branches only on the tokens with the largest predicted guidance error, using the guidance terms that the cache already stores. At 2.4x fewer FLOPs, GuideCache restores full-compute prompt fidelity on Z-Image and Qwen-Image, and on Z-Image it renders text as well as or better than ToCa, TeaCache, and FasterCache while staying much closer to the full model's output. GuideCache works with caches of any order, and on top of fewer sampling steps it keeps more text than step reduction at a higher speedup. These results suggest that acceleration methods for text-rendering models should be evaluated on the text they render.",
+    "abs": "http://arxiv.org/abs/2611.25382v1",
+    "pdf": "https://arxiv.org/pdf/2611.25382v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文发现扩散 Transformer 的特征缓存在加速时会静默改写图像中的文字，并把缓存误差沿 CFG 分解定位到 guidance 项，进而提出 GuideCache：仅对预测 guidance 误差最大的 token 重算两条 CFG 分支，在约 2.4 倍降 FLOPs 下恢复全量计算的文本保真度。",
+      "relevance_reason": "其「缓存状态误差按组成分解，再依据预测误差选择性重算部分 token」的做法，可供核查 LVR 中 latent 状态复用、计算分配与动态重算决策的线索，但属图像生成加速，与视觉推理主线距离较远。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-20T21:39:34.352275+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

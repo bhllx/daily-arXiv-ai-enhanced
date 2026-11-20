@@ -1,0 +1,74 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.26199",
+  "input_sha256": "eb644bc999a8a06077ebb0cc93fdcfdbf65389dc2454dcbc08fed2d25146f0b6",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-20T21:28:56.363867+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1874,
+        "output_tokens": 720,
+        "total_tokens": 2594,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 496
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.26199",
+    "title": "Learning to Think with Images Faithfully via Adaptive Data Selection",
+    "authors": [
+      "Yu Zhao",
+      "Jiaxin Zhang",
+      "Rohit Saxena",
+      "Fazl Barez",
+      "Pasquale Minervini",
+      "Yiwen Guo"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.CL"
+    ],
+    "comment": null,
+    "summary": "Thinking with images (TwI) empowers vision-language models (VLMs) to overcome perceptual bottlenecks by actively cropping and zooming into fine-grained visual details, promising both higher accuracy and interpretable, region-grounded reasoning. However, our analysis shows that the improved accuracy of TwI models does not guarantee faithful tool use; they frequently invoke tools without actually relying on the zoomed region, undermining the reliability of tool-assisted reasoning. We trace this unfaithful behaviour to the training data: when questions are answerable without zooming, the model can answer correctly while ignoring the returned evidence, and this problem is exacerbated during training as the model becomes better at answering without tools. To keep zooming useful throughout training, we adapt the training data to the model's evolving capability and train on questions where correct zoomed evidence can still help the model answer correctly. This selection is supported by a data synthesis pipeline that localises small objects and constructs verifiable questions about their fine details, and complemented by an adaptiveness reward that favours tool-free answers when zooming is unnecessary. The experimental results show that our method substantially improves reasoning faithfulness and achieves state-of-the-art performance on visual search benchmarks (+11.6% on V*, +7.9% on HR-Bench 4K, and +9.4% on HR-Bench 8K). On multimodal hallucination benchmarks, our model also outperforms the compared TwI baselines. These results suggest that improving TwI faithfulness does not sacrifice accuracy and that both can be learnt from the right training data without directly supervising the reasoning process.",
+    "abs": "http://arxiv.org/abs/2611.26199v1",
+    "pdf": "https://arxiv.org/pdf/2611.26199v1",
+    "AI": {
+      "category": "MAIN",
+      "priority": "P0",
+      "brief_summary": "论文诊断「Thinking with Images」工具推理的不忠实问题：VLM 虽会裁剪放大，却常不真正依赖返回区域，并将成因归于训练数据；据此提出随模型能力自适应的数据选择、细粒度可验证问题的合成流程，以及「无需放大时倾向不用工具」的自适应奖励，在 V* 与 HR-Bench 上同时提升忠实性与准确率。",
+      "relevance_reason": "直接对应主线中「答案是否真正使用视觉证据、视觉旁路与信息坍缩」的问题，其「准确率提升不等于忠实使用证据」的诊断和能力自适应数据筛选，可供核查 LOOK 类证据获取与停止决策的监督设计。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-20T21:28:56.363867+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

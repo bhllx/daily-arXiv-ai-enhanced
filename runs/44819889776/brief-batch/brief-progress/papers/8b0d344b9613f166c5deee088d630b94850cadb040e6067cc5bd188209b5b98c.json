@@ -1,0 +1,73 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.26095",
+  "input_sha256": "e86ecabdfc4f0c5c3b0028c52be2c5779ca8dd7f68010579c1283f083c2b0305",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-20T21:30:07.240332+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1877,
+        "output_tokens": 758,
+        "total_tokens": 2635,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 554
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.26095",
+    "title": "Approximate Adjoint Models for Memory and Compute-Efficient Online Learning of Hybrid Models",
+    "authors": [
+      "Emilio González-Zamora",
+      "Pierre Tandeo",
+      "Laurent Debreu",
+      "Said Ouala"
+    ],
+    "categories": [
+      "cs.LG",
+      "math.OC",
+      "physics.ao-ph"
+    ],
+    "comment": null,
+    "summary": "Differentiable programming enables online calibration of numerical models by minimizing errors accumulated along simulated trajectories. This includes estimating physical parameters and training neural sub-models in hybrid configurations. Gradients are typically computed using adjoint methods, or backpropagation through time (BPTT), whose computational and memory costs grow with the length of the training window. This limits the duration and resolution of hybrid-model training, a major bottleneck for realistic geophysical applications. Approaches like truncated BPTT reduces memory use by discarding sensitivities across truncation boundaries, introducing gradient bias and neglecting long-range dependencies. We propose a class of gradient approximation methods that preserve the adjoint recurrence over the full trajectory while approximating only the pullback operators within it. Exact pullbacks are computed by automatic differentiation at sparse anchor states only. Between anchors, sensitivities propagate either through the identity (Zero-order) or through a reused, frozen pullback (Pullback Reuse). This approximation makes the parameter pullback constant within each chunk, allowing the gradient sum to factorize so that a single evaluation per chunk replaces one per time step. We evaluate both on three systems of increasing complexity, an incomplete Lorenz-63 model, a large-eddy closure for two-dimensional quasi-geostrophic turbulence, and bias correction in a multilayer quasi-geostrophic ocean model. Peak memory falls by up to an order of magnitude and runtime up to fourfold, with Pullback Reuse staying closest to the exact gradient direction. In all three cases, approximate gradients support hybrid-model training at comparable accuracy, showing that effective online learning does not require exact gradients.",
+    "abs": "http://arxiv.org/abs/2611.26095v1",
+    "pdf": "https://arxiv.org/pdf/2611.26095v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "针对混合数值模型的在线校准，提出一类梯度近似方法：仅在稀疏锚点状态上用自动微分计算精确 pullback，锚点之间改用恒等映射或冻结复用的 pullback 传播伴随递推，从而在保留全轨迹伴随的同时显著降低峰值显存与运行时间。",
+      "relevance_reason": "与视觉推理无直接关联，但其「保留全轨迹递推、只在稀疏锚点做精确回传」的线索可供核查能否用于长 latent 推理轨迹的低显存信用分配，并规避截断式训练带来的梯度偏差与长程依赖丢失。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-20T21:30:07.240332+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

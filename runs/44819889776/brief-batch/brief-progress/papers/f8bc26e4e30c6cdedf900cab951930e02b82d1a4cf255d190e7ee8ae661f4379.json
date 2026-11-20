@@ -1,0 +1,72 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.25713",
+  "input_sha256": "127d190ab3ef88a2bbbd7d5974a70ce98fef678f8bbdcda196c73670d2e0df4a",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-20T21:34:32.181029+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1940,
+        "output_tokens": 298,
+        "total_tokens": 2238,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 106
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.25713",
+    "title": "Interpreting DeepStack-Style Vision-Language Models: Do Input or Deeper-Layer Visual Tokens Drive Answers?",
+    "authors": [
+      "Yucheng Du",
+      "Yi Nian",
+      "Ruixue Lian",
+      "Yue Zhao",
+      "Xiyang Hu"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": "Includes the supplementary material. Code and numerical results: https://github.com/yucheng-du/interpreting-deepstack-style-vlms",
+    "summary": "DeepStack-style vision-language models feed visual tokens to the language model at its input, and again at deeper layers. We call these the main entry and the later entries. What do the later entries add when the model already has the image? We give the entries versions that differ in one object's color and see which one the answer follows. On photographs, the original DeepStack follows the later entries, while Qwen3-VL-8B/32B follow the main entry. Does weakening the main entry give the later features more influence? On synthetic images, we keep this conflict and reduce color saturation at the main entry only. The unchanged later features gain a stronger effect on the relative scores of the two colors, in all four models, including Granite Vision. This holds even under mild desaturation, when accuracy without the conflict stays at 100%. To test whether later features can also correct errors, we degrade both entries and restore only the later ones. The same blur costs both Qwen models 50 percentage points of accuracy on stripe orientation. The 32B model recovers 48 points and the 8B model only 8. Accuracy with one clean entry predicted which entry each model can lose, and five of six tested predictions held on new GQA attribute questions. With the other entry zeroed, Qwen3-VL-8B loses only 0.3 points on its main entry alone, and DeepStack at most 3.45 points on either entry alone. In split inference on these questions, DeepStack can then send only its main-entry features at higher precision. This takes 49% fewer bytes than all entries at a shared precision, at similar accuracy.",
+    "abs": "http://arxiv.org/abs/2611.25713v1",
+    "pdf": "https://arxiv.org/pdf/2611.25713v1",
+    "AI": {
+      "category": "MAIN",
+      "priority": "P1",
+      "brief_summary": "该论文通过只改变单一物体颜色、削弱或恢复某一入口的视觉特征，比较 DeepStack 类 VLM 的答案究竟跟随输入层还是深层视觉 token，并考察深层特征能否纠错及分流推理的成本。",
+      "relevance_reason": "直接涉及视觉证据在不同深度内部状态中的保留与使用，并用因果冲突实验区分主入口和深层入口的贡献；其「单入口干净即可预测可丢失哪一入口」的发现可供核查深层视觉信息对答案的因果作用与冗余假设。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-20T21:34:32.181029+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

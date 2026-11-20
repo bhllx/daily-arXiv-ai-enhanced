@@ -1,0 +1,74 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.25689",
+  "input_sha256": "ccd76755fad5d5b0e7e11975e4719bfccdb2fa0fa51c0bc9a203a7cfb46e0741",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-20T21:34:53.466135+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1772,
+        "output_tokens": 397,
+        "total_tokens": 2169,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 181
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.25689",
+    "title": "D3-Cache: Accelerating Diffusion Models with Dynamic Mode Decomposition",
+    "authors": [
+      "Yanbo Li",
+      "An Xiang",
+      "Xiaoxin Hu",
+      "Feng Wang",
+      "Cheng-zhong Xu",
+      "Kejiang Ye",
+      "Xitong Gao"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": null,
+    "summary": "Diffusion Transformers generate high-quality images and videos, but every sampling step requires a full network evaluation. Training-free caching reduces this cost by reusing or forecasting network outputs across steps, but common approaches use per-model calibrated skip criteria or maintain per-layer prediction histories. We present D3-Cache, which applies Dynamic Mode Decomposition (DMD) to Diffusion sampling: it fits DMD to a short history of exact velocities and forecasts only the velocity that the scheduler consumes. A horizon-aware gate decides when to skip: whenever the network is evaluated, its output is compared with the forecast for that step, and the larger the error, the sooner the network is evaluated again, up to a cap on consecutive skipped steps. D3-Cache requires no training or per-model offline calibration curve and adds negligible memory. It shares one history length and risk tolerance across the four evaluated models. On four state-of-the-art image and video models, D3-Cache achieves speedups of 2.6-3.8x with high fidelity to the base model output.",
+    "abs": "http://arxiv.org/abs/2611.25689v1",
+    "pdf": "https://arxiv.org/pdf/2611.25689v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "提出 D3-Cache：用 Dynamic Mode Decomposition 拟合近期精确 velocity 的短历史，仅预测 scheduler 所需的下一个 velocity；并以「horizon-aware gate」按预测误差决定何时重新调用网络、最多连续跳过多少步，实现免训练、免逐模型标定的扩散采样加速。",
+      "relevance_reason": "虽属图像/视频扩散加速而非 VLM 推理，但其「用历史状态动力学外推下一步、再以误差门控决定重算时机」的机制，可能为 LVR 中 latent 状态更新与 STOP/计算分配的停止决策提供可核查的类比线索。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-20T21:34:53.466135+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

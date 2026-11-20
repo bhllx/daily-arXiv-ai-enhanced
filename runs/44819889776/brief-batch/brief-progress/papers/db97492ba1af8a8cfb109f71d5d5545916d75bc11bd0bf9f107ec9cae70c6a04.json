@@ -1,0 +1,72 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.25210",
+  "input_sha256": "943e011b70241f4c46aa87ab89ac00369cdb945b4270e68ed53f189c07a292a7",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-20T21:41:21.711896+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1836,
+        "output_tokens": 475,
+        "total_tokens": 2311,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 237
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.25210",
+    "title": "Recurrent Vision Language Models Solve the Shell Game",
+    "authors": [
+      "Dingqiang Ye",
+      "Jiacong Xu",
+      "Wen Zhang",
+      "Yiqun Mei",
+      "Vishal M. Patel"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": null,
+    "summary": "Tracking a hidden object through a video is effortless for humans, yet it remains a bottleneck for vision language models (VLMs). In the shell game, where a ball is hidden under one of several identical cups that are then swapped, VLMs that answer directly stay near chance, thinking models fail on long games, and fine-tuning learns only the lengths it has seen. We argue that the limit is serial computation: each swap must be composed with the last result, and a VLM of fixed depth has only a fixed number of state transitions for it. To address this, we propose RecurrentVLM, which makes every attention layer of a pretrained VLM recur over time by computing the keys and values of finished frame groups from the layer's own output. With a single answer token, RecurrentVLM reaches 100% on VET-Bench and 99.6% on MET-Bench, and 99% on 50-swap games after training on at most 30 swaps. We also observe several interesting phenomena: length generalization emerges suddenly at an aha moment; without recurrence, each swap costs an attention layer; the ball's state forms in the first four attention layers; and recurrence keeps the latest state at the cost of details of earlier moments. These results suggest that recurrent VLMs are a potential solution for tracking the states of unobserved objects in video. Code will be released.",
+    "abs": "http://arxiv.org/abs/2611.25210v1",
+    "pdf": "https://arxiv.org/pdf/2611.25210v1",
+    "AI": {
+      "category": "MAIN",
+      "priority": "P0",
+      "brief_summary": "论文指出 VLM 在「猜壳游戏」类隐藏物体追踪上受限于串行计算深度，提出让预训练 VLM 的每层注意力在时间上循环（用本层输出计算已完成帧组的 key/value）的 RecurrentVLM，并以单个答案 token 在 VET/MET-Bench 上取得近满分结果及超出训练长度的泛化。",
+      "relevance_reason": "直接涉及视觉状态追踪、固定深度下的状态转移次数与长度泛化，其「每增加一次交换就多需一层注意力」「状态在前四层形成」「循环保留最新状态但牺牲早期细节」等观察与 latent 状态中的视觉细节保留、信息坍缩及贡献分配问题高度相关，值得优先核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-20T21:41:21.711896+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

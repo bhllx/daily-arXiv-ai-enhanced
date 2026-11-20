@@ -1,0 +1,72 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.26342",
+  "input_sha256": "15bef38fecb9a0591069c6671adc158892ac01e8a5dac6cac7f20c32decac750",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-20T21:27:36.238178+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1831,
+        "output_tokens": 537,
+        "total_tokens": 2368,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 322
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.26342",
+    "title": "Training LLMs to Follow Reasoning Instructions with Minimal Edits",
+    "authors": [
+      "Alexandra Yakovleva",
+      "Luat Gia Khoi Nguyen",
+      "Juho Kannala",
+      "Harri Valpola",
+      "Alexander Ilin"
+    ],
+    "categories": [
+      "cs.AI"
+    ],
+    "comment": "Accepted at the NeurIPS 2026 Workshop on Transitioning from Pre-training to Post-training",
+    "summary": "Large language models increasingly rely on extended reasoning traces, yet the training signals used to shape this behavior remain coarse. Supervised fine-tuning on full trajectories forces the model to imitate an entire demonstration, overconstraining its output distribution, while trajectory-level reinforcement learning provides only weak credit assignment, rewarding or penalizing whole completions without identifying where they succeed or fail. We propose edit-based training, a general framework for learning from a model's own trajectories via localized textual corrections. Given a sampled completion, an editor identifies the first point of failure under a specified criterion and proposes a minimal replacement span. The model is then supervised only on these edited spans. By design, this concentrates supervision where the model's reasoning first breaks down and aims to preserve its existing reasoning patterns elsewhere. The method applies both offline and online, with the latter continually adapting supervision to the model's evolving failure modes. We instantiate this approach on reasoning instruction following with Qwen3-32B on the ReasonIF benchmark. Compared to full-trajectory imitation and trajectory-level reinforcement learning baselines, edit-based training substantially improves compliance with the reasoning instruction while largely preserving the model's skills on untargeted tasks. These results suggest that localized correction is an effective complement to these approaches for shaping how LLMs reason.",
+    "abs": "http://arxiv.org/abs/2611.26342v1",
+    "pdf": "https://arxiv.org/pdf/2611.26342v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P1",
+      "brief_summary": "提出 edit-based training 框架：从模型自身采样的完整推理轨迹出发，由编辑器定位给定准则下的首个失败点并给出最小替换片段，只对该片段施加监督，并有离线与在线（持续适配演化中的失败模式）两种版本，在 ReasonIF 上用 Qwen3-32B 与全轨迹模仿、轨迹级 RL 对比。",
+      "relevance_reason": "纯文本、不涉及视觉 latent 状态，但其「定位首个失败点、仅做最小片段修正」的细粒度监督可能是 LVR 轨迹训练与贡献分配的可用线索，可供核查如何在施加局部纠正的同时不破坏已有推理模式。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-20T21:27:36.238178+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

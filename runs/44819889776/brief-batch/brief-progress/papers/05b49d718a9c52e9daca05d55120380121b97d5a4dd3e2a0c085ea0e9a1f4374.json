@@ -1,0 +1,79 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.25583",
+  "input_sha256": "9a9f6a5593d225e775b039a23145be1a74943eab73ec3f735fe8c3bedb55990c",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-20T21:36:35.489546+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1888,
+        "output_tokens": 922,
+        "total_tokens": 2810,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 692
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.25583",
+    "title": "DriftGuard: Online Memory-Drift Detection via Causal Attribution for LLM Agents",
+    "authors": [
+      "Licheng Pan",
+      "Yuzhou Chen",
+      "Zhixuan Chu",
+      "Yichen Sun",
+      "Han Zheng",
+      "Zhiyu Wang",
+      "Hao Wang",
+      "Yan Wang",
+      "Bingyu Zhu",
+      "Haiwen Hong",
+      "Longtao Huang",
+      "Kui Ren"
+    ],
+    "categories": [
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "Large language model (LLM) agents rely on persistent memory to plan tool calls and complete multi-step tasks, which exposes them to memory drift: an adversarial or misleading memory alters the execution path and final outcome. In this work, we investigate online memory-drift detection, which estimates each retrieved memory's causal contribution to potential drift at serving time. We identify two fundamental challenges. (1) Content-level features are insufficient for causal memory-drift attribution, as perplexity or retrieval relevance alone cannot determine which retrieved memory would change agent behavior if neutralized; (2) Counterfactual attribution is prohibitively expensive for online detection, as it requires replaying downstream agent and tool execution for each candidate memory, exceeding real-time serving budgets. To address these challenges, we propose DriftGuard, a two-stage framework that decouples offline causal supervision from online estimation. Specifically, DriftGuard first constructs causal supervision through repeated paired counterfactual replays, continuing the original and single-memory neutralized trajectory suffixes from a shared pre-action state. The resulting annotations are aggregated by component-wise majority voting into a memory drift score (MDS) that captures action change, attack removal, violation removal, and task recovery. Guided by this supervision, DriftGuard then learns an online risk model that estimates MDS from pre-action information and flags drift-inducing memories via its maximum component risk, without online counterfactual rollouts. Extensive experiments demonstrate that DriftGuard accurately identifies drift-inducing memories and enables efficient online defense. Code is available at https://anonymous.4open.science/r/DriftGuard-7F0B.",
+    "abs": "http://arxiv.org/abs/2611.25583v1",
+    "pdf": "https://arxiv.org/pdf/2611.25583v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P1",
+      "brief_summary": "提出 DriftGuard，用于 LLM agent 的服务期记忆漂移检测：离线通过配对反事实重放（从共享动作前状态出发，中和单条记忆后继续执行）标注因果贡献并聚合为记忆漂移分数，再训练在线风险模型在动作前估计该分数、标记致漂移记忆。",
+      "relevance_reason": "虽属纯文本 agent 记忆安全，但其「困惑度、检索相关性等内容特征不足以判断因果作用，须做反事实中和」的判断与视觉证据筛选同构，且「离线反事实监督＋蒸馏为在线估计器」的做法可能可供核查，用于低成本分配视觉证据或 latent 状态的因果贡献而免去逐候选重放。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-20T21:36:35.489546+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

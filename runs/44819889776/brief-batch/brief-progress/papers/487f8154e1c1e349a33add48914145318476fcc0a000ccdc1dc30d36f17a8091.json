@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.25681",
+  "input_sha256": "4f9009da3cf54c0f160fa286473b42f2b03c64de1ad728afbbc97f0400bb517f",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-20T21:34:53.907658+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1850,
+        "output_tokens": 361,
+        "total_tokens": 2211,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 174
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.25681",
+    "title": "Explainability of genotype embedding models through observed cohort paths",
+    "authors": [
+      "Amashi Niwarthana",
+      "Aloysius Tan",
+      "Jagath C. Rajapakse"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Deep learning models that combine genotypes with neuroimaging predict neurological diseases more accurately than either modality alone. Their clinical use, however, requires identifying which genetic variants a prediction is based on. Path-based attribution methods like Integrated Gradients address this by integrating the model's gradient from a baseline to the input. These methods assume the model accepts any point along that path as a valid input. Genotype models violate this assumption. They map the three discrete allele dosages \\{0,1,2\\} to vectors through a learned embedding defined only at those values, so a straight line passes through fractional genotypes at which no embedding, and therefore no gradient, exists. Attribution must therefore proceed in embedding space where the choice of path can affect the resulting attribution. We show that the commonly used per-variant estimator does not generally satisfy completeness. Additive separability guarantees completeness for this estimator, but interactions between variants generally break that property. Instead, we integrate along piecewise-linear embedding-space paths connecting genotype waypoints observed in the training cohort. Each path satisfies completeness in the continuum although the interiors of its segments are not necessarily observed. Our method improves faithfulness over Integrated Gradients and discretized Integrated Gradients under both perturbation protocols, achieves the strongest results for Parkinson's disease classification under support-preserving perturbations, and is competitive with a support-background Shapley baseline under per-variant perturbations. It also shows higher seed stability and better recovery of planted non-additive effects in a synthetic benchmark.",
+    "abs": "http://arxiv.org/abs/2611.25681v1",
+    "pdf": "https://arxiv.org/pdf/2611.25681v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "该文指出基因型嵌入模型在分数基因型处无定义，使 Integrated Gradients 的直线路径失效，转而沿训练队列观测到的基因型路径在嵌入空间做分段积分，以提升归因的完备性与忠实度。",
+      "relevance_reason": "其「不可插值状态间需沿有效路径归因」的思路可能为 latent 推理轨迹的贡献分配与支持集约束提供核查线索，但对象是基因组嵌入归因，与 VLM 推理尚无直接联系。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-20T21:34:53.907658+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}
