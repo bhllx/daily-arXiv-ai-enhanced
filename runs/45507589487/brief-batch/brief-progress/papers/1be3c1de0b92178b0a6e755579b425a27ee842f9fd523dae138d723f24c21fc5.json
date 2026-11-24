@@ -1,0 +1,78 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.29336",
+  "input_sha256": "670a1029bc406439345132bcd65ca8c4b8b232d3eb2f42772f17cb714ca53e1c",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-24T23:30:23.003438+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1840,
+        "output_tokens": 567,
+        "total_tokens": 2407,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 325
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.29336",
+    "title": "Probe Before You Learn: Allocating Prompts from Initial Gradients under Label Noise",
+    "authors": [
+      "Jiazhe Zhang",
+      "Zibin Geng",
+      "Qiang Ma",
+      "Xuefeng Jiang",
+      "Yijun Lin",
+      "Jingyi Wang",
+      "Yu Yan",
+      "Xingzhou Zhang",
+      "Min Liu",
+      "Yuwei Wang",
+      "Sheng Sun"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": null,
+    "summary": "Prompt learning provides a parameter-efficient way to adapt pretrained vision--language models through text and visual prompts, but noisy labels prevalent in real-world data inevitably bias prompt updates and thereby undermine adaptation effectiveness. Prior work on robust prompt learning focuses on suppressing unreliable updates under noisy supervision. We uncover a pivotal yet overlooked aspect--prompt allocation: shifting the parameter budget between text and visual prompts can substantially enhance robustness while keeping the training objective and total budget fixed. However, suitable prompt allocations vary across tasks and are unknown a priori, rendering brute-force candidate training computationally prohibitive. We propose GPrompt, a training-free method that derives allocation between text and visual prompts using only loss gradients at initialization before prompt optimization. Using a small sample of images and generated pseudo-labels as shared supervision, GPrompt performs an initialization probe to extract paired text and visual loss gradients, and characterizes the geometry of their trace-normalized Gram matrices through both concentration within each modality and overlap between modalities. GPrompt then derives a closed-form allocation, and projects it onto feasible prompt counts under the exact parameter budget, enabling task-specific selection without training candidate configurations. Experiments across eleven datasets show that GPrompt outperforms the strongest baseline by up to 7.75% while selecting configurations close to the best allocation identified through exhaustive training. The average runtime of gradient probe across datasets is 99.9% lower than that of exhaustive candidate training.",
+    "abs": "http://arxiv.org/abs/2611.29336v1",
+    "pdf": "https://arxiv.org/pdf/2611.29336v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "该论文研究噪声标签下 prompt learning 的鲁棒性，提出 GPrompt：在提示优化前仅用少量图像与伪标签做初始化探针，提取文本与视觉提示的成对损失梯度，按 Gram 矩阵的模态内集中度与模态间重叠度推导闭式分配比例，再在固定参数预算下投影为具体提示数量，从而免训练地选出文本/视觉提示预算分配。",
+      "relevance_reason": "其「训练前用初始梯度几何推断参数预算如何在两种模态间分配」的思路，可能可供核查 LVR 中 latent 推理状态与视觉证据通路的计算或容量分配，以及噪声监督下训练信号的筛选；但论文本身不涉及推理期状态生成与停止决策，需较多核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-24T23:30:23.003438+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

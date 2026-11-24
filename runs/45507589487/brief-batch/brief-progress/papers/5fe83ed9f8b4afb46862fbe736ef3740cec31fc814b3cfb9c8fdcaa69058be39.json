@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.29876",
+  "input_sha256": "3e83abf8671bef5530cf36cf633d48f7cd313f788a55b532ba783d3fe0fe98ba",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-24T23:25:36.758383+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 2012,
+        "output_tokens": 684,
+        "total_tokens": 2696,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 446
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.29876",
+    "title": "Weight Averaging at Small Budgets Confounds Formula-Labeled Pretraining in Microstructure-Property Regression: A Pre-Specified Study with Post Hoc Rechecks",
+    "authors": [
+      "Jonghyun Lee",
+      "Soojung Kang"
+    ],
+    "categories": [
+      "cs.AI"
+    ],
+    "comment": "19 pages, 6 figures",
+    "summary": "Closed-form physics formulas can label synthetic microstructures at no cost, so supervised pretraining on those labels is an alternative to self-supervised pretraining when labels are scarce. One pre-specified protocol tests this on two public simulated benchmarks, two-phase conductivity and short-fiber stiffness: a ConvNeXt-Small is pretrained on 150,000 synthetic images by formula regression or masked reconstruction and fine-tuned on 100, 400, or 1,600 labels. Five fine-tuning seeds from one formula checkpoint have mean residual correlations of 0.994 (conductivity) and 0.999 (stiffness). On conductivity the formula network compresses its predictions (slope 0.64) and has four times the 400-label error of ImageNet initialization. Two confounds interact: the generator renders the low-conductivity phase with the opposite contrast polarity, and the exponential moving average (EMA; decay 0.995, no bias correction) still holds 16% of the initial weights after the 400-label schedule. Without the EMA the slope is 0.97, and over three subsets and five seeds the mismatched checkpoint has 1.4 times the ImageNet error (0.0119 versus 0.0084). Three pretraining runs per polarity leave the comparison inconclusive: matched means (0.0086, 0.0111, 0.0118) fall below mismatched means (0.0119, 0.0120, 0.0123) in aggregate (0.0105 versus 0.0121) but overlap on two of three subsets, and the matched spread (0.0032) exceeds the mismatched spread (0.0004). On stiffness without the EMA, formula pretraining lowers the 100-label error by 18% versus ImageNet over five seeds, including a re-initialized head, while ImageNet seeds also correlate at 0.992. Weight averages that start at the pretrained weights can dominate small-budget comparisons and should be rechecked at the last weights.",
+    "abs": "http://arxiv.org/abs/2611.29876v1",
+    "pdf": "https://arxiv.org/pdf/2611.29876v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "论文在材料微观结构—性能回归任务上用物理公式自动标注合成图像做监督预训练，并在 100/400/1600 标签预算下与 ImageNet 初始化、掩码重建对比；结果显示不加偏差校正的 EMA 权重平均仍保留约 16% 初始权重，叠加生成器对比度极性混淆，会主导小预算比较，去掉 EMA 后结论需重新核查。",
+      "relevance_reason": "与 LVR/VLM 视觉推理无直接关系，但「权重平均残留初始权重、使小数据微调对比失真」这一评估陷阱可能可供核查 LVR 训练消融（如 latent 轨迹监督收益）时各初始化的比较是否被检查点平均混淆。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-24T23:25:36.758383+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

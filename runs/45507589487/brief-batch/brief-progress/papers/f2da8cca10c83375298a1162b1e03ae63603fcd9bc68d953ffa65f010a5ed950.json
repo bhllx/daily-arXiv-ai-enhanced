@@ -1,0 +1,71 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.30005",
+  "input_sha256": "c341563b002d03121a248e3a312fe532c90a3c390d48b196969dc54e5c93474b",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-24T23:24:39.152125+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1937,
+        "output_tokens": 921,
+        "total_tokens": 2858,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 677
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.30005",
+    "title": "Training Dynamics of Large State-Transition Models",
+    "authors": [
+      "Yee Man Choi",
+      "Fengchi Wang",
+      "Ruiquan Huang"
+    ],
+    "categories": [
+      "cs.LG",
+      "stat.ML"
+    ],
+    "comment": "preprint",
+    "summary": "Next-token prediction relies on learned token embeddings whose dimension $d$ is much smaller than the vocabulary size $V$. Existing analyses of training dynamics either fix the embeddings with $d\\ge V$ or train them only in restricted settings. It remains unclear whether jointly training the embeddings by gradient-based methods from random initialization leads to accurate prediction when $d<V$. In this paper, we study this question in the simplest setting where it is already nontrivial, namely next-token prediction with a one-token context, which we refer to as a state-transition model. The model consists of an input embedding and an output embedding, either untied or tied, and is trained from Gaussian initialization by perturbed gradient descent with weight decay on the population cross-entropy loss. We consider ground-truth transition laws whose centered log-probability table has low rank and bounded entries, and measure the prediction quality by the relative prediction gain (RPG). It is zero for the uniform predictor and one for the optimal predictor. For the untied model, we show that when $d=Ω(\\sqrt V)$, with probability at least $1-e^{-cd}$ for some constant $c$, the RPG is above $7/8$ at every iterate in the final $1-1/d$ fraction of training iterations. For the tied model trained on a subset of states, we prove that the RPG on the observed states is $1-O(V/d^2)$, and under a coverage condition on the ground truth and a bound on the learned embeddings, we further prove a prediction guarantee on the unseen states. Our analysis is based on the bounded trace of the Hessian of the softmax cross-entropy loss, which implies that the approximate second-order stationary points reached by training have high prediction gain. Numerical experiments with practical parameter choices illustrate the persistent training gain and the transfer of the tied model.",
+    "abs": "http://arxiv.org/abs/2611.30005v1",
+    "pdf": "https://arxiv.org/pdf/2611.30005v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "从理论上研究单 token 上下文的「状态转移模型」在嵌入维度 d<V 时联合训练输入/输出嵌入的动力学：在低秩、有界条目的真实转移律下，证明 untied 模型训练末段的相对预测增益可持续高于 7/8，tied 模型在观测状态上接近最优，并在覆盖条件下对未见状态给出预测保证。",
+      "relevance_reason": "纯文本嵌入训练理论，与 LVR 无直接关联；但其关于低秩结构可恢复所需状态维度、tied 嵌入在覆盖条件下向未见状态迁移的结论，可能为 latent 工作区的容量、信息保留与证据泛化问题提供类比，Hessian 迹界也可供核查内部状态的预测增益。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-24T23:24:39.152125+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

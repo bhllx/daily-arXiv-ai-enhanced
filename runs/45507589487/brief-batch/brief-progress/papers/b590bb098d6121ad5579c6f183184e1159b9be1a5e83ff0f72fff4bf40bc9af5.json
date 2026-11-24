@@ -1,0 +1,71 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.29180",
+  "input_sha256": "d37743d6bac152089039a45e0a9bf319c4fea8d239b6595f16fb4be77f9a30b5",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-24T23:32:20.379155+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 2014,
+        "output_tokens": 904,
+        "total_tokens": 2918,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 660
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.29180",
+    "title": "loopxDINO: Dense Visual Prediction via Iterative Latent Reasoning",
+    "authors": [
+      "Xiangjing An",
+      "Zhibin Jiao",
+      "Aiting Chen"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "Standard dense visual prediction architectures scale representation capacity by stacking deep feedforward decoders (6-16 transformer layers with 50M-200M parameters). This explicit layer stacking brings substantial activation memory overhead during backpropagation, requires high off-chip memory bandwidth for non-tied weights, and uses static computational allocation that cannot adapt to spatial image complexity.\n  We propose loopxDINO, which replaces physical decoder depth with iterative latent reasoning. It has two decoupled components: (1) a frozen DINOv2-Base backbone extracting spatial features in one forward pass and caching static Key-Value representations in GPU memory; (2) a compact weight-tied Looped Cross-Attention Decoder (7.96M core, 14.85M total trainable parameters) that recurrently updates queries across T iterations. Recurrence is stabilized by step-conditioned adaLN, LayerNorm-based hyper-ellipsoid manifold regularization, and learnable residual contraction damping. Intermediate mask predictions are fed back as spatial attention biases to guide queries toward ambiguous contours with no extra parameters.\n  On Pascal VOC 2012 semantic segmentation with a single RTX 5060 Ti 16GB GPU, loopxDINO (T=2) achieves 85.66% mIoU and 65.01% Boundary IoU. It outperforms 6-layer DINO-Trans6L (54.06M params) by +1.09% mIoU and +7.41% Boundary IoU with 72.5% fewer parameters. Compared to 4-layer DINO-FCN4L probe (2.43M params, 83.82% mIoU), loopxDINO improves boundary delineation by +6.43% bIoU and occlusion resilience by +6.76% mIoU (60% patch masking). With Adaptive Computation Time (ACT), it reaches 87.3 FPS and retains 29.64% mIoU under 60% occlusion (+5.83% over DINO-Trans6L).\n  Source code, pre-trained weights and evaluation suites are open-sourced under Apache 2.0 at https://github.com/loopxDINO/loopxDINO",
+    "abs": "http://arxiv.org/abs/2611.29180v1",
+    "pdf": "https://arxiv.org/pdf/2611.29180v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P1",
+      "brief_summary": "该论文提出 loopxDINO：冻结 DINOv2 一次前向缓存空间 KV，用权重共享的循环 cross-attention 解码器在 T 步内迭代更新 query，并以步条件 adaLN、流形正则、残差收缩阻尼和掩码反馈偏置稳定迭代；在 Pascal VOC 2012 分割上用远少参数超过深层前馈解码器，并结合 ACT 自适应步数。",
+      "relevance_reason": "循环 latent 状态更新、迭代稳定性设计、中间预测回灌为注意力偏置以及 ACT 停步，可能为 LVR 的循环生成、状态收敛与 THINK/STOP 成本权衡提供可核查线索；但任务为密集视觉预测、不涉语言推理，迁移需自行判断。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-24T23:32:20.379155+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

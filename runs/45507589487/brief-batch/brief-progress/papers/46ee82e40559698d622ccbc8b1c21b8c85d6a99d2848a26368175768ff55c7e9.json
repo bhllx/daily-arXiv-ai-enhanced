@@ -1,0 +1,72 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.29489",
+  "input_sha256": "d2d87d31fa2f17da0efde3a7a216ac2e60df87256ae00bf4c0f6533940111efe",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-24T23:29:04.891695+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1910,
+        "output_tokens": 489,
+        "total_tokens": 2399,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 245
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.29489",
+    "title": "CAR: Reducing Decoder Output Shift in Visual Token Pruning via Coverage Selection and Attention Reallocation",
+    "authors": [
+      "Xixi Jiang",
+      "Pingcheng Dong",
+      "Chen Yang",
+      "Xin Yang",
+      "Kwang-Ting Cheng"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": null,
+    "summary": "Visual token pruning is an effective way to accelerate multimodal large language models (MLLMs). However, existing methods degrade substantially under aggressive pruning, especially on visual grounding (VG). We analyze the sources of this degradation from the perspective of the output shift that pruning causes in decoder layers, and decompose this shift in closed form into two terms, an image summary error and an attention allocation error. The summary error stems from the loss of visual information, and the allocation error from the drop in the share of attention assigned to visual tokens. To reduce both errors, we propose CAR (Coverage selection and Attention Reallocation), a token pruning framework that restores attention share while maintaining information. Specifically, to minimize the summary error, whose upper bound tightens as the retained tokens better cover all visual tokens, our coverage selection retains tokens that are both salient and non-redundant, with saliency from encoder heads chosen by a label-free probe. To minimize the allocation error, our attention reallocation reassigns the attention of the discarded tokens to the retained ones through a closed-form logit bias. On Qwen2.5-VL-7B with $90\\%$ of the visual tokens pruned, CAR retains $93.0\\%$ of the unpruned accuracy on visual question answering (VQA) and $77.9\\%$ on VG, against $26.5\\%$ for the best existing method on VG; the logit bias alone raises the VG accuracy of existing methods by up to $24$ points. Experiments on multiple MLLMs across VQA, VG and video understanding show that CAR generalizes well and consistently outperforms existing methods.",
+    "abs": "http://arxiv.org/abs/2611.29489v1",
+    "pdf": "https://arxiv.org/pdf/2611.29489v1",
+    "AI": {
+      "category": "MAIN",
+      "priority": "P1",
+      "brief_summary": "论文分析视觉 token 剪枝在多模态大模型解码层造成的输出偏移，将其闭式分解为图像摘要误差与注意力分配误差，并提出 CAR：用覆盖式选择保留显著且不冗余的视觉 token，再用闭式 logit bias 把被丢弃 token 的注意力重新分配给保留 token，从而在激进剪枝下维持 VQA 与视觉定位性能。",
+      "relevance_reason": "其对解码层输出偏移的分解把「视觉信息丢失」与「视觉 token 注意力份额下降」分开度量，与 LVR 关心的视觉细节是否留在内部状态、答案是否真正使用视觉证据直接相关，可供核查视觉旁路与信息坍缩的诊断方式；但方法本身是推理加速式剪枝，未涉及 latent 状态生成。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-24T23:29:04.891695+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

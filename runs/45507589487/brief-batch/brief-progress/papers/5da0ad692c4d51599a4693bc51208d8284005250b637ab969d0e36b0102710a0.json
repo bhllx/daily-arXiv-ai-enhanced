@@ -1,0 +1,71 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.30728",
+  "input_sha256": "754196cb3f6bc2a10c4aa03ccf864fe36d8f940c01f58387986a5183e8cce92a",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-24T23:16:23.773171+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1929,
+        "output_tokens": 624,
+        "total_tokens": 2553,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 372
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.30728",
+    "title": "Same Seed, Different Picture? Deciding Early at Low Resolution for Seed-Faithful Few-Step Flow Sampling",
+    "authors": [
+      "Huiran Duan",
+      "Weilun Feng",
+      "Yuqi Li",
+      "Yingli Tian"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": "43 pages, 27 figures, 38 tables. Project page: https://duanhuiran.github.io/DtR",
+    "summary": "Few-step samplers make large text-to-image flow models fast, but from the same noise they no longer generate the image of the standard 50-step sampler. Subjects, attributes and layout change, not just fine detail. We trace this loss of seed fidelity to the start of sampling. The coarse part of the initial noise decides coarse structure first, while the noise level is still above 0.9. Few-step samplers cross this range in their first steps, which account for 25-52% of their distance to the 50-step reference. Because this decision is coarse, a half-resolution run from the same coarse noise can make nearly the same decision at a third of the cost. We therefore propose Decide-then-Render (DtR), a training-free sampler that decides the composition in a few low-resolution steps, rebuilds the full-resolution state with the seed's own noise and renders the details. On 4 large models, DtR runs 11-25$\\times$ faster than the reference sampler. At each speed-up, it is closer to the reference and rated higher by ImageReward than every compared sampler, including few-step schedules calibrated per budget and published multi-resolution samplers. On FLUX.1-dev, it remains the most faithful sampler down to about $8\\times$, ahead of caching accelerators. A user study on this model found DtR's samples closer to the reference in 86% of pairwise trials. DtR transfers to a held-out model and to video, and distilled models can serve as its renderers. Project link: https://duanhuiran.github.io/DtR",
+    "abs": "http://arxiv.org/abs/2611.30728v1",
+    "pdf": "https://arxiv.org/pdf/2611.30728v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "该文分析 few-step 扩散/flow 采样器为何从同一噪声得不到 50 步参考图，指出粗结构在采样早期（噪声水平高于 0.9）即被决定，并提出无需训练的 Decide-then-Render：先用低分辨率噪声做几步构图决策，再用原始种子噪声重建全分辨率状态并渲染细节，在多个大模型上取得 11–25 倍加速且更接近参考。",
+      "relevance_reason": "其「低分辨率廉价决策 + 全分辨率细化」的分阶段计算与「同种子对参考采样的保真度」评价协议，可能启发 LVR 中粗粒度 latent 规划先行、动态分配计算以及快速路径与完整推理一致性（保真度）的度量设计，具体可迁移性仍需核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-24T23:16:23.773171+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

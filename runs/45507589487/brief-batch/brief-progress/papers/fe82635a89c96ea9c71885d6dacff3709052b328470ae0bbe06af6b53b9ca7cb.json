@@ -1,0 +1,78 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.29008",
+  "input_sha256": "0f0c63a62405c1e4c23802aa9185d2b22edd2e5a3721a62df38e09621542fca3",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-24T23:33:51.287382+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1837,
+        "output_tokens": 590,
+        "total_tokens": 2427,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 411
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.29008",
+    "title": "Mirrored Min-of-K Training",
+    "authors": [
+      "Jiaru Zhang",
+      "Zeyun Deng",
+      "Hyunsoo Yun",
+      "Yupeng Zhou",
+      "Bingyao Du",
+      "Juntong Peng",
+      "Zichong Yang",
+      "Can Cui",
+      "Chuheng Wei",
+      "Ruqi Zhang",
+      "Ziran Wang"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Min-of-K (MoK) training is widely used to train models that produce diverse outputs from random noise. For each target, it draws K outputs from the model and backpropagates only through the one closest to the target. However, MoK generally does not make the generated distribution match the data distribution. In this paper, we analyze the MoK bias across all values of K and show that tuning K shifts between failure modes, from mode dropping at small K to distribution flattening at large K. We further prove that every nontrivial loss based only on target-candidate distances fails to recover some data distribution, since these distances do not reveal how the candidates are placed relative to each other. Based on these analyses, we propose mirrored MoK (MMoK), a drop-in modification of MoK training that draws one extra sample from the model, applies the closest-candidate selection rule against it, and subtracts the resulting distance. Since this distance is measured between samples of the model, it provides additional information about how the candidates are placed relative to each other. We prove that MMoK can in principle recover data distributions that MoK cannot. We empirically validate MMoK on five scenarios, namely synthetic mixtures, pedestrian and vehicle trajectory prediction, tropical cyclone forecasting, robotic policy learning, and ambiguous medical image segmentation. The results confirm the effectiveness and generality of MMoK in both distribution learning and task performance.",
+    "abs": "http://arxiv.org/abs/2611.29008v1",
+    "pdf": "https://arxiv.org/pdf/2611.29008v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文分析 Min-of-K 训练中 K 值导致的 mode dropping 与分布平坦化偏差，并提出 mirrored MoK：额外采样一个候选，并以候选间距离修正训练目标，以改善数据分布恢复。",
+      "relevance_reason": "其多候选「选最近者」及候选间相对距离目标，可能为 LVR 中多 latent 假设的多样性、覆盖与候选择优监督提供可核查线索，但并非直接研究视觉推理。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-24T23:33:51.287382+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

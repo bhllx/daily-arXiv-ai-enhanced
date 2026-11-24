@@ -1,0 +1,79 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.30235",
+  "input_sha256": "f9d7313c7630007271bee40059e7d7df17159f9f415fe8445d8dcee494bcd7f7",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-24T23:21:24.667144+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1784,
+        "output_tokens": 633,
+        "total_tokens": 2417,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 411
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.30235",
+    "title": "PixelOne: From Options to Pixels in a Single Forward for GUI Grounding",
+    "authors": [
+      "Kanghui Tian",
+      "Shuai Dong",
+      "Yuhan Zhu",
+      "Congcong Wang",
+      "Ji Zhao",
+      "Tianxiang Jiang",
+      "Zhixiong Zhang",
+      "Shengyuan Ding",
+      "Yi Wang",
+      "Jiaqi Wang",
+      "Yu Qiao"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "GUI grounding requires precise clicks at low latency. Recent models such as GUI-Decisions and GUI-Swift predict coordinates in one forward pass using fixed global bins with local refinement. However, screenshot downsampling removes detail needed to locate small controls, while fixed bins cover larger pixel ranges at higher resolutions. We introduce PixelOne, which transfers spatial knowledge from a search teacher to a student that predicts clicks directly from screenshots at native resolution. The teacher uses VideoJEV's text-option scorer to select rows and columns and progressively zoom into candidate regions. The student inherits the teacher's parameters and matches its distributions over explored regions through spatial distillation alongside box supervision. At inference, the same decision head selects a visual token, and a lightweight pixel head predicts the click within it, all in one forward pass. A click-aligned loss encourages pixels inside the target box to score above those outside. Across four benchmarks, PixelOne-Pro-35B-A3B achieves 83.8% mean accuracy, the highest among the evaluated single-forward grounders, with a mean latency of 0.43 s per target.",
+    "abs": "http://arxiv.org/abs/2611.30235v1",
+    "pdf": "https://arxiv.org/pdf/2611.30235v1",
+    "AI": {
+      "category": "MAIN",
+      "priority": "P2",
+      "brief_summary": "PixelOne 研究 GUI grounding 中的高精度低延迟点击定位：把先选行列、再逐级放大候选区域的搜索式 teacher 的空间知识，通过空间蒸馏与框监督迁移给学生，使其在原生分辨率截图上一次前向完成「决策头选视觉 token + 轻量像素头框内定坐标」。",
+      "relevance_reason": "与「视觉细节在小控件定位中是否被下采样抹掉」及「以单次前向替代迭代放大（LOOK）的计算成本取舍」直接相关，可供核查其空间蒸馏是否真能保留搜索式证据筛选的收益，以及固定分箱与原生分辨率的失配分析。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-24T23:21:24.667144+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

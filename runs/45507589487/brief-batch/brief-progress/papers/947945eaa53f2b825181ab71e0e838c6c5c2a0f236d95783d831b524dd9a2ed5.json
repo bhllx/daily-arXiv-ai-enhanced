@@ -1,0 +1,75 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.28102",
+  "input_sha256": "6d783011ad85a768ecd5aaa3effb8aec8ab8acc3c1ccccfdd59425ffc99fd7de",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-24T23:44:20.149204+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1894,
+        "output_tokens": 452,
+        "total_tokens": 2346,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 224
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.28102",
+    "title": "VideoGym: An Adaptive RL Environment for Long-Video Agents",
+    "authors": [
+      "Jing Wang",
+      "Yi Ke Yun",
+      "Yifeng Yao",
+      "Huishuai Zhang",
+      "Dongyan Zhao",
+      "Tao Wang"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.AI",
+      "cs.MM"
+    ],
+    "comment": null,
+    "summary": "Reinforcement learning (RL) trains video agents to locate sparse evidence for long-video question answering through structured memory retrieval and temporal re-observation. This training, however, faces a long-tail modality distribution in the data. In our source pool, text-heavy questions account for 58% of samples, compared with 15% graph-heavy, 17% visual-heavy, and 10% time-range questions. Fixed-distribution RL therefore allocates fewer rollouts to underperforming question types. Reweighting these types could increase their sampling frequency but repeatedly reuses the same finite banks of original questions. To solve this problem, we introduce VideoGym, a curriculum-based RL environment that jointly constructs video-grounded training tasks and allocates rollouts among them. Within the environment, a memory-augmented VideoAgent is trained to coordinate retrieval from text, graph, and visual memories with temporal re-observation. Across episodes, VideoGym adapts VideoAgent's training distribution online: it casts per-period sample selection as an adversarial bandit over (modality, mode) arms and applies the EXP3 update to shift sampling toward arms with low answer accuracy. To supply the augmented-mode arms, a TaskGenerator-Verifier pipeline produces harder variants of existing questions that remain answerable within the same video. Across five long-video benchmarks, VideoGym lifts RL accuracy from 60.4% to 64.8% on average and by up to 10.5 pp on underrepresented graph-heavy questions with 3.3x sample efficiency. Together, these results show that task expansion and adaptive allocation can improve video agent learning from limited, imbalanced training data.",
+    "abs": "http://arxiv.org/abs/2611.28102v1",
+    "pdf": "https://arxiv.org/pdf/2611.28102v1",
+    "AI": {
+      "category": "MAIN",
+      "priority": "P1",
+      "brief_summary": "论文提出 VideoGym，一个课程式 RL 环境：训练带文本、图、视觉记忆的 VideoAgent 通过记忆检索与时间重观察定位长视频中的稀疏证据，并用对抗 bandit（EXP3）在（模态, 模式）臂上在线调整采样分布，配合 TaskGenerator-Verifier 生成更难同视频可答变体。",
+      "relevance_reason": "记忆检索与时间重观察直接对应 LOOK 式证据获取与视觉证据筛选，其按题型表现动态分配 rollout 的做法可供核查与动态计算、停止决策及训练监督贡献分配的关联；但文中未涉及 latent 推理状态，证据使用是否被真正利用仍需读原文确认。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-24T23:44:20.149204+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

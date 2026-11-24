@@ -1,0 +1,77 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.28115",
+  "input_sha256": "7226c517cdca9d880d3b9a75b98c33859a712d3e2fd0dd4d867576353b220e7e",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-24T23:43:56.039722+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1816,
+        "output_tokens": 380,
+        "total_tokens": 2196,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 164
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.28115",
+    "title": "NOVA: Normalization-Aware Output-Guided Attention Acceleration for Video Diffusion Transformers",
+    "authors": [
+      "Wenxuan Miao",
+      "Haosong Liu",
+      "Aiyue Chen",
+      "Yiwu Yao",
+      "Zihan Liu",
+      "Anbang Wu",
+      "Yiming Gan",
+      "Jingwen Leng",
+      "Minyi Guo",
+      "Yu Feng"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": null,
+    "summary": "Video diffusion transformers (vDiTs) have become the main backbone for video generation. The quadratic cost of self-attention limits their efficiency at high resolutions and long durations. Existing sparse attention methods often rely on preserving high attention weights. However, these criteria do not fully capture the fidelity of the final value-weighted output, whose error depends jointly on changes to the attention numerator and the softmax denominator.\n  We propose NOVA, a coarse-to-fine sparse attention framework that first approximates the full normalized output using size-weighted key/value centroids. Building on this estimate, we construct a residual proxy that accounts for coupled numerator-denominator errors by centering value contributions around the estimated output. This proxy guides the selection of query-key blocks for refinement under a predefined block budget for each query cluster. Selected blocks are evaluated through exact token-level computation, while the remaining blocks contribute through their centroids under a shared softmax normalization. On five vDiTs, NOVA achieves the best PSNR, SSIM, and LPIPS among sparse attention methods, improving PSNR by up to 1.55\\,dB over the strongest baseline, while delivering up to 1.82$\\times$ end-to-end speedup on an H100 GPU.",
+    "abs": "http://arxiv.org/abs/2611.28115v1",
+    "pdf": "https://arxiv.org/pdf/2611.28115v1",
+    "AI": {
+      "category": "EXCLUDE",
+      "priority": "NONE",
+      "brief_summary": "NOVA 提出面向视频扩散 Transformer 的粗到细稀疏注意力框架，用尺寸加权的 key/value 质心估计归一化输出并构造残差代理，在固定块预算下选取 query-key 块做精确计算，以提升高分辨率长视频生成的效率。",
+      "relevance_reason": "该工作属于视频生成的注意力加速，目标是生成保真度与吞吐，不涉及多模态推理状态、视觉证据使用或停止决策；其“注意力权重不等于归一化输出保真度”的观察虽可能与注意力结构分析有微弱关联，但材料未给出与 LVR 相关的具体线索，故排除。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-24T23:43:56.039722+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

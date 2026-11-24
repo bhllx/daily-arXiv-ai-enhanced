@@ -1,0 +1,75 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.29674",
+  "input_sha256": "315c079617452d30e439c7ff9cf600b92d26b370c5ea6f2fb37bea06d0b7dc7a",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-24T23:27:45.077305+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1841,
+        "output_tokens": 713,
+        "total_tokens": 2554,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 490
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.29674",
+    "title": "DeclareViT: Decoupling Early Classification from Feature Refinement with Exit Query for Efficient ViTs",
+    "authors": [
+      "Xinrui Gong",
+      "Yao Rong",
+      "Chuangtao Chen",
+      "Daniel Ochs",
+      "Ulf Schlichtmann",
+      "Bing Li",
+      "Kristian Kersting",
+      "Grace Li Zhang"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": null,
+    "summary": "Vision Transformers achieve remarkable recognition performance but incur substantial computational cost during inference, limiting their use in latency- and compute-constrained deployment scenarios. Early-exit inference offers a promising solution by allowing easy samples to terminate at intermediate layers. However, existing approaches typically couple early classification with the shared backbone, requiring intermediate representations to support both early classification and subsequent feature refinement. Under joint training, the corresponding optimization objectives jointly update shared backbone parameters, which can lead to conflicting gradient directions. Motivated by this observation, we introduce DeclareViT, a framework that decouples early classification from feature refinement. Each exit uses a dedicated query to read intermediate features through one-way cross-attention without modifying the backbone token stream. The query branches are optimized for early classification while the backbone and final classifier remain frozen. Across ViT, DeiT, and Swin on CIFAR-100, ImageNet-1K, and Food-101, DeclareViT consistently establishes a state-of-the-art accuracy-efficiency trade-off: It achieves 1.58 times to 2.57 times multiply-accumulate (MAC)-based speed-up with only a 0.39-1.91 percentage-point accuracy drop. Wall-clock measurements on CPU and GPU further demonstrate practical inference acceleration. Code is available at https://github.com/TUDa-HWAI/DeclareViT.",
+    "abs": "http://arxiv.org/abs/2611.29674v1",
+    "pdf": "https://arxiv.org/pdf/2611.29674v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文提出 DeclareViT：为每个早退分支设置独立 query，通过单向 cross-attention 从 ViT 中间层读取特征完成早分类，不修改主干 token 流，并冻结主干与最终分类器，以缓解联合训练的梯度冲突；在 ViT、DeiT、Swin 上报告了精度-效率权衡与实测加速。",
+      "relevance_reason": "早退层选择可作为动态计算与 STOP 决策的参照，而「只读 query 不扰动主干」的设计可供核查 LVR 中如何抽取中间层证据而不破坏推理表示；不过其任务是图像分类，未涉及 latent 推理状态的生成与使用。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-24T23:27:45.077305+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

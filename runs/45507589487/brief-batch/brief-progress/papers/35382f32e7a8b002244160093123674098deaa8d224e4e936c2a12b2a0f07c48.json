@@ -1,0 +1,72 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.31105",
+  "input_sha256": "b4e81362c70680599e22e24e390934ab71d13c82a490d228e3110d7df3c6f03b",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-24T23:13:26.242833+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1871,
+        "output_tokens": 516,
+        "total_tokens": 2387,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 246
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.31105",
+    "title": "LiveLoRA: Exact KV Cache Migration Across LoRA Updates for LLM Agents",
+    "authors": [
+      "Tianyi Huang",
+      "Samuel Xu",
+      "Ivy Gu",
+      "Nathan Huang",
+      "Siqi Zhang"
+    ],
+    "categories": [
+      "cs.AI"
+    ],
+    "comment": "Accepted at the NeurIPS 2026 Workshop AgenticOS: Co-designing Systems and ML Foundations of an OS Layer for Agentic AI",
+    "summary": "Updating an LLM adapter should not require replaying the full interaction history of every active session. Yet reusing key-value (KV) cache entries computed under an earlier version mixes model versions, while full-history re-prefill becomes increasingly costly as histories and session fleets grow. We introduce LiveLora, a model-runtime co-design for exact final-block KV cache migration. Frozen lower decoder blocks and fixed K/V adapter down-projections preserve each token's base projections and low-rank coordinates across adapter versions. The runtime reconstructs candidate K/V, reevaluates the latest token through the final block, and commits the adapter, cache, and next-token logits together. We prove continuation equivalence to full-history re-prefill in exact arithmetic under the stated model assumptions. On Qwen2.5-3B-Instruct, median paired publication speedups over full-history re-prefill average $68.98\\times$ across five runs for 32 active sessions with 8K tokens each. Serving benchmarks show approximately 4.8% decoding overhead relative to native cached decoding. Compared with retained-boundary replay, compact retention gives a $3.42\\times$ reduction in additional session storage at 8K, with similar measured publication-plus-decoding cost. LiveLora allows persistent LLM agents to adopt new adapter versions without replaying their full interaction histories.",
+    "abs": "http://arxiv.org/abs/2611.31105v1",
+    "pdf": "https://arxiv.org/pdf/2611.31105v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文提出 LiveLoRA，一种模型与运行时协同设计：利用冻结的下层解码块与固定的 K/V 低秩下投影，使每个 token 的基投影与低秩坐标在 adapter 版本切换后保持一致，再通过末层块重算最近 token，完成 KV cache、adapter 与下一 token logits 的同步提交。作者在精确算术下证明其与全历史重新 prefill 的续写等价，并在 Qwen2.5-3B 上报告相对全历史重算的中位加速与较低解码开销。",
+      "relevance_reason": "其「缓存状态在模型版本变化后是否仍可复用、如何判定等价」的论证方式，可能为 LVR 中 latent/注意力缓存的跨步骤复用与失效条件提供可核查的参考线索，但该文面向 agent 服务效率而非视觉推理，迁移需自行判断。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-24T23:13:26.242833+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

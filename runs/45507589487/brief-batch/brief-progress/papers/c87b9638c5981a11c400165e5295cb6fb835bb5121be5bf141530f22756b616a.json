@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.28684",
+  "input_sha256": "b980226d9f94b8d1622b9019589174bc7756a39d9749c53d8ace4bf77711adc7",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-24T23:37:42.683370+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1836,
+        "output_tokens": 525,
+        "total_tokens": 2361,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 324
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.28684",
+    "title": "Rethinking Visual Token Retention in Multimodal Reasoning",
+    "authors": [
+      "Fawaz Sammani",
+      "Nikos Deligiannis"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": null,
+    "summary": "Autoregressive Large Vision-Language Models solve multimodal reasoning tasks by retaining hundreds or thousands of visual tokens, allowing every generated token to attend to the visual tokens at any time during the generation process. However, whether continuous access to these visual tokens is necessary remains poorly understood. In this work, we investigate how visual token influence evolves along two dimensions: generation time and transformer depth. Using long-form visual reasoning benchmarks and multiple model scales, we first analyze the attention dynamics across generation time and transformer depth. We identify a temporal and depth-wise structure in the use of visual information. Visual attention peaks during the initial generation steps and then rapidly declines as attention shifts toward previously generated reasoning tokens. Across depth, visual influence is concentrated in intermediate layers and becomes very weak in the final layers. We further verify these observations with causal intervention that removes all visual tokens across generation time and model depth. These interventions confirm that visual-token dependence in multimodal reasoning is neither temporally persistent nor uniformly distributed across transformer depth. Thus, retaining the complete visual context at every layer and decoding step may be unnecessary. Our experiments demonstrate that we can remove up to 59\\% of tokens from the full input prompt across generation time and 11\\% across all transformer layers, while incurring only a very small performance drop. On video benchmarks, up to 65\\% of the input prompt tokens can be removed during generation without affecting performance.",
+    "abs": "http://arxiv.org/abs/2611.28684v1",
+    "pdf": "https://arxiv.org/pdf/2611.28684v1",
+    "AI": {
+      "category": "MAIN",
+      "priority": "P1",
+      "brief_summary": "该文考察自回归 LVLM 多模态推理中视觉 token 的必要性：沿生成步与 Transformer 深度分析视觉注意力动态，并用跨时间、跨层的因果干预移除视觉 token，验证视觉依赖既非全程持续也非各层均匀，据此在仅小幅掉点下削减大量输入 token。",
+      "relevance_reason": "直接关系「LOOK」的时机与成本：揭示视觉证据影响集中于生成初期与中间层，可供核查按步、按层筛选或延迟注入视觉证据的设计，以及为何保留完整视觉上下文可能冗余。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-24T23:37:42.683370+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

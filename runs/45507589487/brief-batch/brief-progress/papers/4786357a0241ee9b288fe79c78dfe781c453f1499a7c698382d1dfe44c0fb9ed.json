@@ -1,0 +1,72 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.29460",
+  "input_sha256": "86fe301ffd128ef5d85ec7880c52e1bac99af67c4bb4b5d63b3474c51c3e6509",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-24T23:29:22.164496+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1880,
+        "output_tokens": 701,
+        "total_tokens": 2581,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 523
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.29460",
+    "title": "Fill in the Blanks: Non-Autoregressive Schema-Parallel Key Information Extraction with CTC Decoding",
+    "authors": [
+      "Shaked Perek",
+      "Avihu Dekel",
+      "Ben Wiesel",
+      "Sivan Harary",
+      "Eli Schwartz"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": null,
+    "summary": "Vision-language models (VLMs) extract structured data from documents by generating the requested JSON one token at a time, so their sequential steps grow with the length of the answer. Yet in key information extraction (KIE) the schema already fixes the answer's structure: keys, nesting and lists are known before decoding, and only the values are unknown. We exploit this with a non-autoregressive extractor that writes the structure from the schema, sizes every list with a count pass, and predicts all values in parallel, in a fixed number of passes that does not grow with the document. Each value is decoded with connectionist temporal classification (CTC) in its own block of slots, so its length never has to be predicted, and a value that is still open after its block gets a larger token budget. Zero-shot on VAREX, CORD and FUNSD, our 4B extractor is 3.5$\\times$ faster than the diffusion-VLM competition on average (up to 5.6$\\times$) and more accurate, with 4--6 forward passes per document where block diffusion needs 12--74. The same extractor also drafts for speculative decoding with its own autoregressive base: it runs 8.3$\\times$ faster than autoregressive decoding (up to 10.4$\\times$) within 0.4 points of its accuracy, and 3.3$\\times$ faster than speculative diffusion decoding while 13.0 points more accurate. We release the model and code.",
+    "abs": "http://arxiv.org/abs/2611.29460v1",
+    "pdf": "https://arxiv.org/pdf/2611.29460v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文提出利用答案 schema 已知结构的非自回归文档关键信息抽取器：按 schema 写入结构，计数确定列表长度，并用 CTC 在槽块中并行解码所有值。",
+      "relevance_reason": "其固定轮次的槽位并行解码、CTC 免长度预测及按未完成值追加预算，或可为 LVR 的并行状态生成与动态计算分配提供方法线索，但研究对象是输出空间抽取而非 latent 推理。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-24T23:29:22.164496+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

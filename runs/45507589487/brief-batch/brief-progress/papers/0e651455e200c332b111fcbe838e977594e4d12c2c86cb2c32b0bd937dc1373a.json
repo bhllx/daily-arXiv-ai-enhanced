@@ -1,0 +1,68 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.28122",
+  "input_sha256": "d329431696523912d1838aa159083933304115f02dd381242089391407b37ae6",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-24T23:43:40.958028+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1890,
+        "output_tokens": 720,
+        "total_tokens": 2610,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 487
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.28122",
+    "title": "RALC: Risk-Controlled Local Adoption of Segmentation Updates with Few Calibration Images",
+    "authors": [
+      "Shize Yin"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": null,
+    "summary": "Fine-tuning a road-scene segmenter for rain and nighttime driving can introduce errors on normal daytime images. With few labeled normal images for calibration, a whole-image risk check may reject changes that would pass if adopted locally. Risk-Controlled Adoption of Label Changes (RALC) selects local changes from a fixed model update, using confidence differences and an image score to form nested candidates. On each normal calibration image, RALC measures how many more errors each candidate makes than the original model, assigning zero loss when errors stay the same or fall. At test time, each replacement can add at most one error, so the replacement count bounds the net increase without test labels. RALC combines this candidate-dependent bound with recorded calibration losses to select the largest set that passes the risk check. If the models and adoption rules are fixed before calibration and normal calibration and test images are exchangeable, the expected per-image loss stays within budget. On held-out BDD100K, we evaluated three weight-interpolated updates with 10 additional normal images per calibration draw. At a common fixed budget, adverse-scene mIoU was 1.89--3.19 percentage points higher with RALC than with whole-image adoption, while measured mean normal loss was also higher. After matching this loss post hoc at 1,000 pixels per image, RALC still led by 1.135--2.428 points. Selecting changes in $8\\times8$-pixel cells recovered 93--98% of this advantage. With 250 calibration images at the original budget, both rules adopted all three updates in full.",
+    "abs": "http://arxiv.org/abs/2611.28122v1",
+    "pdf": "https://arxiv.org/pdf/2611.28122v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "论文提出 RALC：在固定模型更新下，用少量正常图像校准，以置信度差构造嵌套的局部替换候选（如 8×8 像素单元），并用“每个替换至多多一个错误”的候选相关界控制净损失增加，从而在无测试标签时选取可采纳的最大局部改动集合。",
+      "relevance_reason": "其「用校准图像界定局部改动带来的净错误增加」的采纳/停止规则，可能为 LVR 中何时采纳或停止潜在状态更新、如何为引入新证据的风险定界提供评价与门控线索；但该工作属道路分割部署，与 latent visual reasoning 相隔较远，可迁移性需核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-24T23:43:40.958028+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

@@ -1,0 +1,77 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.28100",
+  "input_sha256": "52ca18a551e76594d4be6ffdd9a083959f33d805681d32f31e0a9d4e17e53d61",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-24T23:44:24.917941+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1922,
+        "output_tokens": 591,
+        "total_tokens": 2513,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 404
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.28100",
+    "title": "You Only Think Once: Rescuing Hybrid Vision-Language Models Lost in Thought",
+    "authors": [
+      "Tianyi Tan",
+      "Wentao Wang",
+      "Xiaohan Li",
+      "Zining Ren",
+      "Siyuan Li",
+      "Xutao Mao",
+      "Rui Qian",
+      "Luoxi Zhang",
+      "Shiwen Ni"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Thinking at length before answering is expected to strengthen the visual reasoning of vision-language models (VLMs), yet hybrid VLMs often get lost in thought: their thoughts loop or exhaust the budget without an answer, so thinking can score below answering directly. Existing early-exit methods watch a thought for the moment its answer is ready and force the answer out of it, but in a hybrid VLM that moment often never comes. We find that the remedy is not to stop a failing thought earlier, but to stop taking its answer: once a thought is given up, the model's own direct answers decide. Based on this, we propose **YOTO (You Only Think Once)**, a method that answers first and thinks at most once. YOTO draws direct answers until a probe-weighted vote settles; only an unsettled problem receives a single thought, which a failure head on the hidden state monitors and stops as soon as it predicts failure, handing the problem back to direct answers. At a matched 20k-token budget, YOTO is up to 5.9 points more accurate than the strongest early-exit baseline, using one failure-head threshold across model sizes. Keeping the released weights frozen, it adds only two linear probes. On the full MathVision benchmark, YOTO improves Qwen3.5-2B from 40.1% to 57.3% and Qwen3.5-4B from 68.3% to 73.7%, above the 72.8% that Qwen3.5-9B, a model more than twice its size, reaches with thinking. Its gains carry over to five further benchmarks and a second model family. These results suggest that hybrid VLMs reason better by answering first and thinking once than by thinking longer.",
+    "abs": "http://arxiv.org/abs/2611.28100v1",
+    "pdf": "https://arxiv.org/pdf/2611.28100v1",
+    "AI": {
+      "category": "MAIN",
+      "priority": "P1",
+      "brief_summary": "提出 YOTO：先多次直接作答并用探针加权投票判断是否收敛，仅对未收敛问题进行一次思考，再由隐状态上的失败头预测失败并提前终止、回退到直接答案。",
+      "relevance_reason": "直接涉及 VLM 中 THINK/STOP 的收益与成本，把停止决策落实为隐状态失败预测和回答回退机制；可供核查失败头依赖推理内容还是表层信号，以及单一阈值在不同模型规模与长度上的泛化。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-24T23:44:24.917941+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

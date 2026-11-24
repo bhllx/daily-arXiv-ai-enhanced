@@ -1,0 +1,73 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.30278",
+  "input_sha256": "6a541a61951a441ff3b6a67d4226f1333885365409e5d1a485161e4eee56d7e2",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-24T23:21:09.045321+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1956,
+        "output_tokens": 557,
+        "total_tokens": 2513,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 321
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.30278",
+    "title": "RigidAnchor: Cross-View Geo-Localization for UAV via Iterative Planar Rigid Alignment",
+    "authors": [
+      "Bo Wang",
+      "Dekang Zhu",
+      "Jian Li",
+      "Zhipeng Meng",
+      "Bo Wang",
+      "Dewen Hu"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": null,
+    "summary": "A UAV that flies without GNSS has to estimate its absolute position and heading without any external signal. Most existing methods for UAV-to-satellite cross-view geo-localization (U-S CVGL) treat the task as image retrieval: they compress the UAV image and each satellite tile into separate descriptors, rank the tiles by their similarity, and return the center of the best tile. The output can therefore only lie on a pre-defined grid, its accuracy is limited by the tile size, and no heading is produced. Regressing the pose in a single pass removes the grid, but it leaves no chance to correct the estimate afterwards. We observe that satellite tiles are not independent samples. They are laid on the map at a fixed spacing, scale and orientation, so neighboring tiles join into one continuous satellite block with a consistent metric, and a nadir UAV view of that block differs from it by a planar rigid transform only, i.e. a 2D translation plus an in-plane rotation. We therefore reformulate U-S CVGL as solving for this transform between two images of different sizes. Position and heading then become parts of one geometric quantity, and the accuracy is no longer limited by the tile grid. We propose RigidAnchor, which solves the transform iteratively. The network encodes the two images and builds a multi-level correlation pyramid between them. At each iteration, it indexes the pyramid with every aerial cell carried through the current estimate, pools the descriptors of all cells into one hidden state, and lets two decoupled heads predict a translation increment and a rotation increment, the latter being composed rather than added. On Bearing-UAV-90K, the cross-view mean errors are 78.6% lower in position and 69.7% lower in heading than Bearing-UAV, and HSR@15 increases by 19.06 points. Code is available at https://github.com/wwsource/RigidAnchor.",
+    "abs": "http://arxiv.org/abs/2611.30278v1",
+    "pdf": "https://arxiv.org/pdf/2611.30278v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文把无人机—卫星跨视角地理定位重构为求解两幅不同尺寸图像间的平面刚体变换（2D 平移加面内旋转），提出 RigidAnchor 迭代求解：构建多级相关金字塔，每轮用当前估计索引金字塔、把所有单元描述符池化为一个 hidden state，再由两个解耦头分别预测平移与旋转增量，旋转以复合而非相加方式更新。",
+      "relevance_reason": "将检索到的视觉描述符池化为单一隐状态并迭代复合几何增量，可能为 LVR 的 latent 状态逐步更新与几何一致性提供可供核查的线索；但该文属定位任务，隐状态是否真正承载证据、增量预测能否迁移到推理状态更新仍需阅读原文判断。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-24T23:21:09.045321+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

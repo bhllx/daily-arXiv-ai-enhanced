@@ -1,0 +1,73 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.28135",
+  "input_sha256": "9c33eebe9070fcaceb07f71efaf3a18bf837c32e3961d08405b3c679e1037cd1",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-24T23:43:23.829924+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1857,
+        "output_tokens": 760,
+        "total_tokens": 2617,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 508
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.28135",
+    "title": "Beyond Output Suppression: Mitigating Privacy Risks in LVLMs via Visual Intrinsic Privacy Erasure",
+    "authors": [
+      "Xiangkui Cao",
+      "Jie Zhang",
+      "Meina Kan",
+      "Shiguang Shan",
+      "Xilin Chen"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "Large vision-language models can extract personally identifiable information from images, making privacy protection essential for their deployment in perception-oriented tasks. Existing targeted fine-tuning and model-editing methods usually suppress sensitive answers by aligning the model toward safe responses. In this paper, we show that such protection can be illusory: although the fine-tuned model refuses to disclose private information under normal decoding, privacy leakage still occurs in sentence completion scenarios. This indicates that existing algorithms only change the model's output distribution, but the model still retains the ability to perceive private information. Private information therefore still remains inside the model. To address this problem, we propose Visual Intrinsic Privacy Erasure (VIPE), which targets privacy-related visual representations to weaken the model's ability to perceive sensitive information. VIPE constructs paired privacy-sensitive and privacy-masked images, uses their internal feature residuals to identify privacy-related visual components, and suppresses these components before they are perceived by the model. To preserve benign visual representations, the erasure objective projects feature differences onto a relaxed benign subspace and adaptively controls the erasure strength. VIPE compels the model to ignore the extraction of sensitive information in the visual representation space, thereby blocking the source of privacy leakage more fundamentally rather than merely altering the model's output distribution. Experiments on Qwen2.5-VL and LLaVA-OneVision show that VIPE substantially alleviates prefix-triggered privacy leakage while maintaining competitive utility on general visual-language benchmarks.",
+    "abs": "http://arxiv.org/abs/2611.28135v1",
+    "pdf": "https://arxiv.org/pdf/2611.28135v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文指出对 LVLM 的隐私微调或模型编辑只改变了输出分布：模型在正常解码下拒答，但在句子补全场景仍会泄漏隐私信息，说明内部仍保留对敏感信息的感知能力。为此提出 VIPE，用隐私敏感图像与掩码图像配对产生的内部特征残差定位隐私相关视觉成分，并在其被模型感知前加以抑制，同时把擦除方向投影到松弛的良性子空间并自适应控制强度，以保留通用视觉表示。",
+      "relevance_reason": "其「输出抑制不等于内部信息消除」的诊断与 LVR 中答案是否真正使用内部视觉状态、视觉旁路的问题相通；用配对输入的特征残差定位任务相关视觉成分并做表示级干预，可供核查是否可用于筛选 LVR 轨迹依赖的视觉证据。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-24T23:43:23.829924+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

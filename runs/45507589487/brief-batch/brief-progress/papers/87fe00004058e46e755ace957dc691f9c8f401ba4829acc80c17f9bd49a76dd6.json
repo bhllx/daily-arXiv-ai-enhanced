@@ -1,0 +1,73 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.28632",
+  "input_sha256": "cdb22ece7d26dbcd762b579f249c8a909647cc0fef89ef75487821c28297316b",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-24T23:38:34.519291+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1919,
+        "output_tokens": 607,
+        "total_tokens": 2526,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 402
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.28632",
+    "title": "Self-prediction residuals improve single-pass detection of wrong-object boxes in grounded vision-language models",
+    "authors": [
+      "Enhao Cui",
+      "Junzhi Yang",
+      "Yaoshun Lin",
+      "Yuhan Feng",
+      "Zijian Chen"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.LG"
+    ],
+    "comment": "35 pages, 5 figures; supplementary material included (65 pages). Code: https://github.com/chen4study-hub/spred",
+    "summary": "Grounded vision-language models write boxes as text, and the mean probability of their coordinate tokens says little about whether a box is right. We study a single-pass signal for boxes on another object, which matter when only the object counts. A linear map, fitted per model to its own answers without labels, reads a box from the hidden state before writing. Its disagreement with the written box, the self-prediction residual, flags boxes on another object although the read-out is far less accurate; the residual's weight was fixed with labels on two models. On a replication list of 1,200 RefCOCOg test items, the residual, averaged over six models, raises the detection of these errors for each of fifteen single-pass scores, by 0.026 to 0.049 in area under the receiver operating characteristic curve (AUROC) on a label-free probe and probes trained on 2,000 labelled items. Over all errors, adding it to the label-free probe moves AUROC, averaged over the models, by less than 0.02 (95% interval). With a fifth of answers reviewed, the share of all errors caught moves from 0.518 to 0.524, that of boxes on another object from 0.505 to 0.607 (post hoc): the residual changes which errors are found, not how many, and in cost-weighted recall it breaks even when such a box costs about 0.86 times another error, and its gain is positive in point estimate at equal costs. These gains come from RefCOCOg lists of MS-COCO images.",
+    "abs": "http://arxiv.org/abs/2611.28632v1",
+    "pdf": "https://arxiv.org/pdf/2611.28632v1",
+    "AI": {
+      "category": "MAIN",
+      "priority": "P1",
+      "brief_summary": "论文研究在 grounded VLM 中，用写框前隐状态经固定线性映射读出框，并以该读出与写出框的不一致作为 self-prediction residual，单遍检测落在其他物体上的错误框，并在 RefCOCOg 上跨多个模型评估其增益。",
+      "relevance_reason": "直接涉及 VLM 内部状态是否保留任务必要的物体与视觉证据，以及答案是否使用 latent 内容；该残差可供核查视觉证据筛选、错误检测与有限复核预算下的停止决策，但需确认其捕获的是错误对象而非一般错误。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-24T23:38:34.519291+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

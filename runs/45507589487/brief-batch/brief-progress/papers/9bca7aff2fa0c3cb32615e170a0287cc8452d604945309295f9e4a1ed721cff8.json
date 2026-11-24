@@ -1,0 +1,71 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.30404",
+  "input_sha256": "1b7cc8242388bcbeeadcad02abec54bc9f4b80ffdfca43d9b599ffbdc7d6d6a5",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-24T23:19:32.353334+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1884,
+        "output_tokens": 526,
+        "total_tokens": 2410,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 321
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.30404",
+    "title": "Time Series Foundation Models on the Edge",
+    "authors": [
+      "Marco Pichler",
+      "Patrick Podest",
+      "Günter Klambauer",
+      "Sepp Hochreiter"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": "Accepted at the NeurIPS 2026 Workshop TS-LIMITS",
+    "summary": "Time series foundation models (TSFMs) forecast zero-shot with accuracy exceeding that of task-specific models, and the smaller ones fit on edge devices. Operational deployments must refresh their forecast as new observations arrive, and privacy and latency requirements often force this refresh onto resource-constrained edge devices. To serve as a forecasting system there, a TSFM must refresh quickly, keep latency and peak memory bounded as the stream grows, and retain its accuracy as the observed history accumulates. Refreshing incrementally without altering the forecast requires temporal causality: non-causal models recompute at every update, causal attention admits a KV cache that grows linearly, and causal recurrent models update a fixed-size state in constant time and memory. We make these states persist across refreshes for every causal architecture and verify equivalence to full recomputation. We evaluate nine TSFM configurations on univariate forecasting against all three requirements, measuring accuracy as a function of context length, single-refresh latency, and latency and memory on streams of up to one million time steps on a server-grade GPU and three edge devices. No model gains on average accuracy beyond its trained context and most lose it well before the full history is reached, while KV caches leave latency and memory growing linearly with the retained history. TiRex-2 is the only one of the nine configurations meeting all three requirements: it refreshes in 14 ms on the GPU and 120 ms on a Raspberry Pi 5, keeps latency, energy and peak memory constant over a million steps, and retains its accuracy on the untruncated history.",
+    "abs": "http://arxiv.org/abs/2611.30404v1",
+    "pdf": "https://arxiv.org/pdf/2611.30404v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文考察九种时间序列基础模型在边缘设备上的流式预测刷新，比较非因果重算、线性增长的 KV cache 与固定大小循环状态在精度、延迟和峰值内存上的表现，并将循环状态跨刷新持久化且验证其与全量重算等价。",
+      "relevance_reason": "其固定大小循环状态、常数时间增量更新与等价性校验，可供核查 LVR 中循环 latent 状态的更新方式，以及缓存结构如何影响长度泛化与计算成本；但属时间序列远领域，需确认向多模态推理迁移的可行性。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-24T23:19:32.353334+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

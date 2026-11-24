@@ -1,0 +1,71 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.28748",
+  "input_sha256": "e859bc490e8ab117c27302f30ed1f5b06496a227f0eb92d244c499849aea4be8",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-24T23:37:03.298435+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1907,
+        "output_tokens": 708,
+        "total_tokens": 2615,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 510
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.28748",
+    "title": "Beyond Single-Turn Privacy: Training-Data Leakage in Conversational RAG",
+    "authors": [
+      "Syed Khaderi",
+      "Karima Makhlouf",
+      "Sami Zhioua"
+    ],
+    "categories": [
+      "cs.AI",
+      "cs.CR"
+    ],
+    "comment": null,
+    "summary": "Retrieval-augmented generation (RAG) is known to reduce training-data leakage in single-turn interactions, but whether this protection persists over multi-turn conversations is unclear. We introduce CRELT (Conversational RAG Extraction Leakage Trajectory), a reusable framework that tracks, turn by turn, the real contact details from the training data that a RAG system discloses. CRELT separates retrieval, conversation history, and attack strategy through a full-factorial design, uses a retrieval corpus verified to contain none of the target PII, and counts an item as leaked only when it is absent from the model input at the turn it is produced. In our main experiment, this criterion excludes 29-53% of raw matches that were already present in the input. Across GPT-J-6B, Pythia-6.9B, and Pythia-12B, targeting real Enron contact details, retrieval reduces disclosure under both full and cleared history, consistent with prior single-turn results. A length-matched control with random passages reproduces 91-99.5% of this reduction under cleared history and 47-78% under full history, so much of it comes from the added context rather than from what is retrieved. With retrieval enabled, however, retaining full conversation history increases disclosure by a factor of 3.6-4.9, while retaining only one previous turn already restores disclosure to approximately the full-history level. With retrieval, clearing the history reduces disclosure by 72-79%, but does not eliminate it. These results show that single-turn privacy audits can substantially underestimate training-data leakage in conversational RAG systems and that conversation-history policy is a critical dimension of privacy evaluation.",
+    "abs": "http://arxiv.org/abs/2611.28748v1",
+    "pdf": "https://arxiv.org/pdf/2611.28748v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文提出 CRELT 框架，逐轮追踪对话式 RAG 系统泄露训练数据中真实联系人信息的轨迹，并用全因子设计分离检索、对话历史与攻击策略的作用，发现保留历史会使泄露成倍上升、单轮审计会低估泄露。",
+      "relevance_reason": "其「仅当目标信息在该轮模型输入中不存在时才计为泄露」的判定口径，可能可供核查 LVR 中答案究竟使用 latent 内容还是走了输入旁路；但论文整体属隐私审计，与视觉推理主线仅间接相关。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-24T23:37:03.298435+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

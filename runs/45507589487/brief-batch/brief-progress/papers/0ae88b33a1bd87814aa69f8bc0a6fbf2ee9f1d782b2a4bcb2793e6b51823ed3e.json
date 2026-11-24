@@ -1,0 +1,77 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.29480",
+  "input_sha256": "eb42fe7d970201be81bb521066b4abad99bc487f7e51c91c9bea4e85b243c399",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-24T23:29:09.218876+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1859,
+        "output_tokens": 470,
+        "total_tokens": 2329,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 251
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.29480",
+    "title": "OnCache: Learning Dynamic Caching Schedules for Efficient Diffusion Inference",
+    "authors": [
+      "Zhikang Xie",
+      "Xichen Ye",
+      "Yifan Wu",
+      "Yuxuan Liu",
+      "Qianlong Wang",
+      "Haoshen Yu",
+      "Peizhu Gong",
+      "Weizhong Zhang",
+      "Cheng Jin"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "Diffusion models have revolutionized generative tasks but incur high inference latency due to iterative denoising. Cache-based strategies accelerate inference by reusing intermediate features, yet they largely rely on static, sample-agnostic schedules. Our empirical analysis reveals two factors that these schedules overlook. (i) denoising dynamics and computational requirements vary across prompts, motivating adaptive computation allocation. (ii) sensitivity to caching errors varies across timesteps, so static schedules may reuse features at error-sensitive steps or waste computation at less sensitive ones. We therefore propose OnCache, a dynamic caching framework that makes prompt-adaptive decisions online about how much computation to allocate and when to refresh cached features. A policy is trained offline on paired compute and cache continuations from identical denoising states, using differences in terminal fidelity and the number of function evaluations (NFE) to account for the downstream consequences of each decision. To further improve the generation quality, a neural corrector compensates for caching-induced errors and mitigates their accumulation throughout the denoising trajectory. Both components are lightweight and introduce negligible additional inference latency. On FLUX.1-dev, OnCache achieves a nearly $3\\times$ generation speedup at $1024^2$ resolution, with LPIPS of $0.156$ and SSIM of $0.860$. We further extend OnCache to video generation on Wan2.1-T2V-1.3B, achieving state-of-the-art efficiency--quality trade-offs across both modalities.",
+    "abs": "http://arxiv.org/abs/2611.29480v1",
+    "pdf": "https://arxiv.org/pdf/2611.29480v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "针对扩散模型推理延迟，提出 OnCache：在线按 prompt 动态决定分配多少计算量、何时刷新缓存特征，并用轻量神经校正器缓解缓存误差累积；在 FLUX.1-dev 与 Wan2.1 视频生成上取得加速与质量折中。",
+      "relevance_reason": "其「同一状态下的成对续算＋以终端保真度和 NFE 差作为决策后果」的离线策略训练，可能为 LVR 中 THINK/LOOK/STOP 的收益—成本分配与刷新/停止决策提供可核查线索；但属生成加速工作，与视觉推理状态无直接关联。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-24T23:29:09.218876+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

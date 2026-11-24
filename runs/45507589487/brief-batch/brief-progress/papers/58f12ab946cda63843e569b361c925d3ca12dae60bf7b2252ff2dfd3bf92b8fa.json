@@ -1,0 +1,79 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.28146",
+  "input_sha256": "f0ff06a38a8fe15a9257c9768455d8fbf27c333a900456f7344e48ed04943142",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-24T23:43:13.243876+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1861,
+        "output_tokens": 798,
+        "total_tokens": 2659,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 560
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.28146",
+    "title": "Close the Loop on the Retrievability Gap",
+    "authors": [
+      "Guangyuan Dong",
+      "Wenhao Li",
+      "Zhen Tian",
+      "Jiaqi Zhang",
+      "Haoyu Wang",
+      "Junhao Xu",
+      "Mingzhe Liu",
+      "Pan Wang",
+      "Fei Shen",
+      "Tat-Seng Chua"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.AI",
+      "cs.IR"
+    ],
+    "comment": null,
+    "summary": "A frozen vision-language encoder now guides image restoration and later indexes what it produced. Over a fixed set of eighteen pansharpening systems on one WorldView-III test set, the fidelity index that ranks them, $Q2^n$ with a reference and HQNR without one, picks the less retrievable of two systems one time in three and one in two; the disagreement lies between the pixel-supervised and the language-conditioned family, and even the best system falls short of the reference, small objects first. We call this the retrievability gap and trace it to the area weighting of position-averaged losses. LEDGER closes the loop around the encoder: it indexes the input into a set of named concepts, generates, re-encodes the output alone with the same frozen encoder, and minimises a set-level soft-Jaccard loss on the coverage of that set, a label-free target available at test time, so that every present concept of a scale receives a gradient share independent of its area. Measured outside the loop by label-grounded probes, held-out retrievers, language-free evaluators, detectors and human raters, LEDGER matches or exceeds the strongest baselines in fidelity on four sensors, raises retrieval by seven to nine points within its vocabulary and two to five outside it, closes two thirds of the reduced-resolution gap to the reference, lifts extraction on raw SpaceNet imagery above the vendor product in each of four cities, and transfers to existing generators as a training-only loss at no inference cost.",
+    "abs": "http://arxiv.org/abs/2611.28146v1",
+    "pdf": "https://arxiv.org/pdf/2611.28146v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文指出遥感全色锐化中，保真度指标与冻结视觉语言编码器的可检索性不一致（称为 retrievability gap），并归因于位置平均损失的面积加权使小目标欠表达；提出 LEDGER，将输入索引为命名概念集合，用同一冻结编码器重编码输出，并以集合级 soft-Jaccard 覆盖损失作为免标注训练目标。",
+      "relevance_reason": "「按面积加权的重建损失会系统性牺牲小目标与细粒度概念」这一诊断及集合级覆盖监督，可能为 LVR 中视觉细节与实体在 latent 状态下被压缩、坍缩的问题提供训练监督线索；其实验只涉及图像复原与检索，尚需核查向推理状态的迁移可行性。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-24T23:43:13.243876+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

@@ -1,0 +1,73 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.29125",
+  "input_sha256": "f063d550aec2e8a1eb1f747cf1f6402eb6b6e19849c1346dca0f9a7fbfb4e07b",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-24T23:33:07.120349+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1742,
+        "output_tokens": 555,
+        "total_tokens": 2297,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 307
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.29125",
+    "title": "SilentWAM: Planning in the Masked State of a Diffusion World Model",
+    "authors": [
+      "Ziyu Zhao",
+      "Casey Sun",
+      "Zeyu Wang",
+      "Shicong Ma",
+      "Emily T Zhang",
+      "Cheng Lu"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": null,
+    "summary": "World-action models learn from future prediction, but accessing their future representations directly at test time can require costly frame generation. Methods that generate future frames before planning incur additional forward passes, while future co-training methods omit explicit future predictions at inference. We introduce \\method, a planner that reads the hidden states of masked future tokens without decoding future frames. We pretrain MMaDA-Parallel-M on driving video using frame-level masked world modeling, which predicts a masked suffix of future frames and explicitly includes inputs with all future frames masked. Learned planning queries attend to these masked positions and the observed context, and a continuous head predicts the trajectory in the same forward pass. With a single front camera, \\method reaches 92.0 PDMS on NAVSIM v1 and 89.3 EPDMS on NAVSIM v2, with an end-to-end latency of 60.3\\,ms.",
+    "abs": "http://arxiv.org/abs/2611.29125v1",
+    "pdf": "https://arxiv.org/pdf/2611.29125v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P1",
+      "brief_summary": "论文提出 SilentWAM，一种驾驶规划器：在视频上以帧级 masked world modeling 预训练并行扩散模型 MMaDA-Parallel-M，测试时不做未来帧解码，而是让规划查询直接读取被 mask 的未来 token 的隐藏状态，再以连续头单次前向预测轨迹，在 NAVSIM 上报告了精度与约 60 ms 的时延。",
+      "relevance_reason": "「不解码未来、直接在 masked 未来位置的隐状态上做决策」与 LVR 关心的预测工作区、隐状态承载任务必要信息及生成成本形成直接对话，可供核查 latent 状态是否真正被答案使用、以及 mask 比例与状态内容的关系，但属驾驶世界模型，需评估向多模态推理迁移的可行性。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-24T23:33:07.120349+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

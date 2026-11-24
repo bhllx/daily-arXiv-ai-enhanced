@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.29704",
+  "input_sha256": "4f8d4994ff2d6eb1e8078504ee7be50038b06e23f647ac0cbbc0848ffc05a714",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-24T23:27:33.914334+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 2037,
+        "output_tokens": 877,
+        "total_tokens": 2914,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 602
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.29704",
+    "title": "Loop-Count Schedules in Looped Transformers: An Empirical Study",
+    "authors": [
+      "Konstantin Kolokolov"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.CL"
+    ],
+    "comment": "16 pages, 4 figures, 11 tables. Code: https://github.com/kvoyager/gatedloop-transformer. Trained weights and per-token traces: https://huggingface.co/konstank/gatedloop-transformer",
+    "summary": "Looped transformers apply one block of layers several times with shared weights, trading parameters for repeated computation. We study how the schedule of the loop iteration count R during training determines whether each extra pass acts as a full layer or as a small correction, using a controlled ladder of 46M-110M-parameter models trained on 2B tokens with learned residual gates on every loop pass and three schedules: R fixed to 2, R sampled uniformly from {1,...,6}, and R sampled from {2,3,4}. We find that the lower bound of the sampling range is the decisive choice. If the sampled range includes R=1, so that some training steps run the block only once and compute the loss on that single pass, the gates collapse to 0.1-0.5 and each additional pass becomes a small correction to the first; if the range starts at R=2, so that every training step runs the block at least twice, the gates stay at 0.6-0.9 and each pass keeps the strength of a full layer, while the model can still be run at any R from 2 up to twice the largest trained value with validation loss within a few hundredths of a nat of its best. The {2, 3, 4} schedule gives the best looped model, 2.909 nats against 2.951 for the parameter-matched plain model, and degrades by only 0.038 nats when run at twice its trained depth. We further show that under a fixed R the direction of the residual stream converges geometrically beyond the trained depth while the loss diverges, which refines a recent finding that static-depth training does not converge, and that reusing the first pass's keys and values on later passes costs 0.01-0.03 nats in every regime while making the per-token iteration uniformly contractive and halving the inference cache. The loop recovers about a third of what real depth provides at equal parameters. The code, trained weights, and per-token traces are released.",
+    "abs": "http://arxiv.org/abs/2611.29704v1",
+    "pdf": "https://arxiv.org/pdf/2611.29704v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P1",
+      "brief_summary": "在 46M–110M 参数、2B token 的纯文本循环 Transformer 上比较三种循环次数调度（固定 R=2、均匀采样 {1..6}、采样 {2,3,4}），借助每轮残差门控判断额外 pass 究竟像一个完整层还是小幅修正，并考察训练深度之外的外推与后续 pass 复用首轮 KV 的代价。",
+      "relevance_reason": "循环块加门控直接对应「重复计算如何形成并更新推理状态」这一问题：采样下界含 R=1 会使门控塌缩、额外 pass 退化为小修正，而 {2,3,4} 可外推到两倍训练深度、复用 KV 使迭代均匀收缩且推理缓存减半，可供核查 LVR 中循环 latent 状态强度、深度/长度泛化以及缓存与注意力结构对 latent 相似度的影响。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-24T23:27:33.914334+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

@@ -1,0 +1,76 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.28221",
+  "input_sha256": "0cee71afaac01776d6b857bba3f9fd795e3a54f477a3507a85b61bb3c7df732d",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-24T23:42:37.063925+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1886,
+        "output_tokens": 591,
+        "total_tokens": 2477,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 368
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.28221",
+    "title": "Video-as-Weights: Compiling a Video Once into Parametric and Token Memory",
+    "authors": [
+      "Wentao Zhang",
+      "Ian Miao",
+      "Chen Qu",
+      "Bill Bi",
+      "Donna Schut",
+      "Yuntian Deng",
+      "Yale Song"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.AI",
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Vision-language models (VLMs) represent videos as thousands of visual tokens, creating a large key-value cache whose memory grows with video length. At the same time, small VLMs that fit on limited hardware understand video far worse than large models. Existing compression methods shorten visual tokens into a brief prompt to save memory, yet the small model still processes them through fixed weights and cannot close this capability gap.\n  To address both challenges, we introduce Video-as-Weights (VaW), which compiles a video once without seeing any question into the parametric and token memory of a frozen interpreter VLM. Specifically, a compiler VLM watches the video, and a single weight decoder jointly generates the interpreter's LoRA weights and optional prefix tokens from every compiler layer, enabling both same-model compilation and strong-to-weak transfer across model sizes and depths.\n  Across six video QA benchmarks, a 0.8B interpreter beats full in-context reading by 1.7 points when compiled by itself and by 4.3 points with a 9B compiler, reducing context from up to 8,192 visual tokens to 64 prefix tokens while using 5.5x less memory than the video's key-value cache. Generated weights add 3.9 points over token compression alone, and all-layer decoding outperforms layer-wise generation by 2.9 points. Mechanistic analysis shows that with prefix tokens, the weights mainly alter attention queries and MLP down projections to guide retrieval and store a baseline summary, whereas without tokens, they shift to attention output projections to write video content directly into the residual stream.",
+    "abs": "http://arxiv.org/abs/2611.28221v1",
+    "pdf": "https://arxiv.org/pdf/2611.28221v1",
+    "AI": {
+      "category": "MAIN",
+      "priority": "P1",
+      "brief_summary": "提出 VaW：由一个编译 VLM 先看视频，再用单一权重解码器从各层生成冻结 interpreter VLM 的 LoRA 权重与少量 prefix token，把视频一次编译进参数与 token 记忆，支持同模型编译和强到弱、跨深度的迁移。",
+      "relevance_reason": "与 LVR 中「视觉证据写入何种内部状态、细节是否保留」直接相关：其权重加 token 的双通道与逐层机制分析（改写注意查询、MLP down 投影、有无 token 时转向注意力输出投影）可供核查信息坍缩与视觉旁路风险，但未涉及多步 latent 推理。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-24T23:42:37.063925+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.28809",
+  "input_sha256": "a13bcf5131b5a3d857772b1f7497b6ee5b16c7c49e9432d7ad875bff6821d76d",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-24T23:36:03.338774+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1847,
+        "output_tokens": 650,
+        "total_tokens": 2497,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 432
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.28809",
+    "title": "RadAG: Reward-Adversarial Attention Guidance for Efficient Inference-Time Alignment of Diffusion Models",
+    "authors": [
+      "Hyeongchan Jeon",
+      "Kwanyoung Kim"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.CV"
+    ],
+    "comment": "25 pages, 13 figures, 14 tables",
+    "summary": "Diffusion and flow-based models have achieved remarkable success in generation, yet their samples often remain suboptimal in fidelity and text alignment. Two lines of inference-time methods address this: extrapolation guidance, such as classifier-free guidance (CFG) and its variants, and reward guidance, which aligns samples with reward models of human preference. Extrapolation guidance needs only forward passes, but it builds its reference by heuristic rules unrelated to the reward and therefore cannot steer sampling toward a given reward. Gradient-based reward guidance steers sampling directly toward a higher reward, but backpropagates through the entire generator at every step. This trade-off raises the question of whether extrapolation guidance can steer sampling toward a higher reward without a full backward pass. To answer this, we introduce Reward-Adversarial Attention Guidance (RadAG), which constructs the reference by perturbing the attention logits of a single block against their reward gradient and extrapolates away from it. We prove that this update increases the reward of the clean estimate to first order, while its backward pass stops at the perturbed block instead of traversing the entire generator. On FLUX.2-klein-4B and 9B with PickScore and aesthetic rewards, RadAG achieves the highest target reward in every setting with 30-65% less time than gradient-based and candidate-based baselines.",
+    "abs": "http://arxiv.org/abs/2611.28809v1",
+    "pdf": "https://arxiv.org/pdf/2611.28809v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "提出 RadAG：沿奖励梯度扰动单个 block 的 attention logits 构造参考，再从中外推采样方向，使反向传播止于该 block 而非整个生成器；并证明该更新一阶提升干净估计的奖励，在 FLUX 模型上以比梯度类基线少 30–65% 的时间取得更高目标奖励。",
+      "relevance_reason": "论文面向扩散图像生成的推理期奖励对齐，与 LVR 无直接关系；但其「只对单层注意力打梯度、构造对抗参考做外推」的思路，可能可供核查为 latent 推理状态的廉价 test-time 引导或信用分配线索。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-24T23:36:03.338774+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.28099",
+  "input_sha256": "9d3f5a4be993c4d0115d53360ccd90ce2b9c75e02732e56a995d558f4023ce22",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-24T23:44:30.187572+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1986,
+        "output_tokens": 809,
+        "total_tokens": 2795,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 575
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.28099",
+    "title": "VidRouteBench: A Benchmark for Budgeted Video-Generation Routing",
+    "authors": [
+      "Dayu Wang"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.CL"
+    ],
+    "comment": null,
+    "summary": "Text-to-video generators differ by two orders of magnitude in price, and a cheap configuration of a strong model is often good enough for a prompt. Routing prompts across such arms (model x sampling configuration) should buy quality at fixed budget, but no dataset supports studying it: public video-preference sets contain only closed models, one configuration each.\n  We release VidRouteBench: 16 arms from 7 open families spanning 121x in measured cost ($0.0025-$0.298 per clip), 27,110 clips (1,421 A800-hours) over 1,625 grouped prompts, a quality score frozen after calibration against human preferences (68.7% CV accuracy vs 66.2% for the best single scorer), per-clip scores on 9 identifiable quality dimensions, repeated seeds, an encrypted test split, and a sealed newest family for cold start. The evaluator compares a router against the best prompt-agnostic mixture of arms, not the best single arm. Per-prompt specialisation here is real and predictable (oracle gap 0.642, 47% reproducible across seeds, prompt-arm interaction F=4.47 at p=1.6e-63), unlike LLM-routing arms, where the same pipeline finds none.\n  We then propose OPMU (one probe, many utilities): label a new arm on K probe prompts, predict its 9 dimensions once, and serve any scenario utility by scalarising afterwards. Over 215 utility directions OPMU Pareto-dominates the prompt-agnostic baseline for 94% of directions versus 90% for per-scenario routers, with no per-scenario retraining. Three baselines fail instructively: bag-of-words features lose almost all routing gain in the low-data regime (0.009 vs 0.168); crediting a new arm with its probe average is harmful (-3.32 recovery) although it is the strong baseline on RewardBench-style arms (0.786); Chebyshev scalarisation does not help, our cost-utility front being convex.",
+    "abs": "http://arxiv.org/abs/2611.28099v1",
+    "pdf": "https://arxiv.org/pdf/2611.28099v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "发布 VidRouteBench：覆盖 7 个开源家族、16 个「模型×采样配置」组合的文生视频路由基准，含实测成本、9 维质量分与加密测试集；并提出 OPMU，用少量探针提示标注新臂、一次性预测各质量维度，再按场景效用标量化出路由选择。",
+      "relevance_reason": "其「固定预算下按 prompt 选择计算支路」以及用探针廉价估计效用再决策的设定，可能与 LVR 中 THINK/LOOK/STOP 的计算价值评估与证据获取/停止决策类比，但对象是视频生成而非推理状态，可供核查其成本-效用框架是否可迁移。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-24T23:44:30.187572+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

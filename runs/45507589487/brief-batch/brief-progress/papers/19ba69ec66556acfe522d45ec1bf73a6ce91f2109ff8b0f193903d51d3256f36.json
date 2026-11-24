@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.28795",
+  "input_sha256": "799da72e40e15aa1fba006cd370f031c8bf6a6d8c13065085e66712339a2d218",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-24T23:36:16.896295+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1849,
+        "output_tokens": 613,
+        "total_tokens": 2462,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 416
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.28795",
+    "title": "Inference Dynamics: Image Classifiers Keep Using Visual Cues After They Are Removed",
+    "authors": [
+      "Ruiqi Wang",
+      "Mingming Lu"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": null,
+    "summary": "Image classifiers are typically evaluated by their final predictions, treating inference as a static image-to-label mapping. Reliability, however, also depends on whether a model can relinquish evidence after that evidence disappears. We reveal a counterintuitive phenomenon: removing a local visual cue from its original location may not remove its influence on the prediction. Once captured by early layers, the cue can become distributed across later representations, making ``no longer visible'' different from ``no longer relied upon.'' We introduce Inference Dynamics, a process-level framework for tracing how cue influence evolves and remains withdrawable across network depth. Given an image and a matched cue-removed reference, we replace cue-aligned states in the original branch with their reference counterparts at successive layers and measure recovery toward the cue-free prediction. The resulting trajectory separates evidence locality from decision-level withdrawability. Across datasets and architectures, we find locality declines before withdrawability collapses: cue-induced information becomes less concentrated at its original support while its effect remains active, before entering an evidence lock-in stage. Consequently, fixed late-stage correction may alter the final readout without removing accumulated cue dependence. We therefore propose Evidence Reset, which selects an input-dependent layer before lock-in and reconstructs cue-aligned states toward their cue-free counterparts. Our results establish evidence withdrawability as a process-level dimension of classifier reliability and suggest a new intervention principle: correction depth should follow the dynamics of evidence rather than be fixed in advance.",
+    "abs": "http://arxiv.org/abs/2611.28795v1",
+    "pdf": "https://arxiv.org/pdf/2611.28795v1",
+    "AI": {
+      "category": "MAIN",
+      "priority": "P1",
+      "brief_summary": "论文提出 Inference Dynamics 过程级框架，通过逐层用去除线索的参考状态替换原图状态，追踪视觉线索影响在网络深度中的演化，发现定位性先下降而可撤销性后崩溃，并提出在锁定前进行 Evidence Reset 的干预方法。",
+      "relevance_reason": "直接诊断视觉证据如何保留在内部状态并持续影响决策，与 LVR 关注的视觉细节保留、视觉证据筛选、信息坍缩及干预深度问题密切相关，其逐层替换分析可供核查 latent 状态中内容与因果作用。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-24T23:36:16.896295+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

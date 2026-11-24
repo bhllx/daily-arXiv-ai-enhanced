@@ -1,0 +1,75 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.31049",
+  "input_sha256": "4f0c2eb9027b7811acd60134cd157b9a3b566c06d21690259b1a650cc3f0537a",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-24T23:13:53.489276+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1867,
+        "output_tokens": 663,
+        "total_tokens": 2530,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 453
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.31049",
+    "title": "RoFE: Rotated Frozen Embeddings for Low-Data Multimodal Tabular Learning",
+    "authors": [
+      "Yihao Qiao",
+      "Jiajian Ma",
+      "Wushuang Rui",
+      "Abhishek Jha",
+      "Aarti Darji",
+      "Yiqiu Shen"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.CV",
+      "stat.ML"
+    ],
+    "comment": "Code: https://github.com/yihao-qiao/RoFE. Project page: https://yihao-qiao.github.io/RoFE",
+    "summary": "Multimodal tabular learning combines tabular data with images and text, often in settings where labeled data are scarce. Tabular foundation models such as prior-data fitted networks (PFNs) offer a promising solution via in-context learning without task-specific training. However, modern image and text encoders produce embeddings with hundreds or thousands of dimensions, far exceeding the number of features encountered during PFN pretraining. Existing approaches bridge this gap using principal component analysis (PCA) to compress frozen embeddings. Surprisingly, we find that this PCA interface can underperform simple linear classifiers when labeled examples are scarce, even though PFNs are designed for small datasets. We identify the underlying failure mechanism: the PFN's per-column standardization removes the variances of the PCA scores. When the PCA keeps every direction of the labeled examples, the examples collapse into a regular simplex in which all pairwise distances are equal. To address this problem, we propose Rotated Frozen Embeddings (RoFE), a training-free method that rotates PCA scores before PFN inference. We theoretically show that rotation makes the column variances nearly equal, so that standardization approximately preserves the embedding geometry. Across image and text classification tasks, encoders, and tabular foundation models, RoFE improves low-data performance over the PCA interface and outperforms baselines that require task-specific training. The improvements also extend to regression.",
+    "abs": "http://arxiv.org/abs/2611.31049v1",
+    "pdf": "https://arxiv.org/pdf/2611.31049v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "该论文研究低数据多模态表格学习中，冻结图文嵌入经 PCA 压缩后输入 PFN 时性能反而下降的问题，指出 PFN 的逐列标准化会抹去 PCA 分数方差、使样本坍缩为距离全等的正单纯形，并提出免训练的旋转方法 RoFE 以近似保留嵌入几何。",
+      "relevance_reason": "其「压缩加标准化导致样本间距离趋同、表示几何坍塌」的诊断可供核查 LVR 中 latent 状态的信息坍缩与相似度结构问题，但与视觉推理本身无直接联系，迁移仅为概念类比。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-24T23:13:53.489276+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

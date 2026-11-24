@@ -1,0 +1,72 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.29059",
+  "input_sha256": "80dae59a0d9ef6a60c306202074dd01492fa0fec6df0e04eb5c7c0f6a5caf70f",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-24T23:33:29.529702+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1881,
+        "output_tokens": 386,
+        "total_tokens": 2267,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 172
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.29059",
+    "title": "Recurrent Point Transformer via Test-Time Training",
+    "authors": [
+      "Wentao Zhou",
+      "Xuweiyi Chen",
+      "Charles Saunders",
+      "Aruni RoyChowdhury",
+      "Zezhou Cheng"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": null,
+    "summary": "Real-world point clouds are not naturally bounded: 3D scans grow as sensors move through rooms, LiDAR surveys extend across forest plots, and 4D captures can span thousands of frames. Yet most point-cloud encoders are designed for fixed-size inputs, forcing inference-time cropping or tiling that loses long-range context and requires ad-hoc output stitching. We formulate arbitrary-extent point-cloud segmentation as recurrent sequence-of-chunks processing and introduce PoinTTT, a recurrent point-cloud encoder built on Point Transformer V3 (PTv3). PoinTTT augments PTv3 with residual Large Chunk Test-Time Training (LaCT) layers in both the encoder and decoder. Each LaCT layer maintains compact fast weights as recurrent state: tokens from each chunk update the fast weights, which are then applied to produce chunk features and passed to the next chunk. This design allows PoinTTT to train on fixed-size chunks while processing scenes of arbitrary spatial or temporal extent, with activation memory bounded by the chunk size. A pilot study on ScanNet and nuScenes shows that recurrent TTT improves segmentation over PTv3 baselines. On FOR-instanceV2, PoinTTT achieves state-of-the-art forest semantic segmentation of 87.9 mIoU with nearly constant memory. On HOI4D, online full-sequence recurrent inference carries state across clips rather than resetting at benchmark boundaries, reaching 42.6 mIoU; a matched full-sequence Mamba control reaches approximately 39.9. These results suggest that test-time training is a practical primitive for scalable spatial and temporal point-cloud understanding.",
+    "abs": "http://arxiv.org/abs/2611.29059v1",
+    "pdf": "https://arxiv.org/pdf/2611.29059v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文提出 PoinTTT：在 Point Transformer V3 编解码器中加入残差式大块测试时训练（LaCT）层，用每个 chunk 的 token 更新紧凑的 fast weights 作为循环状态，从而在固定尺寸块上训练、处理任意空间或时间范围的点云分割，并把激活显存限制在块大小内。",
+      "relevance_reason": "与视觉推理主线无直接关系，但其「以 fast weights 作为跨块循环状态、按输入流更新」的做法，可供核查 LVR 中 latent 状态如何更新、训练与推理状态不一致以及长度泛化的问题。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-24T23:33:29.529702+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

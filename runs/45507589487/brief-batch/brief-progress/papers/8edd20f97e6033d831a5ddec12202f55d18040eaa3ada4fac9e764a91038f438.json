@@ -1,0 +1,79 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.30328",
+  "input_sha256": "8644e042c82bf6065e7dfdda2d1d99bf3a3a1bf489462bd5e4430fb94e5771a8",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-24T23:20:32.333353+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1900,
+        "output_tokens": 614,
+        "total_tokens": 2514,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 387
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.30328",
+    "title": "Draft Forcing: Target-guided Speculative Drafting and Learned Verifier for Autoregressive Video Generation",
+    "authors": [
+      "Chenkai Xu",
+      "Yuji Ren",
+      "Zihui Liu",
+      "Yijie Jin",
+      "Yuhao Shen",
+      "Xin Wang",
+      "Yajing Chen",
+      "Keyang Luo",
+      "Shengju Qian",
+      "Litong Gong",
+      "Tiezheng Ge",
+      "Zhijie Deng"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": "18 pages, 8 figures, 5 tables, including appendix",
+    "summary": "Autoregressive video diffusion models enable streaming synthesis chunk by chunk, yet invoking the large model for every chunk remains costly. While chunk-level speculative decoding can offload chunks to a lightweight draft model, existing approaches suffer from two limitations: (1) an off-the-shelf draft diverges from the target's trajectory, compounding errors in history; and (2) they either omit verification or rely on costly post-decode aesthetic scores rather than verifying consistency against the target. We address both with Draft Forcing, a framework coupling target-guided drafting with an on-policy trained verifier. Specifically, to align the draft for high acceptance, we opt for feature-level drafting, conditioning it on multi-layer target hidden states persisted from committed chunks, whose outputs are pushed to match target trajectories with multi-aspect losses. For verification, we propose an on-policy trained feature-space verifier predicting CDF-calibrated frame-wise relative RMSE against the target. It is trained on speculative rollouts as contexts anneal from random to inference-aligned mixtures, and gates proposals without VAE decoding. On the 14B Self-Forcing target, Draft Forcing achieves $1.63\\times$ DiT and $1.57\\times$ end-to-end speedups on VBench with minimal quality loss, and up to $1.93\\times$ DiT ($1.82\\times$ end-to-end) when combined with orthogonal KV compression. It generalizes to accelerate a streaming variant of MiniMax-H3, generating over $50\\%$ draft frames with competitive quality.",
+    "abs": "http://arxiv.org/abs/2611.30328v1",
+    "pdf": "https://arxiv.org/pdf/2611.30328v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "提出 Draft Forcing，用于自回归视频扩散的分块推测解码：以目标模型多层隐状态为条件的特征级草稿模型产生候选块，并用 on-policy 训练的特征空间验证器按 CDF 校准的逐帧相对 RMSE 门控提案，无需 VAE 解码，在 14B Self-Forcing 上获得约 1.6 倍加速。",
+      "relevance_reason": "其「草稿—验证—门控」以及复用已提交块的隐状态、在特征空间做免解码一致性校验，可能为 latent 推理中的候选状态筛选与采纳/停止决策提供方法线索，但面向视频生成，迁移可行性待核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-24T23:20:32.333353+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

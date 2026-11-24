@@ -1,0 +1,68 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.28191",
+  "input_sha256": "a126b8836374bc1246bf42de553cab12c89c0215dc5d1cbdaf469873986b8ed2",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-24T23:42:55.687846+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1826,
+        "output_tokens": 945,
+        "total_tokens": 2771,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 727
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.28191",
+    "title": "BReD: BEV Residual Diffusion for Feed-Forward Road Gaussian Reconstruction",
+    "authors": [
+      "Baizhi Wang"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": null,
+    "summary": "Accurate road surface reconstruction is essential for autonomous-driving mapping and simulation, but existing methods trade reconstruction quality for cross-scene inference. Optimization-based methods recover detailed surfaces through costly per-scene optimization, while feed-forward methods lack road-specific constraints and often produce large elevation errors. We propose \\textbf{BReD}, a feed-forward framework for reconstructing road elevation, appearance, and semantics from calibrated six-camera sequences. BReD first estimates coarse elevation through LiDAR-supervised depth learning and BEV lifting, using only cameras at inference. A lightweight BEV residual diffusion model then conditions elevation refinement on a camera-derived depth--elevation discrepancy and elevation-aware image features. Diffusion-indexed perturbations expose the model to different discrepancy corruption levels during training, while inference performs one deterministic refinement from the clean discrepancy. The refined elevations are temporally aggregated to anchor road-aligned Gaussians, whose attributes are predicted by a geometry-prior-guided decoder without test-time optimization. On four held-out nuScenes scenes, BReD achieves 7.34 cm elevation RMSE and 90.92\\% semantic mIoU, compared with 14.43 cm for RoGS without test-time LiDAR and 8.88 cm for its test-time-LiDAR-assisted variant; both RoGS variants require per-scene optimization.",
+    "abs": "http://arxiv.org/abs/2611.28191v1",
+    "pdf": "https://arxiv.org/pdf/2611.28191v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "BReD 从标定六相机序列前馈重建路面高程、外观与语义：先以 LiDAR 监督深度学习和 BEV 提升得到粗高程，再用以相机深度—高程差为条件的轻量 BEV 残差扩散精化，并据此锚定道路对齐高斯，推理时无需逐场景优化。",
+      "relevance_reason": "它把粗 BEV 高程作为可精化的中间状态、以「深度—高程不一致」信号条件化残差扩散，可能为 LVR 的 latent 状态更新与误差信号条件化提供可核查线索；但任务属几何重建而非推理，联系较弱。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-24T23:42:55.687846+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

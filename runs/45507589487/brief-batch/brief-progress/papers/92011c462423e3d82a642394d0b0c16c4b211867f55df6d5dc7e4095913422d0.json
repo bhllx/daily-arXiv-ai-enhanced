@@ -1,0 +1,77 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.29156",
+  "input_sha256": "f4053816f351e7d2bb8b54c0a0da07cda36be24fb63c0ef45da890c9df4de2b0",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-24T23:32:40.709170+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1845,
+        "output_tokens": 717,
+        "total_tokens": 2562,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 519
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.29156",
+    "title": "ARC: Adaptive Rollout Control for Efficient Synchronous LLM Reinforcement Learning",
+    "authors": [
+      "Yihui Zhang",
+      "Tianyu Wo",
+      "Jinghao Wang",
+      "Xiao Zhou",
+      "Huitian Xue",
+      "Xiaoyang Sun",
+      "Zeying Wang",
+      "Chunming Hu",
+      "Renyu Yang"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.DC"
+    ],
+    "comment": null,
+    "summary": "Synchronous reinforcement learning (RL) for large language models proceeds through a repeated rollout--barrier--update loop. Each update must wait for a fixed number of complete, group-relative training samples, yet individual response lengths and reward outcomes vary widely and only emerge as generation progresses. Static admission and unconditional completion therefore leave accelerators idle in some steps, and waste computation generating samples that will never contribute to the current update. We present ARC, a closed-loop rollout architecture that governs synchronous RL rollout at group granularity. ARC uses \\textit{Calibrated Streaming Backfill} to judge from partial observations whether a group is still worth completing, backfilling a fresh candidate immediately when it is not; \\textit{Deferred Group Completion} to park an uncertain early stop and resume it later instead of discarding it outright, bounded by a resume-cycle limit that guarantees termination; and \\textit{Adaptive Admission} and \\textit{Pipelining} to order admitted samples by early-measured duration and to admit further candidates only while expected supply still falls short of the target number of accepted groups. Under online evaluation, ARC reduces rollout time by $37.4\\%$, a $1.60\\times$ speedup, and improves effective GRPO throughput by $50.1\\%$ over existing baselines, while directly recovering 98.9\\% of the training groups that would ultimately have been kept.",
+    "abs": "http://arxiv.org/abs/2611.29156v1",
+    "pdf": "https://arxiv.org/pdf/2611.29156v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "提出同步 RL rollout 的闭环调度框架 ARC，用流式回填依据部分生成判断整个 group 是否值得继续完成，配合延迟完成、自适应准入与流水线来减少等待和无效计算，从而加速 GRPO 训练。",
+      "relevance_reason": "其「从部分观测预测是否继续生成、并把存疑的早停暂存后可恢复」的机制，可能为 LVR 的 STOP 决策与部分推理轨迹复用提供可核查线索，但该文只针对训练吞吐而非视觉推理状态，迁移需评估。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-24T23:32:40.709170+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.29752",
+  "input_sha256": "a10facd363175040f2c827ca92bb6c2b6bf7cc772b5a736b987f57d2502d1673",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-24T23:27:02.469249+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1994,
+        "output_tokens": 896,
+        "total_tokens": 2890,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 696
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.29752",
+    "title": "Why Units Die in the Layer After a Frozen Random Encoder, and What the Number of Live Units Measures",
+    "authors": [
+      "Scott M. Norton"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.AI"
+    ],
+    "comment": "31 pages, 7 figures, 4 tables. Supplementary material (121 pages) is included as an ancillary file",
+    "summary": "Reinforcement-learning agents can learn Atari games through a convolutional encoder whose random weights are never trained. They reach expert play in Pong and, without random action repeats, in Breakout, but training takes far longer and few ReLU units in the layer after the encoder stay alive. A dead unit outputs zero for every input and cannot learn. In earlier work we took the number of live units to measure the game's complexity. Here we ask why units die and correct that conclusion. We find that more units die as the layer's inputs lie farther from zero relative to how much they vary. We call this ratio the offset. Earlier work showed this in sparse autoencoders at the start of training. We saw it after training in agents, image classifiers, a reservoir computer and sparse autoencoders on GPT-2. A random encoder leaves the offset of its input roughly unchanged, and a formula predicted its median offset within 25 percent in all 44 cases. So a game with a bright, mostly unchanging screen gives the next layer a large offset. In Pong, subtracting the average screen raised the number of live units from between 3 and 6 of 64 to between 59 and 63, so the number alone cannot show a game's complexity. On unaltered screens none of the agents reached a training score of 18 in 50 million steps. With the subtraction all did within 5 million, about as fast as a trained encoder on unaltered screens. In Breakout the subtraction left more units alive, but average training scores did not clearly improve, and a large gap to a trained encoder remained. So we do not treat their number as something to raise for its own sake. The evidence is from small networks and three games, and in agents and image classifiers changing the offset also changed the size of the inputs. We suggest measuring the offset before training a layer on a fixed front end and, if it is large, trying to subtract the mean input.",
+    "abs": "http://arxiv.org/abs/2611.29752v1",
+    "pdf": "https://arxiv.org/pdf/2611.29752v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "研究冻结随机卷积编码器之后 ReLU 单元大量死亡的原因，提出用输入「偏移量」解释，并在 Atari 智能体等设置中验证减去输入均值可提高存活单元数、加快 Pong 学习，同时修正存活单元数反映游戏复杂度的旧结论。",
+      "relevance_reason": "其偏移诊断与输入均值减法可供核查：冻结视觉前端后，表示偏移可能导致推理层单元死亡和视觉信息坍缩；但研究对象是 RL 智能体而非 VLM 推理，迁移到 LVR 的有效性仍需验证。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-24T23:27:02.469249+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

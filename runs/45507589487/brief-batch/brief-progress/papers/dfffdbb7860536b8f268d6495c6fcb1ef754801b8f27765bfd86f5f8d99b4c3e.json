@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.30388",
+  "input_sha256": "11d16d61176f9030ae9d699291ea8693042707f05976502e7c9e7b1d588986ee",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-24T23:19:46.939905+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1936,
+        "output_tokens": 475,
+        "total_tokens": 2411,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 232
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.30388",
+    "title": "BASE: A Backend-Agnostic Streaming Embodiment Layer for Full-Duplex Conversational Avatars",
+    "authors": [
+      "Chenye Yang",
+      "Jin Jiang",
+      "Shengcai Liao"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": "15 pages, 7 figures, 10 tables",
+    "summary": "Many end-to-end spoken dialogue models can now converse in real time and full duplex, and turning them into 3D avatars requires full-body gestures, listening feedback, and turn-taking. Existing methods couple the motion generator tightly to one dialogue model by reading its internal states or training speech and motion jointly. The motion module must then be retrained whenever the dialogue model changes, cannot be attached to cloud APIs that expose only audio, and entangles role, voice, and motion style. We propose BASE, a backend-agnostic streaming embodiment layer whose only interface to the dialogue model is its emitted speech. First, a conversation state manager driven solely by audio handles speaking, listening, idling, barge-in, and proactive turns on one timeline, while role, voice, motion style, and 3D appearance are set independently. Second, to run an offline 2 s flow-matching gesture model on live audio, we reformulate inference as sliding-window continuation with overlapped look-ahead ensembling, which removes seam jitter. Third, we show that the remaining streaming gap comes from errors accumulating in the self-generated motion history rather than missing future speech; our Drift-Aware History Perturbation (DAHP) reduces this gap in about 50 min on one GPU by injecting inference-like drift into ground-truth training histories, and transfers to a second generator. On BEAT2, streaming BASE reaches an FGD of 0.342, on par with the tightly coupled MIBURI (0.333), and viewers prefer its body motion over MIBURI's in 82% of forced-choice judgments. Without retraining, the same layer drives a cascaded pipeline, three open full-duplex models, and a cloud API in real time.",
+    "abs": "http://arxiv.org/abs/2611.30388v1",
+    "pdf": "https://arxiv.org/pdf/2611.30388v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文提出 BASE，一个与对话后端解耦的流式「具身层」：仅以对话模型输出的语音为接口，用音频驱动的对话状态管理器统一处理说话、倾听、空闲、打断与主动发言，并通过滑窗续写加重叠前瞻集成把离线 2 秒 flow-matching 手势模型搬到实时流式场景，再用 Drift-Aware History Perturbation 缓解自生成历史误差累积。",
+      "relevance_reason": "其「流式差距主要源于自生成历史中的误差累积」及在训练历史中注入推理式漂移的 DAHP 做法，可能为 latent 轨迹训练中的暴露偏差与状态漂移、贡献分配提供可核查的借鉴线索，但研究对象是手势动作而非 VLM 推理。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-24T23:19:46.939905+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

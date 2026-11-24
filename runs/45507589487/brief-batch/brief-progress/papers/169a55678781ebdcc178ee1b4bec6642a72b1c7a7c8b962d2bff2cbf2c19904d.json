@@ -1,0 +1,72 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.28830",
+  "input_sha256": "c4ce18268b5d0341c89eb887ce7ed391031e0c17f2a5c3cbd370bc13392a3cf4",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-24T23:35:45.783562+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1822,
+        "output_tokens": 620,
+        "total_tokens": 2442,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 417
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.28830",
+    "title": "Hidden Sensitivity in LLM Pre-training: A Dynamic System View",
+    "authors": [
+      "Bo Liu",
+      "Yuan Xie",
+      "Junan Chen",
+      "Fujun Han"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "In Large Language Model (LLM) pre-training, loss curves can conceal substantial instability, i.e., even small perturbations may lead to dramatically different predictions while leaving loss nearly unchanged. To investigate this phenomenon and reveal the underlying mechanisms, we first formulate LLM pre-training as a non-autonomous dynamical system that jointly evolves model weights and Adam optimizer states. Based on this formulation, we introduce a normalized sensitivity score in optimizer-relative coordinates to identify sensitive training checkpoints. At one such checkpoint, a weight perturbation of only 10^(-5) leads to 35.7% disagreement in top-1 predictions and 16.2% disagreement in benchmark answers after 200 training steps, with only 0.8% of greedy generations remaining identical despite similar validation losses. Furthermore, we find that perturbations to Adam's first and second moments induce comparably large effects, with similar sensitivity patterns observed in OLMo-1B. Finally, guided by our diagnostic, targeted stabilization reduces top-1 disagreement to 0.83% and increases generation exact match to 88.3%, at the cost of a 0.11-nat increase in validation loss. Our findings reveal a hidden form of optimizer-state-dependent sensitivity in LLM pre-training that conventional loss-based evaluations may overlook, while demonstrating its potential for diagnosis and mitigation.",
+    "abs": "http://arxiv.org/abs/2611.28830v1",
+    "pdf": "https://arxiv.org/pdf/2611.28830v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "该文把 LLM 预训练表述为权重与 Adam 优化器状态共同演化的非自治动力系统，提出优化器相对坐标下的归一化敏感度分数以定位敏感检查点，并显示极小权重扰动会造成预测与基准答案的大幅分歧，进而给出针对性的稳定化干预。",
+      "relevance_reason": "「loss 曲线掩盖内部状态脆弱性」及基于扰动的敏感度诊断，或可供核查 latent 推理状态是否真正承载信息、是否对状态扰动稳健，但其指标面向训练动力系统，能否用于推理期表示仍需验证。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-24T23:35:45.783562+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

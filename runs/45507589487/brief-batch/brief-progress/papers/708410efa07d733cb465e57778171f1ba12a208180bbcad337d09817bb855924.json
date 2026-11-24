@@ -1,0 +1,73 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.30554",
+  "input_sha256": "699885e9eb19338ce37e4b3b8b344c5a9c4cebaade0f0a990e9f7c68103f13e5",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-24T23:18:11.376700+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1796,
+        "output_tokens": 445,
+        "total_tokens": 2241,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 253
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.30554",
+    "title": "Near-Far Attention: Region-Aware Sparse Retrieval for Long-Context LLM Decoding",
+    "authors": [
+      "YuanShuo Wang",
+      "Jianchao Tan",
+      "Lei Gong",
+      "Teng Wang",
+      "Wenqi Lou",
+      "Xuehai Zhou"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": "7 pages, 8 figures",
+    "summary": "Sparse attention reduces the cost of long-context decoding, but token selection introduces additional scoring and ranking overhead. Moreover, uniform page scoring overlooks differences in relevance between near and far context. We propose Near-Far Attention (NFA), which adapts retrieval to regional attention patterns while keeping candidate scoring lightweight. During prefill, the Lightweight Gate Estimator identifies regions that can be skipped during decoding, adding less than 1% to dense-prefill time. For the remaining regions, the Calibration-Free Subspace Extractor supplies compact features shared by page-level and token-level scoring without offline calibration. The Distance-Aware Two-Level Selector then scores near and far pages differently and jointly ranks candidate tokens under a shared budget. Evaluations across model families, parameter scales, and GQA/MLA architectures show aggregate task quality comparable to full attention. On Qwen3-8B at 512K context length, NFA achieves up to $5.49\\times$ operator speedup and $2.97\\times$ whole-model decoding speedup over FlashInfer, including selection overhead.",
+    "abs": "http://arxiv.org/abs/2611.30554v1",
+    "pdf": "https://arxiv.org/pdf/2611.30554v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "该文提出 Near-Far Attention：在 prefill 阶段用轻量门控估计器跳过可忽略区域，再以无需离线校准的子空间特征对近、远页面差异化打分，在共享预算下联合选择 token，以降低长上下文解码开销。",
+      "relevance_reason": "纯文本长上下文加速工作，但其按距离区分的两级打分与廉价区域跳过机制，可能为 LVR 中视觉证据/缓存的选择预算分配及位置-注意力结构对相似度的影响提供可供核查的线索。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-24T23:18:11.376700+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

@@ -1,0 +1,72 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.29138",
+  "input_sha256": "efa9955b2f80fe3ab0efb78e3979915a7fa2ceb14eb145e2fc73107c46e076e1",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-24T23:32:58.184630+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1940,
+        "output_tokens": 584,
+        "total_tokens": 2524,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 381
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.29138",
+    "title": "Supply the Global, Supervise the Local: Combining Representation Conditioning and Alignment in Diffusion Transformers",
+    "authors": [
+      "Chaojie Ji",
+      "Sergio Quiroga-Sandoval",
+      "Ruxin Wang",
+      "Zheju Zheng",
+      "Yankai Cao"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": null,
+    "summary": "A pretrained image representation helps train a diffusion transformer in several roles, including as an alignment target, which the model's hidden states learn to match, as in representation alignment (REPA), and as a condition, an extra input describing the image to be generated. Combined, they would give the model an input and a target, but whether they conflict is unknown. To test this, we let the condition carry only part of REPA's target: we split the representation of each image patch into an image-level (global) part, shared by all patches of the image, and a within-image (local) part, the patch's difference from the image-level part, and use one token carrying the image-level part as the condition. Then, the two roles overlap on the image-level part, where they could conflict, while only REPA supervises the within-image part, where we can see whether the token helps REPA.\n  We find that the token and REPA together teach both the image-level part and the within-image part, the main source of REPA's FID improvement, far more than the sum of what each teaches alone, so they cooperate rather than conflict. These findings give one design rule for combining REPA with an image-level condition, supply the global, supervise the local, which we implement as Global-Condition REPA (GC-REPA): REPA with the token as an extra input; the token carries no information beyond REPA's target and is drawn at sampling from a separately trained token prior. GC-REPA greatly accelerates convergence: on ImageNet 256*256, SiT-XL/2 + GC-REPA reaches REPA's 4M- and SiT-XL/2's 7M-iteration FIDs within 200K and 100K iterations (20 and 70 fewer).",
+    "abs": "http://arxiv.org/abs/2611.29138v1",
+    "pdf": "https://arxiv.org/pdf/2611.29138v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文在 diffusion transformer 中把图像 patch 表征拆成图像级全局部分与图像内局部部分，用一个全局 token 作条件输入、REPA 作对齐监督，考察两种角色是否冲突，发现二者协同并提出 GC-REPA，显著加速收敛。",
+      "relevance_reason": "「全局条件 + 局部对齐监督」的表征拆分与互补关系，可能为 LVR 中视觉细节如何保留在 latent 状态、以及条件输入与对齐监督如何分工提供可核查线索；但工作属图像生成，迁移到多模态推理仍需核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-24T23:32:58.184630+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

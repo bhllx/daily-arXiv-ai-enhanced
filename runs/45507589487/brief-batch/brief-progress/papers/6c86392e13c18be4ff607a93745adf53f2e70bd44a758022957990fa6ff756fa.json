@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.30341",
+  "input_sha256": "cba9f0e12fd649aae30d5ec16db65579c08c1910692045c296537a492f914ecc",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-24T23:20:23.410588+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1848,
+        "output_tokens": 838,
+        "total_tokens": 2686,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 615
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.30341",
+    "title": "FMSNO: Scaling Surface Neural Operators by Learned Flow Matching Reparametrisation",
+    "authors": [
+      "Vasilii Liamin",
+      "Oleg Bakhteev",
+      "Vladimir Vanovskiy"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": "12 pages, 7 figures",
+    "summary": "We propose the Flow Matching Surface Neural Operator (FMSNO), which combines learning a shared map from irregular surface meshes to a regular two-dimensional grid on the sphere and training a neural operator on the regular grid. Constructing a separate map for each new geometry can dominate inference time on large meshes. We initially pretrain the mapping by flow matching using precomputed optimal transport maps as targets and then continue its training using combined geometry and CFD objectives. We apply it to unseen geometries in a single forward pass. The learned flow deforms the surface points, and we project its endpoints onto the sphere. We then splat geometric features onto the spherical grid, apply a neural operator (we tested both Fourier and Spherical Fourier Neural Operators), and interpolate its output back to the surface. For a mesh with $N$ points, evaluating the map costs O(N), and the full prediction costs O(NlogN) with the FNO backbone. We evaluate surface pressure prediction on ShapeNet-Car, AhmedML, and DrivAerNet++, and drag coefficient prediction on DrivAerNet++. Across the three pressure benchmarks, our accuracy is on par with that of the most accurate baseline. On a surface with one million points, our method achieves a 354x end-to-end inference speedup over that baseline while keeping the same memory usage asymptotics of O(N).",
+    "abs": "http://arxiv.org/abs/2611.30341v1",
+    "pdf": "https://arxiv.org/pdf/2611.30341v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "提出 FMSNO，用 flow matching 学习一个从任意不规则表面网格到球面规则二维网格的共享映射（以预计算最优传输映射为预训练目标，再结合几何与 CFD 目标微调），在规则网格上用 FNO/SFNO 做表面压力与阻力预测，并单次前向推广到新几何。",
+      "relevance_reason": "其「学习形变映射将不规则输入投射到共享正则潜网格上计算、再插值回原空间」的结构，可能与 LVR 中把视觉证据归一到固定容量工作区、以及细节保留与计算量权衡的问题相通，可供核查类比价值。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-24T23:20:23.410588+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

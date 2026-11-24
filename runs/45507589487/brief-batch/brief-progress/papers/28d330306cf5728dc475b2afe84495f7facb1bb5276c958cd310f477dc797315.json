@@ -1,0 +1,71 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.28549",
+  "input_sha256": "81dc1861f40bb387353a885b3b5df7244b13f3e04493ee801ba7b882e1559e37",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-24T23:39:41.591389+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1863,
+        "output_tokens": 515,
+        "total_tokens": 2378,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 271
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.28549",
+    "title": "Analyzing Atypical Local Features in Museum Artifacts using Generative Image Inpainting",
+    "authors": [
+      "Maho Kinoshita",
+      "Wakana Kuwata",
+      "Ryota Mibayashi",
+      "Hiroaki Ohshima"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": "BESC 2026; 20 pages",
+    "summary": "This study proposes a method for analyzing local visual features in museum artifacts that may appear atypical or unexpected. Objects in the same category often share a similar overall shape, while local details such as patterns, decorations, and facial expressions may reflect regional or cultural characteristics. We use the appearance distribution learned by an image generation model as a reference for what is generally expected within an artifact category. For each target region, we exclude images from that region and fine-tune a generative model using only images from the remaining regions. We then mask selected parts of artifact images from the target region and ask the region-excluded model to complete them. If the completed result differs greatly from the original image, the masked part may contain features that are difficult to predict from the appearance learned from other regions. We measure this difference using LPIPS and treat it as reconstruction difficulty for the generative model. We conduct experiments on images of kokeshi dolls, drums, and masks from the collection of the National Museum of Ethnology. For each category, we select several target regions, build region-excluded LoRA models, and perform inpainting on predefined local parts. The results show that typical shapes and simple decorations are often reconstructed consistently, whereas some region-specific colors, patterns, cord arrangements, and painted details are replaced with more common appearances. These results suggest that region-excluded inpainting can serve as an exploratory tool for finding region-specific local visual features in museum artifact images.",
+    "abs": "http://arxiv.org/abs/2611.28549v1",
+    "pdf": "https://arxiv.org/pdf/2611.28549v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "该文以图像生成模型学到的外观分布作为类别内“常见外观”的参照：对每个目标区域，用其余区域图像微调 LoRA 并排除该区域，再对目标区域局部做 inpainting，用 LPIPS 差异衡量重建难度，从而在博物馆藏品（小芥子人偶、鼓、面具）中挖掘区域特有的颜色、纹样与彩绘细节。",
+      "relevance_reason": "用生成先验下的局部重建难度作为“信息量／意外性”的代理，可能为 LVR 的视觉证据筛选和「哪些局部细节值得进入推理状态」提供一种度量思路，但需核查其度量是否区分内容特异性与生成伪影，与原论文的推理机制无直接关系。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-24T23:39:41.591389+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

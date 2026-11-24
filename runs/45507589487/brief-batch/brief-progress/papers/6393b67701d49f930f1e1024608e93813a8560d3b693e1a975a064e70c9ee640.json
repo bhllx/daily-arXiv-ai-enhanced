@@ -1,0 +1,72 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.28177",
+  "input_sha256": "6824b312567dad7290a88858ea512a2d0e68ce20e07ea1e099149b37721d5538",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-24T23:42:58.901001+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1838,
+        "output_tokens": 618,
+        "total_tokens": 2456,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 377
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.28177",
+    "title": "Don't Test Where You Trained: Geographic Overlap Inflates End-to-End Driving Scores",
+    "authors": [
+      "Willi Poh",
+      "Kevin Rösch",
+      "Christoph Stiller"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.AI",
+      "cs.RO"
+    ],
+    "comment": null,
+    "summary": "In NAVSIMv1, the standard benchmark for end-to-end driving, $89.6\\%$ of the test scenes lie within 4m of a training scene. We show that this geographic overlap inflates the reported scores. We propose a geographically disjoint split of NAVSIMv1 and an evaluation that compares models trained on either split on the same scenes, which neither has seen in training. All sensor-based models we test, DiffusionDrive, Latent TransFuser, and DrivoR, lose 3.4 to 6.1 PDMS points on these scenes, mainly by leaving the road and coming close to other objects, against 1.5 points for a baseline without sensors. The loss concentrates where a training drive of the original split passed the same place. At all other places, models trained on the original split are no better than those trained on the geographic split. Models trained on the original split predict road geometry that no camera can see. The gap persists when the auxiliary map loss is removed, so the models memorize locations even without being supervised to. On nuScenes, the geographic split cuts SparseDrive's mapping accuracy by $59\\%$ and also degrades its planning. Driving scores on logged scenes thus partly measure how well a model remembers the test locations. We release the split to evaluate generalization to new places.",
+    "abs": "http://arxiv.org/abs/2611.28177v1",
+    "pdf": "https://arxiv.org/pdf/2611.28177v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "论文指出 NAVSIMv1 中 89.6% 的测试场景与训练场景地理距离在 4m 内，据此构建地理不相交的数据划分，并在两组模型都未见过同一批场景上比较；结果显示 DiffusionDrive、Latent TransFuser、DrivoR 等传感器模型掉 3.4–6.1 PDMS，且会预测相机不可见的道路几何，说明端到端驾驶分数部分衡量的是位置记忆。",
+      "relevance_reason": "其「同场景交叉训练对照 + 预测相机不可见几何」的设计，可供核查 LVR 中 latent 状态是否真正依赖视觉证据、还是利用数据先验或位置捷径，属评价与因果作用层面的借鉴线索。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-24T23:42:58.901001+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

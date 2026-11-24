@@ -1,0 +1,73 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.30304",
+  "input_sha256": "775499e056b87b472d53ab722e9272d9bb785d12a605bd6ab4a36cdcc5ae2b3a",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-24T23:20:48.189465+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1863,
+        "output_tokens": 787,
+        "total_tokens": 2650,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 565
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.30304",
+    "title": "PinGround: Pinning Queries to Points for Parallel Grounding in Vision-Language Models",
+    "authors": [
+      "Shuxuan Li",
+      "Jialiang Kang",
+      "Yanghao Zhou",
+      "Ziye Zhu",
+      "Zhilin Zhao",
+      "Xiao Yang"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": null,
+    "summary": "Vision-language models (VLMs) can localize through their text interface, grounding open-vocabulary objects, complex referring expressions, text lines and layout regions with strong semantic understanding. They write the boxes one after another as a single sequence, although the instances of a query, unlike the words of a sentence, form an unordered set with no sequential dependence. The number of decoding steps therefore grows with the number of instances, which makes dense scenes the most expensive. Decoding the instances in parallel avoids this growth, but streams that cannot see each other duplicate some instances and miss others. We propose \\method, which writes a single point into each query as a spatial anchor and asks for the matching instance nearest to that point within a local radius, or \\none. Given the image, the anchored queries are independent, so they are decoded in parallel as leaves of a prefix tree that shares the image and the query, and the model is trained on the same tree. Coarse-to-fine anchors refine only the regions where instances are found, duplicate suppression keeps one box per instance, and set-level reinforcement learning optimizes the set F1. Only the prompt and the attention mask change, not the architecture. On three different VLMs and 12 benchmarks covering detection, OCR, layout and referring, \\method is at most 5.5 F1 below sequential decoding trained on the same data, while its speedup grows with instance density and reaches 21.9$\\times$ on dense scenes.",
+    "abs": "http://arxiv.org/abs/2611.30304v1",
+    "pdf": "https://arxiv.org/pdf/2611.30304v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P1",
+      "brief_summary": "论文提出 PinGround，把空间锚点写入每个查询，使各查询相互独立并作为前缀树叶子并行解码实例框，辅以由粗到细的锚点细化、重复抑制与集合级强化学习优化 set F1，在多个 VLM 和 12 个基准上以密集场景最高 21.9 倍加速接近顺序解码精度。",
+      "relevance_reason": "「并行流互不可见导致重复与漏检」及集合级奖励，可能为并行 latent 生成中的冗余抑制、集合级监督与解码成本权衡提供可核查线索，但其并行对象是输出框而非内部推理状态，迁移性待判断。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-24T23:20:48.189465+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

@@ -1,0 +1,75 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.28193",
+  "input_sha256": "ba51721b681166f0c77ea45e8686d1dde57f7ff1f8cc63f24263508ba5158dda",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-24T23:42:49.004654+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1824,
+        "output_tokens": 567,
+        "total_tokens": 2391,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 369
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.28193",
+    "title": "FastD4RT: Training-Free Acceleration of Dynamic 4D Reconstruction and Tracking",
+    "authors": [
+      "Meng Bi",
+      "Yili Jin",
+      "Kaiyuan Hu",
+      "Xize Duan",
+      "Jiaxin Huang",
+      "Hong Huang",
+      "Xue Liu"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "Query-based 4D reconstruction models such as D4RT encode a video once into a global scene representation and obtain outputs by decoding independent point queries. However, inference is often influenced by dense outputs and long videos. Although D4RT separates encoding from decoding, a dense output still requires one decoder query for every pixel of every frame, and a long video is still encoded as many overlapping segments. In this work, we analyze the inference cost of D4RT and show that a large part of it is redundant. In particular, we find that the later decoder blocks attend to a small set of tokens shared by all queries. Based on these findings, we propose FastD4RT, a training-free framework that accelerates D4RT. By exploiting the smoothness of the outputs over time and across pixels, FastD4RT encodes and decodes only at sparse anchors and recovers the remaining outputs via interpolation. It decodes the remaining queries against a shared token set selected once per segment. We further characterize the errors introduced by both components. Experimental results show that FastD4RT accelerates D4RT by about 5 times on average across all its tasks with competitive accuracy, and further improves accuracy on long videos. Our code is available at https://github.com/Lycheemeng/fastd4rt.",
+    "abs": "http://arxiv.org/abs/2611.28193v1",
+    "pdf": "https://arxiv.org/pdf/2611.28193v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "该文分析 D4RT 的推理开销，发现后段 decoder 主要关注少量共享 token，进而提出免训练加速框架：仅在稀疏 anchor 处编解码，并通过时间与像素平滑插值恢复其余输出。",
+      "relevance_reason": "其“后段注意力集中于共享 token、输出可稀疏插值”的观察，可能为 LVR 中 latent 状态冗余、token 复用与缓存、近似解码的计算—精度权衡提供可核查线索，但任务本身是 4D 重建而非推理。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-24T23:42:49.004654+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}
