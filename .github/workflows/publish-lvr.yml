@@ -137,15 +137,96 @@ jobs:
         uses: actions/configure-pages@v5
 
       - name: Upload website artifact
+        id: site_upload
         if: steps.plan.outputs.action == 'publish'
         uses: actions/upload-pages-artifact@v4
         with:
           path: _site
 
-      - name: Deploy website to GitHub Pages
+      - name: Create Pages deployment using the uploaded artifact ID
+        id: pages_request
+        if: steps.plan.outputs.action == 'publish'
+        uses: actions/github-script@v8
+        env:
+          PAGES_ARTIFACT_ID: ${{ steps.site_upload.outputs.artifact_id }}
+        with:
+          script: |
+            const artifactId = Number(process.env.PAGES_ARTIFACT_ID)
+            if (!Number.isSafeInteger(artifactId) || artifactId < 1) {
+              throw new Error('The website upload did not return a valid artifact ID.')
+            }
+            const payload = {
+              ...context.repo,
+              artifact_id: artifactId,
+              pages_build_version: context.sha,
+              oidc_token: await core.getIDToken()
+            }
+            for (let attempt = 1; ; attempt++) {
+              try {
+                const {data} = await github.request('POST /repos/{owner}/{repo}/pages/deployments', payload)
+                const deploymentId = data.id || context.sha
+                core.setOutput('deployment_id', deploymentId)
+                core.setOutput('page_url', data.page_url)
+                core.info(`Pages accepted artifact ${artifactId} as deployment ${deploymentId}.`)
+                return
+              } catch (error) {
+                const message = error.response?.data?.message || error.message
+                const missing = /artifact/i.test(message) && /not found|not (yet )?(available|ready)|does not exist|could not (find|be found)/i.test(message)
+                // Retry only when Pages explicitly rejected an unavailable artifact.
+                if (attempt === 4 || ![400, 404, 422].includes(error.status) || !missing) {
+                  throw new Error(`Pages API could not create a deployment for artifact ${artifactId} (HTTP ${error.status || 'unknown'}): ${message}`)
+                }
+                const seconds = 5 * 2 ** (attempt - 1)
+                core.warning(`Pages cannot read artifact ${artifactId} yet. Retrying in ${seconds}s.`)
+                await new Promise(resolve => setTimeout(resolve, seconds * 1000))
+              }
+            }
+
+      - name: Wait for GitHub Pages deployment
         id: deployment
         if: steps.plan.outputs.action == 'publish'
-        uses: actions/deploy-pages@v4
+        uses: actions/github-script@v8
+        env:
+          DEPLOYMENT_ID: ${{ steps.pages_request.outputs.deployment_id }}
+          PAGE_URL: ${{ steps.pages_request.outputs.page_url }}
+        with:
+          script: |
+            const target = {...context.repo, pages_deployment_id: process.env.DEPLOYMENT_ID}
+            const failures = new Set([
+              'deployment_failed', 'deployment_perms_error', 'deployment_content_failed',
+              'deployment_cancelled', 'deployment_lost'
+            ])
+            const deadline = Date.now() + 10 * 60_000
+            let previous
+            while (Date.now() < deadline) {
+              let status
+              try {
+                const {data} = await github.request('GET /repos/{owner}/{repo}/pages/deployments/{pages_deployment_id}', target)
+                status = data.status
+              } catch (error) {
+                if (error.status && error.status < 500 && ![404, 408, 429].includes(error.status)) throw error
+                status = `Waiting for deployment status (HTTP ${error.status || 'unavailable'})`
+              }
+              if (status !== previous) core.info(`Pages deployment ${target.pages_deployment_id}: ${status}`)
+              previous = status
+              if (status === 'succeed' || failures.has(status)) {
+                core.setOutput('finished', 'true')
+                if (status !== 'succeed') throw new Error(`Pages ended with status ${status}.`)
+                core.setOutput('page_url', process.env.PAGE_URL)
+                return
+              }
+              await new Promise(resolve => setTimeout(resolve, 10_000))
+            }
+            throw new Error('Timed out waiting for GitHub Pages after 10 minutes.')
+
+      - name: Cancel unfinished Pages deployment
+        if: >-
+          (failure() || cancelled()) && steps.pages_request.outputs.deployment_id != '' &&
+          steps.deployment.outputs.finished != 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          DEPLOYMENT_ID: ${{ steps.pages_request.outputs.deployment_id }}
+        run: gh api --method POST --silent "repos/$GITHUB_REPOSITORY/pages/deployments/$DEPLOYMENT_ID/cancel"
 
       - name: Record publication or archival
         if: steps.plan.outputs.action == 'publish' || steps.plan.outputs.action == 'archive'
