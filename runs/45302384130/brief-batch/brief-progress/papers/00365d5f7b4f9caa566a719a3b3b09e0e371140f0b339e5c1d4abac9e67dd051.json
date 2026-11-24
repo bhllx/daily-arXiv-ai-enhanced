@@ -1,0 +1,73 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.27667",
+  "input_sha256": "d92208cf9f97be9044c13ef59adf02236e17ce6c70a233b65b4d0828ebf2a7ee",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-24T01:09:55.998209+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1939,
+        "output_tokens": 909,
+        "total_tokens": 2848,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 670
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.27667",
+    "title": "GeoScaffold: From Latent to Realized Geometry in Collaborative Detection",
+    "authors": [
+      "Kang Yang",
+      "Yance Fang",
+      "Gaochen Cui",
+      "Xiaoqiang Jin",
+      "Deying Li",
+      "Yongcai Wang"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": "27 pages, 11 figures, 13 tables",
+    "summary": "Most collaborative 3D detectors fuse bird's-eye-view (BEV) features from connected vehicles and roadside infrastructure to aggregate complementary observations. Although modern communication, alignment, and fusion pipelines encode rich latent geometry in the fused BEV features, the standard readout pipeline inherited from single-agent detectors, i.e., anchor scoring, box decoding, and non-maximum suppression (NMS), does not fully exploit these geometric cues. We empirically identify and quantify this gap on UrbanIng-V2X. Collaboration improves localization at about two-thirds of positive anchors, yet when NMS resolves two overlapping collaborative boxes of one object, it keeps the better-localized box less than half of the time. A key cause is a supervision mismatch: classification scores are trained only for foreground-background discrimination, so nothing in training requires them to rank boxes by localization quality. To address this limitation, we introduce GeoScaffold, a lightweight training-only auxiliary objective. It predicts a foreground mask at each positive anchor, i.e., the cells of a grid over the anchor that lie inside the ground-truth box, to supply the dense spatial supervision that the seven-dimensional box code leaves implicit. Its loss, added to the detection loss, updates the encoder and fusion modules through the fused BEV and trains the detector toward a better-localized box at every positive anchor, including the top-scored one. The auxiliary head is removed at inference, preserving the original detector architecture, communication logic, and inference cost. GeoScaffold raises AP@0.5 and AP@0.7 by 0.98 and 0.55 points on average across all 11 fusion methods on the UrbanIng-V2X validation split, with gains extending to most methods on an unseen intersection and to all ten methods that produce detections on V2V4Real.",
+    "abs": "http://arxiv.org/abs/2611.27667v1",
+    "pdf": "https://arxiv.org/pdf/2611.27667v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文诊断协同3D检测中融合BEV特征虽蕴含丰富几何线索、但继承自单智能体的读出头（anchor打分、框解码、NMS）未能充分利用的问题，并提出仅在训练期加入的前景掩码辅助目标，在每个正锚点提供密集空间监督，推理时移除该辅助头。",
+      "relevance_reason": "其核心线索是把「latent 几何未被读出使用」归因于监督只要求区分前景/背景，并用训练期辅助稠密监督迫使内部表示质量进入打分排序，可能可供核查 LVR 中答案是否真正使用 latent 视觉内容及监督分配问题；不过该工作属3D协同检测，与 VLM 推理距离较远，迁移价值需读原文判断。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-24T01:09:55.998209+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

@@ -1,0 +1,73 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.27268",
+  "input_sha256": "5663113d3f6c4494e8e291b96890db41b5e98c28aca583aeb98e10dd1717a5e9",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-24T01:13:52.739005+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1857,
+        "output_tokens": 667,
+        "total_tokens": 2524,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 453
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.27268",
+    "title": "Budgeted Safety Verification for Streaming Video Generation",
+    "authors": [
+      "Yuxin Cao",
+      "Ziqi Ding",
+      "Jiayu Zhang",
+      "Xianglin Yang",
+      "Wei Song",
+      "Jin Song Dong"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": "19 pages, 3 figures",
+    "summary": "A streamed video generator releases each chunk the moment that it is produced, so a safety decision that waits for the finished clip arrives after the harm has been seen. We measure a guardrail by exposure, the harmful frames a viewer is shown, and ask where a fixed moderation budget should be spent. The accurate detector reads decoded frames with a video language model and is too expensive for every chunk, so our guard reads hidden states the generator has computed already and spends a cheap score on deciding when to call it. On 599 streams from a distilled causal generator the undefended model shows 46.25 harmful frames of 81. The video model on every chunk leaves 0.91 frames at 80.1 scored per benign stream, and the same model triggered by our guard leaves 2.35 at 5.3. Spending that budget at random leaves 37.20 frames, so the gain is in the ordering, and a frame detector in the same role gives up almost six, so the judging stage must read the chunk as a clip. The ordering is worth more as the stream lengthens, and the guard carries to a second system. An independent guardrail model agrees with our oracle at $κ=0.74$, and a blinded audit by 50 participants puts its precision at 96.1% and recall at 82.8%. Warning. This paper contains examples of generated content that some readers may find disturbing or offensive in nature.",
+    "abs": "http://arxiv.org/abs/2611.27268v1",
+    "pdf": "https://arxiv.org/pdf/2611.27268v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文研究流式视频生成的安全审核如何在固定预算下分配：利用生成器已算好的 hidden states 得到廉价分数，据其决定何时调用昂贵的 VLM 检测器，并以观众实际看到的违规帧数（exposure）作为评价指标。",
+      "relevance_reason": "用内部 hidden states 作廉价门控来触发昂贵验证器的「何时看」策略，以及其发现按整段而非单帧判断才有效（证据粒度影响结论），可供核查是否能迁移到 LVR 的 LOOK/STOP 触发与视觉证据筛选；但论文目标是安全过滤而非推理，联系属间接借鉴。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-24T01:13:52.739005+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

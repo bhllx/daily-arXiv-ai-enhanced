@@ -1,0 +1,71 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.26803",
+  "input_sha256": "c3b0c020cb62a2c99058d11a4f7733d0ace5f2423e88dfbbec87621380154417",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-24T01:19:27.186157+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1806,
+        "output_tokens": 403,
+        "total_tokens": 2209,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 189
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.26803",
+    "title": "Don't Discard Your Rollouts: Reusing Teacher RL Traces for Student Distillation",
+    "authors": [
+      "Vashisth Tiwari",
+      "Emma Strubell",
+      "J. Zico Kolter"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.CL"
+    ],
+    "comment": "Accepted at NeurIPS 2026",
+    "summary": "RL post-training methods such as PPO and GRPO are computationally expensive, with substantial resources devoted to sampling rollouts, which contain multiple completions per prompt along with their respective rewards. Canonical distillation, however, discards these traces and uses more compute to regenerate data from the final teacher. We ask if and how we can reuse the saved teacher RL rollouts to distil student models. Reusing rollouts is non-trivial: naive SFT on the rollouts underperforms canonical distillation, and naive DPO, while performant, is unstable, collapsing on weaker students. We show that treating rollout reuse as a data selection problem using metadata already recorded during GRPO substantially reduces this gap. We use prompt pass rates to order the data, using the easiest prompts for an SFT warm start prior to using mixed-success prompts for DPO. For each prompt, we use saved teacher log-likelihoods as a proxy for selecting student-compatible completions. Across mathematical reasoning and Python coding tasks, with students from multiple model families, our two-stage recipe achieves comparable average performance to canonical distillation, while incurring no additional inference cost for dataset construction.",
+    "abs": "http://arxiv.org/abs/2611.26803v1",
+    "pdf": "https://arxiv.org/pdf/2611.26803v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "该文研究如何复用教师模型 RL 训练中已采样但被常规蒸馏丢弃的 rollout：把复用视为数据选择问题，按 prompt 通过率排序，先用易题做 SFT 热启动、再用混合成败题做 DPO，并用教师 log-likelihood 筛选与学生兼容的 completion，在数学与代码任务上接近标准蒸馏效果。",
+      "relevance_reason": "纯文本 RL 蒸馏，与视觉无关；但其「按难度与师生兼容性筛选轨迹、再分阶段监督」的做法，可能可供核查 LVR 中推理轨迹训练、监督信号分配与低质量轨迹剔除的设计。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-24T01:19:27.186157+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

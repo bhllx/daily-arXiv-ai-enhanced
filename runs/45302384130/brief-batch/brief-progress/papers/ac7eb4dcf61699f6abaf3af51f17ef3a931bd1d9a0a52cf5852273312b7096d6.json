@@ -1,0 +1,72 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.27064",
+  "input_sha256": "6d50c0e65f6cf747d4b63720a1d7728ca3d86a1495e51092ed6d96f41840416e",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-24T01:16:45.797542+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1890,
+        "output_tokens": 869,
+        "total_tokens": 2759,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 630
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.27064",
+    "title": "Dynamic Token Merging for Efficient Vision-Language Models",
+    "authors": [
+      "Chris Gu",
+      "Marco Andono Sie",
+      "Nathan Zhou",
+      "Christopher Potts",
+      "Julie Kallini"
+    ],
+    "categories": [
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "Vision-language models (VLMs) represent each image with hundreds of visual tokens, which can make inference costly even when a prompt depends on only part of the image. Dynamic Token Merging (DTM), introduced in MrT5 for byte-level text encoders, learns which tokens to remove: a lightweight delete gate scores contextualized hidden states, acts as a differentiable attention bias during training, and physically removes tokens at inference. We argue that DTM is a general token deletion framework rather than a byte-level technique, and extend it to the vision modality and to decoder-only models. Applying DTM to T5Gemma 2 and Gemma 3 yields V-MrT5Gemma2, which deletes visual tokens inside a bidirectional multimodal encoder, and V-MrGemma3, which compacts the prompt and its key-value caches during decoder-only prefill. Across ten benchmarks, DTM's advantage over attention-based and random deletion grows with the deletion rate and is largest on document, chart, and scene-text reading. At 80% visual token deletion (approximately 60% fewer FLOPs), DTM raises accuracy over FastV from 51.8 to 63.0 on ChartQA and from 63.3 to 67.8 on TextVQA with V-MrT5Gemma2, as well as from 62.2 to 68.8 and from 71.2 to 75.1 with V-MrGemma3, retaining 90-96% of unpruned performance on both tasks with significant efficiency gains. These results support DTM as a general framework for efficient transformers.",
+    "abs": "http://arxiv.org/abs/2611.27064v1",
+    "pdf": "https://arxiv.org/pdf/2611.27064v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文将 MrT5 的动态 token 合并（用轻量 delete gate 依据上下文隐状态打分、训练时作可微注意力偏置、推理时物理删除）推广到视觉模态与 decoder-only 模型，在多模态编码器内以及 prefill 阶段删除视觉 token 并压缩 KV cache，在十个基准上比较高删除率下的精度与效率折衷。",
+      "relevance_reason": "学习式门控筛选「哪些视觉 token 值得保留」与 LVR 关心的视觉证据筛选、必要视觉细节是否留在内部状态相关，KV cache 压缩也可供核查 latent 状态与缓存的成本；但论文目标是推理加速，未研究推理轨迹或答案对 latent 内容的因果使用，迁移价值需进一步核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-24T01:16:45.797542+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

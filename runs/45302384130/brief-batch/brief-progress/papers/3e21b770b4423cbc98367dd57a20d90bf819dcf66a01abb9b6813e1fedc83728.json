@@ -1,0 +1,74 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.27222",
+  "input_sha256": "409dd2b89e10296193a21548b8372dd29d53a14a01b1ec3463d4bdc253c48629",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-24T01:14:23.107362+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1957,
+        "output_tokens": 951,
+        "total_tokens": 2908,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 762
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.27222",
+    "title": "Bel: Step-Level Policy Improvement of Visual Agents Without Training",
+    "authors": [
+      "Jiajun Fan",
+      "Ziwen Wang",
+      "Zhaoyu Zhu",
+      "Changyi Yang",
+      "Neil He",
+      "Chaoran Cheng",
+      "Ge Liu"
+    ],
+    "categories": [
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "A visual agent acts on what it sees: it taps and types on a screen, or points on a camera image to show a robot where to act. One wrong step can fail its task, yet the right action is often among its own samples, passed over by its greedy decode. Choosing it is a visual judgment, since an action is best judged where it acts, not by its text or coordinates alone: as text, a tap is two numbers; drawn on the screen, it is the Post button of an empty draft. We find that this is decisive: given the screenshot and a tap's coordinates, a decision model chooses among GUI-R1-3B's samples significantly worse on average than when the tap is drawn where it lands. Bel turns this finding into a method that trains nothing and needs only a frozen policy's samples and an image on which each action can be drawn. It marks each candidate on its own copy of the image it acts on, asks a decision model for the probability that executing it is the right decision, so that every kind of action shares one scale, and acts on another candidate only when greedy scores below a threshold and trails it by a margin. On recorded GUI steps, for each of three policies, Bel significantly beats greedy decoding on mobile, web and desktop screens alike and, on the same candidates, gives each a significantly higher mean step success than voting, CATTS, the trained GUI-Critic-R1 and two prompted Qwen3-VL judges shown the same marks; it also significantly improves the much larger Qwen3-VL-235B-A22B on every step-level test set. With GUI-R1-3B's thresholds unchanged, Bel significantly raises live AndroidWorld and MiniWoB++ task success for two other policies and robot-pointing success for three policies on each of two groups of benchmarks. Judging each action where it acts thus gives step-level policy improvement of visual agents without training, with significant gains for GUI agents and robot pointing.",
+    "abs": "http://arxiv.org/abs/2611.27222v1",
+    "pdf": "https://arxiv.org/pdf/2611.27222v1",
+    "AI": {
+      "category": "MAIN",
+      "priority": "P1",
+      "brief_summary": "论文提出无需训练的 Bel：把每个候选动作分别绘制在其作用的图像副本上，由决策模型给出执行该动作正确的概率并统一打分，仅在贪心分数低于阈值且明显落后时替换动作，并在 GUI 与机器人指向基准上验证。",
+      "relevance_reason": "给出「动作要在落点处作视觉判断」的实证，与视觉证据筛选、步骤级验证及替换/停止决策直接相关，可供核查视觉信息在推理评价中的作用；未涉及 latent 状态生成。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-24T01:14:23.107362+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

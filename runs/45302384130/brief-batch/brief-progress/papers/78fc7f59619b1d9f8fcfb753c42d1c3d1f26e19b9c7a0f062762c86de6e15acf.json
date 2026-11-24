@@ -1,0 +1,73 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.27074",
+  "input_sha256": "86c210c144a523c008e7d9e35b51b3330bc479a060184a2f03b150eb7bb39cdb",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-24T01:16:31.832959+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1835,
+        "output_tokens": 529,
+        "total_tokens": 2364,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 301
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.27074",
+    "title": "Hindsight Forcing: Learning Better History from the Future in Autoregressive Video Diffusion",
+    "authors": [
+      "Haonan An",
+      "Yihang Tao",
+      "Yu Guo",
+      "Renlong Chen",
+      "Jiasheng Zhang",
+      "Yuguang Fang"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": null,
+    "summary": "Few-step autoregressive video diffusion enables real-time streaming generation, with each generated chunk serving as historical context for subsequent generation. To avoid the memory explosion of backpropagation through time, previous self-rollout methods typically truncate cross-chunk gradients or detach historical latents. As a result, earlier denoising computations receive no downstream feedback through the generated history on how to synthesize frames that facilitate subsequent generation, leading to visual drift and structural collapse as rollouts extend. To address this limitation, we propose Hindsight Forcing, which allows historical chunks to learn directly from future outcomes by decoupling forward generation from backward credit assignment via a latent straight-through bridge. In the forward pass, each chunk completes a full multi-step rollout to update the KV cache. In the backward pass, the bridge routes gradients from future losses back to a single selected denoising step per historical chunk, training both the context writer and historical denoiser on shared parameters without retaining the full trajectory graph. Remarkably, Hindsight Forcing requires no additional model parameters, architecture modifications, or separate trajectory replay. Extensive experiments on VBench demonstrate that Hindsight Forcing outperforms existing baselines in overall visual quality and dynamic motion, while ablation studies validate the benefit of supervising historical denoising. Code is available at https://github.com/haonanAN309/Hindsight-Forcing.",
+    "abs": "http://arxiv.org/abs/2611.27074v1",
+    "pdf": "https://arxiv.org/pdf/2611.27074v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文提出 Hindsight Forcing 用于少步自回归视频扩散：前向让每个 chunk 完成多步 rollout 以更新 KV cache，反向则借助 latent straight-through bridge 将未来损失梯度只回传到每个历史 chunk 的一个选定去噪步，从而避免完整 BPTT 的内存开销，并让历史 chunk 学到有利于后续生成的内容。",
+      "relevance_reason": "其「解耦前向生成与反向信用分配、跨 chunk 直通梯度」可能为 LVR 的长轨迹训练与历史 latent 贡献分配提供方法线索；但对象是视频扩散的视觉漂移，需核查该桥接能否迁移到推理状态与视觉证据的监督。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-24T01:16:31.832959+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

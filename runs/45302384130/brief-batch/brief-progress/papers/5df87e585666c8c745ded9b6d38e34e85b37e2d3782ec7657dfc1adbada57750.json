@@ -1,0 +1,72 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.27500",
+  "input_sha256": "80b42fddd2f873bf2a7aedfe783d6eac1219825a1cfce2dbf27e21cbacb204dd",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-24T01:11:24.421150+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1745,
+        "output_tokens": 577,
+        "total_tokens": 2322,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 357
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.27500",
+    "title": "Turnout: Adaptive Attention Switching for Efficient Reasoning",
+    "authors": [
+      "Anna Kuzina",
+      "Mart van Baalen",
+      "Paul N. Whatmough",
+      "Babak Ehteshami Bejnordi"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "Post-hoc transformer linearization replaces the key-value cache of full attention, which grows linearly with generation length, with a fixed size state. This change reduces memory consumption but often hurts accuracy. In reasoning tasks, which require long generations, this effect is especially pronounced. In this work we introduce Turnout, a method that mitigates accuracy loss as a result of linearization, while maintaining its memory-reduction benefits. We apply post-hoc linearization to a pretrained full-attention model, training a linear path through distillation while leaving the original full-attention path unchanged. During response generation, the resulting hybrid model retains both paths and uses a learned policy to control when each layer switches from full to linear attention. We train the policy with reinforcement learning using a reward that balances answer correctness and memory use. Empirical evaluation of our method shows that the learned adaptive policy achieves a better accuracy-efficiency Pareto frontier on reasoning tasks compared to fixed switching and static hybrid baselines.",
+    "abs": "http://arxiv.org/abs/2611.27500v1",
+    "pdf": "https://arxiv.org/pdf/2611.27500v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P1",
+      "brief_summary": "提出 Turnout：对预训练全注意力模型做事后线性化并保留原全注意力路径，用蒸馏训练线性分支，再用强化学习得到一个逐层在 full 与 linear attention 间切换的策略，奖励同时考虑答案正确性与内存占用，从而在推理任务上取得更优的精度—效率前沿。",
+      "relevance_reason": "以固定大小状态替代增长的 KV cache 会压缩长生成中的细节，与 LVR 关注的视觉信息坍缩和长推理成本相近；其学习式逐层切换策略可供核查是否能作为「何时保留完整证据/增加计算」这一 THINK-LOOK-STOP 决策的借鉴线索。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-24T01:11:24.421150+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

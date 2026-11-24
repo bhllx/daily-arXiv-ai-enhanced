@@ -1,0 +1,72 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.26904",
+  "input_sha256": "513a9162d6db0d82ff6aa303429b18c9a16b8887cbcd1a759a4878f38d46fbaa",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-24T01:18:49.522551+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 2021,
+        "output_tokens": 595,
+        "total_tokens": 2616,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 385
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.26904",
+    "title": "What Does a Zoom Actually Add? Decomposing Fine-Grained Perception Failures in Vision-Language Models",
+    "authors": [
+      "Zhixuan Ge",
+      "Anqi Li",
+      "Kexin Geng",
+      "Wei Qiu"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.CL"
+    ],
+    "comment": "27 pages, 17 figures, 19 tables. Code and per-sample outputs: https://github.com/gezhixuan/zoomdecomp",
+    "summary": "Zooming into a region often turns a wrong answer from a vision-language model (VLM) into a right one, and a growing literature takes this as evidence that the model lacked the pixels. But a zoom changes several things at once. It removes the surrounding context, re-tokenizes, at a higher density, pixels the model has already seen, and, if the first pass was downsampled, exposes detail the model never received. We separate these factors for each failure. Holding the first pass fixed, we vary only the second look and assign every failure to the cheapest one that fixes it: reusing cached tokens, isolating the region, re-tokenizing the seen pixels, or acquiring new ones. The study covers 2,753 zoom-rescued failures of Qwen2.5-VL, Qwen3-VL and InternVL3 on V*, ZoomBench and TextVQA, at first-pass budgets from 17x fewer pixels than the source to native resolution. First, most rescued failures did not lack the pixels: upsampling the pixels the model had already seen fixes 47-73% of them even at 17x downsampling, against 1-3% for a random region. Second, the first-pass budget decides how often new pixels are needed: depending on the benchmark, new pixels are required for 23-50% of the rescues at 17x and for 12-23% at 4x. The missing-pixel reading and the accounts that dispute it thus hold at different budgets. Third, the useful magnification is large and differs between objects and text: seen pixels fix more failures up to 6-12x their first-pass size per side on objects and saturate by 4x on text, and even native pixels gain from being rendered beyond native resolution. Allowing any magnification, 68-94% of the failures at 17x need no new pixels. These models more often need a better rendering of evidence they already have than new pixels, which motivates re-tokenizing a region before acquiring it.",
+    "abs": "http://arxiv.org/abs/2611.26904v1",
+    "pdf": "https://arxiv.org/pdf/2611.26904v1",
+    "AI": {
+      "category": "MAIN",
+      "priority": "P0",
+      "brief_summary": "该论文把 VLM 中「放大后答对」的失败逐例归因到最廉价的修复手段——复用缓存 token、隔离区域、对已见像素重新 tokenize、获取新像素，并在三个模型、三个基准的 2753 个样本上比较不同首过像素预算下的归因分布。",
+      "relevance_reason": "直接检验「模型缺像素」这一与视觉细节保留、证据获取和再渲染预算相关的核心假设，其分层归因与放大倍率饱和结果可供核查 THINK/LOOK/STOP 中 LOOK 的真实收益来源。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-24T01:18:49.522551+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

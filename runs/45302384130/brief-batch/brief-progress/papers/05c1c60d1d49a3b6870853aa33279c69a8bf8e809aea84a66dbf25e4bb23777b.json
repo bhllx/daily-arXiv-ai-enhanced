@@ -1,0 +1,73 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.27738",
+  "input_sha256": "17a529e8702e20bc876eb928b5f8a42605bfc8fd8ed5cd3caa5b6dbcca9fc2bf",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-24T01:09:13.207115+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1767,
+        "output_tokens": 749,
+        "total_tokens": 2516,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 534
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.27738",
+    "title": "Average-Depth Variable Execution via Request-Local Token Routing",
+    "authors": [
+      "Pengjie Zheng",
+      "Mengwei Xie",
+      "Huan Yang",
+      "Si Wu",
+      "Pengfei Hu",
+      "Feng Li"
+    ],
+    "categories": [
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "Layer skipping can reduce large language model inference costs, but a request budget does not specify how to allocate layer execution across generated tokens. We introduce \\method{}, which allows tokens to execute different numbers of layers while matching each request's mean executed depth to a continuous budget. At each routed layer, a router reads the current token state and its request's budget and decides whether to execute the Transformer block. Tokens that skip the block pass through a lightweight residual adapter and write no key/value (K/V) entry at that layer. A single checkpoint serves requests with different budgets in the same batch. Across three LLaMA backbones, six quality metrics, and 13 budgets, AVERT is best or tied for best in 206 of 234 comparisons. Across single- and mixed-budget batches, the mean absolute per-request budget error is at most 1.15 percentage points. When grouping requests by budget leaves batches underfilled, mixing budgets reduces decode time per output token (TPOT) by 4.3--21.2%.",
+    "abs": "http://arxiv.org/abs/2611.27738v1",
+    "pdf": "https://arxiv.org/pdf/2611.27738v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "提出 AVERT：在每层由路由器读取当前 token 状态与该请求预算，决定是否执行 Transformer 块，被跳过的 token 经轻量残差适配器且不写 K/V，从而把每个请求的平均执行深度对齐到连续预算，并允许同一批次混合不同预算。",
+      "relevance_reason": "其「预算条件 + 逐 token 路由决定层执行」与「跳过层即不写 K/V」的机制，可供核查 LVR 中 latent 步数/计算量的按需分配，以及跳过对缓存与注意力结构的影响；但论文本身面向推理效率而非推理状态内容。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-24T01:09:13.207115+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

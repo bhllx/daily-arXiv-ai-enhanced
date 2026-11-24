@@ -1,0 +1,76 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.27674",
+  "input_sha256": "cb2a2a9b423cecd740772c23f96984e6bad3cfff612c9bd764cb79b51e064dd9",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-24T01:09:50.770910+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1895,
+        "output_tokens": 401,
+        "total_tokens": 2296,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 185
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.27674",
+    "title": "CanopyFormer: Attention-Guided SegFormer for Explainable Forest Cover Segmentation",
+    "authors": [
+      "Dhinanjaya Fernando",
+      "Dinura Ginige",
+      "Kalana Lakshan",
+      "Chanupa Gurusinghe",
+      "Lasana Pahanga",
+      "Dileesha Manamperi",
+      "Thimira Sahan",
+      "Sandareka Wickramanayake"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.LG"
+    ],
+    "comment": "7 pages, 5 figures",
+    "summary": "In transformer segmentation models, attention is usually visualized after training rather than supervised. Although attention supervision has been explored for natural images and driving scenes, aerial forest segmentation typically uses attention only as an architectural component and evaluates interpretability qualitatively. We present CanopyFormer, an attention-guided SegFormer-B0 that uses an Attention Consistency Loss to align attention with the ground-truth forest mask, encouraging attention to focus on canopy regions. Since SegFormer uses spatial-reduction attention, we adapt Gradient-weighted Attention Rollout by restricting it to the final encoder stage, where the attention matrix is square. We introduce Average Attention-Mask Overlap (AAMO) to measure attention alignment and incorporate a deletion test to evaluate faithfulness. On 5108 images, our method increases AAMO from 0.0334 to 0.7476, approximately 22 times the vanilla SegFormer-B0 result, with a modest decrease in Dice score from 0.8743 to 0.8577. The deletion test reveals that improved alignment does not necessarily translate into improved faithfulness: removing the most-attended 25% of patches reduces the forest score by 12.1%, compared with 33.0% when removing random patches. Attention supervision introduces no additional inference cost, although double backpropagation makes each training step 2.6 to 2.8 times slower. The attention alignment improvement also generalizes to a second dataset, LoveDA. Additionally, a Boundary Refinement Module provides no consistent Dice improvement and reduces AAMO, while mean squared error substantially outperforms Kullback-Leibler divergence as the attention loss.",
+    "abs": "http://arxiv.org/abs/2611.27674v1",
+    "pdf": "https://arxiv.org/pdf/2611.27674v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "提出 CanopyFormer，在 SegFormer-B0 上用 Attention Consistency Loss 将注意力与真实森林掩码对齐，并给出 AAMO 对齐度量、限定于最后一层编码器的注意力 rollout 及删除测试；对齐显著提升但 Dice 略降，且对齐改善不等于因果忠实性改善。",
+      "relevance_reason": "其删除测试（移除最受关注 patch 与随机 patch 对比）与「注意力—掩码一致性」度量，可供核查如何检验 VLM 中被关注的视觉证据是否真正因果影响输出；但这属分割任务的注意力监督，非推理期 latent 状态研究，迁移需自行设计。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-24T01:09:50.770910+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

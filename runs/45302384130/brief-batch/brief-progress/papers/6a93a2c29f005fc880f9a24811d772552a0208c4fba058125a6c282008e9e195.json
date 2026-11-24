@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.27554",
+  "input_sha256": "f1cb7cadf36dea637cda11687e91e466b3dff8f37c8c265ed4a5e669770151a3",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-24T01:10:46.683007+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1937,
+        "output_tokens": 581,
+        "total_tokens": 2518,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 370
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.27554",
+    "title": "Vega-Fafnir: Is Greedy Decoding the Same Decoding? Where Rounding Noise in Speculative Verification Comes From and What Removing It Costs",
+    "authors": [
+      "Mohammed Nayeem Khan",
+      "Navin Kumar R"
+    ],
+    "categories": [
+      "cs.AI"
+    ],
+    "comment": "27 pages, 26 figures, 11 tables",
+    "summary": "Serving engines treat the ways of running a greedy language model as interchangeable: cached or not, padded or not, alone or batched, one token or several verified at once (speculative decoding). In finite precision they round differently. We measure how often the greedy text of Qwen3-0.6B (bfloat16, 128 new tokens, GSM8K and ARC prompts) differs from a reference that decodes one token per pass. Verifying 4 guessed tokens per pass changes 60% of 150 prompts and padding changes 68%; every first divergence has a top-1 minus top-2 logit gap of 0.375 or less. A split of the noise shows that cache entries written by multi-token passes are about as noisy as the multi-token pass itself. A margin gate (fall back to one token when the gap is below a bound calibrated on separate GSM8K prompts) whose fallback reads that cache does not help: 58 of 100 prompts differ, against 61 of 100 for plain verification. Rebuilding the cache with one-token passes leaves 0 of 100 different but costs 7.2 model passes per token, against 1.0 for the reference. Fixed-width decoding makes drafted and plain decoding identical (0 of 100 prompts differ) at 0.75 passes per token. On shifted MMLU and HellaSwag prompts the rebuild gate leaves 0 of 60 different, plain verification 48 of 60. On 138 further and shifted prompts the bound was exceeded at 0.6% of positions and missed 0 of 309 flips. One GPU, one drafter, small models.",
+    "abs": "http://arxiv.org/abs/2611.27554v1",
+    "pdf": "https://arxiv.org/pdf/2611.27554v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "该论文在 bfloat16 小模型上统计同一贪心解码在缓存、padding、批处理与多 token 投机验证下产生不同文本的频率，并将首处分歧归于 logit 间隔极小的舍入噪声，进而比较 margin gate、单 token 重建缓存与定宽解码的一致性收益和额外计算成本。",
+      "relevance_reason": "其「多 token 验证与缓存写入本身引入噪声」及 margin gate、缓存重建的取舍，可供核查 LVR 中并行验证与缓存复用是否会让「验证通过」不等于状态等价，以及验证成本与停止判据的设计线索。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-24T01:10:46.683007+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

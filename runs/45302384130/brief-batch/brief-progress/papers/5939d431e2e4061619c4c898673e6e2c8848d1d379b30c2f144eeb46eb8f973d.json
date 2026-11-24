@@ -1,0 +1,68 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.27084",
+  "input_sha256": "f9dc27b4355c157dc30de26c960ba5daab4363a7c27ae788eb3df8ac3a997325",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-24T01:16:28.383718+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 2060,
+        "output_tokens": 709,
+        "total_tokens": 2769,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 499
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.27084",
+    "title": "Auditing and Adapting kNNGuard for Long-Context Prompts",
+    "authors": [
+      "Niccolò Ronchetti"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": "15 pages, 2 figures, 3 tables",
+    "summary": "Training-free activation guardrails such as kNNGuard score prompts by comparing last-token LLM hidden states (the Layer Ensemble branch, kNNGuard LE) and sentence embeddings (all-MiniLM-L6-v2, Embedding-kNN) against a small reference bank (50 examples per class), combining the two branches into a Fused Ensemble (kNNGuard FE). While effective on short inputs (up to 256 tokens), standard kNNGuard degrades substantially on long inputs (over 1000 tokens): averaged across Qwen3.5-4B and Gemma-4-E4B-it, kNNGuard LE AUROC drops from 0.742 (0.777 and 0.706) to 0.554 (0.587 and 0.521) on Content Harm Moderation (Aegis-2.0), and from 0.994 (0.995 and 0.992) to 0.556 (0.598 and 0.513) on RAG Hallucination Detection (HaluBench). We trace this degradation to three causes: (1) hidden-state drift as sequence length increases, (2) hard 256-token truncation in MiniLM, and (3) signal dilution when a long document is compressed into a single final-token vector. We then evaluate three training-free adaptations: a Length-Routed Dual Bank, a long-context embedding model (Qwen3-Embedding-0.6B), and Strided Window Pooling across intermediate token positions. On Content Harm Moderation, dual-bank routing and strided window pooling raise long-context kNNGuard LE AUROC from 0.554 to 0.828 (+0.274 AUROC) and fused kNNGuard FE AUROC from 0.721 to 0.886 (+0.164 AUROC) with no latency overhead from bank routing. On RAG Hallucination Detection, where the guardrail must verify logical consistency between a generated answer and a retrieved passage, sentence-embedding kNN remains near random chance across all lengths, while length-matched LLM hidden states (kNNGuard LE) recover medium-length detection (AUROC = 0.853) but remain limited on over-1000-token passages (AUROC = 0.607) due to final-token dilution over long contexts.",
+    "abs": "http://arxiv.org/abs/2611.27084v1",
+    "pdf": "https://arxiv.org/pdf/2611.27084v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P1",
+      "brief_summary": "论文审计无训练 kNNGuard 在长上下文提示上的性能崩塌（隐状态漂移、MiniLM 的 256 token 截断、长文压缩为末 token 向量造成信号稀释），并提出长度路由双 bank、长上下文 embedding 与跨中间 token 的 strided window pooling 三种无训练修补方案。",
+      "relevance_reason": "其「末 token 单向量稀释」诊断与按中间位置池化读取隐状态的做法，可能为 LVR 中 latent 相似度受位置与读取方式影响、以及长上下文下证据是否被保留提供可核查线索。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-24T01:16:28.383718+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

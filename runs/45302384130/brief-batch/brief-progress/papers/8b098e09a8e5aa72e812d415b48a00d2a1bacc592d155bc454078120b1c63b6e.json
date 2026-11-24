@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.26929",
+  "input_sha256": "4c9d14cf4d5b803efac5fa54c6fabd610da43c7cde496308d8b924d6b34f6027",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-24T01:18:34.985708+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1988,
+        "output_tokens": 738,
+        "total_tokens": 2726,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 475
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.26929",
+    "title": "Large Reported CHB-MIT Adaptation Gains Disappear with Pretrained Encoders and Matched Probes",
+    "authors": [
+      "Joseph Sankoorikal Johny",
+      "Antony J. Sankoorikal"
+    ],
+    "categories": [
+      "cs.LG",
+      "stat.ML"
+    ],
+    "comment": "47 pages, 8 Figures. Code and analysis outputs: https://github.com/johnyj02/eeg-drift",
+    "summary": "Dani and Liebe (2026) (DL) report that adapting the final encoder block of BIOT and CBraMod with self-supervised learning (SSL) improves CHB-MIT seizure-detection ROC-AUC by 36.2 and 29.5 points over linear probing. We investigate these results with their released code and an independent pipeline. The release loads pretrained weights for adaptation only when an otherwise unset configuration key is supplied, and its CBraMod probe reads the reconstruction head with dropout active. With pretrained initialisation and a probe on the encoder output in evaluation mode, the fixed-recipe adaptation gain on DL's split is -0.6 points for BIOT (95% interval [-3.8, +2.6]) and +0.01 for CBraMod ([-0.02, +0.04]) across five seeds. Across DL's split and five subject rotations on CHB-MIT and Siena Scalp EEG, with equally tuned linear probes (30 configurations, up to 500 epochs, validation-based early stopping), mean adaptation effects range from -1.1 to +5.7 ROC-AUC points over 18 comparisons (related settings and feature variants). Twelve of 18 support equivalence within +/-3 points under dependence-adjusted inference (8 of 12 rotation and 4 of 6 fixed-split comparisons); six are unresolved. After correcting rotation intervals for dependence, no positive effect has a 95% interval excluding zero. The +/-3 margin is an analysis threshold, not a clinically validated one, and smaller margins support fewer equivalences. Two fixed-probe gains near +21 points shrink under the same tuning, with smaller benefits unresolved. We also audit a CHB-MIT protocol shared by at least 14 papers. No tested configuration reproduces DL Table 1 as a whole. These findings concern the tested configurations; the encoder-level probe and subsequent checks were chosen post hoc.",
+    "abs": "http://arxiv.org/abs/2611.26929v1",
+    "pdf": "https://arxiv.org/pdf/2611.26929v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "该文复核 Dani 与 Liebe（2026）关于 BIOT、CBraMod 在 CHB-MIT 上自监督适配带来大幅增益的结论：用其公开代码与独立流程发现配置缺失导致未加载预训练权重、探针读取重建头且 dropout 未关闭；修正后 18 组比较的平均适配效应多在 -1.1 至 +5.7 点，多数支持等价比，并顺带审计了一个被至少 14 篇论文共用的 CHB-MIT 协议。",
+      "relevance_reason": "其「匹配探针、评估模式读取、统一调参预算、依赖校正区间」的核查方式，可能迁移到 LVR 中判断 latent 内容是否真被使用；探针挂载位置与读取头等易错点可供核查视觉 latent 可读性评测。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-24T01:18:34.985708+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

@@ -1,0 +1,77 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.26902",
+  "input_sha256": "09177bf974ab7de1065a86a614a514c5faf39afe969414a03f69ff8c3f3b6a57",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-24T01:18:54.553621+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1883,
+        "output_tokens": 616,
+        "total_tokens": 2499,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 387
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.26902",
+    "title": "Perceive Once, Escalate on Demand: Handing Off Visual KV Memory from Small to Large VLMs",
+    "authors": [
+      "Qiang Zhou",
+      "Jianing Deng",
+      "Siyan Dong",
+      "Jingxian Chen",
+      "Han-Yi Lin",
+      "Jingtong Hu"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.AI",
+      "cs.CL",
+      "cs.LG",
+      "cs.RO"
+    ],
+    "comment": "10 pages, 6 figures",
+    "summary": "An embodied agent cannot afford a large vision-language model (VLM) at every step of a long video, so a cascade runs a small VLM continuously and escalates only uncertain decisions to a large one. Each escalation, however, forces the large model to re-encode a history the small model has already perceived, and this dominates its cost. We present Baton, which hands the large model the small model's visual memory, its key-value (KV) cache over the history. Baton rests on one finding: the large model needs a usable memory, not a faithful copy of its own. A map trained to reproduce the large model's cache matches it most closely, yet brings no gain over the small model alone. Baton instead distills a per-layer linear map, without labels, from the large model's own answers, with the large model encoding only the current frame. Interventions on the map trace the gain to one direction, carried by the middle third of the large model's layers. On RoboMME, Baton beats the small model alone, a pruned or shortened re-watch, and a text memory; as the escalation channel of a cascade it matches re-watching to within about one point at 28-47% less compute, and 8x less per escalation at 64 frames. Its gain grows with the large model, from 8B to 32B, tracks the large model's headroom across eight model pairs from four families, and transfers zero-shot to OpenEQA.",
+    "abs": "http://arxiv.org/abs/2611.26902v1",
+    "pdf": "https://arxiv.org/pdf/2611.26902v1",
+    "AI": {
+      "category": "MAIN",
+      "priority": "P1",
+      "brief_summary": "论文提出 Baton：在长视频具身场景的小-大 VLM 级联中，把小模型对历史帧的视觉 KV 缓存经无标签蒸馏的逐层线性映射交给大模型，使升级时大模型只需编码当前帧，从而省去重看历史的开销，并在 RoboMME、OpenEQA 上评估。",
+      "relevance_reason": "直接涉及视觉细节能否保存在内部状态（KV 缓存）中并跨模型复用，以及按需升级所代表的动态计算分配；其「忠实复现大模型缓存不如从答案蒸馏有效」「增益集中在中间三分之一层」的发现，可供核查缓存内容、层级深度与视觉证据保留之间的关系。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-24T01:18:54.553621+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

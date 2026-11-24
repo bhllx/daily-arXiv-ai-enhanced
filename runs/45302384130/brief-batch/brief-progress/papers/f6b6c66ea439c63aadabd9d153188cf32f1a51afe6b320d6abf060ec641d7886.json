@@ -1,0 +1,72 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.27831",
+  "input_sha256": "c1014f7ff7ddff56607db2b5f97a46a29ee1ec85d3b75317d5f6531c078a0a57",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-24T01:08:29.313610+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1884,
+        "output_tokens": 671,
+        "total_tokens": 2555,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 482
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.27831",
+    "title": "DistDNA: Language Model Fingerprinting under Stochastic Decoding",
+    "authors": [
+      "Lifan Hu",
+      "Qian Yu",
+      "Zhaomin Wu",
+      "Bingsheng He"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.CL"
+    ],
+    "comment": "37 pages, 12 figures, 23 tables, including appendices",
+    "summary": "Behavioral fingerprints identify a large language model (LLM) from its responses to a shared set of prompts, enabling applications such as verifying whether a deployed model corresponds to the checkpoint it claims to be. Deployed models, however, are commonly served with stochastic decoding, under which the same model may produce different responses to an identical prompt, depending on an unknown temperature and top-$p$ setting. Existing representations such as LLM DNA provide limited treatment of this variation. A natural remedy is to characterize models by their response distributions, which, however, raises two challenges. First, each distribution must be estimated from only a small number of sampled responses. Second, a change in decoding setting can alter responses to the same extent as a change of checkpoint. Consequently, fingerprint distances alone provide an incomplete basis for model identity, and identification typically relies on a classifier trained jointly on fingerprints from many checkpoints. We propose DistDNA, which represents a model by its prompt-conditional response distributions and compares models by promptwise maximum mean discrepancy (MMD). The model under examination is assigned to the known checkpoint whose reference fingerprints, collected at several decoding settings, lie nearest to its own, without training a classifier. We show that finite sampling adds variance-dependent terms to the expected squared fingerprint distance, with these terms decreasing as $O(1/R)$ for equal response counts, where $R$ is the number of responses per prompt. Experiments across 115 model checkpoint entries demonstrate that DistDNA improves identification accuracy over the strongest baseline, LLM DNA, by 10.36%.",
+    "abs": "http://arxiv.org/abs/2611.27831v1",
+    "pdf": "https://arxiv.org/pdf/2611.27831v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文研究随机解码（未知 temperature、top-p）下的 LLM 行为指纹识别：用提示条件的回答分布而非单条回答表征模型，以逐提示 MMD 比较分布并直接匹配参考指纹而无需训练分类器，并分析有限采样引入的方差项。",
+      "relevance_reason": "其「用分布距离代替单样本比较、并把采样噪声与真实模型差异分离」的思路，可能可供核查 latent 推理轨迹或内部状态在随机采样下的分布级比较与不确定性估计。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-24T01:08:29.313610+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

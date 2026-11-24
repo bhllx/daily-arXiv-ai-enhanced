@@ -1,0 +1,68 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.27951",
+  "input_sha256": "7e796388ba96724eebd21f8925e3b1924fc2757eb76c55baf976bf6b36c6bdfc",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-24T01:07:20.377149+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 2084,
+        "output_tokens": 627,
+        "total_tokens": 2711,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 374
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.27951",
+    "title": "Topology Hub Optimal Transport: Eliminating Long Context Dilution at Flash Speed",
+    "authors": [
+      "Dylan Forde"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Long-context models use sparse or structured attention to avoid quadratic cost, yet retrieving a small set of relevant facts embedded among hundreds of thousands of distractors degrades as normalization mass disperses with length. Hub-and-spoke optimal transport (OT) replaces the dense $L \\times L$ matrix with a linear-size graph over local windows and $K$ shared hubs balanced by Sinkhorn scaling. Building on block-wise tail refinement and fixed-support transport topology (arXiv:2605.08123, arXiv:2609.07954), we introduce Topology Hub Optimal Transport (THOT): (1) bounded-support capacity gating via simplex sparsemax ($O(L\\log L)$) or sorting-free token-local thresholded ReLU ($O(L)$), driving excess distractor mass to zero; (2) a three-sweep $1+2$ annealed row-closed Sinkhorn schedule that damps bipartite residuals; (3) an exact rank-$(D+2R+1)$ One-Reference-Tile adjoint in batched split-factor Triton kernels (BF16 Tensor Cores, FP32 potentials); and (4) a chunked exclusive-prefix causal variant with verified zero future leakage. On NVIDIA L4, sparsemax THOT trained at $L=128$ reaches 97.40% zero-shot recall of fixed bindings at $L=262{,}144$ under pure task loss ($α=0$) and 98.83% at $α=0.05$ (matched by $O(L)$ thresholded ReLU at $α=0.05$, vs. 80.60% at $α=0$), while softmax-gated hub OT drops to 3.52%. In bidirectional operator microbenchmarks, our kernel runs forward+VJP in 100.1 ms at $H=8, D=64, L=262\\mathrm{K}$ (2.2x faster with 4.0x smaller compiler temporaries than latent softmax) and 1.34 ms vs. 4.37 ms for cuDNN FlashAttention at $L=4{,}096$; multi-layer LM runs use the unfused path. Zero-shot WikiText-103 multi-needle retrieval hits 100.00% (128/128 queries at $L=65\\mathrm{K}$) vs. 0.78% for short-trained RoPE FlashAttention, and compact 4-layer WikiText-4K runs show modest causal and masked LM gains.",
+    "abs": "http://arxiv.org/abs/2611.27951v1",
+    "pdf": "https://arxiv.org/pdf/2611.27951v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "提出 THOT，用 hub-and-spoke 最优传输取代稠密注意力矩阵，配合有界支撑容量门控（simplex sparsemax 或阈值 ReLU）把干扰项传输质量压至零，并给出融合 Triton 内核与因果变体，使 262K 长度下的零样本绑定召回从 softmax 门控的 3.52% 提升到 97% 以上。",
+      "relevance_reason": "其「归一化质量随长度分散导致关键事实被稀释」的诊断与容量门控抑制干扰质量的机制，可能可供核查 LVR 中的视觉证据筛选与信息坍缩问题，例如大量视觉 token 是否稀释关键细节；但原文是纯文本长上下文内核工作，无多模态或 latent 状态验证，迁移需自行判断。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-24T01:07:20.377149+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

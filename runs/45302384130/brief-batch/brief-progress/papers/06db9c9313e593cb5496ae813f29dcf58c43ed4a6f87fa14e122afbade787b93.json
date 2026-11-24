@@ -1,0 +1,72 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.27796",
+  "input_sha256": "ea76bb14a77609d068c6c37ea52a7da0e63b6ea4dfacf86122ac2e3b7709f9bb",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-24T01:08:49.675113+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1912,
+        "output_tokens": 369,
+        "total_tokens": 2281,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 170
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.27796",
+    "title": "$\\varepsilon$-SegFormer: Multi-Resolution Vision Transformers for Sparsely Supervised Segmentation in Electron Microscopy",
+    "authors": [
+      "Erfan Amidi",
+      "Sheida RahnamaiKordasiabi",
+      "Edoardo Giacomello",
+      "Florian Jug"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.LG"
+    ],
+    "comment": "23 pages including supplementary material",
+    "summary": "Segmenting organelles in electron microscopy (EM) volumes requires dense annotations that take experts months to produce, and every gain in imaging resolution adds to this cost. Sparsely supervised methods reduce this cost to a small fraction of labeled pixels, but the convolutional networks they build on see a limited neighborhood around each pixel, while the identity of an organelle often depends on context far beyond it. We introduce $\\varepsilon$-SegFormer, a multi-resolution Vision Transformer for sparsely supervised semantic segmentation, which builds on the architecture of MuViT and extends the training method of $\\varepsilon$-Seg. For each labeled pixel, $\\varepsilon$-SegFormer samples views at three physical resolutions centered on it, embeds their patches into a single token sequence, and encodes every token's position in image coordinates, so that attention relates all views in one shared frame. A segmentation head classifies the pixel from the tokens around it; during training, the pixel's own token is hidden, so the label must be predicted from context rather than local appearance. The model is trained in a single stage, without pretraining, with an auxiliary reconstruction loss. On the BetaSeg FIB-SEM dataset, $\\varepsilon$-SegFormer learns from about 10,000 labeled pixels among the 670 million voxels inside three cells, and, given the cell mask, segments nuclei, mitochondria and insulin granules in a slice of a fourth, unseen cell with an average Dice of 0.89 (0.91 after post-processing). Ablations show that coarser views improve accuracy and that a compact head on local tokens works best, with the wider context entering through attention in the encoder.",
+    "abs": "http://arxiv.org/abs/2611.27796v1",
+    "pdf": "https://arxiv.org/pdf/2611.27796v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "提出 ε-SegFormer，一种面向电镜体数据稀疏监督分割的多分辨率 Vision Transformer：为每个有标注像素采样三种物理分辨率视图，映射到统一坐标系的 token 序列中，训练时隐藏该像素自身 token，迫使标签由上下文预测。",
+      "relevance_reason": "其「隐藏目标像素自身 token、强制依赖上下文」的做法可供核查是否有助于抑制 LVR 中的视觉旁路与局部捷径，多分辨率视图共享坐标编码也可能为视觉证据筛选与尺度组合提供线索，但论文本身并非 VLM 推理研究。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-24T01:08:49.675113+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

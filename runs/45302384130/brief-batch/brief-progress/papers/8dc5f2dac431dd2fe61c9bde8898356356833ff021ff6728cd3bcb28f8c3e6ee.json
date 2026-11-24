@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.26914",
+  "input_sha256": "6b80863191d0491002138535b091d31143616e9e4455dceabd0874c8aff3ba95",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-24T01:18:39.650844+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1984,
+        "output_tokens": 502,
+        "total_tokens": 2486,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 269
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.26914",
+    "title": "Multi-Tier Edge Triage: Optimizing Latency for Safe Clinical Agents",
+    "authors": [
+      "Joshua Broyde",
+      "Sarita A. Joshi"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": "16 pages, 7 figures, 8 tables",
+    "summary": "Deploying generative AI agents in enterprise clinical workflows requires enforcing multi-dimensional safety and compliance policies--preventing HIPAA Protected Health Information (PHI) exposure, maintaining clinical scope-of-practice boundaries, ensuring patient-appropriate reading comprehension, and preserving brand integrity--under interactive latency constraints. Synchronous outbound calls to cloud Large Language Model (LLM) judges add substantial network and decoding overhead onto the critical response path. We present Multi-Tier Edge Triage, a safety screening architecture that co-locates a compact Tier-1 sequence classifier on the clinical agent's host server, resolving clear queries in-process without a network round-trip and escalating only ambiguous queries to a Tier-2 cloud LLM judge. To evaluate Tier-1 encoders without length or unigram shortcuts, we construct four length-matched contrastive twin benchmarks seeded from MedSafetyBench, ASQ-PHI, and a synthetic four-mandate clinical assistant policy (Generic HealthCorp). While frozen local encoders match cloud models on structured PHI detection (>= 98.3% accuracy in <= 23.5 ms), they degrade markedly on semantic safety and symmetric-blocklist prompts. However, end-to-end representation fine-tuning closes the multi-policy accuracy gap: a fine-tuned 335M-parameter BGE-Large classifier achieves 98.90% out-of-fold accuracy versus 99.20% for a zero-shot cloud LLM judge (exact McNemar p = 0.648, zero shared errors), 97.8%-98.2% recall, and a 0.0%-0.4% over-refusal rate in 39.0 ms (>14x faster than cloud LLM evaluation on our benchmark host). Per-policy error analysis reveals ceiling local recall on PHI (100.0%), brand (100.0%), and clinical scope (98.7%-99.3%) violations, isolating residual errors to reading-level checks (93.3%-95.3%) and motivating targeted multi-tier escalation.",
+    "abs": "http://arxiv.org/abs/2611.26914v1",
+    "pdf": "https://arxiv.org/pdf/2611.26914v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文提出「Multi-Tier Edge Triage」临床 agent 安全筛查架构：在本地部署小型 Tier-1 分类器就地处理明确请求，仅把模糊请求升级给云端 LLM 评审，并用长度配对的对照孪生基准检验 Tier-1 编码器，报告微调后 335M 分类器在多政策准确率上接近零样本云端评审且延迟约 39 ms。",
+      "relevance_reason": "其按歧义程度决定是否升级到更重模型的级联门控，可能与 LVR 中 THINK/LOOK/STOP 的计算分配与停止决策可供核查；但对象是文本安全审查，与视觉证据和 latent 推理状态无直接关系。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-24T01:18:39.650844+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

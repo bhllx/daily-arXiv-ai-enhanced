@@ -1,0 +1,80 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.27377",
+  "input_sha256": "370461b23531bcc04c0b560e05588d70eb5d5cab5defaec6797da38b0b4ae268",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-24T01:12:32.907557+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1861,
+        "output_tokens": 559,
+        "total_tokens": 2420,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 353
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.27377",
+    "title": "HR-Merge: Model Merging with Headroom-Weighted Residual Refinement",
+    "authors": [
+      "Jiakang Huang",
+      "Xueyan Zhang",
+      "Renyi Cai",
+      "Jingcheng Niu",
+      "Jiaru Li",
+      "Yining Wang",
+      "Josh Zhang",
+      "Jiahe Jiang",
+      "Jinman Zhao",
+      "Gerald Penn",
+      "Baharan Mirzasoleiman"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.CL",
+      "cs.CV"
+    ],
+    "comment": "21 pages, 7 figures, 16 tables. A short version was accepted at the NeurIPS 2026 Workshop on Neural Network Artifacts as a New Data Modality",
+    "summary": "Model merging combines experts fine-tuned from a shared backbone, such as LoRA adapters of a large language model, into one multi-task model without further training. Existing methods apply one rule to every task, yet the accuracy they lose is uneven across tasks. We show that the lost accuracy remains recoverable from each task's residual, its task vector minus the merged update, and that a task's validation headroom, the share of its expert validation accuracy the merge loses, indicates where recovery pays off. Residuals from different tasks interfere, so they must be merged rather than summed. We propose HR-Merge, a training-free wrapper around any merging method. It weights each residual by its task's headroom, re-merges the weighted residuals with the base operator, and adds the result back at a strength selected on validation, falling back to the base merge when no strength helps. On six NLI adapters of LLaMA-3 8B, HR-Merge lifts TIES from 93.29 to 94.29 normalized accuracy, above all tested bases, mainly by recovering its weakest task. In vision, on three CLIP backbones, up to 20 tasks, and LoRA merging, it generally improves or preserves base accuracy and yields the best model in every setting.",
+    "abs": "http://arxiv.org/abs/2611.27377v1",
+    "pdf": "https://arxiv.org/pdf/2611.27377v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "提出 HR-Merge：一种无需训练的模型合并包装器，用各任务验证精度损失（headroom）对「任务向量减去合并更新」的残差加权，再以基础算子重新合并并按验证选择强度，在 LLaMA-3 的 NLI 适配器与 CLIP 多任务设置上提升归一化精度。",
+      "relevance_reason": "其按验证余量分配各任务残差权重、并显式处理残差间干扰的合并规则，可能为多专家或多假设 latent 状态的贡献分配与相互干扰抑制提供可核查的线索。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-24T01:12:32.907557+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

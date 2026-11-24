@@ -1,0 +1,73 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.26975",
+  "input_sha256": "6b054ff473dbfd3d9344e88514c1e60fd91065e9a0d3704ebaa9b8113475544c",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-24T01:17:59.551675+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1718,
+        "output_tokens": 456,
+        "total_tokens": 2174,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 247
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.26975",
+    "title": "Run One, Get Two: Near-Free Streaming Safety Checks for Local LLMs",
+    "authors": [
+      "Soheil Zibakhsh",
+      "Pedram Aghazadeh",
+      "Farinaz Koushanfar"
+    ],
+    "categories": [
+      "cs.AI",
+      "cs.CL",
+      "cs.LG",
+      "cs.PF"
+    ],
+    "comment": null,
+    "summary": "Local LLM assistants decode for one user at a time, so decoding is bound by memory bandwidth and leaves compute idle. Streaming safety checks today trade accuracy against cost. A dedicated guard model is accurate but nearly doubles the latency per token, while a hidden-state probe is cheap but less accurate. We present ToRA, an adapter that runs a second model as an extra row in the generator's decode step, sharing its weights and KV cache. Dual-row kernels read each weight once for both rows. On Qwen3-0.6B, ToRA matches or beats a dedicated streaming guard, with higher F1 on 12 of 17 benchmarks. It detects 11.8 points more unsafe responses than the probe at a similar cost, under 4% added latency per token.",
+    "abs": "http://arxiv.org/abs/2611.26975v1",
+    "pdf": "https://arxiv.org/pdf/2611.26975v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "提出 ToRA：把第二个模型作为生成器解码步中的「额外一行」，共享权重与 KV cache，用双行 kernel 一次性读取权重，实现低开销的流式安全检测，在 Qwen3-0.6B 上以不到 4% 的每 token 延迟超过专用 guard 与 hidden-state probe。",
+      "relevance_reason": "其「以极小增量算力在读隐藏状态上做逐 token 判定」的工程路径，可能为 LVR 中的低开销验证头或 STOP 决策提供借鉴，但属纯文本安全场景，迁移需核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-24T01:17:59.551675+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

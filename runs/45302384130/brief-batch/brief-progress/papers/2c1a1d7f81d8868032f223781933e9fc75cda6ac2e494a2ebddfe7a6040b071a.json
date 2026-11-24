@@ -1,0 +1,73 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.27585",
+  "input_sha256": "84ca9aa8a784fa0145075495b36cfde9d588aeca13aeab1d9886ae788e96c771",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-24T01:10:32.552798+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1934,
+        "output_tokens": 452,
+        "total_tokens": 2386,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 244
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.27585",
+    "title": "Leakage-Free Is Not Confounder-Free: What a Patient-Level Split Cannot Certify About a Medical Imaging Benchmark",
+    "authors": [
+      "Ignazio Gallo",
+      "Mattia Gatti",
+      "Leonardo Sgroi",
+      "Darwin Castillo",
+      "Yuliana Jiménez-Gaona",
+      "Nicola Landro"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": "26 pages, 6 figures, 18 tables. Code, configurations and aggregate results: https://github.com/ignaziogallo/breast_thermography_reliable_ai",
+    "summary": "Patient-level splitting is the standard safeguard against subject leakage in medical imaging evaluation, but it cannot remove a confounder that every fold inherits: an acquisition variable aligned with the diagnosis across the whole cohort. We present a five-question audit of a candidate confounder: how well it predicts the diagnosis, whether it can be decoded from the images, whether diagnostic scores depend on it, whether the image adds predictive value beyond it and how much discrimination survives once it is controlled. We apply it to DMR-IR, the public dataset on which most machine-learning results in breast thermography rest. On 236 patients under a strict patient-disjoint protocol, the acquisition date alone predicts malignancy at AUROC 0.980, above the best of nine imaging arms (0.949), because benign and malignant patients were recruited in different years. The acquisition year is decodable from the pixels among patients who share a diagnosis, largely through a global thermal offset outside the breast, yet only one arm, the one pooling every frame of a visit, demonstrably carries it into its diagnostic score. No arm improves on the date on paired folds, and once the date is controlled, discrimination either collapses or survives only on comparisons the benchmark cannot attribute. The dataset contains only eight cross-label same-date pairs, from ten patients, which limits reliable evaluation within recorded acquisition-date groups. A second, independently acquired cohort, whose dominant channel is patient age, returns the same audit outcome from a different confounder. Mitigation may suppress such a confounder, but without cross-label acquisition support no evaluation on the benchmark can certify that what remains is pathology.",
+    "abs": "http://arxiv.org/abs/2611.27585v1",
+    "pdf": "https://arxiv.org/pdf/2611.27585v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文提出五问审计流程来检验医学影像基准中的候选混杂因素（如采集日期/年龄），并在 DMR-IR 乳腺热成像数据上按患者级划分验证：采集日期单独预测恶性的 AUROC 高于所有影像分支，且控制该变量后判别力崩塌或无法归因。",
+      "relevance_reason": "其「该变量能否从图像中解码、模型分数是否依赖它、控制后还剩多少判别力」的审计思路，可能可供核查 LVR/VLM 推理中 latent 状态是否真正承载视觉证据、而非依赖数据集捷径或视觉旁路。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-24T01:10:32.552798+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

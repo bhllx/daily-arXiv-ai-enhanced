@@ -1,0 +1,74 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.27092",
+  "input_sha256": "ed9eb15b7c87c8e716bed8d0f650222f6e5e02fe16014f31f71a6b98b178c282",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-24T01:16:19.027954+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1865,
+        "output_tokens": 621,
+        "total_tokens": 2486,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 391
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.27092",
+    "title": "PLoQ: A Prompt-Specific Low-Rank Basis for 4-bit Quantization of LLM Activations",
+    "authors": [
+      "Faraz Tahmasebi",
+      "Michael Pellauer",
+      "Hyoukjun Kwon",
+      "Sitao Huang"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.CL",
+      "cs.DC",
+      "cs.PF"
+    ],
+    "comment": "18 pages, 5 figures, 14 tables. Includes appendix",
+    "summary": "Low-bit activation quantization of large language models remains challenging, as a small number of dominant directions dictate the quantization range. State-of-the-art methods isolate these directions in a high-precision subspace through transformations calibrated offline and folded into the weights, which fixes the subspace for all prompts, leaving each prompt's few unique directions unprotected, and rules it out wherever no weight can absorb the transformation. We present PLoQ, a prompt-adaptive low-rank decomposition that extracts the dominant activation components before quantization, quantizes them separately, and restores them within the layer's GEMM, without modifying the weights. The low-rank component's basis is estimated from each prompt during prefill and reused throughout decoding. At the same bit width as state-of-the-art mixed-precision quantization (4-bit weights, activations and K/V cache with an eighth of the channels at 8 bits, about 4.2 bits per activation on average), PLoQ outperforms it on all six Llama and Qwen models from 1B to 70B parameters, at up to 8k tokens (16k on two of them), recovering up to 46% of the perplexity that the state of the art still loses to 4-bit activations. On Llama-3.1-8B at 8k tokens it adds only 4% to prefill and 8% to decoding.",
+    "abs": "http://arxiv.org/abs/2611.27092v1",
+    "pdf": "https://arxiv.org/pdf/2611.27092v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "PLoQ 提出不改权重的 prompt 自适应低秩分解：量化前从激活中提取主导分量单独量化，并在该层 GEMM 内恢复，低秩基在 prefill 阶段按 prompt 估计、解码期复用；在 Llama/Qwen 1B–70B 六个模型上以约 4.2 bit 平均位宽超过混合精度量化基线。",
+      "relevance_reason": "其「按 prompt 在线估计激活低秩子空间并在解码步间复用」的线索，可供核查 LVR 中 latent 状态的低秩假设、缓存/子空间复用以及量化造成的信息坍缩；但论文本身不涉及多模态推理或 latent reasoning。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-24T01:16:19.027954+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

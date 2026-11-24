@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.27102",
+  "input_sha256": "20824bd2bfd065a7ce050664a6bdbfc2253765b18ce37d49abb53e119cc7b265",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-24T01:16:09.124617+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1988,
+        "output_tokens": 747,
+        "total_tokens": 2735,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 488
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.27102",
+    "title": "One state, many questions: Opsis gives a frontier model typed eyes for pathology",
+    "authors": [
+      "Zhixuan Ge",
+      "Wei Qiu"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.AI"
+    ],
+    "comment": "28 pages, 10 figures, 12 tables. Code and data: https://github.com/gezhixuan/opsis",
+    "summary": "A synoptic pathology report is a checklist of questions with fixed answer sets, many composed from others. Pathology foundation models answer them accurately with one classifier trained with labels for each, and frontier language models, which compose freely, cannot fit a slide of fourteen thousand tiles in their context. On 189 breast report questions, frontier models that read a written description of the slide or look at a thumbnail and tiles of it answer at 0.50 to 0.66, below the majority class at 0.67. A description is written before the question is known, and a look covers a handful of tiles. We present Opsis, which lets the model ask instead: a typed question interface on a frozen pathology encoder. A slide is encoded once, a question names an operator, arguments and candidates given at runtime, and the answer is a probability over the candidates. We build it as a 10 M parameter decoder on frozen Virchow2 tokens (Opsis-S) and inside Qwen3-VL-8B (Opsis-V). Asking Opsis-S, four frontier models answer the breast questions at 0.78 to 0.79, and on 3,797 pan cancer questions asking is 8.6 points above reading. On 995 composite questions that Opsis-S was never trained on, a frontier model composing its answers reaches 0.76, against 0.69 when it looks at the slide and 0.78 for ABMIL trained on each composite. On a pan cancer question set over 10,712 TCGA slides, one Opsis-S decoder matches linear probes trained per question on TITAN and PRISM2 embeddings (average accuracy 0.69 against 0.70 and 0.68). Opsis-S also separates CAMELYON16 metastases without training on that cohort (AUROC 0.86) and localises necrosis from report labels alone (tile AUROC 0.93).",
+    "abs": "http://arxiv.org/abs/2611.27102v1",
+    "pdf": "https://arxiv.org/pdf/2611.27102v1",
+    "AI": {
+      "category": "MAIN",
+      "priority": "P1",
+      "brief_summary": "论文提出 Opsis：在冻结病理编码器上建立「类型化提问」接口，切片只编码一次，问题在运行时指定算子、参数与候选，输出为候选上的概率分布；实现为 10M 参数解码器（Opsis-S）和嵌入 Qwen3-VL-8B 的版本（Opsis-V），在乳腺与泛癌问答上评测，含未训练过的复合问题。",
+      "relevance_reason": "与「视觉证据筛选」及「答案是否真正使用 latent 视觉内容」直接相关：单一编码状态按问题条件化读出，可与逐题线性探针、读描述或看缩略图加切片等基线对照，供核查信息坍缩与按需取证；复合问题的组合表现亦涉及状态复用与贡献分配，值得近期阅读，但任务域较专用。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-24T01:16:09.124617+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

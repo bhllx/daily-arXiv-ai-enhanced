@@ -1,0 +1,75 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.27630",
+  "input_sha256": "767b9958470f0b9e5c32aa837d931c0fe766387f24048b35a9f5b903be3a5cc3",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-24T01:10:11.549221+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1886,
+        "output_tokens": 679,
+        "total_tokens": 2565,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 476
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.27630",
+    "title": "Segment Everything, Materialize Nothing: Exact Streaming Inference for Many-Class 3D Segmentation",
+    "authors": [
+      "Fabian Isensee",
+      "Jakob Wasserthal",
+      "Lalith Kumar Shiyam Sundar",
+      "Maximilian Rokuss",
+      "Moritz Langenberg",
+      "Constantin Ulrich Harsy",
+      "Stefan Michael Happold",
+      "Klaus H. Maier-Hein"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": null,
+    "summary": "Whole-body segmentation tools such as TotalSegmentator and MOOSE split more than 100 classes across five or six networks. The reason is memory. Standard 3D inference, as implemented in nnU-Net and MONAI, holds a logit for every class and voxel, on the working grid and again on the scanner's grid. For a median whole-body CT at 125 classes, that is 76 GB. We show that this memory wall lies in what inference materializes, not in the task, and remove it without approximation. Every step after the network is local along one axis, so its outputs can be streamed through a ring one patch thick. The classification head commutes with blending and resampling, so the ring carries the network's features instead of the class logits. Memory thus no longer grows with classes times volume, and the label map on the scanner's grid stays exact. This holds for any model with a pointwise affine head, without retraining. Many-class models, previously impractical, become deployable. One model trained on all classes matches or slightly exceeds the toolkits' five or six specialists in segmentation quality and runs 5.8-15x faster end to end, with 3.2-7.6x less RAM and under 8 GB of VRAM. We provide the method as a drop-in for nnU-Net, TotalSegmentator and MOOSE. The code is part of nnU-Net (https://github.com/MIC-DKFZ/nnUNet), and unified models for both toolkits will be released.",
+    "abs": "http://arxiv.org/abs/2611.27630v1",
+    "pdf": "https://arxiv.org/pdf/2611.27630v1",
+    "AI": {
+      "category": "EXCLUDE",
+      "priority": "NONE",
+      "brief_summary": "该论文针对多类别 3D 分割推理的内存瓶颈，指出瓶颈来自推理过程物化的 logits，并利用分类头与重采样可交换的性质，用单层 patch 的环形缓冲流式完成推理，从而在精确结果下大幅降低内存并加速。",
+      "relevance_reason": "该工作是医学 3D 分割的推理内存与工程效率优化，虽然涉及「流式状态」与「物化内容」，但不涉及推理期 latent 视觉状态、证据筛选或停止决策，与 LVR 主线无具体可借鉴线索。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-24T01:10:11.549221+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}
