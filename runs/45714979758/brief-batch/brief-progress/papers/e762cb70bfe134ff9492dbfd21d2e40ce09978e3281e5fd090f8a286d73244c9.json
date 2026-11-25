@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.32407",
+  "input_sha256": "d46e8098983076cee2b94cc360969f46c32517432a4ee4390ef1538d85104be8",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-25T22:47:40.894633+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1933,
+        "output_tokens": 497,
+        "total_tokens": 2430,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 289
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.32407",
+    "title": "Every Edit Its Own Budget: Per-Instruction Token Freezing for Training-Free Acceleration of Multi-Edit Image Editing",
+    "authors": [
+      "Jyotirmoy Nath",
+      "Neeraj Kumar",
+      "Brejesh Lall"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": null,
+    "summary": "Accelerating instruction-based image editing when one instruction requests several edits is challenging. Many training-free accelerators for flow-matching image editors skip tokens whose prediction has stopped changing, but decide this with a single threshold for the whole image. With several edits, such a threshold, tuned for speed, freezes small and slowly settling edits first, and requested edits disappear. We propose TIDE (Training-free Instruction-aware Drift-based Editing), which gives every instruction part its own compute budget. First, TIDE finds the region of each part in the editor's own attention by unbalanced optimal transport, without masks or external models. Second, it freezes a token once its drift is small relative to its own part and moves it along the straight path to its endpoint estimate. Third, a sparse engine computes only the remaining tokens. We prove that part-agnostic rules cannot guarantee per-part error budgets, characterize the optimal per-part threshold policy up to one tie class per part, and derive when our rule attains it. On FLUX.2 Klein, one global threshold breaks at least one edit's budget in 89% of MICE-Bench images, and TIDE drops up to 77% fewer edits at matched or higher speed (48% on MICE-Bench), a gap human raters confirm. On the many-step Klein Base, TIDE is the fastest compared method on six benchmarks (4.81-4.89x) and needs 5.3x fewer TFLOPs than vanilla, the largest saving we measure. With the same settings, it is also the fastest compared method on Qwen-Image-Edit-2511, a second model family (3.46-3.52x), and drops the fewest edits on all six benchmarks. Code will be made publicly available.",
+    "abs": "http://arxiv.org/abs/2611.32407v1",
+    "pdf": "https://arxiv.org/pdf/2611.32407v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "提出 TIDE，用于多指令图像编辑的无训练加速：借注意力上的非平衡最优传输定位每条指令区域，按“相对自身部分的 drift”冻结 token 并沿直线路径外推，再由稀疏引擎只计算剩余 token，并给出分部分阈值策略的理论刻画。",
+      "relevance_reason": "按指令划分计算预算、以 drift 相对量决定冻结/停止，以及用注意力归因证据区域，可能为 LVR 的 STOP 决策、贡献分配与视觉证据筛选提供方法线索；但该文面向图像编辑加速、无推理状态，迁移性可供核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-25T22:47:40.894633+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

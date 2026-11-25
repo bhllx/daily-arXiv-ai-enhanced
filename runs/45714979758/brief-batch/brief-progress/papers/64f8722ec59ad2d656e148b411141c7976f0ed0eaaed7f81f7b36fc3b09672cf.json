@@ -1,0 +1,72 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.31938",
+  "input_sha256": "65cd5cf765daf3e8a813f687ee789765fcf0a7757987737ac0c847c533762a48",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-25T22:53:48.965348+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1834,
+        "output_tokens": 776,
+        "total_tokens": 2610,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 540
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.31938",
+    "title": "CAPE: Coordinating Calibration and Search for Tool-Use Policies",
+    "authors": [
+      "Jiahao Wang",
+      "Xiaoxuan Chen",
+      "Aijun Yang",
+      "Xiaohua Wang"
+    ],
+    "categories": [
+      "cs.AI",
+      "cs.SE"
+    ],
+    "comment": null,
+    "summary": "A tool call can fail even when the operation behind it is correct, because the receiving tool parses delimiters, dates or record layouts under a configuration the agent cannot inspect. Compiling a tool-use policy for such a tool requires both calibration, which evaluates candidate calls on candidate configurations, and search over the evaluated calls. The two share one compilation budget: calibrating everything first postpones any improved policy until the end, while re-solving every partially known model delays the next useful query. A call becomes usable as soon as its effects are known on the configurations that reach it. We present CAPE, a training-free compiler built on this observation. It maintains an executable policy at all times, directs calibration to the calls that can improve this policy, and tightens bounds only where doing so ends calibration early. Returned policies preserve every configuration the initial policy completes, and CAPE certifies optimality when its executable and optimistic values meet. On CSV and JSON workflows built from 64 requests, CAPE reaches the independently computed optimum in 502 of 504 compilations while taking 22.0% less compilation time than eager exact search. On larger CSV families it returns policies with higher completion at similar compilation time, and it raises completion by 15.38 to 34.66 percentage points over an LLM that revises its serialization from error feedback.",
+    "abs": "http://arxiv.org/abs/2611.31938v1",
+    "pdf": "https://arxiv.org/pdf/2611.31938v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "CAPE 是一个免训练的工具调用策略编译器，针对接收方配置不可见的工具，把「校准候选调用」与「搜索调用组合」放在同一预算内交错进行，始终保持一个可执行策略，只对能改进该策略的调用分配校准，并仅在能提前结束校准时收紧界，在可判定时证明最优。",
+      "relevance_reason": "其「持续维护可用解、按对当前策略的预期改进分配证据获取预算、并在界收敛时停止」的 anytime 调度思路，可能可供核查 LVR 中 THINK/LOOK/STOP 的资源分配与停止判据；但对象是文本工具调用与配置校准，不涉及视觉或多模态内部状态，迁移需较多核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-25T22:53:48.965348+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

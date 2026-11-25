@@ -1,0 +1,72 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.32067",
+  "input_sha256": "f55f6f571d3e1202a41f883e33af7f6d82e126078425b0865afe721f2dd63f0b",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-25T22:51:50.219376+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1842,
+        "output_tokens": 441,
+        "total_tokens": 2283,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 208
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.32067",
+    "title": "LoopDVR: Looped Transformer for Efficient Dense Visual Recognition",
+    "authors": [
+      "Sirui Liang",
+      "Xuanlong Yu",
+      "Longfei Liu",
+      "Xiaodong Cun",
+      "Xi Shen"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": "Project page: https://siruuui.github.io/LoopDVR/ ; Github Repo: https://github.com/Intellindust-AI-Lab/LoopDVR",
+    "summary": "We propose LoopDVR, a framework for converting pretrained Transformer-based dense visual recognition models into parameter-efficient looped networks. Rather than reducing the network width or depth directly, LoopDVR reuses Transformer blocks across layers in both the ViT backbone and Transformer decoder, reducing the number of parameters while retaining the original computational structure. However, naively sharing parameters can disrupt the distinct transformations learned at different depths. To address this challenge, we identify suitable sharing groups based on inter-layer representation dissimilarity and keep the final backbone block independent for multi-scale feature construction. We then initialize each shared backbone block with the pretrained weights of its group's terminal layer to better preserve the learned representations. An independent Loop Adapter at each layer further helps retain depth-specific transformations within shared blocks. Subsequently, we distill visual representations into the looped backbone and integrate it with a looped decoder for task-specific training. Experiments demonstrate that LoopDVR achieves the best accuracy--parameter trade-offs across dense recognition tasks. Compared with the reference models, it reduces parameters by approximately 28% while maintaining competitive accuracy. Notably, LoopDet-S achieves 50.9 box AP with only 7.0M parameters, highlighting its effectiveness in compact models.",
+    "abs": "http://arxiv.org/abs/2611.32067v1",
+    "pdf": "https://arxiv.org/pdf/2611.32067v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "该文提出 LoopDVR，将预训练的 ViT 主干与 Transformer 解码器按层间表示差异分组共享参数、改造成循环网络，并以分组末层权重初始化、逐层独立 Loop Adapter 和表示蒸馏来保持深度特异变换，从而在密集视觉识别任务上降低参数量。",
+      "relevance_reason": "其循环复用同一组 Transformer 块可视为对内部表示的多次迭代更新，基于层间表示不相似度选择共享分组、用 adapter 保留每轮差异的做法，可能为 latent 推理中重复状态更新如何避免迭代间信息坍缩提供可核查线索；但论文目标是参数效率与识别精度，未涉及推理期 latent 决策或动态停止。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-25T22:51:50.219376+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

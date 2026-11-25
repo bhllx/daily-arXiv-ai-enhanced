@@ -1,0 +1,73 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.32821",
+  "input_sha256": "3a444f4ecc8813ffb187c62498095fba29fa7dcd4254e2e14eef218011742225",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-25T22:43:41.574650+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1921,
+        "output_tokens": 677,
+        "total_tokens": 2598,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 440
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.32821",
+    "title": "PhysMend: Verification-Guided Program Refinement for Physics-Aware Video Generation",
+    "authors": [
+      "Meilong Xu",
+      "Ziyi Zhao",
+      "Bhagyashree Puranik",
+      "Shayda Moezzi",
+      "Yixiao Zhang",
+      "Kushan Thakkar"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": "22 pages, 7 figures, 11 tables, including supplementary material",
+    "summary": "Video generative models synthesize realistic scenes, yet their interactions often violate physics. A ball dropped onto sand should displace grains and settle into a crater, whereas a generated video may show it passing through the surface or leaving the sand flat. Post-hoc methods typically score generated videos with a vision-language model (VLM), but such scores offer limited guidance on which object or parameter to modify, and each correction costs another synthesis. Simulation-based pipelines instead run fixed stages before synthesis, so simulation errors reach the video. To address these limitations, we present PhysMend, a training-free framework for verification-guided program refinement. PhysMend describes the target event as an editable physical program of grounded objects, events, and required relations, paired with tunable execution parameters. Our key insight is to verify and repair the event on its simulated rollout and on the depth video that conditions the generator (depth control) rather than on generated videos, enabling quantitative violation measurement, targeted editing, and fast re-verification before synthesis. A hybrid verifier evaluates semantic event consistency, physical plausibility, solver stability, and visibility in the depth control. VLM judgments are confined to event semantics and cannot override failed physical measurements, which limits the impact of VLM hallucinations. Each failed check localizes the program fields eligible for repair, and its measured violation scales a bounded update of their parameters. Only accepted depth control reaches the generator, which runs once per input. Experiments on the commonly used benchmarks Physics-IQ, PhyGenBench, and VBench-2.0 demonstrate substantial gains across different generator backbones; for example, PhysMend raises the overall Physics-IQ score of Wan-VACE from 27.33 to 39.40.",
+    "abs": "http://arxiv.org/abs/2611.32821v1",
+    "pdf": "https://arxiv.org/pdf/2611.32821v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文提出免训练的 PhysMend，把目标物理事件表示为可编辑的物理程序，在仿真 rollout 和作为生成条件的 depth control 上做混合验证（事件语义、物理合理性、求解器稳定性、可见性），定位失败字段并有界地调整参数，验证通过后才送入视频生成器。",
+      "relevance_reason": "其「验证—定位失败字段—有界修正—通过才继续」的循环与证据筛选、贡献分配和停止决策有形式相通之处，且把 VLM 判断限制在语义层面、不许覆盖物理测量的设计，可能为 LVR 中 latent 状态核验与 VLM 证据可靠性加权提供可核查线索；但研究对象是物理视频生成而非 VLM 推理。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-25T22:43:41.574650+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

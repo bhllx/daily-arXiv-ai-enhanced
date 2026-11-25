@@ -1,0 +1,68 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.32452",
+  "input_sha256": "1bbd679a02f4b1e22059f652bc1ad785b60d2beff993b261a031333724acb926",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-25T22:47:09.657942+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1952,
+        "output_tokens": 351,
+        "total_tokens": 2303,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 135
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.32452",
+    "title": "The Teacher Is Already Inside: Self-Distilling Looped Language Models Beyond Their Last Loop",
+    "authors": [
+      "Linghua Zhang"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Looped language models apply one shared transformer stack several times per token, and every loop is readable through the shared language-model head. Post-training them is hard. Reward-only reinforcement learning needs a verifier and learns from one sparse signal per response; spreading the reward over loops collapses the entropy of every loop; and cross-loop self-distillation, as in LoopOPD, can only teach intermediate loops, because the last loop cannot learn from its own frozen copy: the loss is zero at initialisation. We observe that a looped model already contains a policy that decodes better than its last loop: the next-token distribution extrapolated from the first loop through the last. ELPSD (Extrapolated-Loop Policy Self-Distillation) turns this distribution into a self-distillation target: a frozen copy of the model computes it, and the model's own last loop is distilled towards it on its own rollouts, using the exact reverse KL at every visited prefix. Teacher and student are the same model, so ELPSD needs no reward, no external teacher and no privileged context, and it leaves rollouts and decoding unchanged. We show that the objective pulls the last loop towards the base model's last loop with weight 1+w and away from the base model's first loop with weight w, and that the teacher must stay frozen, since an idealised teacher recomputed from the current model extrapolates without bound. We evaluate ELPSD on Ouro-1.4B-Thinking across five math benchmarks against the base model, GRPO, RLTT and OPSD. Without any reward, ELPSD raises the average avg@8 from 61.15 to 63.69 and is the best method on all five benchmarks, ahead of GRPO (62.32), which uses a verifier, and the self-distillation method OPSD (61.77), which needs reference solutions.",
+    "abs": "http://arxiv.org/abs/2611.32452v1",
+    "pdf": "https://arxiv.org/pdf/2611.32452v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P1",
+      "brief_summary": "针对循环语言模型的后训练困难，提出 ELPSD：用同一模型的冻结副本把首轮到末轮的下一个 token 分布外推成教师信号，再以精确 reverse KL 在自身 rollout 上蒸馏末轮，无需奖励或外部教师。",
+      "relevance_reason": "该文把「多轮循环中的隐状态更新」与外推式自蒸馏监督直接关联，并分析教师须冻结、目标向基模型首尾轮拉扯的权重，可供核查 LVR 中循环推理状态、轨迹监督与教师稳定性问题；但实验仅在纯文本数学任务上，视觉与 latent 证据处理未涉及。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-25T22:47:09.657942+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

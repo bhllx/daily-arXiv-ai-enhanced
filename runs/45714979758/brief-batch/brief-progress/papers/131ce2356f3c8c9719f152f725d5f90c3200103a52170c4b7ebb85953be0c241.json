@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.31747",
+  "input_sha256": "b338b59ae2c916a8ac4381c24034971d10cca105547d27e004c97094ae0aed3d",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-25T22:56:03.300511+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1785,
+        "output_tokens": 789,
+        "total_tokens": 2574,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 569
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.31747",
+    "title": "FN-Prune: Training-Free Expert Pruning with Finite RMSNorm Perturbations",
+    "authors": [
+      "Zeyan Li",
+      "Jianfeng Xu"
+    ],
+    "categories": [
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "Expert pruning reduces the memory footprint of mixture-of-experts language models, but retaining model quality depends on which experts are removed. Frequency- and magnitude-based scores measure the expert in isolation and overlook how normalization consumes its contribution: subtracting one expert changes both the direction of the residual stream and the scale applied to what remains. We propose FN-Prune, a training-free criterion that compares the next RMSNorm outputs before and after subtracting each router-weighted expert contribution, holding original routes and weights fixed. Squared differences are averaged over all calibration tokens in one pass; low-scoring experts are physically deleted at uniform per-layer ratios, and inference reroutes among survivors. At 50% expert removal, FN-Prune achieves lower WikiText-2 perplexity than the best published methods on Qwen3, ERNIE, and OLMoE, including a 32% reduction on OLMoE. At the same budget, GSM8K accuracy improves over the best published methods by 7.5 and 7.0 percentage points on Qwen3 and ERNIE, respectively, while multiple-choice gains remain task-dependent.",
+    "abs": "http://arxiv.org/abs/2611.31747v1",
+    "pdf": "https://arxiv.org/pdf/2611.31747v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "FN-Prune 提出无需训练的 MoE 专家剪枝准则：固定原始路由与权重，比较减去单个加权专家贡献前后 RMSNorm 输出的平方差作为重要性分数，按每层统一比例删除低分专家，并在 Qwen3、ERNIE、OLMoE 上报告 50% 剪枝下的困惑度与 GSM8K 提升。",
+      "relevance_reason": "其分数以「移除某专家后归一化输出如何变化」衡量真实贡献而非孤立权重，这种归一化敏感的扰动式归因，可能可供核查 latent 推理中按对后续状态影响归因模块／专家贡献与分配计算预算的做法。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-25T22:56:03.300511+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

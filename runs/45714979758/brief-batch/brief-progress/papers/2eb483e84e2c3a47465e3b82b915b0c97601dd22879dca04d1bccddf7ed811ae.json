@@ -1,0 +1,73 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.31932",
+  "input_sha256": "4f2a1e92e1c6a7609a1086c32d2ab176f401efe81cc9e2bd77fbd31c0bee3f0d",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-25T22:53:51.473599+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1827,
+        "output_tokens": 539,
+        "total_tokens": 2366,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 274
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.31932",
+    "title": "Contrastive On-Policy Self-Distillation for LLM Unlearning",
+    "authors": [
+      "Fangzhou Lin",
+      "Shuo Xing",
+      "Xin Li",
+      "Wenbin He",
+      "Zhengzhong Tu",
+      "Liu Ren"
+    ],
+    "categories": [
+      "cs.AI"
+    ],
+    "comment": "12 pages, 2 figures, 3 tables",
+    "summary": "Large language model unlearning aims to remove the influence of designated training data while preserving unrelated model capabilities. Existing likelihood-based methods commonly optimize against fixed forget sequences, providing only negative supervision on what the model should not generate and overlooking the states visited by the evolving unlearned policy. We introduce Contrastive On-Policy Self-Distillation (CPSD), a new unlearning framework that constructs an explicit knowledge-reduced target distribution and distills it along the model's own trajectories. Given a student rollout, a frozen reference model evaluates each token under a plain context and a privileged context containing the forget information. CPSD treats the resulting distributional shift as a knowledge-associated direction and reverses it to obtain a counterfactual unlearning target. The student is then trained to match this target at every rollout position while retaining its utility on unrelated data. We further introduce a privacy-enhanced variant that combines distributional unlearning with lightweight sequence-level suppression. Experiments under OpenUnlearning show that CPSD improves the forgetting-utility trade-off over NPO across TOFU forget-set sizes and Llama models ranging from 1B to 8B parameters. On MUSE-News, the privacy-enhanced variant improves all reported knowledge, memorization, privacy, and utility metrics over NPO.",
+    "abs": "http://arxiv.org/abs/2611.31932v1",
+    "pdf": "https://arxiv.org/pdf/2611.31932v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文提出 CPSD，一种面向大模型「遗忘」的对比式 on-policy 自蒸馏框架：对 student 自己生成的轨迹，用冻结参考模型分别在含遗忘信息的特权上下文与普通上下文中给出逐 token 分布，将两者差异视为知识相关方向并反向构造反事实遗忘目标，再以序列级抑制作为隐私增强变体。实验在 OpenUnlearning 的 TOFU 与 MUSE-News 上比较 NPO。",
+      "relevance_reason": "其「在自生成轨迹上逐位置构造特权/普通上下文分布差并反向」的密集监督思路，可能为 latent 推理的轨迹训练与贡献分配提供线索：可用带/不带视觉或证据上下文的目标分布差来定位状态中承载的具体信息，但需核查该反事实方向是否真对应可分离的内部状态，目前与视觉推理无直接关联。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-25T22:53:51.473599+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

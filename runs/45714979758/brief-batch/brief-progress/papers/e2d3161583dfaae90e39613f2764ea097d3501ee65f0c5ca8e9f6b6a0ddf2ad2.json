@@ -1,0 +1,74 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.32345",
+  "input_sha256": "6933b3a5b9f65c007f44467edc46b5e74c50fd7c77dc0f5372529ce13829c381",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-25T22:48:36.693843+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1950,
+        "output_tokens": 466,
+        "total_tokens": 2416,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 283
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.32345",
+    "title": "LRQ-Cache: Compressing Feature Caches in Video Diffusion via Low-Rank Approximation and Quantization",
+    "authors": [
+      "Ruizhe Yao",
+      "Zhen Huang",
+      "Songpan Gao",
+      "Danyi Liu",
+      "Zijian Cao",
+      "Weijie Zheng",
+      "Haohuan Fu"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": null,
+    "summary": "Video diffusion transformers (DiTs) achieve high-fidelity generation, but inference is expensive because every denoising step evaluates a large transformer over all spatiotemporal tokens of the video. Temporal caching accelerates them by reusing intermediate features across denoising steps. However, retaining dense feature tensors introduces a persistent storage cost that grows with video length, resolution, and cache coverage, reaching 109-346 GiB per video for the predictive caches we evaluate. Such states exceed the memory of a single GPU, so native caches must either be offloaded to the CPU, which slows generation, or be sharded across several GPUs, e.g., with sequence parallelism, so that the cache rather than the compute sets the number of GPUs. We instead shrink the cached state itself, exploiting its redundancy: a few channel patterns shared across tokens capture much of the energy of each cached feature. Based on this observation, we propose LRQ-Cache, a training-free method that combines low-rank approximation and quantization for feature-cache compression. LRQ-Cache represents each cached feature with a small set of factors, quantizes them before storage, and reconstructs the feature at reuse time, leaving cache mechanisms unchanged. Across three caching mechanisms on HunyuanVideo and Wan2.1, LRQ-Cache reduces the persistent state of predictive caches by 42-71x, to 2.3-4.9 GiB per video. VBench stays within 0.25 pp of the native cache for TeaCache, and the larger drops of the Wan2.1 predictive caches, up to 3.5 pp, shrink at higher ranks. As a result, predictive caches that exceed the memory of a single 80 GB H100 GPU fit on it with LRQ-Cache, making generation 2.7-5.9x faster than with CPU-offloaded native caches.",
+    "abs": "http://arxiv.org/abs/2611.32345v1",
+    "pdf": "https://arxiv.org/pdf/2611.32345v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "针对视频扩散 Transformer 时间缓存中特征张量占用过大的问题，提出免训练的 LRQ-Cache，用低秩分解加量化压缩缓存特征，复用时再重建，从而降低显存占用并提速。",
+      "relevance_reason": "低秩加量化的压缩—重建思路可供核查是否能用于压缩跨推理步复用的 latent 状态；但研究对象是视频生成去噪缓存，与 VLM 推理证据使用无直接关联，迁移性待验证。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-25T22:48:36.693843+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

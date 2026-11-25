@@ -1,0 +1,73 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.31604",
+  "input_sha256": "7be35d72a1628146473e71cd8286018d1826ca7895927e484cbdd9cf4ec820ac",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-25T22:57:36.692363+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1897,
+        "output_tokens": 660,
+        "total_tokens": 2557,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 445
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.31604",
+    "title": "Adapt, Label, Distill: Foundation-Model Supervision for Efficient Object Detection",
+    "authors": [
+      "Zhengye Yang",
+      "Anthony Wang",
+      "Yuyang Li",
+      "Mehmet Kerem Turkcan",
+      "Beizhan Yan",
+      "Zoran Kostic"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": "Accepted at the 7th Workshop on Real-World Surveillance: Applications and Challenges (RWS), WACV 2027. 12 pages, 6 figures, including supplementary material",
+    "summary": "Object detectors often transfer poorly to specialized domains, where box annotations are scarce and deployment requires compact, real-time models. Large vision foundation models can provide offline supervision, but their zero-shot predictions may be poorly aligned with the target domain. We present an adapt-label-distill pipeline that uses limited target annotations to specialize a foundation teacher and transfer its supervision to compact detectors. We adapt SAM3 on the labeled subset, generate pseudo-labels for the remaining unlabeled images, and train YOLOv11 students with confidence-guided supervision. Teacher confidence weights pseudo-label losses, while zero-gating retains uncertain hypotheses during assignment without applying their associated training losses. Experiments across six target domains and three student capacities show substantial gains in several domains, while revealing limited or negative transfer in others. Teacher comparisons under a common hard-label training recipe support the choice of SAM3, and comparisons with an EfficientTeacher adaptation provide additional evidence against an online SSOD baseline. With YOLOv11m, our pipeline improves over STAC-style self-training by up to 15.3 AP and reaches 51.6 AP on Garbage, compared with 54.1 under full supervision. On NVIDIA Jetson AGX Orin, the deployed student achieves 188 FPS versus 2.9 FPS for SAM3, benefiting from foundation-model supervision without incurring the teacher's deployment cost. Code is available at https://github.com/zk2172-columbia/ProjectAdaptLabelDistill_ObjectDetection.",
+    "abs": "http://arxiv.org/abs/2611.31604v1",
+    "pdf": "https://arxiv.org/pdf/2611.31604v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文提出 adapt-label-distill 流程：在少量标注上适配 SAM3 教师，为其未标注图像生成伪标签，再用置信度引导的监督训练紧凑的 YOLOv11 学生检测器，在六个目标域上分析迁移增益与负迁移，并报告边缘设备上的部署速度。",
+      "relevance_reason": "其中的教师置信度加权损失与「保留不确定假设但不施加损失」的零门控设计，可能为 latent 推理中候选视觉证据的筛选与不确定监督分配提供可供核查的线索；但该工作属检测蒸馏，与 LVR 的推理期状态生成无直接联系。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-25T22:57:36.692363+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

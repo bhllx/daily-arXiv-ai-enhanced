@@ -1,0 +1,71 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.32501",
+  "input_sha256": "ace77059c261d0f7a7b93702a9693bbf65d662d407693607b8a73c7b6e370523",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-25T22:46:34.902903+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1863,
+        "output_tokens": 668,
+        "total_tokens": 2531,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 445
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.32501",
+    "title": "Déjà-VAE: Training-Free Consistent Editing with Pseudo-Invertible Encoders and Latent Back-Projection",
+    "authors": [
+      "Ron Libman",
+      "Yamit Ehrlich",
+      "Ohad Fried",
+      "Assaf Shocher"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": null,
+    "summary": "Consistency is essential to generative workflows: repeated processing should preserve information beyond the changes explicitly requested. In latent diffusion models, this requires stability both when moving between latent and pixel spaces and when applying successive edits. Autoencoding errors and unintended changes from the editing model can accumulate across these operations, progressively altering image structure, texture, and color. We introduce Déjà-VAE, a framework that combines exact autoencoding consistency with calibrated editing stabilization, without training or fine-tuning. Its autoencoding component converts a pretrained variational autoencoder into a surjective pseudo-invertible neural network, with a fixed gain balancing deviations from the pretrained encoder and decoder. The modified decoder $D'$ is an explicit nonlinear right inverse of the encoder $E'$, satisfying $E'(D'(z))=z$ by construction. Consequently, $D'$ is a reflexive generalized inverse: latent round trips preserve their input, up to numerical precision, and repeated image reconstruction is idempotent. To suppress editing drift, adaptive wavelet back-projection finds the closest latent to the editor's output in $\\ell_2$, subject to matching the previous latent on wavelet coefficients whose changes fall below calibrated thresholds. This correction is applied once per turn, with no additional network evaluations after calibration. Together, these components support workflows that remain in latent space or interleave generation with pixel-space operations and constraints. Tests across models and editing benchmarks show less drift than stock pipelines and dedicated consistency methods.",
+    "abs": "http://arxiv.org/abs/2611.32501v1",
+    "pdf": "https://arxiv.org/pdf/2611.32501v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "提出 Déjà-VAE：无需训练地把预训练 VAE 改为伪可逆编码器—解码器对，使 latent 往返与重复重建在数值精度内稳定；并用自适应小波反投影，把编辑结果投影为在与上一 latent 未显著变化的系数上保持一致、且 ℓ2 最近的 latent，以抑制多轮编辑漂移。",
+      "relevance_reason": "其「在约束下把更新后的 latent 投影回与旧状态一致」的训练无关机制，可能可供核查 LVR 多步推理中如何抑制视觉证据随状态更新而漂移或坍缩；但原文面向图像编辑而非推理，迁移性需核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-25T22:46:34.902903+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

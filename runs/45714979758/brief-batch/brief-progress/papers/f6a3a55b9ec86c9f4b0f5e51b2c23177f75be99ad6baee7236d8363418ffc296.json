@@ -1,0 +1,71 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.31964",
+  "input_sha256": "e985f080888409827283ecf725197b8b7208c40173b07bea1779bcfff6d61788",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-25T22:53:29.692154+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1907,
+        "output_tokens": 659,
+        "total_tokens": 2566,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 445
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.31964",
+    "title": "Sounding the Black Box: Online Training of Embedded Neural Networks in Forward-Only Physical Simulators",
+    "authors": [
+      "Ruiqi Shu",
+      "Tianrun Gao",
+      "Haomin Wen",
+      "Xiaomeng Huang"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Hybrid physics-neural simulators embed neural networks in partial differential equation (PDE) solvers to model unresolved subgrid dynamics while preserving resolved physics and conservation laws. Because closure outputs feed back across time steps, single-step offline regression does not directly minimize multi-step rollout error, motivating online trajectory optimization. Solver backpropagation through time (BPTT) is the standard online solution when solver derivatives are available, yet many operational Fortran and C/C++ simulators expose only non-differentiable, forward-only interfaces. We introduce FORGE (Forward-Only Response and Gauss-Newton Estimation), an online framework that trains embedded networks from forward runs alone by decoupling exact network derivatives from black-box simulator dynamics. Stage I warms up the rollout via a low-dimensional Gauss-Newton step along output-orthonormal weight directions, canceling multi-layer feature drift via a final-layer correction. Stage II perturbs spatial output fields to fit a gain-bounded causal linear response operator across rollout steps, solves for regularized target outputs, and updates all weights via network backpropagation. Across five 2D and 3D benchmarks spanning phase separation, reaction-diffusion, fluid and MHD turbulence, and ocean circulation, FORGE outperforms gradient-free, reinforcement-learning, and emulator-based baselines, cutting coarse-solver test mean squared error (MSE) by 50%-96% in 2D and 70% in 3D, outperforming the strongest forward-only baseline by 16%-69%, and recovering 88%-98% of Solver BPTT's gains. Code is available at https://github.com/ChiyodaMomo01/FORGE.",
+    "abs": "http://arxiv.org/abs/2611.31964v1",
+    "pdf": "https://arxiv.org/pdf/2611.31964v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "论文提出 FORGE，在只有前向、不可微接口的黑箱 PDE 求解器中在线训练嵌入式神经网络：先用沿输出正交方向的低维 Gauss-Newton 步骤并做末层校正，再通过扰动空间输出场拟合有界因果线性响应算子，从而更新全部权重以降低多步 rollout 误差。",
+      "relevance_reason": "其在不可微黑箱前向过程中做多步信用分配并校正逐层状态漂移，可能与 LVR 中非可微推理轨迹的监督与贡献分配问题有概念联系，可供核查；但与视觉或多模态推理本身无直接关联。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-25T22:53:29.692154+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.32294",
+  "input_sha256": "bc5eb62a6bfa60a3a961aeb4c2a4c58da1e7b60cc63754ec843a9d4f245e4a5f",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-25T22:49:23.426361+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1755,
+        "output_tokens": 604,
+        "total_tokens": 2359,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 385
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.32294",
+    "title": "DAiSy: Online Data Selection by Adaptive Utility Estimation for LLM Pretraining",
+    "authors": [
+      "Simin Fan",
+      "Martin Jaggi"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "Model-aware online data selection prioritizes the training documents that contribute the most given the model's current state. Existing online selectors rank candidates upon gradient-based data utility scores, which requires the full forward-backward pass of the main model on every candidate document. Scoring each document therefore pays as much as training on it, yet only a small fraction is used for the real model update. We introduce DAiSy, a lightweight linear auxiliary model that learns to predict data utility scores from frozen document embeddings, which eliminates the computation overhead and infrastructure burdens. The linear estimator is updated alongside the main language model, fitting to the exact gradient-based utility scores obtained from the backward pass of regular training steps. Consequently, scoring a candidate requires only a linear transformation, bypassing the costly gradient-alignment computation. We demonstrate its effectiveness and efficiency for LLM pretraining in English and multilingual scenarios, with various steering target designs. The improvements from DAiSy can consistently survive the instruction-tuning phase.",
+    "abs": "http://arxiv.org/abs/2611.32294v1",
+    "pdf": "https://arxiv.org/pdf/2611.32294v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "提出 DAiSy：在冻结文档嵌入上训练一个轻量线性辅助模型，随主语言模型在线更新，用以预测原本需前向-反向计算得到的基于梯度的数据效用分数，从而省去逐候选文档的完整评分开销，并在英文与多语言预训练及后续指令微调中验证效果。",
+      "relevance_reason": "其核心线索是用冻结表示上的廉价线性代理近似昂贵的高成本信号（梯度效用），可能可供核查 LVR 中贡献分配、视觉证据筛选或验证器打分的低成本近似方案，但论文本身面向纯文本预训练数据选择，与推理期 latent 状态无直接联系。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-25T22:49:23.426361+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

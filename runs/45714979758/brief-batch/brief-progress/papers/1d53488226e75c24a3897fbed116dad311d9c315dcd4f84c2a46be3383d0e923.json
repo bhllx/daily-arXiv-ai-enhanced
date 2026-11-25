@@ -1,0 +1,73 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.32096",
+  "input_sha256": "c6cd985dcd4f22271d1f69f9aeafa5a1fe9df5e9c4ea0104b7b39c92432e0fe5",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-25T22:51:37.978936+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1822,
+        "output_tokens": 666,
+        "total_tokens": 2488,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 437
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.32096",
+    "title": "Rethinking Post-Training Quantization for Large Vision-Language Models",
+    "authors": [
+      "Minchan Kang",
+      "Kyeonghye Park",
+      "Seoyoung Cho",
+      "Junhee Lee",
+      "Daeshik Kim",
+      "Yucheol Cho"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": null,
+    "summary": "Post-training quantization (PTQ) compresses large vision-language models (LVLMs) by calibrating quantization parameters on a small dataset without retraining. However, despite increasingly sophisticated calibration strategies, prior methods suffer substantial performance degradation under low-bit weight--activation quantization. To understand this degradation, we locate where quantization error is concentrated and examine the corresponding weight and activation distributions. We observe that a few outliers dominate the ranges shared by per-channel (PC) weights and per-token (PT) activations, leaving insufficient resolution for most values and mapping many of them to zero. These findings motivate a shift in focus from calibration refinement to the underlying quantization representation. We therefore present Rotate-and-Refine Quantization (RRQ) as a simple, effective baseline for LVLM PTQ, combining local Hadamard transforms with group quantization and efficient group-aware execution. Across 8 multimodal tasks and diverse quantization settings, RRQ substantially outperforms baselines while reducing inference time and memory usage. At W4A4, it retains over 96\\% of full-precision performance on 8B models and over 99\\% on a 32B model, compared with less than 8\\% for these baselines. The source code is publicly available at https://github.com/kmc3661/RRQ",
+    "abs": "http://arxiv.org/abs/2611.32096v1",
+    "pdf": "https://arxiv.org/pdf/2611.32096v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "论文诊断 LVLM 低比特后训练量化的性能退化来源，发现 per-channel 权重与 per-token 激活共享的量化范围被少数离群值主导，使多数数值分辨率不足甚至被映射为零；据此提出 Rotate-and-Refine Quantization，用局部 Hadamard 变换结合分组量化与分组感知执行，在 8 项多模态任务上优于基线。",
+      "relevance_reason": "「多数数值被压到零、分辨率不足」可视为内部状态信息坍缩的一种外显形式，或可作为扰动手段检验视觉细节在 VLM 内部表示中的保留与因果贡献，但与 latent 推理过程的联系尚待核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-25T22:51:37.978936+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

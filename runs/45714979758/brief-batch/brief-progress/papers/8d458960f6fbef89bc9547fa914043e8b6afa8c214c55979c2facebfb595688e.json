@@ -1,0 +1,78 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.32035",
+  "input_sha256": "61cab840c34d22072c8c7463bdd23aa35c4275f75b55a73c6731b9b810c09951",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-25T22:52:19.794348+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1921,
+        "output_tokens": 635,
+        "total_tokens": 2556,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 486
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.32035",
+    "title": "DeCo-Attention: Decompose to Compensate for Low-Precision Attention",
+    "authors": [
+      "Yuhang He",
+      "Harrison Zhang",
+      "Fanrong Li",
+      "Chang Liu",
+      "RuQing G. Xu",
+      "Perkz Zheng",
+      "Zhenhua Wang",
+      "Rajeev Rao",
+      "Mengdi Wang",
+      "Sharan Chetlur",
+      "Jun Yang"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": "30 pages, 14 figures, 30 tables",
+    "summary": "Self-attention over tens of thousands of tokens dominates the generation time of video diffusion transformers, because its cost grows quadratically with sequence length. The FP4 matrix products of modern GPUs can speed up attention, but the 4-bit rounding of the queries Q and the keys K introduces large errors. We show that the exponential in softmax amplifies the error of their product QK, which therefore dominates the attention error. We propose DeCo-Attention, a co-design of algorithm and system for low-precision attention. DeCo-Attention is training-free and compensates the rounding error of Q and K along a few principal directions found by a per-head eigendecomposition. The lightweight compensation terms are appended to Q and K as extra channels, so the FP4 matrix product corrects its own rounding error while it computes the attention scores. Once the products run in FP4, the softmax bounds the kernel, and we optimize the softmax so that the gain of FP4 computation translates into realized speedup. With QK in FP4, we implement DeCo-Attention with the rest of attention in FP8 on GB300 and VR200 and in FP4 on RTX PRO 6000. On Wan2.2, these kernels run 2.13x, 2.49x, and 2.82x faster than BF16 attention, and the whole generation runs 1.55x, 1.68x, and 1.80x faster. On four video generation models, the FP8 configuration achieves LPIPS comparable to prior 8-bit QK methods, and the fully FP4 configuration lower LPIPS than prior fully 4-bit kernels.",
+    "abs": "http://arxiv.org/abs/2611.32035v1",
+    "pdf": "https://arxiv.org/pdf/2611.32035v1",
+    "AI": {
+      "category": "EXCLUDE",
+      "priority": "NONE",
+      "brief_summary": "null",
+      "relevance_reason": "该文面向视频 diffusion transformer 的 FP4/FP8 attention 算子与量化误差补偿，属生成加速的系统工作；虽涉及 attention 误差分析，但不讨论 latent 推理状态、证据使用或停止决策，缺少与 LVR 主线可核查的具体线索。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-25T22:52:19.794348+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

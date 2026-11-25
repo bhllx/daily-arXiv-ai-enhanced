@@ -1,0 +1,78 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.32175",
+  "input_sha256": "88d4313d8b1c52f37556e00d0e9189ed8f2be0b5afa373aa8935b1e76459b37e",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-25T22:50:38.125758+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1826,
+        "output_tokens": 1001,
+        "total_tokens": 2827,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 770
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.32175",
+    "title": "LoopFit: Retrofitting Pretrained Diffusion Transformers with Recurrent Refinement",
+    "authors": [
+      "Xiaocheng Lu",
+      "Haoxi Li",
+      "Dazhao Du",
+      "Tao Han",
+      "Jian Liu",
+      "Hao Chen",
+      "Bohai Gu",
+      "Siyu Yan",
+      "Jingcai Guo",
+      "Jie Zhang",
+      "Song Guo"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": null,
+    "summary": "Scaling inference computation offers a way to improve diffusion transformers (DiTs), but taking more sampling steps leaves the depth of each denoising prediction unchanged. Recurrently reusing Transformer blocks increases computation within each step, allowing further refinement of hidden representations. Retrofitting pretrained models enables this capability without repeating pretraining, but requires blocks learned for fixed-depth computation to refine states produced by their own repeated application. The challenge is to use each additional pass to correct local errors without disrupting the structure established by earlier passes. We introduce LoopFit, which uses feedback from earlier passes to guide refinement at each image patch. Residual Attention Modulation (RAM) uses each patch's feature change in one pass to scale and shift its input to attention in the next. During training, Residual Relay Loss (RRL) gives greater weight to patches whose prediction errors persist across passes. A noise-dependent depth schedule speeds up sampling by using four passes at high noise and one at lower noise levels. At comparable cost, backbones trained with four passes solve more problems using recurrent depth than extra sampling steps. Across 12 visual puzzle settings, LoopFit solves 89.8% of boards, compared with 87.8% for the strongest baseline evaluated on all 12. Most of the gain comes from tracing long paths on mazes and frozen lakes.",
+    "abs": "http://arxiv.org/abs/2611.32175v1",
+    "pdf": "https://arxiv.org/pdf/2611.32175v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P1",
+      "brief_summary": "论文提出 LoopFit，在预训练扩散 Transformer 上循环复用 block，用 Residual Attention Modulation 依据每个 patch 单轮特征变化调制下一轮注意力输入，并以 Residual Relay Loss 对跨轮持续出错的 patch 加权，配合噪声相关深度调度（高噪声 4 轮、低噪声 1 轮），在视觉拼图任务上以同等成本优于增加采样步数。",
+      "relevance_reason": "逐 patch 的循环细化反馈、持续性误差加权与可变深度调度，可供核查如何迁移到 LVR 的循环 latent 状态更新、空间细节保留与按需分配计算/停止决策，但该文处于扩散生成语境，未涉及多模态推理机制。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-25T22:50:38.125758+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

@@ -1,0 +1,75 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.32347",
+  "input_sha256": "c2d1c1c10aed999cdf4c0c943c685ba7696b4fbd910a866c02f78e8cd18e30f2",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-25T22:48:36.117624+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1867,
+        "output_tokens": 652,
+        "total_tokens": 2519,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 433
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.32347",
+    "title": "Beyond Hard Tokens: Predictive Memory for Multimodal Protein Generation",
+    "authors": [
+      "Xiaoliang Shi",
+      "Zichen Wang",
+      "Zhijian Wei",
+      "Zhanpeng Shi",
+      "Zhenghong Zhou",
+      "Yunpeng Wang",
+      "Shuangjia Zheng"
+    ],
+    "categories": [
+      "cs.LG",
+      "q-bio.BM"
+    ],
+    "comment": null,
+    "summary": "Multimodal protein language models unify sequence and discrete structural tokens via iterative masked decoding, offering a promising paradigm for joint protein design. However, standard decoders rely on a memoryless mask reset at each iteration: only a sparse subset of newly committed hard tokens is carried forward, while all remaining unresolved sites are reset to an identical [MASK] embedding. In open-ended co-generation where neither modality provides a fixed external anchor, this stateless transition limits single-step refinement depth and deprives both tracks of stable cross-step soft anchors, leading to slow convergence or degenerative repetitive collapse. Observing that uncommitted predictions evolve with pronounced temporal coherence rather than erratic noise, we introduce Predictive Memory (PredMem), a training-free self-conditioning recurrence that carries these soft beliefs across steps. At each step, PredMem summarizes raw logits into a probability-weighted Top-$k$ expectation embedding at every residue and affinely interpolates it into eligible masked inputs on the next step at zero extra denoiser cost. Across DPLM-2, DPLM-2.1, and ESM3, PredMem raises unconditional sequence-structure co-generation success by 3.6, 17.7, and 48.7 percentage points, respectively, while improving the quality-diversity trade-off and suppressing repetitive mode collapse. Controlled diagnostics show that these gains stem primarily from early trajectory stabilization in unanchored cross-modal co-evolution rather than extra compute or simple entropy reduction, establishing PredMem as an efficient inference mechanism for multimodal discrete generation.",
+    "abs": "http://arxiv.org/abs/2611.32347v1",
+    "pdf": "https://arxiv.org/pdf/2611.32347v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P1",
+      "brief_summary": "论文针对多模态蛋白质语言模型的迭代掩码解码，提出无需训练的 Predictive Memory：将每步未提交位置的原始 logits 压缩为概率加权 Top-k 期望嵌入，并插值回下一步的掩码输入，作为跨步软锚点，以缓解无外部锚的序列-结构共生成中收敛慢与重复坍缩。",
+      "relevance_reason": "其「跨步携带软信念而非仅硬 token」的自条件递归，可为 LVR 中 latent 推理状态的更新与跨步保持提供方法线索，可供核查该记忆是否被后续步骤实际使用、以及能否迁移到视觉-语言推理的中间状态。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-25T22:48:36.117624+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

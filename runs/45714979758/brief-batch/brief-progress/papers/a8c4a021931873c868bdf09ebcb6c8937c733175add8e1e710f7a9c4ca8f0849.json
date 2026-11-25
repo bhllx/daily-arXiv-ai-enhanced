@@ -1,0 +1,74 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.31849",
+  "input_sha256": "222b9d8e5247c6958de8fc26fd1c8d0c0e28fd5f11f1f45347f2f12b5fcdbb22",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-25T22:55:00.627106+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1870,
+        "output_tokens": 950,
+        "total_tokens": 2820,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 668
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.31849",
+    "title": "JECT: Addressing the Context Shortcut in Joint-Embedding Predictive Learning for Chest CT",
+    "authors": [
+      "Hanbin Ko",
+      "Hong-Jun Choi",
+      "Jihun Kim",
+      "Young-Gon Kim",
+      "Dongheon Lee",
+      "Chang Min Park"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.AI"
+    ],
+    "comment": "24 pages, 7 figures, 23 tables, including supplementary material. Code and weights: https://github.com/lukeingawesome/JECT",
+    "summary": "Joint-embedding predictive architectures learn by predicting features of masked regions from visible context. In chest computed tomography, the findings that decide a diagnosis, such as a small nodule, are often not predictable from the surrounding anatomy. A hidden finding is then best predicted toward normal anatomy, and the prediction loss stops rewarding the encoder for representing it. We call this the context shortcut. Conditioning the predictor on the radiology report repairs the prediction, but in our setup the encoder gains little over image-only pretraining: the report supplies what the encoder never had to learn. JECT therefore gives the report two roles: a condition for the predictor and, through masked section-text prediction, a target for the encoder, which must predict the report's anatomical sections from the unmasked scan. A hierarchical three-dimensional encoder that predicts at every stage keeps this clinical content at every scale. In ablations, the text target improves classification and localization, while conditioning adds little to the encoder. Trained from scratch on 173k volumes, the recipe reaches the level of current computed tomography foundation models in classification, retrieval and nodule malignancy, and of task-specific models in lung-cancer risk prediction after fine-tuning. Conditioning still matters: its predictor can be reused, with no extra training, to show where a report sentence acts, changing most at the finding the sentence describes. Code and pretrained weights are available.",
+    "abs": "http://arxiv.org/abs/2611.31849v1",
+    "pdf": "https://arxiv.org/pdf/2611.31849v1",
+    "AI": {
+      "category": "MAIN",
+      "priority": "P1",
+      "brief_summary": "该论文在胸部 CT 的 JEPA 式掩码特征预测中提出「context shortcut」问题：小结节等决定诊断的发现无法由周围解剖预测，预测损失因而不再奖励编码器表示它们；JECT 让放射报告同时充当 predictor 的条件和（经掩码章节文本预测）编码器的目标，并用分层 3D 编码器在各尺度上预测，在 173k 体数据上从头训练达到现有 CT 基础模型水平。",
+      "relevance_reason": "论文直接揭示了预测式自监督会使不可由上下文推断的细微视觉证据被压向「正常解剖」而丢失，与 LVR 关注的内部状态是否保留任务必要视觉细节、信息坍缩与视觉旁路高度对应；其「文本作条件 vs 文本作目标」的消融，以及无需额外训练即可复用 predictor 定位报告句子作用位置的探针，可供核查 latent 表示中的证据保留与贡献分配。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-25T22:55:00.627106+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

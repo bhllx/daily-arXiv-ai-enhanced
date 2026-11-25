@@ -1,0 +1,75 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.32274",
+  "input_sha256": "5bc2e23a0a3f50e13e4074699c52c22f4a9b03e703a1bf6aa3d73b41930663af",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-25T22:49:37.914775+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1820,
+        "output_tokens": 705,
+        "total_tokens": 2525,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 495
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.32274",
+    "title": "CoMNO: Commutator Memory Neural Operators for Long-Horizon PDE Prediction",
+    "authors": [
+      "Han Xiao",
+      "Xin Zhang",
+      "Yuhan Zou",
+      "Zhenzhong Wang",
+      "Donglin Cao",
+      "Dazhen Lin",
+      "Min Jiang"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.AI"
+    ],
+    "comment": "In preparing an earlier version of this manuscript under time pressure, we did not adequately verify all reported experimental results. In this preprint, we correct the numerical reporting errors we identified and update the affected analyses",
+    "summary": "Solving nonlinear partial differential equations (PDEs) over long time horizons is computationally expensive using traditional numerical methods. While neural operators provide an efficient alternative, they suffer from the accumulation of approximation errors along the predicted trajectory, typically caused by the failure to capture fine-scale details. In this work, we design a Commutator Memory Neural Operator that identifies fine-scale dynamical details by commuting two operations and leverages these details to enhance the neural operator's capability in capturing fine-scale features over long time horizons. Specifically, we identify a performance gap between two operations: downsampling the high-resolution field before rollout prediction versus performing rollout prediction before downsampling. We observe that fine-scale dynamical details are often encoded in this gap. By commuting these two operations, the fine-scale details removed during downsampling can be captured. Furthermore, we employ a memory module to store these fine-scale features along the trajectory and retrieve them during rollout, generating spatially adaptive corrections that enhance long-horizon fidelity. Empirical results across five systems demonstrate that CoMNO improves prediction accuracy and long-horizon rollout stability.",
+    "abs": "http://arxiv.org/abs/2611.32274v1",
+    "pdf": "https://arxiv.org/pdf/2611.32274v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文提出 Commutator Memory Neural Operator，用「先降采样再 rollout」与「先 rollout 再降采样」两种操作之间的差距来识别被降采样丢弃的细尺度动力学细节，并用记忆模块沿轨迹存储、在推理时检索以生成空间自适应修正，从而提升 PDE 长时预测的精度与稳定性。",
+      "relevance_reason": "其「交换差距」可作为诊断降采样/压缩丢失细粒度信息的手段，记忆修正机制也可能供核查 LVR 多步 latent rollout 中的视觉细节流失与漂移累积，但需判断能否迁移到多模态推理状态。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-25T22:49:37.914775+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

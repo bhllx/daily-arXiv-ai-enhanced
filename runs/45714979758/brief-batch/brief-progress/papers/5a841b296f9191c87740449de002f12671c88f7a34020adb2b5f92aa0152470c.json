@@ -1,0 +1,68 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.31939",
+  "input_sha256": "93f30ab8d8a29163e3f64d6ccb3f1a8784247e00ccd0beff573d5f9076a020c0",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-25T22:53:46.954149+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1858,
+        "output_tokens": 796,
+        "total_tokens": 2654,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 585
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.31939",
+    "title": "Beyond the Last Loop: Reinforcement Learning with a Teacher Extrapolated from the Model Itself",
+    "authors": [
+      "Linghua Zhang"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Looped language models apply one shared transformer stack several times per token, and every loop can be read out through the shared language-model head. Post-training them with verifiable rewards is hard: the outcome reward carries one bit per response, spreading it over loops trains intermediate loops on tokens sampled from the last loop, and distillation needs either a teacher that ignores the reward or an external, larger model. We observe that a looped model already contains a teacher stronger than its last loop: the next-token distribution extrapolated from the first loop through the last. ELGO (Extrapolated-Loop Group-relative Optimization) adds to GRPO a dense per-token distillation term towards this distribution. The teacher is computed from an anchor copy of the model, which stays frozen and is replaced by the current model once the student's KL to the teacher falls below a threshold, so the teacher improves with the student without chasing its own extrapolation. The outcome reward splits probability between correct and incorrect responses, and the teacher decides which tokens are preferred inside a response. Between refreshes the objective is KL-regularised RL anchored at the teacher, whose optimum tilts the teacher by the reward. On Ouro-1.4B-Thinking, ELGO raises the average avg@8 over five math benchmarks from 62.32 with GRPO to 64.20 and is the best compared method on every benchmark, while spreading the reward over loops falls below the base model.",
+    "abs": "http://arxiv.org/abs/2611.31939v1",
+    "pdf": "https://arxiv.org/pdf/2611.31939v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P1",
+      "brief_summary": "针对 looped language model 的 RL 后训练，提出 ELGO：把从第一轮到最后一轮外推得到的 next-token 分布当作教师，在 GRPO 上加入逐 token 稠密蒸馏项，并用冻结锚点副本按 KL 阈值刷新教师，在五个数学基准上超过 GRPO。",
+      "relevance_reason": "原文关于「结果奖励摊到各 loop 会让中间轮去拟合末轮采样 token」的诊断，以及外推教师提供的逐 token 监督，可能为多模态循环模型的中间推理状态监督与 loop 间贡献分配提供线索，尚需核查。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-25T22:53:46.954149+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

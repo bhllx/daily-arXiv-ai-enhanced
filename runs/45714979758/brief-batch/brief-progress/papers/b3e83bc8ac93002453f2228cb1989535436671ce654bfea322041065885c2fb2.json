@@ -1,0 +1,72 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.32006",
+  "input_sha256": "72571fa9f20a890092fd68b4b6ff4be5bccd7b35d8b3dd85b1413aa51a9e3de9",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-25T22:52:50.218039+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1852,
+        "output_tokens": 695,
+        "total_tokens": 2547,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 465
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.32006",
+    "title": "TableRouter: Query-Aware Evidence Construction for Long-Table Question Answering",
+    "authors": [
+      "Anahita Bolourani",
+      "Xiaofeng Lin",
+      "Tung Sum Thomas Kwok",
+      "Guang Cheng"
+    ],
+    "categories": [
+      "cs.AI",
+      "cs.CL"
+    ],
+    "comment": "Submitted to ACL Rolling Review, October 2026",
+    "summary": "LLMs can reason over tables, but when tables outgrow the context budget, retrieving relevant rows is only part of the solution. A retrieved subset may omit information required for an exact aggregate; even complete evidence may remain difficult for an LLM to use. We introduce TableRouter, a training-free framework that analyzes each query, then chooses between two routes: a computation route, which derives question-conditioned statistics from the full table, and a coverage route, which retrieves relevant rows and column summaries. The chosen context is passed to a frozen LLM in one call. Across three LLMs and three large-table benchmarks, TableRouter outperforms the strongest of six single-call baselines in all nine settings by 1.2-18.3 accuracy points, using 77-95% fewer estimated FLOPs than truncated-table prompting, with indexing amortized across questions. The gains extend to long tables from databases not used in earlier experiments, where TableRouter achieves 35.8% with Qwen2.5-7B, versus 16.4% for the strongest external baseline. A controlled experiment shows that explicitly providing computed statistics improves accuracy by up to 40.0 points, even when all answer-determining rows are available. These results distinguish evidence access from evidence use: long-table reasoning depends on how information is represented, not only on which rows are retrieved.",
+    "abs": "http://arxiv.org/abs/2611.32006v1",
+    "pdf": "https://arxiv.org/pdf/2611.32006v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "提出免训练的 TableRouter：先分析查询，再在「计算路线」（从全表导出问题条件统计量）与「覆盖路线」（检索相关行与列摘要）之间选择，将所选上下文单次送入冻结 LLM；在三个大表基准上优于六种单次调用基线，并用对照实验区分「取得证据」与「使用证据」。",
+      "relevance_reason": "其按查询决定检索还是压缩为统计表示的路由机制，以及「证据可获得不等于被使用」的发现，可能为 LVR 的视觉证据筛选与表示形式是否被答案真正使用提供可核查线索；但对象为表格文本、无 latent 推理状态，迁移需自行判断。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-25T22:52:50.218039+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

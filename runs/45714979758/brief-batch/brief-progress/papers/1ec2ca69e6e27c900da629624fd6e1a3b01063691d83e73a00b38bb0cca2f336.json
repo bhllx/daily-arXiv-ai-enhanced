@@ -1,0 +1,83 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.32039",
+  "input_sha256": "f21ce389ec7f7eb4dc21797328c1d437ebc4f3be66a98295a065e01f2d8afed9",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-25T22:52:14.444255+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1793,
+        "output_tokens": 611,
+        "total_tokens": 2404,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 413
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.32039",
+    "title": "FlashQLA: Efficient Context Parallelism for Gated DeltaNet",
+    "authors": [
+      "Xi Lin",
+      "Chengruidong Zhang",
+      "Huiqiang Jiang",
+      "Xiao Li",
+      "Zekun Wang",
+      "Junda Feng",
+      "Yunfei Mao",
+      "Siqi Zhang",
+      "Siyu Wang",
+      "Man Yuan",
+      "Rui Men",
+      "Bo Zheng",
+      "Dayiheng Liu",
+      "Bohan Zhuang",
+      "Jianwei Zhang"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.DC"
+    ],
+    "comment": "Code is available at https://github.com/QwenLM/FlashQLA",
+    "summary": "Gated DeltaNet (GDN) achieves linear computational complexity through recurrent state updates, but sequential dependencies between chunks limit parallelism, particularly for long-context workloads with small batch sizes or limited head-level parallelism per GPU. We present FlashQLA, a context-parallel execution framework for GDN that exposes additional sequence-level parallelism while reducing boundary-state preprocessing overhead. FlashQLA reduces boundary-state preprocessing overhead through decay-aware preparation and extends sequence parallelism across GPUs with Dual CP, which shares summary computation across parallelism levels. Workload-adaptive Auto CP and CP-aware kernel co-design further improve execution efficiency. FlashQLA achieves $1.7\\times$-$3.1\\times$ forward speedup and up to $4.4\\times$ backward speedup over Flash Linear Attention (FLA) on a single GPU. On eight GPUs with context lengths up to 1M tokens, Dual CP achieves up to $4.8\\times$ forward speedup and $4.4\\times$ speedup for combined forward and backward execution over FLA KCP.",
+    "abs": "http://arxiv.org/abs/2611.32039v1",
+    "pdf": "https://arxiv.org/pdf/2611.32039v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "FlashQLA 提出面向 Gated DeltaNet 的上下文并行执行框架，用 decay-aware 边界状态预处理、跨 GPU 的 Dual CP 摘要共享、负载自适应 Auto CP 与 kernel 协同设计，缓解 chunk 间顺序依赖，在单卡与八卡长上下文下取得明显加速。",
+      "relevance_reason": "其 chunk 边界状态的压缩摘要与跨设备交换机制，可能为循环式 latent 推理状态的并行更新与跨块信息保持提供实现线索，值得核查这种摘要近似对状态保真度的影响。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-25T22:52:14.444255+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

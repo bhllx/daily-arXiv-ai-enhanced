@@ -1,0 +1,76 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.32037",
+  "input_sha256": "67ea48389e86ea522641c53321f34ead6088bda6f8bdab9826c475b9006204ef",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-25T22:52:18.921846+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1849,
+        "output_tokens": 694,
+        "total_tokens": 2543,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 457
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.32037",
+    "title": "Online Environment Repair for Coding Agents",
+    "authors": [
+      "Sheng Lu",
+      "Rui Mao",
+      "Zewei Chen",
+      "Chihua Ying",
+      "Beiduo Chen",
+      "Dingxin Hu",
+      "Tinghao Yu"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.CR",
+      "cs.SE"
+    ],
+    "comment": "15 pages, 7 figures",
+    "summary": "Programmatic verifiers provide scalable reward signals for training coding agents with reinforcement learning, yet subtle harness defects and incomplete unit tests allow policies to earn full credit without solving the intended task. Existing training-time defenses intervene either by penalizing suspicious outputs or by filtering flagged tasks and rollouts. However, output penalties leave the underlying verifier exploitable, driving policies to disguise shortcuts under reasoning monitors or zeroing out valid solutions under detector false positives, whereas task and rollout filtering discards or mutes the hardest problems where shortcuts emerge earliest. Pre-training verifier hardening repairs the environment directly, but misses vulnerability classes that surface only as the policy improves during reinforcement learning. In this paper, we propose online environment repair, which leaves triggering rollout rewards unchanged to remove hiding incentives and asynchronously patches exploited environments during training. Candidate repairs triggered by execution invariants or differential fuzzing are deployed only after passing three automated validation gates that block the exploit while preserving valid solutions, canceling detector false positives and enabling structural propagation across repositories without scaffold labels or reference solutions. Across 20 controlled GRPO experiments on heterogeneous software-engineering repositories, online environment repair reduces cumulative reward hacking from 36.9% to 0.06% and improves held-out Pass@8 from 21.7% to 46.7%, consistently outperforming reward-penalty, rollout-filtering, and static-hardening baselines while eliminating zero-shot exploitation on unseen loophole classes.",
+    "abs": "http://arxiv.org/abs/2611.32037v1",
+    "pdf": "https://arxiv.org/pdf/2611.32037v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "该文针对 coding agent 的 RL 训练中验证器缺陷与单测不全导致的奖励黑客问题，提出「在线环境修复」：不改变触发 rollout 的奖励以避免策略隐藏捷径，并在训练中异步修补被利用的环境，候选修复须通过三道自动校验门（阻断利用且保留合法解）才上线。",
+      "relevance_reason": "其核心概念——用自动校验区分「真正完成任务」与「走了捷径仍获满分」——或可启发 LVR 中判断答案是否真正使用 latent／视觉证据而非语言先验捷径的评价设计；但该方法面向代码仓库与奖励信号，与多模态推理状态的关联仅停留在类比层面，需核查其校验门构造的可迁移性。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-25T22:52:18.921846+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

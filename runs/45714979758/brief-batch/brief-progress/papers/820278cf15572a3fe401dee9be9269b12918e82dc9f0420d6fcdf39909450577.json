@@ -1,0 +1,76 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.31944",
+  "input_sha256": "af5a397b8e14defd6c1dd8510036490ff2bdfdde021056f535011a834e2bde27",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-25T22:53:42.860138+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1862,
+        "output_tokens": 505,
+        "total_tokens": 2367,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 287
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.31944",
+    "title": "DraftKV: Protecting Persistent Worlds through Hierarchical Streaming Retrieval",
+    "authors": [
+      "Xiaoling Zhou",
+      "Haopeng Li",
+      "Yufa Zhou",
+      "Rui Ding",
+      "Yu Li",
+      "Jun Lin",
+      "Enze Xie",
+      "Chunhua Shen",
+      "Xuan Shen"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": "Includes supplementary material. Code and project page are available online",
+    "summary": "Interactive video world models enable action- and camera-controlled exploration, yet struggle to maintain consistent spatial geometry and appearance when revisiting previously explored locations. Historical KV caches help auto-regressive video diffusion models maintain long-term consistency, but their retrieval and attention computation introduce substantial latency as history grows. We propose DraftKV, a training-free framework that retrieves historical KV caches based on geometric grounding and query-conditioned relevance, while combining CPU offloading with tile-wise streaming attention to reduce GPU memory usage and inference latency. Theoretically, we show that draft relevance reproduces the mean branch of full-resolution block relevance exactly, so its deviation is confined to the $β$-weighted max branch, and we bound retrieval utility loss in terms of the measured Top-K selection overlap. We further show that draft relevance cannot distinguish blocks with similar pooled descriptors regardless of camera pose, motivating geometric grounding before refinement. Then, we introduce streaming CG-Attention, which overlaps CPU-to-GPU KV transfers with attention computation through tile-wise streaming, hiding transfer latency while maintaining bounded GPU memory usage. Experiments across diverse model families show that DraftKV achieves superior generation quality and consistency while achieving $3.27\\times$ end-to-end speedup and 42.2% peak GPU memory reduction over other CPU-offloaded KV cache retrieval methods. Notably, DraftKV enables high-quality interactive world generation with historical KV retrieval on a single H100 GPU using SolarWM-33B.",
+    "abs": "http://arxiv.org/abs/2611.31944v1",
+    "pdf": "https://arxiv.org/pdf/2611.31944v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "DraftKV 针对交互式视频世界模型中长时历史一致性问题，提出免训练框架：先以几何 grounding 与查询条件相关性检索历史 KV 缓存，再结合 CPU offload 与 tile 级流式注意力降低显存占用与推理延迟，并给出检索近似与 Top-K 重合度的误差界。",
+      "relevance_reason": "其按查询相关性对历史状态做 Top-K 检索、以及缓存与注意力结构近似的分析，可能为 LVR 中的视觉证据筛选和 latent 缓存/注意力结构对相似度的影响提供核查线索；但论文目标是视频世界模型的时空一致性，并非多模态推理。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-25T22:53:42.860138+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}
