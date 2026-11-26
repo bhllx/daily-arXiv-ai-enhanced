@@ -1,0 +1,73 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.34707",
+  "input_sha256": "edfc3565f062895f5eb9d82f4f7c53b32910abe12d9192afc8bfb6eea63594f8",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-26T22:32:30.803322+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1903,
+        "output_tokens": 810,
+        "total_tokens": 2713,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 537
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.34707",
+    "title": "When the Proxy Is Wrong: Mismatch-Corrected Bandits for Adaptive Data Sampling",
+    "authors": [
+      "Amine Saadi",
+      "Elissa Mhanna",
+      "Raphaël Féraud",
+      "Gwénolé Lecorvé"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.AI",
+      "cs.CL"
+    ],
+    "comment": "15 pages, 3 figures, 8 tables",
+    "summary": "Data allocation methods often use a small proxy model to select training data for a larger target model. However, this proxy can rank data differently from the target, leading to suboptimal training performance. To address this problem, we model the mismatch between the proxy and target models and incorporate it into the allocation decision. To do so, the problem is cast as a multi-fidelity bandit, where each arm is a data intervention. The proxy reward is observed every round, whereas the target reward is revealed only on rare audits of the same update. These paired observations identify arm-wise mismatches without assuming a shared offset or preservation of rankings. Mismatch-corrected bandits correct the proxy with paired residuals, audit only uncertain decisions, and pace the audit budget over training. From a theoretical viewpoint, we prove a regret decomposition and lower bounds under stationarity. These bounds show that proxy-only allocation can incur linear regret and that a minimum number of paired audits is necessary. Under abrupt changes, using the audit budget early can also incur linear regret. A sliding-window policy that spreads audits over training achieves regret of order $\\sqrt{Γ_T T\\log T}$ where $Γ_T$ denotes the number of change points. Experimentally, we test the approach in a closed-loop proof of concept on CivilComments-WILDS, where BERT-Small guides the training of BERT-Large. Mismatch correction improves worst-group accuracy over a target-only policy with the same target-model budget. Spreading audits over training improves worst-group accuracy by 6.3 to 10.5 percentage points at the same audit count.",
+    "abs": "http://arxiv.org/abs/2611.34707v1",
+    "pdf": "https://arxiv.org/pdf/2611.34707v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "论文关注用小型代理模型为大模型挑选训练数据时两者排序不一致的问题，把数据干预视为 arm，建立多保真 bandit：每轮可观测代理奖励，仅在少量「审计」中与目标模型奖励配对，用配对残差校正代理偏差，并有选择地审计不确定决策、在训练全程分散审计预算，给出 regret 分解与下界，并在 CivilComments-WILDS 上用 BERT-Small 指导 BERT-Large 训练做验证。",
+      "relevance_reason": "其「廉价代理信号 + 稀疏昂贵核验 + 偏差校正 + 预算节奏」的框架可能启发 LVR 中对视觉证据或 latent 步骤价值的低成本估计与选择性核验预算分配，也可供核查代理与真实效用错位导致的贡献分配偏差；但论文面向训练数据配比，与推理期状态生成无直接关系，迁移属推测。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-26T22:32:30.803322+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

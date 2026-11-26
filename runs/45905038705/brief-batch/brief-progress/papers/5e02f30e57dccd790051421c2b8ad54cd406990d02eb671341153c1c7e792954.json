@@ -1,0 +1,74 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.34821",
+  "input_sha256": "4f6cab0d4ae480ea9b779f43020736a2941d20d283d81d246841b8081101ef2d",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-26T22:31:18.647999+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 2008,
+        "output_tokens": 577,
+        "total_tokens": 2585,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 334
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.34821",
+    "title": "LoopTitan: What Does Parameter Revisit Buy a Mixture-of-Experts?",
+    "authors": [
+      "Zichen Tian",
+      "Yudong Lu",
+      "Xuansheng Wu",
+      "Na Zou",
+      "Xia Hu",
+      "Guanchu Wang",
+      "Qianru Sun"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": "45 pages. Phase 1 technical report. Project page: https://datamllab.github.io/LoopTitan/ ; code: https://github.com/datamllab/LoopTitan ; models: https://huggingface.co/NaturalScale",
+    "summary": "Looped Mixture-of-Experts (MoE) architectures revisit layer parameters across depths. This design increases effective depth without adding parameters. Recent looped MoE studies report substantial gains over the standard MoE at matched budgets (parameters, FLOPs and KV cache). However, the reported gains still confound parameter revisit with other design choices, e.g., network shape and residual scale. We ask, what does parameter revisit itself buy? Using matched non-revisit controls, we find that parameter revisit itself buys almost nothing. We argue that revisit only offers a freedom an MoE already has, i.e., trading experts for depth (more layers, fewer experts each) at fixed parameters. First, at matched budgets, we decompose the state-of-the-art looped recipe, with revisit last. A non-revisit control retains all the gain. Most comes from network shape, and the rest from residual scale. We prove this scale acts as a lower learning rate on revisited layers. This helps under AdamW's uneven layer step sizes, but disappears under Muon, which keeps them nearly equal. Second, beyond matched budgets, we evaluate revisit by adding compute at fixed parameters. One extra visit gains more than doubling the experts. Yet without revisit, a deeper standard MoE at equal parameters and compute obtains 90.2% of that gain under Muon. Overall, gains come from network shape, the optimizer and added compute, which a standard MoE can adopt. Accordingly, we propose LoopTitan-Base as a stronger MoE baseline. Under Muon, it matches the strongest looped recipe without revisit or residual scale. We open-source LoopTitan and release 17 pretrained models (including LoopTitan-Base and the control). Our experiment record is public as GitHub issues, with predictions pre-registered and the full exploration history kept. This is our Phase 1 technical report, laying the foundation for follow-up studies.",
+    "abs": "http://arxiv.org/abs/2611.34821v1",
+    "pdf": "https://arxiv.org/pdf/2611.34821v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文用参数、FLOPs、KV cache 匹配的无重访对照拆解 looped MoE 的收益来源，发现参数重访本身几乎无贡献：收益主要来自网络形状与残差缩放（其作用相当于对重访层施加更低学习率，在 Muon 下消失），其余来自额外计算；据此提出无重访的 LoopTitan-Base 基线并开源模型。",
+      "relevance_reason": "循环深度是 latent reasoning 中状态重复更新的常见机制，该负结果提示循环带来的提升可能混杂形状、残差尺度与优化器步长等因素，可供核查 LVR 中循环 latent 计算的贡献分配与对照基线设置；但论文面向纯文本 MoE 预训练，无视觉或多模态成分。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-26T22:31:18.647999+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

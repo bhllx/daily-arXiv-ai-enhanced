@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.33323",
+  "input_sha256": "d3602cc80ff4dffa12fb9361aeb911d910dcb8d4dc6834c6ea6f7fe463b4e504",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-26T22:45:59.623498+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1824,
+        "output_tokens": 743,
+        "total_tokens": 2567,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 520
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.33323",
+    "title": "StyleID++: Position-Decoupled and Structure-Coherent Style Retrieval across Diffusion Architectures",
+    "authors": [
+      "Chun Xie",
+      "Itaru Kitahara"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": null,
+    "summary": "Attention injection offers a remarkably simple route to training-free style transfer: content queries retrieve style keys and values inside a pretrained diffusion model. We show that this operation also creates an overlooked failure mode. Position signals that are useful within one image become a spurious shared coordinate system across two spatially unrelated images, causing content tokens to favor style tokens at similar coordinates. This cross-image positional leakage appears in both convolutional U-Nets and diffusion transformers (DiTs), despite their different position mechanisms. Removing the positional shortcut exposes a second problem: unconstrained global retrieval lets related content tokens select incompatible style regions, producing fragmented appearance. We present StyleID++, a training-free framework that addresses the two problems jointly. Position-Decoupled Retrieval reduces coordinate-dependent matching through circular padding in U-Nets and injection-only RoPE removal in DiTs, while preserving native position modeling elsewhere. Affinity-Coherent Refinement then regularizes style assignments with the content self-attention graph, encouraging structurally related tokens to retrieve compatible style evidence. We quantify the leakage with a coordinate--centroid correlation and a permutation test on the style reference. The permutation error can be driven to zero in both backbones, which identifies the position mechanism as the carrier of the leakage, and StyleID++ obtains the best ArtFID of all methods we compare.",
+    "abs": "http://arxiv.org/abs/2611.33323v1",
+    "pdf": "https://arxiv.org/pdf/2611.33323v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文指出基于 attention injection 的免训练风格迁移存在跨图像位置泄漏：content 查询会因坐标相似而检索到 style token；据此提出 StyleID++，在 U-Net 中用 circular padding、在 DiT 中仅对注入处移除 RoPE 来解耦位置，并用 content self-attention 图约束风格分配的一致性。",
+      "relevance_reason": "其位置捷径诊断（坐标—质心相关、置换测试）与基于自注意力图的结构一致性正则，可能可供核查 LVR 中位置编码与注意力结构如何干扰 latent 检索和视觉证据筛选；但该工作属图像风格迁移，需自行判断可迁移性。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-26T22:45:59.623498+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

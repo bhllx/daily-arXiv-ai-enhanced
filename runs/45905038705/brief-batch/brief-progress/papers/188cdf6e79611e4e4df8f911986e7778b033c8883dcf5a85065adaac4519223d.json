@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.33679",
+  "input_sha256": "2170cf59d870f33fa6b102f4fc287bba499de2fb0b225766f9078412dbd5df58",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-26T22:42:47.991568+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1802,
+        "output_tokens": 470,
+        "total_tokens": 2272,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 252
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.33679",
+    "title": "Faster and Better Query (FBQ): Learning Future-Position Probes from the First Generated Token",
+    "authors": [
+      "Jiankun Zou",
+      "Daixing Chen",
+      "Tongtong Yuan"
+    ],
+    "categories": [
+      "cs.AI"
+    ],
+    "comment": "5 pages, 2 figures, 1 table",
+    "summary": "When a large language model (LLM) evicts prompt keys and values at the end of prefill, it must decide what to keep before it sees the queries from subsequent decoding steps. Generating a draft continuation can approximate those queries at the cost of extra autoregressive steps. Can we use the embedding of the first output token, already available from the final prefill logits, to construct low-cost pseudo queries that approximate future decoding queries? We start with FTQ-8, which places eight copies of the first token ID at consecutive future positions and reads their attention to the prompt in one causal forward pass. Each copy sees a different prefix, but a generic opening such as the offers a poor literal guess for seven successive tokens. Faster and Better Query (FBQ) preserves the first embedding and learns an additive offset at each of the seven remaining positions. We train these offsets to predict the average prompt attention of a full-cache continuation. On LongBench, FBQ performs comparably to eight-step Lookahead Q-Cache at the same cache budget, using a single forward pass to compute all probe queries.",
+    "abs": "http://arxiv.org/abs/2611.33679v1",
+    "pdf": "https://arxiv.org/pdf/2611.33679v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文研究 LLM 预填阶段结束时淘汰 KV cache 的取舍问题，提出 FBQ：保留首 token 的 embedding，为后续七个位置各学一个加性偏移，构造低成本的伪 query，用一次前向近似完整缓存续写时的 prompt 注意力分布。",
+      "relevance_reason": "以单个已生成 token 的表示加可学习偏移来外推未来若干步的注意力/证据需求，可能为 LVR 中「用有限状态预测后续 LOOK 证据需求、按预算筛选视觉证据」提供可核查的方法线索，但对象是纯文本 KV cache，与视觉推理的联系需自行判断。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-26T22:42:47.991568+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

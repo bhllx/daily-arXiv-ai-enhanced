@@ -1,0 +1,74 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.33716",
+  "input_sha256": "1f2bd588f68af7ce96131c78b6cc62758c307271c9534b33c45f12a40bf6ed90",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-26T22:42:31.056286+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1888,
+        "output_tokens": 807,
+        "total_tokens": 2695,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 581
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.33716",
+    "title": "Flipping the Coins: Training Physical Simulators through Hard Switches",
+    "authors": [
+      "Tianrun Gao",
+      "Ruiqi Feng",
+      "Haomin Wen",
+      "Tailin Wu",
+      "Liangqiong Qu",
+      "Xiaomeng Huang",
+      "Ruiqi Shu"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": "47 pages (13 main + appendix), 4 figures, 15 tables",
+    "summary": "Hybrid simulators embed learnable components such as neural networks in physical solvers and train them on reference trajectories. Many scientific solvers feature hard switches, such as a tripping power line, an igniting grid cell, or depolarizing brain tissue, where the loss exhibits discrete jumps across switch flips, leaving standard automatic differentiation to capture only its smooth part. Existing training paradigms face a fundamentally challenging trade-off, as gradient-based relaxations smooth the switches and introduce bias across jumps, whereas derivative-free methods treat the solver as a black box and discard path gradients of the continuous dynamics. Here we introduce EventFlip, which flips a near-threshold switch from a stored state, replays the original solver, and measures the loss difference between the two runs, in effect a finite difference across the switch. By perturbing every threshold with small Gaussian noise, we cast each switch as a stochastic binary decision and derive an unbiased gradient estimator that combines the continuous path gradient with a jump term constructed from these counterfactual rollouts. EventFlip-Rand optimizes this noise-averaged objective, whereas EventFlip-Hard operates on the deterministic hard-switch simulator used at deployment and provably targets the complete discontinuous loss. Under an identical forward evaluation budget, we benchmark EventFlip against twelve baselines across a power-grid cascade, a detonation wave, and cortical spreading depolarization, achieving the lowest error on every task and reducing the strongest baseline's error by factors of 1.5, 1.4, and 1.4, respectively.",
+    "abs": "http://arxiv.org/abs/2611.33716v1",
+    "pdf": "https://arxiv.org/pdf/2611.33716v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "论文提出 EventFlip：对近阈值开关做翻转、保存状态并重放求解器，以两次运行的损失差构成跨开关的有限差分，并把每个阈值加高斯噪声视为随机二值决策，得到融合连续路径梯度与跳跃项的无偏梯度估计；在电网级联、爆轰波与皮层扩散性去极化任务上评测。",
+      "relevance_reason": "其对硬开关的反事实重放与跳跃项信用分配，可能为 LVR 中离散推理决策（如 THINK/LOOK/STOP 的切换与停止判定）的训练监督提供思路，但需核查重放方差与计算成本在推理轨迹上是否可行。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-26T22:42:31.056286+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

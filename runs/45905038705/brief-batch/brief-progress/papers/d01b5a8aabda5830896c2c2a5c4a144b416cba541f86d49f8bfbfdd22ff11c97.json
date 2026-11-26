@@ -1,0 +1,84 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.34092",
+  "input_sha256": "39029b8a01d609828b665769ab1b87748849b70c091200b8697422f8d805c7d4",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-26T22:38:14.881864+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1920,
+        "output_tokens": 478,
+        "total_tokens": 2398,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 270
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.34092",
+    "title": "Improving Tail-Augmented Speculative Drafting with Hidden State Mixing and Gradient Detach",
+    "authors": [
+      "Yaniv Galron",
+      "Rabeeh Karimi Mahabadi",
+      "Maor Ashkenazi",
+      "Roger Waleffe",
+      "Talor Abramovich",
+      "Tiyasa Mitra",
+      "Yoav Miron",
+      "Dor Tsur",
+      "Sanjeev Satheesh",
+      "Jimmy Zhang",
+      "Jiaji Huang",
+      "Yonatan Geifman",
+      "Mostofa Patwary",
+      "Mohammad Shoeybi",
+      "Bita Rouhani",
+      "Ran Zilberstein"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.CL"
+    ],
+    "comment": null,
+    "summary": "Multi-token prediction (MTP) modules and EAGLE-style drafters support efficient speculative decoding by reusing target-model hidden states. Their autoregressive use, however, introduces a training-inference mismatch: training supplies sequences of hidden states from the backbone or a single MTP step, whereas inference attends to a target-model prefix followed by a growing tail of recurrently generated MTP states. EAGLE-3's training-time test (TTT) explicitly simulates this behavior during training, at the cost of additional memory and specialized attention masks. We introduce two training-only methods for improving autoregressive drafting. Hidden State Mixing (HSM) samples among backbone and MTP hidden states aligned to the same prediction target, exposing the drafter to mixtures of states from different MTP steps without explicitly simulating inference. Hidden State Gradient Detach (HSGD) is a regularization method that stochastically blocks gradients through hidden state and embedding pathways while preserving the forward computation. Neither method adds inference cost. In joint pretraining followed by supervised fine-tuning, HSGD yields the highest acceptance rates at early draft positions, while HSM performs best later in the draft. These acceptance rate trends favor HSM for long-draft-length serving and HSGD for short-draft-length serving. Furthermore, across four Nemotron models and DeepSeek-V4-Pro, HSM-based MTP boosting with a frozen backbone improves mean acceptance length by up to 52.2% over the co-trained MTP. For EAGLE-3 drafters, HSM offers competitive acceptance with TTT, with 48% lower peak reserved training memory in a four-step Qwen3-8B comparison. HSM implementations are publicly available in Megatron-LM and NVIDIA Model Optimizer.",
+    "abs": "http://arxiv.org/abs/2611.34092v1",
+    "pdf": "https://arxiv.org/pdf/2611.34092v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文针对推测解码 drafter 自回归使用隐状态时的训练-推理失配，提出两种仅训练期方法：HSM 在同一预测目标下混合 backbone 与 MTP 隐状态，HSGD 随机阻断隐状态与嵌入路径的梯度而保留前向计算，均不增加推理开销。",
+      "relevance_reason": "其处理的是自回归隐状态链的训练暴露偏差与状态来源混合，可能为 LVR 中 latent 轨迹训练、贡献分配和视觉旁路监督提供可核查线索；但研究对象是加速解码而非多模态推理，联系较间接。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-26T22:38:14.881864+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

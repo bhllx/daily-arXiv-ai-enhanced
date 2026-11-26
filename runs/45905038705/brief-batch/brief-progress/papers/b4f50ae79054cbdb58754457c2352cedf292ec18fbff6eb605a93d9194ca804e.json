@@ -1,0 +1,71 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.34261",
+  "input_sha256": "b0a9cae3f43b0a656e3fa6786c504bf73124bbef2ea84c5522ee7d3f60837287",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-26T22:36:21.459740+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1812,
+        "output_tokens": 675,
+        "total_tokens": 2487,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 417
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.34261",
+    "title": "TORE: Token-Wise Taylor Order Selection via Decomposed Residual Error Estimation for Diffusion Acceleration",
+    "authors": [
+      "Lei Tang",
+      "Baoquan Zhang",
+      "Yakun Zhang",
+      "Yunming Ye"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": null,
+    "summary": "Diffusion models excel at image and video generation, but iterative denoising incurs substantial inference latency. Recent token-adaptive acceleration methods select Taylor prediction orders for the full-model residual using shallow-layer proxy scores. However, candidate orders are evaluated on these proxy features but used to predict the full-model residual, creating a proxy--target mismatch: the proxy-preferred order may not minimize residual prediction error. To address this mismatch, we propose \\textbf{TORE} (\\textbf{T}aylor \\textbf{O}rder selection via \\textbf{R}esidual \\textbf{E}rror estimation), which selects token-wise Taylor orders based on estimated prediction errors for the full-model residual. Yet direct error evaluation requires future ground-truth residuals, which are unavailable during order selection. TORE therefore estimates prediction error by analyzing how errors arise in Taylor extrapolation. Specifically, it decomposes prediction error into truncation error and finite-difference derivative error, then estimates both contributions from cached residuals to preselect token-wise orders for upcoming skip steps. Extensive experiments show that TORE achieves $4.31\\times$ speedup on FLUX.1-dev and $4.18\\times$ on Wan2.1 while maintaining high generation quality and fidelity.",
+    "abs": "http://arxiv.org/abs/2611.34261v1",
+    "pdf": "https://arxiv.org/pdf/2611.34261v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "提出 TORE，用于扩散模型推理加速：按 token 选择 Taylor 预测阶数，并将预测误差分解为截断误差与有限差分导数误差，用缓存残差估计完整模型残差的预测误差以预选后续跳步的阶数，在 FLUX.1-dev 与 Wan2.1 上报告约 4.31×/4.18× 加速并保持生成质量。",
+      "relevance_reason": "论文指出「用浅层代理分数选阶、却用于预测完整模型残差」的代理—目标不匹配，并据此按 token 估计误差分配计算量，这一思路可能为 LVR 中动态计算预算分配、token 级视觉证据筛选及代理信号与真实目标的偏差核查提供借鉴；但任务本身是图像生成加速，不直接涉及多模态推理。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-26T22:36:21.459740+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

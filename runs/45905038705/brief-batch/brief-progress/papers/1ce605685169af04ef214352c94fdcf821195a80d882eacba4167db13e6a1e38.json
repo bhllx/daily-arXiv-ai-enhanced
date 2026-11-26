@@ -1,0 +1,71 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.34746",
+  "input_sha256": "e003fe69a26a44e474a58900498074c7e15e5e6740d86470ebf274f6339ee3c2",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-26T22:32:04.410460+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1912,
+        "output_tokens": 459,
+        "total_tokens": 2371,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 277
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.34746",
+    "title": "BRIAR: Martingale Belief Smoothing on Bifurcation-Guided Reasoning Trees",
+    "authors": [
+      "Tianyi Yang",
+      "Haoran Zhang",
+      "Yifan Chen",
+      "Zixuan Li"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Reinforcement learning with verifiable rewards (RLVR) has rapidly advanced long-chain reasoning, yet standard policy optimizers distribute rollout compute and gradient credit blindly across a trajectory. On hard problems, an early misstep derails the remaining trace, whereas on solvable problems, the policy keeps generating redundant verification long after the answer is already determined. We trace both pathologies to a single structural fact: under an on-policy verifier, the true prefix pass probability $V^π(u)$ along a reasoning trace forms a $[0,1]$-bounded Doob martingale whose learnable credit variance is strictly conserved and bounded above by $V^π(u)(1-V^π(u))$, vanishing at both the derailed ($V^π\\to 0$) and absorbed ($V^π\\to 1$) boundaries. We introduce BRIAR (Bifurcation-guided Rollout and Inference on Adaptive Reasoning trees), a tree-structured RLVR framework built directly around this martingale geometry. First, BRIAR expands discourse-aligned reasoning trees along an upper-confidence outcome-bifurcation frontier, steering rollouts away from absorbed rumination and toward unresolved decision points. Second, it models latent node values with boundary-scaled heteroscedastic edge variances and computes exact global posteriors in linear $\\mathcal{O}(|V|)$ time via two-pass Rauch--Tung--Striebel (RTS) tree belief smoothing, eliminating $\\mathcal{O}(m^3)$ matrix inversions while gating out spurious boundary noise. Third, BRIAR detects minimal absorbed frontier nodes and applies zero-sum log-length centered suffix advantages strictly post-absorption, leaving pre-absorption derivations provably invariant.",
+    "abs": "http://arxiv.org/abs/2611.34746v1",
+    "pdf": "https://arxiv.org/pdf/2611.34746v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P1",
+      "brief_summary": "提出 BRIAR 树结构 RLVR 框架：利用前缀通过概率的鞅几何，沿分叉前沿分配 rollout，用 RTS 树信念平滑估计节点 latent value，并在答案吸收后施加后缀优势。",
+      "relevance_reason": "其 latent 节点信念平滑、吸收检测和计算重分配可能为 LVR 的停止决策与信用分配提供方法线索，但工作限于纯文本推理，需核查能否迁移到视觉证据下的 latent 状态。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-26T22:32:04.410460+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

@@ -1,0 +1,69 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.34523",
+  "input_sha256": "daae0daa0e974bd66aa77d6d6f7d7c1a05b9d38797cc4823601f7ace2cd1c3a7",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-26T22:34:30.351827+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1936,
+        "output_tokens": 1003,
+        "total_tokens": 2939,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 786
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.34523",
+    "title": "Rank Before You Encode: Reading a Few Percent of a Whole-Slide Image",
+    "authors": [
+      "Haoyu He",
+      "Mahdi S. Hosseini"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": "CVPR 2027 submission",
+    "summary": "Classifying a whole-slide image requires encoding thousands of high-resolution tiles with a pathology foundation model, which accounts for most of the inference cost. Existing efficient methods reduce this cost by selecting fewer tiles, but typically train a new model around their selection strategy. A largely unexplored alternative is to keep an existing full-bag model frozen and run it on selected tiles at the same encoder cost. We introduce this comparison, alongside random tile sampling at matched cost. To select tiles, we fit a lightweight selector with 3.3K parameters to the attention of a frozen model, without additional slide labels. The selector ranks regions from a slide thumbnail, encodes the top K regions at 5x magnification, and selects b for processing at 20x. We evaluate seven frozen MIL aggregators on six tasks and compare them with nine efficient methods trained on the same features and splits. At a budget of (K,b)=(1000,10), encoding costs about 6.6% of the full bag and is 10-14x faster, excluding tiling. The AUROC drop is no more than 0.005 in 33 of 36 aggregator-task pairs. At (500,10), the cost falls to about 4% and inference is 13-22x faster, but AUROC drops by up to 0.035 on CAMELYON17, where small metastases are easily missed. Selection improves over random sampling by about 0.10 AUROC on tasks with focal lesions, while random sampling performs well on diffuse tasks. In our comparisons, the frozen model at (500,10) is ahead of nine efficient methods in 55 of 60 paired comparisons. Giving an existing WSI model fewer tiles is thus a baseline that a new efficient model should be compared with at matched encoder cost.",
+    "abs": "http://arxiv.org/abs/2611.34523v1",
+    "pdf": "https://arxiv.org/pdf/2611.34523v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "在病理全切片分类中，用仅 3.3K 参数的轻量选择器从冻结底座模型的注意力中学出区域排序，先在缩略图上选 K 个 5x 区域、再挑 b 个以 20x 编码，并在匹配编码成本下与随机采样及九种高效方法比较。",
+      "relevance_reason": "以冻结模型的注意力作为区域证据价值的代理来选择编码哪些视觉区域，且发现低预算会漏掉小型病灶、弥散性任务上随机采样已足够，可供核查 LVR 中「看哪里、看多细」的证据筛选与关键细节坍缩问题。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-26T22:34:30.351827+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

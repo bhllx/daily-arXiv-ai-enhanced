@@ -1,0 +1,73 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.33935",
+  "input_sha256": "fa48fd8fc0f2d6d853ef25b583b27dd24433288b74fa081363317ca79f33a0c8",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-26T22:39:54.694103+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1876,
+        "output_tokens": 436,
+        "total_tokens": 2312,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 202
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.33935",
+    "title": "BayesPath: Reliability-Aware Bayesian Reasoning for Whole-Slide Pathology Agents",
+    "authors": [
+      "Bryan Wong",
+      "Xun Xu",
+      "Jongwoo Kim",
+      "Huazhu Fu",
+      "Nancy F. Chen",
+      "Mun Yong Yi"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": null,
+    "summary": "Diagnosing whole-slide images (WSIs) requires hypothesis-driven reasoning: pathologists form a differential diagnosis, seek discriminative evidence, weigh its reliability, and stop once it suffices. However, existing training-free WSI agents lack an explicit framework for such reasoning. They typically use a large language model (LLM) to aggregate the region descriptions of a multimodal LLM (MLLM), without a belief over the candidates or regard for the descriptions' reliability. Consequently, a repeated model error counts as independent evidence for an incorrect diagnosis. We introduce BayesPath, a training-free WSI agent that casts the pathologist's Scan-Look-Weigh-Decide process as reliability-aware Bayesian reasoning. An explicit belief over the candidates is updated with each observation through a reliability-aware likelihood and guides where to look next and when to stop. This likelihood corrects for the models' answer bias, discounts correlated observations, and captures diagnostic confusions estimated without labels. The updates form an interpretable evidence trail of how each observation shapes the belief. On five MultiPathQA tasks spanning slide classification and slide VQA, BayesPath achieves the highest average accuracy among training-free agents, 58.6% against 34.1% for the next best, with large gains on slide classification. On identical observations, Bayesian updating outperforms LLM aggregation on average, even with a larger LLM. BayesPath's belief is also better calibrated than naive Bayes, so uncertain cases can be deferred to pathologists. Code is available at https://github.com/bryanwong17/BayesPath",
+    "abs": "http://arxiv.org/abs/2611.33935v1",
+    "pdf": "https://arxiv.org/pdf/2611.33935v1",
+    "AI": {
+      "category": "MAIN",
+      "priority": "P1",
+      "brief_summary": "提出免训练的全切片病理 agent BayesPath，将「扫描—观察—权衡—决策」建模为对候选诊断的显式贝叶斯信念更新：用可靠性感知似然（校正答案偏置、折扣相关观察、无标签估计混淆）决定下一步看哪里与何时停止，在五个 MultiPathQA 任务上取得免训练方法中最高平均准确率。",
+      "relevance_reason": "显式信念状态、观察可靠性与相关性折扣、停止判据直接对上 LVR 的视觉证据筛选与 LOOK/STOP 收益成本问题，且其非 latent 的概率式状态可作为 latent 工作区的对照基线，值得核查其去相关证据与标定评价方式是否可迁移。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-26T22:39:54.694103+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

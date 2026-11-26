@@ -1,0 +1,73 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.33751",
+  "input_sha256": "ba75502cfb6ddcb27875985d006dfbc7da02292325e700207cb63434b8dd3414",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-26T22:42:09.011830+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1871,
+        "output_tokens": 545,
+        "total_tokens": 2416,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 336
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.33751",
+    "title": "VAPOR: Improving Multimodal Reasoning with Sparse Visual Updates",
+    "authors": [
+      "Mingyu Su",
+      "Wei Wu",
+      "Erle Zhu",
+      "Chengxing Xie",
+      "Deyao Hong",
+      "Hongning Wang"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": "19 pages, including appendix. Code: https://github.com/Su-my/VAPOR",
+    "summary": "Multimodal large language models (MLLMs) have made substantial progress in visual reasoning, but extended generation over large visual contexts remains computationally expensive. During autoregressive decoding, visual attention is recomputed for every generated token, even when consecutive tokens rely on similar visual evidence. We introduce VAPOR (Visual Attention Persistence with On-demand Refresh), a training-free framework that reduces this redundancy by reusing visual attention outputs across decoding steps and refreshing them when needed. VAPOR caches the visual attention output while continuing to update textual attention at every step, helping reduce visual grounding drift during extended reasoning. To decide when to reuse cached outputs, VAPOR estimates visual attention mass using a low-rank approximation. It also uses prefill-based attention consistency and cache age to make independent Persist and Refresh decisions for each attention head. VAPOR retains the full visual key-value (KV) cache, so all visual tokens remain available when new evidence is needed. Experiments on eight image and four video reasoning benchmarks across two MLLM families show that VAPOR improves accuracy over dense attention on nearly all benchmarks while achieving 1.11-1.21x decoding speedups. Compared with the strongest state-of-the-art acceleration baseline in each setting, VAPOR further improves accuracy by 0.35-2.15 percentage points while achieving comparable or lower decoding latency. Our code is available at https://github.com/Su-my/VAPOR.",
+    "abs": "http://arxiv.org/abs/2611.33751v1",
+    "pdf": "https://arxiv.org/pdf/2611.33751v1",
+    "AI": {
+      "category": "MAIN",
+      "priority": "P1",
+      "brief_summary": "VAPOR 提出一种免训练的解码加速框架：在自回归生成中复用视觉注意力输出，并利用低秩近似估计视觉注意力质量，结合 prefill 一致性与缓存年龄按注意力头决定继续复用还是刷新，同时保留完整视觉 KV cache。",
+      "relevance_reason": "该工作直接涉及多模态推理中视觉证据的按需获取与计算成本权衡，其逐头「persist/refresh」策略和视觉 grounding drift 分析，可能为 LVR 的 LOOK 决策、视觉证据筛选以及缓存和注意力结构对潜在状态的影响提供核查线索。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-26T22:42:09.011830+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

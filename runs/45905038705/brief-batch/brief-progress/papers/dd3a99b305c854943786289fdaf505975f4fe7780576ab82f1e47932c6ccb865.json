@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.34252",
+  "input_sha256": "79f13e0645a0d4814addd51bca1af9de16cf3abb2e19bc6336bf0de064e418bd",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-26T22:36:28.176910+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1910,
+        "output_tokens": 868,
+        "total_tokens": 2778,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 656
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.34252",
+    "title": "Detector Operating Behavior Inference via Data-Space Sampling",
+    "authors": [
+      "Stefan Becker",
+      "Simon Weiss",
+      "Wolfgang Hübner"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": null,
+    "summary": "A detector scores candidate detections, but the recall and false alarms at a given confidence threshold depend on the input distribution. We introduce Detector Operating Behavior Inference (DOBI), a second-level inference task: estimating a fixed detector's threshold-dependent, distribution-level operating response from the internal evidence of a single unlabeled image. DOBI treats the detector's threshold response, i.e. recall, false positives, and precision across thresholds, as a latent behavioral state under the current data condition. Controlled data-space sampling probes this state space offline, and a lightweight monitor learns the inverse map from one image to this state, whose single functional output supports multiple operating policies. In a controlled proof of concept with a fixed YOLOv10-Nano person detector and COCO-derived degradations, predicted PR behavior reduces mean absolute deviation from 0.128 for an image-independent mean-behavior prior to 0.054, and predicted functional distances track empirical regime distances (Spearman 0.96). From one unlabeled image, the inferred behavior selects operating points as well as a non-deployable lookup that knows the true regime (macro-regime $F_1$ 0.6604 for both, versus 0.6407 under pristine calibration; oracle 0.6620). On this discrete benchmark, regime-supervised curve lookups are strong controls. Pre-specified continuous and compositional probing shows where functional inference matters: on unseen combinations, the functional decoder has a lower mean curve error than a template lookup, increasingly with distance from the training conditions, whereas the lookup is more accurate for interpolation. These results establish the feasibility of single-image inference of distribution-level detector behavior over the probed conditions. Source code is available at https://github.com/beckerio/dobi",
+    "abs": "http://arxiv.org/abs/2611.34252v1",
+    "pdf": "https://arxiv.org/pdf/2611.34252v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "提出 DOBI：把固定检测器在阈值上的 recall/precision 响应视为随数据分布变化的 latent 行为状态，用受控数据空间采样离线探测该状态空间，再训练轻量 monitor 从单张无标注图像反推该状态，以单一功能性输出支持多种工作点选择。",
+      "relevance_reason": "「由单张图像预测模型自身分布级行为并可据此定阈值」的监控与反演思路，可能为 LVR 的停止决策与推理预算分配提供可核查线索；但研究对象是检测器可靠性而非多模态推理状态，迁移性需阅读原文确认。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-26T22:36:28.176910+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

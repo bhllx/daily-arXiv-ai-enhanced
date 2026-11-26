@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.34084",
+  "input_sha256": "3be8ff3feb65c32916b25f352044004f8327c275b8827ec89cce048aa914c7e5",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-26T22:38:21.903603+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1950,
+        "output_tokens": 569,
+        "total_tokens": 2519,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 345
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.34084",
+    "title": "TaCo: Rethinking Correlation for Visual Tracking on Edge Devices",
+    "authors": [
+      "Qingmao Wei",
+      "Fagui Liu",
+      "Quan Tang"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": null,
+    "summary": "Lightweight trackers have replaced cross-correlation with attention, and on low-power edge hardware they pay for it, since memory-bound softmax, normalization and reshaping operators of attention cost far more time than their arithmetic suggests. Benchmarking efficient trackers on an edge Neural Processing Unit (NPU) and an Arm CPU under one numerically validated protocol, we find that correlation trackers are the fast ones, but they lag in accuracy unless they adopt a ViT backbone, which brings attention back. We revisit what correlation lacks. Template--search interaction serves two roles: conditioning the search features on the target and matching them against it spatially. Attention does both, whereas correlation only matches, and does so on features extracted without knowledge of the target. We present TaCo (Target-aligned Correlation), which supplies the missing conditioning without attention by letting the template enter the per-frame network only as operands computed once per video. A descriptor of the target scales and shifts the search features channel by channel inside the backbone, and kernels aligned with the target box, each with a weight predicted from the template, correlate with them in one matrix product. With the backbone fixed, our correlation remains essential while incurring negligible NPU overhead, offering a better speed-accuracy trade-off than the attention-based interactions we tested. TaCo-T achieves 62.3% LaSOT AUC at 184 FPS on the Rockchip RV1126B NPU and 96 FPS on a Raspberry Pi 5 CPU, 3.0x and 3.5x the NPU speed of HiT-Tiny and AsymTrack-T at higher accuracy. TaCo-B reaches 65.6% at 50 FPS on the NPU, more than twice the speed of HiT-Base, AsymTrack-B and LightFC-vit, again at higher accuracy. Code and models are available at https://github.com/TsingWei/TaCo-Tracker.",
+    "abs": "http://arxiv.org/abs/2611.34084v1",
+    "pdf": "https://arxiv.org/pdf/2611.34084v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文在边缘 NPU 与 Arm CPU 上统一协议基准轻量跟踪器，指出 correlation 类方法快但缺少对搜索特征的「条件化」，提出 TaCo：用每段视频只计算一次的模板描述子对搜索特征做逐通道缩放与偏移，并以目标对齐核完成相关匹配，在不引入 attention 的情况下取得更好的速度—精度折中。",
+      "relevance_reason": "其把参考帧信息压缩成一次性操作数、直接调制每帧视觉特征的条件化方式，可能为 LVR 中以低开销将视觉证据注入内部状态、替代 attention 的机制提供借鉴线索，需核查该调制是否保留细节与空间对应关系。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-26T22:38:21.903603+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

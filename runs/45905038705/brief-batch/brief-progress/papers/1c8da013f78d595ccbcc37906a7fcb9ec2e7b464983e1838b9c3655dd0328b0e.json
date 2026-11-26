@@ -1,0 +1,68 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.33647",
+  "input_sha256": "757f8d193229bf401cac98b43d8e5b7e45601339da069b00388feeac7c2836d5",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-26T22:43:09.468303+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1879,
+        "output_tokens": 739,
+        "total_tokens": 2618,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 530
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.33647",
+    "title": "The Danger of Double Precision: Working Precision as a Hidden Constraint in Gaussian Process Maximum Likelihood",
+    "authors": [
+      "Thomas A. Scott"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Gaussian process (GP) hyperparameters are routinely fitted by maximizing the marginal likelihood in IEEE double precision, although for smooth kernels and noiseless data the covariance matrix is often more ill conditioned than double precision can resolve. For a squared-exponential kernel on a design with a Bayesian-optimization cluster, refits over a range of significand widths, judged against a high-precision reference, show that the double-precision fit is a different model and that fits converge only once the width exceeds the base-2 logarithm of the covariance condition number, about 70 bits. Cholesky failure acts as an implicit conditioning constraint, caused mostly by rounding of the kernel entries; the constrained solution predicted from the working precision alone is within 20% of the best Powell fits at five of the six precisions from 40 to 64 bits, with a local expansion proved for the idealized problem. Across 43 kernels, designs and problem settings, including negative controls that double precision already resolves, the bits needed follow the log condition number at the reference optimum plus a tolerance-dependent offset, and at the loosest tolerance double precision suffices for the Matern 1.5 kernel but not for the squared-exponential kernel on clustered designs. Double-precision hyperparameters overstate the posterior standard deviation near the design cluster and, on a quadratic objective whose likelihood heads to the flat limit, stall closed-loop active learning. Promoting the whole likelihood to 80 significand bits recovers the reference accuracy on every fixed design tested, whereas a fixed jitter trades failures for a posterior bias.",
+    "abs": "http://arxiv.org/abs/2611.33647v1",
+    "pdf": "https://arxiv.org/pdf/2611.33647v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "论文指出高斯过程边际似然拟合中工作精度是隐藏约束：聚类设计下协方差条件数超出双精度可解析范围，双精度拟合实为不同模型，需约 70 位才收敛；Cholesky 失败构成隐式条件约束，并影响后验标准差与闭环主动学习。",
+      "relevance_reason": "「数值精度决定内部计算能解析多少信息」的视角可供核查 latent 状态迭代更新、缓存与相似度比较中的数值可辨识性，以及精度不足是否会让证据获取或停止决策停滞，但领域距离较远。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-26T22:43:09.468303+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

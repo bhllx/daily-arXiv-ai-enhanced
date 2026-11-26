@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.34078",
+  "input_sha256": "aa2cc4b9bb5746ad03058bb007ff75e8700ed4301e8096fbe5cdc76a246a552a",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-26T22:38:25.386188+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1846,
+        "output_tokens": 532,
+        "total_tokens": 2378,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 307
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.34078",
+    "title": "Projector Subspace Optimization for Multimodal Continual Instruction Tuning",
+    "authors": [
+      "Hao Yu",
+      "Quan Cheng",
+      "Lijun Zhang"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": "29 pages, 12 figures, including supplementary material",
+    "summary": "Multimodal Large Language Models (MLLMs) achieve strong performance through instruction tuning, yet adapting them to sequential tasks requires Multimodal Continual Instruction Tuning (MCIT). Existing replay-free methods expand prompts or routed LoRA experts across multi-layer decoders, incurring heavy parameter and routing overhead while shifting internal feature distributions. Instead, we identify the final linear layer of the vision-language projector as a high-capacity, coordinate-stationary bridge, where sequential updates easily induce interface drift by displacing historical visual tokens. While low-rank subspace adaptation offers a compact remedy, selecting directions solely from historical statistics or task gradients sacrifices plasticity or stability, and unconstrained multi-step updates still accumulate large drift. To resolve both issues, we propose Projector Refinement through Optimized Update Directions (PROUD), a continual subspace optimization framework for the terminal projector layer. At task onset, PROUD combines retained input statistics with initial gradients to analytically extract a metric-orthonormal subspace maximizing first-order task gain under a drift budget. During training, it regularizes updates within this fixed subspace via an exact Frobenius penalty before losslessly merging them with zero inference or routing overhead. Experiments on UCIT and CoIN across MLLM backbones show that PROUD outperforms recent replay-free baselines in continual accuracy while curbing forgetting with a fraction of trainable parameters.",
+    "abs": "http://arxiv.org/abs/2611.34078v1",
+    "pdf": "https://arxiv.org/pdf/2611.34078v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "该文针对多模态持续指令微调中视觉-语言投影器末端线性层的「接口漂移」，提出 PROUD：用保留的输入统计量与初始梯度解析构造度量正交子空间，在固定子空间内以 Frobenius 惩罚约束更新，训练后无损合并，无需回放且推理无额外开销。",
+      "relevance_reason": "论文把投影器视为视觉证据进入内部状态的接口，并以子空间约束和漂移预算抑制历史视觉 token 被挤占，这一思路可能可供核查用于缓解 LVR 训练中视觉信息坍缩或状态更新覆盖证据的问题；但其目标是持续学习而非 latent 推理，属方法旁支线索。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-26T22:38:25.386188+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}
