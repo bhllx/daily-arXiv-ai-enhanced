@@ -1,0 +1,73 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.33589",
+  "input_sha256": "708ff9cccaf1a7f3d8e4a2d3ca2aa27bbabe5455a161853201c058294d0576f8",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-27T22:26:50.347165+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 2035,
+        "output_tokens": 596,
+        "total_tokens": 2631,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 377
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.33589",
+    "title": "Amortizing Exact Orthogonality: Drift-Triggered Restoration for Orthogonal Fine-Tuning",
+    "authors": [
+      "Lanxin Zhao",
+      "Xiaoyu Li",
+      "Dai Shi",
+      "Junbin Gao",
+      "Andi Han"
+    ],
+    "categories": [
+      "cs.LG",
+      "stat.ML"
+    ],
+    "comment": "44 pages",
+    "summary": "Orthogonal finetuning (OFT) adapts a pretrained weight by an orthogonal transform and preserves its singular values and row angles, but existing methods construct an exact or approximate orthogonal transform at every optimization step. We measure how far a transform $A$ is from orthogonal by its orthogonality defect $\\|A^\\top A-I\\|_2$. For OFTv2, which truncates a Cayley-Neumann series, we show that the truncation order does not determine the defect. At its default order, block defects in checkpoints from the reference implementation span five orders of magnitude. We propose Restarted Tangent Orthogonal Finetuning (RTOFT), which uses the first-order update $W(I+S)$ of a weight $W$ with a skew-symmetric $S$ and restores exact orthogonality by a polar decomposition only when the drift $\\|S\\|_2$ reaches a tolerance $τ$. The defect of $I+S$ is exactly $\\|S\\|_2^2$. Therefore, reading the drift after every update and restoring before the next forward pass guarantees a defect of at most $τ^2$ in every forward pass, independently of the loss, data, model, and optimizer. A final restoration makes the returned transform exactly orthogonal. On GLUE, RTOFT reduces the training time of block-diagonal, subspace, and butterfly parameterizations from $1.10$-$1.58\\times$ to $0.97$-$1.13\\times$ that of LoRA, and its block-diagonal version exceeds LoRA by $1.98\\pm0.39$ points on the six-task average over five seeds. At $τ=0.10$, the largest drift read during training stays between $0.10$ and $0.12$ across DeBERTaV3, Qwen, and diffusion models, whereas it ranges from $0.17$ to $1.65$ when restoring once per epoch. In all seven settings of our ablation, the tangent update is worse without restoration than with it, and restoring after every step yields no measurable accuracy gain over restoring at the tolerance and costs $4.5$-$27.5\\%$ more per step.",
+    "abs": "http://arxiv.org/abs/2611.33589v1",
+    "pdf": "https://arxiv.org/pdf/2611.33589v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "研究正交微调中变换偏离正交的程度，指出 OFTv2 的截断阶数并不决定偏差；提出 RTOFT，用一阶斜对称更新，仅当漂移达到阈值 τ 时以极分解恢复精确正交，以保证每次前向的偏差不超过 τ²，并在 GLUE 上改善训练开销与精度。",
+      "relevance_reason": "其「按漂移阈值触发、惰性恢复几何约束」的机制可能可供核查循环或多步 latent 推理状态的漂移监控与重归一化；但论文为纯文本 PEFT，与视觉多模态推理无直接联系，迁移线索需人工判断。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-27T22:26:50.347165+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

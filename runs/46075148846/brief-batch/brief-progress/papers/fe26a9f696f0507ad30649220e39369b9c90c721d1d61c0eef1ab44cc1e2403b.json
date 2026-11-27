@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.34108",
+  "input_sha256": "36ca55f64f2e9b06fe6369a81ad21dcbd9e1f73e0b89831ac127f97f5b57b8e7",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-27T22:21:09.072240+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1876,
+        "output_tokens": 697,
+        "total_tokens": 2573,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 442
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.34108",
+    "title": "Detectable by Design: Learning a Continuous 3D Saliency Field from 2D Detector Responses",
+    "authors": [
+      "Han Sun",
+      "Jun Li",
+      "Christy Jie Liang"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": null,
+    "summary": "The 3D points kept in a map decide whether a camera can be localized against it, and this choice matters more as the map becomes sparser. Existing 3D keypoint detectors usually define saliency by semantics, repeatability, reconstruction or descriptor matchability. None of these definitions asks whether a point will actually be detected in an image, and as a result most of the points they select are not detected again in images.\n  In this paper, we define 3D saliency as image detectability: the response of a 2D interest-point detector at a surface point, aggregated over all views in which the point is visible. We propose DetField, a continuous field over 3D space that takes a point cloud as input and predicts detectability at any location around it. The supervision is the response of a 2D detector, back-projected from images onto the point cloud. Multi-scale curvature invariants are passed to the decoder at every query point, bypassing the voxel pooling of the encoder.\n  In a localization benchmark that isolates the choice of 3D points, DetField outperforms Harris-3D and five learned 3D keypoint methods on objects and on real indoor scenes. On unseen rooms, it improves localization success by 7.4 points over Harris-3D, the strongest baseline. On objects, it also leads under a 2D detector not used in training. On sparse maps, it stays ahead of Harris-3D on both objects and real scenes.",
+    "abs": "http://arxiv.org/abs/2611.34108v1",
+    "pdf": "https://arxiv.org/pdf/2611.34108v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "论文把 3D 显著性重新定义为「图像可检测性」，即以 2D 兴趣点检测器响应在可见视角上的聚合作为监督，反投影到点云后训练一个输入点云、可查询任意位置的连续 3D 显著场 DetField，并在稀疏地图定位基准上验证其优于 Harris-3D 与多种学习式 3D 关键点方法。",
+      "relevance_reason": "其核心思想是用「下游是否真正响应/可用」而非语义或重建质量来定义显著性，可能为 LVR 中视觉证据筛选与「latent 是否保留可被再次取用的细节」提供评价视角，但任务域属定位与建图，与 VLM 推理相距较远，可供核查的是这一可检测性判据能否迁移。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-27T22:21:09.072240+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

@@ -1,0 +1,71 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.33261",
+  "input_sha256": "32416033f012463fc12fe8ab7c96c9e6d73d89993a27325907c2d311e9a00dd7",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-27T22:29:48.760865+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1793,
+        "output_tokens": 608,
+        "total_tokens": 2401,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 387
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.33261",
+    "title": "Same Tokenizer, Better Tokens: Choosing Image Tokens by MAP Inference",
+    "authors": [
+      "Piotr Kubaty",
+      "Jacek Tabor",
+      "Łukasz Struski"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.LG"
+    ],
+    "comment": null,
+    "summary": "Discrete visual tokens encode images for reconstruction and serve as training targets for autoregressive image generators. Vector-quantized tokenizers typically assign each encoder feature its nearest code independently. The decoder uses these codes jointly, so a sequence of individually nearest codes can reconstruct an image less faithfully than an alternative assignment. A local model of the reconstruction loss yields a closest-vector problem with a decoder-dependent target and metric. Reconstruction-only search improves PSNR across the frozen tokenizers we test. Different code sequences can achieve similar reconstruction quality, leaving room to favour more predictable ones.\n  We introduce RecaP (Reconstruction and Predictability), which selects codes for a frozen tokenizer by balancing how faithfully they reconstruct the image with how likely their sequence is under a pretrained autoregressive prior. On ImageNet, LlamaGen GPT-B trained on RecaP tokens achieves lower early-checkpoint FID against training images than GPT-B trained on nearest-neighbour tokens. The difference is smaller against held-out images. On an ImageNet subset, the prior improves generation at comparable reconstruction FID. Our code is available at: https://github.com/gmum/recap",
+    "abs": "http://arxiv.org/abs/2611.33261v1",
+    "pdf": "https://arxiv.org/pdf/2611.33261v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "该文指出 VQ tokenizer 逐特征取最近码并非解码器最优，提出 RecaP：在冻结 tokenizer 上用局部重建损失做搜索，并把码序列在预训练自回归先验下的似然纳入目标，平衡重建保真与可预测性，在 ImageNet 上改善了早期 FID。",
+      "relevance_reason": "其「保真度＋先验似然」的离散码选择准则，可能为 LVR 中如何在多个等效 latent 状态间挑选取舍（保留视觉细节 vs. 可解码/可预测）提供可核查的借鉴，但论文本身面向图像生成，不含推理过程。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-27T22:29:48.760865+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

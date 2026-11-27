@@ -1,0 +1,73 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.33935",
+  "input_sha256": "fa48fd8fc0f2d6d853ef25b583b27dd24433288b74fa081363317ca79f33a0c8",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-27T22:23:04.588597+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1876,
+        "output_tokens": 513,
+        "total_tokens": 2389,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 291
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.33935",
+    "title": "BayesPath: Reliability-Aware Bayesian Reasoning for Whole-Slide Pathology Agents",
+    "authors": [
+      "Bryan Wong",
+      "Xun Xu",
+      "Jongwoo Kim",
+      "Huazhu Fu",
+      "Nancy F. Chen",
+      "Mun Yong Yi"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": null,
+    "summary": "Diagnosing whole-slide images (WSIs) requires hypothesis-driven reasoning: pathologists form a differential diagnosis, seek discriminative evidence, weigh its reliability, and stop once it suffices. However, existing training-free WSI agents lack an explicit framework for such reasoning. They typically use a large language model (LLM) to aggregate the region descriptions of a multimodal LLM (MLLM), without a belief over the candidates or regard for the descriptions' reliability. Consequently, a repeated model error counts as independent evidence for an incorrect diagnosis. We introduce BayesPath, a training-free WSI agent that casts the pathologist's Scan-Look-Weigh-Decide process as reliability-aware Bayesian reasoning. An explicit belief over the candidates is updated with each observation through a reliability-aware likelihood and guides where to look next and when to stop. This likelihood corrects for the models' answer bias, discounts correlated observations, and captures diagnostic confusions estimated without labels. The updates form an interpretable evidence trail of how each observation shapes the belief. On five MultiPathQA tasks spanning slide classification and slide VQA, BayesPath achieves the highest average accuracy among training-free agents, 58.6% against 34.1% for the next best, with large gains on slide classification. On identical observations, Bayesian updating outperforms LLM aggregation on average, even with a larger LLM. BayesPath's belief is also better calibrated than naive Bayes, so uncertain cases can be deferred to pathologists. Code is available at https://github.com/bryanwong17/BayesPath",
+    "abs": "http://arxiv.org/abs/2611.33935v1",
+    "pdf": "https://arxiv.org/pdf/2611.33935v1",
+    "AI": {
+      "category": "MAIN",
+      "priority": "P1",
+      "brief_summary": "BayesPath 提出一种免训练的全切片病理 agent，将「扫描—观察—权衡—决定」流程形式化为可靠性感知的贝叶斯推理：维护显式候选信念，用校正答案偏差、折扣相关观测并估计诊断混淆的似然函数随每次观察更新信念，进而指导下一步看哪里以及何时停止。",
+      "relevance_reason": "该工作直接处理视觉证据筛选、证据可靠性与停止决策，显式信念和可解释证据链可供核查 LOOK/STOP 的收益成本及重复证据被误当作独立证据的问题；其方法能否迁移到一般 VLM 的 latent 推理仍待阅读原文判断。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-27T22:23:04.588597+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

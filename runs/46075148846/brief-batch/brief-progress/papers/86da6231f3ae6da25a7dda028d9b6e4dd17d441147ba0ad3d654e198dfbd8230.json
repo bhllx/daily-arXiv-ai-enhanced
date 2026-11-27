@@ -1,0 +1,73 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.33982",
+  "input_sha256": "17f65ba09144d23609b2a09007284556573c490f738783934aee8b26107846ae",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-27T22:22:29.679979+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1853,
+        "output_tokens": 689,
+        "total_tokens": 2542,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 460
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.33982",
+    "title": "FasterGRN: Reducing the Refinement Redundancy for Accelerating Generative Refinement Networks",
+    "authors": [
+      "Ziqian Zhang",
+      "Pengcheng Wang",
+      "Yulong Chen",
+      "Yaxing Wang",
+      "Senmao Li",
+      "Kai Wang"
+    ],
+    "categories": [
+      "cs.CV"
+    ],
+    "comment": null,
+    "summary": "Departing from the paradigm of diffusion and autoregressive models, Generative Refinement Networks (GRN) enables high-quality image generation through iterative refinements. However, this repeated processing over the entire visual representations results in substantial computation overhead. Furthermore, the binary representations and global refinement mechanism in GRN disable the direct application of acceleration strategies developed for other generative models. To accelerate GRN model, we first observe several key properties by analyzing the entire generative process. That includes the stage characteristic, dual branch similarity and more importantly, the $\\textbf{refinement redundancy}$. Motivated by the observations, we present $\\textbf{FasterGRN}$, a training-free acceleration method for the Generative Refinement Network. $\\textbf{FasterGRN}$ first divides the GRN into the semantic establishment stage and detail refinement stage according to its semantic establishment. For alleviating the refinement redundancy mainly resulting from the detail refinement stage, we propose Adaptive Retention Expansion ($\\textbf{ARE}$) and Selective Token Freezing ($\\textbf{STF}$) to shrink refinement steps and reduce token computations, respectively. In the experiments on GenEval and DPG-Bench benchmarks, our method $\\textbf{FasterGRN}$ achieves a $2.03\\times$ sampling speedup while largely preserving image generation performance. Our evaluation on COCO datasets additionally demonstrates that $\\textbf{FasterGRN}$ even outperforms the original GRN in image fidelity.",
+    "abs": "http://arxiv.org/abs/2611.33982v1",
+    "pdf": "https://arxiv.org/pdf/2611.33982v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "FasterGRN 提出免训练的生成加速方法：依据语义建立程度把 GRN 生成过程划为语义建立与细节精修两阶段，再用 Adaptive Retention Expansion 与 Selective Token Freezing 分别缩短精修步数、减少需计算的 token，在 GenEval/DPG-Bench 上取得约 2.03× 采样加速且基本保持生成质量。",
+      "relevance_reason": "其按阶段特性与分支相似性判定哪些 token 已收敛并冻结更新的做法，可能为 latent 推理中「哪些内部状态仍需更新、何时停止迭代」的动态计算与 STOP 决策提供可核查线索，但研究对象是图像生成而非 VLM 推理。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-27T22:22:29.679979+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

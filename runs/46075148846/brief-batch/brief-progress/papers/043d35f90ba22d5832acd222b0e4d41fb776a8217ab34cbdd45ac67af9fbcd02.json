@@ -1,0 +1,78 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.33951",
+  "input_sha256": "df7a41a9ad6f9892341b6224b68c2da97b6578ee31e50dee69bdf7a37aaa7c9e",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-27T22:22:46.711652+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1903,
+        "output_tokens": 1018,
+        "total_tokens": 2921,
+        "input_token_details": {
+          "cache_read": 0
+        },
+        "output_token_details": {
+          "reasoning": 779
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.33951",
+    "title": "BReD: Block Replay Dithering for Stable Low-Bit EMA Optimizer States",
+    "authors": [
+      "Heshen Zhan",
+      "Youhan Huang",
+      "Yunke Peng",
+      "Yao Wang",
+      "Linghui Kong",
+      "Ziwei Zhu",
+      "Qingyu Han",
+      "Yaoyuan Wang",
+      "Congliang Chen",
+      "Ruoyu Sun"
+    ],
+    "categories": [
+      "cs.LG",
+      "stat.ML"
+    ],
+    "comment": null,
+    "summary": "Low-bit storage of optimizer states can substantially reduce the memory footprint of large-scale training. In practice, however, these states are not quantized once: at every training step, they are dequantized, updated, requantized, and written back. This iterative quantization pipeline can destabilize training. We identify a failure mode behind this instability: for states updated via exponential moving averages (EMAs), quantization errors are recursively fed into subsequent updates. As a result, biased errors accumulate over time while high-variance errors are amplified, particularly when the EMA decay factor is close to 1. To address this error accumulation, we propose BReD (Block Replay Dithering), a method that reduces rounding bias and controls rounding variance during quantization. BReD adapts classical subtractive dithering to optimizer-state quantization by combining deterministic seed replay with block-wise shared dither values, avoiding auxiliary random-tensor storage and per-element dither values generation. Across the default pretraining settings (five optimizers at 120M; AdamW and Muon at 1.1B and 3.4B model) and supervised fine-tuning (AdamW and Muon at 7B model), 4-bit BReD closely matches training with full-precision optimizer states, with PPL shifts $\\leq0.5$ in pretraining and $\\leq0.2$ in fine-tuning and average downstream performance changes within 0.7 points. Moreover, 3-bit BReD preserves stable convergence in the evaluated settings, offering a more aggressive alternative. Our implementation of BReD is available at: https://github.com/ZhanHeshen/BReD",
+    "abs": "http://arxiv.org/abs/2611.33951v1",
+    "pdf": "https://arxiv.org/pdf/2611.33951v1",
+    "AI": {
+      "category": "EXPLORATORY",
+      "priority": "P2",
+      "brief_summary": "论文指出低比特优化器状态在每步「反量化—更新—再量化」循环中会把量化误差递归反馈进 EMA 更新，导致偏差累积与高方差放大（衰减因子接近 1 时尤甚），并提出 BReD：用块级共享抖动加确定性种子重放来压低舍入偏差与方差，在 120M 至 7B 的预训练与微调中使 4-bit 状态接近全精度。",
+      "relevance_reason": "其「递归状态更新中误差持续累积」的分析与抖动、误差反馈手段，可能可供核查 loop/迭代式 latent 推理状态反复更新时的漂移与信息保真问题，但与视觉证据使用无直接联系。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-27T22:22:46.711652+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

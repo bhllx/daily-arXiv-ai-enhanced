@@ -1,0 +1,68 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.33983",
+  "input_sha256": "a8d4f77f55a691f7d88c652f0b3948a81602e7a4852f4115af74c6b758489fed",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-27T22:22:25.202117+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 2106,
+        "output_tokens": 488,
+        "total_tokens": 2594,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 252
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.33983",
+    "title": "Quaternion-Tucker ZigZag Networks: Halving Transformer Backbone Parameters and Enabling Exact 2D Zero-Loss Continual Scaling",
+    "authors": [
+      "Shubham Barmase"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": "12 pages, 12 figures, 6 tables. Code: https://github.com/shu195/QuatTucker-ZigZagGPT | Open weights: https://huggingface.co/spacetime9 | Zenodo DOI: 10.5281/zenodo.24424501",
+    "summary": "Standard Transformers allocate independent dense weight matrices to every feed-forward network (FFN) layer, coupling parameters linearly with depth (O(L)) and discarding prior compute when scaling capacity. Conversely, weight-tied Looped Transformers decouple depth from parameters (O(1)) but enforce time-homogeneous updates. We formulate the L-layer FFN stack as a 3D Tensor Cuboid and introduce QuatTucker-ZigZagGPT, unifying: (1) 4D Quaternion Hamilton GEMMs in bfloat16 (4x FFN compression), (2) 64x64 Block-Diagonal Tucker SwiGLU Cores for depth-specific rotations over a shared basis, (3) Braided ZigZag Diamond Routing (L0 -> L2 -> L1 -> L3) for zero-FLOP top-down refinement, and (4) Exact 2D Zero-Loss Continual Scaling in both width and depth. We also introduce Annealed Gated Bounce-Back Scaffolding (GatedBounce), which self-distills to 0.0% inference overhead. Across algorithmic tasks (8-bit Parity, 56-seed routing ablations, Mod-53 Grokking) and language modeling (TinyStories, FineWeb-Edu), our model outperforms standard Transformers at 2x-7.6x compression. On A100, QuatTucker-ZigZagGPT-12 (39.0M backbone) beats StandardGPT-12 (85.0M backbone) at 5/5 controlled checkpoints. Continually scaling one lineage across 6.00B tokens via zero-loss width growth (rank 6144 -> 8192), two bit-exact depth expansions (L = 12 -> 16 -> 20, 70.9M backbone, max_diff = 0.000000), and WSD cooldown reaches 3.3582 FineWeb-Edu loss (28.74 PPL) and 44.75% full-split zero-shot accuracy across 16,955 questions (ARC-Easy, HellaSwag, WinoGrande, BoolQ), matching GPT-3 Small (125M, 300B tokens) at 50x fewer tokens.",
+    "abs": "http://arxiv.org/abs/2611.33983v1",
+    "pdf": "https://arxiv.org/pdf/2611.33983v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "该文把 L 层 FFN 视为三维张量块，提出 QuatTucker-ZigZagGPT：用四元数 GEMM、块对角 Tucker 核为共享基座叠加逐深度旋转，配合 ZigZag 路由与宽度/深度的「零损失」持续扩容，在算法任务与语言建模上以 2–7.6 倍骨干压缩超过标准 Transformer。",
+      "relevance_reason": "其「共享基座 + 逐深度特化变换」的权重绑定式 looped 结构与按位精确的深度扩展，可供核查 LVR 中循环/深度可变 latent 状态更新与长度、深度泛化的参数化方式；论文本身未涉及视觉或多模态推理。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-27T22:22:25.202117+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

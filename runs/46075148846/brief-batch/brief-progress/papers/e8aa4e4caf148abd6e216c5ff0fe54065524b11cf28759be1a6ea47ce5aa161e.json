@@ -1,0 +1,70 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.33887",
+  "input_sha256": "acffc51fbfe02448ab99df59c211ae8fda3c5445f4a1daf429228474a85ba27d",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-27T22:23:33.191510+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1897,
+        "output_tokens": 743,
+        "total_tokens": 2640,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 534
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.33887",
+    "title": "The Gradient Difference Induced by Detaching the Denominator in QK Normalization",
+    "authors": [
+      "Yuanqi Zhang",
+      "Haocheng Wang",
+      "Congping Lin"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "comment": "20 pages, 5 figures, 7 tables. Yuanqi Zhang and Haocheng Wang contributed equally",
+    "summary": "QK normalization divides each query and key by its own RMS norm before the attention scores are computed. Treating this denominator as a constant during backpropagation leaves the forward pass unchanged but alters the parameter gradients. We derive a closed form for the difference between the gradient under this detached rule and the gradient under the standard rule. For a single token, this difference is parallel to the token's own query; it changes only the query norm and has no first-order effect after normalization. The queries, however, are computed by a projection matrix $W_Q$ shared across all tokens. The gradient difference on $W_Q$ therefore equals $W_Q$ right-multiplied by a weighted second moment of the inputs, and it decomposes exactly into three components: a radial component that changes only the norm of $W_Q$, a tangential component that changes the query directions of other tokens, and an upstream component that changes the gradient passed to earlier layers. Under AdamW, the radial component drives $W_Q$ to a larger equilibrium norm and reduces its angular update per step. Paired experiments on a small Transformer language model are consistent with this analysis. Detaching the query denominator consistently raises the test loss, and the gap persists across hardware, evaluation datasets and learning rates. All three components remain non-negligible throughout training, with the tangential component the largest. Norm growth and the smaller angular update appear only on the detached projection matrix, while the other projection matrix is essentially unchanged. With a learnable scale, however, we observe no resolvable loss gap.",
+    "abs": "http://arxiv.org/abs/2611.33887v1",
+    "pdf": "https://arxiv.org/pdf/2611.33887v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "论文推导 QK normalization 中把分母当作常数（detach）时的梯度与标准梯度的闭式差，并把对 W_Q 的差异分解为径向、切向与上游三部分，分析其在 AdamW 下的范数增长与角更新变化，再用小型 Transformer 语言模型的配对实验加以验证。",
+      "relevance_reason": "其「前向不变、仅改梯度」的 detach 分析与梯度三分量分解，可能可供核查 latent 轨迹训练中 stop-gradient 及注意力投影更新如何影响表示方向与深层梯度，但论文本身不涉及视觉或多模态推理。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-27T22:23:33.191510+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}

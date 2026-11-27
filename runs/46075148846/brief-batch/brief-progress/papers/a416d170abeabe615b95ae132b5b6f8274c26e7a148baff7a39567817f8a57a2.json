@@ -1,0 +1,75 @@
+{
+  "format": "lvr-brief-checkpoint-v1",
+  "paper_id": "2611.33952",
+  "input_sha256": "3048e825682460c051fbfe70dea57fdc34be02c38063ebb3784fa5dcb110d013",
+  "status": "success",
+  "attempts": [
+    {
+      "number": 1,
+      "finished_at": "2026-11-27T22:22:41.806813+00:00",
+      "status": "success",
+      "stage": "complete",
+      "api_called": true,
+      "usage": {
+        "input_tokens": 1795,
+        "output_tokens": 447,
+        "total_tokens": 2242,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 206
+        }
+      },
+      "provenance": {
+        "schema_version": "lvr-brief-v1",
+        "model": "deepseek-v4.1-flash",
+        "language": "Chinese",
+        "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+        "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+        "max_output_tokens": 1024
+      },
+      "errors": null
+    }
+  ],
+  "result": {
+    "id": "2611.33952",
+    "title": "DuoMI: Dual Mutual Information Regularization for Expert Reuse in Looped Transformers",
+    "authors": [
+      "Xinlai Kang",
+      "Zhenhe Wu",
+      "Haoyu Wang",
+      "Weihua He",
+      "Yaping Jin",
+      "Jie Hu",
+      "Hanting Chen"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.AI"
+    ],
+    "comment": null,
+    "summary": "We introduce Dual Mutual Information Regularization (DuoMI), a method for regulating expert routing across rounds in looped mixture-of-experts (MoE) Transformers. When two rounds of computation share an expert pool, their routers may favor different expert subsets, limiting the reuse of individual expert parameters across rounds. Even when aggregate expert usage is identical across rounds, we would still prefer each token to retain some experts while switching to others. DuoMI addresses both aspects of routing: it uses round-level marginal mutual information to limit the dependence of aggregate expert usage on the round, and token-level conditional mutual information to penalize average cross-round routing changes that fall outside a target interval. During training, DuoMI computes differentiable penalties from soft routing distributions over all experts. It adds no model parameters and leaves sparse Top-$k$ routing strategy unchanged at inference. On a looped OLMoE backbone in which paired adjacent layers share experts, DuoMI improves the average score across $15$ downstream tasks from $50.08\\%$ to $51.82\\%$, a gain of $1.74$ percentage points over the looped baseline.",
+    "abs": "http://arxiv.org/abs/2611.33952v1",
+    "pdf": "https://arxiv.org/pdf/2611.33952v1",
+    "AI": {
+      "category": "METHOD",
+      "priority": "P2",
+      "brief_summary": "该文提出 DuoMI，用轮级边际互信息与 token 级条件互信息对 looped MoE Transformer 中跨轮专家路由做正则，使各轮既复用部分专家又保留切换空间；训练时基于软路由分布计算可微惩罚，不增加参数，推理仍用稀疏 Top-k，在 OLMoE 上 15 项下游任务平均分从 50.08% 升至 51.82%。",
+      "relevance_reason": "其“跨轮次既保持又更新”的路由约束，可能为 looped latent 推理中状态复用与迭代更新的监督设计提供可核查线索；但该文面向纯文本 MoE 路由，尚无视觉证据与 latent 内容使用方面的验证。"
+    },
+    "analysis_schema_version": "lvr-brief-v1",
+    "analysis_provenance": {
+      "schema_version": "lvr-brief-v1",
+      "model": "deepseek-v4.1-flash",
+      "language": "Chinese",
+      "profile_sha256": "7ae6951c08eaa1c153f72ef6eb3b8725c24e1b8ba5798303c95994dd54dc91bd",
+      "schema_sha256": "294e00f6e745f67c9c0e6b82d01fb59fc0341dd851ec1470c01f6c5bf6536ee7",
+      "max_output_tokens": 1024,
+      "generated_at": "2026-11-27T22:22:41.806813+00:00"
+    }
+  },
+  "stage": "complete",
+  "errors": null,
+  "raw_response": null
+}
